@@ -1,0 +1,40 @@
+# Netlify deploy config for ThisOrThat with Bhartendra
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Run the build script on every deploy. This:
+  #   1. Compiles articles from /content/articles/*.md → /content/articles.json
+  #   2. Re-syncs episodes from your YouTube channel → /episodes.js
+  command = "python3 build.py"
+  publish = "."
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+# Make Decap CMS-edited files commit cleanly
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+# SPA-style fallback for missing routes — send to home
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/logo.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/episodes.js"
+  [headers.values]
+    Cache-Control = "public, max-age=300"  # 5 min — episodes change after re-sync
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"

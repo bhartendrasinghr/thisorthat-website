@@ -1,0 +1,148 @@
+# Decap CMS configuration for ThisOrThat with Bhartendra
+# Docs: https://decapcms.org/docs/configuration-options/
+
+backend:
+  name: git-gateway
+  branch: main  # change if your default branch is "master" or other
+
+# Optional: local backend for editing without auth during development
+# Run `npx decap-server` in another terminal, then visit /admin
+local_backend: true
+
+media_folder: "media"
+public_folder: "/media"
+
+site_url: https://thisorthat.in   # update once you have a live URL
+display_url: https://thisorthat.in
+logo_url: /logo.png
+
+collections:
+  # ───────── ARTICLES ─────────
+  - name: "articles"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "content/articles"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}} · {{date}}"
+    sortable_fields: ['date', 'title', 'category']
+    view_filters:
+      - label: "Featured"
+        field: featured
+        pattern: true
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "subtitle", label: "Subtitle / dek", widget: "string", required: false }
+      - { name: "slug", label: "URL slug", widget: "string", hint: "Letters, numbers, hyphens only. Used in URL: /article-detail.html?slug=YOUR-SLUG" }
+      - { name: "category", label: "Category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities", "Slow Thought"] }
+      - { name: "date", label: "Publish date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { name: "author", label: "Author", widget: "string", default: "Bhartendra Singh" }
+      - { name: "read_minutes", label: "Read time (minutes)", widget: "number", value_type: "int", min: 1, max: 60, default: 5 }
+      - { name: "featured", label: "Featured on articles page?", widget: "boolean", default: false }
+      - { name: "hero_color", label: "Hero gradient", widget: "select", options: ["thumb-1", "thumb-2", "thumb-3", "thumb-4", "thumb-5", "thumb-6"], default: "thumb-1", hint: "1: deep purple-navy · 2: dark navy · 3: mustard · 4: ink-navy · 5: red · 6: navy" }
+      - { name: "body", label: "Body", widget: "markdown", hint: "Use ## for section headings, > for pull quotes, **bold**, *italic*" }
+
+  # ───────── SITE-WIDE TEXT ─────────
+  - name: "site"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "branding"
+        label: "Brand & Social Links"
+        file: "content/site.json"
+        fields:
+          - label: "Brand"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { name: "name", label: "Brand name", widget: "string", default: "ThisOrThat" }
+              - { name: "tagline", label: "Tagline (under logo)", widget: "string", default: "with Bhartendra" }
+              - { name: "youtube_url", label: "YouTube channel URL", widget: "string" }
+              - { name: "spotify_url", label: "Spotify URL", widget: "string", required: false }
+              - { name: "apple_podcasts_url", label: "Apple Podcasts URL", widget: "string", required: false }
+              - { name: "instagram_url", label: "Instagram URL", widget: "string", required: false }
+              - { name: "linkedin_url", label: "LinkedIn URL", widget: "string", required: false }
+              - { name: "twitter_url", label: "Twitter / X URL", widget: "string", required: false }
+              - { name: "contact_email", label: "Contact email", widget: "string" }
+          - label: "Homepage"
+            name: "home"
+            widget: "object"
+            fields:
+              - { name: "hero_pill", label: "Hero pill text", widget: "string", hint: "e.g. 'New episode every Tuesday'" }
+              - { name: "hero_title_line1", label: "Hero title — line 1", widget: "string" }
+              - { name: "hero_title_line2", label: "Hero title — line 2 (italic accent)", widget: "string" }
+              - { name: "hero_subtitle", label: "Hero subtitle", widget: "text" }
+              - { name: "stat_3_label", label: "3rd stat label", widget: "string" }
+              - { name: "stat_3_value", label: "3rd stat value", widget: "string" }
+          - label: "About page"
+            name: "about"
+            widget: "object"
+            fields:
+              - { name: "host_name", label: "Host name", widget: "string" }
+              - { name: "host_tagline", label: "Host one-liner", widget: "text" }
+              - name: "story_paragraphs"
+                label: "Story paragraphs"
+                widget: "list"
+                field: { name: "para", label: "Paragraph", widget: "text" }
+              - name: "values"
+                label: "Brand values (3 cards)"
+                widget: "list"
+                fields:
+                  - { name: "number", label: "Number", widget: "string" }
+                  - { name: "title", label: "Title", widget: "string" }
+                  - { name: "body", label: "Body", widget: "text" }
+          - label: "Newsletter"
+            name: "newsletter"
+            widget: "object"
+            fields:
+              - { name: "name", label: "Newsletter name", widget: "string" }
+              - { name: "tagline", label: "Newsletter tagline", widget: "string" }
+              - { name: "subscribe_url", label: "Subscribe URL", widget: "string", required: false }
+
+  # ───────── EPISODES (overrides) ─────────
+  # Episodes auto-sync from YouTube via sync.py.
+  # If you need to override guest name, category, or featured status for any episode,
+  # add an entry here keyed by YouTube video ID.
+  - name: "episode_overrides"
+    label: "Episode Overrides"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "overrides"
+        label: "Episode metadata overrides"
+        file: "content/episode-overrides.json"
+        fields:
+          - label: "Overrides (keyed by YouTube video ID)"
+            name: "overrides"
+            widget: "list"
+            fields:
+              - { name: "video_id", label: "YouTube video ID", widget: "string", hint: "The 11-character ID from the YouTube URL (after v=)" }
+              - { name: "guest", label: "Override guest name", widget: "string", required: false }
+              - { name: "category", label: "Override category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities"], required: false }
+              - { name: "title", label: "Override title (rarely needed)", widget: "string", required: false }
+
+  # ───────── GUESTS (extra info) ─────────
+  - name: "guests"
+    label: "Guest Profiles"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "roles"
+        label: "Guest roles & bios"
+        file: "content/guest-profiles.json"
+        fields:
+          - label: "Guests"
+            name: "guests"
+            widget: "list"
+            fields:
+              - { name: "name", label: "Guest name (must match episode credits exactly)", widget: "string" }
+              - { name: "role", label: "Role / title", widget: "string" }
+              - { name: "bio", label: "Bio (1-2 paragraphs)", widget: "text", required: false }
+              - { name: "linkedin", label: "LinkedIn URL", widget: "string", required: false }
+              - { name: "twitter", label: "Twitter URL", widget: "string", required: false }
+              - { name: "website", label: "Website", widget: "string", required: false }

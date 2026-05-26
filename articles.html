@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Articles — ThisOrThat with Bhartendra</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
+  .font-serif { font-family: 'Fraunces', serif; }
+  .thumb { position: relative; overflow: hidden; }
+  .thumb::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 20% 80%, rgba(245,197,24,0.35), transparent 50%), radial-gradient(circle at 80% 20%, rgba(211,47,47,0.25), transparent 50%); }
+  .thumb-1 { background: linear-gradient(135deg, #1A237E, #4A148C); }
+  .thumb-2 { background: linear-gradient(135deg, #11185A, #1A237E); }
+  .thumb-3 { background: linear-gradient(135deg, #C99A00, #F5C518); }
+  .thumb-4 { background: linear-gradient(135deg, #0A0E3D, #1A237E); }
+  .thumb-5 { background: linear-gradient(135deg, #D32F2F, #8B1A1A); }
+  .thumb-6 { background: linear-gradient(135deg, #1A237E, #0A0E3D); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
+  .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="text-navy-ink border-b-2 border-mustard pb-1">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="hover:text-navy-ink">Calculators</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="#newsletter" class="hidden sm:inline-flex text-sm font-semibold text-navy-ink hover:text-navy">Subscribe</a>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="bg-cream py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">Long-form</div>
+    <h1 class="font-serif text-5xl md:text-6xl font-bold text-navy-ink mt-3">Read the show.</h1>
+    <p class="mt-4 text-navy-ink/70 text-lg max-w-2xl">Essays, breakdowns and the occasional rant. Built for the readers, not the algorithm.</p>
+
+    <div class="mt-8 flex flex-wrap gap-2">
+      <button class="chip bg-navy text-cream">All</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10 border border-navy/10">Behaviour</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10 border border-navy/10">Markets</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10 border border-navy/10">Investing</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10 border border-navy/10">Tax</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10 border border-navy/10">Career</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10 border border-navy/10">Slow Thought</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED — populated from content/articles.json -->
+<section class="pb-16 bg-cream">
+  <div class="max-w-7xl mx-auto px-6" id="featured-slot"></div>
+</section>
+
+<!-- ARTICLES GRID -->
+<section class="pb-20 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="font-serif text-3xl font-bold text-navy-ink mb-8">All essays</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="art-grid"></div>
+    <div id="art-empty" class="hidden text-center py-16 text-navy/60">No articles yet. Add one via /admin to get started.</div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" class="py-16 bg-mustard text-navy-ink">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">One uncomfortable idea every Sunday.</h2>
+    <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input type="email" placeholder="you@email.com" class="flex-1 bg-cream border border-navy/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy" />
+      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <div class="text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra.</div>
+  </div>
+</footer>
+
+<script>
+const formatDate = (iso) => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+};
+const thumbClass = (article) => article.hero_color || 'thumb-1';
+
+fetch('content/articles.json')
+  .then(r => r.json())
+  .then(articles => {
+    if (!articles.length) {
+      document.getElementById('art-empty').classList.remove('hidden');
+      return;
+    }
+    // Featured = explicit featured:true OR latest
+    const featured = articles.find(a => a.featured) || articles[0];
+    const rest = articles.filter(a => a.slug !== featured.slug);
+
+    document.getElementById('featured-slot').innerHTML = `
+      <a href="article-detail.html?slug=${featured.slug}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+        <div class="grid md:grid-cols-2">
+          <div class="thumb ${thumbClass(featured)} aspect-video md:aspect-auto flex items-end p-10">
+            <div class="relative z-10">
+              <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Featured · ${featured.category}</div>
+              <div class="font-serif text-3xl md:text-5xl font-bold text-cream mt-2 leading-tight">${featured.title}</div>
+            </div>
+          </div>
+          <div class="p-10 flex flex-col justify-center">
+            <p class="text-navy-ink/80 leading-relaxed text-lg">${featured.subtitle || featured.excerpt}</p>
+            <div class="flex items-center justify-between mt-8 text-sm">
+              <div class="flex items-center gap-3">
+                <div class="avatar w-10 h-10 rounded-full bg-navy text-mustard text-xs">${(featured.author||'BS').split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>
+                <div>
+                  <div class="font-semibold text-navy-ink">${featured.author || 'Bhartendra Singh'}</div>
+                  <div class="text-xs text-navy/60">${formatDate(featured.date)} · ${featured.read_minutes || 5} min read</div>
+                </div>
+              </div>
+              <span class="text-navy-ink font-semibold">Read →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    `;
+
+    const grid = document.getElementById('art-grid');
+    grid.innerHTML = rest.map(a => `
+      <a href="article-detail.html?slug=${a.slug}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+        <div class="thumb ${thumbClass(a)} aspect-[16/10]"></div>
+        <div class="p-6">
+          <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">${a.category}</div>
+          <h3 class="font-serif text-xl font-bold text-navy-ink mt-2 leading-tight">${a.title}</h3>
+          <div class="flex items-center gap-2 mt-4 text-xs text-navy/60">
+            <span>${a.read_minutes || 5} min read</span><span>·</span><span>${formatDate(a.date)}</span>
+          </div>
+        </div>
+      </a>
+    `).join('');
+  })
+  .catch(err => {
+    console.error('Failed to load articles.json:', err);
+    document.getElementById('art-empty').classList.remove('hidden');
+    document.getElementById('art-empty').textContent = 'Articles failed to load. Run `python3 build.py` and refresh.';
+  });
+</script>
+
+</body>
+</html>

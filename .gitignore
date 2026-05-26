@@ -1,0 +1,20 @@
+# Mac
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Local dev
+node_modules/
+.netlify/
+.cache/
+
+# Decap local backend
+.git-credentials
+
+# Build artifacts (regenerated each deploy)
+# Keep these committed so the site works on first load before build runs:
+# - content/articles.json
+# - episodes.js

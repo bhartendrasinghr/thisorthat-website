@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ThisOrThat with Bhartendra — Personal Finance, Honestly.</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' },
+          mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' },
+          alert: '#D32F2F',
+          cream: '#FAF7F0',
+          paper: '#F5F1E8',
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          serif: ['Fraunces', 'Georgia', 'serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
+  .font-serif { font-family: 'Fraunces', serif; }
+
+  /* Thumbnail gradient art */
+  .thumb { position: relative; overflow: hidden; background: linear-gradient(135deg, #1A237E, #11185A); }
+  .thumb::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(245,197,24,0.35), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(211,47,47,0.25), transparent 50%);
+  }
+  .thumb-1 { background: linear-gradient(135deg, #1A237E, #4A148C); }
+  .thumb-2 { background: linear-gradient(135deg, #11185A, #1A237E); }
+  .thumb-3 { background: linear-gradient(135deg, #C99A00, #F5C518); }
+  .thumb-4 { background: linear-gradient(135deg, #0A0E3D, #1A237E); }
+  .thumb-5 { background: linear-gradient(135deg, #D32F2F, #8B1A1A); }
+  .thumb-6 { background: linear-gradient(135deg, #1A237E, #0A0E3D); }
+
+  /* Insta card variants */
+  .ig-1 { background: #1A237E; color: #FAF7F0; }
+  .ig-2 { background: #F5C518; color: #0A0E3D; }
+  .ig-3 { background: #FAF7F0; color: #0A0E3D; border: 1px solid #E8E1CC; }
+  .ig-4 { background: #D32F2F; color: #FAF7F0; }
+  .ig-5 { background: #0A0E3D; color: #F5C518; }
+  .ig-6 { background: #FAF7F0; color: #1A237E; border: 1px solid #E8E1CC; }
+
+  /* Subtle grain */
+  .grain { position: relative; }
+  .grain::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Marquee */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 40s linear infinite; }
+
+  /* Hover lift */
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+
+  /* Chip */
+  .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
+
+  /* Search */
+  .search input::placeholder { color: #8B8676; }
+
+  /* Avatar with initials */
+  .avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; letter-spacing: -0.02em;
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ====================== NAV ====================== -->
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="hover:text-navy-ink">Calculators</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden sm:inline-flex text-sm font-semibold text-navy-ink hover:text-navy">Subscribe</a>
+      <a id="nav-watch-latest" href="episode-detail.html" class="inline-flex items-center gap-2 bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">
+        <span>▶</span> Watch latest
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== HERO ====================== -->
+<section id="top" class="relative bg-navy text-cream overflow-hidden grain">
+  <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-mustard/15 blur-3xl"></div>
+  <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-alert/10 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 pt-20 pb-24 grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7">
+      <div class="inline-flex items-center gap-2 bg-cream/10 border border-cream/20 px-3 py-1 rounded-full text-xs font-medium tracking-wide">
+        <span class="w-2 h-2 rounded-full bg-mustard animate-pulse"></span>
+        New episode every Tuesday
+      </div>
+      <h1 class="mt-6 font-serif text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+        Personal finance,<br/>
+        <span class="text-mustard italic">honestly.</span>
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-cream/80 max-w-xl leading-relaxed">
+        Unfiltered conversations with India's sharpest minds on money, markets and the behaviour behind both. Hosted by Bhartendra Singh.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="episode-detail.html" class="bg-mustard text-navy-ink px-6 py-3 rounded-full font-semibold hover:bg-mustard-soft transition">▶ Watch latest episode</a>
+        <a href="episodes.html" class="border border-cream/30 text-cream px-6 py-3 rounded-full font-semibold hover:bg-cream/10 transition">Browse all episodes</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-12 grid grid-cols-3 gap-6 max-w-md">
+        <div>
+          <div class="font-serif text-3xl font-bold text-mustard" data-stat-episodes>54</div>
+          <div class="text-xs uppercase tracking-widest text-cream/60 mt-1">Episodes</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-bold text-mustard" data-stat-guests>19</div>
+          <div class="text-xs uppercase tracking-widest text-cream/60 mt-1">Guests</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-bold text-mustard">185K</div>
+          <div class="text-xs uppercase tracking-widest text-cream/60 mt-1">Top episode views</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured episode card — populated from real latest episode -->
+    <div class="lg:col-span-5" id="hero-featured"></div>
+  </div>
+
+  <!-- Featured guests marquee — populated from real guests list -->
+  <div class="relative border-t border-cream/10 py-6 overflow-hidden">
+    <div class="text-xs uppercase tracking-[0.3em] text-cream/50 text-center mb-4">As heard on the show</div>
+    <div id="guest-marquee" class="flex marquee-track gap-12 whitespace-nowrap"></div>
+  </div>
+</section>
+
+<!-- ====================== EPISODES ====================== -->
+<section id="episodes" class="py-20 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The archive</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">All episodes, one place.</h2>
+        <p class="text-navy-ink/70 mt-3 max-w-xl">87 conversations and counting. Search by guest, topic or tag.</p>
+      </div>
+      <div class="search w-full md:w-96 relative">
+        <input type="text" placeholder="Search guests, topics, tags…" class="w-full bg-paper border border-navy/15 rounded-full pl-12 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mustard" />
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-navy/40">🔍</span>
+      </div>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="flex flex-wrap gap-2 mb-10">
+      <button class="chip bg-navy text-cream">All</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Investing</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Behaviour</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Markets</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Retirement</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Real Estate</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Tax</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Startups</button>
+      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Career</button>
+    </div>
+
+    <!-- Episode grid — populated from real data -->
+    <div id="latest" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <div class="text-center mt-12">
+      <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">
+        See all <span data-ep-count>54</span> episodes →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== GUESTS ====================== -->
+<section id="guests" class="py-20 bg-paper">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The voices</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2"><span data-guest-count>19</span> guests. Every conversation, indexed.</h2>
+        <p class="text-navy-ink/70 mt-3 max-w-xl">Click any guest to see every episode they've appeared on, plus their best ideas.</p>
+      </div>
+      <a href="guests.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">View all guests →</a>
+    </div>
+
+    <!-- Guest cards — populated from real data -->
+    <div id="home-guests" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
+  </div>
+</section>
+
+<!-- ====================== FEED (Insta-style creatives) ====================== -->
+<section id="feed" class="py-20 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The feed</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Pocket-sized insights.</h2>
+        <p class="text-navy-ink/70 mt-3 max-w-xl">The best ideas from the show, redesigned for screenshots, sharing and saving.</p>
+      </div>
+      <a href="feed.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">See full feed →</a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <!-- IG cards (square) -->
+      <div class="lift ig-1 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Slow Thought · 042</div>
+        <div class="font-serif text-2xl leading-tight font-bold">The market doesn't reward intelligence. It rewards patience that looks like stupidity.</div>
+        <div class="flex items-center justify-between text-[11px] opacity-70">
+          <span>ThisOrThat</span>
+          <span>♥ 4.2K</span>
+        </div>
+      </div>
+
+      <div class="lift ig-2 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Data card</div>
+        <div>
+          <div class="font-serif text-5xl font-black">73%</div>
+          <div class="font-serif text-base font-semibold mt-2 leading-snug">of active equity funds underperform their benchmark over 10 years.</div>
+        </div>
+        <div class="flex items-center justify-between text-[11px] opacity-70">
+          <span>SPIVA India 2024</span>
+          <span>♥ 2.8K</span>
+        </div>
+      </div>
+
+      <div class="lift ig-3 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Quote · Ep 086</div>
+        <div class="font-serif text-xl leading-snug font-semibold">"The hardest part of investing isn't picking the right stock. It's not selling the right stock too early."</div>
+        <div>
+          <div class="text-xs font-semibold">— Saurabh Mukherjea</div>
+          <div class="text-[11px] opacity-60">Marcellus Investment</div>
+        </div>
+      </div>
+
+      <div class="lift ig-4 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-80 font-semibold">ThisOrThat</div>
+        <div class="font-serif text-3xl font-bold leading-tight">A 1% expense ratio over 30 years eats 26% of your final corpus.</div>
+        <div class="flex items-center justify-between text-[11px] opacity-80">
+          <span>The cost of complacency</span>
+          <span>♥ 5.1K</span>
+        </div>
+      </div>
+
+      <div class="lift ig-5 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Insight</div>
+        <div class="font-serif text-2xl leading-tight font-bold">Your portfolio doesn't care that you're stressed. <span class="text-cream">But your decisions do.</span></div>
+        <div class="text-[11px] opacity-70">— Slow Thought 038</div>
+      </div>
+
+      <div class="lift ig-6 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-60 font-semibold">Carousel · 8 slides</div>
+        <div class="font-serif text-xl leading-snug font-semibold">How to read a mutual fund factsheet in 60 seconds — without falling for the marketing.</div>
+        <div class="inline-flex items-center gap-1 text-[11px] font-semibold">
+          <span>Swipe →</span>
+        </div>
+      </div>
+
+      <div class="lift ig-2 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">ThisOrThat</div>
+        <div class="font-serif text-2xl font-bold leading-tight">Real estate <span class="italic">felt</span> safe. Equity <span class="italic">looked</span> risky. Over 20 years, only one of them built wealth.</div>
+        <div class="text-[11px] opacity-70">♥ 6.4K</div>
+      </div>
+
+      <div class="lift ig-1 aspect-square rounded-2xl p-6 flex flex-col justify-between">
+        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Behaviour</div>
+        <div class="font-serif text-2xl font-bold leading-tight">If you can't explain your portfolio in one sentence, you don't own it. <span class="text-mustard">It owns you.</span></div>
+        <div class="text-[11px] opacity-70">— Slow Thought 029</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ARTICLES ====================== -->
+<section id="articles" class="py-20 bg-paper">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">Long-form</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Read the show.</h2>
+        <p class="text-navy-ink/70 mt-3 max-w-xl">Essays, breakdowns and the occasional rant. Built for the readers, not the algorithm.</p>
+      </div>
+      <a href="articles.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">All articles →</a>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Featured article -->
+      <a href="article-detail.html" class="lift block lg:row-span-2 lg:col-span-2 bg-white rounded-2xl overflow-hidden border border-navy/10">
+        <div class="thumb thumb-1 aspect-[16/10] flex items-end p-8">
+          <div class="relative z-10">
+            <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Featured · Behaviour</div>
+            <div class="font-serif text-3xl md:text-4xl font-bold text-cream mt-2 leading-tight max-w-xl">The quiet violence of "playing it safe" with your money.</div>
+          </div>
+        </div>
+        <div class="p-8">
+          <p class="text-navy-ink/80 leading-relaxed">Most people don't lose money on bad investments. They lose it on good investments they were too afraid to make. A 12-minute essay on inflation, fear, and the cost of waiting…</p>
+          <div class="flex items-center justify-between mt-6 text-sm">
+            <div class="flex items-center gap-3">
+              <div class="avatar w-9 h-9 rounded-full bg-navy text-mustard text-xs">BS</div>
+              <div>
+                <div class="font-semibold text-navy-ink">Bhartendra Singh</div>
+                <div class="text-xs text-navy/60">May 18, 2026 · 12 min read</div>
+              </div>
+            </div>
+            <span class="text-navy-ink font-semibold">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="article-detail.html" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+        <div class="thumb thumb-3 aspect-[16/10]"></div>
+        <div class="p-6">
+          <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">Markets</div>
+          <h3 class="font-serif text-xl font-bold text-navy-ink mt-2 leading-tight">Why your SIP's underperformance is not your fund manager's fault.</h3>
+          <div class="flex items-center gap-2 mt-4 text-xs text-navy/60">
+            <span>6 min read</span><span>·</span><span>May 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="article-detail.html" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+        <div class="thumb thumb-5 aspect-[16/10]"></div>
+        <div class="p-6">
+          <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">Tax</div>
+          <h3 class="font-serif text-xl font-bold text-navy-ink mt-2 leading-tight">The new tax regime, decoded for people who'd rather not read 47 pages.</h3>
+          <div class="flex items-center gap-2 mt-4 text-xs text-navy/60">
+            <span>8 min read</span><span>·</span><span>May 5, 2026</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CALCULATORS ====================== -->
+<section id="calculators" class="py-20 bg-navy-ink text-cream relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-mustard/10 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <div>
+        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Coming soon</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mt-2">Calculators that don't lie to you.</h2>
+        <p class="text-cream/70 mt-3 max-w-xl">Most online calculators flatter the user. Ours show you the inconvenient number — and what to do with it.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="lift bg-navy/50 backdrop-blur border border-cream/10 rounded-2xl p-6">
+        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-4">₹</div>
+        <h3 class="font-serif text-2xl font-bold">Real Retirement</h3>
+        <p class="text-cream/70 text-sm mt-2 leading-relaxed">Inflation-adjusted, lifestyle-honest. See the corpus you actually need.</p>
+        <div class="mt-6 text-xs uppercase tracking-widest text-mustard font-semibold">Launching Jun 2026</div>
+      </div>
+      <div class="lift bg-navy/50 backdrop-blur border border-cream/10 rounded-2xl p-6">
+        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-4">%</div>
+        <h3 class="font-serif text-2xl font-bold">True Cost of Fees</h3>
+        <p class="text-cream/70 text-sm mt-2 leading-relaxed">See the percentage of your final corpus eaten by expense ratios.</p>
+        <div class="mt-6 text-xs uppercase tracking-widest text-mustard font-semibold">Launching Jun 2026</div>
+      </div>
+      <div class="lift bg-navy/50 backdrop-blur border border-cream/10 rounded-2xl p-6">
+        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-4">⌛</div>
+        <h3 class="font-serif text-2xl font-bold">Goal Planner</h3>
+        <p class="text-cream/70 text-sm mt-2 leading-relaxed">Backwards from the goal. Honest about what's possible — and what's not.</p>
+        <div class="mt-6 text-xs uppercase tracking-widest text-mustard font-semibold">Launching Jul 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== NEWSLETTER ====================== -->
+<section id="newsletter" class="py-20 bg-mustard text-navy-ink">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
+    <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3">One uncomfortable idea. Every Sunday.</h2>
+    <p class="mt-4 text-navy-ink/80 max-w-xl mx-auto">A short, sharp observation on money and behaviour — written, not generated. 14,000 readers and counting.</p>
+    <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input type="email" placeholder="you@email.com" class="flex-1 bg-cream border border-navy/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy" />
+      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe →</button>
+    </form>
+    <div class="text-xs text-navy-ink/60 mt-3">Free. Unsubscribe anytime. No "course launches" disguised as emails.</div>
+  </div>
+</section>
+
+<!-- ====================== ABOUT ====================== -->
+<section id="about" class="py-20 bg-cream">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-5 gap-12 items-center">
+    <div class="md:col-span-2">
+      <div class="avatar w-full aspect-square rounded-3xl bg-navy text-mustard text-6xl">BS</div>
+    </div>
+    <div class="md:col-span-3">
+      <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The host</div>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Bhartendra Singh</h2>
+      <p class="mt-4 text-navy-ink/80 leading-relaxed">Twenty years in markets, ten in asking better questions. <em>ThisOrThat</em> started as a frustration with the noise around personal finance in India — and became a brand built on the opposite: clarity, candour, and conversations that don't pretend.</p>
+      <div class="mt-6 flex gap-3">
+        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">LinkedIn</a>
+        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">Twitter / X</a>
+        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">Email Bhartendra</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+          <div>
+            <div class="font-bold text-cream">ThisOrThat</div>
+            <div class="text-[11px] uppercase tracking-widest text-cream/50">with Bhartendra</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, honestly. A media brand built on conversations India isn't having loudly enough.</p>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Explore</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="episodes.html" class="hover:text-cream">Episodes</a></li>
+          <li><a href="guests.html" class="hover:text-cream">Guests</a></li>
+          <li><a href="articles.html" class="hover:text-cream">Articles</a></li>
+          <li><a href="feed.html" class="hover:text-cream">Feed</a></li>
+          <li><a href="calculators.html" class="hover:text-cream">Calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Listen / Watch</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-cream">YouTube</a></li>
+          <li><a href="#" class="hover:text-cream">Spotify</a></li>
+          <li><a href="#" class="hover:text-cream">Apple Podcasts</a></li>
+          <li><a href="#" class="hover:text-cream">Instagram</a></li>
+          <li><a href="#" class="hover:text-cream">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-cream/40">
+      <div>© 2026 ThisOrThat with Bhartendra. All rights reserved. <span id="sync-info" class="ml-3 opacity-70"></span></div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-cream">Privacy</a>
+        <a href="#" class="hover:text-cream">Terms</a>
+        <a href="#" class="hover:text-cream">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Real data from YouTube channel -->
+<script src="episodes.js"></script>
+<script>
+const initialsOf = (n) => {
+  if (!n || n.toLowerCase().includes('solo')) return 'BS';
+  const parts = n.replace(/^CA\s+|^Mr\.?\s+/i, '').split(/\s+/).filter(p => p[0] && p[0] === p[0].toUpperCase());
+  return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
+};
+const bgs = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
+
+// 1. Hero featured = latest episode (top of EPISODES array)
+const latest = window.EPISODES[0];
+const heroEl = document.getElementById('hero-featured');
+heroEl.innerHTML = `
+  <a href="episode-detail.html?v=${latest.id}" class="block group">
+    <div class="relative">
+      <div class="absolute -inset-2 bg-mustard/30 rounded-3xl blur-2xl group-hover:bg-mustard/50 transition"></div>
+      <div class="relative bg-navy-ink rounded-3xl overflow-hidden border border-cream/10">
+        <div class="aspect-video relative overflow-hidden">
+          <img src="${latest.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-ink/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 z-10">
+            <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Episode ${String(latest.n).padStart(3,'0')} • ${latest.published || 'New'}</div>
+            <div class="font-serif text-xl font-bold text-cream mt-1 leading-tight">${latest.title}</div>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-20 h-20 rounded-full bg-cream/90 group-hover:bg-mustard transition flex items-center justify-center">
+              <span class="text-navy-ink text-2xl ml-1">▶</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="avatar w-10 h-10 rounded-full bg-mustard text-navy-ink">${initialsOf(latest.guest)}</div>
+            <div>
+              <div class="text-sm font-semibold text-cream">${(latest.guest||'').replace(' (solo)','')}</div>
+              <div class="text-xs text-cream/60">${latest.cat}</div>
+            </div>
+          </div>
+          ${latest.views ? `<div class="text-xs text-cream/60">${latest.views} views</div>` : ''}
+        </div>
+      </div>
+    </div>
+  </a>
+`;
+document.getElementById('nav-watch-latest').href = `episode-detail.html?v=${latest.id}`;
+
+// 2. Guest marquee — top 10 guests by episode count, duplicated for seamless loop
+const marqueeNames = window.GUESTS.slice(0, 10).map(g => g.name);
+const marqueeHtml = marqueeNames.map(n => `<span class="font-serif text-2xl text-cream/70">${n}</span><span class="text-mustard">•</span>`).join('');
+document.getElementById('guest-marquee').innerHTML = `<div class="flex gap-12 items-center">${marqueeHtml}</div><div class="flex gap-12 items-center" aria-hidden="true">${marqueeHtml}</div>`;
+
+// 3. Latest 6 episodes (skip the hero one)
+const latestGrid = document.getElementById('latest');
+latestGrid.innerHTML = window.EPISODES.slice(1, 7).map((ep, i) => {
+  const guestLabel = (ep.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : ep.guest;
+  return `
+  <a href="episode-detail.html?v=${ep.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+    <div class="aspect-video relative overflow-hidden bg-navy-ink">
+      <img src="${ep.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(ep.n).padStart(3,'0')}</div>
+      ${ep.views ? `<div class="absolute bottom-3 right-3 bg-navy-ink/85 text-cream text-xs px-2 py-1 rounded">${ep.views} views</div>` : ''}
+    </div>
+    <div class="p-5">
+      <div class="text-xs text-navy/60 uppercase tracking-widest font-semibold">${ep.cat}</div>
+      <h3 class="font-serif text-xl font-bold text-navy-ink mt-1 leading-snug">${ep.title}</h3>
+      <div class="flex items-center gap-2 mt-4">
+        <div class="avatar w-7 h-7 rounded-full ${bgs[i % bgs.length]} text-xs">${initialsOf(ep.guest)}</div>
+        <span class="text-sm text-navy-ink/70">${guestLabel}</span>
+      </div>
+    </div>
+  </a>`;
+}).join('');
+
+// 4. Top 6 guests
+const guestsEl = document.getElementById('home-guests');
+guestsEl.innerHTML = window.GUESTS.slice(0, 6).map(g => `
+  <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift group text-center">
+    <div class="avatar w-full aspect-square rounded-2xl ${g.bg} text-3xl">${g.initials}</div>
+    <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy">${g.name}</div>
+    <div class="text-xs text-navy/60">${g.role} • ${g.eps} ep${g.eps > 1 ? 's' : ''}</div>
+  </a>
+`).join('');
+
+// 5. Counts
+document.querySelectorAll('[data-ep-count]').forEach(el => el.textContent = window.EPISODES.length);
+document.querySelectorAll('[data-guest-count]').forEach(el => el.textContent = window.GUESTS.length);
+document.querySelectorAll('[data-stat-episodes]').forEach(el => el.textContent = window.EPISODES.length);
+document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = window.GUESTS.length);
+
+// 6. Sync timestamp ("Last synced X ago")
+const syncInfo = document.getElementById('sync-info');
+if (syncInfo && window.SYNCED_AT) {
+  const synced = new Date(window.SYNCED_AT);
+  const diffMs = Date.now() - synced.getTime();
+  const minutes = Math.floor(diffMs / 60000);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const rel = days > 0 ? `${days} day${days>1?'s':''} ago` : hours > 0 ? `${hours} hour${hours>1?'s':''} ago` : minutes > 0 ? `${minutes} min ago` : 'just now';
+  syncInfo.textContent = `· Last synced from YouTube ${rel}`;
+}
+</script>
+
+</body>
+</html>
