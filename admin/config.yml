@@ -2,8 +2,11 @@
 # Docs: https://decapcms.org/docs/configuration-options/
 
 backend:
-  name: git-gateway
-  branch: main  # change if your default branch is "master" or other
+  name: github
+  repo: bhartendrasinghr/thisorthat-website
+  branch: main
+  base_url: https://thisorthat-website.vercel.app
+  auth_endpoint: api/auth
 
 # Optional: local backend for editing without auth during development
 # Run `npx decap-server` in another terminal, then visit /admin
@@ -12,8 +15,8 @@ local_backend: true
 media_folder: "media"
 public_folder: "/media"
 
-site_url: https://thisorthat.in   # update once you have a live URL
-display_url: https://thisorthat.in
+site_url: https://thisorthat-website.vercel.app
+display_url: https://thisorthat-website.vercel.app
 logo_url: /logo.png
 
 collections:
