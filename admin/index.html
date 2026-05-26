@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ThisOrThat — Content Editor</title>
-  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <!-- Tell Decap exactly where to find config.yml (absolute path, no relative-URL surprises) -->
+  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
 </head>
 <body>
-  <!-- Netlify Identity widget (auth) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <!-- Decap CMS -->
+  <!-- Decap CMS — auth handled by our Vercel /api/auth + /api/callback functions -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
