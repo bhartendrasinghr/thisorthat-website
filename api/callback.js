@@ -86,38 +86,55 @@ ${status !== 'success' ? `<pre>${JSON.stringify(payload, null, 2)}</pre>` : ''}
 <script>
 (function() {
   var message = ${JSON.stringify(message)};
-  var sent = false;
   var statusLine = document.getElementById('status-line');
+  var handshakeAcked = false;
 
-  function send(reason) {
-    if (!window.opener) {
-      statusLine.textContent = '✗ No opener window. Close this and try again from /admin.';
-      return;
-    }
-    sent = true;
-    window.opener.postMessage(message, '*');
-    statusLine.textContent = '✓ Token sent to editor (' + reason + '). This window should close.';
+  if (!window.opener) {
+    statusLine.textContent = '✗ No opener window. Close this and try again from /admin.';
+    return;
   }
 
-  // 1. Listen for the handshake from Decap
+  // Decap CMS protocol:
+  //   1. Popup → Opener:  "authorizing:github"  (initiate handshake)
+  //   2. Opener → Popup:  "authorizing:github"  (echo back, confirms listener is ready)
+  //   3. Popup → Opener:  "authorization:github:success:{...token...}"
+  //   4. Opener closes popup
+
+  function sendHandshake() {
+    window.opener.postMessage('authorizing:github', '*');
+  }
+
+  function sendAuth(reason) {
+    window.opener.postMessage(message, '*');
+    statusLine.textContent = '✓ Token sent (' + reason + ')';
+  }
+
+  // Listen for opener's echo of the handshake
   window.addEventListener('message', function(e) {
-    if (e.data === 'authorizing:github' || (typeof e.data === 'string' && e.data.indexOf('authorizing:github') === 0)) {
-      send('handshake received');
+    if (e.data === 'authorizing:github') {
+      handshakeAcked = true;
+      sendAuth('handshake acked');
     }
   }, false);
 
-  // 2. Also send immediately in case Decap isn't using the handshake (newer Decap versions)
-  setTimeout(function(){ send('immediate'); }, 100);
-
-  // 3. Re-send a few times in case parent is slow to listen
+  // Initiate handshake immediately AND keep poking until acked
+  sendHandshake();
   var attempts = 0;
-  var retry = setInterval(function() {
+  var handshakeInterval = setInterval(function() {
     attempts++;
-    if (attempts > 10 || !window.opener) { clearInterval(retry); return; }
-    send('retry ' + attempts);
-  }, 300);
+    if (handshakeAcked || attempts > 30 || !window.opener) {
+      clearInterval(handshakeInterval);
+      if (!handshakeAcked) {
+        // Fallback: blast the auth message directly in case opener never echoes
+        sendAuth('fallback-no-handshake');
+      }
+      return;
+    }
+    sendHandshake();
+  }, 200);
 
-  // Don't auto-close — let Decap close us, or let the user close after seeing an error
+  // Don't auto-close — let Decap close us. If editor doesn't appear within
+  // ~10s, something is wrong with Decap on the parent page.
 })();
 </script>
 </body></html>`;
