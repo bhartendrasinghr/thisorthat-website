@@ -36,6 +36,18 @@
     "excerpt": "Investment strategist focused on long-term wealth building strategies for Indian investors."
   },
   {
+    "name": "Amit Bivalkar",
+    "slug": "amit-bivalkar",
+    "role": "Founder, Sapient Wealth",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": true,
+    "bio_html": "<p>Founder of Sapient Wealth Advisors & Brokers. Pune-based wealth manager with two decades of advising HNIs through cycles. Outspoken on the gap between what the financial industry sells and what investors actually need.</p>\n<h2>What we'll explore</h2>\n<p>Add a few notes here on what this conversation will cover. This text appears on the guest profile page on the public website.</p>",
+    "excerpt": "Founder of Sapient Wealth Advisors & Brokers. Pune-based wealth manager with two decades of advising HNIs through cycles. Outspoken on the gap between what the …"
+  },
+  {
     "name": "CA Anuj Jain",
     "slug": "anuj-jain",
     "role": "Chartered Accountant",
@@ -46,6 +58,18 @@
     "featured": false,
     "bio_html": "<p>Tell us about this guest…</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
     "excerpt": "Tell us about this guest…"
+  },
+  {
+    "name": "Anupam Tiwari",
+    "slug": "anupam-tiwari",
+    "role": "Head of Equities, Groww Mutual Fund",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": true,
+    "bio_html": "<p>Heads the equity desk at Groww Mutual Fund. Brings the perspective of a fund manager building portfolios for India's largest new-age investor base — what works, what doesn't, and why most retail investors never actually capture the returns their funds deliver.</p>\n<h2>What we'll explore</h2>\n<p>Add a few notes here on what this conversation will cover. This text appears on the guest profile page on the public website.</p>",
+    "excerpt": "Heads the equity desk at Groww Mutual Fund. Brings the perspective of a fund manager building portfolios for India's largest new-age investor base — what works,…"
   },
   {
     "name": "Chirag Barjatya",
@@ -216,6 +240,18 @@
     "excerpt": "Deputy Editor at Mint. One of India's clearest writers on personal finance, mutual funds, and global investing."
   },
   {
+    "name": "Nimesh Chandan",
+    "slug": "nimesh-chandan",
+    "role": "CIO, Bajaj Finserv AMC",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": true,
+    "bio_html": "<p>Chief Investment Officer at Bajaj Finserv AMC. Known for his sharp framework on behavioural finance — the gap between what investors <em>should</em> do and what they actually do — and his writing on market cycles, valuations, and decision-making under uncertainty.</p>\n<h2>What we'll explore</h2>\n<p>Add a few notes here on what this conversation will cover. This text appears on the guest profile page on the public website.</p>",
+    "excerpt": "Chief Investment Officer at Bajaj Finserv AMC. Known for his sharp framework on behavioural finance — the gap between what investors should do and what they act…"
+  },
+  {
     "name": "Niranjan Avasthi",
     "slug": "niranjan-avasthi",
     "role": "Head of Product, Edelweiss MF",
@@ -274,6 +310,18 @@
     "featured": false,
     "bio_html": "<p>Fund manager. Explains why SIP and equity investing remain misunderstood by most retail investors.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
     "excerpt": "Fund manager. Explains why SIP and equity investing remain misunderstood by most retail investors."
+  },
+  {
+    "name": "Swaroop Mohanty",
+    "slug": "swaroop-mohanty",
+    "role": "CEO, Mirae Asset Mutual Fund",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": true,
+    "bio_html": "<p>CEO of Mirae Asset Mutual Fund — one of India's most-respected fund houses, built on consistency rather than marketing. Long-standing advocate for low-cost, long-horizon investing and for transparent fund management.</p>\n<h2>What we'll explore</h2>\n<p>Add a few notes here on what this conversation will cover. This text appears on the guest profile page on the public website.</p>",
+    "excerpt": "CEO of Mirae Asset Mutual Fund — one of India's most-respected fund houses, built on consistency rather than marketing. Long-standing advocate for low-cost, lon…"
   },
   {
     "name": "Thomas Priju",
