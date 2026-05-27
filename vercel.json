@@ -4,7 +4,7 @@
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": false,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "headers": [
     {
       "source": "/logo.png",
