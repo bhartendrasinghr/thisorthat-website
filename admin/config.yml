@@ -14,8 +14,6 @@ local_backend: true
 
 media_folder: "media"
 public_folder: "/media"
-media_library:
-  name: "default"
 
 site_url: https://thisorthat-website.vercel.app
 display_url: https://thisorthat-website.vercel.app
