@@ -16,6 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 ARTICLES_DIR = ROOT / 'content' / 'articles'
 ARTICLES_OUT = ROOT / 'content' / 'articles.json'
+GUESTS_DIR = ROOT / 'content' / 'guests'
+GUESTS_OUT = ROOT / 'content' / 'guests.json'
 
 # ─── Frontmatter + markdown parsing (no external deps) ───────────────────
 def parse_frontmatter(text):
@@ -153,6 +155,37 @@ def build_articles():
         json.dump(articles, f, indent=2, ensure_ascii=False)
     print(f'  Compiled {len(articles)} articles → {ARTICLES_OUT.name}')
 
+# ─── Build guests.json from markdown files ───────────────────────────────
+def build_guests():
+    if not GUESTS_DIR.exists():
+        print(f'  No guests directory at {GUESTS_DIR}, skipping')
+        return
+    guests = []
+    for path in sorted(GUESTS_DIR.glob('*.md')):
+        text = path.read_text(encoding='utf-8')
+        meta, body = parse_frontmatter(text)
+        if not meta.get('slug'):
+            meta['slug'] = path.stem
+        if not meta.get('name'):
+            print(f'  ⚠ {path.name} missing required "name" field — skipping')
+            continue
+        meta['bio_html'] = markdown_to_html(body) if body.strip() else ''
+        # Excerpt for cards
+        first_p = re.search(r'<p>(.+?)</p>', meta['bio_html'])
+        if first_p:
+            excerpt = re.sub(r'<[^>]+>', '', first_p.group(1))
+            meta['excerpt'] = excerpt[:160] + ('…' if len(excerpt) > 160 else '')
+        else:
+            meta['excerpt'] = ''
+        # Normalise empty photo
+        if not meta.get('photo'):
+            meta['photo'] = ''
+        guests.append(meta)
+
+    with GUESTS_OUT.open('w') as f:
+        json.dump(guests, f, indent=2, ensure_ascii=False)
+    print(f'  Compiled {len(guests)} guest profiles → {GUESTS_OUT.name}')
+
 # ─── Run YouTube sync ────────────────────────────────────────────────────
 def sync_youtube():
     sync_path = ROOT / 'sync.py'
@@ -173,7 +206,10 @@ def main():
     print('→ Compiling articles...')
     build_articles()
     print()
-    # YouTube sync can fail on Netlify if network is blocked — make optional
+    print('→ Compiling guest profiles...')
+    build_guests()
+    print()
+    # YouTube sync can fail in CI if network is blocked — make optional
     if os.environ.get('SKIP_YT_SYNC') != '1':
         sync_youtube()
     print()

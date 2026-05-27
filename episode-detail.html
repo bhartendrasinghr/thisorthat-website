@@ -161,31 +161,48 @@ document.getElementById('yt-iframe').src = `https://www.youtube.com/embed/${ep.i
 document.getElementById('yt-link').href = `https://www.youtube.com/watch?v=${ep.id}`;
 document.getElementById('yt-link-2').href = `https://www.youtube.com/watch?v=${ep.id}`;
 
-// Guest card
+// Guest card — render fast with auto data, then upgrade with rich CMS data
 const guestName = (ep.guest || '').replace(' (solo)', '');
 const isSolo = (ep.guest || '').toLowerCase().includes('solo');
 const guestInfo = (window.GUESTS || []).find(g => g.name === guestName);
 const guestEl = document.getElementById('guest-card');
-if (isSolo) {
-  guestEl.innerHTML = `
-    <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">The host</div>
-    <div class="avatar w-24 h-24 rounded-2xl bg-navy text-mustard text-4xl mt-4">BS</div>
-    <div class="mt-4 font-serif text-2xl font-bold text-navy-ink">Bhartendra Singh</div>
-    <div class="text-sm text-navy/60">Solo episode</div>
-    <p class="mt-3 text-sm text-navy-ink/70 leading-relaxed">A solo conversation from Bhartendra — no guest, just the host unpacking an idea.</p>
-  `;
-} else {
+
+const renderGuestCard = (rich) => {
+  if (isSolo) {
+    guestEl.innerHTML = `
+      <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">The host</div>
+      <div class="avatar w-24 h-24 rounded-2xl bg-navy text-mustard text-4xl mt-4">BS</div>
+      <div class="mt-4 font-serif text-2xl font-bold text-navy-ink">Bhartendra Singh</div>
+      <div class="text-sm text-navy/60">Solo episode</div>
+      <p class="mt-3 text-sm text-navy-ink/70 leading-relaxed">A solo conversation from Bhartendra — no guest, just the host unpacking an idea.</p>
+    `;
+    return;
+  }
+  const merged = { ...(guestInfo || {}), ...(rich || {}) };
   guestEl.innerHTML = `
     <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">The guest</div>
-    <div class="avatar w-24 h-24 rounded-2xl ${guestInfo?.bg || 'bg-mustard text-navy-ink'} text-4xl mt-4">${initialsOf(guestName)}</div>
+    ${merged.photo
+      ? `<div class="w-24 h-24 rounded-2xl overflow-hidden mt-4"><img src="${merged.photo}" alt="${guestName}" class="w-full h-full object-cover" /></div>`
+      : `<div class="avatar w-24 h-24 rounded-2xl ${merged.bg || 'bg-mustard text-navy-ink'} text-4xl mt-4">${initialsOf(guestName)}</div>`
+    }
     <div class="mt-4 font-serif text-2xl font-bold text-navy-ink">${guestName}</div>
-    <div class="text-sm text-navy/60">${guestInfo?.role || 'Guest expert'}</div>
-    ${guestInfo ? `<a href="guest-detail.html?g=${encodeURIComponent(guestName)}" class="mt-5 inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">See all ${guestInfo.eps} episode${guestInfo.eps>1?'s':''} →</a>` : ''}
+    <div class="text-sm text-navy/60">${merged.role || 'Guest expert'}</div>
+    ${merged.excerpt ? `<p class="mt-3 text-sm text-navy-ink/70 leading-relaxed">${merged.excerpt}</p>` : ''}
+    ${guestInfo ? `<a href="guest-detail.html?g=${encodeURIComponent(guestName)}" class="mt-5 inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">See all ${guestInfo.eps} episode${guestInfo.eps !== 1 ? 's' : ''} →</a>` : ''}
     <div class="mt-6 pt-6 border-t border-navy/10">
       <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold mb-3">Category</div>
       <span class="text-xs bg-paper px-3 py-1 rounded-full text-navy-ink">#${ep.cat.toLowerCase()}</span>
     </div>
   `;
+};
+
+renderGuestCard(null); // immediate paint
+if (!isSolo) {
+  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
+    .then(rich => {
+      const found = rich.find(g => g.name === guestName);
+      if (found) renderGuestCard(found);
+    });
 }
 
 // Related — same category, exclude current

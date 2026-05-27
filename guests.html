@@ -87,51 +87,60 @@
 <script>
 let activeQuery = '';
 let activeSort = 'episodes';
+let mergedGuests = [];
 
 const grid = document.getElementById('guests-grid');
 const empty = document.getElementById('guest-empty');
 const meta = document.getElementById('guest-result-meta');
 
 const render = () => {
-  let list = [...window.GUESTS];
+  let list = [...mergedGuests];
   const q = activeQuery.trim().toLowerCase();
-  if (q) list = list.filter(g => g.name.toLowerCase().includes(q) || g.role.toLowerCase().includes(q));
-  if (activeSort === 'alpha') list.sort((a,b) => a.name.localeCompare(b.name));
-  else list.sort((a,b) => b.eps - a.eps);
+  if (q) list = list.filter(g => g.name.toLowerCase().includes(q) || (g.role || '').toLowerCase().includes(q));
+  if (activeSort === 'alpha') list.sort((a, b) => a.name.localeCompare(b.name));
+  else list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.eps - a.eps);
 
   if (list.length === 0) {
     grid.innerHTML = '';
     empty.classList.remove('hidden');
-    meta.innerHTML = `No matches in ${window.GUESTS.length} guests`;
+    meta.innerHTML = `No matches in ${mergedGuests.length} guests`;
   } else {
     empty.classList.add('hidden');
     meta.innerHTML = q
-      ? `Showing <strong>${list.length}</strong> of ${window.GUESTS.length} guests matching <strong>"${activeQuery}"</strong>`
-      : `<strong>${window.GUESTS.length}</strong> guests · click any to see all their episodes`;
+      ? `Showing <strong>${list.length}</strong> of ${mergedGuests.length} guests matching <strong>"${activeQuery}"</strong>`
+      : `<strong>${mergedGuests.length}</strong> guests · click any to see their bio + all episodes`;
     grid.innerHTML = list.map(g => `
       <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift group block bg-white rounded-2xl p-5 border border-navy/10 text-center">
-        <div class="avatar w-full aspect-square rounded-xl ${g.bg} text-3xl">${g.initials}</div>
+        ${g.photo
+          ? `<div class="w-full aspect-square rounded-xl overflow-hidden"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" loading="lazy" /></div>`
+          : `<div class="avatar w-full aspect-square rounded-xl ${g.bg || 'bg-navy text-mustard'} text-3xl">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
+        }
         <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy">${g.name}</div>
-        <div class="text-xs text-navy/60 mt-1">${g.role}</div>
-        <div class="text-[11px] uppercase tracking-widest text-mustard-deep font-semibold mt-2">${g.eps} episode${g.eps > 1 ? 's' : ''}</div>
+        <div class="text-xs text-navy/60 mt-1">${g.role || ''}</div>
+        <div class="text-[11px] uppercase tracking-widest text-mustard-deep font-semibold mt-2">${g.eps} episode${g.eps !== 1 ? 's' : ''}</div>
       </a>
     `).join('');
   }
 
-  // Update chip active states
   document.querySelectorAll('#guest-sort-row button').forEach(b => {
     const isActive = b.dataset.sort === activeSort;
     b.className = `chip ${isActive ? 'bg-navy text-cream' : 'bg-cream text-navy-ink hover:bg-navy/10 border border-navy/10'}`;
   });
 };
 
-document.getElementById('guest-search').addEventListener('input', (e) => { activeQuery = e.target.value; render(); });
-document.querySelectorAll('#guest-sort-row button').forEach(b => b.addEventListener('click', () => {
-  activeSort = b.dataset.sort; render();
-}));
+// Merge auto-derived list with rich CMS data, then render
+fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
+  .then(rich => {
+    const richByName = Object.fromEntries(rich.map(g => [g.name, g]));
+    mergedGuests = (window.GUESTS || []).map(g => ({ ...g, ...(richByName[g.name] || {}) }));
 
-document.querySelectorAll('[data-guest-count]').forEach(el => el.textContent = window.GUESTS.length);
-render();
+    document.getElementById('guest-search').addEventListener('input', (e) => { activeQuery = e.target.value; render(); });
+    document.querySelectorAll('#guest-sort-row button').forEach(b => b.addEventListener('click', () => {
+      activeSort = b.dataset.sort; render();
+    }));
+    document.querySelectorAll('[data-guest-count]').forEach(el => el.textContent = mergedGuests.length);
+    render();
+  });
 </script>
 
 </body>

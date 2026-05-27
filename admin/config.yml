@@ -14,6 +14,8 @@ local_backend: true
 
 media_folder: "media"
 public_folder: "/media"
+media_library:
+  name: "default"
 
 site_url: https://thisorthat-website.vercel.app
 display_url: https://thisorthat-website.vercel.app
@@ -128,24 +130,36 @@ collections:
               - { name: "category", label: "Override category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities"], required: false }
               - { name: "title", label: "Override title (rarely needed)", widget: "string", required: false }
 
-  # ───────── GUESTS (extra info) ─────────
+  # ───────── GUESTS (photos + bios) ─────────
+  # One markdown file per guest in content/guests/.
+  # The "name" field MUST match exactly how the guest appears in episode credits
+  # (e.g. "Vijai Mantri" — case-sensitive). Otherwise the auto-link from
+  # episodes to this profile will silently break.
   - name: "guests"
     label: "Guest Profiles"
-    delete: false
-    editor:
-      preview: false
-    files:
-      - name: "roles"
-        label: "Guest roles & bios"
-        file: "content/guest-profiles.json"
-        fields:
-          - label: "Guests"
-            name: "guests"
-            widget: "list"
-            fields:
-              - { name: "name", label: "Guest name (must match episode credits exactly)", widget: "string" }
-              - { name: "role", label: "Role / title", widget: "string" }
-              - { name: "bio", label: "Bio (1-2 paragraphs)", widget: "text", required: false }
-              - { name: "linkedin", label: "LinkedIn URL", widget: "string", required: false }
-              - { name: "twitter", label: "Twitter URL", widget: "string", required: false }
-              - { name: "website", label: "Website", widget: "string", required: false }
+    label_singular: "Guest"
+    folder: "content/guests"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{name}} — {{role}}"
+    sortable_fields: ['name', 'featured']
+    view_filters:
+      - label: "Featured"
+        field: featured
+        pattern: true
+      - label: "Has photo"
+        field: photo
+        pattern: ".+"
+    fields:
+      - { name: "name", label: "Name (must match episode credits exactly)", widget: "string", hint: "Case-sensitive. E.g. 'Vijai Mantri' not 'vijai mantri'." }
+      - { name: "slug", label: "URL slug", widget: "string", hint: "Lowercase, hyphens only. E.g. 'vijai-mantri'." }
+      - { name: "role", label: "Role / title", widget: "string", hint: "Short one-liner. E.g. 'Founder, VMFS' or 'CEO, DSP Mutual Fund'" }
+      - { name: "photo", label: "Photo", widget: "image", required: false, hint: "Square works best. JPG or PNG. Will be cropped to a circle in lists." }
+      - { name: "linkedin", label: "LinkedIn URL", widget: "string", required: false }
+      - { name: "twitter", label: "Twitter / X URL", widget: "string", required: false }
+      - { name: "website", label: "Website / company URL", widget: "string", required: false }
+      - { name: "featured", label: "Featured on home page guest grid?", widget: "boolean", default: false, hint: "Featured guests show first on the home page, regardless of episode count." }
+      - { name: "body", label: "Bio", widget: "markdown", hint: "Use ## for section headings, > for pull quotes, **bold**, *italic*. This appears on the guest's profile page." }

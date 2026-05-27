@@ -18,3 +18,4 @@ node_modules/
 # Keep these committed so the site works on first load before build runs:
 # - content/articles.json
 # - episodes.js
+.vercel

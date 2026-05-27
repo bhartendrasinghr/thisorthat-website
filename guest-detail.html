@@ -18,6 +18,12 @@
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
   .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+  .bio p { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.75; color: #0A0E3D; margin-bottom: 1.3em; }
+  .bio h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: #0A0E3D; margin-top: 1.8em; margin-bottom: 0.6em; }
+  .bio blockquote { border-left: 4px solid #F5C518; padding-left: 1.4em; margin: 1.6em 0; font-style: italic; font-size: 20px; color: #1A237E; }
+  .bio ul { margin: 1.2em 0; padding-left: 1.4em; }
+  .bio li { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.7; margin-bottom: 0.4em; list-style: disc; }
+  .bio a { color: #1A237E; border-bottom: 2px solid #F5C518; }
 </style>
 </head>
 <body class="antialiased">
@@ -54,23 +60,28 @@
 <section class="py-12 bg-cream">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-5 gap-12 items-center">
     <div class="md:col-span-2">
-      <div id="g-avatar" class="avatar w-full aspect-square rounded-3xl bg-navy text-mustard text-7xl">VM</div>
+      <!-- Either <img> photo or <div> initials avatar — set by JS -->
+      <div id="g-photo-slot" class="w-full aspect-square rounded-3xl overflow-hidden"></div>
     </div>
     <div class="md:col-span-3">
-      <div id="g-eyebrow" class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Featured guest · 4 episodes</div>
+      <div id="g-eyebrow" class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Featured guest</div>
       <h1 id="g-name" class="font-serif text-5xl md:text-6xl font-bold text-navy-ink mt-2 leading-[1.05]">Loading…</h1>
       <p id="g-role" class="mt-2 text-lg text-navy-ink/70">—</p>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#episodes" class="bg-navy text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy-ink transition">Watch all episodes →</a>
-        <a href="https://www.youtube.com/@ThisOrThatPodcastIndia" target="_blank" class="border border-navy/20 text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy hover:text-cream transition">YouTube channel</a>
-      </div>
+      <div id="g-social" class="mt-6 flex flex-wrap gap-3"></div>
     </div>
   </div>
 </section>
 
-<!-- HER/HIS EPISODES -->
-<section id="episodes" class="py-16 bg-paper">
+<!-- BIO -->
+<section id="bio-section" class="hidden py-16 bg-paper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div id="g-bio" class="bio"></div>
+  </div>
+</section>
+
+<!-- THEIR EPISODES -->
+<section id="episodes" class="py-16 bg-cream">
   <div class="max-w-6xl mx-auto px-6">
     <h2 id="g-eps-title" class="font-serif text-4xl font-bold text-navy-ink">All episodes</h2>
     <p class="text-navy-ink/70 mt-2">Latest first.</p>
@@ -79,14 +90,13 @@
 </section>
 
 <!-- OTHER GUESTS -->
-<section class="py-16 bg-cream">
+<section class="py-16 bg-paper">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-serif text-3xl font-bold text-navy-ink">Other guests on the show</h2>
     <div id="other-guests" class="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="bg-navy-ink text-cream/80 py-14">
   <div class="max-w-7xl mx-auto px-6 text-center">
     <div class="text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra.</div>
@@ -95,43 +105,94 @@
 
 <script src="episodes.js"></script>
 <script>
+// Merge auto-derived guest list (from episodes.js) with rich profiles (from content/guests.json)
 const params = new URLSearchParams(window.location.search);
-const guestName = params.get('g') || window.GUESTS[0].name; // default = top guest (Vijai Mantri)
-const guest = window.GUESTS.find(g => g.name === guestName) || window.GUESTS[0];
-const guestEps = window.EPISODES.filter(e => e.guest === guest.name).sort((a,b) => b.n - a.n);
 
-document.title = `${guest.name} — ThisOrThat with Bhartendra`;
-document.getElementById('bc-guest').textContent = guest.name;
-document.getElementById('g-name').textContent = guest.name;
-document.getElementById('g-role').textContent = guest.role;
-document.getElementById('g-eyebrow').textContent = `Guest · ${guest.eps} episode${guest.eps>1?'s':''}`;
-const avatar = document.getElementById('g-avatar');
-avatar.textContent = guest.initials;
-avatar.className = `avatar w-full aspect-square rounded-3xl ${guest.bg} text-7xl`;
-document.getElementById('g-eps-title').textContent = `All ${guestEps.length} episode${guestEps.length>1?'s':''} with ${guest.name.split(' ')[0]}`;
+Promise.all([
+  // Auto-derived: name, role (auto-guessed), eps count, initials, bg
+  Promise.resolve(window.GUESTS || []),
+  // Rich CMS: name, role (override), photo, bio_html, social links
+  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => []),
+])
+.then(([autoGuests, richGuests]) => {
+  // Merge by name (richGuests overrides autoGuests fields when present)
+  const richByName = Object.fromEntries(richGuests.map(g => [g.name, g]));
+  const merged = autoGuests.map(g => ({ ...g, ...(richByName[g.name] || {}) }));
 
-document.getElementById('g-eps-grid').innerHTML = guestEps.map(e => `
-  <a href="episode-detail.html?v=${e.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
-    <div class="aspect-video relative overflow-hidden bg-navy-ink">
-      <img src="${e.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(e.n).padStart(3,'0')}</div>
-      ${e.views ? `<div class="absolute bottom-3 right-3 bg-navy-ink/85 text-cream text-xs px-2 py-1 rounded">${e.views} views</div>` : ''}
-    </div>
-    <div class="p-5">
-      <div class="text-xs text-navy/60 uppercase tracking-widest font-semibold">${e.cat} · ${e.published || ''}</div>
-      <h3 class="font-serif text-lg font-bold text-navy-ink mt-1 leading-snug">${e.title}</h3>
-    </div>
-  </a>
-`).join('');
+  // Pick which guest to show: ?g=Name (preferred) or ?slug=slug
+  const wantName = params.get('g');
+  const wantSlug = params.get('slug');
+  const guest = merged.find(g =>
+    (wantName && g.name === wantName) ||
+    (wantSlug && g.slug === wantSlug)
+  ) || merged[0]; // default = top guest by eps count
 
-// Other guests
-document.getElementById('other-guests').innerHTML = window.GUESTS.filter(g => g.name !== guest.name).slice(0, 6).map(g => `
-  <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift group block text-center">
-    <div class="avatar w-full aspect-square rounded-xl ${g.bg} text-3xl">${g.initials}</div>
-    <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy">${g.name}</div>
-    <div class="text-xs text-navy/60 mt-1">${g.eps} ep${g.eps>1?'s':''}</div>
-  </a>
-`).join('');
+  if (!guest) {
+    document.body.innerHTML = '<div style="padding:60px;text-align:center;font-family:Inter,sans-serif"><h1 style="font-family:Fraunces,serif;font-size:42px">No guests yet</h1><p><a href="guests.html" style="color:#1A237E">← Back</a></p></div>';
+    return;
+  }
+
+  const guestEps = (window.EPISODES || []).filter(e => e.guest === guest.name).sort((a, b) => b.n - a.n);
+
+  // Header / title / breadcrumb
+  document.title = `${guest.name} — ThisOrThat with Bhartendra`;
+  document.getElementById('bc-guest').textContent = guest.name;
+  document.getElementById('g-name').textContent = guest.name;
+  document.getElementById('g-role').textContent = guest.role || 'Guest';
+  document.getElementById('g-eyebrow').textContent = `Guest · ${guestEps.length} episode${guestEps.length !== 1 ? 's' : ''}`;
+  document.getElementById('g-eps-title').textContent = `${guestEps.length === 1 ? '1 episode' : 'All ' + guestEps.length + ' episodes'} with ${guest.name.split(' ')[0]}`;
+
+  // Photo or initials
+  const photoSlot = document.getElementById('g-photo-slot');
+  if (guest.photo) {
+    photoSlot.innerHTML = `<img src="${guest.photo}" alt="${guest.name}" class="w-full h-full object-cover" />`;
+  } else {
+    photoSlot.className = `avatar w-full aspect-square rounded-3xl ${guest.bg || 'bg-navy text-mustard'} text-7xl`;
+    photoSlot.textContent = guest.initials || guest.name.split(' ').map(s => s[0]).join('').slice(0, 2).toUpperCase();
+  }
+
+  // Social buttons + watch CTA
+  const socials = [];
+  socials.push(`<a href="#episodes" class="bg-navy text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy-ink transition">Watch episodes →</a>`);
+  if (guest.linkedin)  socials.push(`<a href="${guest.linkedin}" target="_blank" class="border border-navy/20 text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy hover:text-cream transition">LinkedIn</a>`);
+  if (guest.twitter)   socials.push(`<a href="${guest.twitter}" target="_blank" class="border border-navy/20 text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy hover:text-cream transition">Twitter / X</a>`);
+  if (guest.website)   socials.push(`<a href="${guest.website}" target="_blank" class="border border-navy/20 text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy hover:text-cream transition">Website</a>`);
+  document.getElementById('g-social').innerHTML = socials.join('');
+
+  // Bio (only show section if there's content)
+  if (guest.bio_html && guest.bio_html.trim()) {
+    document.getElementById('bio-section').classList.remove('hidden');
+    document.getElementById('g-bio').innerHTML = guest.bio_html;
+  }
+
+  // Episodes
+  document.getElementById('g-eps-grid').innerHTML = guestEps.map(e => `
+    <a href="episode-detail.html?v=${e.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+      <div class="aspect-video relative overflow-hidden bg-navy-ink">
+        <img src="${e.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(e.n).padStart(3,'0')}</div>
+        ${e.views ? `<div class="absolute bottom-3 right-3 bg-navy-ink/85 text-cream text-xs px-2 py-1 rounded">${e.views} views</div>` : ''}
+      </div>
+      <div class="p-5">
+        <div class="text-xs text-navy/60 uppercase tracking-widest font-semibold">${e.cat} · ${e.published || ''}</div>
+        <h3 class="font-serif text-lg font-bold text-navy-ink mt-1 leading-snug">${e.title}</h3>
+      </div>
+    </a>
+  `).join('');
+
+  // Other guests — prefer rich data, with photos where available
+  const others = merged.filter(g => g.name !== guest.name).slice(0, 6);
+  document.getElementById('other-guests').innerHTML = others.map(g => `
+    <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift group block text-center">
+      ${g.photo
+        ? `<div class="w-full aspect-square rounded-xl overflow-hidden"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" loading="lazy" /></div>`
+        : `<div class="avatar w-full aspect-square rounded-xl ${g.bg || 'bg-navy text-mustard'} text-3xl">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
+      }
+      <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy">${g.name}</div>
+      <div class="text-xs text-navy/60 mt-1">${g.eps || 0} ep${g.eps !== 1 ? 's' : ''}</div>
+    </a>
+  `).join('');
+});
 </script>
 
 </body>
