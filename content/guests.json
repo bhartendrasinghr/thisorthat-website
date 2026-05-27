@@ -36,6 +36,18 @@
     "excerpt": "Investment strategist focused on long-term wealth building strategies for Indian investors."
   },
   {
+    "name": "CA Anuj Jain",
+    "slug": "anuj-jain",
+    "role": "Chartered Accountant",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Tell us about this guest…</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Tell us about this guest…"
+  },
+  {
     "name": "Chirag Barjatya",
     "slug": "chirag-barjatya",
     "role": "Founder, PFC",
@@ -46,6 +58,18 @@
     "featured": false,
     "bio_html": "<p>Founder of PFC (Personal Finance Coach). Pushes the inconvenient idea that wealth without health is meaningless.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
     "excerpt": "Founder of PFC (Personal Finance Coach). Pushes the inconvenient idea that wealth without health is meaningless."
+  },
+  {
+    "name": "Debashish Bose",
+    "slug": "debashish-bose",
+    "role": "Founder, Infinite Circle",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Founder of Infinite Circle. Brings a global macro lens to Indian markets — covers cross-border investing, bond-equity dynamics, and dollar flows.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Founder of Infinite Circle. Brings a global macro lens to Indian markets — covers cross-border investing, bond-equity dynamics, and dollar flows."
   },
   {
     "name": "Devina Mehra",
@@ -70,6 +94,18 @@
     "featured": false,
     "bio_html": "<p>CEO of Value Research. India's most-read mutual fund analyst, and a 7-figure-view ThisOrThat episode.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
     "excerpt": "CEO of Value Research. India's most-read mutual fund analyst, and a 7-figure-view ThisOrThat episode."
+  },
+  {
+    "name": "Kalpen Parekh",
+    "slug": "kalpen-parekh",
+    "role": "CEO, DSP Mutual Fund",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Tell us about this guest…</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Tell us about this guest…"
   },
   {
     "name": "Karan Datta",
@@ -144,6 +180,18 @@
     "excerpt": "Fund manager at Baroda BNP Paribas Mutual Fund. Spoke on This or That about global investing and the NASDAQ-vs-Nifty debate."
   },
   {
+    "name": "Mohit Bhatia",
+    "slug": "mohit-bhatia",
+    "role": "CEO, Bank of India MF",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Tell us about this guest…</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Tell us about this guest…"
+  },
+  {
     "name": "Mrin Agarwal",
     "slug": "mrin-agarwal",
     "role": "Founder, Finsafe",
@@ -166,6 +214,18 @@
     "featured": false,
     "bio_html": "<p>Deputy Editor at Mint. One of India's clearest writers on personal finance, mutual funds, and global investing.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
     "excerpt": "Deputy Editor at Mint. One of India's clearest writers on personal finance, mutual funds, and global investing."
+  },
+  {
+    "name": "Niranjan Avasthi",
+    "slug": "niranjan-avasthi",
+    "role": "Head of Product, Edelweiss MF",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Head of Product at Edelweiss Mutual Fund. On the show with a foundational primer on mutual fund investing for first-time investors.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Head of Product at Edelweiss Mutual Fund. On the show with a foundational primer on mutual fund investing for first-time investors."
   },
   {
     "name": "Pooja Bhinde",
@@ -192,6 +252,18 @@
     "excerpt": "CEO of Axis Mutual Fund. Veteran of the Indian asset management industry."
   },
   {
+    "name": "Shaymali Basu",
+    "slug": "shaymali-basu",
+    "role": "Financial Planner",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Financial planner focused on the emotional side of wealth-building — why most investing decisions are about psychology, not math.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Financial planner focused on the emotional side of wealth-building — why most investing decisions are about psychology, not math."
+  },
+  {
     "name": "Sneha Jain",
     "slug": "sneha-jain",
     "role": "Fund Manager",
@@ -202,6 +274,18 @@
     "featured": false,
     "bio_html": "<p>Fund manager. Explains why SIP and equity investing remain misunderstood by most retail investors.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
     "excerpt": "Fund manager. Explains why SIP and equity investing remain misunderstood by most retail investors."
+  },
+  {
+    "name": "Thomas Priju",
+    "slug": "thomas-priju",
+    "role": "Fund Manager",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "bio_html": "<p>Tell us about this guest…</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
+    "excerpt": "Tell us about this guest…"
   },
   {
     "name": "Vijai Mantri",

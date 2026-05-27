@@ -22,42 +22,53 @@ UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
 # When auto-parsing can't reliably extract the guest from the title, use these.
 # Keyed by YouTube video ID. Use "Bhartendra (solo)" for solo episodes.
 GUEST_OVERRIDES = {
-    'IbD02i7Xvys': 'Bhartendra (solo)',
-    '63j2xg2IGUU': 'Bhartendra (solo)',
-    'an4dvf0llMM': 'Bhartendra (solo)',
-    'dkQ9JW-Py9A': 'Bhartendra (solo)',
-    '0YwE4R-qPqA': 'Bhartendra (solo)',
-    '9SvVl5FALK4': 'Bhartendra (solo)',
-    'QApks7nfIYI': 'Bhartendra (solo)',
+    # Episodes where guest is named in title but wasn't auto-extracted:
+    'vIL33wnD5lk': 'Debashish Bose',        # Ep 53
+    'ax-QZl75dbA': 'Kalpen Parekh',         # Ep 49
+    'ldoFnNk6Z2g': 'Kirtan Shah',           # Ep 47
+    '8jqbn8N1zeY': 'Neil Borate',           # Ep 46
+    'LULE5jPzlo0': 'Thomas Priju',          # Ep 36
+    'nT_TwhuIEPo': 'Mohit Bhatia',          # Ep 35
+    'pGdux5kFP3U': 'CA Anuj Jain',          # Ep 30
+    'YOwd-k4VGPM': 'Neil Borate',           # Ep 29
+    '07c7HDPBUBE': 'Sneha Jain',            # Ep 10
+    '3KvDSkQu-IY': 'Niranjan Avasthi',      # Ep 11 (NEW guest)
+    'WhrfDxA1d7A': 'Mahavir Chopra',        # Ep 7
+    'U9ZrWEL-Jqo': 'Shaymali Basu',         # Ep 3 (NEW guest)
+    # Episodes already correctly attributed via override:
     'seqzo4v-mlE': 'Vinayak Sapre',
-    '0zxhAUjt-38': 'Bhartendra (solo)',
-    '7RURrUgKXig': 'Bhartendra (solo)',
     '6H6GsUjCWfE': 'Sneha Jain',
-    'ejC8nevgQb0': 'Bhartendra (solo)',
-    '7YdiFShGRRQ': 'Bhartendra (solo)',
-    'C966CXKS_tU': 'Bhartendra (solo)',
-    'jCRb7WpH6h4': 'Bhartendra (solo)',
-    'o1_3k5EkzZg': 'Bhartendra (solo)',
     'baM9f9oeNEc': 'Devina Mehra',
     'HX4Ln_yjQBc': 'Pooja Bhinde',
     'ukI6xDsrjyI': 'Ajit Menon',
-    'ch96iqz4wj8': 'Bhartendra (solo)',
     'Fy5Wzb40QhQ': 'Dhirendra Kumar',
     'oJ0kHSqJaqc': 'Vijai Mantri',
-    'OlrHz1Og_kY': 'Bhartendra (solo)',
-    '_pO65w9FnTo': 'Bhartendra (solo)',
-    '3KvDSkQu-IY': 'Bhartendra (solo)',
     'jg9yRvRDqW0': 'Lisa Pallavi Barbora',
     'LJBgwAlx_MM': 'Mahavir Chopra',
     'y467zmb9coo': 'Kirtan Shah',
     'qCMA_zCb-38': 'Aashish Sommaiya',
     'Ms_2WqYOIsY': 'Abhinav Angirish',
-    'U9ZrWEL-Jqo': 'Bhartendra (solo)',
-    '2IFKptd2Qyw': 'Raghav Iyengar',
     'YH2ZegF1ewk': 'Mrin Agarwal',
-    'ldoFnNk6Z2g': 'Kirtan Shah',
-    'p-fDdN8Tm6w': 'Bhartendra (solo)',
-    'YOwd-k4VGPM': 'Neil Borate',
+    '2IFKptd2Qyw': 'Raghav Iyengar',
+    # Confirmed solo / compilation episodes:
+    'IbD02i7Xvys': 'Bhartendra (solo)',     # Ep 52 — SIP isn't the problem
+    '63j2xg2IGUU': 'Bhartendra (solo)',     # Ep 48 — 5 lessons from 40 experts (compilation)
+    'p-fDdN8Tm6w': 'Bhartendra (solo)',     # Ep 45 — Budget 2026
+    'an4dvf0llMM': 'Bhartendra (solo)',     # Ep 44 — Markets are flat
+    'dkQ9JW-Py9A': 'Bhartendra (solo)',     # Ep 42 — Retirement risk
+    '0YwE4R-qPqA': 'Bhartendra (solo)',     # Ep 39 — Buy vs rent (panel compilation)
+    '9SvVl5FALK4': 'Bhartendra (solo)',     # Ep 38 — Couple's portfolio (interviewees not named)
+    'QApks7nfIYI': 'Bhartendra (solo)',     # Ep 34 — Ordinary investors
+    '0zxhAUjt-38': 'Bhartendra (solo)',     # Ep 32 — PF stuck
+    '7RURrUgKXig': 'Bhartendra (solo)',     # Ep 27 — Home buying costs
+    'ejC8nevgQb0': 'Bhartendra (solo)',     # Ep 25 — Where to invest 2025
+    '7YdiFShGRRQ': 'Bhartendra (solo)',     # Ep 24 — Wealth with limited income
+    'C966CXKS_tU': 'Bhartendra (solo)',     # Ep 23 — Retirement scares us
+    'jCRb7WpH6h4': 'Bhartendra (solo)',     # Ep 22 — Find your number
+    'o1_3k5EkzZg': 'Bhartendra (solo)',     # Ep 21 — Rupee falling
+    'ch96iqz4wj8': 'Bhartendra (solo)',     # Ep 17 — 10 crore SIP (guest name not in title)
+    'OlrHz1Og_kY': 'Bhartendra (solo)',     # Ep 13 — Behavioral edge / CIO (name not in title)
+    '_pO65w9FnTo': 'Bhartendra (solo)',     # Ep 12 — Mutual funds truth
 }
 
 # Guest → role/title. Add to this as new guests come on the show.
@@ -86,6 +97,8 @@ GUEST_ROLES = {
     'Abhinav Angirish': 'Founder, Investonline.in',
     'Raghav Iyengar': 'CEO, Axis Mutual Fund',
     'Mrin Agarwal': 'Founder, Finsafe',
+    'Niranjan Avasthi': 'Head of Product, Edelweiss MF',
+    'Shaymali Basu': 'Financial Planner',
 }
 
 # ─── Fetch from YouTube ──────────────────────────────────────────────────
