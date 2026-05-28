@@ -1,9 +1,10 @@
 ---
-name: "Aashish Sommaiya"
-slug: "aashish-sommaiya"
-role: "CEO, WhiteOak Capital"
-photo: ""
-linkedin: ""
+name: Aashish Sommaiya
+slug: aashish-sommaiya
+role: Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset
+  Management Ltd.
+photo: /media/gemini_generated_image_3xn64h3xn64h3xn6.png
+linkedin: https://www.linkedin.com/in/aashishpsomaiyaa/
 twitter: ""
 website: ""
 featured: false
