@@ -255,7 +255,7 @@ function calc() {
   document.getElementById('lbl-life').textContent = lifeAge;
   document.getElementById('lbl-exp').textContent  = expToday.toLocaleString('en-IN');
   document.getElementById('lbl-cur').textContent  = fmtINR(curCorp);
-  document.getElementById('lbl-inf').textContent  = inf.toFixed(1).replace('.', '.');
+  document.getElementById('lbl-inf').textContent  = (inf * 100).toFixed(1);
   document.getElementById('lbl-pre').textContent  = (preRet * 100).toFixed(1);
   document.getElementById('lbl-post').textContent = (postRet * 100).toFixed(1);
 
