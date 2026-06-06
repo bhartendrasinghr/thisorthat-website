@@ -17,7 +17,19 @@
   .font-serif { font-family: 'Fraunces', serif; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
-  .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
+  .avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; letter-spacing: -0.04em;
+    font-family: 'Fraunces', serif;
+    position: relative; overflow: hidden;
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%),
+                radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
+  }
+  .avatar > * { position: relative; z-index: 1; }
   .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; background: #000; }
   .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   /* Branded frame around the YouTube embed — visible navy/mustard around the player */

@@ -76,11 +76,19 @@
   /* Search */
   .search input::placeholder { color: #8B8676; }
 
-  /* Avatar with initials */
+  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 700; letter-spacing: -0.02em;
+    font-weight: 800; letter-spacing: -0.04em;
+    font-family: 'Fraunces', serif;
+    position: relative; overflow: hidden;
   }
+  .avatar::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%),
+                radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
+  }
+  .avatar > * { position: relative; z-index: 1; }
 
   /* Tabular numbers */
   .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }

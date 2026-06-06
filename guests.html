@@ -18,7 +18,19 @@
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
   .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
-  .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
+  .avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; letter-spacing: -0.04em;
+    font-family: 'Fraunces', serif;
+    position: relative; overflow: hidden;
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%),
+                radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
+  }
+  .avatar > * { position: relative; z-index: 1; }
 </style>
 </head>
 <body class="antialiased">
@@ -89,8 +101,8 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="guests-grid"></div>
     <div id="guest-empty" class="hidden text-center py-20">
-      <div class="font-serif text-2xl font-bold text-navy-ink">No guest matches.</div>
-      <p class="text-navy-ink/60 mt-2 text-sm">Try a different search term.</p>
+      <div class="font-serif text-3xl font-bold text-navy-ink">Nobody by that name.</div>
+      <p class="text-navy-ink/60 mt-3 max-w-md mx-auto">Try a different spelling, or browse by role — fund managers, founders, journalists.</p>
     </div>
   </div>
 </section>

@@ -15,7 +15,19 @@
 <style>
   body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
   .font-serif { font-family: 'Fraunces', serif; }
-  .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
+  .avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; letter-spacing: -0.04em;
+    font-family: 'Fraunces', serif;
+    position: relative; overflow: hidden;
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%),
+                radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
+  }
+  .avatar > * { position: relative; z-index: 1; }
 </style>
 </head>
 <body class="antialiased">
@@ -99,20 +111,20 @@
     <h2 class="font-serif text-4xl font-bold mt-2">The show, today.</h2>
     <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8">
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard">87</div>
+        <div class="font-serif text-5xl font-bold text-mustard" data-stat-episodes>54</div>
         <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Episodes</div>
       </div>
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard">62</div>
+        <div class="font-serif text-5xl font-bold text-mustard" data-stat-guests>30</div>
         <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Guests</div>
       </div>
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard">62K</div>
-        <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Subscribers</div>
+        <div class="font-serif text-5xl font-bold text-mustard">3</div>
+        <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Calculators live</div>
       </div>
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard">14K</div>
-        <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Newsletter readers</div>
+        <div class="font-serif text-5xl font-bold text-mustard">2023</div>
+        <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Episode 1 dropped</div>
       </div>
     </div>
   </div>
@@ -201,6 +213,22 @@
     }
   });
 })();
+</script>
+<script src="episodes.js"></script>
+<script>
+// Live stats from real episode data
+if (window.EPISODES) {
+  document.querySelectorAll('[data-stat-episodes]').forEach(el => el.textContent = window.EPISODES.length);
+}
+if (window.GUESTS) {
+  // Include CMS-only "upcoming" guests in the count
+  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
+    .then(rich => {
+      const autoNames = new Set(window.GUESTS.map(g => g.name));
+      const total = window.GUESTS.length + rich.filter(g => !autoNames.has(g.name)).length;
+      document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = total);
+    });
+}
 </script>
 </body>
 </html>

@@ -17,7 +17,19 @@
   .font-serif { font-family: 'Fraunces', serif; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
-  .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
+  .avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; letter-spacing: -0.04em;
+    font-family: 'Fraunces', serif;
+    position: relative; overflow: hidden;
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%),
+                radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
+  }
+  .avatar > * { position: relative; z-index: 1; }
   .bio p { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.75; color: #0A0E3D; margin-bottom: 1.3em; }
   .bio h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: #0A0E3D; margin-top: 1.8em; margin-bottom: 0.6em; }
   .bio blockquote { border-left: 4px solid #F5C518; padding-left: 1.4em; margin: 1.6em 0; font-style: italic; font-size: 20px; color: #1A237E; }
