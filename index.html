@@ -277,19 +277,76 @@
     <!-- FEATURED LATEST — magazine hero card -->
     <a id="featured-latest" href="episode-detail.html" class="lift group block bg-white rounded-3xl overflow-hidden border border-navy/10 shadow-sm hover:shadow-xl transition-shadow mb-12"></a>
 
-    <!-- Section divider with title -->
-    <div class="flex items-center gap-4 mb-8">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">More recent episodes</div>
-      <div class="flex-1 h-px bg-navy/10"></div>
-    </div>
+    <!-- Side-by-side: episode grid (left) + feed sidebar (right) -->
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
 
-    <!-- Episode grid — 5 more recent (populated from real data) -->
-    <div id="latest" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <!-- LEFT: Recent episodes grid -->
+      <div class="lg:col-span-8">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">More recent episodes</div>
+          <div class="flex-1 h-px bg-navy/10"></div>
+        </div>
+        <div id="latest" class="grid sm:grid-cols-2 gap-5"></div>
+        <div class="mt-8">
+          <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">
+            See all <span data-ep-count>54</span> episodes →
+          </a>
+        </div>
+      </div>
 
-    <div class="text-center mt-10">
-      <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">
-        See all <span data-ep-count>54</span> episodes →
-      </a>
+      <!-- RIGHT: Feed sidebar — Insta-style takes -->
+      <aside class="lg:col-span-4">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold whitespace-nowrap">Quick takes</div>
+          <div class="flex-1 h-px bg-navy/10"></div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Card 1: Slow Thought -->
+          <a href="feed.html" class="lift ig-1 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
+            <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Slow Thought · 042</div>
+            <div class="font-serif text-xl leading-tight font-bold">The market doesn't reward intelligence. It rewards patience that looks like stupidity.</div>
+            <div class="flex items-center justify-between text-[10px] opacity-70">
+              <span>ThisOrThat</span>
+              <span>♥ 4.2K</span>
+            </div>
+          </a>
+
+          <!-- Card 2: Data -->
+          <a href="feed.html" class="lift ig-2 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
+            <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Data card</div>
+            <div>
+              <div class="font-serif text-5xl font-black">73%</div>
+              <div class="font-serif text-sm font-semibold mt-2 leading-snug">of active equity funds underperform their benchmark over 10 years.</div>
+            </div>
+            <div class="text-[10px] opacity-70">SPIVA India 2024</div>
+          </a>
+
+          <!-- Card 3: Guest quote -->
+          <a href="feed.html" class="lift ig-3 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
+            <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Quote · Ep 086</div>
+            <div class="font-serif text-lg leading-snug font-semibold">"The hardest part of investing isn't picking the right stock. It's not selling the right stock too early."</div>
+            <div>
+              <div class="text-xs font-semibold">— Saurabh Mukherjea</div>
+              <div class="text-[10px] opacity-60">Marcellus Investment</div>
+            </div>
+          </a>
+
+          <!-- Card 4: Brand insight -->
+          <a href="feed.html" class="lift ig-4 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
+            <div class="text-[10px] uppercase tracking-widest opacity-80 font-semibold">ThisOrThat</div>
+            <div class="font-serif text-2xl font-bold leading-tight">A 1% expense ratio over 30 years eats 26% of your final corpus.</div>
+            <div class="text-[10px] opacity-80">♥ 5.1K</div>
+          </a>
+        </div>
+
+        <div class="mt-8">
+          <a href="feed.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">
+            See full feed →
+          </a>
+        </div>
+      </aside>
+
     </div>
   </div>
 </section>
@@ -365,88 +422,6 @@
       <a href="mailto:hello@thisorthat.in" class="relative shrink-0 inline-flex items-center gap-2 bg-mustard text-navy-ink px-5 py-3 rounded-full font-semibold hover:bg-mustard-soft transition">
         hello@thisorthat.in
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== FEED (Insta-style creatives) ====================== -->
-<section id="feed" class="py-20 bg-cream">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div>
-        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The feed</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Pocket-sized insights.</h2>
-        <p class="text-navy-ink/70 mt-3 max-w-xl">The best ideas from the show, redesigned for screenshots, sharing and saving.</p>
-      </div>
-      <a href="feed.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">See full feed →</a>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <!-- IG cards (square) -->
-      <div class="lift ig-1 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Slow Thought · 042</div>
-        <div class="font-serif text-2xl leading-tight font-bold">The market doesn't reward intelligence. It rewards patience that looks like stupidity.</div>
-        <div class="flex items-center justify-between text-[11px] opacity-70">
-          <span>ThisOrThat</span>
-          <span>♥ 4.2K</span>
-        </div>
-      </div>
-
-      <div class="lift ig-2 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Data card</div>
-        <div>
-          <div class="font-serif text-5xl font-black">73%</div>
-          <div class="font-serif text-base font-semibold mt-2 leading-snug">of active equity funds underperform their benchmark over 10 years.</div>
-        </div>
-        <div class="flex items-center justify-between text-[11px] opacity-70">
-          <span>SPIVA India 2024</span>
-          <span>♥ 2.8K</span>
-        </div>
-      </div>
-
-      <div class="lift ig-3 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Quote · Ep 086</div>
-        <div class="font-serif text-xl leading-snug font-semibold">"The hardest part of investing isn't picking the right stock. It's not selling the right stock too early."</div>
-        <div>
-          <div class="text-xs font-semibold">— Saurabh Mukherjea</div>
-          <div class="text-[11px] opacity-60">Marcellus Investment</div>
-        </div>
-      </div>
-
-      <div class="lift ig-4 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-80 font-semibold">ThisOrThat</div>
-        <div class="font-serif text-3xl font-bold leading-tight">A 1% expense ratio over 30 years eats 26% of your final corpus.</div>
-        <div class="flex items-center justify-between text-[11px] opacity-80">
-          <span>The cost of complacency</span>
-          <span>♥ 5.1K</span>
-        </div>
-      </div>
-
-      <div class="lift ig-5 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Insight</div>
-        <div class="font-serif text-2xl leading-tight font-bold">Your portfolio doesn't care that you're stressed. <span class="text-cream">But your decisions do.</span></div>
-        <div class="text-[11px] opacity-70">— Slow Thought 038</div>
-      </div>
-
-      <div class="lift ig-6 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-60 font-semibold">Carousel · 8 slides</div>
-        <div class="font-serif text-xl leading-snug font-semibold">How to read a mutual fund factsheet in 60 seconds — without falling for the marketing.</div>
-        <div class="inline-flex items-center gap-1 text-[11px] font-semibold">
-          <span>Swipe →</span>
-        </div>
-      </div>
-
-      <div class="lift ig-2 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">ThisOrThat</div>
-        <div class="font-serif text-2xl font-bold leading-tight">Real estate <span class="italic">felt</span> safe. Equity <span class="italic">looked</span> risky. Over 20 years, only one of them built wealth.</div>
-        <div class="text-[11px] opacity-70">♥ 6.4K</div>
-      </div>
-
-      <div class="lift ig-1 aspect-square rounded-2xl p-6 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Behaviour</div>
-        <div class="font-serif text-2xl font-bold leading-tight">If you can't explain your portfolio in one sentence, you don't own it. <span class="text-mustard">It owns you.</span></div>
-        <div class="text-[11px] opacity-70">— Slow Thought 029</div>
-      </div>
     </div>
   </div>
 </section>
@@ -719,9 +694,9 @@ if (featured) {
   `;
 }
 
-// 3b. More recent episodes (5 cards, skip the featured one)
+// 3b. More recent episodes (4 cards in 2x2 — sits next to feed sidebar)
 const latestGrid = document.getElementById('latest');
-latestGrid.innerHTML = window.EPISODES.slice(1, 6).map((ep, i) => {
+latestGrid.innerHTML = window.EPISODES.slice(1, 5).map((ep, i) => {
   const guestLabel = (ep.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : ep.guest;
   return `
   <a href="episode-detail.html?v=${ep.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10 hover:border-navy/30 hover:shadow-lg transition">
