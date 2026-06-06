@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>True Cost of Fees — ThisOrThat with Bhartendra</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
+  .font-serif { font-family: 'Fraunces', serif; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; background: #E8E1CC; border-radius: 999px; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; }
+  .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+  /* Donut chart vibe via conic gradient */
+  .donut { background: conic-gradient(var(--ate) 0deg var(--ate-deg), var(--kept) var(--ate-deg) 360deg); transition: --ate-deg 400ms ease; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Calculators</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Calculators</a> /
+  <span class="text-navy-ink">True Cost of Fees</span>
+</div>
+
+<section class="bg-cream pb-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">The leak nobody talks about</div>
+    <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy-ink mt-3 leading-[1.05]">True Cost of Fees.</h1>
+    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">A 1% expense ratio sounds small. Over 30 years, it eats roughly a quarter of your corpus. This calculator shows you the exact chunk that disappears.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Monthly SIP (₹)</label>
+          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-sip">10,000</span></span>
+        </div>
+        <input id="in-sip" type="range" min="1000" max="200000" step="500" value="10000" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Initial lump sum (₹)</label>
+          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-lump">0</span></span>
+        </div>
+        <input id="in-lump" type="range" min="0" max="10000000" step="10000" value="0" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Time horizon</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-yrs">25</span> yrs</span>
+        </div>
+        <input id="in-yrs" type="range" min="5" max="40" value="25" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Gross return (before fees)</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-gross">12.0</span>%</span>
+        </div>
+        <input id="in-gross" type="range" min="6" max="18" step="0.5" value="12" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Expense ratio (TER)</label>
+          <span class="tab-num text-lg font-bold text-alert"><span id="lbl-ter">1.0</span>%</span>
+        </div>
+        <input id="in-ter" type="range" min="0" max="3" step="0.05" value="1" class="w-full mt-2" />
+        <div class="flex justify-between text-[10px] text-navy/50 mt-2">
+          <span>Index funds: 0.1-0.3%</span>
+          <span>Active equity: 0.8-1.5%</span>
+          <span>ULIPs: 2-3%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- THE BIG REVEAL -->
+      <div class="bg-navy-ink text-cream rounded-2xl p-7 relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-alert/20 blur-3xl"></div>
+        <div class="relative">
+          <div class="text-xs uppercase tracking-[0.3em] text-alert font-bold">% of your wealth that fees eat</div>
+          <div class="flex items-baseline gap-4 mt-3">
+            <div class="font-serif text-6xl md:text-7xl font-black text-alert tab-num leading-none"><span id="out-pct">—</span>%</div>
+            <div class="text-cream/60 text-sm">of what you should've had</div>
+          </div>
+          <div class="mt-4 text-sm text-cream/70" id="out-pct-words">—</div>
+        </div>
+      </div>
+
+      <!-- Side by side -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-mustard rounded-2xl p-5">
+          <div class="text-[10px] uppercase tracking-widest text-navy-ink/70 font-bold">If you'd paid 0% fees</div>
+          <div class="font-serif text-3xl md:text-4xl font-bold text-navy-ink mt-2 tab-num leading-none">₹<span id="out-gross-corpus">—</span></div>
+          <div class="text-xs text-navy-ink/70 mt-2">Pure compounding</div>
+        </div>
+        <div class="bg-white border-2 border-navy/10 rounded-2xl p-5">
+          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">What you actually get</div>
+          <div class="font-serif text-3xl md:text-4xl font-bold text-navy-ink mt-2 tab-num leading-none">₹<span id="out-net-corpus">—</span></div>
+          <div class="text-xs text-navy/60 mt-2">After expense ratio</div>
+        </div>
+      </div>
+
+      <!-- The loss -->
+      <div class="bg-alert/5 border border-alert/30 rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-widest text-alert font-bold">Total amount fees took from you</div>
+        <div class="font-serif text-4xl md:text-5xl font-bold text-alert mt-2 tab-num leading-none">₹<span id="out-loss">—</span></div>
+        <div class="text-sm text-navy-ink/70 mt-3">Equivalent to <strong class="text-alert tab-num">₹<span id="out-loss-monthly">—</span>/month</strong> for <span id="out-loss-months">300</span> months. That's gone — to fund managers, distributors, and AMCs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE INCONVENIENT BIT -->
+<section class="py-16 bg-navy text-cream">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What this number says</div>
+    <div id="reality" class="mt-4 font-serif text-2xl md:text-3xl font-bold leading-snug"></div>
+    <div class="mt-6 space-y-4 text-cream/80 leading-relaxed">
+      <p>The marketing for actively-managed funds promises alpha — outperformance over the index. Over 10 years, <strong>73% of Indian active equity funds underperform their benchmark (SPIVA India 2024).</strong> You're paying premium fees for a coin-flip on underperformance.</p>
+      <p>An index fund with 0.2% TER on the same ₹10K SIP would compound to roughly the same as a 1% TER active fund <em>that beats the index by 0.8%</em>. The active fund needs to be exceptional just to break even.</p>
+      <p>The math doesn't care about the brochure. It cares about basis points.</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-serif text-3xl font-bold text-navy-ink">More calculators</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-5">
+      <a href="calc-retirement.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-3">₹</div>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">Real Retirement</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">Inflation-adjusted corpus you actually need.</p>
+      </a>
+      <a href="calc-sip.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-base font-bold mb-3">SIP</div>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">Brutal SIP</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">The cost of starting 5 / 10 years late.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+const fmtINR = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+
+// FV of monthly SIP + lump over `years` at annual rate `r`
+function corpus(lump, monthly, years, r) {
+  if (years <= 0) return lump;
+  const m = Math.pow(1 + r, 1/12) - 1;
+  const months = years * 12;
+  const sipFV = m === 0 ? monthly * months : monthly * ((Math.pow(1 + m, months) - 1) / m);
+  const lumpFV = lump * Math.pow(1 + r, years);
+  return sipFV + lumpFV;
+}
+
+function calc() {
+  const sip   = +document.getElementById('in-sip').value;
+  const lump  = +document.getElementById('in-lump').value;
+  const yrs   = +document.getElementById('in-yrs').value;
+  const gross = +document.getElementById('in-gross').value / 100;
+  const ter   = +document.getElementById('in-ter').value / 100;
+  const net   = gross - ter;
+
+  document.getElementById('lbl-sip').textContent = sip.toLocaleString('en-IN');
+  document.getElementById('lbl-lump').textContent = fmtINR(lump);
+  document.getElementById('lbl-yrs').textContent = yrs;
+  document.getElementById('lbl-gross').textContent = (gross * 100).toFixed(1);
+  document.getElementById('lbl-ter').textContent = (ter * 100).toFixed(2);
+
+  const corpusGross = corpus(lump, sip, yrs, gross);
+  const corpusNet   = corpus(lump, sip, yrs, net);
+  const loss = Math.max(corpusGross - corpusNet, 0);
+  const pct = corpusGross > 0 ? (loss / corpusGross) * 100 : 0;
+
+  document.getElementById('out-pct').textContent = pct.toFixed(1);
+  document.getElementById('out-gross-corpus').textContent = fmtINR(corpusGross);
+  document.getElementById('out-net-corpus').textContent = fmtINR(corpusNet);
+  document.getElementById('out-loss').textContent = fmtINR(loss);
+  document.getElementById('out-loss-monthly').textContent = fmtINR(loss / (yrs * 12));
+  document.getElementById('out-loss-months').textContent = yrs * 12;
+
+  // Words
+  let wordsEl = document.getElementById('out-pct-words');
+  if (pct < 5) wordsEl.textContent = 'Modest. You\'re close to optimal — keep this fund.';
+  else if (pct < 15) wordsEl.textContent = 'Noticeable. You\'d need an outperforming fund manager to justify this.';
+  else if (pct < 30) wordsEl.textContent = 'Heavy. The fund needs to be exceptional, not average, to be worth it.';
+  else wordsEl.textContent = 'Painful. This is wealth you earned, then handed over. There are cheaper options.';
+
+  // Reality
+  let reality;
+  if (ter < 0.005) {
+    reality = `At ${(ter*100).toFixed(2)}% TER, you're keeping ${(100-pct).toFixed(1)}% of your gross return. This is the most disciplined choice an Indian investor can make.`;
+  } else if (ter <= 0.01) {
+    reality = `A ${(ter*100).toFixed(2)}% expense ratio quietly removed ₹${fmtINR(loss)} from your corpus. That's the price of "average" active management.`;
+  } else if (ter <= 0.02) {
+    reality = `At ${(ter*100).toFixed(2)}% TER, fees took ${pct.toFixed(0)}% of what you'd have had. That's roughly ${Math.round(pct/4)} years of your investing life — gone to fees alone.`;
+  } else {
+    reality = `${(ter*100).toFixed(1)}% is ULIP territory. Fees just consumed ${pct.toFixed(0)}% of your wealth — more than what most people retire on. Move out, today.`;
+  }
+  document.getElementById('reality').textContent = reality;
+}
+
+document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+
+</body>
+</html>

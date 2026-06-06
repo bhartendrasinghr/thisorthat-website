@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Real Retirement Calculator — ThisOrThat with Bhartendra</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
+  .font-serif { font-family: 'Fraunces', serif; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  /* Custom slider */
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; background: #E8E1CC; border-radius: 999px; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; }
+  input[type="number"] { font-variant-numeric: tabular-nums; }
+  input[type="number"]:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 3px rgba(245,197,24,0.4); }
+  /* Bar chart */
+  .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Calculators</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Calculators</a> /
+  <span class="text-navy-ink">Real Retirement</span>
+</div>
+
+<!-- HERO -->
+<section class="bg-cream pb-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Inflation-adjusted, lifestyle-honest</div>
+    <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy-ink mt-3 leading-[1.05]">Real Retirement.</h1>
+    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Most retirement calculators tell you a comfortable number. This one tells you the inconvenient one. ₹2 crore feels like a lot today — let's see what it actually buys in 25 years.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Your age today</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-age">30</span> yrs</span>
+        </div>
+        <input id="in-age" type="range" min="20" max="65" value="30" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Retirement age</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-ret">60</span> yrs</span>
+        </div>
+        <input id="in-ret" type="range" min="40" max="75" value="60" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Expected lifespan</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-life">85</span> yrs</span>
+        </div>
+        <input id="in-life" type="range" min="60" max="100" value="85" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Monthly expenses today (₹)</label>
+          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-exp">50,000</span></span>
+        </div>
+        <input id="in-exp" type="range" min="20000" max="500000" step="5000" value="50000" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Current investment corpus (₹)</label>
+          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-cur">0</span></span>
+        </div>
+        <input id="in-cur" type="range" min="0" max="50000000" step="100000" value="0" class="w-full mt-2" />
+      </div>
+
+      <details class="pt-2 border-t border-navy/10">
+        <summary class="cursor-pointer text-sm font-semibold text-navy/70 hover:text-navy">Advanced assumptions</summary>
+        <div class="mt-4 space-y-5">
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-navy/70">Inflation rate</label>
+              <span class="tab-num text-sm font-bold text-navy-ink"><span id="lbl-inf">6.0</span>%</span>
+            </div>
+            <input id="in-inf" type="range" min="3" max="10" step="0.5" value="6" class="w-full mt-1" />
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-navy/70">Return before retirement (equity-heavy)</label>
+              <span class="tab-num text-sm font-bold text-navy-ink"><span id="lbl-pre">12.0</span>%</span>
+            </div>
+            <input id="in-pre" type="range" min="6" max="16" step="0.5" value="12" class="w-full mt-1" />
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-navy/70">Return after retirement (conservative)</label>
+              <span class="tab-num text-sm font-bold text-navy-ink"><span id="lbl-post">8.0</span>%</span>
+            </div>
+            <input id="in-post" type="range" min="5" max="12" step="0.5" value="8" class="w-full mt-1" />
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- Big number: corpus required -->
+      <div class="bg-navy-ink text-cream rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Corpus you need at retirement</div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-mustard mt-3 tab-num leading-none">₹<span id="out-corpus">—</span></div>
+        <div class="mt-3 text-sm text-cream/70" id="out-corpus-words">in <span id="out-yrs">30</span> years from today</div>
+      </div>
+
+      <!-- Big number: monthly SIP -->
+      <div class="bg-white rounded-2xl border-2 border-mustard p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">Monthly SIP needed from today</div>
+        <div class="flex items-end gap-4 mt-3">
+          <div class="font-serif text-5xl md:text-6xl font-bold text-navy-ink tab-num leading-none">₹<span id="out-sip">—</span></div>
+        </div>
+        <div class="mt-3 text-sm text-navy/60" id="out-sip-note">Assuming you keep this up till retirement, with no breaks.</div>
+      </div>
+
+      <!-- The math: 3 mini cards -->
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-white rounded-xl p-4 border border-navy/10">
+          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">First month at retirement</div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-exp">—</span></div>
+          <div class="text-[10px] text-navy/50 mt-1">vs ₹<span id="out-today-exp">50,000</span> today</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-navy/10">
+          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Years in retirement</div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num"><span id="out-ret-yrs">25</span></div>
+          <div class="text-[10px] text-navy/50 mt-1">to fund every month of</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-navy/10">
+          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Total you'll contribute</div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-total-cont">—</span></div>
+          <div class="text-[10px] text-navy/50 mt-1">the rest is compounding</div>
+        </div>
+      </div>
+
+      <!-- Visual: contribution vs compounding -->
+      <div class="bg-paper rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold mb-3">How your corpus gets built</div>
+        <div class="flex h-8 rounded-full overflow-hidden bg-cream">
+          <div id="bar-cont" class="bar bg-navy" style="width: 30%"></div>
+          <div id="bar-grow" class="bar bg-mustard" style="width: 70%"></div>
+        </div>
+        <div class="flex justify-between mt-3 text-xs">
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-navy"></span><span class="text-navy-ink/70">Your contributions: <strong class="tab-num text-navy-ink">₹<span id="pct-cont-val">—</span></strong> <span class="text-navy/50">(<span id="pct-cont">30</span>%)</span></span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-mustard"></span><span class="text-navy-ink/70">Growth: <strong class="tab-num text-navy-ink">₹<span id="pct-grow-val">—</span></strong> <span class="text-navy/50">(<span id="pct-grow">70</span>%)</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE INCONVENIENT BIT -->
+<section class="py-16 bg-navy text-cream">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What this number actually says</div>
+    <div id="reality" class="mt-4 font-serif text-2xl md:text-3xl font-bold leading-snug"></div>
+    <div class="mt-6 space-y-4 text-cream/80 leading-relaxed">
+      <p>If your current SIP is less than the number above, you're not "behind" — you're <em>under-funding</em>. The two are different. Behind implies you can catch up. Under-funded implies the maths needs to change: <strong>save more, work longer, or accept a smaller retirement</strong>. There is no fourth option.</p>
+      <p>The most expensive sentence in personal finance is <em>"I'll start next year."</em> The cost of 12 missed months at age 30 is roughly 4 months of expenses at age 65. Try it — push your age slider forward by one and watch the SIP number jump.</p>
+    </div>
+    <a href="episode-detail.html?v=C8lNnLi2Ppk" class="mt-8 inline-flex items-center gap-2 bg-mustard text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-mustard-soft transition">Watch: The Truth About This Market →</a>
+  </div>
+</section>
+
+<!-- MORE CALCULATORS -->
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-serif text-3xl font-bold text-navy-ink">More calculators</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-5">
+      <a href="calc-sip.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-base font-bold mb-3">SIP</div>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">Brutal SIP</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">Shows you the corpus AND the corpus you'd have had if you started 5 years earlier.</p>
+      </a>
+      <a href="calc-fees.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-3">%</div>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">True Cost of Fees</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">Watch what percentage of your final corpus gets eaten alive by expense ratios.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+// ─── Number formatting (Indian-style with crore/lakh) ───
+const fmtINR = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+const fmtINRFull = (n) => Math.round(n).toLocaleString('en-IN');
+
+// ─── Core retirement maths ───
+function calc() {
+  const age      = +document.getElementById('in-age').value;
+  const retAge   = +document.getElementById('in-ret').value;
+  const lifeAge  = +document.getElementById('in-life').value;
+  const expToday = +document.getElementById('in-exp').value;
+  const curCorp  = +document.getElementById('in-cur').value;
+  const inf      = +document.getElementById('in-inf').value / 100;
+  const preRet   = +document.getElementById('in-pre').value / 100;
+  const postRet  = +document.getElementById('in-post').value / 100;
+
+  // Update label echos
+  document.getElementById('lbl-age').textContent  = age;
+  document.getElementById('lbl-ret').textContent  = retAge;
+  document.getElementById('lbl-life').textContent = lifeAge;
+  document.getElementById('lbl-exp').textContent  = expToday.toLocaleString('en-IN');
+  document.getElementById('lbl-cur').textContent  = fmtINR(curCorp);
+  document.getElementById('lbl-inf').textContent  = inf.toFixed(1).replace('.', '.');
+  document.getElementById('lbl-pre').textContent  = (preRet * 100).toFixed(1);
+  document.getElementById('lbl-post').textContent = (postRet * 100).toFixed(1);
+
+  const yearsToRet  = Math.max(retAge - age, 0);
+  const yearsInRet  = Math.max(lifeAge - retAge, 1);
+
+  // 1. Future monthly expense at retirement, adjusted for inflation
+  const expAtRet = expToday * Math.pow(1 + inf, yearsToRet);
+
+  // 2. Corpus needed at retirement
+  //    Assume during retirement: real return = (1+postRet)/(1+inf) - 1
+  //    PV of an inflation-linked annuity-due of expAtRet per month over yearsInRet
+  const realReturnPostRet = (1 + postRet) / (1 + inf) - 1;
+  const annualExpAtRet = expAtRet * 12;
+  let corpusNeeded;
+  if (Math.abs(realReturnPostRet) < 0.0001) {
+    corpusNeeded = annualExpAtRet * yearsInRet;
+  } else {
+    corpusNeeded = annualExpAtRet * (1 - Math.pow(1 + realReturnPostRet, -yearsInRet)) / realReturnPostRet;
+  }
+
+  // 3. Future value of current corpus at retirement
+  const futureCurCorp = curCorp * Math.pow(1 + preRet, yearsToRet);
+  const gap = Math.max(corpusNeeded - futureCurCorp, 0);
+
+  // 4. Monthly SIP needed to fill the gap (annuity-due, end-of-month)
+  const monthlyPreRet = Math.pow(1 + preRet, 1/12) - 1;
+  const months = yearsToRet * 12;
+  let sip;
+  if (months === 0 || gap === 0) {
+    sip = 0;
+  } else if (Math.abs(monthlyPreRet) < 1e-9) {
+    sip = gap / months;
+  } else {
+    sip = gap * monthlyPreRet / (Math.pow(1 + monthlyPreRet, months) - 1);
+  }
+
+  // 5. Contributions vs growth
+  const totalContrib = sip * months + curCorp;
+  const totalGrowth  = corpusNeeded - totalContrib;
+  const contribPct   = corpusNeeded > 0 ? Math.max(0, Math.min(100, (totalContrib / corpusNeeded) * 100)) : 50;
+  const growthPct    = 100 - contribPct;
+
+  // ─── Output ───
+  document.getElementById('out-corpus').textContent = fmtINR(corpusNeeded);
+  document.getElementById('out-yrs').textContent = yearsToRet;
+  document.getElementById('out-sip').textContent = fmtINRFull(Math.round(sip));
+  document.getElementById('out-future-exp').textContent = fmtINR(expAtRet);
+  document.getElementById('out-today-exp').textContent = expToday.toLocaleString('en-IN');
+  document.getElementById('out-ret-yrs').textContent = yearsInRet;
+  document.getElementById('out-total-cont').textContent = fmtINR(totalContrib);
+
+  document.getElementById('bar-cont').style.width = contribPct + '%';
+  document.getElementById('bar-grow').style.width = growthPct + '%';
+  document.getElementById('pct-cont').textContent = Math.round(contribPct);
+  document.getElementById('pct-grow').textContent = Math.round(growthPct);
+  document.getElementById('pct-cont-val').textContent = fmtINR(totalContrib);
+  document.getElementById('pct-grow-val').textContent = fmtINR(Math.max(0, totalGrowth));
+
+  // Reality message
+  let reality;
+  if (yearsToRet < 5) {
+    reality = `You have ${yearsToRet} working years left. Even a ₹${fmtINR(sip)}/month SIP will struggle to bridge this. The honest move is to keep working — or to drop expected expenses.`;
+  } else if (sip > expToday * 0.5) {
+    reality = `That's ${Math.round((sip / expToday) * 100)}% of your current monthly expense — going into a SIP. Most people can't sustain this. The realistic options are: retire later, spend less in retirement, or accept a corpus shortfall.`;
+  } else if (sip > expToday * 0.25) {
+    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP is doable, but only if you start today and never pause. Most people pause once. That one pause is what makes "₹2 crore" not enough.`;
+  } else {
+    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP gets you there — comfortably. The question now isn't "can I save this?" — it's "what happens if I save 20% more?" Move the age slider back by 5 to see.`;
+  }
+  document.getElementById('reality').textContent = reality;
+}
+
+// Wire up
+document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+
+</body>
+</html>

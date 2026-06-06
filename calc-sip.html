@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brutal SIP Calculator — ThisOrThat with Bhartendra</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
+  .font-serif { font-family: 'Fraunces', serif; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; background: #E8E1CC; border-radius: 999px; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; }
+  .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Calculators</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Calculators</a> /
+  <span class="text-navy-ink">Brutal SIP</span>
+</div>
+
+<section class="bg-cream pb-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Painful by design</div>
+    <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy-ink mt-3 leading-[1.05]">Brutal SIP.</h1>
+    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Every other SIP calculator shows you what you'll have. This one also shows you what you <em>could've had</em> if you'd started earlier. We added that on purpose.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Monthly SIP (₹)</label>
+          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-sip">10,000</span></span>
+        </div>
+        <input id="in-sip" type="range" min="500" max="200000" step="500" value="10000" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Your age today</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-age">30</span> yrs</span>
+        </div>
+        <input id="in-age" type="range" min="20" max="65" value="30" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Stop SIP at age</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-stop">60</span> yrs</span>
+        </div>
+        <input id="in-stop" type="range" min="30" max="80" value="60" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Expected annual return</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-ret">12.0</span>%</span>
+        </div>
+        <input id="in-ret" type="range" min="4" max="18" step="0.5" value="12" class="w-full mt-2" />
+        <div class="text-xs text-navy/50 mt-1">Indian equity has averaged ~13% over 25 years. After tax + fund underperformance, 10-12% is the honest number.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-navy-ink">Annual SIP step-up</label>
+          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-step">0</span>%</span>
+        </div>
+        <input id="in-step" type="range" min="0" max="15" step="1" value="0" class="w-full mt-2" />
+        <div class="text-xs text-navy/50 mt-1">Increase your SIP by this % every year (matches typical salary growth).</div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="lg:col-span-3 space-y-5">
+      <!-- Big number: corpus at retirement -->
+      <div class="bg-navy-ink text-cream rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Final corpus if you start today</div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-mustard mt-3 tab-num leading-none">₹<span id="out-now">—</span></div>
+        <div class="mt-3 text-sm text-cream/70">over <span id="out-years">30</span> years of disciplined investing</div>
+      </div>
+
+      <!-- The brutal comparison -->
+      <div class="bg-white rounded-2xl border-2 border-alert p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-alert font-bold">⚠ What you could've had</div>
+        <div class="mt-4 space-y-4">
+          <div class="flex items-end justify-between gap-4 pb-4 border-b border-navy/10">
+            <div>
+              <div class="text-sm text-navy/60">Had you started <strong class="text-alert">5 years</strong> ago</div>
+              <div class="font-serif text-3xl md:text-4xl font-bold text-navy-ink tab-num mt-1">₹<span id="out-5yr">—</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-navy/50">You're missing</div>
+              <div class="text-lg font-bold text-alert tab-num">+ ₹<span id="diff-5">—</span></div>
+            </div>
+          </div>
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <div class="text-sm text-navy/60">Had you started <strong class="text-alert">10 years</strong> ago</div>
+              <div class="font-serif text-3xl md:text-4xl font-bold text-navy-ink tab-num mt-1">₹<span id="out-10yr">—</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-navy/50">You're missing</div>
+              <div class="text-lg font-bold text-alert tab-num">+ ₹<span id="diff-10">—</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar viz: contribution vs growth -->
+      <div class="bg-paper rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold mb-3">Today's-start corpus breakdown</div>
+        <div class="flex h-8 rounded-full overflow-hidden bg-cream">
+          <div id="bar-cont" class="bar bg-navy" style="width: 30%"></div>
+          <div id="bar-grow" class="bar bg-mustard" style="width: 70%"></div>
+        </div>
+        <div class="flex justify-between mt-3 text-xs">
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-navy"></span><span class="text-navy-ink/70">You invested: <strong class="tab-num text-navy-ink">₹<span id="pct-cont-val">—</span></strong></span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-mustard"></span><span class="text-navy-ink/70">Growth: <strong class="tab-num text-navy-ink">₹<span id="pct-grow-val">—</span></strong></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE INCONVENIENT BIT -->
+<section class="py-16 bg-navy text-cream">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What the gap means</div>
+    <div id="reality" class="mt-4 font-serif text-2xl md:text-3xl font-bold leading-snug"></div>
+    <div class="mt-6 space-y-4 text-cream/80 leading-relaxed">
+      <p>That gap isn't because you didn't save. It's because compound growth needs <em>time</em>, not effort. A ₹10,000 SIP starting at 25 beats a ₹20,000 SIP starting at 35 — even though the second person contributed more.</p>
+      <p>The most expensive decision in personal finance is the one you don't make. <strong>Today is the second-best day to start.</strong> Yesterday was the first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MORE -->
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-serif text-3xl font-bold text-navy-ink">More calculators</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-5">
+      <a href="calc-retirement.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-3">₹</div>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">Real Retirement</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">Inflation-adjusted corpus you actually need.</p>
+      </a>
+      <a href="calc-fees.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-3">%</div>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">True Cost of Fees</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">% of corpus eaten by expense ratios.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+const fmtINR = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+
+// Future value of stepped-up monthly SIP over `years` years
+// monthlySip stepped up by `step` % annually
+function sipCorpus(monthlySip, years, ret, step) {
+  if (years <= 0) return 0;
+  const m = Math.pow(1 + ret, 1/12) - 1;
+  let total = 0;
+  let sip = monthlySip;
+  for (let y = 0; y < years; y++) {
+    // FV of an annuity (12 monthly contributions of `sip`) at end of year y
+    const annualFV = sip * ((Math.pow(1 + m, 12) - 1) / m);
+    // Grow for remaining (years - y - 1) years
+    total += annualFV * Math.pow(1 + ret, years - y - 1);
+    sip = sip * (1 + step);
+  }
+  return total;
+}
+
+// Total contributed over `years` with step-up
+function totalContrib(monthlySip, years, step) {
+  let total = 0;
+  let sip = monthlySip;
+  for (let y = 0; y < years; y++) {
+    total += sip * 12;
+    sip = sip * (1 + step);
+  }
+  return total;
+}
+
+function calc() {
+  const sip   = +document.getElementById('in-sip').value;
+  const age   = +document.getElementById('in-age').value;
+  const stop  = +document.getElementById('in-stop').value;
+  const ret   = +document.getElementById('in-ret').value / 100;
+  const step  = +document.getElementById('in-step').value / 100;
+
+  document.getElementById('lbl-sip').textContent = sip.toLocaleString('en-IN');
+  document.getElementById('lbl-age').textContent = age;
+  document.getElementById('lbl-stop').textContent = stop;
+  document.getElementById('lbl-ret').textContent = (ret * 100).toFixed(1);
+  document.getElementById('lbl-step').textContent = (step * 100).toFixed(0);
+
+  const years = Math.max(stop - age, 0);
+  const corpusNow = sipCorpus(sip, years, ret, step);
+  const corpus5   = sipCorpus(sip, years + 5, ret, step);
+  const corpus10  = sipCorpus(sip, years + 10, ret, step);
+
+  const contribNow = totalContrib(sip, years, step);
+
+  document.getElementById('out-now').textContent = fmtINR(corpusNow);
+  document.getElementById('out-years').textContent = years;
+  document.getElementById('out-5yr').textContent = fmtINR(corpus5);
+  document.getElementById('out-10yr').textContent = fmtINR(corpus10);
+  document.getElementById('diff-5').textContent = fmtINR(corpus5 - corpusNow);
+  document.getElementById('diff-10').textContent = fmtINR(corpus10 - corpusNow);
+
+  const growth = corpusNow - contribNow;
+  const contribPct = corpusNow > 0 ? (contribNow / corpusNow) * 100 : 50;
+  document.getElementById('bar-cont').style.width = contribPct + '%';
+  document.getElementById('bar-grow').style.width = (100 - contribPct) + '%';
+  document.getElementById('pct-cont-val').textContent = fmtINR(contribNow);
+  document.getElementById('pct-grow-val').textContent = fmtINR(Math.max(0, growth));
+
+  // Reality message
+  const gap10 = corpus10 - corpusNow;
+  let reality;
+  if (years < 10) {
+    reality = `With only ${years} years to compound, you're investing in your own discipline more than in the market. Compound growth needs time you don't have — so the only lever left is the SIP amount.`;
+  } else if (gap10 > corpusNow) {
+    reality = `Starting 10 years earlier would have given you ${fmtINR(corpus10)} — more than DOUBLE what you'll get now. That gap of ₹${fmtINR(gap10)} is the cost of the years you waited.`;
+  } else {
+    reality = `Even so — the cost of 10 missed years is ₹${fmtINR(gap10)}. That's not a small number. It's roughly ${Math.round((gap10 / corpusNow) * 100)}% extra you could've had, for the same monthly effort.`;
+  }
+  document.getElementById('reality').textContent = reality;
+}
+
+document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+
+</body>
+</html>

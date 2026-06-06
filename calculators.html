@@ -47,9 +47,12 @@
   <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-mustard/10 blur-3xl"></div>
   <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-alert/10 blur-3xl"></div>
   <div class="relative max-w-5xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Coming soon</div>
+    <div class="inline-flex items-center gap-2 bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1 rounded-full font-bold">
+      <span class="w-1.5 h-1.5 rounded-full bg-navy-ink animate-pulse"></span>
+      3 calculators live
+    </div>
     <h1 class="font-serif text-5xl md:text-7xl font-bold mt-3 leading-[1.05]">Calculators that don't lie to you.</h1>
-    <p class="mt-6 text-cream/70 text-lg max-w-2xl">Most online calculators flatter the user. Ours show you the inconvenient number — and then tell you what to do with it.</p>
+    <p class="mt-6 text-cream/70 text-lg max-w-2xl">Most online calculators flatter the user. Ours show you the inconvenient number — and then tell you what to do with it. No signup, no email, no upsell. Just maths.</p>
   </div>
 </section>
 
@@ -57,54 +60,78 @@
 <section class="py-20 bg-cream">
   <div class="max-w-6xl mx-auto px-6">
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="lift bg-white border border-navy/10 rounded-2xl p-7">
-        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-5">₹</div>
-        <h3 class="font-serif text-2xl font-bold text-navy-ink">Real Retirement</h3>
-        <p class="text-navy-ink/70 text-sm mt-2 leading-relaxed">Inflation-adjusted, lifestyle-honest. See the corpus you actually need — not the marketing version.</p>
-        <div class="mt-6 inline-flex text-xs uppercase tracking-widest text-mustard-deep font-bold bg-mustard/15 px-3 py-1 rounded-full">Launching Jun 2026</div>
-      </div>
-      <div class="lift bg-white border border-navy/10 rounded-2xl p-7">
-        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-5">%</div>
-        <h3 class="font-serif text-2xl font-bold text-navy-ink">True Cost of Fees</h3>
-        <p class="text-navy-ink/70 text-sm mt-2 leading-relaxed">Drag your expense ratio and watch what percentage of your final corpus gets eaten alive.</p>
-        <div class="mt-6 inline-flex text-xs uppercase tracking-widest text-mustard-deep font-bold bg-mustard/15 px-3 py-1 rounded-full">Launching Jun 2026</div>
-      </div>
-      <div class="lift bg-white border border-navy/10 rounded-2xl p-7">
-        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-5">⌛</div>
-        <h3 class="font-serif text-2xl font-bold text-navy-ink">Goal Planner</h3>
+
+      <!-- LIVE 1 -->
+      <a href="calc-retirement.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold">₹</div>
+          <span class="text-[10px] uppercase tracking-widest text-mustard-deep group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+        </div>
+        <h3 class="font-serif text-2xl font-bold mt-5">Real Retirement</h3>
+        <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Inflation-adjusted, lifestyle-honest. See the corpus you actually need — not the marketing version.</p>
+        <div class="mt-6 inline-flex items-center gap-1 text-sm font-semibold border-b-2 border-mustard pb-0.5">Try it now →</div>
+      </a>
+
+      <!-- LIVE 2 -->
+      <a href="calc-sip.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">SIP</div>
+          <span class="text-[10px] uppercase tracking-widest text-mustard-deep group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+        </div>
+        <h3 class="font-serif text-2xl font-bold mt-5">Brutal SIP</h3>
+        <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Shows the corpus AND the corpus you'd have had if you started 5 or 10 years earlier. Painful by design.</p>
+        <div class="mt-6 inline-flex items-center gap-1 text-sm font-semibold border-b-2 border-mustard pb-0.5">Try it now →</div>
+      </a>
+
+      <!-- LIVE 3 -->
+      <a href="calc-fees.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold">%</div>
+          <span class="text-[10px] uppercase tracking-widest text-mustard-deep group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+        </div>
+        <h3 class="font-serif text-2xl font-bold mt-5">True Cost of Fees</h3>
+        <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Drag your expense ratio and watch what percentage of your final corpus gets eaten alive.</p>
+        <div class="mt-6 inline-flex items-center gap-1 text-sm font-semibold border-b-2 border-mustard pb-0.5">Try it now →</div>
+      </a>
+
+      <!-- COMING SOON -->
+      <div class="lift bg-paper border border-navy/10 rounded-2xl p-7 opacity-70">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-navy/20 text-navy flex items-center justify-center text-xl font-bold">⌛</div>
+          <span class="text-[10px] uppercase tracking-widest text-navy/50 font-bold bg-navy/5 px-2.5 py-1 rounded-full">Coming soon</span>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-navy-ink mt-5">Goal Planner</h3>
         <p class="text-navy-ink/70 text-sm mt-2 leading-relaxed">Backwards from the goal. Honest about what's possible — and what's not.</p>
-        <div class="mt-6 inline-flex text-xs uppercase tracking-widest text-mustard-deep font-bold bg-mustard/15 px-3 py-1 rounded-full">Launching Jul 2026</div>
       </div>
-      <div class="lift bg-white border border-navy/10 rounded-2xl p-7">
-        <div class="w-12 h-12 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-5">SIP</div>
-        <h3 class="font-serif text-2xl font-bold text-navy-ink">Brutal SIP</h3>
-        <p class="text-navy-ink/70 text-sm mt-2 leading-relaxed">Shows you the corpus, AND the corpus you'd have had if you started 5 years earlier. Painful by design.</p>
-        <div class="mt-6 inline-flex text-xs uppercase tracking-widest text-mustard-deep font-bold bg-mustard/15 px-3 py-1 rounded-full">Launching Jul 2026</div>
-      </div>
-      <div class="lift bg-white border border-navy/10 rounded-2xl p-7">
-        <div class="w-12 h-12 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-5">🏠</div>
-        <h3 class="font-serif text-2xl font-bold text-navy-ink">Rent vs Buy</h3>
+      <div class="lift bg-paper border border-navy/10 rounded-2xl p-7 opacity-70">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-navy/20 text-navy flex items-center justify-center text-xl font-bold">🏠</div>
+          <span class="text-[10px] uppercase tracking-widest text-navy/50 font-bold bg-navy/5 px-2.5 py-1 rounded-full">Coming soon</span>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-navy-ink mt-5">Rent vs Buy</h3>
         <p class="text-navy-ink/70 text-sm mt-2 leading-relaxed">The honest version. Includes opportunity cost, stamp duty, society fees, and the "but it's an asset" lie.</p>
-        <div class="mt-6 inline-flex text-xs uppercase tracking-widest text-mustard-deep font-bold bg-mustard/15 px-3 py-1 rounded-full">Launching Aug 2026</div>
       </div>
-      <div class="lift bg-white border border-navy/10 rounded-2xl p-7">
-        <div class="w-12 h-12 rounded-xl bg-navy text-mustard flex items-center justify-center text-xl font-bold mb-5">💸</div>
-        <h3 class="font-serif text-2xl font-bold text-navy-ink">Lifestyle Inflation Tracker</h3>
+      <div class="lift bg-paper border border-navy/10 rounded-2xl p-7 opacity-70">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-navy/20 text-navy flex items-center justify-center text-xl font-bold">💸</div>
+          <span class="text-[10px] uppercase tracking-widest text-navy/50 font-bold bg-navy/5 px-2.5 py-1 rounded-full">Coming soon</span>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-navy-ink mt-5">Lifestyle Inflation Tracker</h3>
         <p class="text-navy-ink/70 text-sm mt-2 leading-relaxed">Compare your savings rate now vs five years ago. The gap is usually where the wealth went.</p>
-        <div class="mt-6 inline-flex text-xs uppercase tracking-widest text-mustard-deep font-bold bg-mustard/15 px-3 py-1 rounded-full">Launching Sep 2026</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WAITLIST -->
+<!-- NEWSLETTER -->
 <section class="py-16 bg-mustard text-navy-ink">
   <div class="max-w-3xl mx-auto px-6 text-center">
-    <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Early access</div>
-    <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">Want first access when these launch?</h2>
+    <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">One uncomfortable idea every Sunday.</h2>
+    <p class="mt-3 opacity-80">A short essay on money and behaviour. Written, not generated. Plus first dibs on new calculators.</p>
     <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
       <input type="email" placeholder="you@email.com" class="flex-1 bg-cream border border-navy/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy" />
-      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Notify me →</button>
+      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe →</button>
     </form>
   </div>
 </section>
