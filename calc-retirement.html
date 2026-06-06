@@ -150,25 +150,30 @@
       </div>
 
       <!-- Big number: monthly SIP -->
-      <div class="bg-white rounded-2xl border-2 border-mustard p-7">
-        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">Monthly SIP needed from today</div>
+      <div id="sip-card" class="bg-white rounded-2xl border-2 border-mustard p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold" id="out-sip-label">Monthly SIP needed from today</div>
         <div class="flex items-end gap-4 mt-3">
-          <div class="font-serif text-5xl md:text-6xl font-bold text-navy-ink tab-num leading-none">₹<span id="out-sip">—</span></div>
+          <div class="font-serif text-5xl md:text-6xl font-bold text-navy-ink tab-num leading-none"><span id="out-sip-prefix">₹</span><span id="out-sip">—</span></div>
         </div>
         <div class="mt-3 text-sm text-navy/60" id="out-sip-note">Assuming you keep this up till retirement, with no breaks.</div>
       </div>
 
-      <!-- The math: 3 mini cards -->
-      <div class="grid grid-cols-3 gap-3">
+      <!-- The math: 4 mini cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div class="bg-white rounded-xl p-4 border border-navy/10">
           <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">First month at retirement</div>
           <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-exp">—</span></div>
           <div class="text-[10px] text-navy/50 mt-1">vs ₹<span id="out-today-exp">50,000</span> today</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
+          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Your existing corpus grows to</div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-cur">—</span></div>
+          <div class="text-[10px] text-navy/50 mt-1">at <span id="out-pre-pct">12</span>% over <span id="out-yrs-grow">30</span> yrs</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-navy/10">
           <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Years in retirement</div>
           <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num"><span id="out-ret-yrs">25</span></div>
-          <div class="text-[10px] text-navy/50 mt-1">to fund every month of</div>
+          <div class="text-[10px] text-navy/50 mt-1">to fund every month</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
           <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Total you'll contribute</div>
@@ -302,11 +307,37 @@ function calc() {
   // ─── Output ───
   document.getElementById('out-corpus').textContent = fmtINR(corpusNeeded);
   document.getElementById('out-yrs').textContent = yearsToRet;
-  document.getElementById('out-sip').textContent = fmtINRFull(Math.round(sip));
   document.getElementById('out-future-exp').textContent = fmtINR(expAtRet);
   document.getElementById('out-today-exp').textContent = expToday.toLocaleString('en-IN');
   document.getElementById('out-ret-yrs').textContent = yearsInRet;
   document.getElementById('out-total-cont').textContent = fmtINR(totalContrib);
+  document.getElementById('out-future-cur').textContent = fmtINR(futureCurCorp);
+  document.getElementById('out-pre-pct').textContent = (preRet * 100).toFixed(0);
+  document.getElementById('out-yrs-grow').textContent = yearsToRet;
+
+  // Format the SIP card differently when user is already on track
+  const sipCard      = document.getElementById('sip-card');
+  const sipLabel     = document.getElementById('out-sip-label');
+  const sipPrefix    = document.getElementById('out-sip-prefix');
+  const sipValue     = document.getElementById('out-sip');
+  const sipNote      = document.getElementById('out-sip-note');
+  const onTrack      = gap === 0 && curCorp > 0 && yearsToRet > 0;
+  if (onTrack) {
+    const surplus = futureCurCorp - corpusNeeded;
+    sipCard.className = 'bg-white rounded-2xl border-2 border-emerald-500 p-7';
+    sipLabel.textContent = '✓ You\'re already on track';
+    sipLabel.className = 'text-xs uppercase tracking-[0.3em] text-emerald-600 font-semibold';
+    sipPrefix.textContent = '';
+    sipValue.textContent = '₹0 needed';
+    sipNote.innerHTML = `Your current corpus alone (₹${fmtINR(curCorp)} → ₹${fmtINR(futureCurCorp)} at retirement) over-funds you by <strong class="text-emerald-700">₹${fmtINR(surplus)}</strong>. You could retire earlier, spend more, or just keep investing for legacy.`;
+  } else {
+    sipCard.className = 'bg-white rounded-2xl border-2 border-mustard p-7';
+    sipLabel.textContent = 'Monthly SIP needed from today';
+    sipLabel.className = 'text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold';
+    sipPrefix.textContent = '₹';
+    sipValue.textContent = fmtINRFull(Math.round(sip));
+    sipNote.textContent = 'Assuming you keep this up till retirement, with no breaks.';
+  }
 
   document.getElementById('bar-cont').style.width = contribPct + '%';
   document.getElementById('bar-grow').style.width = growthPct + '%';
@@ -317,8 +348,12 @@ function calc() {
 
   // Reality message
   let reality;
-  if (yearsToRet < 5) {
-    reality = `You have ${yearsToRet} working years left. Even a ₹${fmtINR(sip)}/month SIP will struggle to bridge this. The honest move is to keep working — or to drop expected expenses.`;
+  if (onTrack) {
+    const surplus = futureCurCorp - corpusNeeded;
+    const surplusYears = Math.round((surplus / (annualExpAtRet)) || 0);
+    reality = `Your current ₹${fmtINR(curCorp)} alone grows to ₹${fmtINR(futureCurCorp)} by age ${retAge} — ₹${fmtINR(surplus)} more than the ₹${fmtINR(corpusNeeded)} you need. That's roughly ${surplusYears} extra years of retirement income, or the option to stop working sooner. This is what compounding looks like when you start early.`;
+  } else if (yearsToRet < 5) {
+    reality = `You have ${yearsToRet} working years left. Even a ₹${fmtINRFull(Math.round(sip))}/month SIP will struggle to bridge this. The honest move is to keep working — or to drop expected expenses.`;
   } else if (sip > expToday * 0.5) {
     reality = `That's ${Math.round((sip / expToday) * 100)}% of your current monthly expense — going into a SIP. Most people can't sustain this. The realistic options are: retire later, spend less in retirement, or accept a corpus shortfall.`;
   } else if (sip > expToday * 0.25) {
