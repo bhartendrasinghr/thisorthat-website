@@ -201,15 +201,16 @@
           📐 Show the maths — year-by-year corpus depletion
         </summary>
         <div class="px-5 pb-5">
-          <p class="text-xs text-navy/60 mb-3">Each year, you withdraw that year's expenses (inflated from today), then what's left grows at your post-retirement return. Corpus must reach ₹0 right at the end of your expected lifespan.</p>
+          <p class="text-xs text-navy/60 mb-3">Each month, you withdraw that month's expense at the start, then the remaining corpus grows for the month at your post-retirement return (compounded monthly). The table summarises each year (12 monthly cycles). Last row should reach ~₹0.</p>
           <div class="overflow-x-auto -mx-5 px-5">
             <table class="w-full text-xs tab-num">
               <thead>
                 <tr class="border-b-2 border-navy/20 text-navy-ink text-left">
                   <th class="py-2 pr-3 font-semibold">Age</th>
+                  <th class="py-2 pr-3 font-semibold">Monthly expense</th>
                   <th class="py-2 pr-3 font-semibold">Corpus at start</th>
-                  <th class="py-2 pr-3 font-semibold">Year's withdrawal</th>
-                  <th class="py-2 pr-3 font-semibold">Growth on rest</th>
+                  <th class="py-2 pr-3 font-semibold">Withdrawn (12 mo)</th>
+                  <th class="py-2 pr-3 font-semibold">Growth</th>
                   <th class="py-2 font-semibold">Corpus at end</th>
                 </tr>
               </thead>
@@ -294,41 +295,55 @@ function calc() {
   // 1. Future monthly expense at retirement, adjusted for inflation
   const expAtRet = expToday * Math.pow(1 + inf, yearsToRet);
 
-  // 2. Corpus needed at retirement (start-of-year withdrawal model)
-  //    At age `retAge`, we hold corpus C. Each year of retirement:
-  //      - Withdraw annual expenses (growing at inflation each year)
-  //      - Remaining corpus grows at postRet for the year
-  //    Corpus must reach exactly 0 by age `lifeAge`.
+  // 2. Corpus needed at retirement (monthly withdrawal model)
+  //    At age `retAge`, hold corpus C. Each month of retirement:
+  //      - Withdraw that month's expense at the start of the month
+  //      - Remaining corpus grows at monthly rate during the month
+  //    Monthly expense stays constant within a year, jumps by `inf` at year boundary.
+  //    Corpus must reach exactly ₹0 by age `lifeAge`.
   //
-  //    Closed-form: C = PMT × (1 - ((1+g)/(1+r))^n) × (1+r) / (r - g)
-  //    where PMT = first year's expense, r = postRet, g = inflation, n = yearsInRet
-  const annualExpAtRet = expAtRet * 12;
+  //    Closed-form: corpus = monthlyExp × monthlyAnnuityDue(12) × Σ_{y=0..n-1} ((1+g)/(1+r))^y
+  const monthlyR = Math.pow(1 + postRet, 1/12) - 1;
+  const monthlyExpAtRet = expAtRet; // ₹ per month at age `retAge`
+  const annualExpAtRet = monthlyExpAtRet * 12; // for display only
+
   let corpusNeeded;
   if (Math.abs(postRet - inf) < 0.0001) {
-    // r ≈ g — withdrawals grow at same rate corpus earns; corpus = sum of nominal withdrawals
-    corpusNeeded = annualExpAtRet * yearsInRet * (1 + postRet);
+    // Edge case r ≈ g: closed form blows up. Approximate using monthly annuity due.
+    const monthlyDue = (1 - Math.pow(1 + monthlyR, -12)) * (1 + monthlyR) / monthlyR;
+    corpusNeeded = monthlyExpAtRet * monthlyDue * yearsInRet;
   } else {
+    const monthlyDue = (1 - Math.pow(1 + monthlyR, -12)) * (1 + monthlyR) / monthlyR;
     const ratio = (1 + inf) / (1 + postRet);
-    corpusNeeded = annualExpAtRet * (1 - Math.pow(ratio, yearsInRet)) * (1 + postRet) / (postRet - inf);
+    const ratioYearSum = (1 - Math.pow(ratio, yearsInRet)) / (1 - ratio);
+    corpusNeeded = monthlyExpAtRet * monthlyDue * ratioYearSum;
   }
 
   // ── Year-by-year simulation (for "show your work" panel) ──
-  // Confirms the closed-form against an explicit simulation.
+  // Internally runs monthly: withdraw at month-start, grow remainder for the month.
+  // Last row should end at ~₹0, proving the corpus exactly funds the planned lifespan.
   const simulation = [];
   let simCorpus = corpusNeeded;
+  let monthlyExpThisYear = monthlyExpAtRet;
   for (let y = 0; y < yearsInRet; y++) {
-    const yearWithdraw = annualExpAtRet * Math.pow(1 + inf, y);
-    const afterWithdraw = simCorpus - yearWithdraw;
-    const yearEndCorpus = afterWithdraw * (1 + postRet);
+    const startCorpus = simCorpus;
+    let withdrawnThisYear = 0;
+    for (let m = 0; m < 12; m++) {
+      simCorpus -= monthlyExpThisYear;       // withdraw at start of month
+      withdrawnThisYear += monthlyExpThisYear;
+      simCorpus *= (1 + monthlyR);            // grow during the month
+    }
+    const endCorpus = simCorpus;
+    const growth = endCorpus - startCorpus + withdrawnThisYear;
     simulation.push({
       ageStart: retAge + y,
-      startCorpus: simCorpus,
-      withdraw: yearWithdraw,
-      afterWithdraw,
-      growth: afterWithdraw * postRet,
-      endCorpus: yearEndCorpus,
+      monthlyExp: monthlyExpThisYear,
+      startCorpus,
+      withdraw: withdrawnThisYear,
+      growth,
+      endCorpus,
     });
-    simCorpus = yearEndCorpus;
+    monthlyExpThisYear *= (1 + inf); // inflate for next year
   }
 
   // 3. Future value of current corpus at retirement
@@ -395,12 +410,13 @@ function calc() {
   document.getElementById('pct-cont-val').textContent = fmtINR(totalContrib);
   document.getElementById('pct-grow-val').textContent = fmtINR(Math.max(0, totalGrowth));
 
-  // Year-by-year simulation table — proves the math
+  // Year-by-year simulation table — proves the math (monthly cadence under the hood)
   const simTable = document.getElementById('sim-table');
   if (simTable) {
     simTable.innerHTML = simulation.map(row => `
       <tr class="border-b border-navy/5">
         <td class="py-1.5 pr-3">${row.ageStart}</td>
+        <td class="py-1.5 pr-3 text-navy/70">₹${fmtINRFull(Math.round(row.monthlyExp))}</td>
         <td class="py-1.5 pr-3">₹${fmtINR(row.startCorpus)}</td>
         <td class="py-1.5 pr-3 text-alert">− ₹${fmtINR(row.withdraw)}</td>
         <td class="py-1.5 pr-3 text-mustard-deep">+ ₹${fmtINR(row.growth)}</td>
