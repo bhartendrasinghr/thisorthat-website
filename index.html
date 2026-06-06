@@ -258,40 +258,74 @@
 </section>
 
 <!-- ====================== EPISODES ====================== -->
-<section id="episodes" class="py-20 bg-cream">
-  <div class="max-w-7xl mx-auto px-6">
+<section id="episodes" class="pt-24 pb-12 bg-cream relative">
+  <!-- decorative shape -->
+  <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-mustard/5 blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div>
+      <div class="max-w-2xl">
         <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The archive</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">All episodes, one place.</h2>
-        <p class="text-navy-ink/70 mt-3 max-w-xl">87 conversations and counting. Search by guest, topic or tag.</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Every conversation, indexed.</h2>
+        <p class="text-navy-ink/70 mt-3"><span data-ep-count>54</span> episodes · <span data-guest-count>30</span> guests · auto-updated from YouTube. Search by topic, guest, or the exact moment you'll want to share.</p>
       </div>
-      <div class="search w-full md:w-96 relative">
-        <input type="text" placeholder="Search guests, topics, tags…" class="w-full bg-paper border border-navy/15 rounded-full pl-12 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mustard" />
-        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-navy/40">🔍</span>
-      </div>
+      <a href="episodes.html" class="shrink-0 inline-flex items-center gap-2 bg-navy-ink text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy transition">
+        Open the archive →
+      </a>
     </div>
 
-    <!-- Filter chips -->
-    <div class="flex flex-wrap gap-2 mb-10">
-      <button class="chip bg-navy text-cream">All</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Investing</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Behaviour</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Markets</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Retirement</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Real Estate</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Tax</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Startups</button>
-      <button class="chip bg-paper text-navy-ink hover:bg-navy/10">Career</button>
+    <!-- FEATURED LATEST — magazine hero card -->
+    <a id="featured-latest" href="episode-detail.html" class="lift group block bg-white rounded-3xl overflow-hidden border border-navy/10 shadow-sm hover:shadow-xl transition-shadow mb-12"></a>
+
+    <!-- Section divider with title -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">More recent episodes</div>
+      <div class="flex-1 h-px bg-navy/10"></div>
     </div>
 
-    <!-- Episode grid — populated from real data -->
+    <!-- Episode grid — 5 more recent (populated from real data) -->
     <div id="latest" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-    <div class="text-center mt-12">
-      <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">
+    <div class="text-center mt-10">
+      <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">
         See all <span data-ep-count>54</span> episodes →
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TOPICS STRIP ====================== -->
+<section class="bg-cream pb-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center gap-4 mb-6">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">Browse by topic</div>
+      <div class="flex-1 h-px bg-navy/10"></div>
+    </div>
+    <div id="topics-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+  </div>
+</section>
+
+<!-- ====================== STATS BANNER ====================== -->
+<section class="bg-navy-ink text-cream py-10 relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-mustard/10 blur-3xl"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+      <div>
+        <div class="font-serif text-4xl font-bold text-mustard"><span data-ep-count>54</span></div>
+        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Episodes published</div>
+      </div>
+      <div>
+        <div class="font-serif text-4xl font-bold text-mustard">185K</div>
+        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Top episode views</div>
+      </div>
+      <div>
+        <div class="font-serif text-4xl font-bold text-mustard"><span data-guest-count>30</span></div>
+        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Guests featured</div>
+      </div>
+      <div>
+        <div class="font-serif text-4xl font-bold text-mustard">3 yrs</div>
+        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">On the air since</div>
+      </div>
     </div>
   </div>
 </section>
@@ -300,16 +334,38 @@
 <section id="guests" class="py-20 bg-paper">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div>
+      <div class="max-w-2xl">
         <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The voices</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2"><span data-guest-count>19</span> guests. Every conversation, indexed.</h2>
-        <p class="text-navy-ink/70 mt-3 max-w-xl">Click any guest to see every episode they've appeared on, plus their best ideas.</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">The people behind the money.</h2>
+        <p class="text-navy-ink/70 mt-3"><span data-guest-count>30</span> fund managers, founders, journalists and contrarians — each indexed with their best ideas and every episode they've appeared on.</p>
       </div>
-      <a href="guests.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">View all guests →</a>
+      <a href="guests.html" class="shrink-0 inline-flex items-center gap-2 bg-navy-ink text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy transition">View all guests →</a>
     </div>
 
-    <!-- Guest cards — populated from real data -->
+    <!-- FEATURED GUEST — quote spotlight -->
+    <a id="featured-guest" href="guest-detail.html" class="lift group block bg-white rounded-3xl overflow-hidden border border-navy/10 shadow-sm hover:shadow-xl transition-shadow mb-12"></a>
+
+    <!-- Section divider -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">More voices</div>
+      <div class="flex-1 h-px bg-navy/15"></div>
+    </div>
+
+    <!-- Guest cards grid -->
     <div id="home-guests" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
+
+    <!-- Pitch CTA -->
+    <div class="mt-14 bg-navy-ink text-cream rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden">
+      <div class="absolute -bottom-12 -right-12 w-64 h-64 rounded-full bg-mustard/15 blur-3xl"></div>
+      <div class="relative">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard font-bold">Want to be on the show?</div>
+        <div class="font-serif text-2xl md:text-3xl font-bold mt-2 leading-snug">Pitch us a guest. Or yourself.</div>
+        <p class="text-cream/70 mt-2 text-sm max-w-md">We're booking 2026 episodes now. Fund managers, founders, behavioural economists, contrarians — bring us the inconvenient idea.</p>
+      </div>
+      <a href="mailto:hello@thisorthat.in" class="relative shrink-0 inline-flex items-center gap-2 bg-mustard text-navy-ink px-5 py-3 rounded-full font-semibold hover:bg-mustard-soft transition">
+        hello@thisorthat.in
+      </a>
+    </div>
   </div>
 </section>
 
@@ -623,12 +679,52 @@ const marqueeNames = window.GUESTS.slice(0, 10).map(g => g.name);
 const marqueeHtml = marqueeNames.map(n => `<span class="font-serif text-2xl text-cream/70">${n}</span><span class="text-mustard">•</span>`).join('');
 document.getElementById('guest-marquee').innerHTML = `<div class="flex gap-12 items-center">${marqueeHtml}</div><div class="flex gap-12 items-center" aria-hidden="true">${marqueeHtml}</div>`;
 
-// 3. Latest 6 episodes (skip the hero one)
+// 3a. FEATURED LATEST — magazine-style hero card
+const featured = window.EPISODES[0];
+if (featured) {
+  const featuredEl = document.getElementById('featured-latest');
+  featuredEl.href = `episode-detail.html?v=${featured.id}`;
+  const featGuestLabel = (featured.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : featured.guest;
+  featuredEl.innerHTML = `
+    <div class="grid md:grid-cols-12 gap-0">
+      <div class="md:col-span-7 relative aspect-video md:aspect-auto bg-navy-ink overflow-hidden">
+        <img src="${featured.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-ink/40 via-transparent to-transparent"></div>
+        <div class="absolute top-5 left-5 flex items-center gap-2 bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-navy-ink animate-pulse"></span>
+          Latest episode
+        </div>
+        <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">
+          <div class="flex items-center justify-center w-16 h-16 rounded-full bg-cream/95 group-hover:bg-mustard transition shadow-lg">
+            <span class="text-navy-ink text-xl ml-1">▶</span>
+          </div>
+          ${featured.views ? `<div class="bg-navy-ink/85 text-cream text-xs px-2.5 py-1 rounded-full">${featured.views} views</div>` : ''}
+        </div>
+      </div>
+      <div class="md:col-span-5 p-7 md:p-10 flex flex-col justify-center">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Ep ${String(featured.n).padStart(3,'0')} · ${featured.cat} · ${featured.published || 'New'}</div>
+        <h3 class="font-serif text-2xl md:text-3xl font-bold text-navy-ink mt-3 leading-tight group-hover:text-navy transition">${featured.title}</h3>
+        <div class="flex items-center gap-3 mt-5 pt-5 border-t border-navy/10">
+          <div class="avatar w-10 h-10 rounded-full ${bgs[0]} text-xs">${initialsOf(featured.guest)}</div>
+          <div>
+            <div class="font-semibold text-navy-ink text-sm">${featGuestLabel}</div>
+            <div class="text-xs text-navy/60">on this week's episode</div>
+          </div>
+        </div>
+        <div class="mt-6 inline-flex items-center gap-2 text-navy-ink font-semibold text-sm border-b-2 border-mustard pb-0.5 self-start group-hover:gap-3 transition-all">
+          Watch the full conversation →
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 3b. More recent episodes (5 cards, skip the featured one)
 const latestGrid = document.getElementById('latest');
-latestGrid.innerHTML = window.EPISODES.slice(1, 7).map((ep, i) => {
+latestGrid.innerHTML = window.EPISODES.slice(1, 6).map((ep, i) => {
   const guestLabel = (ep.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : ep.guest;
   return `
-  <a href="episode-detail.html?v=${ep.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+  <a href="episode-detail.html?v=${ep.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10 hover:border-navy/30 hover:shadow-lg transition">
     <div class="aspect-video relative overflow-hidden bg-navy-ink">
       <img src="${ep.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(ep.n).padStart(3,'0')}</div>
@@ -636,7 +732,7 @@ latestGrid.innerHTML = window.EPISODES.slice(1, 7).map((ep, i) => {
     </div>
     <div class="p-5">
       <div class="text-xs text-navy/60 uppercase tracking-widest font-semibold">${ep.cat}</div>
-      <h3 class="font-serif text-xl font-bold text-navy-ink mt-1 leading-snug">${ep.title}</h3>
+      <h3 class="font-serif text-lg font-bold text-navy-ink mt-1 leading-snug">${ep.title}</h3>
       <div class="flex items-center gap-2 mt-4">
         <div class="avatar w-7 h-7 rounded-full ${bgs[i % bgs.length]} text-xs">${initialsOf(ep.guest)}</div>
         <span class="text-sm text-navy-ink/70">${guestLabel}</span>
@@ -645,23 +741,87 @@ latestGrid.innerHTML = window.EPISODES.slice(1, 7).map((ep, i) => {
   </a>`;
 }).join('');
 
-// 4. Top 6 guests
+// 3c. Topics strip — count episodes per category + render colored tiles
+const TOPIC_STYLES = {
+  'Investing':   { bg: 'bg-navy text-mustard',       icon: '₹'  },
+  'Markets':     { bg: 'bg-navy-ink text-mustard',   icon: '📈' },
+  'Behaviour':   { bg: 'bg-mustard text-navy-ink',   icon: '🧠' },
+  'Retirement':  { bg: 'bg-alert text-cream',        icon: '⌛' },
+  'Real Estate': { bg: 'bg-paper text-navy-ink border border-navy/15', icon: '🏠' },
+  'Tax':         { bg: 'bg-navy text-mustard',       icon: '%'  },
+  'Commodities': { bg: 'bg-mustard text-navy-ink',   icon: '🥇' },
+  'Global':      { bg: 'bg-navy-ink text-mustard',   icon: '🌐' },
+  'Wealth':      { bg: 'bg-mustard text-navy-ink',   icon: '◆'  },
+};
+const catCounts = window.EPISODES.reduce((acc, e) => { acc[e.cat] = (acc[e.cat] || 0) + 1; return acc; }, {});
+const topCats = Object.entries(catCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+document.getElementById('topics-grid').innerHTML = topCats.map(([cat, count]) => {
+  const style = TOPIC_STYLES[cat] || { bg: 'bg-navy text-mustard', icon: '◆' };
+  return `
+    <a href="episodes.html?cat=${encodeURIComponent(cat)}" class="lift block ${style.bg} rounded-2xl p-5 group transition">
+      <div class="text-3xl">${style.icon}</div>
+      <div class="font-serif text-xl font-bold mt-3 leading-tight">${cat}</div>
+      <div class="text-xs opacity-70 mt-1 flex items-center justify-between">
+        <span>${count} episode${count !== 1 ? 's' : ''}</span>
+        <span class="group-hover:translate-x-1 transition">→</span>
+      </div>
+    </a>
+  `;
+}).join('');
+
+// 4a. FEATURED GUEST — quote spotlight (top guest by episode count)
 const guestsEl = document.getElementById('home-guests');
-// Render guests using auto-derived data first, then upgrade with rich photo/bio data
+const featuredGuestEl = document.getElementById('featured-guest');
+
+const renderFeaturedGuest = (g, rich) => {
+  if (!g) return;
+  featuredGuestEl.href = `guest-detail.html?g=${encodeURIComponent(g.name)}`;
+  // Use the bio excerpt as quote tease if available, else a generic credibility line
+  const tease = (rich && rich.excerpt) || `${g.eps} appearance${g.eps !== 1 ? 's' : ''} on ThisOrThat — bringing some of the most-quoted ideas on the show.`;
+  featuredGuestEl.innerHTML = `
+    <div class="grid md:grid-cols-12 gap-0">
+      <div class="md:col-span-4 relative bg-navy-ink p-8 md:p-10 flex items-center justify-center min-h-[280px]">
+        <div class="absolute top-5 left-5 flex items-center gap-2 bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">Most appearances</div>
+        ${g.photo
+          ? `<div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-mustard shadow-2xl"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" /></div>`
+          : `<div class="avatar relative w-44 h-44 rounded-full ${g.bg || 'bg-mustard text-navy-ink'} text-7xl border-4 border-mustard shadow-2xl">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
+        }
+      </div>
+      <div class="md:col-span-8 p-8 md:p-12 flex flex-col justify-center">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Featured guest</div>
+        <h3 class="font-serif text-3xl md:text-4xl font-bold text-navy-ink mt-3 leading-tight">${g.name}</h3>
+        <div class="text-sm text-navy/60 mt-1">${g.role || 'Guest expert'}</div>
+        <p class="mt-5 text-navy-ink/80 leading-relaxed">${tease}</p>
+        <div class="mt-6 flex items-center gap-3">
+          <span class="bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">${g.eps} episode${g.eps !== 1 ? 's' : ''}</span>
+          <span class="inline-flex items-center gap-2 text-navy-ink font-semibold text-sm border-b-2 border-mustard pb-0.5 group-hover:gap-3 transition-all">
+            See all their episodes →
+          </span>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
 const renderGuests = (guests) => {
-  guestsEl.innerHTML = guests.slice(0, 6).map(g => `
+  guestsEl.innerHTML = guests.slice(0, 12).map(g => `
     <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift group text-center">
       ${g.photo
-        ? `<div class="w-full aspect-square rounded-2xl overflow-hidden"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" loading="lazy" /></div>`
-        : `<div class="avatar w-full aspect-square rounded-2xl ${g.bg || 'bg-navy text-mustard'} text-3xl">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
+        ? `<div class="w-full aspect-square rounded-2xl overflow-hidden ring-2 ring-transparent group-hover:ring-mustard transition"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" loading="lazy" /></div>`
+        : `<div class="avatar w-full aspect-square rounded-2xl ${g.bg || 'bg-navy text-mustard'} text-3xl group-hover:ring-2 group-hover:ring-mustard transition">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
       }
-      <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy">${g.name}</div>
-      <div class="text-xs text-navy/60">${g.role || ''}${g.eps > 0 ? ' • ' + g.eps + ' ep' + (g.eps !== 1 ? 's' : '') : ' • Upcoming'}</div>
+      <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy leading-tight">${g.name}</div>
+      <div class="text-xs text-navy/60 mt-0.5 leading-tight">${g.role || ''}</div>
+      <div class="text-[10px] uppercase tracking-widest font-bold mt-1.5 ${g.eps > 0 ? 'text-mustard-deep' : 'text-alert'}">${g.eps > 0 ? g.eps + ' ep' + (g.eps !== 1 ? 's' : '') : 'Upcoming'}</div>
     </a>
   `).join('');
 };
-renderGuests(window.GUESTS); // immediate paint with auto data
-// Then upgrade with rich CMS data (photos, real roles, and CMS-only "upcoming" guests)
+
+// Initial render with auto data only
+renderGuests(window.GUESTS);
+renderFeaturedGuest(window.GUESTS[0], null);
+
+// Then upgrade with rich CMS data (photos, bios, "upcoming" guests)
 const bgPool = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
 const makeInitials = (name) => name.split(' ').filter(p => p[0] && p[0] === p[0].toUpperCase()).map(p => p[0]).join('').slice(0, 2).toUpperCase();
 fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
@@ -672,11 +832,10 @@ fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
     const upcoming = rich.filter(g => !autoNames.has(g.name)).map((g, i) => ({
       ...g, eps: 0, ep_ids: [], bg: bgPool[(withEps.length + i) % bgPool.length], initials: makeInitials(g.name)
     }));
-    // Sort: featured first, then by episode count, then upcoming at end
     const merged = [...withEps, ...upcoming]
       .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.eps - a.eps);
     renderGuests(merged);
-    // Update guest count to include upcoming
+    renderFeaturedGuest(merged[0], richByName[merged[0]?.name]);
     document.querySelectorAll('[data-guest-count]').forEach(el => el.textContent = merged.length);
     document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = merged.length);
   });
@@ -705,24 +864,7 @@ if (window.EPISODES && window.EPISODES[0]) {
   if (watchLink) watchLink.href = `episode-detail.html?v=${window.EPISODES[0].id}`;
 }
 
-// 8. Scroll-triggered fade-in
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  // Apply to cards rendered below the fold
-  setTimeout(() => {
-    document.querySelectorAll('#latest > a, #home-guests > a').forEach(el => {
-      el.classList.add('fade-in');
-      observer.observe(el);
-    });
-  }, 50);
-}
+// 8. Cards render immediately — no fade-in animation (was occasionally hiding cards on slow paints)
 </script>
 
 
