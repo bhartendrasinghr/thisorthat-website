@@ -196,67 +196,57 @@
       </div>
     </div>
 
-    <!-- HERO CALCULATOR — mini Real Retirement -->
+    <!-- HERO COMPARISON CARD — the "inconvenient number" tease -->
     <div class="lg:col-span-6">
-      <div class="relative">
-        <div class="absolute -inset-3 bg-mustard/20 rounded-3xl blur-2xl"></div>
-        <div class="relative bg-cream text-navy-ink rounded-3xl border border-cream/20 p-7 shadow-2xl">
-          <div class="flex items-start justify-between gap-3">
-            <div>
-              <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Try it now — 30 seconds</div>
-              <h2 class="font-serif text-2xl font-bold mt-1">How much do you need at retirement?</h2>
-            </div>
-            <a href="calc-retirement.html" class="shrink-0 text-xs text-navy/60 hover:text-navy font-semibold">Expand →</a>
-          </div>
+      <a href="calc-retirement.html" class="block group">
+        <div class="relative">
+          <div class="absolute -inset-3 bg-mustard/25 rounded-3xl blur-2xl group-hover:bg-mustard/40 transition"></div>
+          <div class="relative bg-cream text-navy-ink rounded-3xl p-8 md:p-10 shadow-2xl overflow-hidden">
 
-          <div class="mt-5 space-y-4">
-            <div>
-              <div class="flex justify-between items-baseline text-xs">
-                <label class="font-semibold text-navy-ink" for="h-age">Your age</label>
-                <div class="flex items-baseline gap-1">
-                  <input type="text" id="h-age" value="30" inputmode="numeric" class="editable-hero font-bold text-navy tab-num w-9 text-right" />
-                  <span class="text-navy/60">yrs</span>
-                </div>
-              </div>
-              <input id="h-age-input" type="range" min="22" max="60" value="30" class="hero-slider w-full mt-1" />
-            </div>
-            <div>
-              <div class="flex justify-between items-baseline text-xs">
-                <label class="font-semibold text-navy-ink" for="h-exp">Monthly expenses today</label>
-                <div class="flex items-baseline gap-1">
-                  <span class="text-navy/60">₹</span>
-                  <input type="text" id="h-exp" value="50,000" inputmode="numeric" class="editable-hero font-bold text-navy tab-num w-20 text-right" />
-                </div>
-              </div>
-              <input id="h-exp-input" type="range" min="20000" max="300000" step="5000" value="50000" class="hero-slider w-full mt-1" />
-            </div>
-            <div>
-              <div class="flex justify-between items-baseline text-xs">
-                <label class="font-semibold text-navy-ink" for="h-cur">Current corpus</label>
-                <div class="flex items-baseline gap-1">
-                  <span class="text-navy/60">₹</span>
-                  <input type="text" id="h-cur" value="0" inputmode="numeric" class="editable-hero font-bold text-navy tab-num w-20 text-right" />
-                </div>
-              </div>
-              <input id="h-cur-input" type="range" min="0" max="30000000" step="100000" value="0" class="hero-slider w-full mt-1" />
-            </div>
-          </div>
+            <!-- decorative grain corner -->
+            <div class="absolute top-0 right-0 w-48 h-48 bg-mustard/20 rounded-full blur-3xl"></div>
 
-          <div class="mt-6 bg-navy-ink rounded-2xl p-5 text-cream relative overflow-hidden">
-            <div class="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-mustard/15 blur-2xl"></div>
             <div class="relative">
-              <div class="text-[10px] uppercase tracking-[0.3em] text-mustard font-bold">You'll need at retirement</div>
-              <div class="font-serif text-4xl md:text-5xl font-bold text-mustard mt-1 tab-num leading-none">₹<span id="h-corpus">—</span></div>
-              <div class="mt-2 text-xs text-cream/70" id="h-context">in <span id="h-yrs">30</span> years · funded by ₹<span id="h-sip">—</span>/mo SIP</div>
+              <div class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The retirement number, honestly</div>
+
+              <!-- The setup -->
+              <div class="mt-5">
+                <p class="text-sm md:text-base text-navy-ink/70">What most calculators tell a 30-year-old earning ₹50K/month they need:</p>
+                <div class="mt-2 flex items-baseline gap-3">
+                  <div class="font-serif text-4xl md:text-5xl font-bold text-navy-ink/30 line-through decoration-2 decoration-navy/40 tab-num leading-none">₹2.0 Cr</div>
+                  <div class="text-xs text-navy-ink/40 italic">(the comfortable answer)</div>
+                </div>
+              </div>
+
+              <!-- The reveal -->
+              <div class="mt-6 pt-6 border-t border-navy/10">
+                <p class="text-sm md:text-base text-navy-ink/80 font-medium">What honest maths actually says:</p>
+                <div class="mt-2 flex items-baseline gap-3 flex-wrap">
+                  <div class="font-serif text-6xl md:text-7xl font-black text-mustard-deep tab-num leading-none" style="text-shadow: 0 2px 0 rgba(245,197,24,0.15);">₹6.82 Cr</div>
+                </div>
+                <div class="mt-3 text-xs md:text-sm text-navy-ink/60 leading-relaxed">
+                  Inflation, longevity, and lifestyle creep — accounted for. Year-by-year math. The corpus reaches exactly ₹0 at age 85.
+                </div>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-8 bg-navy-ink rounded-2xl p-5 text-cream group-hover:bg-navy transition flex items-center justify-between gap-4">
+                <div>
+                  <div class="font-serif text-lg md:text-xl font-bold text-mustard">Find your number →</div>
+                  <div class="text-xs text-cream/60 mt-0.5">30 seconds. No signup.</div>
+                </div>
+                <div class="text-mustard text-3xl group-hover:translate-x-1 transition">→</div>
+              </div>
+
+              <!-- credibility row -->
+              <div class="mt-5 flex items-center justify-between text-[11px] text-navy-ink/50">
+                <span>Backed by India's most candid finance podcast.</span>
+                <span class="hidden md:inline">Used by <span class="font-semibold text-navy-ink/80" id="hero-users-count">2,400+</span> Indians.</span>
+              </div>
             </div>
           </div>
-
-          <a href="calc-retirement.html" class="mt-4 flex items-center justify-between bg-mustard text-navy-ink rounded-full px-4 py-2.5 font-semibold text-sm hover:bg-mustard-soft transition">
-            <span>Run the full calculation with year-by-year math</span>
-            <span>→</span>
-          </a>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 
@@ -709,76 +699,11 @@ if (syncInfo && window.SYNCED_AT) {
   syncInfo.textContent = `· Last synced from YouTube ${rel}`;
 }
 
-// 7. Hero mini-calculator — live Real Retirement
-const fmtINRshort = (n) => {
-  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
-  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
-  return Math.round(n).toLocaleString('en-IN');
-};
-
-function heroCalc() {
-  const age = +document.getElementById('h-age-input').value;
-  const expToday = +document.getElementById('h-exp-input').value;
-  const curCorp = +document.getElementById('h-cur-input').value;
-  // Defaults (matching the full calculator's defaults)
-  const retAge = 60, lifeAge = 85, inf = 0.06, preRet = 0.12, postRet = 0.08;
-
-  const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
-  setLbl('h-age', age);
-  setLbl('h-exp', expToday.toLocaleString('en-IN'));
-  setLbl('h-cur', fmtINRshort(curCorp));
-
-  const yearsToRet = Math.max(retAge - age, 0);
-  const yearsInRet = Math.max(lifeAge - retAge, 1);
-  const monthlyExpAtRet = expToday * Math.pow(1 + inf, yearsToRet);
-  const monthlyR = Math.pow(1 + postRet, 1/12) - 1;
-  const monthlyDue = (1 - Math.pow(1 + monthlyR, -12)) * (1 + monthlyR) / monthlyR;
-  const ratio = (1 + inf) / (1 + postRet);
-  const ratioSum = (1 - Math.pow(ratio, yearsInRet)) / (1 - ratio);
-  const corpusNeeded = monthlyExpAtRet * monthlyDue * ratioSum;
-  const futureCur = curCorp * Math.pow(1 + preRet, yearsToRet);
-  const gap = Math.max(corpusNeeded - futureCur, 0);
-  const monthlyPreRet = Math.pow(1 + preRet, 1/12) - 1;
-  const months = yearsToRet * 12;
-  const sip = gap === 0 || months === 0 ? 0 : gap * monthlyPreRet / (Math.pow(1 + monthlyPreRet, months) - 1);
-
-  document.getElementById('h-corpus').textContent = fmtINRshort(corpusNeeded);
-  document.getElementById('h-yrs').textContent = yearsToRet;
-  document.getElementById('h-sip').textContent = sip === 0 ? '0 needed — on track' : fmtINRshort(sip);
-
-  // Keep "Watch latest" CTA in sync with latest episode
-  if (window.EPISODES && window.EPISODES[0]) {
-    document.getElementById('hero-watch-latest').href = `episode-detail.html?v=${window.EPISODES[0].id}`;
-  }
+// 7. Wire up the "Watch latest" CTA to the actual latest episode
+if (window.EPISODES && window.EPISODES[0]) {
+  const watchLink = document.getElementById('hero-watch-latest');
+  if (watchLink) watchLink.href = `episode-detail.html?v=${window.EPISODES[0].id}`;
 }
-document.querySelectorAll('.hero-slider').forEach(el => el.addEventListener('input', heroCalc));
-
-// Hero mini-calc: editable text-input ↔ slider sync
-function parseNumericInput(text) {
-  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
-  if (!s) return 0;
-  let m = 1;
-  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
-  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
-  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
-  const n = parseFloat(s);
-  return isNaN(n) ? 0 : n * m;
-}
-[['h-age','h-age-input'],['h-exp','h-exp-input'],['h-cur','h-cur-input']].forEach(([textId, sliderId]) => {
-  const text = document.getElementById(textId);
-  const slider = document.getElementById(sliderId);
-  if (!text || !slider) return;
-  const min = +slider.min, max = +slider.max;
-  text.addEventListener('input', () => {
-    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
-    slider.value = v;
-    heroCalc();
-  });
-  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
-  text.addEventListener('focus', () => text.select());
-  text.addEventListener('blur', heroCalc);
-});
-heroCalc();
 
 // 8. Scroll-triggered fade-in
 if ('IntersectionObserver' in window) {
