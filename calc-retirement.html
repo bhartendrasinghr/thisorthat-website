@@ -194,6 +194,30 @@
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-mustard"></span><span class="text-navy-ink/70">Growth: <strong class="tab-num text-navy-ink">₹<span id="pct-grow-val">—</span></strong> <span class="text-navy/50">(<span id="pct-grow">70</span>%)</span></span></div>
         </div>
       </div>
+
+      <!-- Show the math: year-by-year corpus depletion -->
+      <details class="bg-white border border-navy/10 rounded-2xl">
+        <summary class="cursor-pointer p-5 font-semibold text-navy-ink hover:bg-paper rounded-2xl select-none">
+          📐 Show the maths — year-by-year corpus depletion
+        </summary>
+        <div class="px-5 pb-5">
+          <p class="text-xs text-navy/60 mb-3">Each year, you withdraw that year's expenses (inflated from today), then what's left grows at your post-retirement return. Corpus must reach ₹0 right at the end of your expected lifespan.</p>
+          <div class="overflow-x-auto -mx-5 px-5">
+            <table class="w-full text-xs tab-num">
+              <thead>
+                <tr class="border-b-2 border-navy/20 text-navy-ink text-left">
+                  <th class="py-2 pr-3 font-semibold">Age</th>
+                  <th class="py-2 pr-3 font-semibold">Corpus at start</th>
+                  <th class="py-2 pr-3 font-semibold">Year's withdrawal</th>
+                  <th class="py-2 pr-3 font-semibold">Growth on rest</th>
+                  <th class="py-2 font-semibold">Corpus at end</th>
+                </tr>
+              </thead>
+              <tbody id="sim-table" class="text-navy-ink/80"></tbody>
+            </table>
+          </div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -270,16 +294,41 @@ function calc() {
   // 1. Future monthly expense at retirement, adjusted for inflation
   const expAtRet = expToday * Math.pow(1 + inf, yearsToRet);
 
-  // 2. Corpus needed at retirement
-  //    Assume during retirement: real return = (1+postRet)/(1+inf) - 1
-  //    PV of an inflation-linked annuity-due of expAtRet per month over yearsInRet
-  const realReturnPostRet = (1 + postRet) / (1 + inf) - 1;
+  // 2. Corpus needed at retirement (start-of-year withdrawal model)
+  //    At age `retAge`, we hold corpus C. Each year of retirement:
+  //      - Withdraw annual expenses (growing at inflation each year)
+  //      - Remaining corpus grows at postRet for the year
+  //    Corpus must reach exactly 0 by age `lifeAge`.
+  //
+  //    Closed-form: C = PMT × (1 - ((1+g)/(1+r))^n) × (1+r) / (r - g)
+  //    where PMT = first year's expense, r = postRet, g = inflation, n = yearsInRet
   const annualExpAtRet = expAtRet * 12;
   let corpusNeeded;
-  if (Math.abs(realReturnPostRet) < 0.0001) {
-    corpusNeeded = annualExpAtRet * yearsInRet;
+  if (Math.abs(postRet - inf) < 0.0001) {
+    // r ≈ g — withdrawals grow at same rate corpus earns; corpus = sum of nominal withdrawals
+    corpusNeeded = annualExpAtRet * yearsInRet * (1 + postRet);
   } else {
-    corpusNeeded = annualExpAtRet * (1 - Math.pow(1 + realReturnPostRet, -yearsInRet)) / realReturnPostRet;
+    const ratio = (1 + inf) / (1 + postRet);
+    corpusNeeded = annualExpAtRet * (1 - Math.pow(ratio, yearsInRet)) * (1 + postRet) / (postRet - inf);
+  }
+
+  // ── Year-by-year simulation (for "show your work" panel) ──
+  // Confirms the closed-form against an explicit simulation.
+  const simulation = [];
+  let simCorpus = corpusNeeded;
+  for (let y = 0; y < yearsInRet; y++) {
+    const yearWithdraw = annualExpAtRet * Math.pow(1 + inf, y);
+    const afterWithdraw = simCorpus - yearWithdraw;
+    const yearEndCorpus = afterWithdraw * (1 + postRet);
+    simulation.push({
+      ageStart: retAge + y,
+      startCorpus: simCorpus,
+      withdraw: yearWithdraw,
+      afterWithdraw,
+      growth: afterWithdraw * postRet,
+      endCorpus: yearEndCorpus,
+    });
+    simCorpus = yearEndCorpus;
   }
 
   // 3. Future value of current corpus at retirement
@@ -345,6 +394,20 @@ function calc() {
   document.getElementById('pct-grow').textContent = Math.round(growthPct);
   document.getElementById('pct-cont-val').textContent = fmtINR(totalContrib);
   document.getElementById('pct-grow-val').textContent = fmtINR(Math.max(0, totalGrowth));
+
+  // Year-by-year simulation table — proves the math
+  const simTable = document.getElementById('sim-table');
+  if (simTable) {
+    simTable.innerHTML = simulation.map(row => `
+      <tr class="border-b border-navy/5">
+        <td class="py-1.5 pr-3">${row.ageStart}</td>
+        <td class="py-1.5 pr-3">₹${fmtINR(row.startCorpus)}</td>
+        <td class="py-1.5 pr-3 text-alert">− ₹${fmtINR(row.withdraw)}</td>
+        <td class="py-1.5 pr-3 text-mustard-deep">+ ₹${fmtINR(row.growth)}</td>
+        <td class="py-1.5 font-semibold">₹${fmtINR(row.endCorpus)}</td>
+      </tr>
+    `).join('');
+  }
 
   // Reality message
   let reality;
