@@ -30,6 +30,18 @@
   input[type="number"]:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 3px rgba(245,197,24,0.4); }
   /* Bar chart */
   .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+  /* Editable numeric field that sits next to the slider */
+  .editable-num {
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px dashed rgba(26, 35, 126, 0.25);
+    padding: 1px 2px;
+    transition: border-color 150ms ease, background 150ms ease;
+    border-radius: 2px;
+  }
+  .editable-num:hover { border-bottom-color: rgba(26, 35, 126, 0.5); background: rgba(245, 197, 24, 0.08); }
+  .editable-num:focus { outline: none; border-bottom: 1.5px solid #F5C518; background: rgba(245, 197, 24, 0.12); }
 </style>
 </head>
 <body class="antialiased">
@@ -98,42 +110,58 @@
     <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Your age today</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-age">30</span> yrs</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-age">Your age today</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-age" value="30" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">yrs</span>
+          </div>
         </div>
         <input id="in-age" type="range" min="20" max="65" value="30" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Retirement age</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-ret">60</span> yrs</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-ret">Retirement age</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-ret" value="60" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">yrs</span>
+          </div>
         </div>
         <input id="in-ret" type="range" min="40" max="75" value="60" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Expected lifespan</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-life">85</span> yrs</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-life">Expected lifespan</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-life" value="85" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">yrs</span>
+          </div>
         </div>
         <input id="in-life" type="range" min="60" max="100" value="85" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Monthly expenses today (₹)</label>
-          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-exp">50,000</span></span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-exp">Monthly expenses today</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-navy/60 text-sm">₹</span>
+            <input type="text" id="lbl-exp" value="50,000" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-24 text-right" />
+          </div>
         </div>
         <input id="in-exp" type="range" min="20000" max="500000" step="5000" value="50000" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Current investment corpus (₹)</label>
-          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-cur">0</span></span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-cur">Current investment corpus</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-navy/60 text-sm">₹</span>
+            <input type="text" id="lbl-cur" value="0" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-24 text-right" />
+          </div>
         </div>
         <input id="in-cur" type="range" min="0" max="50000000" step="100000" value="0" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/50 mt-1">Tip: type "5L" or "1.5Cr" — both work.</div>
       </div>
 
       <details class="pt-2 border-t border-navy/10">
@@ -141,22 +169,31 @@
         <div class="mt-4 space-y-5">
           <div>
             <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-navy/70">Inflation rate</label>
-              <span class="tab-num text-sm font-bold text-navy-ink"><span id="lbl-inf">6.0</span>%</span>
+              <label class="text-xs font-medium text-navy/70" for="lbl-inf">Inflation rate</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-inf" value="6.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-navy-ink w-10 text-right" />
+                <span class="text-navy-ink/60 text-xs">%</span>
+              </div>
             </div>
             <input id="in-inf" type="range" min="3" max="10" step="0.5" value="6" class="w-full mt-1" />
           </div>
           <div>
             <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-navy/70">Return before retirement (equity-heavy)</label>
-              <span class="tab-num text-sm font-bold text-navy-ink"><span id="lbl-pre">12.0</span>%</span>
+              <label class="text-xs font-medium text-navy/70" for="lbl-pre">Return before retirement (equity-heavy)</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-pre" value="12.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-navy-ink w-10 text-right" />
+                <span class="text-navy-ink/60 text-xs">%</span>
+              </div>
             </div>
             <input id="in-pre" type="range" min="6" max="16" step="0.5" value="12" class="w-full mt-1" />
           </div>
           <div>
             <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-navy/70">Return after retirement (conservative)</label>
-              <span class="tab-num text-sm font-bold text-navy-ink"><span id="lbl-post">8.0</span>%</span>
+              <label class="text-xs font-medium text-navy/70" for="lbl-post">Return after retirement (conservative)</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-post" value="8.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-navy-ink w-10 text-right" />
+                <span class="text-navy-ink/60 text-xs">%</span>
+              </div>
             </div>
             <input id="in-post" type="range" min="5" max="12" step="0.5" value="8" class="w-full mt-1" />
           </div>
@@ -304,15 +341,19 @@ function calc() {
   const preRet   = +document.getElementById('in-pre').value / 100;
   const postRet  = +document.getElementById('in-post').value / 100;
 
-  // Update label echos
-  document.getElementById('lbl-age').textContent  = age;
-  document.getElementById('lbl-ret').textContent  = retAge;
-  document.getElementById('lbl-life').textContent = lifeAge;
-  document.getElementById('lbl-exp').textContent  = expToday.toLocaleString('en-IN');
-  document.getElementById('lbl-cur').textContent  = fmtINR(curCorp);
-  document.getElementById('lbl-inf').textContent  = (inf * 100).toFixed(1);
-  document.getElementById('lbl-pre').textContent  = (preRet * 100).toFixed(1);
-  document.getElementById('lbl-post').textContent = (postRet * 100).toFixed(1);
+  // Update label values — but only if user isn't currently editing that field
+  const setLbl = (id, val) => {
+    const el = document.getElementById(id);
+    if (el && document.activeElement !== el) el.value = val;
+  };
+  setLbl('lbl-age',  age);
+  setLbl('lbl-ret',  retAge);
+  setLbl('lbl-life', lifeAge);
+  setLbl('lbl-exp',  expToday.toLocaleString('en-IN'));
+  setLbl('lbl-cur',  fmtINR(curCorp));
+  setLbl('lbl-inf',  (inf * 100).toFixed(1));
+  setLbl('lbl-pre',  (preRet * 100).toFixed(1));
+  setLbl('lbl-post', (postRet * 100).toFixed(1));
 
   const yearsToRet  = Math.max(retAge - age, 0);
   const yearsInRet  = Math.max(lifeAge - retAge, 1);
@@ -468,8 +509,55 @@ function calc() {
   document.getElementById('reality').textContent = reality;
 }
 
-// Wire up
+// Wire up sliders
 document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+
+// ──────── Editable text-input ↔ slider sync ────────
+// Parse user input intelligently: handle "5L" / "1.5Cr" / "₹50,000" / "12.5%"
+function parseNumericInput(text, scale) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let multiplier = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { multiplier = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { multiplier = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { multiplier = 1e3; s = s.replace(/k$/, ''); }
+  const num = parseFloat(s);
+  if (isNaN(num)) return 0;
+  return num * multiplier;
+}
+
+const TEXT_SLIDER_PAIRS = [
+  { textId: 'lbl-age',  sliderId: 'in-age'  },
+  { textId: 'lbl-ret',  sliderId: 'in-ret'  },
+  { textId: 'lbl-life', sliderId: 'in-life' },
+  { textId: 'lbl-exp',  sliderId: 'in-exp'  },
+  { textId: 'lbl-cur',  sliderId: 'in-cur'  },
+  { textId: 'lbl-inf',  sliderId: 'in-inf'  },
+  { textId: 'lbl-pre',  sliderId: 'in-pre'  },
+  { textId: 'lbl-post', sliderId: 'in-post' },
+];
+
+TEXT_SLIDER_PAIRS.forEach(p => {
+  const text = document.getElementById(p.textId);
+  const slider = document.getElementById(p.sliderId);
+  if (!text || !slider) return;
+  const min = +slider.min, max = +slider.max;
+
+  // On every keystroke, update slider (and recalc), but don't reformat the text yet
+  text.addEventListener('input', () => {
+    const raw = parseNumericInput(text.value);
+    const clamped = Math.max(min, Math.min(max, raw));
+    slider.value = clamped;
+    calc();
+  });
+  // On Enter, blur the field (commits the formatted value)
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  // On focus, select all so user can immediately retype
+  text.addEventListener('focus', () => text.select());
+  // On blur, run calc one more time (so formatted display value is set)
+  text.addEventListener('blur', calc);
+});
+
 calc();
 </script>
 

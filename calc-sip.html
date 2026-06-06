@@ -26,6 +26,9 @@
     input[type="range"]::-moz-range-thumb { width: 32px; height: 32px; }
   }
   .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .editable-num { background: transparent; border: none; border-bottom: 1.5px dashed rgba(26, 35, 126, 0.25); padding: 1px 2px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
+  .editable-num:hover { border-bottom-color: rgba(26, 35, 126, 0.5); background: rgba(245, 197, 24, 0.08); }
+  .editable-num:focus { outline: none; border-bottom: 1.5px solid #F5C518; background: rgba(245, 197, 24, 0.12); }
 </style>
 </head>
 <body class="antialiased">
@@ -90,32 +93,44 @@
     <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Monthly SIP (₹)</label>
-          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-sip">10,000</span></span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-sip">Monthly SIP</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-navy/60 text-sm">₹</span>
+            <input type="text" id="lbl-sip" value="10,000" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-24 text-right" />
+          </div>
         </div>
         <input id="in-sip" type="range" min="500" max="200000" step="500" value="10000" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Your age today</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-age">30</span> yrs</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-age">Your age today</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-age" value="30" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">yrs</span>
+          </div>
         </div>
         <input id="in-age" type="range" min="20" max="65" value="30" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Stop SIP at age</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-stop">60</span> yrs</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-stop">Stop SIP at age</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-stop" value="60" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">yrs</span>
+          </div>
         </div>
         <input id="in-stop" type="range" min="30" max="80" value="60" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Expected annual return</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-ret">12.0</span>%</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-ret">Expected annual return</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-ret" value="12.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-navy w-14 text-right" />
+            <span class="text-navy/60 text-sm">%</span>
+          </div>
         </div>
         <input id="in-ret" type="range" min="4" max="18" step="0.5" value="12" class="w-full mt-2" />
         <div class="text-xs text-navy/50 mt-1">Indian equity has averaged ~13% over 25 years. After tax + fund underperformance, 10-12% is the honest number.</div>
@@ -123,8 +138,11 @@
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Annual SIP step-up</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-step">0</span>%</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-step">Annual SIP step-up</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-step" value="0" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">%</span>
+          </div>
         </div>
         <input id="in-step" type="range" min="0" max="15" step="1" value="0" class="w-full mt-2" />
         <div class="text-xs text-navy/50 mt-1">Increase your SIP by this % every year (matches typical salary growth).</div>
@@ -260,11 +278,12 @@ function calc() {
   const ret   = +document.getElementById('in-ret').value / 100;
   const step  = +document.getElementById('in-step').value / 100;
 
-  document.getElementById('lbl-sip').textContent = sip.toLocaleString('en-IN');
-  document.getElementById('lbl-age').textContent = age;
-  document.getElementById('lbl-stop').textContent = stop;
-  document.getElementById('lbl-ret').textContent = (ret * 100).toFixed(1);
-  document.getElementById('lbl-step').textContent = (step * 100).toFixed(0);
+  const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+  setLbl('lbl-sip',  sip.toLocaleString('en-IN'));
+  setLbl('lbl-age',  age);
+  setLbl('lbl-stop', stop);
+  setLbl('lbl-ret',  (ret * 100).toFixed(1));
+  setLbl('lbl-step', (step * 100).toFixed(0));
 
   const years = Math.max(stop - age, 0);
   const corpusNow = sipCorpus(sip, years, ret, step);
@@ -301,6 +320,33 @@ function calc() {
 }
 
 document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+
+// Editable text-input ↔ slider sync
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+['lbl-sip','lbl-age','lbl-stop','lbl-ret','lbl-step'].forEach(textId => {
+  const sliderId = 'in-' + textId.split('-')[1];
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  if (!text || !slider) return;
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
+    slider.value = v;
+    calc();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
 calc();
 </script>
 

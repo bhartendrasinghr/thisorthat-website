@@ -101,6 +101,11 @@
   /* Scroll-triggered fade-in */
   .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* Editable numeric inputs in hero mini-calc */
+  .editable-hero { background: transparent; border: none; border-bottom: 1.5px dashed rgba(26, 35, 126, 0.25); padding: 0 1px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
+  .editable-hero:hover { border-bottom-color: rgba(26, 35, 126, 0.5); background: rgba(245, 197, 24, 0.08); }
+  .editable-hero:focus { outline: none; border-bottom: 1.5px solid #F5C518; background: rgba(245, 197, 24, 0.12); }
 </style>
 </head>
 <body class="antialiased">
@@ -207,22 +212,31 @@
           <div class="mt-5 space-y-4">
             <div>
               <div class="flex justify-between items-baseline text-xs">
-                <span class="font-semibold text-navy-ink">Your age</span>
-                <span class="font-bold text-navy tab-num"><span id="h-age">30</span> yrs</span>
+                <label class="font-semibold text-navy-ink" for="h-age">Your age</label>
+                <div class="flex items-baseline gap-1">
+                  <input type="text" id="h-age" value="30" inputmode="numeric" class="editable-hero font-bold text-navy tab-num w-9 text-right" />
+                  <span class="text-navy/60">yrs</span>
+                </div>
               </div>
               <input id="h-age-input" type="range" min="22" max="60" value="30" class="hero-slider w-full mt-1" />
             </div>
             <div>
               <div class="flex justify-between items-baseline text-xs">
-                <span class="font-semibold text-navy-ink">Monthly expenses today</span>
-                <span class="font-bold text-navy tab-num">₹<span id="h-exp">50,000</span></span>
+                <label class="font-semibold text-navy-ink" for="h-exp">Monthly expenses today</label>
+                <div class="flex items-baseline gap-1">
+                  <span class="text-navy/60">₹</span>
+                  <input type="text" id="h-exp" value="50,000" inputmode="numeric" class="editable-hero font-bold text-navy tab-num w-20 text-right" />
+                </div>
               </div>
               <input id="h-exp-input" type="range" min="20000" max="300000" step="5000" value="50000" class="hero-slider w-full mt-1" />
             </div>
             <div>
               <div class="flex justify-between items-baseline text-xs">
-                <span class="font-semibold text-navy-ink">Current corpus</span>
-                <span class="font-bold text-navy tab-num">₹<span id="h-cur">0</span></span>
+                <label class="font-semibold text-navy-ink" for="h-cur">Current corpus</label>
+                <div class="flex items-baseline gap-1">
+                  <span class="text-navy/60">₹</span>
+                  <input type="text" id="h-cur" value="0" inputmode="numeric" class="editable-hero font-bold text-navy tab-num w-20 text-right" />
+                </div>
               </div>
               <input id="h-cur-input" type="range" min="0" max="30000000" step="100000" value="0" class="hero-slider w-full mt-1" />
             </div>
@@ -709,9 +723,10 @@ function heroCalc() {
   // Defaults (matching the full calculator's defaults)
   const retAge = 60, lifeAge = 85, inf = 0.06, preRet = 0.12, postRet = 0.08;
 
-  document.getElementById('h-age').textContent = age;
-  document.getElementById('h-exp').textContent = expToday.toLocaleString('en-IN');
-  document.getElementById('h-cur').textContent = fmtINRshort(curCorp);
+  const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+  setLbl('h-age', age);
+  setLbl('h-exp', expToday.toLocaleString('en-IN'));
+  setLbl('h-cur', fmtINRshort(curCorp));
 
   const yearsToRet = Math.max(retAge - age, 0);
   const yearsInRet = Math.max(lifeAge - retAge, 1);
@@ -737,6 +752,32 @@ function heroCalc() {
   }
 }
 document.querySelectorAll('.hero-slider').forEach(el => el.addEventListener('input', heroCalc));
+
+// Hero mini-calc: editable text-input ↔ slider sync
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+[['h-age','h-age-input'],['h-exp','h-exp-input'],['h-cur','h-cur-input']].forEach(([textId, sliderId]) => {
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  if (!text || !slider) return;
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
+    slider.value = v;
+    heroCalc();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', heroCalc);
+});
 heroCalc();
 
 // 8. Scroll-triggered fade-in

@@ -28,6 +28,9 @@
   .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
   /* Donut chart vibe via conic gradient */
   .donut { background: conic-gradient(var(--ate) 0deg var(--ate-deg), var(--kept) var(--ate-deg) 360deg); transition: --ate-deg 400ms ease; }
+  .editable-num { background: transparent; border: none; border-bottom: 1.5px dashed rgba(26, 35, 126, 0.25); padding: 1px 2px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
+  .editable-num:hover { border-bottom-color: rgba(26, 35, 126, 0.5); background: rgba(245, 197, 24, 0.08); }
+  .editable-num:focus { outline: none; border-bottom: 1.5px solid #F5C518; background: rgba(245, 197, 24, 0.12); }
 </style>
 </head>
 <body class="antialiased">
@@ -92,45 +95,61 @@
     <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Monthly SIP (₹)</label>
-          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-sip">10,000</span></span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-sip">Monthly SIP</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-navy/60 text-sm">₹</span>
+            <input type="text" id="lbl-sip" value="10,000" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-24 text-right" />
+          </div>
         </div>
         <input id="in-sip" type="range" min="1000" max="200000" step="500" value="10000" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Initial lump sum (₹)</label>
-          <span class="tab-num text-lg font-bold text-navy">₹<span id="lbl-lump">0</span></span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-lump">Initial lump sum</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-navy/60 text-sm">₹</span>
+            <input type="text" id="lbl-lump" value="0" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-24 text-right" />
+          </div>
         </div>
         <input id="in-lump" type="range" min="0" max="10000000" step="10000" value="0" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/50 mt-1">Tip: type "5L" or "1.5Cr" — both work.</div>
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Time horizon</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-yrs">25</span> yrs</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-yrs">Time horizon</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-yrs" value="25" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-navy w-12 text-right" />
+            <span class="text-navy/60 text-sm">yrs</span>
+          </div>
         </div>
         <input id="in-yrs" type="range" min="5" max="40" value="25" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Gross return (before fees)</label>
-          <span class="tab-num text-lg font-bold text-navy"><span id="lbl-gross">12.0</span>%</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-gross">Gross return (before fees)</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-gross" value="12.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-navy w-14 text-right" />
+            <span class="text-navy/60 text-sm">%</span>
+          </div>
         </div>
         <input id="in-gross" type="range" min="6" max="18" step="0.5" value="12" class="w-full mt-2" />
       </div>
 
       <div>
         <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-navy-ink">Expense ratio (TER)</label>
-          <span class="tab-num text-lg font-bold text-alert"><span id="lbl-ter">1.0</span>%</span>
+          <label class="text-sm font-semibold text-navy-ink" for="lbl-ter">Expense ratio (TER)</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-ter" value="1.00" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-alert w-14 text-right" />
+            <span class="text-alert/80 text-sm">%</span>
+          </div>
         </div>
         <input id="in-ter" type="range" min="0" max="3" step="0.05" value="1" class="w-full mt-2" />
         <div class="flex justify-between text-[10px] text-navy/50 mt-2">
-          <span>Index funds: 0.1-0.3%</span>
-          <span>Active equity: 0.8-1.5%</span>
+          <span>Index: 0.1-0.3%</span>
+          <span>Active: 0.8-1.5%</span>
           <span>ULIPs: 2-3%</span>
         </div>
       </div>
@@ -236,11 +255,12 @@ function calc() {
   const ter   = +document.getElementById('in-ter').value / 100;
   const net   = gross - ter;
 
-  document.getElementById('lbl-sip').textContent = sip.toLocaleString('en-IN');
-  document.getElementById('lbl-lump').textContent = fmtINR(lump);
-  document.getElementById('lbl-yrs').textContent = yrs;
-  document.getElementById('lbl-gross').textContent = (gross * 100).toFixed(1);
-  document.getElementById('lbl-ter').textContent = (ter * 100).toFixed(2);
+  const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+  setLbl('lbl-sip',   sip.toLocaleString('en-IN'));
+  setLbl('lbl-lump',  fmtINR(lump));
+  setLbl('lbl-yrs',   yrs);
+  setLbl('lbl-gross', (gross * 100).toFixed(1));
+  setLbl('lbl-ter',   (ter * 100).toFixed(2));
 
   const corpusGross = corpus(lump, sip, yrs, gross);
   const corpusNet   = corpus(lump, sip, yrs, net);
@@ -276,6 +296,32 @@ function calc() {
 }
 
 document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+
+// Editable text-input ↔ slider sync
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+[['lbl-sip','in-sip'],['lbl-lump','in-lump'],['lbl-yrs','in-yrs'],['lbl-gross','in-gross'],['lbl-ter','in-ter']].forEach(([textId, sliderId]) => {
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  if (!text || !slider) return;
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
+    slider.value = v;
+    calc();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
 calc();
 </script>
 
