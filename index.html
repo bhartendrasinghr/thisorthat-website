@@ -81,6 +81,18 @@
     display: inline-flex; align-items: center; justify-content: center;
     font-weight: 700; letter-spacing: -0.02em;
   }
+
+  /* Tabular numbers */
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+
+  /* Hero mini-calculator sliders */
+  .hero-slider { -webkit-appearance: none; appearance: none; height: 4px; background: #E8E1CC; border-radius: 999px; outline: none; }
+  .hero-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  .hero-slider::-moz-range-thumb { width: 20px; height: 20px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; }
+
+  /* Scroll-triggered fade-in */
+  .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body class="antialiased">
@@ -109,51 +121,121 @@
         <span>▶</span> Watch latest
       </a>
     </div>
+      <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
   </div>
 </header>
+
+<!-- MOBILE MENU PANEL -->
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Calculators</a>
+    <a href="about.html" class="py-3">About</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 bg-navy text-cream text-center py-3 rounded-full font-semibold">Subscribe on YouTube</a>
+  </nav>
+</div>
 
 <!-- ====================== HERO ====================== -->
 <section id="top" class="relative bg-navy text-cream overflow-hidden grain">
   <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-mustard/15 blur-3xl"></div>
   <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-alert/10 blur-3xl"></div>
 
-  <div class="relative max-w-7xl mx-auto px-6 pt-20 pb-24 grid lg:grid-cols-12 gap-12 items-center">
-    <div class="lg:col-span-7">
+  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-20 grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-6">
       <div class="inline-flex items-center gap-2 bg-cream/10 border border-cream/20 px-3 py-1 rounded-full text-xs font-medium tracking-wide">
         <span class="w-2 h-2 rounded-full bg-mustard animate-pulse"></span>
         New episode every Tuesday
       </div>
-      <h1 class="mt-6 font-serif text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+      <h1 class="mt-6 font-serif text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight">
         Personal finance,<br/>
         <span class="text-mustard italic">honestly.</span>
       </h1>
-      <p class="mt-6 text-lg md:text-xl text-cream/80 max-w-xl leading-relaxed">
-        Unfiltered conversations with India's sharpest minds on money, markets and the behaviour behind both. Hosted by Bhartendra Singh.
+      <p class="mt-5 text-base md:text-lg text-cream/80 max-w-xl leading-relaxed">
+        The retirement calculator that tells you the inconvenient number — backed by India's most candid finance podcast.
       </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="episode-detail.html" class="bg-mustard text-navy-ink px-6 py-3 rounded-full font-semibold hover:bg-mustard-soft transition">▶ Watch latest episode</a>
-        <a href="episodes.html" class="border border-cream/30 text-cream px-6 py-3 rounded-full font-semibold hover:bg-cream/10 transition">Browse all episodes</a>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="calc-retirement.html" class="bg-mustard text-navy-ink px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-mustard-soft transition">Open full calculator →</a>
+        <a id="hero-watch-latest" href="episode-detail.html" class="border border-cream/30 text-cream px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-cream/10 transition">▶ Watch latest episode</a>
       </div>
 
       <!-- Stats -->
-      <div class="mt-12 grid grid-cols-3 gap-6 max-w-md">
+      <div class="mt-10 grid grid-cols-3 gap-6 max-w-md">
         <div>
           <div class="font-serif text-3xl font-bold text-mustard" data-stat-episodes>54</div>
-          <div class="text-xs uppercase tracking-widest text-cream/60 mt-1">Episodes</div>
+          <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Episodes</div>
         </div>
         <div>
-          <div class="font-serif text-3xl font-bold text-mustard" data-stat-guests>19</div>
-          <div class="text-xs uppercase tracking-widest text-cream/60 mt-1">Guests</div>
+          <div class="font-serif text-3xl font-bold text-mustard" data-stat-guests>30</div>
+          <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Guests</div>
         </div>
         <div>
-          <div class="font-serif text-3xl font-bold text-mustard">185K</div>
-          <div class="text-xs uppercase tracking-widest text-cream/60 mt-1">Top episode views</div>
+          <div class="font-serif text-3xl font-bold text-mustard">3</div>
+          <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Calculators live</div>
         </div>
       </div>
     </div>
 
-    <!-- Featured episode card — populated from real latest episode -->
-    <div class="lg:col-span-5" id="hero-featured"></div>
+    <!-- HERO CALCULATOR — mini Real Retirement -->
+    <div class="lg:col-span-6">
+      <div class="relative">
+        <div class="absolute -inset-3 bg-mustard/20 rounded-3xl blur-2xl"></div>
+        <div class="relative bg-cream text-navy-ink rounded-3xl border border-cream/20 p-7 shadow-2xl">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Try it now — 30 seconds</div>
+              <h2 class="font-serif text-2xl font-bold mt-1">How much do you need at retirement?</h2>
+            </div>
+            <a href="calc-retirement.html" class="shrink-0 text-xs text-navy/60 hover:text-navy font-semibold">Expand →</a>
+          </div>
+
+          <div class="mt-5 space-y-4">
+            <div>
+              <div class="flex justify-between items-baseline text-xs">
+                <span class="font-semibold text-navy-ink">Your age</span>
+                <span class="font-bold text-navy tab-num"><span id="h-age">30</span> yrs</span>
+              </div>
+              <input id="h-age-input" type="range" min="22" max="60" value="30" class="hero-slider w-full mt-1" />
+            </div>
+            <div>
+              <div class="flex justify-between items-baseline text-xs">
+                <span class="font-semibold text-navy-ink">Monthly expenses today</span>
+                <span class="font-bold text-navy tab-num">₹<span id="h-exp">50,000</span></span>
+              </div>
+              <input id="h-exp-input" type="range" min="20000" max="300000" step="5000" value="50000" class="hero-slider w-full mt-1" />
+            </div>
+            <div>
+              <div class="flex justify-between items-baseline text-xs">
+                <span class="font-semibold text-navy-ink">Current corpus</span>
+                <span class="font-bold text-navy tab-num">₹<span id="h-cur">0</span></span>
+              </div>
+              <input id="h-cur-input" type="range" min="0" max="30000000" step="100000" value="0" class="hero-slider w-full mt-1" />
+            </div>
+          </div>
+
+          <div class="mt-6 bg-navy-ink rounded-2xl p-5 text-cream relative overflow-hidden">
+            <div class="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-mustard/15 blur-2xl"></div>
+            <div class="relative">
+              <div class="text-[10px] uppercase tracking-[0.3em] text-mustard font-bold">You'll need at retirement</div>
+              <div class="font-serif text-4xl md:text-5xl font-bold text-mustard mt-1 tab-num leading-none">₹<span id="h-corpus">—</span></div>
+              <div class="mt-2 text-xs text-cream/70" id="h-context">in <span id="h-yrs">30</span> years · funded by ₹<span id="h-sip">—</span>/mo SIP</div>
+            </div>
+          </div>
+
+          <a href="calc-retirement.html" class="mt-4 flex items-center justify-between bg-mustard text-navy-ink rounded-full px-4 py-2.5 font-semibold text-sm hover:bg-mustard-soft transition">
+            <span>Run the full calculation with year-by-year math</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Featured guests marquee — populated from real guests list -->
@@ -604,7 +686,110 @@ if (syncInfo && window.SYNCED_AT) {
   const rel = days > 0 ? `${days} day${days>1?'s':''} ago` : hours > 0 ? `${hours} hour${hours>1?'s':''} ago` : minutes > 0 ? `${minutes} min ago` : 'just now';
   syncInfo.textContent = `· Last synced from YouTube ${rel}`;
 }
+
+// 7. Hero mini-calculator — live Real Retirement
+const fmtINRshort = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+
+function heroCalc() {
+  const age = +document.getElementById('h-age-input').value;
+  const expToday = +document.getElementById('h-exp-input').value;
+  const curCorp = +document.getElementById('h-cur-input').value;
+  // Defaults (matching the full calculator's defaults)
+  const retAge = 60, lifeAge = 85, inf = 0.06, preRet = 0.12, postRet = 0.08;
+
+  document.getElementById('h-age').textContent = age;
+  document.getElementById('h-exp').textContent = expToday.toLocaleString('en-IN');
+  document.getElementById('h-cur').textContent = fmtINRshort(curCorp);
+
+  const yearsToRet = Math.max(retAge - age, 0);
+  const yearsInRet = Math.max(lifeAge - retAge, 1);
+  const monthlyExpAtRet = expToday * Math.pow(1 + inf, yearsToRet);
+  const monthlyR = Math.pow(1 + postRet, 1/12) - 1;
+  const monthlyDue = (1 - Math.pow(1 + monthlyR, -12)) * (1 + monthlyR) / monthlyR;
+  const ratio = (1 + inf) / (1 + postRet);
+  const ratioSum = (1 - Math.pow(ratio, yearsInRet)) / (1 - ratio);
+  const corpusNeeded = monthlyExpAtRet * monthlyDue * ratioSum;
+  const futureCur = curCorp * Math.pow(1 + preRet, yearsToRet);
+  const gap = Math.max(corpusNeeded - futureCur, 0);
+  const monthlyPreRet = Math.pow(1 + preRet, 1/12) - 1;
+  const months = yearsToRet * 12;
+  const sip = gap === 0 || months === 0 ? 0 : gap * monthlyPreRet / (Math.pow(1 + monthlyPreRet, months) - 1);
+
+  document.getElementById('h-corpus').textContent = fmtINRshort(corpusNeeded);
+  document.getElementById('h-yrs').textContent = yearsToRet;
+  document.getElementById('h-sip').textContent = sip === 0 ? '0 needed — on track' : fmtINRshort(sip);
+
+  // Keep "Watch latest" CTA in sync with latest episode
+  if (window.EPISODES && window.EPISODES[0]) {
+    document.getElementById('hero-watch-latest').href = `episode-detail.html?v=${window.EPISODES[0].id}`;
+  }
+}
+document.querySelectorAll('.hero-slider').forEach(el => el.addEventListener('input', heroCalc));
+heroCalc();
+
+// 8. Scroll-triggered fade-in
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  // Apply to cards rendered below the fold
+  setTimeout(() => {
+    document.querySelectorAll('#latest > a, #home-guests > a').forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+  }, 50);
+}
 </script>
 
+
+<script>
+// Mobile menu toggle
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', !isOpen ? false : true);
+    iconClose.classList.toggle('hidden', !isOpen ? true : false);
+    if (!isOpen) {
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    } else {
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+  // Close on link tap inside menu
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+})();
+</script>
 </body>
 </html>

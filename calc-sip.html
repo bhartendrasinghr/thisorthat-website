@@ -16,9 +16,15 @@
   body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
   .font-serif { font-family: 'Fraunces', serif; }
   .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
-  input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; background: #E8E1CC; border-radius: 999px; outline: none; }
-  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; background: #E8E1CC; border-radius: 999px; outline: none; touch-action: pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 4px solid #F5C518; box-shadow: 0 2px 8px rgba(0,0,0,0.18); transition: transform 120ms ease; }
+  input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 4px solid #F5C518; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width: 768px) {
+    input[type="range"] { height: 8px; }
+    input[type="range"]::-webkit-slider-thumb { width: 32px; height: 32px; }
+    input[type="range"]::-moz-range-thumb { width: 32px; height: 32px; }
+  }
   .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
 </style>
 </head>
@@ -41,8 +47,27 @@
       <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Calculators</a>
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
+      <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
   </div>
 </header>
+
+<!-- MOBILE MENU PANEL -->
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Calculators</a>
+    <a href="about.html" class="py-3">About</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 bg-navy text-cream text-center py-3 rounded-full font-semibold">Subscribe on YouTube</a>
+  </nav>
+</div>
 
 <div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
   <a href="index.html" class="hover:text-navy">Home</a> /
@@ -279,5 +304,45 @@ document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListen
 calc();
 </script>
 
+
+<script>
+// Mobile menu toggle
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', !isOpen ? false : true);
+    iconClose.classList.toggle('hidden', !isOpen ? true : false);
+    if (!isOpen) {
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    } else {
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+  // Close on link tap inside menu
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+})();
+</script>
 </body>
 </html>
