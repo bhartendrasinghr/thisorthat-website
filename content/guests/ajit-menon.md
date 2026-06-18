@@ -1,9 +1,9 @@
 ---
-name: "Ajit Menon"
-slug: "ajit-menon"
-role: "Investment Strategist"
+name: Ajit Menon
+slug: ajit-menon
+role: "Former CEO, PGIM Mutual Fund "
 photo: ""
-linkedin: ""
+linkedin: https://www.linkedin.com/in/ajit-menon-b46a4411/
 twitter: ""
 website: ""
 featured: false
