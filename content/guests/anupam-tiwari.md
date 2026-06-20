@@ -6,7 +6,7 @@ photo: ""
 linkedin: ""
 twitter: ""
 website: ""
-featured: true
+featured: false
 ---
 
 Heads the equity desk at Groww Mutual Fund. Brings the perspective of a fund manager building portfolios for India's largest new-age investor base — what works, what doesn't, and why most retail investors never actually capture the returns their funds deliver.

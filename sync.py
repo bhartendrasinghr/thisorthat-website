@@ -23,6 +23,8 @@ UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
 # Keyed by YouTube video ID. Use "Bhartendra (solo)" for solo episodes.
 GUEST_OVERRIDES = {
     # Episodes where guest is named in title but wasn't auto-extracted:
+    'qR1CZ2dWr5Q': 'Anupam Tiwari',         # Ep 55 — "Groww MF's Equity Head Answers"
+    'Bnv2OOb5irs': 'Bhalchandra Joshi',     # Ep 57 — "30 Years of MF Lessons | Bhalchandra Joshi"
     'vIL33wnD5lk': 'Debashish Bose',        # Ep 53
     'ax-QZl75dbA': 'Kalpen Parekh',         # Ep 49
     'ldoFnNk6Z2g': 'Kirtan Shah',           # Ep 47
@@ -99,6 +101,8 @@ GUEST_ROLES = {
     'Mrin Agarwal': 'Founder, Finsafe',
     'Niranjan Avasthi': 'Head of Product, Edelweiss MF',
     'Shaymali Basu': 'Financial Planner',
+    'Anupam Tiwari': 'Head of Equities, Groww Mutual Fund',
+    'Bhalchandra Joshi': 'Mutual Fund Veteran',
 }
 
 # ─── Fetch from YouTube ──────────────────────────────────────────────────
