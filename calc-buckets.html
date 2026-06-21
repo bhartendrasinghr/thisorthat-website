@@ -139,6 +139,26 @@
 
       <div>
         <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-income">Monthly income in retirement</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">₹</span>
+            <input type="text" id="lbl-income" value="0" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-income" type="range" min="0" max="500000" step="5000" value="0" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Hobby, part-time consulting, pension, rental — anything that keeps coming in. Inflates with expenses.</div>
+        <div class="flex items-center gap-2 mt-2">
+          <label class="text-[11px] text-ink/60 cursor-pointer flex items-center gap-1.5">
+            <input type="checkbox" id="in-income-limit" class="accent-thisblue" />
+            Only for first
+          </label>
+          <input type="text" id="lbl-income-yrs" value="10" inputmode="numeric" class="editable-num tab-num text-[11px] font-bold text-thisblue w-8 text-right" disabled />
+          <span class="text-[11px] text-ink/60">years</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
           <label class="text-sm font-semibold text-ink" for="lbl-years">Years in retirement</label>
           <div class="flex items-baseline gap-1">
             <input type="text" id="lbl-years" value="25" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
@@ -372,18 +392,21 @@ const fmtINR = (n) => {
 const fmtINRFull = (n) => Math.round(n).toLocaleString('en-IN');
 
 // ─── Core 3-bucket simulation ───
-function simulate(corpus, monthlyExp, b1Years, b2Years, b1Ret, b2Ret, b3Ret, inflation, maxYears) {
+function simulate(corpus, monthlyExp, monthlyIncome, incomeYearsLimit, b1Years, b2Years, b1Ret, b2Ret, b3Ret, inflation, maxYears) {
   const annualExp = monthlyExp * 12;
+  const annualIncome = monthlyIncome * 12;
+  // NET annual outflow at year 0 = expense - income (floored at 0)
+  const annualNet0 = Math.max(0, annualExp - annualIncome);
 
-  // Initial allocation — Bucket 1 gets b1Years of TODAY's expense
-  // Bucket 2 gets b2Years of FUTURE inflated expense (starting after B1 runs out)
-  let b1 = Math.min(b1Years * annualExp, corpus);
+  // Sizing buckets on the NET outflow (since income is covering part of expenses,
+  // we need less cash on hand). If income runs out earlier, B2 and B3 absorb that
+  // transition via annual rebalancing.
+  let b1 = Math.min(b1Years * annualNet0, corpus);
   let remaining = corpus - b1;
 
-  // B2 initial = years 2,3,...b1+b2 of inflated annual expense
   let b2Target = 0;
   for (let y = b1Years; y < b1Years + b2Years; y++) {
-    b2Target += annualExp * Math.pow(1 + inflation, y);
+    b2Target += annualNet0 * Math.pow(1 + inflation, y);
   }
   let b2 = Math.min(b2Target, remaining);
   let b3 = Math.max(0, remaining - b2);
@@ -394,7 +417,11 @@ function simulate(corpus, monthlyExp, b1Years, b2Years, b1Ret, b2Ret, b3Ret, inf
   let yearsLasted = 0;
 
   for (let year = 0; year < maxYears; year++) {
-    const yearWithdraw = annualExp * Math.pow(1 + inflation, year);
+    // Income still flowing this year? (incomeYearsLimit = 0 means forever)
+    const incomeActive = incomeYearsLimit === 0 || year < incomeYearsLimit;
+    const incomeThisYear = incomeActive ? annualIncome * Math.pow(1 + inflation, year) : 0;
+    const yearExpense = annualExp * Math.pow(1 + inflation, year);
+    const yearWithdraw = Math.max(0, yearExpense - incomeThisYear);
 
     // Withdraw from B1 first
     b1 -= yearWithdraw;
@@ -423,19 +450,24 @@ function simulate(corpus, monthlyExp, b1Years, b2Years, b1Ret, b2Ret, b3Ret, inf
     b2 *= (1 + b2Ret);
     b3 *= (1 + b3Ret);
 
-    // Rebalance: top up B1 from B2 toward target
-    const nextYearExp = annualExp * Math.pow(1 + inflation, year + 1);
-    const targetB1 = nextYearExp * b1Years;
+    // Rebalance against the NET outflow expected next year (after income)
+    const incomeNextYear = (incomeYearsLimit === 0 || (year + 1) < incomeYearsLimit)
+      ? annualIncome * Math.pow(1 + inflation, year + 1) : 0;
+    const nextYearNet = Math.max(0, annualExp * Math.pow(1 + inflation, year + 1) - incomeNextYear);
+    const targetB1 = nextYearNet * b1Years;
     if (b1 < targetB1) {
       const need = targetB1 - b1;
       const fromB2 = Math.min(need, b2);
       b1 += fromB2;
       b2 -= fromB2;
     }
-    // Top up B2 from B3 toward target
     let targetB2 = 0;
     for (let y = b1Years; y < b1Years + b2Years; y++) {
-      targetB2 += annualExp * Math.pow(1 + inflation, year + 1 + y);
+      const futureYear = year + 1 + y;
+      const futureIncome = (incomeYearsLimit === 0 || futureYear < incomeYearsLimit)
+        ? annualIncome * Math.pow(1 + inflation, futureYear) : 0;
+      const futureNet = Math.max(0, annualExp * Math.pow(1 + inflation, futureYear) - futureIncome);
+      targetB2 += futureNet;
     }
     if (b2 < targetB2) {
       const need = targetB2 - b2;
@@ -476,18 +508,22 @@ function parseNumericInput(text) {
 const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
 
 function calc() {
-  const corpus    = +document.getElementById('in-corpus').value;
-  const monthlyEx = +document.getElementById('in-exp').value;
-  const targetYrs = +document.getElementById('in-years').value;
-  const b1y       = +document.getElementById('in-b1y').value;
-  const b2y       = +document.getElementById('in-b2y').value;
-  const b1r       = +document.getElementById('in-b1r').value / 100;
-  const b2r       = +document.getElementById('in-b2r').value / 100;
-  const b3r       = +document.getElementById('in-b3r').value / 100;
-  const inf       = +document.getElementById('in-inf').value / 100;
+  const corpus       = +document.getElementById('in-corpus').value;
+  const monthlyEx    = +document.getElementById('in-exp').value;
+  const monthlyInc   = +document.getElementById('in-income').value;
+  const incomeLimit  = document.getElementById('in-income-limit').checked;
+  const incomeYrs    = incomeLimit ? Math.max(1, parseInt(document.getElementById('lbl-income-yrs').value) || 10) : 0;
+  const targetYrs    = +document.getElementById('in-years').value;
+  const b1y          = +document.getElementById('in-b1y').value;
+  const b2y          = +document.getElementById('in-b2y').value;
+  const b1r          = +document.getElementById('in-b1r').value / 100;
+  const b2r          = +document.getElementById('in-b2r').value / 100;
+  const b3r          = +document.getElementById('in-b3r').value / 100;
+  const inf          = +document.getElementById('in-inf').value / 100;
 
   setLbl('lbl-corpus', fmtINR(corpus));
   setLbl('lbl-exp',    monthlyEx.toLocaleString('en-IN'));
+  setLbl('lbl-income', monthlyInc.toLocaleString('en-IN'));
   setLbl('lbl-years',  targetYrs);
   setLbl('lbl-b1y',    b1y);
   setLbl('lbl-b2y',    b2y);
@@ -499,8 +535,11 @@ function calc() {
   document.getElementById('lbl-b1y-out').textContent = b1y;
   document.getElementById('lbl-b2y-out').textContent = b2y;
 
+  // Enable/disable the income-years input based on checkbox
+  document.getElementById('lbl-income-yrs').disabled = !incomeLimit;
+
   // Simulate up to 2x target years so we can find the depletion year
-  const result = simulate(corpus, monthlyEx, b1y, b2y, b1r, b2r, b3r, inf, targetYrs * 2 + 5);
+  const result = simulate(corpus, monthlyEx, monthlyInc, incomeYrs, b1y, b2y, b1r, b2r, b3r, inf, targetYrs * 2 + 5);
   const { initial, sim, yearsLasted, depleted, finalTotal } = result;
 
   // Allocation card
@@ -556,7 +595,13 @@ function calc() {
 
   // Reality message
   const realityEl = document.getElementById('reality');
-  if (depleted && yearsLasted < targetYrs) {
+  const incomePct = monthlyEx > 0 ? Math.round((monthlyInc / monthlyEx) * 100) : 0;
+  if (monthlyInc >= monthlyEx && monthlyInc > 0 && (incomeYrs === 0 || incomeYrs >= targetYrs)) {
+    realityEl.textContent = `Your income (₹${monthlyInc.toLocaleString('en-IN')}/mo) fully covers your expenses. Your corpus barely needs to be touched — it compounds the whole way through. This is what "financial independence" actually looks like.`;
+  } else if (incomePct >= 30 && monthlyInc > 0) {
+    const incomeNote = incomeYrs > 0 ? ` for the first ${incomeYrs} years` : '';
+    realityEl.textContent = `Your hobby/part-time income covers ${incomePct}% of your monthly expenses${incomeNote}. That's the unsung hero of early retirement — it dramatically shrinks the corpus you actually need.`;
+  } else if (depleted && yearsLasted < targetYrs) {
     realityEl.textContent = `Even with 3 buckets, your corpus runs out at year ${Math.round(yearsLasted)}. The corpus is the constraint — not the strategy.`;
   } else if (initial.b3 / total > 0.6) {
     realityEl.textContent = `${Math.round(p3)}% of your corpus is in equity (Bucket 3). That's where the long-term growth comes from — but only because B1+B2 give you ${b1y + b2y} years to ride out crashes without selling.`;
@@ -570,8 +615,13 @@ function calc() {
 // Wire up sliders
 document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
 
-// Wire up text inputs
-[['lbl-corpus','in-corpus'],['lbl-exp','in-exp'],['lbl-years','in-years'],['lbl-b1y','in-b1y'],['lbl-b2y','in-b2y'],['lbl-b1r','in-b1r'],['lbl-b2r','in-b2r'],['lbl-b3r','in-b3r'],['lbl-inf','in-inf']].forEach(([textId, sliderId]) => {
+// Income inputs (no slider for the years-limit, just the text field + checkbox)
+document.getElementById('in-income-limit').addEventListener('change', calc);
+document.getElementById('lbl-income-yrs').addEventListener('input', calc);
+document.getElementById('lbl-income-yrs').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); } });
+
+// Wire up text inputs (income reuses the same pattern via its slider)
+[['lbl-corpus','in-corpus'],['lbl-exp','in-exp'],['lbl-income','in-income'],['lbl-years','in-years'],['lbl-b1y','in-b1y'],['lbl-b2y','in-b2y'],['lbl-b1r','in-b1r'],['lbl-b2r','in-b2r'],['lbl-b3r','in-b3r'],['lbl-inf','in-inf']].forEach(([textId, sliderId]) => {
   const text = document.getElementById(textId);
   const slider = document.getElementById(sliderId);
   if (!text || !slider) return;
