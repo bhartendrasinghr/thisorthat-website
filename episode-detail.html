@@ -7,21 +7,41 @@
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+  tailwind.config = { theme: { extend: { colors: {
+        // Brand colors (per Brand Guidelines v1.0)
+        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
+        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
+        thatred:   { DEFAULT: '#FF302D' },
+        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
+        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
+        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
+        // Legacy aliases — keep old class names working, mapped to new values
+        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
+        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
+        alert:   '#FF302D',
+        cream:   '#FCFBF8',
+        paper:   '#F6F4EE'
+      }, fontFamily: {
+        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
+        serif:   ['Bricolage Grotesque','Georgia','serif'],
+        display: ['Bricolage Grotesque','Georgia','serif'],
+        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
+        script:  ['Caveat','cursive']
+      } } } };
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
-  .font-serif { font-family: 'Fraunces', serif; }
+  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
+  .font-serif { font-family: 'Bricolage Grotesque', serif; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
   /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
     font-weight: 800; letter-spacing: -0.04em;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', serif;
     position: relative; overflow: hidden;
   }
   .avatar::before {
@@ -33,10 +53,10 @@
   .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; background: #000; }
   .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   /* Branded frame around the YouTube embed — visible navy/mustard around the player */
-  .yt-frame { position: relative; padding: 14px; background: linear-gradient(135deg, #1A237E, #0A0E3D); border-radius: 22px; box-shadow: 0 30px 60px -20px rgba(26, 35, 126, 0.45); }
-  .yt-frame::before { content: ''; position: absolute; top: 14px; left: 14px; right: 14px; height: 28px; background: linear-gradient(to bottom, rgba(245,197,24,0.0), transparent); border-radius: 16px 16px 0 0; pointer-events: none; }
-  .yt-frame-corner { position: absolute; top: 0; right: 0; padding: 14px 20px; display: flex; align-items: center; gap: 8px; color: #F5C518; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; z-index: 5; pointer-events: none; }
-  .yt-frame-corner::before { content: ''; width: 6px; height: 6px; background: #F5C518; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  .yt-frame { position: relative; padding: 14px; background: linear-gradient(135deg, #0249B1, #1A1813); border-radius: 22px; box-shadow: 0 30px 60px -20px rgba(2, 73, 177, 0.45); }
+  .yt-frame::before { content: ''; position: absolute; top: 14px; left: 14px; right: 14px; height: 28px; background: linear-gradient(to bottom, rgba(255,194,31,0.0), transparent); border-radius: 16px 16px 0 0; pointer-events: none; }
+  .yt-frame-corner { position: absolute; top: 0; right: 0; padding: 14px 20px; display: flex; align-items: center; gap: 8px; color: #FFC21F; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; z-index: 5; pointer-events: none; }
+  .yt-frame-corner::before { content: ''; width: 6px; height: 6px; background: #FFC21F; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
   @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 </style>
 </head>

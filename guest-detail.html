@@ -7,21 +7,41 @@
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+  tailwind.config = { theme: { extend: { colors: {
+        // Brand colors (per Brand Guidelines v1.0)
+        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
+        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
+        thatred:   { DEFAULT: '#FF302D' },
+        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
+        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
+        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
+        // Legacy aliases — keep old class names working, mapped to new values
+        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
+        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
+        alert:   '#FF302D',
+        cream:   '#FCFBF8',
+        paper:   '#F6F4EE'
+      }, fontFamily: {
+        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
+        serif:   ['Bricolage Grotesque','Georgia','serif'],
+        display: ['Bricolage Grotesque','Georgia','serif'],
+        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
+        script:  ['Caveat','cursive']
+      } } } };
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
-  .font-serif { font-family: 'Fraunces', serif; }
+  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
+  .font-serif { font-family: 'Bricolage Grotesque', serif; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
   /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
     font-weight: 800; letter-spacing: -0.04em;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', serif;
     position: relative; overflow: hidden;
   }
   .avatar::before {
@@ -30,12 +50,12 @@
                 radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
   }
   .avatar > * { position: relative; z-index: 1; }
-  .bio p { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.75; color: #0A0E3D; margin-bottom: 1.3em; }
-  .bio h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: #0A0E3D; margin-top: 1.8em; margin-bottom: 0.6em; }
-  .bio blockquote { border-left: 4px solid #F5C518; padding-left: 1.4em; margin: 1.6em 0; font-style: italic; font-size: 20px; color: #1A237E; }
+  .bio p { font-family: 'Bricolage Grotesque', serif; font-size: 18px; line-height: 1.75; color: #1A1813; margin-bottom: 1.3em; }
+  .bio h2 { font-family: 'Bricolage Grotesque', serif; font-size: 26px; font-weight: 700; color: #1A1813; margin-top: 1.8em; margin-bottom: 0.6em; }
+  .bio blockquote { border-left: 4px solid #FFC21F; padding-left: 1.4em; margin: 1.6em 0; font-style: italic; font-size: 20px; color: #0249B1; }
   .bio ul { margin: 1.2em 0; padding-left: 1.4em; }
-  .bio li { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.7; margin-bottom: 0.4em; list-style: disc; }
-  .bio a { color: #1A237E; border-bottom: 2px solid #F5C518; }
+  .bio li { font-family: 'Bricolage Grotesque', serif; font-size: 18px; line-height: 1.7; margin-bottom: 0.4em; list-style: disc; }
+  .bio a { color: #0249B1; border-bottom: 2px solid #FFC21F; }
 </style>
 </head>
 <body class="antialiased">
@@ -164,7 +184,7 @@ Promise.all([
   ) || merged[0]; // default = top guest by eps count
 
   if (!guest) {
-    document.body.innerHTML = '<div style="padding:60px;text-align:center;font-family:Inter,sans-serif"><h1 style="font-family:Fraunces,serif;font-size:42px">No guests yet</h1><p><a href="guests.html" style="color:#1A237E">← Back</a></p></div>';
+    document.body.innerHTML = '<div style="padding:60px;text-align:center;font-family:Inter,sans-serif"><h1 style="font-family:Fraunces,serif;font-size:42px">No guests yet</h1><p><a href="guests.html" style="color:#0249B1">← Back</a></p></div>';
     return;
   }
 

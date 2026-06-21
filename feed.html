@@ -7,20 +7,40 @@
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' }, mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' }, alert: '#D32F2F', cream: '#FAF7F0', paper: '#F5F1E8' }, fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] } } } };
+  tailwind.config = { theme: { extend: { colors: {
+        // Brand colors (per Brand Guidelines v1.0)
+        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
+        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
+        thatred:   { DEFAULT: '#FF302D' },
+        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
+        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
+        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
+        // Legacy aliases — keep old class names working, mapped to new values
+        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
+        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
+        alert:   '#FF302D',
+        cream:   '#FCFBF8',
+        paper:   '#F6F4EE'
+      }, fontFamily: {
+        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
+        serif:   ['Bricolage Grotesque','Georgia','serif'],
+        display: ['Bricolage Grotesque','Georgia','serif'],
+        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
+        script:  ['Caveat','cursive']
+      } } } };
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
-  .font-serif { font-family: 'Fraunces', serif; }
-  .ig-1 { background: #1A237E; color: #FAF7F0; }
-  .ig-2 { background: #F5C518; color: #0A0E3D; }
-  .ig-3 { background: #FAF7F0; color: #0A0E3D; border: 1px solid #E8E1CC; }
-  .ig-4 { background: #D32F2F; color: #FAF7F0; }
-  .ig-5 { background: #0A0E3D; color: #F5C518; }
-  .ig-6 { background: #FAF7F0; color: #1A237E; border: 1px solid #E8E1CC; }
+  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
+  .font-serif { font-family: 'Bricolage Grotesque', serif; }
+  .ig-1 { background: #0249B1; color: #FCFBF8; }
+  .ig-2 { background: #FFC21F; color: #1A1813; }
+  .ig-3 { background: #FCFBF8; color: #1A1813; border: 1px solid #E1DDD1; }
+  .ig-4 { background: #FF302D; color: #FCFBF8; }
+  .ig-5 { background: #1A1813; color: #FFC21F; }
+  .ig-6 { background: #FCFBF8; color: #0249B1; border: 1px solid #E1DDD1; }
   .lift { transition: transform 200ms ease; cursor: pointer; }
   .lift:hover { transform: translateY(-2px); }
   .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }

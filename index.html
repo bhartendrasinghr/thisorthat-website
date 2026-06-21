@@ -7,53 +7,57 @@
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          navy: { DEFAULT: '#1A237E', deep: '#11185A', ink: '#0A0E3D' },
-          mustard: { DEFAULT: '#F5C518', soft: '#FFD84D', deep: '#C99A00' },
-          alert: '#D32F2F',
-          cream: '#FAF7F0',
-          paper: '#F5F1E8',
-        },
-        fontFamily: {
-          sans: ['Inter', 'system-ui', 'sans-serif'],
-          serif: ['Fraunces', 'Georgia', 'serif'],
-        },
-      },
-    },
-  };
+  tailwind.config = { theme: { extend: { colors: {
+        // Brand colors (per Brand Guidelines v1.0)
+        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
+        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
+        thatred:   { DEFAULT: '#FF302D' },
+        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
+        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
+        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
+        // Legacy aliases — keep old class names working, mapped to new values
+        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
+        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
+        alert:   '#FF302D',
+        cream:   '#FCFBF8',
+        paper:   '#F6F4EE'
+      }, fontFamily: {
+        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
+        serif:   ['Bricolage Grotesque','Georgia','serif'],
+        display: ['Bricolage Grotesque','Georgia','serif'],
+        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
+        script:  ['Caveat','cursive']
+      } } } };
 </script>
 <style>
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: #FAF7F0; color: #0A0E3D; }
-  .font-serif { font-family: 'Fraunces', serif; }
+  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
+  .font-serif { font-family: 'Bricolage Grotesque', serif; }
 
   /* Thumbnail gradient art */
-  .thumb { position: relative; overflow: hidden; background: linear-gradient(135deg, #1A237E, #11185A); }
+  .thumb { position: relative; overflow: hidden; background: linear-gradient(135deg, #0249B1, #013580); }
   .thumb::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(245,197,24,0.35), transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(211,47,47,0.25), transparent 50%);
+    background: radial-gradient(circle at 20% 80%, rgba(255,194,31,0.35), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,48,45,0.25), transparent 50%);
   }
-  .thumb-1 { background: linear-gradient(135deg, #1A237E, #4A148C); }
-  .thumb-2 { background: linear-gradient(135deg, #11185A, #1A237E); }
-  .thumb-3 { background: linear-gradient(135deg, #C99A00, #F5C518); }
-  .thumb-4 { background: linear-gradient(135deg, #0A0E3D, #1A237E); }
-  .thumb-5 { background: linear-gradient(135deg, #D32F2F, #8B1A1A); }
-  .thumb-6 { background: linear-gradient(135deg, #1A237E, #0A0E3D); }
+  .thumb-1 { background: linear-gradient(135deg, #0249B1, #4A148C); }
+  .thumb-2 { background: linear-gradient(135deg, #013580, #0249B1); }
+  .thumb-3 { background: linear-gradient(135deg, #D99B00, #FFC21F); }
+  .thumb-4 { background: linear-gradient(135deg, #1A1813, #0249B1); }
+  .thumb-5 { background: linear-gradient(135deg, #FF302D, #A6201E); }
+  .thumb-6 { background: linear-gradient(135deg, #0249B1, #1A1813); }
 
   /* Insta card variants */
-  .ig-1 { background: #1A237E; color: #FAF7F0; }
-  .ig-2 { background: #F5C518; color: #0A0E3D; }
-  .ig-3 { background: #FAF7F0; color: #0A0E3D; border: 1px solid #E8E1CC; }
-  .ig-4 { background: #D32F2F; color: #FAF7F0; }
-  .ig-5 { background: #0A0E3D; color: #F5C518; }
-  .ig-6 { background: #FAF7F0; color: #1A237E; border: 1px solid #E8E1CC; }
+  .ig-1 { background: #0249B1; color: #FCFBF8; }
+  .ig-2 { background: #FFC21F; color: #1A1813; }
+  .ig-3 { background: #FCFBF8; color: #1A1813; border: 1px solid #E1DDD1; }
+  .ig-4 { background: #FF302D; color: #FCFBF8; }
+  .ig-5 { background: #1A1813; color: #FFC21F; }
+  .ig-6 { background: #FCFBF8; color: #0249B1; border: 1px solid #E1DDD1; }
 
   /* Subtle grain */
   .grain { position: relative; }
@@ -80,7 +84,7 @@
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
     font-weight: 800; letter-spacing: -0.04em;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', serif;
     position: relative; overflow: hidden;
   }
   .avatar::before {
@@ -94,18 +98,18 @@
   .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
 
   /* Hero mini-calculator sliders */
-  .hero-slider { -webkit-appearance: none; appearance: none; height: 4px; background: #E8E1CC; border-radius: 999px; outline: none; }
-  .hero-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  .hero-slider::-moz-range-thumb { width: 20px; height: 20px; background: #1A237E; border-radius: 50%; cursor: pointer; border: 3px solid #F5C518; }
+  .hero-slider { -webkit-appearance: none; appearance: none; height: 4px; background: #E1DDD1; border-radius: 999px; outline: none; }
+  .hero-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 3px solid #FFC21F; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  .hero-slider::-moz-range-thumb { width: 20px; height: 20px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 3px solid #FFC21F; }
 
   /* Scroll-triggered fade-in */
   .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* Editable numeric inputs in hero mini-calc */
-  .editable-hero { background: transparent; border: none; border-bottom: 1.5px dashed rgba(26, 35, 126, 0.25); padding: 0 1px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
-  .editable-hero:hover { border-bottom-color: rgba(26, 35, 126, 0.5); background: rgba(245, 197, 24, 0.08); }
-  .editable-hero:focus { outline: none; border-bottom: 1.5px solid #F5C518; background: rgba(245, 197, 24, 0.12); }
+  .editable-hero { background: transparent; border: none; border-bottom: 1.5px dashed rgba(2, 73, 177, 0.25); padding: 0 1px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
+  .editable-hero:hover { border-bottom-color: rgba(2, 73, 177, 0.5); background: rgba(255, 194, 31, 0.08); }
+  .editable-hero:focus { outline: none; border-bottom: 1.5px solid #FFC21F; background: rgba(255, 194, 31, 0.12); }
 </style>
 </head>
 <body class="antialiased">
@@ -156,103 +160,114 @@
   </nav>
 </div>
 
-<!-- ====================== HERO ====================== -->
-<section id="top" class="relative bg-navy text-cream overflow-hidden grain">
-  <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-mustard/15 blur-3xl"></div>
-  <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-alert/10 blur-3xl"></div>
+<!-- ====================== HERO — Brand Guidelines v1.0 ====================== -->
+<section id="top" class="relative bg-marigold text-ink overflow-hidden">
+  <div class="absolute -top-40 -right-32 w-[500px] h-[500px] rounded-full bg-thisblue/8 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-thatred/10 blur-3xl pointer-events-none"></div>
 
-  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-20 grid lg:grid-cols-12 gap-10 items-center">
+  <div class="relative max-w-7xl mx-auto px-6 pt-14 pb-16 grid lg:grid-cols-12 gap-10 items-center">
+
+    <!-- LEFT: editorial -->
     <div class="lg:col-span-6">
-      <div class="inline-flex items-center gap-2 bg-cream/10 border border-cream/20 px-3 py-1 rounded-full text-xs font-medium tracking-wide">
-        <span class="w-2 h-2 rounded-full bg-mustard animate-pulse"></span>
-        New episode every Tuesday
-      </div>
-      <h1 class="mt-6 font-serif text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight">
-        Personal finance,<br/>
-        <span class="text-mustard italic">honestly.</span>
-      </h1>
-      <p class="mt-5 text-base md:text-lg text-cream/80 max-w-xl leading-relaxed">
-        The retirement calculator that tells you the inconvenient number — backed by India's most candid finance podcast.
-      </p>
-      <div class="mt-7 flex flex-wrap gap-3">
-        <a href="calc-retirement.html" class="bg-mustard text-navy-ink px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-mustard-soft transition">Open full calculator →</a>
-        <a id="hero-watch-latest" href="episode-detail.html" class="border border-cream/30 text-cream px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-cream/10 transition">▶ Watch latest episode</a>
+      <div class="inline-flex items-center gap-2 bg-ink/8 border border-ink/15 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide">
+        <span class="w-1.5 h-1.5 rounded-full bg-thatred animate-pulse"></span>
+        Beyond the noise · New episode every Tuesday
       </div>
 
-      <!-- Stats -->
+      <h1 class="mt-6 font-display text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight">
+        Too much noise.<br/>
+        Not enough signal.<br/>
+        <span class="text-thisblue">We help you make the call.</span>
+      </h1>
+
+      <p class="mt-5 text-base md:text-lg text-ink/75 max-w-xl leading-relaxed">
+        A finance podcast that cuts the noise — one money decision per episode, weighed both ways, settled. Hosted by Bhartendra Singh.
+      </p>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a id="hero-watch-latest" href="episode-detail.html" class="inline-flex items-center gap-2 bg-thisblue text-warmpaper px-5 py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition shadow-lg shadow-thisblue/20">
+          <span>▶</span> Watch this week's fork
+        </a>
+        <a href="calc-retirement.html" class="inline-flex items-center gap-2 border-2 border-ink/30 text-ink px-5 py-3 rounded-full font-semibold text-sm hover:bg-ink hover:text-warmpaper transition">
+          Try the calculator →
+        </a>
+      </div>
+
+      <!-- Stats — mono numbers, ink labels, no marigold-on-marigold -->
       <div class="mt-10 grid grid-cols-3 gap-6 max-w-md">
         <div>
-          <div class="font-serif text-3xl font-bold text-mustard" data-stat-episodes>54</div>
-          <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Episodes</div>
+          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num"><span data-stat-episodes>58</span></div>
+          <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Episodes</div>
         </div>
         <div>
-          <div class="font-serif text-3xl font-bold text-mustard" data-stat-guests>30</div>
-          <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Guests</div>
+          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num"><span data-stat-guests>31</span></div>
+          <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Guests</div>
         </div>
         <div>
-          <div class="font-serif text-3xl font-bold text-mustard">3</div>
-          <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Calculators live</div>
+          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num">3</div>
+          <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Calculators</div>
         </div>
       </div>
     </div>
 
-    <!-- HERO COMPARISON CARD — the "inconvenient number" tease -->
+    <!-- RIGHT: THE FORK CARD — the central brand device -->
     <div class="lg:col-span-6">
       <a href="calc-retirement.html" class="block group">
         <div class="relative">
-          <div class="absolute -inset-3 bg-mustard/25 rounded-3xl blur-2xl group-hover:bg-mustard/40 transition"></div>
-          <div class="relative bg-cream text-navy-ink rounded-3xl p-8 md:p-10 shadow-2xl overflow-hidden">
+          <!-- soft ink shadow -->
+          <div class="absolute -inset-1 bg-ink/20 rounded-3xl blur-2xl"></div>
 
-            <!-- decorative grain corner -->
-            <div class="absolute top-0 right-0 w-48 h-48 bg-mustard/20 rounded-full blur-3xl"></div>
+          <div class="relative bg-warmpaper text-ink rounded-3xl p-8 md:p-10 border-2 border-ink shadow-2xl overflow-hidden">
+            <!-- Eyebrow -->
+            <div class="flex items-center justify-between gap-3">
+              <div class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-ink/60 font-bold">This week's fork</div>
+              <div class="text-[10px] uppercase tracking-widest text-ink/40 font-semibold">Ep 058</div>
+            </div>
 
-            <div class="relative">
-              <div class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The retirement number, honestly</div>
+            <!-- THE QUESTION — display type -->
+            <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-5 leading-[1.05]">
+              SIP or<br/>lump sum?
+            </h2>
 
-              <!-- The setup -->
-              <div class="mt-5">
-                <p class="text-sm md:text-base text-navy-ink/70">What most calculators tell a 30-year-old earning ₹50K/month they need:</p>
-                <div class="mt-2 flex items-baseline gap-3">
-                  <div class="font-serif text-4xl md:text-5xl font-bold text-navy-ink/30 line-through decoration-2 decoration-navy/40 tab-num leading-none">₹2.0 Cr</div>
-                  <div class="text-xs text-navy-ink/40 italic">(the comfortable answer)</div>
-                </div>
+            <!-- The fork visual: This / or / That -->
+            <div class="mt-7 flex items-center gap-3 md:gap-4 justify-center">
+              <div class="flex-1 bg-thisblue text-warmpaper rounded-2xl px-3 py-4 md:py-5 text-center">
+                <div class="text-[10px] uppercase tracking-[0.25em] font-bold opacity-80">This</div>
+                <div class="font-display text-lg md:text-2xl font-extrabold mt-1 leading-tight">SIP it in</div>
               </div>
-
-              <!-- The reveal -->
-              <div class="mt-6 pt-6 border-t border-navy/10">
-                <p class="text-sm md:text-base text-navy-ink/80 font-medium">What honest maths actually says:</p>
-                <div class="mt-2 flex items-baseline gap-3 flex-wrap">
-                  <div class="font-serif text-6xl md:text-7xl font-black text-mustard-deep tab-num leading-none" style="text-shadow: 0 2px 0 rgba(245,197,24,0.15);">₹6.82 Cr</div>
-                </div>
-                <div class="mt-3 text-xs md:text-sm text-navy-ink/60 leading-relaxed">
-                  Inflation, longevity, and lifestyle creep — accounted for. Year-by-year math. The corpus reaches exactly ₹0 at age 85.
-                </div>
-              </div>
-
-              <!-- CTA -->
-              <div class="mt-8 bg-navy-ink rounded-2xl p-5 text-cream group-hover:bg-navy transition flex items-center justify-between gap-4">
-                <div>
-                  <div class="font-serif text-lg md:text-xl font-bold text-mustard">Find your number →</div>
-                  <div class="text-xs text-cream/60 mt-0.5">30 seconds. No signup.</div>
-                </div>
-                <div class="text-mustard text-3xl group-hover:translate-x-1 transition">→</div>
-              </div>
-
-              <!-- credibility row -->
-              <div class="mt-5 flex items-center justify-between text-[11px] text-navy-ink/50">
-                <span>Backed by India's most candid finance podcast.</span>
-                <span class="hidden md:inline">Used by <span class="font-semibold text-navy-ink/80" id="hero-users-count">2,400+</span> Indians.</span>
+              <div class="font-script text-4xl md:text-5xl text-ink/70 transform -rotate-6 -my-2 select-none">or</div>
+              <div class="flex-1 bg-thatred text-warmpaper rounded-2xl px-3 py-4 md:py-5 text-center">
+                <div class="text-[10px] uppercase tracking-[0.25em] font-bold opacity-80">That</div>
+                <div class="font-display text-lg md:text-2xl font-extrabold mt-1 leading-tight">Lump sum</div>
               </div>
             </div>
+
+            <!-- Verdict -->
+            <p class="mt-7 text-sm md:text-base text-ink/75 leading-relaxed">
+              You've got a windfall — a bonus, idle cash, a maturity. Drip it in monthly, or put it to work today? We ran both, honestly, across good markets and ugly ones.
+            </p>
+
+            <!-- CTA -->
+            <div class="mt-7 inline-flex items-center gap-2 font-semibold text-sm text-thisblue group-hover:gap-3 transition-all border-b-2 border-thisblue pb-0.5">
+              Hear the verdict →
+            </div>
+
+            <!-- decorative arrow motif from brand book -->
+            <div class="absolute -top-4 -right-4 text-thatred/15 font-display text-9xl font-extrabold pointer-events-none select-none">↘</div>
           </div>
         </div>
       </a>
+
+      <!-- Caption -->
+      <div class="mt-4 text-center text-[11px] text-ink/60 font-semibold tracking-wide">
+        Every Tuesday · One fork, one call.
+      </div>
     </div>
   </div>
 
-  <!-- Featured guests marquee — populated from real guests list -->
-  <div class="relative border-t border-cream/10 py-6 overflow-hidden">
-    <div class="text-xs uppercase tracking-[0.3em] text-cream/50 text-center mb-4">As heard on the show</div>
+  <!-- Guests marquee — sits on marigold, ink text -->
+  <div class="relative border-t border-ink/15 py-5 overflow-hidden">
+    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 text-center mb-3 font-bold">As heard on the show</div>
     <div id="guest-marquee" class="flex marquee-track gap-12 whitespace-nowrap"></div>
   </div>
 </section>
@@ -579,6 +594,7 @@
     <div class="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-cream/40">
       <div>© 2026 ThisOrThat with Bhartendra. All rights reserved. <span id="sync-info" class="ml-3 opacity-70"></span></div>
       <div class="flex gap-4">
+        <a href="brand.html" class="hover:text-cream">Brand</a>
         <a href="#" class="hover:text-cream">Privacy</a>
         <a href="#" class="hover:text-cream">Terms</a>
         <a href="#" class="hover:text-cream">Contact</a>
@@ -636,7 +652,7 @@ document.getElementById('nav-watch-latest').href = `episode-detail.html?v=${late
 
 // 2. Guest marquee — top 10 guests by episode count, duplicated for seamless loop
 const marqueeNames = window.GUESTS.slice(0, 10).map(g => g.name);
-const marqueeHtml = marqueeNames.map(n => `<span class="font-serif text-2xl text-cream/70">${n}</span><span class="text-mustard">•</span>`).join('');
+const marqueeHtml = marqueeNames.map(n => `<span class="font-display text-2xl font-bold text-ink/75">${n}</span><span class="text-thatred font-bold">•</span>`).join('');
 document.getElementById('guest-marquee').innerHTML = `<div class="flex gap-12 items-center">${marqueeHtml}</div><div class="flex gap-12 items-center" aria-hidden="true">${marqueeHtml}</div>`;
 
 // 3a. FEATURED LATEST — magazine-style hero card
