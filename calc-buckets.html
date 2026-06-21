@@ -317,7 +317,7 @@
       <!-- HOW IT WORKS -->
       <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
         <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How the 3 buckets work</div>
-        <p>You withdraw monthly from <strong class="text-thisblue">Bucket 1</strong>. Each year, <strong class="text-marigold-600">Bucket 2</strong> tops up Bucket 1. When equity has a good year, <strong class="text-thatred">Bucket 3</strong> tops up Bucket 2. When markets crash, you leave Bucket 3 alone and let it recover — you're still spending from cash.</p>
+        <p>You withdraw monthly from <strong class="text-thisblue">Bucket 1</strong>. Each year, <strong class="text-marigold-600">Bucket 2</strong> tops up Bucket 1. When equity has a good year, <strong class="text-thatred">Bucket 3</strong> tops up Bucket 2. When markets crash, you leave Bucket 3 alone and let it recover — you're still spending from cash. <strong>In years where hobby/part-time income exceeds your expenses, the surplus is invested back into Bucket 3.</strong></p>
       </div>
 
       <!-- Show the maths -->
@@ -332,7 +332,7 @@
               <thead>
                 <tr class="border-b-2 border-navy/20 text-ink text-left">
                   <th class="py-2 pr-3 font-semibold">Yr</th>
-                  <th class="py-2 pr-3 font-semibold">Withdrawn</th>
+                  <th class="py-2 pr-3 font-semibold">Net flow</th>
                   <th class="py-2 pr-3 font-semibold text-thisblue">B1 · Cash</th>
                   <th class="py-2 pr-3 font-semibold text-marigold-600">B2 · Debt</th>
                   <th class="py-2 pr-3 font-semibold text-thatred">B3 · Equity</th>
@@ -421,7 +421,9 @@ function simulate(corpus, monthlyExp, monthlyIncome, incomeYearsLimit, b1Years, 
     const incomeActive = incomeYearsLimit === 0 || year < incomeYearsLimit;
     const incomeThisYear = incomeActive ? annualIncome * Math.pow(1 + inflation, year) : 0;
     const yearExpense = annualExp * Math.pow(1 + inflation, year);
-    const yearWithdraw = Math.max(0, yearExpense - incomeThisYear);
+    const netOutflow = yearExpense - incomeThisYear;
+    const yearWithdraw = Math.max(0, netOutflow);   // pulled from buckets
+    const yearInvest   = Math.max(0, -netOutflow);  // surplus → into B3
 
     // Withdraw from B1 first
     b1 -= yearWithdraw;
@@ -439,11 +441,14 @@ function simulate(corpus, monthlyExp, monthlyIncome, incomeYearsLimit, b1Years, 
           depleted = true;
           b3 = 0;
           yearsLasted = year + (yearWithdraw + b3) / yearWithdraw;
-          sim.push({ year: year + 1, withdraw: yearWithdraw, b1: 0, b2: 0, b3: 0, total: 0, depleted: true });
+          sim.push({ year: year + 1, withdraw: yearWithdraw, invest: 0, b1: 0, b2: 0, b3: 0, total: 0, depleted: true });
           break;
         }
       }
     }
+
+    // Surplus year: income exceeded expense — invest the extra into B3 (long-term equity)
+    b3 += yearInvest;
 
     // Grow each bucket for the year
     b1 *= (1 + b1Ret);
@@ -480,6 +485,7 @@ function simulate(corpus, monthlyExp, monthlyIncome, incomeYearsLimit, b1Years, 
     sim.push({
       year: year + 1,
       withdraw: yearWithdraw,
+      invest: yearInvest,
       b1, b2, b3,
       total: b1 + b2 + b3,
       depleted: false,
@@ -585,7 +591,7 @@ function calc() {
   document.getElementById('sim-table').innerHTML = rows.map(r => `
     <tr class="border-b border-navy/5 ${r.depleted ? 'bg-thatred/5' : ''}">
       <td class="py-1.5 pr-3 font-semibold">${r.year}</td>
-      <td class="py-1.5 pr-3 text-thatred">−₹${fmtINR(r.withdraw)}</td>
+      <td class="py-1.5 pr-3 ${r.invest > 0 ? 'text-gain' : 'text-thatred'}">${r.invest > 0 ? '+₹' + fmtINR(r.invest) : '−₹' + fmtINR(r.withdraw)}</td>
       <td class="py-1.5 pr-3 text-thisblue">₹${fmtINR(r.b1)}</td>
       <td class="py-1.5 pr-3 text-marigold-600">₹${fmtINR(r.b2)}</td>
       <td class="py-1.5 pr-3 text-thatred">₹${fmtINR(r.b3)}</td>
@@ -597,7 +603,7 @@ function calc() {
   const realityEl = document.getElementById('reality');
   const incomePct = monthlyEx > 0 ? Math.round((monthlyInc / monthlyEx) * 100) : 0;
   if (monthlyInc >= monthlyEx && monthlyInc > 0 && (incomeYrs === 0 || incomeYrs >= targetYrs)) {
-    realityEl.textContent = `Your income (₹${monthlyInc.toLocaleString('en-IN')}/mo) fully covers your expenses. Your corpus barely needs to be touched — it compounds the whole way through. This is what "financial independence" actually looks like.`;
+    realityEl.textContent = `Your income (₹${monthlyInc.toLocaleString('en-IN')}/mo) fully covers your expenses — and the surplus gets invested back into Bucket 3. Your corpus actually grows in retirement. This is what "financial independence" actually looks like.`;
   } else if (incomePct >= 30 && monthlyInc > 0) {
     const incomeNote = incomeYrs > 0 ? ` for the first ${incomeYrs} years` : '';
     realityEl.textContent = `Your hobby/part-time income covers ${incomePct}% of your monthly expenses${incomeNote}. That's the unsung hero of early retirement — it dramatically shrinks the corpus you actually need.`;
