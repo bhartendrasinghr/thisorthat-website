@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SWP Calculator — Systematic Withdrawal Plan · ThisOrThat with Bhartendra</title>
+<meta name="description" content="How much can you pull out of your corpus each month without emptying the tank? An honest Systematic Withdrawal Plan calculator — inflation-aware, with sustainable-rate guidance." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
+        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
+        thatred:   { DEFAULT: '#FF302D' },
+        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
+        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
+        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
+        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
+        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
+        alert:   '#FF302D',
+        cream:   '#FCFBF8',
+        paper:   '#F6F4EE'
+      }, fontFamily: {
+        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
+        serif:   ['Bricolage Grotesque','Georgia','serif'],
+        display: ['Bricolage Grotesque','Georgia','serif'],
+        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
+        script:  ['Caveat','cursive']
+      } } } };
+</script>
+<style>
+  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
+  .font-serif { font-family: 'Bricolage Grotesque', serif; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; background: #E1DDD1; border-radius: 999px; outline: none; touch-action: pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 4px solid #FFC21F; box-shadow: 0 2px 8px rgba(0,0,0,0.18); transition: transform 120ms ease; }
+  input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 4px solid #FFC21F; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width: 768px) {
+    input[type="range"] { height: 8px; }
+    input[type="range"]::-webkit-slider-thumb { width: 32px; height: 32px; }
+    input[type="range"]::-moz-range-thumb { width: 32px; height: 32px; }
+  }
+  .editable-num { background: transparent; border: none; border-bottom: 1.5px dashed rgba(2, 73, 177, 0.25); padding: 1px 2px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
+  .editable-num:hover { border-bottom-color: rgba(2, 73, 177, 0.5); background: rgba(255, 194, 31, 0.08); }
+  .editable-num:focus { outline: none; border-bottom: 1.5px solid #FFC21F; background: rgba(255, 194, 31, 0.12); }
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  /* Tank illustration */
+  .tank-wrap { position: relative; height: 12px; background: #F6F4EE; border-radius: 999px; overflow: hidden; }
+  .tank-fill { height: 100%; transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Calculators</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU PANEL -->
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Calculators</a>
+    <a href="about.html" class="py-3">About</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 bg-navy text-cream text-center py-3 rounded-full font-semibold">Subscribe on YouTube</a>
+  </nav>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Calculators</a> /
+  <span class="text-navy-ink">SWP</span>
+</div>
+
+<!-- HERO -->
+<section class="bg-cream pb-10">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Withdrawing, not just investing</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">SWP — how much can the tank give?</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You spent 25 years filling the tank. Now the real question: <strong>how much water can you draw every month — without emptying it?</strong> Pull too much and you go dry. Pull too little and you skimp despite being wealthy. This calculator finds the line.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-corpus">Corpus you're starting with</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">₹</span>
+            <input type="text" id="lbl-corpus" value="1 Cr" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-corpus" type="range" min="500000" max="200000000" step="500000" value="10000000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/50 mt-1">Tip: type "1Cr" or "1,00,00,000" — both work.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-wd">Monthly withdrawal</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">₹</span>
+            <input type="text" id="lbl-wd" value="50,000" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-wd" type="range" min="5000" max="1000000" step="2500" value="50000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">What lands in your bank every month. Increases with inflation if step-up is on.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-years">How long should it last</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-years" value="30" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-years" type="range" min="5" max="50" value="30" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Plan for your realistic lifespan — most people underestimate this.</div>
+      </div>
+
+      <div class="pt-2 border-t border-navy/10">
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" id="in-stepup" class="mt-1 accent-thisblue w-4 h-4" checked />
+          <div>
+            <div class="text-sm font-semibold text-ink">Step up withdrawal with inflation</div>
+            <div class="text-[11px] text-ink/60 mt-0.5">Recommended. Without it, the same ₹50k means half the lifestyle in 12 years.</div>
+          </div>
+        </label>
+      </div>
+
+      <details class="pt-2 border-t border-navy/10">
+        <summary class="cursor-pointer text-sm font-semibold text-ink/70 hover:text-ink">Returns & inflation</summary>
+        <div class="mt-4 space-y-4">
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-ink/70">Expected portfolio return</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-ret" value="10.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
+                <span class="text-ink/60 text-xs">%</span>
+              </div>
+            </div>
+            <input id="in-ret" type="range" min="5" max="15" step="0.5" value="10" class="w-full mt-1" />
+            <div class="text-[10px] text-ink/55 mt-1">A balanced 60/40 portfolio in India has historically delivered ~10%.</div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-ink/70">Inflation</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-inf" value="6.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
+                <span class="text-ink/60 text-xs">%</span>
+              </div>
+            </div>
+            <input id="in-inf" type="range" min="3" max="10" step="0.5" value="6" class="w-full mt-1" />
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- BIG NUMBER: Lifespan -->
+      <div id="lifespan-card" class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Your corpus lasts</div>
+        <div class="flex items-end gap-4 mt-3">
+          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none"><span id="out-years">—</span></div>
+          <div class="text-base opacity-70 pb-1">years at this withdrawal rate</div>
+        </div>
+        <div class="mt-3 text-sm opacity-85" id="out-status">—</div>
+      </div>
+
+      <!-- SUSTAINABLE RATE + MAX SAFE -->
+      <div class="grid sm:grid-cols-2 gap-5">
+
+        <div class="bg-white rounded-2xl border-2 border-marigold p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Withdrawal rate</div>
+          <div class="mt-2 flex items-baseline gap-1">
+            <div class="font-display text-4xl font-extrabold text-ink tab-num"><span id="out-rate">—</span></div>
+            <div class="text-ink/60 text-sm">% of corpus / yr</div>
+          </div>
+          <div class="mt-3 tank-wrap">
+            <div id="rate-bar" class="tank-fill bg-thisblue" style="width: 0%"></div>
+          </div>
+          <div class="mt-2 text-[11px] text-ink/60" id="rate-zone">—</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Max safe withdrawal</div>
+          <div class="mt-2 flex items-baseline gap-1">
+            <div class="font-display text-3xl font-extrabold text-thisblue tab-num">₹<span id="out-max">—</span></div>
+            <div class="text-ink/60 text-sm">/mo</div>
+          </div>
+          <div class="mt-3 text-[11px] text-ink/65 leading-snug" id="out-max-note">The largest monthly amount that exactly lasts <span id="out-max-yrs">30</span> years at your assumed returns.</div>
+        </div>
+
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
+        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How an SWP actually works</div>
+        <p>Each month, your portfolio pays you a fixed amount — like a self-issued salary. The rest stays invested and keeps growing. If returns out-pace withdrawals, the corpus survives. If they don't, the tank slowly drains. <strong>It's the same maths as your EMI — just running in reverse.</strong></p>
+      </div>
+
+      <!-- YEAR-BY-YEAR TABLE -->
+      <details class="bg-white rounded-2xl border border-navy/10 p-5" open>
+        <summary class="cursor-pointer flex items-center justify-between">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Show the maths</div>
+            <div class="text-sm font-semibold text-ink mt-0.5">Year-by-year simulation</div>
+          </div>
+          <svg class="w-5 h-5 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="mt-4">
+          <p class="text-xs text-ink/60 mb-3">Each row: this year's annual withdrawal · growth on the remaining balance · corpus at end of year. Red row = depleted.</p>
+          <div class="overflow-x-auto -mx-2 px-2">
+            <table class="w-full text-xs tab-num">
+              <thead>
+                <tr class="text-left text-ink/55 border-b border-navy/10">
+                  <th class="py-2 pr-3 font-semibold">Yr</th>
+                  <th class="py-2 pr-3 font-semibold">Withdrawn (yr)</th>
+                  <th class="py-2 pr-3 font-semibold">Growth on balance</th>
+                  <th class="py-2 font-semibold">Corpus end</th>
+                </tr>
+              </thead>
+              <tbody id="sim-table" class="text-ink/80"></tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- WATER TANK METAPHOR -->
+<section class="py-16 bg-thisblue text-warmpaper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The bigger picture</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
+    <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
+      <p>You spend 25 years learning how to invest. Almost nobody teaches you how to <em>withdraw</em>. So most retirees default to one of two bad places: dipping into FDs every month (the corpus stops growing), or selling equity whenever the market is convenient (it's never convenient).</p>
+      <p>An SWP turns your corpus into a paycheck. <strong class="text-marigold">The rest stays invested and keeps compounding.</strong> The discipline of a fixed monthly outflow is what protects you from yourself.</p>
+      <p class="text-warmpaper/65 text-sm">Anyone can build wealth. The real test is whether your plan can actually support the life you've built.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MORE CALCULATORS -->
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl font-extrabold text-ink">More calculators</h2>
+    <div class="mt-8 grid md:grid-cols-3 gap-5">
+      <a href="calc-retirement.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xl font-bold mb-3">₹</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Real Retirement</h3>
+        <p class="text-ink/70 text-sm mt-1">Inflation-adjusted corpus you actually need.</p>
+      </a>
+      <a href="calc-sip.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SIP</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Brutal SIP</h3>
+        <p class="text-ink/70 text-sm mt-1">The cost of starting 5 / 10 years late.</p>
+      </a>
+      <a href="calc-buckets.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">3B</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">3-Bucket Strategy</h3>
+        <p class="text-ink/70 text-sm mt-1">Cash + debt + equity — ride out crashes.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+const fmtINR = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+
+// Monthly SWP simulation. Returns array of years with { year, withdrawn, growth, corpus, depleted }.
+function simulate(corpus, monthlyWd, annualReturn, inflation, stepUp, maxYears) {
+  const monthlyReturn = Math.pow(1 + annualReturn, 1/12) - 1;
+  let balance = corpus;
+  const sim = [];
+  let depleted = false;
+  let yearsLasted = 0;
+  let depletionFrac = 0;
+
+  for (let year = 0; year < maxYears && !depleted; year++) {
+    const yearWdMonthly = stepUp ? monthlyWd * Math.pow(1 + inflation, year) : monthlyWd;
+    const balanceStart = balance;
+    let withdrawnThisYear = 0;
+    let monthsThisYear = 0;
+
+    for (let m = 0; m < 12; m++) {
+      if (balance < yearWdMonthly) {
+        // Final partial month — pay what's left, then drain
+        withdrawnThisYear += balance;
+        depletionFrac = (year + (m / 12));
+        balance = 0;
+        depleted = true;
+        break;
+      }
+      balance -= yearWdMonthly;
+      balance *= (1 + monthlyReturn);
+      withdrawnThisYear += yearWdMonthly;
+      monthsThisYear++;
+    }
+
+    const growth = balance - balanceStart + withdrawnThisYear;
+
+    sim.push({
+      year: year + 1,
+      withdrawn: withdrawnThisYear,
+      growth,
+      corpus: balance,
+      depleted,
+    });
+
+    if (!depleted) yearsLasted = year + 1;
+    else yearsLasted = depletionFrac;
+  }
+
+  return { sim, yearsLasted, depleted, finalCorpus: balance };
+}
+
+// Binary-search the maximum monthly withdrawal (in today's rupees) that exactly lasts targetYears.
+function maxSustainable(corpus, annualReturn, inflation, stepUp, targetYears) {
+  let lo = 0, hi = corpus; // Withdraw at most the whole corpus the first month
+  for (let i = 0; i < 40; i++) {
+    const mid = (lo + hi) / 2;
+    if (mid < 1) break;
+    const r = simulate(corpus, mid, annualReturn, inflation, stepUp, targetYears + 1);
+    // If it lasted the full targetYears (not depleted before), we can withdraw more.
+    if (!r.depleted || r.yearsLasted >= targetYears) {
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+  return lo;
+}
+
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+
+function calc() {
+  const corpus    = +document.getElementById('in-corpus').value;
+  const monthlyWd = +document.getElementById('in-wd').value;
+  const targetYrs = +document.getElementById('in-years').value;
+  const stepUp    = document.getElementById('in-stepup').checked;
+  const annRet    = +document.getElementById('in-ret').value / 100;
+  const inf       = +document.getElementById('in-inf').value / 100;
+
+  setLbl('lbl-corpus', fmtINR(corpus));
+  setLbl('lbl-wd',     monthlyWd.toLocaleString('en-IN'));
+  setLbl('lbl-years',  targetYrs);
+  setLbl('lbl-ret',    (annRet * 100).toFixed(1));
+  setLbl('lbl-inf',    (inf    * 100).toFixed(1));
+
+  document.getElementById('out-max-yrs').textContent = targetYrs;
+
+  // Simulate up to 2x target so we can find depletion year cleanly
+  const cap = Math.min(80, targetYrs * 2 + 10);
+  const { sim, yearsLasted, depleted, finalCorpus } = simulate(corpus, monthlyWd, annRet, inf, stepUp, cap);
+
+  // Withdrawal rate (annual withdrawal / corpus)
+  const annualWd = monthlyWd * 12;
+  const ratePct = corpus > 0 ? (annualWd / corpus * 100) : 0;
+  document.getElementById('out-rate').textContent = ratePct.toFixed(1);
+
+  // Rate zone bar + label
+  const rateBar = document.getElementById('rate-bar');
+  const rateZone = document.getElementById('rate-zone');
+  const widthPct = Math.min(100, ratePct / 10 * 100); // 10% = full bar
+  rateBar.style.width = widthPct + '%';
+  if (ratePct <= 4) {
+    rateBar.className = 'tank-fill bg-gain';
+    rateZone.innerHTML = '<strong class="text-gain">Safe zone.</strong> Under 4% is the global rule-of-thumb for a 30-yr retirement.';
+  } else if (ratePct <= 6) {
+    rateBar.className = 'tank-fill bg-marigold';
+    rateZone.innerHTML = '<strong class="text-marigold-600">Stretchy.</strong> 4–6% works only if returns stay above inflation by a healthy margin.';
+  } else {
+    rateBar.className = 'tank-fill bg-thatred';
+    rateZone.innerHTML = '<strong class="text-thatred">Risky.</strong> Over 6% — your corpus is unlikely to outlive you.';
+  }
+
+  // Max sustainable
+  const maxWd = maxSustainable(corpus, annRet, inf, stepUp, targetYrs);
+  document.getElementById('out-max').textContent = fmtINR(maxWd);
+
+  // Lifespan card
+  const lifespanEl = document.getElementById('lifespan-card');
+  const yrsOut = document.getElementById('out-years');
+  const kickerOut = document.getElementById('out-kicker');
+  const statusOut = document.getElementById('out-status');
+  // Dark-bg states use marigold accents; the marigold-bg state uses ink accents.
+  if (depleted && yearsLasted < targetYrs) {
+    lifespanEl.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
+    kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-marigold';
+    yrsOut.className = 'text-marigold';
+    yrsOut.textContent = Math.floor(yearsLasted);
+    statusOut.innerHTML = `<strong>Dry tank — falls ${targetYrs - Math.floor(yearsLasted)} years short.</strong> Either lower the monthly withdrawal, start with a bigger corpus, or assume better returns.`;
+  } else if (!depleted && finalCorpus > corpus) {
+    lifespanEl.className = 'bg-gain text-warmpaper rounded-2xl p-7';
+    kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-marigold';
+    yrsOut.className = 'text-marigold';
+    yrsOut.textContent = `${targetYrs}+`;
+    statusOut.innerHTML = `<strong>Tank still growing.</strong> After ${targetYrs} years, ₹${fmtINR(finalCorpus)} remains — more than you started with. You're under-withdrawing.`;
+  } else if (!depleted) {
+    lifespanEl.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
+    kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-marigold';
+    yrsOut.className = 'text-marigold';
+    yrsOut.textContent = `${targetYrs}+`;
+    statusOut.innerHTML = `<strong>On track.</strong> Ends with ₹${fmtINR(finalCorpus)} after ${targetYrs} years.`;
+  } else {
+    lifespanEl.className = 'bg-marigold text-ink rounded-2xl p-7';
+    kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-thisblue';
+    yrsOut.className = 'text-ink';
+    yrsOut.textContent = Math.floor(yearsLasted);
+    statusOut.innerHTML = `<strong>Just enough.</strong> Lasts the ${targetYrs} years you planned for, then runs dry.`;
+  }
+
+  // Year-by-year table — show up to 40 rows
+  const rows = sim.slice(0, Math.min(sim.length, 40));
+  document.getElementById('sim-table').innerHTML = rows.map(r => `
+    <tr class="border-b border-navy/5 ${r.depleted ? 'bg-thatred/10' : ''}">
+      <td class="py-1.5 pr-3 font-semibold">${r.year}</td>
+      <td class="py-1.5 pr-3 text-thatred">−₹${fmtINR(r.withdrawn)}</td>
+      <td class="py-1.5 pr-3 text-gain">+₹${fmtINR(Math.max(0, r.growth))}</td>
+      <td class="py-1.5 font-semibold">₹${fmtINR(r.corpus)}</td>
+    </tr>
+  `).join('');
+
+  // Reality message
+  const realityEl = document.getElementById('reality');
+  if (depleted && yearsLasted < targetYrs) {
+    realityEl.textContent = `At ₹${monthlyWd.toLocaleString('en-IN')}/mo you run out at year ${Math.floor(yearsLasted)}. ${fmtINR(maxWd) ? `The honest number for ${targetYrs} years is ₹${fmtINR(maxWd)}/mo.` : 'No amount makes this corpus last — you need more corpus or different returns.'}`;
+  } else if (finalCorpus > corpus * 2) {
+    realityEl.textContent = `You're being too conservative. At this rate, the corpus more than doubles even while you're withdrawing — you could enjoy the life you spent decades funding.`;
+  } else if (ratePct < 3) {
+    realityEl.textContent = `${ratePct.toFixed(1)}% withdrawal is barely a drip. The corpus grows faster than you withdraw — you're skimping despite being wealthy.`;
+  } else if (!depleted && ratePct > 6) {
+    realityEl.textContent = `${ratePct.toFixed(1)}% withdrawal looks fine on paper. But one bad market year early on can derail it — sequence-of-returns risk is the silent killer of SWPs.`;
+  } else if (!depleted) {
+    realityEl.textContent = `${ratePct.toFixed(1)}% is a reasonable rate. The math works at expected returns — but build a safety net (12-18 months in cash) for the years markets don't cooperate.`;
+  } else {
+    realityEl.textContent = `Just enough is not the same as safe. Markets don't deliver smooth ${(annRet*100).toFixed(1)}% returns — a 2-year drawdown in year 1 changes everything. Leave room.`;
+  }
+}
+
+// Wire up sliders
+document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+document.getElementById('in-stepup').addEventListener('change', calc);
+
+// Wire up text inputs
+[['lbl-corpus','in-corpus'],['lbl-wd','in-wd'],['lbl-years','in-years'],['lbl-ret','in-ret'],['lbl-inf','in-inf']].forEach(([textId, sliderId]) => {
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  if (!text || !slider) return;
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
+    slider.value = v;
+    calc();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
+
+calc();
+
+// Mobile menu toggle
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
