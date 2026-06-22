@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guests · Option A · Roster — ThisOrThat</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold: { DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue: { DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:  '#FF302D',
+    ink:      { DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE' },
+    navy:     '#0249B1', mustard:'#FFC21F', alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE',
+    'navy-ink':'#1A1813'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(2,73,177,0.08); }
+  .avatar { display:inline-flex; align-items:center; justify-content:center; font-weight:800; letter-spacing:-0.04em; font-family:'Bricolage Grotesque',serif; }
+  .chip { padding:6px 14px; border-radius:999px; font-size:13px; font-weight:500; transition: all 150ms; cursor:pointer; }
+  .chip-active { background:#1A1813; color:#FCFBF8; }
+  .chip-idle { background:white; color:#1A1813; border:1px solid rgba(2,73,177,0.15); }
+  .chip-idle:hover { background: rgba(255,194,31,0.15); }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- DESIGN SWITCHER (only on mock pages) -->
+<div class="bg-ink text-warmpaper text-xs">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+    <span class="font-mono opacity-70">DESIGN MOCK · pick your favourite</span>
+    <div class="flex flex-wrap gap-2">
+      <a href="guests-option-a.html" class="bg-marigold text-ink px-3 py-1 rounded-full font-semibold">A · Roster</a>
+      <a href="guests-option-b.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">B · Quote-led</a>
+      <a href="guests-option-c.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">C · By topic</a>
+      <a href="guests.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full opacity-70">Current</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/90 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-ink/80">
+      <a href="episodes.html" class="hover:text-ink">Episodes</a>
+      <a href="guests-option-a.html" class="text-ink border-b-2 border-mustard pb-1">Guests</a>
+      <a href="articles.html" class="hover:text-ink">Articles</a>
+      <a href="calculators.html" class="hover:text-ink">Calculators</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-paper py-14 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-600 font-semibold">The roster</div>
+    <h1 class="font-serif text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">The people we sit across from.</h1>
+    <p class="mt-4 text-ink/70 text-base md:text-lg max-w-2xl">Fund managers, founders, journalists, accountants — anyone whose work makes Indian money decisions a little clearer.</p>
+  </div>
+</section>
+
+<!-- FEATURED ROW -->
+<section class="py-12 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Most listened</div>
+        <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-ink mt-1">Featured voices</h2>
+      </div>
+      <div class="hidden md:block text-xs text-ink/50">3 of <span id="total-count">—</span> guests</div>
+    </div>
+    <div id="featured-grid" class="grid md:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- FILTER + GRID -->
+<section class="py-12 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-5">
+      <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-ink">All guests</h2>
+      <input id="search" type="search" placeholder="Search name or role…" class="w-56 md:w-72 bg-white border border-navy/15 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-mustard" />
+    </div>
+    <div id="role-pills" class="flex flex-wrap gap-2 mb-6"></div>
+    <div id="rest-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    <div id="empty" class="hidden text-center py-16 text-ink/60">No guests match that filter.</div>
+  </div>
+</section>
+
+<footer class="bg-ink text-warmpaper/70 py-10 text-center text-xs">
+  Design mock — Option A · Roster. Featured voices get oversized cards with a pull quote; the rest sit in a tighter grid with role filters.
+</footer>
+
+<script src="episodes.js"></script>
+<script>
+const sampleQuotes = {
+  'Vijai Mantri': "If you can hold for seven years, equity is the answer. If you can't, it isn't even the question.",
+  'Aashish Sommaiya': "Most investors don't lose to bad funds — they lose to fund-switching.",
+  'Anupam Tiwari': "The fund's return and the investor's return are two different numbers — almost always.",
+  'Amit Bivalkar': "The industry sells products. Your job is to buy outcomes.",
+  'Swaroop Mohanty': "Buying low is easy. Holding through low is the hard part.",
+  'Nimesh Chandan': "Behaviour, not knowledge, separates good investors from great ones."
+};
+
+const roleBuckets = [
+  { key:'all',      label:'All',          match: () => true },
+  { key:'fund',     label:'Fund manager', match: r => /fund|portfolio|cio|equit|amc|asset/i.test(r) },
+  { key:'founder',  label:'Founder',      match: r => /founder|ceo|director|partner|co-?founder/i.test(r) },
+  { key:'advisor',  label:'Advisor / RIA',match: r => /advisor|wealth|cfp|planner|ria/i.test(r) },
+  { key:'writer',   label:'Author · CA',  match: r => /author|journal|writer|chartered|ca\b|tax/i.test(r) },
+];
+
+const guestBg = ['bg-thisblue text-marigold','bg-marigold text-ink','bg-thatred text-warmpaper','bg-ink text-marigold'];
+
+const photoOrInitials = (g, size='w-full aspect-square') =>
+  g.photo
+    ? `<div class="${size} rounded-2xl overflow-hidden"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover"/></div>`
+    : `<div class="avatar ${size} rounded-2xl ${g.bg || guestBg[0]} text-4xl">${g.initials || g.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>`;
+
+let allGuests = [];
+let activeRole = 'all';
+let activeQuery = '';
+
+const matchesRole = (g) => roleBuckets.find(b => b.key === activeRole).match(g.role || '');
+const matchesQuery = (g) => {
+  const q = activeQuery.trim().toLowerCase();
+  return !q || g.name.toLowerCase().includes(q) || (g.role||'').toLowerCase().includes(q);
+};
+
+function renderFeatured() {
+  const featured = allGuests.filter(g => g.featured || g.eps >= 4).slice(0, 3);
+  // Pad if not enough
+  if (featured.length < 3) {
+    allGuests.filter(g => g.eps > 0 && !featured.includes(g)).slice(0, 3 - featured.length).forEach(g => featured.push(g));
+  }
+  document.getElementById('featured-grid').innerHTML = featured.map(g => `
+    <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-2xl border-2 border-marigold p-6 flex flex-col">
+      <div class="flex items-start gap-4">
+        ${photoOrInitials(g, 'w-20 h-20')}
+        <div class="flex-1 min-w-0">
+          <div class="font-serif font-extrabold text-xl text-ink leading-tight">${g.name}</div>
+          <div class="text-xs text-ink/60 mt-1 line-clamp-2">${g.role || ''}</div>
+          <div class="text-[10px] uppercase tracking-widest text-mustard-600 font-bold mt-2">${g.eps} episode${g.eps !== 1 ? 's' : ''}</div>
+        </div>
+      </div>
+      <blockquote class="mt-5 font-serif text-lg leading-snug text-ink/90 italic">
+        "${sampleQuotes[g.name] || 'A long conversation about what works, what does not, and why most investors get the timing wrong.'}"
+      </blockquote>
+      <div class="mt-auto pt-4 text-sm text-thisblue font-semibold">Read the conversation →</div>
+    </a>
+  `).join('');
+}
+
+function renderRest() {
+  const featured = allGuests.filter(g => g.featured || g.eps >= 4).slice(0, 3);
+  const rest = allGuests
+    .filter(g => !featured.includes(g))
+    .filter(matchesRole)
+    .filter(matchesQuery);
+  const grid = document.getElementById('rest-grid');
+  const empty = document.getElementById('empty');
+  if (!rest.length) {
+    grid.innerHTML = ''; empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+  grid.innerHTML = rest.map(g => `
+    <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-xl border border-navy/10 p-4 text-center">
+      ${photoOrInitials(g, 'w-full aspect-square')}
+      <div class="mt-3 font-semibold text-ink text-sm leading-tight">${g.name}</div>
+      <div class="text-[11px] text-ink/55 mt-0.5 line-clamp-1">${g.role || ''}</div>
+      <div class="text-[10px] uppercase tracking-widest ${g.eps === 0 ? 'text-thatred' : 'text-mustard-600'} font-bold mt-2">${g.eps === 0 ? 'Upcoming' : g.eps + ' ep' + (g.eps !== 1 ? 's' : '')}</div>
+    </a>
+  `).join('');
+}
+
+function renderPills() {
+  document.getElementById('role-pills').innerHTML = roleBuckets.map(b => {
+    const count = b.key === 'all'
+      ? allGuests.length
+      : allGuests.filter(g => b.match(g.role || '')).length;
+    return `<button data-key="${b.key}" class="chip ${activeRole === b.key ? 'chip-active' : 'chip-idle'}">${b.label} <span class="opacity-60 font-mono text-[11px] ml-1">${count}</span></button>`;
+  }).join('');
+  document.querySelectorAll('#role-pills button').forEach(btn => {
+    btn.addEventListener('click', () => { activeRole = btn.dataset.key; renderPills(); renderRest(); });
+  });
+}
+
+Promise.all([
+  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => []),
+  Promise.resolve(window.GUESTS || [])
+]).then(([rich, auto]) => {
+  const richByName = Object.fromEntries(rich.map(g => [g.name, g]));
+  const autoNames = new Set(auto.map(g => g.name));
+  const withEps = auto.map(g => ({ ...g, ...(richByName[g.name] || {}) }));
+  const upcoming = rich.filter(g => !autoNames.has(g.name)).map((g, i) => ({
+    ...g, eps: 0, ep_ids: [],
+    bg: guestBg[(withEps.length + i) % guestBg.length],
+    initials: g.name.split(' ').filter(p => p[0] === p[0].toUpperCase()).map(p => p[0]).slice(0,2).join('')
+  }));
+  allGuests = [...withEps, ...upcoming].sort((a,b) => (b.featured?1:0) - (a.featured?1:0) || b.eps - a.eps);
+  document.getElementById('total-count').textContent = allGuests.length;
+  renderFeatured();
+  renderPills();
+  renderRest();
+  document.getElementById('search').addEventListener('input', (e) => { activeQuery = e.target.value; renderRest(); });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guests · Option B · Quote-led — ThisOrThat</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold: { DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue: { DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:  '#FF302D',
+    ink:      { DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE' },
+    navy:'#0249B1', mustard:'#FFC21F', alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE',
+    'navy-ink':'#1A1813'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(2,73,177,0.08); }
+  .avatar { display:inline-flex; align-items:center; justify-content:center; font-weight:800; letter-spacing:-0.04em; font-family:'Bricolage Grotesque',serif; }
+  .quote-mark { font-family:'Bricolage Grotesque',serif; font-weight:800; color:#FFC21F; line-height:1; }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="bg-ink text-warmpaper text-xs">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+    <span class="font-mono opacity-70">DESIGN MOCK · pick your favourite</span>
+    <div class="flex flex-wrap gap-2">
+      <a href="guests-option-a.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">A · Roster</a>
+      <a href="guests-option-b.html" class="bg-marigold text-ink px-3 py-1 rounded-full font-semibold">B · Quote-led</a>
+      <a href="guests-option-c.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">C · By topic</a>
+      <a href="guests.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full opacity-70">Current</a>
+    </div>
+  </div>
+</div>
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/90 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-ink/80">
+      <a href="episodes.html" class="hover:text-ink">Episodes</a>
+      <a href="guests-option-b.html" class="text-ink border-b-2 border-mustard pb-1">Guests</a>
+      <a href="articles.html" class="hover:text-ink">Articles</a>
+      <a href="calculators.html" class="hover:text-ink">Calculators</a>
+    </nav>
+  </div>
+</header>
+
+<section class="bg-marigold py-16 border-b border-ink/10">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-thisblue font-bold">The voices</div>
+    <h1 class="font-serif text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Not who they are.<br/><span class="font-script font-bold text-thisblue text-5xl md:text-7xl">What they said.</span></h1>
+    <p class="mt-5 text-ink/80 text-base md:text-lg max-w-2xl">Every guest leaves one sentence you can't unhear. Scan the room.</p>
+    <div class="mt-6 max-w-md">
+      <input id="search" type="search" placeholder="Search name, role, or what they said…" class="w-full bg-white/80 border border-ink/15 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-thisblue" />
+    </div>
+  </div>
+</section>
+
+<section class="py-14 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <div id="grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    <div id="empty" class="hidden text-center py-16 text-ink/60">No guests match that search.</div>
+  </div>
+</section>
+
+<footer class="bg-ink text-warmpaper/70 py-10 text-center text-xs">
+  Design mock — Option B · Quote-led. Each guest leads with a pull quote in Bricolage; identity sits small at the bottom.
+</footer>
+
+<script src="episodes.js"></script>
+<script>
+const sampleQuotes = {
+  'Vijai Mantri': "If you can hold for seven years, equity is the answer. If you can't, it isn't even the question.",
+  'Aashish Sommaiya': "Most investors don't lose to bad funds — they lose to fund-switching.",
+  'Anupam Tiwari': "The fund's return and the investor's return are two different numbers — almost always.",
+  'Amit Bivalkar': "The industry sells products. Your job is to buy outcomes.",
+  'Swaroop Mohanty': "Buying low is easy. Holding through low is the hard part.",
+  'Nimesh Chandan': "Behaviour, not knowledge, separates good investors from great ones.",
+  'Mahmood Basha': "A debt fund is not a fixed deposit. Pretending otherwise is how people get hurt.",
+  'Abhinav Angirish': "A house you live in is a lifestyle decision, not an investment.",
+  'Mrin Agarwal': "Most goals don't fail in execution. They fail in the framing.",
+  'Bhalchandra Joshi': "The cycle you can't sit through is the cycle you can't profit from."
+};
+const fillers = [
+  "The hardest part of investing is doing nothing.",
+  "Most financial mistakes are emotional, not mathematical.",
+  "Compounding rewards patience more than intelligence.",
+  "The biggest risk isn't the market — it's reacting to it.",
+  "Discipline beats forecasting. Every cycle.",
+  "Time in the market beats timing the market — by a wide margin."
+];
+const fillerFor = (name) => fillers[Math.abs([...name].reduce((a,c)=>a + c.charCodeAt(0), 0)) % fillers.length];
+
+const guestBg = ['bg-thisblue text-marigold','bg-marigold text-ink','bg-thatred text-warmpaper','bg-ink text-marigold'];
+
+const photoBadge = (g) =>
+  g.photo
+    ? `<img src="${g.photo}" alt="${g.name}" class="w-12 h-12 rounded-full object-cover ring-2 ring-cream" />`
+    : `<div class="avatar w-12 h-12 rounded-full ${g.bg || guestBg[0]} text-base ring-2 ring-cream">${g.initials || g.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>`;
+
+let allGuests = [];
+let activeQuery = '';
+
+function render() {
+  const q = activeQuery.trim().toLowerCase();
+  const filtered = allGuests.filter(g => {
+    if (!q) return true;
+    const quote = (sampleQuotes[g.name] || fillerFor(g.name)).toLowerCase();
+    return g.name.toLowerCase().includes(q) || (g.role||'').toLowerCase().includes(q) || quote.includes(q);
+  });
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  if (!filtered.length) { grid.innerHTML=''; empty.classList.remove('hidden'); return; }
+  empty.classList.add('hidden');
+  grid.innerHTML = filtered.map((g, i) => {
+    const isHero = (g.featured || g.eps >= 4) && i < 3;
+    const quote = sampleQuotes[g.name] || fillerFor(g.name);
+    return `
+      <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-2xl p-6 ${isHero ? 'border-2 border-marigold md:row-span-1' : 'border border-navy/10'} flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div class="quote-mark text-5xl mb-1">"</div>
+          <blockquote class="font-serif text-xl md:text-2xl font-bold text-ink leading-tight">${quote}</blockquote>
+        </div>
+        <div class="flex items-center gap-3 mt-6 pt-4 border-t border-navy/5">
+          ${photoBadge(g)}
+          <div class="flex-1 min-w-0">
+            <div class="font-semibold text-ink text-sm truncate">${g.name}</div>
+            <div class="text-[11px] text-ink/55 truncate">${g.role || ''}</div>
+          </div>
+          <div class="text-[10px] uppercase tracking-widest font-bold ${g.eps === 0 ? 'text-thatred' : 'text-thisblue'} shrink-0">${g.eps === 0 ? 'Soon' : g.eps + ' ep' + (g.eps !== 1 ? 's' : '')}</div>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+Promise.all([
+  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => []),
+  Promise.resolve(window.GUESTS || [])
+]).then(([rich, auto]) => {
+  const richByName = Object.fromEntries(rich.map(g => [g.name, g]));
+  const autoNames = new Set(auto.map(g => g.name));
+  const withEps = auto.map(g => ({ ...g, ...(richByName[g.name] || {}) }));
+  const upcoming = rich.filter(g => !autoNames.has(g.name)).map((g, i) => ({
+    ...g, eps: 0,
+    bg: guestBg[(withEps.length + i) % guestBg.length],
+    initials: g.name.split(' ').filter(p => p[0] === p[0].toUpperCase()).map(p => p[0]).slice(0,2).join('')
+  }));
+  allGuests = [...withEps, ...upcoming].sort((a,b) => (b.featured?1:0)-(a.featured?1:0) || b.eps - a.eps);
+  render();
+  document.getElementById('search').addEventListener('input', e => { activeQuery = e.target.value; render(); });
+});
+</script>
+</body>
+</html>
