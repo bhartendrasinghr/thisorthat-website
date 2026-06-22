@@ -251,12 +251,12 @@
 
       <!-- BIG NUMBER: Corpus lifespan -->
       <div id="lifespan-card" class="bg-ink text-warmpaper rounded-2xl p-7">
-        <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Your corpus lasts</div>
+        <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Your corpus lasts</div>
         <div class="flex items-end gap-4 mt-3">
-          <div class="font-display text-5xl md:text-6xl font-extrabold text-marigold tab-num leading-none"><span id="out-years">—</span></div>
-          <div class="text-base text-warmpaper/70 pb-1">years of retirement</div>
+          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none"><span id="out-years">—</span></div>
+          <div class="text-base opacity-70 pb-1">years of retirement</div>
         </div>
-        <div class="mt-3 text-sm text-warmpaper/70" id="out-status">—</div>
+        <div class="mt-3 text-sm opacity-80" id="out-status">—</div>
       </div>
 
       <!-- BUCKET ALLOCATION -->
@@ -567,21 +567,31 @@ function calc() {
   // Lifespan + status
   const lifespanEl = document.getElementById('lifespan-card');
   const yrsOut = document.getElementById('out-years');
+  const kickerOut = document.getElementById('out-kicker');
   const statusOut = document.getElementById('out-status');
+  const baseKicker = 'text-xs uppercase tracking-[0.3em] font-bold';
   if (depleted && yearsLasted < targetYrs) {
     lifespanEl.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
+    kickerOut.className = baseKicker + ' text-marigold';
+    yrsOut.className = 'text-marigold';
     yrsOut.textContent = Math.round(yearsLasted);
     statusOut.innerHTML = `<strong>Shortfall — falls ${targetYrs - Math.round(yearsLasted)} years short.</strong> Either increase corpus, reduce expenses, or assume better returns.`;
   } else if (!depleted && finalTotal > corpus * 0.5) {
     lifespanEl.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
+    kickerOut.className = baseKicker + ' text-marigold';
+    yrsOut.className = 'text-marigold';
     yrsOut.textContent = `${targetYrs}+`;
     statusOut.innerHTML = `<strong>Over-funded.</strong> Even after ${targetYrs} years, ₹${fmtINR(finalTotal)} remains. You could retire earlier or spend more.`;
   } else if (!depleted) {
     lifespanEl.className = 'bg-ink text-warmpaper rounded-2xl p-7';
+    kickerOut.className = baseKicker + ' text-marigold';
+    yrsOut.className = 'text-marigold';
     yrsOut.textContent = `${targetYrs}+`;
     statusOut.innerHTML = `<strong>On track.</strong> Ends with ₹${fmtINR(finalTotal)} remaining at year ${targetYrs}.`;
   } else {
     lifespanEl.className = 'bg-marigold text-ink rounded-2xl p-7';
+    kickerOut.className = baseKicker + ' text-thisblue';
+    yrsOut.className = 'text-ink';
     yrsOut.textContent = Math.round(yearsLasted);
     statusOut.innerHTML = `<strong>Just enough.</strong> Lasts the ${targetYrs} years you planned for.`;
   }
