@@ -19,3 +19,4 @@ node_modules/
 # - content/articles.json
 # - episodes.js
 .vercel
+.claude/

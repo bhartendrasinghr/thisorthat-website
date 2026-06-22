@@ -7,6 +7,7 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: false
+quote: "Most goals don't fail in execution. They fail in the framing."
 ---
 
 Founder of Finsafe. CFP with a fee-only practice — one of India's honest voices on financial planning.

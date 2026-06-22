@@ -7,6 +7,7 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: false
+quote: "A debt fund is not a fixed deposit. Pretending otherwise is how people get hurt."
 ---
 
 Fund manager at Baroda BNP Paribas Mutual Fund. Spoke on This or That about global investing and the NASDAQ-vs-Nifty debate.

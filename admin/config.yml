@@ -160,4 +160,5 @@ collections:
       - { name: "twitter", label: "Twitter / X URL", widget: "string", required: false }
       - { name: "website", label: "Website / company URL", widget: "string", required: false }
       - { name: "featured", label: "Featured on home page guest grid?", widget: "boolean", default: false, hint: "Featured guests show first on the home page, regardless of episode count." }
+      - { name: "quote", label: "Pull quote (one line, no quote marks)", widget: "string", required: false, hint: "The single sharpest line they said. Shows large on the guest card. Keep under 120 chars. Example: 'The industry sells products. Your job is to buy outcomes.'" }
       - { name: "body", label: "Bio", widget: "markdown", hint: "Use ## for section headings, > for pull quotes, **bold**, *italic*. This appears on the guest's profile page." }

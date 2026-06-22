@@ -7,6 +7,7 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: false
+quote: "If you can hold for seven years, equity is the answer. If you can't, it isn't even the question."
 ---
 
 Veteran asset manager and founder of Vijai Mantri Financial Services. Recurring guest on This or That with sharp views on Indian markets, family businesses, and behavioural investing.

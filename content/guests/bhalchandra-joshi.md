@@ -7,6 +7,7 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: false
+quote: "The cycle you can't sit through is the cycle you can't profit from."
 ---
 
 Three decades of mutual fund experience. On the show with the unsexy lesson nobody wants to hear: SIP works. He's seen it. The data backs it. The only thing that goes wrong is the investor.

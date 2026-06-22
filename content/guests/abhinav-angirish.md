@@ -7,6 +7,7 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: false
+quote: "A house you live in is a lifestyle decision, not an investment."
 ---
 
 Founder of Investonline.in. Demystifies real estate vs equity, and the emotional side of buying a house.
