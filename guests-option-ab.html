@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Guests · Option A · Roster — ThisOrThat</title>
+<title>Guests · Option A+B · Roster + Quote — ThisOrThat</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +14,7 @@
     thatred:  '#FF302D',
     ink:      { DEFAULT:'#1A1813', 3:'#57534A' },
     warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE' },
-    navy:     '#0249B1', mustard:'#FFC21F', alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE',
+    navy:'#0249B1', mustard:'#FFC21F', alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE',
     'navy-ink':'#1A1813'
   }, fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
@@ -27,9 +27,10 @@
 <style>
   body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
   .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
-  .lift:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(2,73,177,0.08); }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(2,73,177,0.08); }
   .avatar { display:inline-flex; align-items:center; justify-content:center; font-weight:800; letter-spacing:-0.04em; font-family:'Bricolage Grotesque',serif; }
-  .chip { padding:6px 14px; border-radius:999px; font-size:13px; font-weight:500; transition: all 150ms; cursor:pointer; }
+  .quote-mark { font-family:'Bricolage Grotesque',serif; font-weight:800; color:#FFC21F; line-height:1; }
+  .chip { padding:6px 14px; border-radius:999px; font-size:13px; font-weight:500; transition: all 150ms; cursor:pointer; white-space:nowrap; }
   .chip-active { background:#1A1813; color:#FCFBF8; }
   .chip-idle { background:white; color:#1A1813; border:1px solid rgba(2,73,177,0.15); }
   .chip-idle:hover { background: rgba(255,194,31,0.15); }
@@ -37,21 +38,19 @@
 </head>
 <body class="antialiased">
 
-<!-- DESIGN SWITCHER (only on mock pages) -->
 <div class="bg-ink text-warmpaper text-xs">
   <div class="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
     <span class="font-mono opacity-70">DESIGN MOCK · pick your favourite</span>
     <div class="flex flex-wrap gap-2">
-      <a href="guests-option-a.html" class="bg-marigold text-ink px-3 py-1 rounded-full font-semibold">A · Roster</a>
+      <a href="guests-option-a.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">A · Roster</a>
       <a href="guests-option-b.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">B · Quote-led</a>
-      <a href="guests-option-ab.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">A+B · Mix</a>
+      <a href="guests-option-ab.html" class="bg-marigold text-ink px-3 py-1 rounded-full font-semibold">A+B · Mix</a>
       <a href="guests-option-c.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full">C · By topic</a>
       <a href="guests.html" class="hover:bg-warmpaper/10 px-3 py-1 rounded-full opacity-70">Current</a>
     </div>
   </div>
 </div>
 
-<!-- NAV -->
 <header class="sticky top-0 z-50 backdrop-blur bg-cream/90 border-b border-navy/10">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3">
@@ -63,23 +62,23 @@
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-ink/80">
       <a href="episodes.html" class="hover:text-ink">Episodes</a>
-      <a href="guests-option-a.html" class="text-ink border-b-2 border-mustard pb-1">Guests</a>
+      <a href="guests-option-ab.html" class="text-ink border-b-2 border-mustard pb-1">Guests</a>
       <a href="articles.html" class="hover:text-ink">Articles</a>
       <a href="calculators.html" class="hover:text-ink">Calculators</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="bg-paper py-14 border-b border-navy/10">
+<!-- HERO (B's energy) -->
+<section class="bg-marigold py-14 border-b border-ink/10">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-600 font-semibold">The roster</div>
-    <h1 class="font-serif text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">The people we sit across from.</h1>
-    <p class="mt-4 text-ink/70 text-base md:text-lg max-w-2xl">Fund managers, founders, journalists, accountants — anyone whose work makes Indian money decisions a little clearer.</p>
+    <div class="text-xs uppercase tracking-[0.3em] text-thisblue font-bold">The voices</div>
+    <h1 class="font-serif text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Not who they are.<br/><span class="font-script font-bold text-thisblue text-5xl md:text-7xl">What they said.</span></h1>
+    <p class="mt-5 text-ink/80 text-base md:text-lg max-w-2xl">Fund managers, founders, advisors, journalists — <span id="total-count">—</span> people whose work made one Indian money decision a little clearer.</p>
   </div>
 </section>
 
-<!-- FEATURED ROW -->
+<!-- FEATURED ROW (A's hierarchy, B's quote-leading) -->
 <section class="py-12 bg-cream">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-end justify-between mb-6">
@@ -87,27 +86,27 @@
         <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Most listened</div>
         <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-ink mt-1">Featured voices</h2>
       </div>
-      <div class="hidden md:block text-xs text-ink/50">3 of <span id="total-count">—</span> guests</div>
+      <div class="hidden md:block text-xs text-ink/50 font-mono">3 of <span class="total-mirror">—</span></div>
     </div>
     <div id="featured-grid" class="grid md:grid-cols-3 gap-5"></div>
   </div>
 </section>
 
-<!-- FILTER + GRID -->
+<!-- FILTER + REST GRID -->
 <section class="py-12 bg-cream">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-end justify-between mb-5">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-5">
       <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-ink">All guests</h2>
-      <input id="search" type="search" placeholder="Search name or role…" class="w-56 md:w-72 bg-white border border-navy/15 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-mustard" />
+      <input id="search" type="search" placeholder="Search name, role, or quote…" class="w-full md:w-72 bg-white border border-navy/15 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-mustard" />
     </div>
     <div id="role-pills" class="flex flex-wrap gap-2 mb-6"></div>
-    <div id="rest-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    <div id="rest-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     <div id="empty" class="hidden text-center py-16 text-ink/60">No guests match that filter.</div>
   </div>
 </section>
 
 <footer class="bg-ink text-warmpaper/70 py-10 text-center text-xs">
-  Design mock — Option A · Roster. Featured voices get oversized cards with a pull quote; the rest sit in a tighter grid with role filters.
+  Design mock — Option A+B. Marigold hero + featured quote cards + role filters + tighter quote-led grid.
 </footer>
 
 <script src="episodes.js"></script>
@@ -118,23 +117,36 @@ const sampleQuotes = {
   'Anupam Tiwari': "The fund's return and the investor's return are two different numbers — almost always.",
   'Amit Bivalkar': "The industry sells products. Your job is to buy outcomes.",
   'Swaroop Mohanty': "Buying low is easy. Holding through low is the hard part.",
-  'Nimesh Chandan': "Behaviour, not knowledge, separates good investors from great ones."
+  'Nimesh Chandan': "Behaviour, not knowledge, separates good investors from great ones.",
+  'Mahmood Basha': "A debt fund is not a fixed deposit. Pretending otherwise is how people get hurt.",
+  'Abhinav Angirish': "A house you live in is a lifestyle decision, not an investment.",
+  'Mrin Agarwal': "Most goals don't fail in execution. They fail in the framing.",
+  'Bhalchandra Joshi': "The cycle you can't sit through is the cycle you can't profit from."
 };
+const fillers = [
+  "The hardest part of investing is doing nothing.",
+  "Most financial mistakes are emotional, not mathematical.",
+  "Compounding rewards patience more than intelligence.",
+  "The biggest risk isn't the market — it's reacting to it.",
+  "Discipline beats forecasting. Every cycle.",
+  "Time in the market beats timing the market — by a wide margin."
+];
+const fillerFor = (name) => fillers[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0)) % fillers.length];
 
 const roleBuckets = [
-  { key:'all',      label:'All',          match: () => true },
-  { key:'fund',     label:'Fund manager', match: r => /fund|portfolio|cio|equit|amc|asset/i.test(r) },
-  { key:'founder',  label:'Founder',      match: r => /founder|ceo|director|partner|co-?founder/i.test(r) },
-  { key:'advisor',  label:'Advisor / RIA',match: r => /advisor|wealth|cfp|planner|ria/i.test(r) },
-  { key:'writer',   label:'Author · CA',  match: r => /author|journal|writer|chartered|ca\b|tax/i.test(r) },
+  { key:'all',     label:'All',          match: () => true },
+  { key:'fund',    label:'Fund manager', match: r => /fund|portfolio|cio|equit|amc|asset/i.test(r) },
+  { key:'founder', label:'Founder',      match: r => /founder|ceo|director|partner|co-?founder/i.test(r) },
+  { key:'advisor', label:'Advisor / RIA',match: r => /advisor|wealth|cfp|planner|ria/i.test(r) },
+  { key:'writer',  label:'Author · CA',  match: r => /author|journal|writer|chartered|ca\b|tax/i.test(r) }
 ];
 
 const guestBg = ['bg-thisblue text-marigold','bg-marigold text-ink','bg-thatred text-warmpaper','bg-ink text-marigold'];
 
-const photoOrInitials = (g, size='w-full aspect-square') =>
+const photoBadge = (g, size='w-12 h-12', textSize='text-base') =>
   g.photo
-    ? `<div class="${size} rounded-2xl overflow-hidden"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover"/></div>`
-    : `<div class="avatar ${size} rounded-2xl ${g.bg || guestBg[0]} text-4xl">${g.initials || g.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>`;
+    ? `<img src="${g.photo}" alt="${g.name}" class="${size} rounded-full object-cover ring-2 ring-cream shrink-0" />`
+    : `<div class="avatar ${size} rounded-full ${g.bg || guestBg[0]} ${textSize} ring-2 ring-cream shrink-0">${g.initials || g.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>`;
 
 let allGuests = [];
 let activeRole = 'all';
@@ -143,31 +155,33 @@ let activeQuery = '';
 const matchesRole = (g) => roleBuckets.find(b => b.key === activeRole).match(g.role || '');
 const matchesQuery = (g) => {
   const q = activeQuery.trim().toLowerCase();
-  return !q || g.name.toLowerCase().includes(q) || (g.role||'').toLowerCase().includes(q);
+  if (!q) return true;
+  const quote = (sampleQuotes[g.name] || fillerFor(g.name)).toLowerCase();
+  return g.name.toLowerCase().includes(q) || (g.role||'').toLowerCase().includes(q) || quote.includes(q);
 };
 
 function renderFeatured() {
   const featured = allGuests.filter(g => g.featured || g.eps >= 4).slice(0, 3);
-  // Pad if not enough
   if (featured.length < 3) {
     allGuests.filter(g => g.eps > 0 && !featured.includes(g)).slice(0, 3 - featured.length).forEach(g => featured.push(g));
   }
-  document.getElementById('featured-grid').innerHTML = featured.map(g => `
-    <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-2xl border-2 border-marigold p-6 flex flex-col">
-      <div class="flex items-start gap-4">
-        ${photoOrInitials(g, 'w-20 h-20')}
-        <div class="flex-1 min-w-0">
-          <div class="font-serif font-extrabold text-xl text-ink leading-tight">${g.name}</div>
-          <div class="text-xs text-ink/60 mt-1 line-clamp-2">${g.role || ''}</div>
-          <div class="text-[10px] uppercase tracking-widest text-mustard-600 font-bold mt-2">${g.eps} episode${g.eps !== 1 ? 's' : ''}</div>
+  document.getElementById('featured-grid').innerHTML = featured.map(g => {
+    const quote = sampleQuotes[g.name] || fillerFor(g.name);
+    return `
+      <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-2xl border-2 border-marigold p-6 flex flex-col">
+        <div class="quote-mark text-5xl mb-1">"</div>
+        <blockquote class="font-serif text-xl md:text-2xl font-extrabold text-ink leading-tight">${quote}</blockquote>
+        <div class="flex items-center gap-3 mt-6 pt-4 border-t border-navy/5">
+          ${photoBadge(g, 'w-14 h-14', 'text-lg')}
+          <div class="flex-1 min-w-0">
+            <div class="font-semibold text-ink text-base truncate">${g.name}</div>
+            <div class="text-[11px] text-ink/55 truncate">${g.role || ''}</div>
+          </div>
+          <div class="text-[10px] uppercase tracking-widest font-bold ${g.eps === 0 ? 'text-thatred' : 'text-thisblue'} shrink-0">${g.eps === 0 ? 'Soon' : g.eps + ' ep' + (g.eps !== 1 ? 's' : '')}</div>
         </div>
-      </div>
-      <blockquote class="mt-5 font-serif text-lg leading-snug text-ink/90 italic">
-        "${sampleQuotes[g.name] || 'A long conversation about what works, what does not, and why most investors get the timing wrong.'}"
-      </blockquote>
-      <div class="mt-auto pt-4 text-sm text-thisblue font-semibold">Read the conversation →</div>
-    </a>
-  `).join('');
+      </a>
+    `;
+  }).join('');
 }
 
 function renderRest() {
@@ -178,26 +192,32 @@ function renderRest() {
     .filter(matchesQuery);
   const grid = document.getElementById('rest-grid');
   const empty = document.getElementById('empty');
-  if (!rest.length) {
-    grid.innerHTML = ''; empty.classList.remove('hidden');
-    return;
-  }
+  if (!rest.length) { grid.innerHTML = ''; empty.classList.remove('hidden'); return; }
   empty.classList.add('hidden');
-  grid.innerHTML = rest.map(g => `
-    <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-xl border border-navy/10 p-4 text-center">
-      ${photoOrInitials(g, 'w-full aspect-square')}
-      <div class="mt-3 font-semibold text-ink text-sm leading-tight">${g.name}</div>
-      <div class="text-[11px] text-ink/55 mt-0.5 line-clamp-1">${g.role || ''}</div>
-      <div class="text-[10px] uppercase tracking-widest ${g.eps === 0 ? 'text-thatred' : 'text-mustard-600'} font-bold mt-2">${g.eps === 0 ? 'Upcoming' : g.eps + ' ep' + (g.eps !== 1 ? 's' : '')}</div>
-    </a>
-  `).join('');
+  grid.innerHTML = rest.map(g => {
+    const quote = sampleQuotes[g.name] || fillerFor(g.name);
+    return `
+      <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift block bg-white rounded-xl border border-navy/10 p-5 flex flex-col justify-between min-h-[200px]">
+        <div>
+          <div class="quote-mark text-3xl mb-1 leading-none">"</div>
+          <blockquote class="font-serif text-base md:text-lg font-bold text-ink leading-snug">${quote}</blockquote>
+        </div>
+        <div class="flex items-center gap-3 mt-5 pt-3 border-t border-navy/5">
+          ${photoBadge(g, 'w-10 h-10', 'text-sm')}
+          <div class="flex-1 min-w-0">
+            <div class="font-semibold text-ink text-sm truncate">${g.name}</div>
+            <div class="text-[10px] text-ink/55 truncate">${g.role || ''}</div>
+          </div>
+          <div class="text-[10px] uppercase tracking-widest font-bold ${g.eps === 0 ? 'text-thatred' : 'text-mustard-600'} shrink-0">${g.eps === 0 ? 'Soon' : g.eps + ' ep'}</div>
+        </div>
+      </a>
+    `;
+  }).join('');
 }
 
 function renderPills() {
   document.getElementById('role-pills').innerHTML = roleBuckets.map(b => {
-    const count = b.key === 'all'
-      ? allGuests.length
-      : allGuests.filter(g => b.match(g.role || '')).length;
+    const count = b.key === 'all' ? allGuests.length : allGuests.filter(g => b.match(g.role || '')).length;
     return `<button data-key="${b.key}" class="chip ${activeRole === b.key ? 'chip-active' : 'chip-idle'}">${b.label} <span class="opacity-60 font-mono text-[11px] ml-1">${count}</span></button>`;
   }).join('');
   document.querySelectorAll('#role-pills button').forEach(btn => {
@@ -213,16 +233,17 @@ Promise.all([
   const autoNames = new Set(auto.map(g => g.name));
   const withEps = auto.map(g => ({ ...g, ...(richByName[g.name] || {}) }));
   const upcoming = rich.filter(g => !autoNames.has(g.name)).map((g, i) => ({
-    ...g, eps: 0, ep_ids: [],
+    ...g, eps: 0,
     bg: guestBg[(withEps.length + i) % guestBg.length],
     initials: g.name.split(' ').filter(p => p[0] === p[0].toUpperCase()).map(p => p[0]).slice(0,2).join('')
   }));
-  allGuests = [...withEps, ...upcoming].sort((a,b) => (b.featured?1:0) - (a.featured?1:0) || b.eps - a.eps);
+  allGuests = [...withEps, ...upcoming].sort((a,b) => (b.featured?1:0)-(a.featured?1:0) || b.eps - a.eps);
   document.getElementById('total-count').textContent = allGuests.length;
+  document.querySelectorAll('.total-mirror').forEach(el => el.textContent = allGuests.length);
   renderFeatured();
   renderPills();
   renderRest();
-  document.getElementById('search').addEventListener('input', (e) => { activeQuery = e.target.value; renderRest(); });
+  document.getElementById('search').addEventListener('input', e => { activeQuery = e.target.value; renderRest(); });
 });
 </script>
 </body>
