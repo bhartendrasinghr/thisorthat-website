@@ -6,7 +6,7 @@ photo: /media/chatgpt-image-jun-23-2026-08_45_11-pm.png
 linkedin: ""
 twitter: ""
 website: ""
-featured: false
+featured: true
 ---
 
 Founder of First Global. Among India's most-quoted contrarian investors on why Indian-only portfolios are risky.
