@@ -1,12 +1,12 @@
 ---
-name: "Dhirendra Kumar"
-slug: "dhirendra-kumar"
-role: "CEO, Value Research"
+name: Dhirendra Kumar
+slug: dhirendra-kumar
+role: CEO, Value Research
 photo: ""
 linkedin: ""
 twitter: ""
 website: ""
-featured: false
+featured: true
 ---
 
 CEO of Value Research. India's most-read mutual fund analyst, and a 7-figure-view ThisOrThat episode.
