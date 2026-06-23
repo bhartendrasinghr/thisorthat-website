@@ -1,0 +1,32 @@
+{
+  "host": {
+    "name": "Bhartendra Singh",
+    "tagline": "One podcast, one job: take the bullshit out of money.",
+    "photo": "",
+    "kicker": "The host",
+    "linkedin_url": "",
+    "twitter_url": "",
+    "instagram_url": "",
+    "contact_email": "hello@thisorthat.in"
+  },
+  "story_heading": "Why this show exists.",
+  "story_paragraphs": [
+    "India has a money problem that nobody is naming clearly. We're told to save, then told what to save in by people whose income depends on us picking the wrong thing. The advice is loud, the conflicts are quiet, and the cost is decades of compound under-performance for the people who can least afford it.",
+    "ThisOrThat started in 2023 as one conversation. It has become a brand built on the opposite of what dominates Indian personal finance media: clarity, candour, and the willingness to say the uncomfortable thing.",
+    "If the show has a single goal, it's this: to make sure that no listener can ever be sold a financial product without first being able to ask the three questions that would have saved them from buying it."
+  ],
+  "stats_kicker": "By the numbers",
+  "stats_heading": "The show, today.",
+  "stats_extra_label": "Episode 1 dropped",
+  "stats_extra_value": "2023",
+  "values_heading": "What this brand stands for.",
+  "values": [
+    { "number": "01", "title": "No sponsored advice.", "body": "We take show sponsorships. We do not take product sponsorships disguised as advice. Ever." },
+    { "number": "02", "title": "Inconvenient first.", "body": "If the truth is uncomfortable, we lead with it. If the comfortable thing is wrong, we say so." },
+    { "number": "03", "title": "Math beats vibes.", "body": "Every claim on the show has a number behind it. Or it doesn't get said." }
+  ],
+  "contact_kicker": "Get in touch",
+  "contact_heading": "Want to be on the show?",
+  "contact_body": "Press, partnerships, guest pitches, listener questions — all welcome.",
+  "press_kit_url": ""
+}

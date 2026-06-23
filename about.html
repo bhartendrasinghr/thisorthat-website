@@ -96,18 +96,13 @@
 <section class="bg-cream py-16">
   <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-5 gap-12 items-center">
     <div class="md:col-span-2">
-      <div class="avatar w-full aspect-square rounded-3xl bg-navy text-mustard text-7xl">BS</div>
+      <div id="host-photo" class="avatar w-full aspect-square rounded-3xl bg-navy text-mustard text-7xl">BS</div>
     </div>
     <div class="md:col-span-3">
-      <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The host</div>
-      <h1 class="font-serif text-5xl md:text-6xl font-bold text-navy-ink mt-2 leading-[1.05]">Bhartendra Singh</h1>
-      <p class="mt-4 text-lg text-navy-ink/70">Twenty years in markets. Ten in asking better questions. One podcast, one job: take the bullshit out of money.</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">LinkedIn</a>
-        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">Twitter / X</a>
-        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">Instagram</a>
-        <a href="mailto:hello@thisorthat.in" class="bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">hello@thisorthat.in</a>
-      </div>
+      <div id="host-kicker" class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The host</div>
+      <h1 id="host-name" class="font-serif text-5xl md:text-6xl font-bold text-navy-ink mt-2 leading-[1.05]">Bhartendra Singh</h1>
+      <p id="host-tagline" class="mt-4 text-lg text-navy-ink/70">—</p>
+      <div id="host-links" class="mt-6 flex flex-wrap gap-3"></div>
     </div>
   </div>
 </section>
@@ -115,36 +110,32 @@
 <!-- STORY -->
 <section class="py-16 bg-paper">
   <div class="max-w-3xl mx-auto px-6">
-    <h2 class="font-serif text-4xl font-bold text-navy-ink">Why this show exists.</h2>
-    <div class="mt-6 space-y-5 text-navy-ink/85 text-lg leading-relaxed font-serif">
-      <p>India has a money problem that nobody is naming clearly. We're told to save, then told what to save in by people whose income depends on us picking the wrong thing. The advice is loud, the conflicts are quiet, and the cost is decades of compound under-performance for the people who can least afford it.</p>
-      <p>ThisOrThat started in 2023 as one conversation. It has become a brand built on the opposite of what dominates Indian personal finance media: <em>clarity, candour, and the willingness to say the uncomfortable thing.</em></p>
-      <p>If the show has a single goal, it's this: to make sure that no listener can ever be sold a financial product without first being able to ask the three questions that would have saved them from buying it.</p>
-    </div>
+    <h2 id="story-heading" class="font-serif text-4xl font-bold text-navy-ink">Why this show exists.</h2>
+    <div id="story-body" class="mt-6 space-y-5 text-navy-ink/85 text-lg leading-relaxed font-serif"></div>
   </div>
 </section>
 
 <!-- BY THE NUMBERS -->
 <section class="py-16 bg-navy text-cream">
   <div class="max-w-5xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">By the numbers</div>
-    <h2 class="font-serif text-4xl font-bold mt-2">The show, today.</h2>
+    <div id="stats-kicker" class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">By the numbers</div>
+    <h2 id="stats-heading" class="font-serif text-4xl font-bold mt-2">The show, today.</h2>
     <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8">
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard" data-stat-episodes>54</div>
+        <div class="font-serif text-5xl font-bold text-mustard" data-stat-episodes>—</div>
         <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Episodes</div>
       </div>
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard" data-stat-guests>30</div>
+        <div class="font-serif text-5xl font-bold text-mustard" data-stat-guests>—</div>
         <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Guests</div>
       </div>
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard">3</div>
+        <div class="font-serif text-5xl font-bold text-mustard" data-stat-calcs>—</div>
         <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Calculators live</div>
       </div>
       <div>
-        <div class="font-serif text-5xl font-bold text-mustard">2023</div>
-        <div class="text-sm uppercase tracking-widest text-cream/60 mt-2">Episode 1 dropped</div>
+        <div id="stats-extra-value" class="font-serif text-5xl font-bold text-mustard">2023</div>
+        <div id="stats-extra-label" class="text-sm uppercase tracking-widest text-cream/60 mt-2">Episode 1 dropped</div>
       </div>
     </div>
   </div>
@@ -153,37 +144,18 @@
 <!-- VALUES -->
 <section class="py-16 bg-cream">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="font-serif text-4xl font-bold text-navy-ink">What this brand stands for.</h2>
-    <div class="mt-10 grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-2xl border border-navy/10">
-        <div class="font-serif text-5xl font-bold text-mustard-deep">01</div>
-        <h3 class="font-serif text-xl font-bold mt-3 text-navy-ink">No sponsored advice.</h3>
-        <p class="mt-2 text-sm text-navy-ink/70 leading-relaxed">We take show sponsorships. We do not take product sponsorships disguised as advice. Ever.</p>
-      </div>
-      <div class="bg-white p-6 rounded-2xl border border-navy/10">
-        <div class="font-serif text-5xl font-bold text-mustard-deep">02</div>
-        <h3 class="font-serif text-xl font-bold mt-3 text-navy-ink">Inconvenient first.</h3>
-        <p class="mt-2 text-sm text-navy-ink/70 leading-relaxed">If the truth is uncomfortable, we lead with it. If the comfortable thing is wrong, we say so.</p>
-      </div>
-      <div class="bg-white p-6 rounded-2xl border border-navy/10">
-        <div class="font-serif text-5xl font-bold text-mustard-deep">03</div>
-        <h3 class="font-serif text-xl font-bold mt-3 text-navy-ink">Math beats vibes.</h3>
-        <p class="mt-2 text-sm text-navy-ink/70 leading-relaxed">Every claim on the show has a number behind it. Or it doesn't get said.</p>
-      </div>
-    </div>
+    <h2 id="values-heading" class="font-serif text-4xl font-bold text-navy-ink">What this brand stands for.</h2>
+    <div id="values-grid" class="mt-10 grid md:grid-cols-3 gap-6"></div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="py-20 bg-mustard text-navy-ink">
   <div class="max-w-3xl mx-auto px-6 text-center">
-    <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Get in touch</div>
-    <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3">Want to be on the show?</h2>
-    <p class="mt-4 text-navy-ink/80 max-w-xl mx-auto">Press, partnerships, guest pitches, listener questions — all welcome.</p>
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="mailto:hello@thisorthat.in" class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">hello@thisorthat.in</a>
-      <a href="#" class="border-2 border-navy text-navy-ink px-6 py-3 rounded-full font-semibold hover:bg-navy hover:text-cream transition">Press kit</a>
-    </div>
+    <div id="contact-kicker" class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Get in touch</div>
+    <h2 id="contact-heading" class="font-serif text-4xl md:text-5xl font-bold mt-3">—</h2>
+    <p id="contact-body" class="mt-4 text-navy-ink/80 max-w-xl mx-auto">—</p>
+    <div id="contact-ctas" class="mt-8 flex flex-wrap justify-center gap-3"></div>
   </div>
 </section>
 
@@ -241,14 +213,83 @@ if (window.EPISODES) {
   document.querySelectorAll('[data-stat-episodes]').forEach(el => el.textContent = window.EPISODES.length);
 }
 if (window.GUESTS) {
-  // Include CMS-only "upcoming" guests in the count
-  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
+  fetch('content/guests.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => [])
     .then(rich => {
       const autoNames = new Set(window.GUESTS.map(g => g.name));
       const total = window.GUESTS.length + rich.filter(g => !autoNames.has(g.name)).length;
       document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = total);
     });
 }
+// Calculators live — count the calc-*.html files we link from calculators.html
+document.querySelectorAll('[data-stat-calcs]').forEach(el => el.textContent = '7');
+</script>
+
+<script>
+// Render the About page from CMS-controlled content/about.json
+const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+fetch('content/about.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+
+    // HERO
+    const host = d.host || {};
+    if (host.kicker) document.getElementById('host-kicker').textContent = host.kicker;
+    if (host.name)   document.getElementById('host-name').textContent   = host.name;
+    if (host.tagline) document.getElementById('host-tagline').textContent = host.tagline;
+    document.title = `About — ${host.name || 'ThisOrThat'}`;
+
+    if (host.photo) {
+      const ph = document.getElementById('host-photo');
+      ph.className = 'w-full aspect-square rounded-3xl overflow-hidden bg-navy';
+      ph.innerHTML = `<img src="${escapeHtml(host.photo)}" alt="${escapeHtml(host.name || 'Host')}" class="w-full h-full object-cover" />`;
+    }
+
+    const links = [];
+    if (host.linkedin_url)  links.push({ label: 'LinkedIn',    href: host.linkedin_url,  primary: false });
+    if (host.twitter_url)   links.push({ label: 'Twitter / X', href: host.twitter_url,   primary: false });
+    if (host.instagram_url) links.push({ label: 'Instagram',   href: host.instagram_url, primary: false });
+    if (host.contact_email) links.push({ label: host.contact_email, href: `mailto:${host.contact_email}`, primary: true });
+    document.getElementById('host-links').innerHTML = links.map(l =>
+      l.primary
+        ? `<a href="${escapeHtml(l.href)}" class="bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">${escapeHtml(l.label)}</a>`
+        : `<a href="${escapeHtml(l.href)}" target="_blank" rel="noopener" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">${escapeHtml(l.label)}</a>`
+    ).join('');
+
+    // STORY
+    if (d.story_heading) document.getElementById('story-heading').textContent = d.story_heading;
+    document.getElementById('story-body').innerHTML = (d.story_paragraphs || []).map(p =>
+      `<p>${escapeHtml(p)}</p>`
+    ).join('');
+
+    // STATS (the 4th tile is editable; episodes/guests/calcs are auto-counted)
+    if (d.stats_kicker)  document.getElementById('stats-kicker').textContent  = d.stats_kicker;
+    if (d.stats_heading) document.getElementById('stats-heading').textContent = d.stats_heading;
+    if (d.stats_extra_label) document.getElementById('stats-extra-label').textContent = d.stats_extra_label;
+    if (d.stats_extra_value) document.getElementById('stats-extra-value').textContent = d.stats_extra_value;
+
+    // VALUES
+    if (d.values_heading) document.getElementById('values-heading').textContent = d.values_heading;
+    document.getElementById('values-grid').innerHTML = (d.values || []).map(v => `
+      <div class="bg-white p-6 rounded-2xl border border-navy/10">
+        <div class="font-serif text-5xl font-bold text-mustard-deep">${escapeHtml(v.number || '')}</div>
+        <h3 class="font-serif text-xl font-bold mt-3 text-navy-ink">${escapeHtml(v.title || '')}</h3>
+        <p class="mt-2 text-sm text-navy-ink/70 leading-relaxed">${escapeHtml(v.body || '')}</p>
+      </div>
+    `).join('');
+
+    // CONTACT
+    if (d.contact_kicker)  document.getElementById('contact-kicker').textContent  = d.contact_kicker;
+    if (d.contact_heading) document.getElementById('contact-heading').textContent = d.contact_heading;
+    if (d.contact_body)    document.getElementById('contact-body').textContent    = d.contact_body;
+
+    const ctas = [];
+    if (host.contact_email) ctas.push(`<a href="mailto:${escapeHtml(host.contact_email)}" class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">${escapeHtml(host.contact_email)}</a>`);
+    if (d.press_kit_url)    ctas.push(`<a href="${escapeHtml(d.press_kit_url)}" target="_blank" rel="noopener" class="border-2 border-navy text-navy-ink px-6 py-3 rounded-full font-semibold hover:bg-navy hover:text-cream transition">Press kit</a>`);
+    document.getElementById('contact-ctas').innerHTML = ctas.join('');
+  })
+  .catch(() => {});
 </script>
 </body>
 </html>

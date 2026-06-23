@@ -80,23 +80,6 @@ collections:
               - { name: "hero_subtitle", label: "Hero subtitle", widget: "text" }
               - { name: "stat_3_label", label: "3rd stat label", widget: "string" }
               - { name: "stat_3_value", label: "3rd stat value", widget: "string" }
-          - label: "About page"
-            name: "about"
-            widget: "object"
-            fields:
-              - { name: "host_name", label: "Host name", widget: "string" }
-              - { name: "host_tagline", label: "Host one-liner", widget: "text" }
-              - name: "story_paragraphs"
-                label: "Story paragraphs"
-                widget: "list"
-                field: { name: "para", label: "Paragraph", widget: "text" }
-              - name: "values"
-                label: "Brand values (3 cards)"
-                widget: "list"
-                fields:
-                  - { name: "number", label: "Number", widget: "string" }
-                  - { name: "title", label: "Title", widget: "string" }
-                  - { name: "body", label: "Body", widget: "text" }
           - label: "Newsletter"
             name: "newsletter"
             widget: "object"
@@ -104,6 +87,55 @@ collections:
               - { name: "name", label: "Newsletter name", widget: "string" }
               - { name: "tagline", label: "Newsletter tagline", widget: "string" }
               - { name: "subscribe_url", label: "Subscribe URL", widget: "string", required: false }
+
+  # ───────── ABOUT PAGE ─────────
+  # Drives /about.html. Edit anything here, hit Publish, the page rebuilds in ~30s.
+  - name: "about_page"
+    label: "About Page"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "about"
+        label: "About page content"
+        file: "content/about.json"
+        fields:
+          - label: "Host (hero block)"
+            name: "host"
+            widget: "object"
+            fields:
+              - { name: "kicker", label: "Eyebrow above name", widget: "string", default: "The host", hint: "Tiny uppercase line above the host name" }
+              - { name: "name", label: "Host name", widget: "string" }
+              - { name: "tagline", label: "Host one-liner", widget: "text", hint: "Short sentence under the name" }
+              - { name: "photo", label: "Host photo", widget: "image", required: false, hint: "Square image works best. If blank, falls back to the BS initials block." }
+              - { name: "contact_email", label: "Contact email", widget: "string", hint: "Powers the 'hello@…' button" }
+              - { name: "linkedin_url", label: "LinkedIn URL", widget: "string", required: false }
+              - { name: "twitter_url", label: "Twitter / X URL", widget: "string", required: false }
+              - { name: "instagram_url", label: "Instagram URL", widget: "string", required: false }
+          - { name: "story_heading", label: "Story — heading", widget: "string" }
+          - name: "story_paragraphs"
+            label: "Story — paragraphs"
+            widget: "list"
+            hint: "Add or remove paragraphs. They render in order, in serif type."
+            field: { name: "para", label: "Paragraph", widget: "text" }
+          - { name: "stats_kicker", label: "Stats — eyebrow", widget: "string", default: "By the numbers" }
+          - { name: "stats_heading", label: "Stats — heading", widget: "string", default: "The show, today." }
+          - { name: "stats_extra_label", label: "Stats — 4th tile label", widget: "string", default: "Episode 1 dropped", hint: "Episodes / Guests / Calculators are auto-counted. This is the 4th tile." }
+          - { name: "stats_extra_value", label: "Stats — 4th tile value", widget: "string", default: "2023" }
+          - { name: "values_heading", label: "Values — heading", widget: "string", default: "What this brand stands for." }
+          - name: "values"
+            label: "Values (3 cards)"
+            widget: "list"
+            min: 1
+            max: 6
+            fields:
+              - { name: "number", label: "Number (01 / 02 …)", widget: "string" }
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "body", label: "Body", widget: "text" }
+          - { name: "contact_kicker", label: "Contact — eyebrow", widget: "string", default: "Get in touch" }
+          - { name: "contact_heading", label: "Contact — heading", widget: "string", default: "Want to be on the show?" }
+          - { name: "contact_body", label: "Contact — body", widget: "text" }
+          - { name: "press_kit_url", label: "Press kit URL (optional)", widget: "string", required: false, hint: "If empty, the Press kit button is hidden." }
 
   # ───────── EPISODES (overrides) ─────────
   # Episodes auto-sync from YouTube via sync.py.
