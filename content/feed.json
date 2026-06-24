@@ -1,0 +1,20 @@
+{
+  "items": [
+    { "variant": "blue",       "label": "Slow Thought · 042",   "title": "The market doesn't reward intelligence. It rewards patience that looks like stupidity.", "meta": "♥ 4.2K" },
+    { "variant": "marigold",   "label": "Data card",            "big_number": "73%",  "title": "of active equity funds underperform their benchmark over 10 years.", "meta": "SPIVA India 2024" },
+    { "variant": "paper",      "label": "Quote · Ep 086",       "title": "The hardest part of investing isn't picking the right stock. It's not selling the right stock too early.", "attribution": "Saurabh Mukherjea", "meta": "" },
+    { "variant": "red",        "label": "ThisOrThat",           "title": "A 1% expense ratio over 30 years eats 26% of your final corpus.", "meta": "♥ 5.1K" },
+    { "variant": "ink",        "label": "Insight",              "title": "Your portfolio doesn't care that you're stressed. But your decisions do.", "meta": "Slow Thought 038" },
+    { "variant": "paper-blue", "label": "Carousel · 8 slides",  "title": "How to read a mutual fund factsheet in 60 seconds — without falling for the marketing.", "meta": "Swipe →" },
+    { "variant": "marigold",   "label": "ThisOrThat",           "title": "Real estate felt safe. Equity looked risky. Over 20 years, only one built wealth.", "meta": "♥ 6.4K" },
+    { "variant": "blue",       "label": "Behaviour",            "title": "If you can't explain your portfolio in one sentence, you don't own it. It owns you.", "meta": "Slow Thought 029" },
+    { "variant": "paper",      "label": "Data card · Tax",      "big_number": "₹2.4L", "title": "average annual tax leakage from sub-optimal salary structuring.", "meta": "ClearTax 2025" },
+    { "variant": "ink",        "label": "Quote · Ep 087",       "title": "You don't retire on your salary. You retire on the discipline of your 30s.", "attribution": "Monika Halan", "meta": "" },
+    { "variant": "red",        "label": "Slow Thought · 044",   "title": "Most 'long-term investors' are short-term investors who haven't had their nerve tested yet.", "meta": "♥ 3.8K" },
+    { "variant": "marigold",   "label": "Data card",            "big_number": "8.2%", "title": "real return of Indian equity over 25 years. The asset everyone is 'scared of.'", "meta": "NSE Total Returns Index" },
+    { "variant": "paper-blue", "label": "Insight",              "title": "Your insurance agent is not your financial advisor. Stop confusing the two.", "meta": "ThisOrThat" },
+    { "variant": "blue",       "label": "Carousel · 6 slides",  "title": "The 5 numbers you should know about your own finances. Most people don't know any of them.", "meta": "Swipe →" },
+    { "variant": "paper",      "label": "Quote · Ep 081",       "title": "You can be richer than your neighbour and poorer than yourself. Both at the same time.", "attribution": "Morgan Housel", "meta": "" },
+    { "variant": "red",        "label": "Slow Thought · 040",   "title": "The most expensive sentence in personal finance: 'I'll start next month.'", "meta": "♥ 7.1K" }
+  ]
+}

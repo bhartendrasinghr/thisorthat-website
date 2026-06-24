@@ -137,6 +137,38 @@ collections:
           - { name: "contact_body", label: "Contact — body", widget: "text" }
           - { name: "press_kit_url", label: "Press kit URL (optional)", widget: "string", required: false, hint: "If empty, the Press kit button is hidden." }
 
+  # ───────── FEED (Insta-style cards) ─────────
+  # Drives /feed.html. Each item is a square card. Pick a colour variant,
+  # write a label + title, optional big-number / attribution / meta footer.
+  - name: "feed"
+    label: "Feed"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "feed_items"
+        label: "Feed cards"
+        file: "content/feed.json"
+        fields:
+          - name: "items"
+            label: "Cards (drag to reorder · first card shows first)"
+            widget: "list"
+            summary: "{{fields.label}} · {{fields.title | truncate(50)}}"
+            fields:
+              - { name: "variant", label: "Colour", widget: "select", default: "blue", options: [
+                    { label: "Blue (this-blue background, marigold text)",         value: "blue" },
+                    { label: "Marigold (yellow background, ink text)",             value: "marigold" },
+                    { label: "Paper (cream background, ink text + border)",        value: "paper" },
+                    { label: "Red (that-red background, warm-paper text)",         value: "red" },
+                    { label: "Ink (black background, marigold text)",              value: "ink" },
+                    { label: "Paper-blue (cream background, blue text + border)",  value: "paper-blue" }
+                  ], hint: "Pick a colour. Rotate variants for visual rhythm." }
+              - { name: "label", label: "Chip label (top-left)", widget: "string", hint: "Tiny uppercase tag. e.g. 'Slow Thought · 042', 'Quote · Ep 086', 'Data card'." }
+              - { name: "big_number", label: "Big number (optional)", widget: "string", required: false, hint: "For data cards. e.g. '73%', '₹2.4L'. Renders huge above the title." }
+              - { name: "title", label: "Main text", widget: "text", hint: "The sharp line. Keep under ~140 chars or it overflows the card." }
+              - { name: "attribution", label: "Attribution (optional)", widget: "string", required: false, hint: "For quote cards — just the name. e.g. 'Saurabh Mukherjea'. The em-dash renders automatically." }
+              - { name: "meta", label: "Footer (bottom-right, optional)", widget: "string", required: false, hint: "Likes, source, or 'Swipe →'. Examples: '♥ 4.2K', 'SPIVA India 2024', 'Swipe →'. Leave blank to hide." }
+
   # ───────── EPISODES (overrides) ─────────
   # Episodes auto-sync from YouTube via sync.py.
   # If you need to override guest name, category, or featured status for any episode,

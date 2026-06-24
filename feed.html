@@ -35,12 +35,12 @@
 <style>
   body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
   .font-serif { font-family: 'Bricolage Grotesque', serif; }
-  .ig-1 { background: #0249B1; color: #FCFBF8; }
-  .ig-2 { background: #FFC21F; color: #1A1813; }
-  .ig-3 { background: #FCFBF8; color: #1A1813; border: 1px solid #E1DDD1; }
-  .ig-4 { background: #FF302D; color: #FCFBF8; }
-  .ig-5 { background: #1A1813; color: #FFC21F; }
-  .ig-6 { background: #FCFBF8; color: #0249B1; border: 1px solid #E1DDD1; }
+  .v-blue       { background: #0249B1; color: #FCFBF8; }
+  .v-marigold   { background: #FFC21F; color: #1A1813; }
+  .v-paper      { background: #FCFBF8; color: #1A1813; border: 1px solid #E1DDD1; }
+  .v-red        { background: #FF302D; color: #FCFBF8; }
+  .v-ink        { background: #1A1813; color: #FFC21F; }
+  .v-paper-blue { background: #FCFBF8; color: #0249B1; border: 1px solid #E1DDD1; }
   .lift { transition: transform 200ms ease; cursor: pointer; }
   .lift:hover { transform: translateY(-2px); }
   .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
@@ -127,36 +127,49 @@
 </footer>
 
 <script>
-const cards = [
-  { variant: 'ig-1', label: 'Slow Thought · 042', html: '<div class="font-serif text-2xl leading-tight font-bold">The market doesn\'t reward intelligence. It rewards patience that looks like stupidity.</div>', meta: '♥ 4.2K' },
-  { variant: 'ig-2', label: 'Data card', html: '<div><div class="font-serif text-5xl font-black">73%</div><div class="font-serif text-base font-semibold mt-2 leading-snug">of active equity funds underperform their benchmark over 10 years.</div></div>', meta: 'SPIVA India 2024' },
-  { variant: 'ig-3', label: 'Quote · Ep 086', html: '<div class="font-serif text-xl leading-snug font-semibold">"The hardest part of investing isn\'t picking the right stock. It\'s not selling the right stock too early."</div><div class="text-xs font-semibold mt-3">— Saurabh Mukherjea</div>', meta: '' },
-  { variant: 'ig-4', label: 'ThisOrThat', html: '<div class="font-serif text-3xl font-bold leading-tight">A 1% expense ratio over 30 years eats 26% of your final corpus.</div>', meta: '♥ 5.1K' },
-  { variant: 'ig-5', label: 'Insight', html: '<div class="font-serif text-2xl leading-tight font-bold">Your portfolio doesn\'t care that you\'re stressed. <span class="text-cream">But your decisions do.</span></div>', meta: 'Slow Thought 038' },
-  { variant: 'ig-6', label: 'Carousel · 8 slides', html: '<div class="font-serif text-xl leading-snug font-semibold">How to read a mutual fund factsheet in 60 seconds — without falling for the marketing.</div>', meta: 'Swipe →' },
-  { variant: 'ig-2', label: 'ThisOrThat', html: '<div class="font-serif text-2xl font-bold leading-tight">Real estate <span class="italic">felt</span> safe. Equity <span class="italic">looked</span> risky. Over 20 years, only one built wealth.</div>', meta: '♥ 6.4K' },
-  { variant: 'ig-1', label: 'Behaviour', html: '<div class="font-serif text-2xl font-bold leading-tight">If you can\'t explain your portfolio in one sentence, you don\'t own it. <span class="text-mustard">It owns you.</span></div>', meta: 'Slow Thought 029' },
-  { variant: 'ig-3', label: 'Data card · Tax', html: '<div><div class="font-serif text-5xl font-black">₹2.4L</div><div class="font-serif text-base font-semibold mt-2 leading-snug">average annual tax leakage from sub-optimal salary structuring.</div></div>', meta: 'ClearTax 2025' },
-  { variant: 'ig-5', label: 'Quote · Ep 087', html: '<div class="font-serif text-xl leading-snug font-semibold">"You don\'t retire on your salary. You retire on the discipline of your 30s."</div><div class="text-xs font-semibold mt-3 text-cream/80">— Monika Halan</div>', meta: '' },
-  { variant: 'ig-4', label: 'Slow Thought · 044', html: '<div class="font-serif text-2xl leading-tight font-bold">Most "long-term investors" are short-term investors who haven\'t had their nerve tested yet.</div>', meta: '♥ 3.8K' },
-  { variant: 'ig-2', label: 'Data card', html: '<div><div class="font-serif text-5xl font-black">8.2%</div><div class="font-serif text-base font-semibold mt-2 leading-snug">real return of Indian equity over 25 years. The asset everyone is "scared of."</div></div>', meta: 'NSE Total Returns Index' },
-  { variant: 'ig-6', label: 'Insight', html: '<div class="font-serif text-2xl leading-tight font-semibold">Your insurance agent is not your financial advisor. <br/><br/>Stop confusing the two.</div>', meta: 'ThisOrThat' },
-  { variant: 'ig-1', label: 'Carousel · 6 slides', html: '<div class="font-serif text-xl leading-snug font-semibold">The 5 numbers you should know about your own finances. Most people don\'t know any of them.</div>', meta: 'Swipe →' },
-  { variant: 'ig-3', label: 'Quote · Ep 081', html: '<div class="font-serif text-xl leading-snug font-semibold">"You can be richer than your neighbour and poorer than yourself. Both at the same time."</div><div class="text-xs font-semibold mt-3">— Morgan Housel</div>', meta: '' },
-  { variant: 'ig-4', label: 'Slow Thought · 040', html: '<div class="font-serif text-2xl leading-tight font-bold">The most expensive sentence in personal finance: "I\'ll start next month."</div>', meta: '♥ 7.1K' },
-];
+const VARIANT_CLASS = {
+  'blue': 'v-blue', 'marigold': 'v-marigold', 'paper': 'v-paper',
+  'red': 'v-red', 'ink': 'v-ink', 'paper-blue': 'v-paper-blue'
+};
+const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function renderCard(c) {
+  const variantClass = VARIANT_CLASS[c.variant] || 'v-blue';
+  const isQuote = !!c.attribution;
+  const bigNum = c.big_number
+    ? `<div class="font-serif text-5xl font-black leading-none">${escapeHtml(c.big_number)}</div>`
+    : '';
+  // Title sizing: smaller when there's a big_number above it
+  const titleSize = c.big_number ? 'text-base mt-2' : (isQuote ? 'text-xl' : 'text-2xl');
+  const titleText = isQuote ? `"${escapeHtml(c.title)}"` : escapeHtml(c.title);
+  const title = `<div class="font-serif ${titleSize} leading-snug font-semibold">${titleText}</div>`;
+  const attribution = c.attribution
+    ? `<div class="text-xs font-semibold mt-3 opacity-90">— ${escapeHtml(c.attribution)}</div>`
+    : '';
+  return `
+    <div class="lift ${variantClass} aspect-square rounded-2xl p-6 flex flex-col justify-between">
+      <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">${escapeHtml(c.label || '')}</div>
+      <div>${bigNum}${title}${attribution}</div>
+      <div class="flex items-center justify-between text-[11px] opacity-70">
+        <span>ThisOrThat</span>
+        <span>${escapeHtml(c.meta || '')}</span>
+      </div>
+    </div>
+  `;
+}
 
 const grid = document.getElementById('feed-grid');
-grid.innerHTML = cards.map(c => `
-  <div class="lift ${c.variant} aspect-square rounded-2xl p-6 flex flex-col justify-between">
-    <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">${c.label}</div>
-    ${c.html}
-    <div class="flex items-center justify-between text-[11px] opacity-70">
-      <span>ThisOrThat</span>
-      <span>${c.meta}</span>
-    </div>
-  </div>
-`).join('');
+fetch('content/feed.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : { items: [] })
+  .then(d => {
+    const items = (d && d.items) || [];
+    grid.innerHTML = items.length
+      ? items.map(renderCard).join('')
+      : '<div class="col-span-full text-center py-20 text-ink/60">No feed cards yet. Add some in the CMS → Feed.</div>';
+  })
+  .catch(() => {
+    grid.innerHTML = '<div class="col-span-full text-center py-20 text-ink/60">Could not load the feed.</div>';
+  });
 </script>
 
 
