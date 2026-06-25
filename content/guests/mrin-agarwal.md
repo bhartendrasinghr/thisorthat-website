@@ -1,21 +1,20 @@
 ---
-name: "Mrin Agarwal"
-slug: "mrin-agarwal"
-role: "Founder, Finsafe"
-photo: ""
-linkedin: ""
+name: Mrin Agarwal
+slug: mrin-agarwal
+role: Founder, Finsafe
+photo: /media/chatgpt-image-jun-25-2026-01_01_10-pm.png
+linkedin: https://www.linkedin.com/in/mrin-agarwal-9445425/
 twitter: ""
 website: ""
 featured: false
-quote: "Most goals don't fail in execution. They fail in the framing."
+quote: Most goals don't fail in execution. They fail in the framing.
 ---
-
-Founder of Finsafe. CFP with a fee-only practice — one of India's honest voices on financial planning.
+30 years of experience in wealth management and financial education and inclusion. Her passion is to empower millions of working Indians by providing them the tools needed to manage their personal finance and be financially independent. 
 
 ## In their own words
 
-> Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.
+> We need to move away from trying to forecast returns to what we can control, which is how much we are investing, where and for how lon
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+She cares deeply about shifting the investor’s focus from things they cannot control (market movements, high-return predictions) to the structural pillars they can control.
