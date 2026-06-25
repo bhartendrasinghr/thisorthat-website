@@ -7,7 +7,7 @@ linkedin: https://www.linkedin.com/in/mrin-agarwal-9445425/
 twitter: ""
 website: ""
 featured: false
-quote: Most goals don't fail in execution. They fail in the framing.
+quote: ""
 ---
 30 years of experience in wealth management and financial education and inclusion. Her passion is to empower millions of working Indians by providing them the tools needed to manage their personal finance and be financially independent. 
 
