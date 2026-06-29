@@ -5,6 +5,12 @@
   "framework": null,
   "cleanUrls": false,
   "trailingSlash": true,
+  "crons": [
+    {
+      "path": "/api/cron-sync",
+      "schedule": "30 3 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/logo.png",
