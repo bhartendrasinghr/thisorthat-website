@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Full Financial Plan — ThisOrThat with Bhartendra</title>
+<meta name="description" content="Every goal, every SIP, in one honest plan. Drop in retirement, home, kid's college, emergency fund — see if it all fits in your take-home." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .goal-row { transition: background 150ms ease; }
+  .goal-row:hover { background: #FFF7DE; }
+  .progress-bar { height:6px; border-radius:999px; background:#E1DDD1; overflow:hidden; }
+  .progress-bar > div { height:100%; transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .chip-add { padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600; background:white; color:#0249B1; border:1px dashed rgba(2,73,177,0.4); transition:all 150ms; cursor:pointer; }
+  .chip-add:hover { background:#FFF7DE; border-color:#FFC21F; border-style:solid; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Full Plan</span>
+</div>
+
+<section class="bg-cream pb-10">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Every goal, every SIP, one honest verdict</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Your full financial plan.</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Drop in everything you're saving for — retirement, your kid's college, the down payment, the emergency fund. We compute the SIP each one needs and tell you whether the total fits in what you actually take home. <strong>No login. Your numbers never leave the browser.</strong></p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 space-y-6">
+
+    <!-- INCOME & EXPENSES -->
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your monthly cash flow</div>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Take-home / month</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-lg">₹</span>
+            <input id="in-income" type="text" value="1,50,000" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Committed expenses</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-lg">₹</span>
+            <input id="in-expenses" type="text" value="90,000" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+          </div>
+        </div>
+        <div class="border-l border-navy/10 pl-5">
+          <div class="text-xs font-semibold text-ink/70 mb-1">Available to invest</div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-lg">₹</span>
+            <span id="out-available" class="font-display text-2xl font-extrabold text-gain tab-num">—</span>
+            <span class="text-ink/60 text-sm">/mo</span>
+          </div>
+          <div class="text-[11px] text-ink/55 mt-0.5"><span id="out-rate">—</span>% of take-home</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOALS LIST -->
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="flex items-end justify-between mb-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Your goals</div>
+          <div class="text-sm text-ink/65 mt-0.5">Click any number to edit. Drag to nothing — just delete what doesn't apply.</div>
+        </div>
+        <button id="reset-btn" class="text-xs text-ink/50 hover:text-thatred font-semibold">Reset plan ↻</button>
+      </div>
+
+      <div id="goals-empty" class="hidden text-center py-12 text-ink/55">
+        <div class="font-serif text-2xl text-ink/70 mb-2">No goals yet.</div>
+        <div class="text-sm">Tap a starter below — or hit + Add goal to write your own.</div>
+      </div>
+
+      <div id="goals-table-wrap" class="overflow-x-auto -mx-2 px-2">
+        <table class="w-full text-sm tab-num">
+          <thead>
+            <tr class="text-left text-ink/55 border-b border-navy/10 text-xs uppercase tracking-widest">
+              <th class="py-2 pr-3 font-semibold">Goal</th>
+              <th class="py-2 pr-3 font-semibold text-right">Target (today)</th>
+              <th class="py-2 pr-3 font-semibold text-right">Years</th>
+              <th class="py-2 pr-3 font-semibold text-right">Saved</th>
+              <th class="py-2 pr-3 font-semibold text-right">Needs / mo</th>
+              <th class="py-2 font-semibold w-8"></th>
+            </tr>
+          </thead>
+          <tbody id="goals-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="mt-5 flex flex-wrap gap-2 items-center">
+        <button id="add-blank" class="bg-thisblue text-warmpaper px-4 py-2 rounded-full text-sm font-semibold hover:bg-thisblue-700 transition">+ Add goal</button>
+        <span class="text-xs text-ink/45 mx-2">or quick-add a starter:</span>
+        <div id="starters" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div id="verdict-card" class="bg-ink text-warmpaper rounded-2xl p-7">
+      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Total monthly SIP needed</div>
+      <div class="flex items-end gap-4 mt-3 flex-wrap">
+        <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none">₹<span id="out-total">—</span></div>
+        <div class="text-base opacity-70 pb-1"><span id="out-pct">—</span>% of your take-home</div>
+      </div>
+      <div class="mt-3 text-sm opacity-85" id="out-status">—</div>
+
+      <div class="mt-5 progress-bar bg-warmpaper/20">
+        <div id="out-bar" class="bg-marigold" style="width:0%"></div>
+      </div>
+      <div class="mt-2 flex items-center justify-between text-[11px] opacity-70">
+        <span>Required ₹<span id="out-total2">—</span></span>
+        <span>Available ₹<span id="out-avail2">—</span></span>
+      </div>
+    </div>
+
+    <!-- TRADE-OFFS (shown only when over-committed) -->
+    <div id="tradeoff-card" class="bg-white rounded-2xl border-2 border-marigold p-6 hidden">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">If the plan doesn't fit</div>
+      <h3 class="font-display text-xl font-extrabold text-ink mt-1">Three honest moves to close the gap.</h3>
+      <div id="tradeoff-list" class="mt-4 space-y-3 text-sm text-ink/85"></div>
+    </div>
+
+    <!-- ASSUMPTIONS -->
+    <details class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
+      <summary class="cursor-pointer font-semibold text-ink/75">Returns & inflation assumptions</summary>
+      <div class="mt-4 grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Portfolio return / yr</label>
+          <div class="flex items-baseline gap-1">
+            <input id="in-ret" type="text" value="10.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-ink w-14" />
+            <span class="text-ink/60 text-sm">%</span>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Inflation / yr (goals scale up)</label>
+          <div class="flex items-baseline gap-1">
+            <input id="in-inf" type="text" value="6.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-ink w-14" />
+            <span class="text-ink/60 text-sm">%</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[11px] text-ink/55 mt-4">10% portfolio return is a balanced India equity-heavy portfolio over 15+ years. 6% inflation is the long-run RBI average. Tweak if you have reason to.</p>
+    </details>
+
+    <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
+      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
+      <p>For each goal we inflate the target to the future-rupee amount, subtract what your already-saved corpus grows into, and solve for the monthly SIP that fills the gap. Then we sum every goal's SIP and compare against (income − expenses) — your investable. <strong>This page never sends your numbers anywhere</strong> — it saves them in your browser only.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="py-16 bg-thisblue text-warmpaper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
+    <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
+      <p>Most people plan goals one at a time — retirement here, the down payment there, the kid's college "we'll figure it out". Each calculator says "yes, doable" in isolation. Stack them up and the math usually doesn't fit.</p>
+      <p>That's not a failure — that's the planning. <strong class="text-marigold">A plan that doesn't make trade-offs isn't a plan. It's a wishlist.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl font-extrabold text-ink">Single-goal calculators</h2>
+    <p class="text-ink/65 mt-2">Want to deep-dive one of these? Each has its own page with year-by-year tables and reality checks.</p>
+    <div class="mt-8 grid md:grid-cols-3 gap-5">
+      <a href="calc-retirement.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xl font-bold mb-3">₹</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Real Retirement</h3>
+      </a>
+      <a href="calc-sip.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SIP</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Brutal SIP</h3>
+      </a>
+      <a href="calc-swp.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SWP</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Systematic Withdrawal</h3>
+      </a>
+      <a href="calc-buckets.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">3B</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">3-Bucket Strategy</h3>
+      </a>
+      <a href="calc-rentbuy.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">R/B</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Rent vs Buy</h3>
+      </a>
+      <a href="calc-lifestyle.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">LI</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Lifestyle Inflation</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+// ─── Number formatting + parsing ────────────────────────────────────
+const fmtINR = (n) => {
+  const a = Math.abs(n);
+  if (a >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (a >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+const fmtRaw = (n) => Math.round(n).toLocaleString('en-IN');
+
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+// ─── Core SIP math ──────────────────────────────────────────────────
+function requiredSIP(goalToday, years, corpus, ret, inf) {
+  if (years <= 0) return Math.max(0, goalToday - corpus);
+  const goalFuture = goalToday * Math.pow(1 + inf, years);
+  const corpusGrown = corpus * Math.pow(1 + ret, years);
+  const gap = Math.max(0, goalFuture - corpusGrown);
+  const monthlyR = Math.pow(1 + ret, 1/12) - 1;
+  const months = years * 12;
+  const annuityFactor = (Math.pow(1 + monthlyR, months) - 1) / monthlyR;
+  if (annuityFactor <= 0) return Infinity;
+  return gap / annuityFactor;
+}
+
+// ─── State (persists to localStorage) ───────────────────────────────
+const STORAGE_KEY = 'ttot-planner-v1';
+const STARTERS = [
+  { name: 'Retirement (corpus at 60)',          target: 50000000, years: 25, corpus: 0 },
+  { name: 'Emergency fund (6 months)',          target: 540000,   years: 2,  corpus: 0 },
+  { name: 'Kid\'s higher education',            target: 5000000,  years: 15, corpus: 0 },
+  { name: 'Home down payment',                  target: 3000000,  years: 5,  corpus: 0 },
+  { name: 'Car',                                target: 1500000,  years: 4,  corpus: 0 },
+  { name: 'Vacation fund',                      target: 300000,   years: 2,  corpus: 0 },
+];
+
+const DEFAULT_STATE = {
+  income: 150000,
+  expenses: 90000,
+  ret: 0.10,
+  inf: 0.06,
+  goals: [
+    { id: 'g1', name: 'Retirement (corpus at 60)', target: 50000000, years: 25, corpus: 0 },
+    { id: 'g2', name: 'Emergency fund (6 months)', target: 540000,   years: 2,  corpus: 0 },
+  ]
+};
+
+let state = (() => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return Object.assign({}, DEFAULT_STATE, JSON.parse(raw));
+  } catch (e) {}
+  return JSON.parse(JSON.stringify(DEFAULT_STATE));
+})();
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+function nextId() {
+  return 'g' + Math.max(0, ...state.goals.map(g => parseInt(g.id.slice(1)) || 0)) + 1;
+}
+
+// ─── Rendering ──────────────────────────────────────────────────────
+const setLbl = (el, val) => { if (el && document.activeElement !== el) el.value = val; };
+
+function renderInputs() {
+  setLbl(document.getElementById('in-income'),   fmtRaw(state.income));
+  setLbl(document.getElementById('in-expenses'), fmtRaw(state.expenses));
+  setLbl(document.getElementById('in-ret'),      (state.ret * 100).toFixed(1));
+  setLbl(document.getElementById('in-inf'),      (state.inf * 100).toFixed(1));
+}
+
+function renderGoals() {
+  const tbody = document.getElementById('goals-tbody');
+  const empty = document.getElementById('goals-empty');
+  const wrap  = document.getElementById('goals-table-wrap');
+  if (!state.goals.length) {
+    tbody.innerHTML = '';
+    empty.classList.remove('hidden');
+    wrap.classList.add('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+  wrap.classList.remove('hidden');
+
+  tbody.innerHTML = state.goals.map(g => {
+    const sip = requiredSIP(g.target, g.years, g.corpus, state.ret, state.inf);
+    return `
+      <tr class="goal-row border-b border-navy/5" data-id="${g.id}">
+        <td class="py-3 pr-3">
+          <input data-field="name" type="text" value="${g.name.replace(/"/g, '&quot;')}" class="editable-num font-semibold text-ink w-full max-w-[280px]" />
+        </td>
+        <td class="py-3 pr-3 text-right">
+          <span class="text-ink/55 text-xs">₹</span>
+          <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="numeric" class="editable-num tab-num font-semibold text-thisblue w-20 text-right" />
+        </td>
+        <td class="py-3 pr-3 text-right">
+          <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-semibold text-thisblue w-10 text-right" />
+          <span class="text-ink/55 text-xs">y</span>
+        </td>
+        <td class="py-3 pr-3 text-right">
+          <span class="text-ink/55 text-xs">₹</span>
+          <input data-field="corpus" type="text" value="${g.corpus ? fmtINR(g.corpus) : '0'}" inputmode="numeric" class="editable-num tab-num text-ink/80 w-16 text-right" />
+        </td>
+        <td class="py-3 pr-3 text-right font-display font-extrabold tab-num text-ink">
+          ₹${fmtINR(sip)}
+        </td>
+        <td class="py-3 text-right">
+          <button data-action="delete" class="text-ink/30 hover:text-thatred transition text-lg leading-none" title="Delete">×</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  // Wire row inputs
+  tbody.querySelectorAll('tr').forEach(tr => {
+    const id = tr.dataset.id;
+    tr.querySelectorAll('input').forEach(input => {
+      const field = input.dataset.field;
+      input.addEventListener('input', () => {
+        const g = state.goals.find(x => x.id === id);
+        if (!g) return;
+        if (field === 'name') g.name = input.value;
+        else if (field === 'years') g.years = Math.max(0, parseInt(input.value) || 0);
+        else g[field] = parseNumericInput(input.value);
+        save();
+        recalc();
+      });
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
+      input.addEventListener('focus', () => input.select());
+      input.addEventListener('blur', renderGoals);
+    });
+    tr.querySelector('[data-action="delete"]').addEventListener('click', () => {
+      state.goals = state.goals.filter(g => g.id !== id);
+      save();
+      renderGoals();
+      recalc();
+    });
+  });
+}
+
+function renderStarters() {
+  const wrap = document.getElementById('starters');
+  wrap.innerHTML = STARTERS.map((s, i) => `<button class="chip-add" data-starter="${i}">+ ${s.name}</button>`).join('');
+  wrap.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const s = STARTERS[+btn.dataset.starter];
+      state.goals.push({ id: nextId(), ...s });
+      save();
+      renderGoals();
+      recalc();
+    });
+  });
+}
+
+function recalc() {
+  const income = state.income;
+  const exp = state.expenses;
+  const available = Math.max(0, income - exp);
+  const ratePct = income > 0 ? (available / income * 100) : 0;
+
+  document.getElementById('out-available').textContent = fmtRaw(available);
+  document.getElementById('out-rate').textContent = ratePct.toFixed(1);
+  document.getElementById('out-avail2').textContent = fmtINR(available);
+
+  let totalSIP = 0;
+  state.goals.forEach(g => {
+    totalSIP += requiredSIP(g.target, g.years, g.corpus, state.ret, state.inf);
+  });
+
+  const totalPct = income > 0 ? (totalSIP / income * 100) : 0;
+  document.getElementById('out-total').textContent = fmtINR(totalSIP);
+  document.getElementById('out-total2').textContent = fmtINR(totalSIP);
+  document.getElementById('out-pct').textContent = totalPct.toFixed(1);
+
+  // Progress bar — % of available used
+  const fillPct = available > 0 ? Math.min(120, totalSIP / available * 100) : (totalSIP > 0 ? 120 : 0);
+  const bar = document.getElementById('out-bar');
+  bar.style.width = Math.min(100, fillPct) + '%';
+
+  // Verdict card
+  const card = document.getElementById('verdict-card');
+  const kicker = document.getElementById('out-kicker');
+  const status = document.getElementById('out-status');
+  const baseKicker = 'text-xs uppercase tracking-[0.3em] font-bold';
+  const tradeoffCard = document.getElementById('tradeoff-card');
+  let realityText = '';
+
+  if (state.goals.length === 0) {
+    card.className = 'bg-ink text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    bar.className = 'bg-marigold';
+    status.innerHTML = `<strong>No goals to plan.</strong> Add a few above — a starter or your own.`;
+    tradeoffCard.classList.add('hidden');
+    realityText = `A plan with zero goals isn't a plan — it's just a payslip with extra steps. Drop at least one goal in to see the math.`;
+  } else if (available <= 0) {
+    card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    bar.className = 'bg-marigold';
+    status.innerHTML = `<strong>Expenses ≥ income.</strong> There's nothing to invest. Fix the cash-flow problem before the goals.`;
+    tradeoffCard.classList.add('hidden');
+    realityText = `Your committed expenses are eating every rupee that lands. No SIP plan survives this — the work is on the spending side first.`;
+  } else if (totalSIP <= available) {
+    card.className = 'bg-gain text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    bar.className = 'bg-marigold';
+    const slack = available - totalSIP;
+    status.innerHTML = `<strong>The plan fits.</strong> ₹${fmtINR(slack)}/mo of slack left over — buffer, extra goal, or just sleep better.`;
+    tradeoffCard.classList.add('hidden');
+    realityText = `Plan fits with ₹${fmtINR(slack)}/mo of slack. Don't let that surplus become silent lifestyle inflation — automate it into the longest-horizon goal.`;
+  } else if (totalSIP <= available * 1.15) {
+    card.className = 'bg-marigold text-ink rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-thisblue';
+    bar.className = 'bg-thisblue';
+    const gap = totalSIP - available;
+    status.innerHTML = `<strong>Stretchy.</strong> Plan is over by ₹${fmtINR(gap)}/mo — within 15% of doable. Small trade-offs close it.`;
+    tradeoffCard.classList.remove('hidden');
+    renderTradeoffs(available);
+    realityText = `You're ₹${fmtINR(gap)}/mo short of fitting every goal in. The trade-offs below close it without dropping anything.`;
+  } else {
+    card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    bar.className = 'bg-marigold';
+    const gap = totalSIP - available;
+    status.innerHTML = `<strong>Over-committed by ${(totalSIP / available * 100 - 100).toFixed(0)}%.</strong> ₹${fmtINR(gap)}/mo more than you can save. One or more goals have to shift.`;
+    tradeoffCard.classList.remove('hidden');
+    renderTradeoffs(available);
+    realityText = `${totalPct.toFixed(0)}% of your income — the math doesn't work. The honest call: pick one goal to defer or shrink, not all of them slightly.`;
+  }
+
+  document.getElementById('reality').textContent = realityText;
+}
+
+function renderTradeoffs(available) {
+  // For each goal, propose: defer by 5 years, shrink by 25%. Show which one gives biggest SIP cut.
+  const proposals = [];
+  state.goals.forEach(g => {
+    const baseSIP = requiredSIP(g.target, g.years, g.corpus, state.ret, state.inf);
+    const deferSIP = requiredSIP(g.target, g.years + 5, g.corpus, state.ret, state.inf);
+    const shrinkSIP = requiredSIP(g.target * 0.75, g.years, g.corpus, state.ret, state.inf);
+    if (baseSIP - deferSIP > 100) proposals.push({ kind: 'defer', goal: g, savings: baseSIP - deferSIP, newSIP: deferSIP });
+    if (baseSIP - shrinkSIP > 100) proposals.push({ kind: 'shrink', goal: g, savings: baseSIP - shrinkSIP, newSIP: shrinkSIP });
+  });
+  proposals.sort((a, b) => b.savings - a.savings);
+  const top3 = proposals.slice(0, 3);
+  const list = document.getElementById('tradeoff-list');
+  if (!top3.length) {
+    list.innerHTML = '<div class="text-ink/60">All goals are already close to optimal. The fix is on the income / expenses side.</div>';
+    return;
+  }
+  list.innerHTML = top3.map(p => {
+    const verb = p.kind === 'defer' ? `Push <strong>${p.goal.name}</strong> by 5 years` : `Shrink <strong>${p.goal.name}</strong> by 25%`;
+    return `<div class="flex items-baseline justify-between gap-4 border-b border-navy/5 pb-3 last:border-0 last:pb-0">
+      <div>${verb}</div>
+      <div class="font-mono text-thisblue font-bold whitespace-nowrap">−₹${fmtINR(p.savings)}/mo</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── Wire top-level inputs ──────────────────────────────────────────
+function wireInput(id, key, isPercent) {
+  const el = document.getElementById(id);
+  el.addEventListener('input', () => {
+    const raw = parseNumericInput(el.value);
+    state[key] = isPercent ? raw / 100 : raw;
+    save();
+    recalc();
+  });
+  el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+  el.addEventListener('focus', () => el.select());
+  el.addEventListener('blur', () => { renderInputs(); recalc(); });
+}
+wireInput('in-income',   'income',   false);
+wireInput('in-expenses', 'expenses', false);
+wireInput('in-ret',      'ret',      true);
+wireInput('in-inf',      'inf',      true);
+
+// ─── Add blank goal ─────────────────────────────────────────────────
+document.getElementById('add-blank').addEventListener('click', () => {
+  state.goals.push({ id: nextId(), name: 'New goal', target: 1000000, years: 5, corpus: 0 });
+  save();
+  renderGoals();
+  recalc();
+});
+
+// ─── Reset plan ─────────────────────────────────────────────────────
+document.getElementById('reset-btn').addEventListener('click', () => {
+  if (!confirm('Reset to a fresh plan? Your current goals and numbers will be cleared.')) return;
+  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  save();
+  renderInputs();
+  renderGoals();
+  recalc();
+});
+
+// ─── First paint ────────────────────────────────────────────────────
+renderInputs();
+renderStarters();
+renderGoals();
+recalc();
+
+// ─── Mobile menu toggle ─────────────────────────────────────────────
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
