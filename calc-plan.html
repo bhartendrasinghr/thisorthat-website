@@ -115,21 +115,21 @@
           <label class="text-xs font-semibold text-ink/70 block mb-1">Take-home / month</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
-            <input id="in-income" type="text" value="1,50,000" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            <input id="in-income" type="text" value="1,50,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
         </div>
         <div>
           <label class="text-xs font-semibold text-ink/70 block mb-1">Committed expenses</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
-            <input id="in-expenses" type="text" value="90,000" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            <input id="in-expenses" type="text" value="90,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
         </div>
         <div>
           <label class="text-xs font-semibold text-ink/70 block mb-1">Already invested (lumpsum)</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
-            <input id="in-pot" type="text" value="0" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            <input id="in-pot" type="text" value="0" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
           <div class="text-[10px] text-ink/55 mt-1">MFs + EPF + NPS + FDs that you'd allocate to a goal</div>
         </div>
@@ -574,7 +574,7 @@ function renderGoals() {
             <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold mb-1">Target (today's ₹)</div>
             <div class="flex items-baseline gap-1">
               <span class="text-ink/55 text-sm">₹</span>
-              <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue flex-1" />
+              <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="text" class="editable-num tab-num font-bold text-thisblue flex-1" />
             </div>
           </div>
           <div>
@@ -588,7 +588,7 @@ function renderGoals() {
             <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold mb-1">From your pot</div>
             <div class="flex items-baseline gap-1">
               <span class="text-ink/55 text-sm">₹</span>
-              <input data-field="allocated" type="text" value="${fmtINR(g.allocated || 0)}" inputmode="numeric" class="editable-num tab-num text-ink/80 flex-1" />
+              <input data-field="allocated" type="text" value="${fmtINR(g.allocated || 0)}" inputmode="text" class="editable-num tab-num text-ink/80 flex-1" />
             </div>
           </div>
         </div>
