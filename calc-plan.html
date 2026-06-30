@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Full Financial Plan — ThisOrThat with Bhartendra</title>
-<meta name="description" content="Every goal, every SIP, in one honest plan. Drop in retirement, home, kid's college, emergency fund — see if it all fits in your take-home." />
+<meta name="description" content="Every goal, every SIP, in one honest plan. Don't know your numbers? Each goal helps you size it." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,6 +43,15 @@
   .progress-bar > div { height:100%; transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
   .chip-add { padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600; background:white; color:#0249B1; border:1px dashed rgba(2,73,177,0.4); transition:all 150ms; cursor:pointer; }
   .chip-add:hover { background:#FFF7DE; border-color:#FFC21F; border-style:solid; }
+  .sizer-toggle { color:#0249B1; font-size:11px; font-weight:600; cursor:pointer; text-decoration:underline dotted; text-underline-offset:2px; }
+  .sizer-toggle:hover { color:#013580; }
+  .sizer-panel { background:#FFF7DE; border-radius:10px; padding:14px 16px; border:1px solid rgba(255,194,31,0.5); margin-top:8px; }
+  .sizer-panel .sz-row { display:flex; gap:10px; align-items:center; font-size:13px; margin-bottom:8px; }
+  .sizer-panel .sz-row:last-child { margin-bottom:0; }
+  .sizer-panel select, .sizer-panel input[type="text"] { background:white; border:1px solid rgba(2,73,177,0.2); border-radius:6px; padding:5px 10px; font-size:13px; color:#1A1813; font-family:'IBM Plex Mono',monospace; }
+  .sizer-panel select { font-family:'Hanken Grotesk',sans-serif; }
+  .sizer-panel button { background:#0249B1; color:#FCFBF8; padding:5px 14px; border-radius:999px; font-size:12px; font-weight:600; transition:background 150ms; }
+  .sizer-panel button:hover { background:#013580; }
 </style>
 </head>
 <body class="antialiased">
@@ -91,17 +100,17 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Every goal, every SIP, one honest verdict</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Your full financial plan.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Drop in everything you're saving for — retirement, your kid's college, the down payment, the emergency fund. We compute the SIP each one needs and tell you whether the total fits in what you actually take home. <strong>No login. Your numbers never leave the browser.</strong></p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Drop in everything you're saving for. <strong>Don't know how much you'll need?</strong> Each goal has a "Size this" helper that asks 1-2 questions and gives you the target. Have existing investments? Allocate them across the goals here too. <strong class="text-thisblue">Your numbers never leave the browser.</strong></p>
   </div>
 </section>
 
 <section class="pb-16 bg-cream">
   <div class="max-w-6xl mx-auto px-6 space-y-6">
 
-    <!-- INCOME & EXPENSES -->
+    <!-- CASH FLOW + EXISTING INVESTMENTS -->
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your monthly cash flow</div>
-      <div class="grid sm:grid-cols-3 gap-5">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your money, today</div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <div>
           <label class="text-xs font-semibold text-ink/70 block mb-1">Take-home / month</label>
           <div class="flex items-baseline gap-1">
@@ -116,6 +125,14 @@
             <input id="in-expenses" type="text" value="90,000" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
         </div>
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Already invested (lumpsum)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-lg">₹</span>
+            <input id="in-pot" type="text" value="0" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+          </div>
+          <div class="text-[10px] text-ink/55 mt-1">MFs + EPF + NPS + FDs that you'd allocate to a goal</div>
+        </div>
         <div class="border-l border-navy/10 pl-5">
           <div class="text-xs font-semibold text-ink/70 mb-1">Available to invest</div>
           <div class="flex items-baseline gap-1">
@@ -128,39 +145,36 @@
       </div>
     </div>
 
-    <!-- GOALS LIST -->
+    <!-- GOALS -->
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
-      <div class="flex items-end justify-between mb-4">
+      <div class="flex items-end justify-between mb-4 flex-wrap gap-3">
         <div>
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Your goals</div>
-          <div class="text-sm text-ink/65 mt-0.5">Click any number to edit. Drag to nothing — just delete what doesn't apply.</div>
+          <div class="text-sm text-ink/65 mt-0.5">Click any number to edit. Don't know the target? Hit <strong>"Size this →"</strong> on the row.</div>
         </div>
         <button id="reset-btn" class="text-xs text-ink/50 hover:text-thatred font-semibold">Reset plan ↻</button>
       </div>
 
       <div id="goals-empty" class="hidden text-center py-12 text-ink/55">
         <div class="font-serif text-2xl text-ink/70 mb-2">No goals yet.</div>
-        <div class="text-sm">Tap a starter below — or hit + Add goal to write your own.</div>
+        <div class="text-sm">Tap a starter below — or hit + Add custom goal.</div>
       </div>
 
-      <div id="goals-table-wrap" class="overflow-x-auto -mx-2 px-2">
-        <table class="w-full text-sm tab-num">
-          <thead>
-            <tr class="text-left text-ink/55 border-b border-navy/10 text-xs uppercase tracking-widest">
-              <th class="py-2 pr-3 font-semibold">Goal</th>
-              <th class="py-2 pr-3 font-semibold text-right">Target (today)</th>
-              <th class="py-2 pr-3 font-semibold text-right">Years</th>
-              <th class="py-2 pr-3 font-semibold text-right">Saved</th>
-              <th class="py-2 pr-3 font-semibold text-right">Needs / mo</th>
-              <th class="py-2 font-semibold w-8"></th>
-            </tr>
-          </thead>
-          <tbody id="goals-tbody"></tbody>
-        </table>
+      <div id="goals-list" class="space-y-3"></div>
+
+      <!-- POT ALLOCATION SUMMARY -->
+      <div id="pot-summary" class="mt-5 hidden rounded-xl p-4 text-sm">
+        <div class="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest font-bold opacity-70">Allocation of your existing pot</div>
+            <div class="mt-1 tab-num"><strong id="pot-allocated">₹0</strong> allocated of <strong id="pot-total">₹0</strong> · <span id="pot-unalloc-label">Unallocated:</span> <strong id="pot-unalloc">₹0</strong></div>
+          </div>
+          <div id="pot-warning" class="hidden text-[11px] font-semibold"></div>
+        </div>
       </div>
 
       <div class="mt-5 flex flex-wrap gap-2 items-center">
-        <button id="add-blank" class="bg-thisblue text-warmpaper px-4 py-2 rounded-full text-sm font-semibold hover:bg-thisblue-700 transition">+ Add goal</button>
+        <button id="add-blank" class="bg-thisblue text-warmpaper px-4 py-2 rounded-full text-sm font-semibold hover:bg-thisblue-700 transition">+ Add custom goal</button>
         <span class="text-xs text-ink/45 mx-2">or quick-add a starter:</span>
         <div id="starters" class="flex flex-wrap gap-2"></div>
       </div>
@@ -184,7 +198,7 @@
       </div>
     </div>
 
-    <!-- TRADE-OFFS (shown only when over-committed) -->
+    <!-- TRADE-OFFS -->
     <div id="tradeoff-card" class="bg-white rounded-2xl border-2 border-marigold p-6 hidden">
       <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">If the plan doesn't fit</div>
       <h3 class="font-display text-xl font-extrabold text-ink mt-1">Three honest moves to close the gap.</h3>
@@ -215,7 +229,7 @@
 
     <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
       <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
-      <p>For each goal we inflate the target to the future-rupee amount, subtract what your already-saved corpus grows into, and solve for the monthly SIP that fills the gap. Then we sum every goal's SIP and compare against (income − expenses) — your investable. <strong>This page never sends your numbers anywhere</strong> — it saves them in your browser only.</p>
+      <p>For each goal we inflate the target to the future-rupee amount, subtract what your allocated pot grows into, and solve for the monthly SIP that fills the gap. Then we sum every goal's SIP and compare against (income − expenses) — your investable. <strong>This page never sends your numbers anywhere</strong> — it saves them in your browser only.</p>
     </div>
 
   </div>
@@ -291,11 +305,11 @@ function parseNumericInput(text) {
 }
 
 // ─── Core SIP math ──────────────────────────────────────────────────
-function requiredSIP(goalToday, years, corpus, ret, inf) {
-  if (years <= 0) return Math.max(0, goalToday - corpus);
+function requiredSIP(goalToday, years, allocated, ret, inf) {
+  if (years <= 0) return Math.max(0, goalToday - allocated);
   const goalFuture = goalToday * Math.pow(1 + inf, years);
-  const corpusGrown = corpus * Math.pow(1 + ret, years);
-  const gap = Math.max(0, goalFuture - corpusGrown);
+  const allocatedGrown = allocated * Math.pow(1 + ret, years);
+  const gap = Math.max(0, goalFuture - allocatedGrown);
   const monthlyR = Math.pow(1 + ret, 1/12) - 1;
   const months = years * 12;
   const annuityFactor = (Math.pow(1 + monthlyR, months) - 1) / monthlyR;
@@ -303,32 +317,148 @@ function requiredSIP(goalToday, years, corpus, ret, inf) {
   return gap / annuityFactor;
 }
 
-// ─── State (persists to localStorage) ───────────────────────────────
-const STORAGE_KEY = 'ttot-planner-v1';
-const STARTERS = [
-  { name: 'Retirement (corpus at 60)',          target: 50000000, years: 25, corpus: 0 },
-  { name: 'Emergency fund (6 months)',          target: 540000,   years: 2,  corpus: 0 },
-  { name: 'Kid\'s higher education',            target: 5000000,  years: 15, corpus: 0 },
-  { name: 'Home down payment',                  target: 3000000,  years: 5,  corpus: 0 },
-  { name: 'Car',                                target: 1500000,  years: 4,  corpus: 0 },
-  { name: 'Vacation fund',                      target: 300000,   years: 2,  corpus: 0 },
-];
+// ─── Goal type registry (sizing helpers) ────────────────────────────
+const TYPES = {
+  retirement: {
+    label: 'Retirement',
+    hint: 'Rule of thumb: 25-30× your annual expenses, so the corpus lasts the rest of your life.',
+    helper: {
+      fields: [
+        { key: 'monthlyLifestyle', label: 'Monthly lifestyle at 60 (today\'s ₹)', kind: 'money', defaultFn: s => s.expenses },
+        { key: 'mult',             label: '× years of retirement', kind: 'num',   default: 25 }
+      ],
+      compute: (v) => v.monthlyLifestyle * 12 * v.mult,
+      formula: (v) => `₹${fmtINR(v.monthlyLifestyle)} × 12 × ${v.mult} yrs`
+    }
+  },
+  education: {
+    label: 'Education',
+    hint: 'India undergrad ₹15-30L · Overseas masters ₹80L-1.5Cr · Overseas MBA ₹1.5-2.5Cr.',
+    helper: {
+      fields: [
+        { key: 'course', label: 'Course', kind: 'select', default: 'india_pg', options: [
+          { value: 'india_ug',     label: 'India undergrad',          target: 1500000 },
+          { value: 'india_pg',     label: 'India PG / MBA',           target: 2500000 },
+          { value: 'overseas_ug',  label: 'Overseas undergrad',       target: 15000000 },
+          { value: 'overseas_ms',  label: 'Overseas MS',              target: 8000000 },
+          { value: 'overseas_mba', label: 'Overseas MBA',             target: 20000000 },
+          { value: 'custom',       label: 'Custom amount',            target: 5000000 }
+        ]}
+      ],
+      compute: (v, opts) => opts.course.target,
+      formula: (v, opts) => `${opts.course.label} preset`
+    }
+  },
+  home: {
+    label: 'Home purchase',
+    hint: 'Down payment is typically 15-25% of home price. Don\'t forget stamp duty (~7%).',
+    helper: {
+      fields: [
+        { key: 'price', label: 'Home price (today\'s ₹)', kind: 'money', default: 15000000 },
+        { key: 'pct',   label: 'Down-payment %',          kind: 'num',   default: 20 }
+      ],
+      compute: (v) => v.price * v.pct / 100,
+      formula: (v) => `₹${fmtINR(v.price)} × ${v.pct}%`
+    }
+  },
+  car: {
+    label: 'Car',
+    hint: 'A car loses 50% of value in 5 years. If you can pay cash, you probably shouldn\'t buy this car.',
+    helper: {
+      fields: [
+        { key: 'price', label: 'Car price (today\'s ₹)', kind: 'money', default: 1500000 }
+      ],
+      compute: (v) => v.price,
+      formula: (v) => `Cash purchase`
+    }
+  },
+  vacation: {
+    label: 'Vacation',
+    hint: 'A travel-fund SIP beats putting trips on a credit card.',
+    helper: {
+      fields: [
+        { key: 'cost',  label: 'Cost per trip (today\'s ₹)', kind: 'money', default: 300000 },
+        { key: 'trips', label: '× number of trips',          kind: 'num',   default: 1 }
+      ],
+      compute: (v) => v.cost * v.trips,
+      formula: (v) => `₹${fmtINR(v.cost)} × ${v.trips} trip${v.trips !== 1 ? 's' : ''}`
+    }
+  },
+  emergency: {
+    label: 'Emergency fund',
+    hint: 'Months × your committed expenses. 6 months is the standard. Keep it in liquid funds, not equity.',
+    helper: {
+      fields: [
+        { key: 'months', label: 'Months of expenses to cover', kind: 'num', default: 6 }
+      ],
+      compute: (v, opts, s) => v.months * s.expenses,
+      formula: (v) => `${v.months} months × your expenses`
+    }
+  },
+  custom: {
+    label: 'Custom',
+    hint: 'Just enter what you think it\'ll cost in today\'s rupees.',
+    helper: null
+  }
+};
+
+// ─── State ───────────────────────────────────────────────────────────
+const STORAGE_KEY = 'ttot-planner-v2';
+
+function makeStarters(state) {
+  const annualExp = state.expenses * 12;
+  return [
+    { type: 'retirement', name: 'Retirement (corpus at 60)', target: Math.max(10000000, annualExp * 30), years: 25 },
+    { type: 'emergency',  name: 'Emergency fund (6 months)', target: Math.max(100000, state.expenses * 6),  years: 2 },
+    { type: 'education',  name: "Kid's higher education",    target: 5000000,  years: 15 },
+    { type: 'home',       name: 'Home down payment',         target: 3000000,  years: 5  },
+    { type: 'car',        name: 'Car',                       target: 1500000,  years: 4  },
+    { type: 'vacation',   name: 'Vacation fund',             target: 300000,   years: 2  }
+  ];
+}
 
 const DEFAULT_STATE = {
   income: 150000,
   expenses: 90000,
+  pot: 0,
   ret: 0.10,
   inf: 0.06,
   goals: [
-    { id: 'g1', name: 'Retirement (corpus at 60)', target: 50000000, years: 25, corpus: 0 },
-    { id: 'g2', name: 'Emergency fund (6 months)', target: 540000,   years: 2,  corpus: 0 },
+    { id: 'g1', type: 'retirement', name: 'Retirement (corpus at 60)', target: 32400000, years: 25, allocated: 0 },
+    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 540000,   years: 2,  allocated: 0 }
   ]
 };
 
 let state = (() => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return Object.assign({}, DEFAULT_STATE, JSON.parse(raw));
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      // Migrate: rename corpus → allocated, add type, add pot
+      parsed.pot = parsed.pot || 0;
+      parsed.goals = (parsed.goals || []).map(g => ({
+        id: g.id,
+        type: g.type || 'custom',
+        name: g.name,
+        target: g.target,
+        years: g.years,
+        allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0)
+      }));
+      return Object.assign({}, DEFAULT_STATE, parsed);
+    }
+  } catch (e) {}
+  // Try legacy v1
+  try {
+    const raw = localStorage.getItem('ttot-planner-v1');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      parsed.pot = 0;
+      parsed.goals = (parsed.goals || []).map(g => ({
+        id: g.id, type: 'custom', name: g.name, target: g.target, years: g.years,
+        allocated: g.corpus || 0
+      }));
+      return Object.assign({}, DEFAULT_STATE, parsed);
+    }
   } catch (e) {}
   return JSON.parse(JSON.stringify(DEFAULT_STATE));
 })();
@@ -338,8 +468,11 @@ function save() {
 }
 
 function nextId() {
-  return 'g' + Math.max(0, ...state.goals.map(g => parseInt(g.id.slice(1)) || 0)) + 1;
+  return 'g' + (Math.max(0, ...state.goals.map(g => parseInt(g.id.slice(1)) || 0)) + 1);
 }
+
+// Track which goal has its sizer open
+let openSizer = null;
 
 // ─── Rendering ──────────────────────────────────────────────────────
 const setLbl = (el, val) => { if (el && document.activeElement !== el) el.value = val; };
@@ -347,56 +480,132 @@ const setLbl = (el, val) => { if (el && document.activeElement !== el) el.value 
 function renderInputs() {
   setLbl(document.getElementById('in-income'),   fmtRaw(state.income));
   setLbl(document.getElementById('in-expenses'), fmtRaw(state.expenses));
+  setLbl(document.getElementById('in-pot'),      fmtRaw(state.pot));
   setLbl(document.getElementById('in-ret'),      (state.ret * 100).toFixed(1));
   setLbl(document.getElementById('in-inf'),      (state.inf * 100).toFixed(1));
 }
 
+function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+function renderSizer(g) {
+  const def = TYPES[g.type] || TYPES.custom;
+  if (!def.helper) return '';
+  // Pull defaults
+  const helperState = (g._sizer || {});
+  def.helper.fields.forEach(f => {
+    if (helperState[f.key] === undefined) {
+      helperState[f.key] = (typeof f.defaultFn === 'function') ? f.defaultFn(state) : f.default;
+    }
+  });
+  g._sizer = helperState;
+
+  const rows = def.helper.fields.map(f => {
+    if (f.kind === 'select') {
+      return `<div class="sz-row">
+        <label class="text-ink/70 min-w-[180px]">${f.label}</label>
+        <select data-sz-field="${f.key}">
+          ${f.options.map(o => `<option value="${o.value}" ${helperState[f.key] === o.value ? 'selected' : ''}>${o.label} (₹${fmtINR(o.target)})</option>`).join('')}
+        </select>
+      </div>`;
+    }
+    const val = f.kind === 'money' ? fmtINR(helperState[f.key]) : helperState[f.key];
+    return `<div class="sz-row">
+      <label class="text-ink/70 min-w-[180px]">${f.label}</label>
+      <input type="text" data-sz-field="${f.key}" data-sz-kind="${f.kind}" value="${escapeAttr(val)}" />
+    </div>`;
+  }).join('');
+
+  // Compute live preview
+  const opts = {};
+  def.helper.fields.forEach(f => {
+    if (f.kind === 'select') opts[f.key] = f.options.find(o => o.value === helperState[f.key]) || f.options[0];
+  });
+  const previewTarget = def.helper.compute(helperState, opts, state);
+  const formulaText = def.helper.formula(helperState, opts);
+
+  return `
+    <div class="sizer-panel">
+      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">Help me size this</div>
+      ${rows}
+      <div class="sz-row mt-3 pt-3 border-t border-ink/10">
+        <div class="flex-1 text-ink/70 text-xs">
+          <span class="font-mono">${formulaText}</span> = <strong class="text-ink">₹${fmtINR(previewTarget)}</strong> (today's ₹)
+        </div>
+        <button data-sz-apply>Apply ↑</button>
+      </div>
+      <div class="text-[11px] text-ink/55 mt-2 leading-snug">${def.hint}</div>
+    </div>
+  `;
+}
+
 function renderGoals() {
-  const tbody = document.getElementById('goals-tbody');
+  const list = document.getElementById('goals-list');
   const empty = document.getElementById('goals-empty');
-  const wrap  = document.getElementById('goals-table-wrap');
   if (!state.goals.length) {
-    tbody.innerHTML = '';
+    list.innerHTML = '';
     empty.classList.remove('hidden');
-    wrap.classList.add('hidden');
     return;
   }
   empty.classList.add('hidden');
-  wrap.classList.remove('hidden');
 
-  tbody.innerHTML = state.goals.map(g => {
-    const sip = requiredSIP(g.target, g.years, g.corpus, state.ret, state.inf);
+  list.innerHTML = state.goals.map((g, idx) => {
+    const sip = requiredSIP(g.target, g.years, g.allocated || 0, state.ret, state.inf);
+    const typeLabel = (TYPES[g.type] || TYPES.custom).label;
+    const hasHelper = !!(TYPES[g.type] && TYPES[g.type].helper);
+    const isOpen = openSizer === g.id;
     return `
-      <tr class="goal-row border-b border-navy/5" data-id="${g.id}">
-        <td class="py-3 pr-3">
-          <input data-field="name" type="text" value="${g.name.replace(/"/g, '&quot;')}" class="editable-num font-semibold text-ink w-full max-w-[280px]" />
-        </td>
-        <td class="py-3 pr-3 text-right">
-          <span class="text-ink/55 text-xs">₹</span>
-          <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="numeric" class="editable-num tab-num font-semibold text-thisblue w-20 text-right" />
-        </td>
-        <td class="py-3 pr-3 text-right">
-          <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-semibold text-thisblue w-10 text-right" />
-          <span class="text-ink/55 text-xs">y</span>
-        </td>
-        <td class="py-3 pr-3 text-right">
-          <span class="text-ink/55 text-xs">₹</span>
-          <input data-field="corpus" type="text" value="${g.corpus ? fmtINR(g.corpus) : '0'}" inputmode="numeric" class="editable-num tab-num text-ink/80 w-16 text-right" />
-        </td>
-        <td class="py-3 pr-3 text-right font-display font-extrabold tab-num text-ink">
-          ₹${fmtINR(sip)}
-        </td>
-        <td class="py-3 text-right">
-          <button data-action="delete" class="text-ink/30 hover:text-thatred transition text-lg leading-none" title="Delete">×</button>
-        </td>
-      </tr>
+      <div class="goal-row border border-navy/10 rounded-xl p-4" data-id="${g.id}">
+        <div class="flex items-start justify-between gap-3 flex-wrap">
+          <div class="flex-1 min-w-[220px]">
+            <div class="flex items-center gap-2 flex-wrap">
+              <input data-field="name" type="text" value="${escapeAttr(g.name)}" class="editable-num font-semibold text-ink text-base min-w-[160px] flex-1" />
+              <span class="text-[10px] uppercase tracking-widest text-ink/45 font-bold bg-warmpaper-2 px-2 py-0.5 rounded-full">${typeLabel}</span>
+            </div>
+            ${hasHelper ? `<div class="mt-1.5"><span class="sizer-toggle" data-toggle-sizer>${isOpen ? 'Close ↓' : 'Size this →'}</span></div>` : ''}
+          </div>
+          <div class="text-right">
+            <div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Needs / mo</div>
+            <div class="font-display text-2xl font-extrabold tab-num text-ink">₹${fmtINR(sip)}</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mt-4">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold mb-1">Target (today's ₹)</div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/55 text-sm">₹</span>
+              <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue flex-1" />
+            </div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold mb-1">Years to goal</div>
+            <div class="flex items-baseline gap-1">
+              <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-12 text-right" />
+              <span class="text-ink/55 text-sm">yrs</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold mb-1">From your pot</div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/55 text-sm">₹</span>
+              <input data-field="allocated" type="text" value="${fmtINR(g.allocated || 0)}" inputmode="numeric" class="editable-num tab-num text-ink/80 flex-1" />
+            </div>
+          </div>
+        </div>
+
+        ${isOpen ? renderSizer(g) : ''}
+
+        <div class="mt-3 flex justify-end">
+          <button data-action="delete" class="text-ink/40 hover:text-thatred text-xs font-semibold transition">Delete goal</button>
+        </div>
+      </div>
     `;
   }).join('');
 
   // Wire row inputs
-  tbody.querySelectorAll('tr').forEach(tr => {
-    const id = tr.dataset.id;
-    tr.querySelectorAll('input').forEach(input => {
+  list.querySelectorAll('.goal-row').forEach(row => {
+    const id = row.dataset.id;
+    row.querySelectorAll('input[data-field]').forEach(input => {
       const field = input.dataset.field;
       input.addEventListener('input', () => {
         const g = state.goals.find(x => x.id === id);
@@ -409,34 +618,76 @@ function renderGoals() {
       });
       input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
       input.addEventListener('focus', () => input.select());
-      input.addEventListener('blur', renderGoals);
+      input.addEventListener('blur', () => renderGoals());
     });
-    tr.querySelector('[data-action="delete"]').addEventListener('click', () => {
+    row.querySelector('[data-action="delete"]').addEventListener('click', () => {
       state.goals = state.goals.filter(g => g.id !== id);
-      save();
-      renderGoals();
-      recalc();
+      if (openSizer === id) openSizer = null;
+      save(); renderGoals(); recalc();
     });
+    const sizerToggle = row.querySelector('[data-toggle-sizer]');
+    if (sizerToggle) {
+      sizerToggle.addEventListener('click', () => {
+        openSizer = (openSizer === id) ? null : id;
+        renderGoals();
+      });
+    }
+    // Sizer inputs
+    row.querySelectorAll('[data-sz-field]').forEach(el => {
+      const g = state.goals.find(x => x.id === id);
+      if (!g) return;
+      const key = el.dataset.szField;
+      if (el.tagName === 'SELECT') {
+        el.addEventListener('change', () => {
+          g._sizer = g._sizer || {};
+          g._sizer[key] = el.value;
+          renderGoals();
+        });
+      } else {
+        el.addEventListener('input', () => {
+          g._sizer = g._sizer || {};
+          const kind = el.dataset.szKind;
+          g._sizer[key] = (kind === 'money') ? parseNumericInput(el.value) : (parseFloat(el.value) || 0);
+        });
+        el.addEventListener('blur', () => renderGoals());
+        el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+        el.addEventListener('focus', () => el.select());
+      }
+    });
+    const applyBtn = row.querySelector('[data-sz-apply]');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+        const g = state.goals.find(x => x.id === id);
+        if (!g) return;
+        const def = TYPES[g.type];
+        if (!def || !def.helper) return;
+        const opts = {};
+        def.helper.fields.forEach(f => {
+          if (f.kind === 'select') opts[f.key] = f.options.find(o => o.value === g._sizer[f.key]) || f.options[0];
+        });
+        g.target = Math.round(def.helper.compute(g._sizer, opts, state));
+        openSizer = null;
+        save(); renderGoals(); recalc();
+      });
+    }
   });
 }
 
 function renderStarters() {
   const wrap = document.getElementById('starters');
-  wrap.innerHTML = STARTERS.map((s, i) => `<button class="chip-add" data-starter="${i}">+ ${s.name}</button>`).join('');
-  wrap.querySelectorAll('button').forEach(btn => {
+  const starters = makeStarters(state);
+  wrap.innerHTML = starters.map((s, i) => `<button class="chip-add" data-starter="${i}">+ ${s.name}</button>`).join('');
+  wrap.querySelectorAll('button').forEach((btn, i) => {
     btn.addEventListener('click', () => {
-      const s = STARTERS[+btn.dataset.starter];
-      state.goals.push({ id: nextId(), ...s });
-      save();
-      renderGoals();
-      recalc();
+      const s = starters[i];
+      state.goals.push({ id: nextId(), type: s.type, name: s.name, target: s.target, years: s.years, allocated: 0 });
+      save(); renderGoals(); recalc();
     });
   });
 }
 
 function recalc() {
-  const income = state.income;
-  const exp = state.expenses;
+  const income = state.income, exp = state.expenses, pot = state.pot;
   const available = Math.max(0, income - exp);
   const ratePct = income > 0 ? (available / income * 100) : 0;
 
@@ -445,21 +696,56 @@ function recalc() {
   document.getElementById('out-avail2').textContent = fmtINR(available);
 
   let totalSIP = 0;
+  let totalAllocated = 0;
   state.goals.forEach(g => {
-    totalSIP += requiredSIP(g.target, g.years, g.corpus, state.ret, state.inf);
+    totalSIP += requiredSIP(g.target, g.years, g.allocated || 0, state.ret, state.inf);
+    totalAllocated += (g.allocated || 0);
   });
+
+  // Pot summary
+  const potSummary = document.getElementById('pot-summary');
+  const potWarning = document.getElementById('pot-warning');
+  if (pot > 0 || totalAllocated > 0) {
+    potSummary.classList.remove('hidden');
+    document.getElementById('pot-allocated').textContent = '₹' + fmtINR(totalAllocated);
+    document.getElementById('pot-total').textContent = '₹' + fmtINR(pot);
+    const unalloc = pot - totalAllocated;
+    const unallocLabel = document.getElementById('pot-unalloc-label');
+    if (unalloc < 0) {
+      unallocLabel.textContent = 'Over-allocated by:';
+      document.getElementById('pot-unalloc').textContent = '₹' + fmtINR(-unalloc);
+      potSummary.className = 'mt-5 rounded-xl p-4 text-sm bg-thatred/10 border border-thatred/40 text-ink';
+      potWarning.classList.remove('hidden');
+      potWarning.className = 'text-[11px] font-semibold text-thatred';
+      potWarning.textContent = `⚠ Re-balance your allocations`;
+    } else if (unalloc > 0) {
+      unallocLabel.textContent = 'Unallocated:';
+      document.getElementById('pot-unalloc').textContent = '₹' + fmtINR(unalloc);
+      potSummary.className = 'mt-5 rounded-xl p-4 text-sm bg-marigold/15 border border-marigold/50 text-ink';
+      potWarning.classList.remove('hidden');
+      potWarning.className = 'text-[11px] font-semibold text-mustard-deep';
+      potWarning.textContent = `${((unalloc / pot) * 100).toFixed(0)}% of pot still unallocated`;
+    } else {
+      unallocLabel.textContent = 'Unallocated:';
+      document.getElementById('pot-unalloc').textContent = '₹0';
+      potSummary.className = 'mt-5 rounded-xl p-4 text-sm bg-gain/10 border border-gain/40 text-ink';
+      potWarning.classList.remove('hidden');
+      potWarning.className = 'text-[11px] font-semibold text-gain';
+      potWarning.textContent = '✓ Pot fully allocated';
+    }
+  } else {
+    potSummary.classList.add('hidden');
+  }
 
   const totalPct = income > 0 ? (totalSIP / income * 100) : 0;
   document.getElementById('out-total').textContent = fmtINR(totalSIP);
   document.getElementById('out-total2').textContent = fmtINR(totalSIP);
   document.getElementById('out-pct').textContent = totalPct.toFixed(1);
 
-  // Progress bar — % of available used
   const fillPct = available > 0 ? Math.min(120, totalSIP / available * 100) : (totalSIP > 0 ? 120 : 0);
   const bar = document.getElementById('out-bar');
   bar.style.width = Math.min(100, fillPct) + '%';
 
-  // Verdict card
   const card = document.getElementById('verdict-card');
   const kicker = document.getElementById('out-kicker');
   const status = document.getElementById('out-status');
@@ -473,7 +759,7 @@ function recalc() {
     bar.className = 'bg-marigold';
     status.innerHTML = `<strong>No goals to plan.</strong> Add a few above — a starter or your own.`;
     tradeoffCard.classList.add('hidden');
-    realityText = `A plan with zero goals isn't a plan — it's just a payslip with extra steps. Drop at least one goal in to see the math.`;
+    realityText = `A plan with zero goals isn't a plan — it's just a payslip with extra steps. Drop at least one goal in.`;
   } else if (available <= 0) {
     card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
@@ -513,14 +799,13 @@ function recalc() {
 }
 
 function renderTradeoffs(available) {
-  // For each goal, propose: defer by 5 years, shrink by 25%. Show which one gives biggest SIP cut.
   const proposals = [];
   state.goals.forEach(g => {
-    const baseSIP = requiredSIP(g.target, g.years, g.corpus, state.ret, state.inf);
-    const deferSIP = requiredSIP(g.target, g.years + 5, g.corpus, state.ret, state.inf);
-    const shrinkSIP = requiredSIP(g.target * 0.75, g.years, g.corpus, state.ret, state.inf);
-    if (baseSIP - deferSIP > 100) proposals.push({ kind: 'defer', goal: g, savings: baseSIP - deferSIP, newSIP: deferSIP });
-    if (baseSIP - shrinkSIP > 100) proposals.push({ kind: 'shrink', goal: g, savings: baseSIP - shrinkSIP, newSIP: shrinkSIP });
+    const baseSIP   = requiredSIP(g.target,         g.years,     g.allocated || 0, state.ret, state.inf);
+    const deferSIP  = requiredSIP(g.target,         g.years + 5, g.allocated || 0, state.ret, state.inf);
+    const shrinkSIP = requiredSIP(g.target * 0.75,  g.years,     g.allocated || 0, state.ret, state.inf);
+    if (baseSIP - deferSIP > 100)  proposals.push({ kind: 'defer',  goal: g, savings: baseSIP - deferSIP  });
+    if (baseSIP - shrinkSIP > 100) proposals.push({ kind: 'shrink', goal: g, savings: baseSIP - shrinkSIP });
   });
   proposals.sort((a, b) => b.savings - a.savings);
   const top3 = proposals.slice(0, 3);
@@ -544,8 +829,9 @@ function wireInput(id, key, isPercent) {
   el.addEventListener('input', () => {
     const raw = parseNumericInput(el.value);
     state[key] = isPercent ? raw / 100 : raw;
-    save();
-    recalc();
+    save(); recalc();
+    // Starter target defaults depend on income/expenses — refresh
+    if (key === 'income' || key === 'expenses') renderStarters();
   });
   el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
   el.addEventListener('focus', () => el.select());
@@ -553,25 +839,20 @@ function wireInput(id, key, isPercent) {
 }
 wireInput('in-income',   'income',   false);
 wireInput('in-expenses', 'expenses', false);
+wireInput('in-pot',      'pot',      false);
 wireInput('in-ret',      'ret',      true);
 wireInput('in-inf',      'inf',      true);
 
-// ─── Add blank goal ─────────────────────────────────────────────────
 document.getElementById('add-blank').addEventListener('click', () => {
-  state.goals.push({ id: nextId(), name: 'New goal', target: 1000000, years: 5, corpus: 0 });
-  save();
-  renderGoals();
-  recalc();
+  state.goals.push({ id: nextId(), type: 'custom', name: 'New goal', target: 1000000, years: 5, allocated: 0 });
+  save(); renderGoals(); recalc();
 });
 
-// ─── Reset plan ─────────────────────────────────────────────────────
 document.getElementById('reset-btn').addEventListener('click', () => {
   if (!confirm('Reset to a fresh plan? Your current goals and numbers will be cleared.')) return;
   state = JSON.parse(JSON.stringify(DEFAULT_STATE));
-  save();
-  renderInputs();
-  renderGoals();
-  recalc();
+  openSizer = null;
+  save(); renderInputs(); renderStarters(); renderGoals(); recalc();
 });
 
 // ─── First paint ────────────────────────────────────────────────────
