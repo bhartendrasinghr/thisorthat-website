@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rule of 72 — How fast does your money double? · ThisOrThat</title>
+<meta name="description" content="The one piece of money math you should know cold. Pick a return rate — see how long your money takes to double, and what each rate actually means." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .rate-chip { padding:10px 18px; border-radius:999px; font-weight:700; font-family:'IBM Plex Mono',monospace; transition: all 150ms ease; cursor:pointer; background:white; color:#1A1813; border:1.5px solid rgba(2,73,177,0.15); white-space:nowrap; }
+  .rate-chip:hover { background:#FFF7DE; border-color:#FFC21F; }
+  .rate-chip.active { background:#0249B1; color:#FCFBF8; border-color:#0249B1; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(2,73,177,0.25); }
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(2,73,177,0.08); }
+  .double-row { display:flex; align-items:center; gap:14px; padding:10px 0; border-bottom: 1px solid rgba(2,73,177,0.08); }
+  .double-row:last-child { border-bottom:0; }
+  .double-rate-card { padding:18px 20px; border-radius:14px; border:1.5px solid rgba(2,73,177,0.1); background:white; transition: all 150ms ease; }
+  .double-rate-card.tone-cold  { border-color:#FF302D; background:#fff5f5; }
+  .double-rate-card.tone-warm  { border-color:#D99B00; background:#FFF7DE; }
+  .double-rate-card.tone-good  { border-color:#1F8A5B; background:#f0faf3; }
+  .double-rate-card.tone-blue  { border-color:#0249B1; background:#f0f5fc; }
+  .double-rate-card.tone-toogood { border-color:#FF302D; background:#fff5f5; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Rule of 72</span>
+</div>
+
+<!-- HERO -->
+<section class="bg-cream pb-10">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The one piece of money math you should know cold</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">How fast does your money <span class="font-script text-thisblue font-bold text-5xl md:text-7xl">double?</span></h1>
+    <p class="mt-5 text-lg text-ink/75 max-w-2xl">Take 72. Divide by your return rate. That's the number of years your money takes to double. <strong>It's the whole show.</strong> Once you know it, every "8% sounds safe, 15% sounds risky" conversation becomes about something concrete: how many doublings you'll see in your lifetime.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="pb-16 bg-cream">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <!-- INPUT BLOCK -->
+    <div class="bg-white rounded-2xl border border-navy/10 p-6 md:p-8">
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <div>
+          <label class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Starting amount</label>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-ink/60 text-2xl">₹</span>
+            <input id="in-amount" type="text" value="1,00,000" inputmode="numeric" class="editable-num tab-num text-3xl md:text-4xl font-extrabold text-thisblue flex-1" />
+          </div>
+          <div class="text-[11px] text-ink/55 mt-1">Tip: type "1L" or "5Cr" — both work.</div>
+        </div>
+
+        <div>
+          <label class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Annual return</label>
+          <div class="mt-2 flex items-baseline gap-1">
+            <input id="in-rate" type="text" value="8.0" inputmode="decimal" class="editable-num tab-num text-3xl md:text-4xl font-extrabold text-thisblue w-24 text-right" />
+            <span class="text-ink/60 text-2xl">%</span>
+          </div>
+          <input id="rate-slider" type="range" min="1" max="30" step="0.5" value="8" class="w-full mt-3" />
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-3">Quick-pick</div>
+        <div id="rate-chips" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+
+    <!-- BIG OUTPUT -->
+    <div id="result-card" class="mt-6 bg-ink text-warmpaper rounded-2xl p-7 md:p-9">
+      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">At <span id="out-rate">8.0</span>%, your money doubles in</div>
+      <div class="flex items-end gap-4 mt-3 flex-wrap">
+        <div class="font-display text-6xl md:text-8xl font-extrabold tab-num leading-none"><span id="out-years">9.0</span></div>
+        <div class="text-xl opacity-70 pb-2">years</div>
+      </div>
+      <div class="mt-4 text-sm opacity-85" id="out-tagline">—</div>
+    </div>
+
+    <!-- DOUBLING TIMELINE -->
+    <div class="mt-6 bg-white rounded-2xl border-2 border-marigold p-6 md:p-8">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Your money over time</div>
+      <h3 class="font-display text-2xl font-extrabold text-ink mt-1">₹<span id="dt-start">1,00,000</span> becomes…</h3>
+      <div id="dt-rows" class="mt-5 tab-num"></div>
+      <div class="text-[11px] text-ink/55 mt-4 italic">Compound formula, not the approximation. The Rule of 72 is the gut-feel shortcut; this table is the real number.</div>
+    </div>
+
+    <!-- WHAT EACH RATE MEANS -->
+    <div class="mt-10">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Honest gut-check</div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-2">What each rate actually means.</h2>
+      <p class="mt-3 text-ink/75 max-w-3xl">A return rate isn't a number — it's a choice about <em>where your money sleeps tonight</em>. Here's the honest version, no marketing.</p>
+      <div id="rate-grid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="mt-10 bg-warmpaper-2 rounded-2xl p-6 text-sm text-ink/80 leading-relaxed">
+      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">The math, in 10 seconds</div>
+      <p><strong>Years to double = 72 ÷ rate.</strong> That's it. It's an approximation of the actual compound formula, accurate to within a few months at typical rates. At 6%, money doubles in ≈12 years. At 12%, it doubles in ≈6 years. <strong>Doubling twice as fast</strong> means three times as many doublings in a 30-year career — which is the difference between ending with ₹X and ending with ₹8X.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE UNCOMFORTABLE BIT -->
+<section class="py-16 bg-thisblue text-warmpaper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
+    <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
+      <p>The Rule of 72 reframes every financial decision you'll ever make. "Should I move from FD to equity?" becomes "do I want my money doubling in 12 years, or in 6?" "Is this loan at 18% bad?" becomes "yes, because it doubles what I owe in 4 years."</p>
+      <p>The number you pick today decides how many times your wealth doubles in your lifetime. <strong class="text-marigold">Most people only get 2-3 doublings. With the right rate started early, you can get 5-6.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- MORE CALCULATORS -->
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl font-extrabold text-ink">More calculators</h2>
+    <div class="mt-8 grid md:grid-cols-3 gap-5">
+      <a href="calc-plan.html" class="lift block bg-marigold rounded-2xl p-6 border-2 border-navy-ink hover:bg-marigold/90 transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">Σ</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Full Financial Plan</h3>
+        <p class="text-ink/75 text-sm mt-1">All your goals, one verdict.</p>
+      </a>
+      <a href="calc-sip.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SIP</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Brutal SIP</h3>
+        <p class="text-ink/70 text-sm mt-1">The cost of starting late.</p>
+      </a>
+      <a href="calc-retirement.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xl font-bold mb-3">₹</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Real Retirement</h3>
+        <p class="text-ink/70 text-sm mt-1">Inflation-adjusted corpus.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+const fmtINR = (n) => {
+  const a = Math.abs(n);
+  if (a >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (a >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+const fmtRaw = (n) => Math.round(n).toLocaleString('en-IN');
+
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+const PRESETS = [
+  { rate: 4,  label: 'Savings account / post-tax FD',
+    headline: 'You\'re losing to inflation.',
+    body: 'Your money limps along while prices walk faster. Convenience, yes — wealth, no.',
+    tone: 'cold' },
+  { rate: 6,  label: 'Bank FD (pre-tax)',
+    headline: 'Barely keeping up.',
+    body: 'Post-tax it slips back toward 4%. Treat FDs as a parking lot, not the destination.',
+    tone: 'cold' },
+  { rate: 8,  label: 'Debt mutual fund',
+    headline: 'The boring half doing its job.',
+    body: 'Where your safety net + short-term goals live. Preserves real value; doesn\'t multiply it.',
+    tone: 'warm' },
+  { rate: 10, label: 'Balanced / hybrid fund',
+    headline: 'Real wealth, slowly.',
+    body: 'Built for someone who wants growth without watching their portfolio every Monday.',
+    tone: 'good' },
+  { rate: 15, label: 'Aggressive equity, cherry-picked period',
+    headline: 'Possible. Don\'t bank on it.',
+    body: 'Indian equity averages ~12% long-run. 15% requires a great fund or great timing — or both.',
+    tone: 'blue' },
+  { rate: 18, label: 'Hedge-fund-manager territory',
+    headline: 'Ask why they need your money.',
+    body: 'Sustainable 18% returns mean you\'d be on a Forbes list. If someone is promising this — there\'s a catch you haven\'t found yet.',
+    tone: 'toogood' }
+];
+
+let activeRate = 8;
+let activeAmount = 100000;
+
+function yearsToDouble(rate) {
+  return rate > 0 ? 72 / rate : Infinity;
+}
+
+function compoundValue(amt, rate, years) {
+  return amt * Math.pow(1 + rate / 100, years);
+}
+
+function pickTagline(rate) {
+  if (rate <= 0) return 'A zero-return account isn\'t a plan; it\'s a delay.';
+  if (rate < 5) return 'At this rate, you\'ll see maybe one doubling in your working life. Probably not enough.';
+  if (rate < 7) return 'A "safe" rate. Safe from market drops; not safe from inflation eating you alive.';
+  if (rate < 9) return 'Just about keeping pace. Useful for short-term money; insufficient for long-term wealth.';
+  if (rate < 11) return 'Now we\'re compounding. 7-9 doublings in a 30-year career — quietly, this is how wealth happens.';
+  if (rate < 14) return 'The historical long-run return of Indian equity. The patient money\'s reward.';
+  if (rate <= 17) return 'Aspirational but defensible. Requires picking good funds AND not panic-selling for decades.';
+  return 'If someone is promising this consistently — stop and ask what could go wrong. Usually a lot.';
+}
+
+function renderChips() {
+  const wrap = document.getElementById('rate-chips');
+  const chips = PRESETS.map(p => `<button class="rate-chip ${activeRate === p.rate ? 'active' : ''}" data-rate="${p.rate}">${p.rate}%</button>`).join('') +
+    `<button class="rate-chip ${PRESETS.every(p => p.rate !== activeRate) ? 'active' : ''}" data-rate="custom">Custom</button>`;
+  wrap.innerHTML = chips;
+  wrap.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const r = btn.dataset.rate;
+      if (r === 'custom') {
+        document.getElementById('in-rate').focus();
+        return;
+      }
+      activeRate = parseFloat(r);
+      const inRate = document.getElementById('in-rate');
+      const slider = document.getElementById('rate-slider');
+      inRate.value = activeRate.toFixed(1);
+      slider.value = activeRate;
+      recalc();
+    });
+  });
+}
+
+function renderTimeline() {
+  document.getElementById('dt-start').textContent = fmtRaw(activeAmount);
+  const milestones = [5, 10, 15, 20, 25, 30];
+  const rows = milestones.map(y => {
+    const fv = compoundValue(activeAmount, activeRate, y);
+    const multiple = activeAmount > 0 ? (fv / activeAmount) : 0;
+    return `<div class="double-row">
+      <div class="text-ink/55 font-mono text-sm w-16 shrink-0">Year ${y}</div>
+      <div class="flex-1 font-display text-xl md:text-2xl font-extrabold text-ink">₹${fmtINR(fv)}</div>
+      <div class="text-thisblue font-mono text-sm">${multiple >= 100 ? Math.round(multiple) + '×' : multiple.toFixed(1) + '×'}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('dt-rows').innerHTML = rows;
+}
+
+function renderRateGrid() {
+  const grid = document.getElementById('rate-grid');
+  grid.innerHTML = PRESETS.map(p => {
+    const yrs = yearsToDouble(p.rate);
+    return `<div class="double-rate-card tone-${p.tone} cursor-pointer" data-pick-rate="${p.rate}">
+      <div class="flex items-baseline justify-between">
+        <div class="font-display text-4xl font-extrabold tab-num text-ink">${p.rate}<span class="text-xl opacity-60">%</span></div>
+        <div class="text-right">
+          <div class="font-mono text-sm text-ink/55">doubles in</div>
+          <div class="font-display text-2xl font-extrabold tab-num text-ink">${yrs.toFixed(1)}<span class="text-sm opacity-60"> yrs</span></div>
+        </div>
+      </div>
+      <div class="text-[10px] uppercase tracking-widest text-ink/55 font-bold mt-3">${p.label}</div>
+      <div class="font-serif text-lg font-extrabold text-ink mt-1 leading-tight">${p.headline}</div>
+      <div class="text-sm text-ink/75 mt-2 leading-snug">${p.body}</div>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('[data-pick-rate]').forEach(el => {
+    el.addEventListener('click', () => {
+      activeRate = parseFloat(el.dataset.pickRate);
+      document.getElementById('in-rate').value = activeRate.toFixed(1);
+      document.getElementById('rate-slider').value = activeRate;
+      recalc();
+      document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+}
+
+function recalc() {
+  document.getElementById('out-rate').textContent = activeRate.toFixed(1);
+  const yrs = yearsToDouble(activeRate);
+  document.getElementById('out-years').textContent = isFinite(yrs) ? yrs.toFixed(1) : '∞';
+  document.getElementById('out-tagline').textContent = pickTagline(activeRate);
+
+  // Tone for the big result card (matches the closest preset tone)
+  const card = document.getElementById('result-card');
+  const kicker = document.getElementById('out-kicker');
+  const baseKicker = 'text-xs uppercase tracking-[0.3em] font-bold';
+  let cardCls = 'bg-ink text-warmpaper';
+  let kickerCls = 'text-marigold';
+  if (activeRate < 5)        { cardCls = 'bg-thatred text-warmpaper';   kickerCls = 'text-marigold'; }
+  else if (activeRate < 9)   { cardCls = 'bg-marigold text-ink';         kickerCls = 'text-thisblue'; }
+  else if (activeRate < 14)  { cardCls = 'bg-thisblue text-warmpaper';   kickerCls = 'text-marigold'; }
+  else if (activeRate < 17)  { cardCls = 'bg-ink text-warmpaper';        kickerCls = 'text-marigold'; }
+  else                       { cardCls = 'bg-thatred text-warmpaper';    kickerCls = 'text-marigold'; }
+  card.className = cardCls + ' rounded-2xl p-7 md:p-9 mt-6';
+  kicker.className = baseKicker + ' ' + kickerCls;
+
+  renderChips();
+  renderTimeline();
+
+  // Reality message
+  const reality = document.getElementById('reality');
+  if (activeRate <= 0) {
+    reality.textContent = `Zero return = pure inflation loss. The longer you wait, the less your money buys. The Rule of 72 only works for you when the rate is positive.`;
+  } else if (activeRate < 7) {
+    reality.textContent = `At ${activeRate.toFixed(1)}%, your money doubles every ${yrs.toFixed(1)} years. In a 30-year career: ${Math.floor(30/yrs)} doublings. Inflation runs at 6%. The math says you're walking backwards.`;
+  } else if (activeRate < 12) {
+    reality.textContent = `At ${activeRate.toFixed(1)}%, you'll see ${Math.floor(30/yrs)} doublings in 30 years. ₹1 becomes ₹${Math.pow(2, Math.floor(30/yrs))}. This is what "long-term equity" actually buys you.`;
+  } else if (activeRate < 17) {
+    reality.textContent = `${activeRate.toFixed(1)}% over decades = ${Math.floor(30/yrs)} doublings in 30 years. That's wealth. But only if you don't sell during the 30% drawdowns that always come.`;
+  } else {
+    reality.textContent = `${activeRate.toFixed(1)}% sustained is hedge-fund-manager territory. Plan for 10-12%. If you get more, that's gravy. If you plan on 18% and get 11%, your retirement breaks.`;
+  }
+}
+
+// Wire amount + rate inputs
+document.getElementById('in-amount').addEventListener('input', (e) => {
+  activeAmount = parseNumericInput(e.target.value);
+  renderTimeline();
+});
+document.getElementById('in-amount').addEventListener('blur', () => {
+  document.getElementById('in-amount').value = fmtRaw(activeAmount);
+});
+
+document.getElementById('in-rate').addEventListener('input', (e) => {
+  const v = parseFloat(e.target.value.replace(/[%\s]/g, '')) || 0;
+  activeRate = Math.max(0, Math.min(50, v));
+  document.getElementById('rate-slider').value = activeRate;
+  recalc();
+});
+document.getElementById('rate-slider').addEventListener('input', (e) => {
+  activeRate = parseFloat(e.target.value);
+  document.getElementById('in-rate').value = activeRate.toFixed(1);
+  recalc();
+});
+
+renderChips();
+renderRateGrid();
+recalc();
+
+// Mobile menu
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
