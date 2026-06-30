@@ -121,7 +121,7 @@
       <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
       <div class="leading-tight">
         <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
-        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
       </div>
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
@@ -132,9 +132,9 @@
       <a href="calculators.html" class="hover:text-navy-ink">Plan</a>
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
-    <div class="flex items-center gap-3">
+    <div class="hidden md:flex items-center gap-3">
       <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden sm:inline-flex text-sm font-semibold text-navy-ink hover:text-navy">Subscribe</a>
-      <a id="nav-watch-latest" href="episode-detail.html" class="inline-flex items-center gap-2 bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">
+      <a id="nav-watch-latest" href="episode-detail.html" class="inline-flex items-center gap-2 bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition whitespace-nowrap">
         <span>▶</span> Watch latest
       </a>
     </div>
@@ -165,7 +165,7 @@
   <div class="absolute -top-40 -right-32 w-[500px] h-[500px] rounded-full bg-thisblue/8 blur-3xl pointer-events-none"></div>
   <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-thatred/10 blur-3xl pointer-events-none"></div>
 
-  <div class="relative max-w-7xl mx-auto px-6 pt-14 pb-16 grid lg:grid-cols-12 gap-10 items-center">
+  <div class="relative max-w-7xl mx-auto px-6 pt-14 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
     <!-- LEFT: editorial -->
     <div class="lg:col-span-6">
@@ -204,7 +204,7 @@
           <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Guests</div>
         </div>
         <div>
-          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num">3</div>
+          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num">8</div>
           <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Calculators</div>
         </div>
       </div>
@@ -299,7 +299,7 @@
     </div>
 
     <!-- Episode grid — full-width, 3 columns -->
-    <div id="latest" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="latest" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
     <div class="mt-10 mb-16 text-center">
       <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">
@@ -438,7 +438,7 @@
       <a href="articles.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">All articles →</a>
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Featured article -->
       <a href="article-detail.html" class="lift block lg:row-span-2 lg:col-span-2 bg-white rounded-2xl overflow-hidden border border-navy/10">
         <div class="thumb thumb-1 aspect-[16/10] flex items-end p-8">
@@ -500,7 +500,7 @@
       </div>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       <a href="calc-retirement.html" class="lift block bg-navy/50 backdrop-blur border border-cream/10 hover:border-mustard/60 rounded-2xl p-6 transition">
         <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-4">₹</div>
         <h3 class="font-serif text-2xl font-bold">Real Retirement</h3>
@@ -539,7 +539,7 @@
 
 <!-- ====================== ABOUT ====================== -->
 <section id="about" class="py-20 bg-cream">
-  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-5 gap-12 items-center">
+  <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
     <div class="md:col-span-2">
       <div class="avatar w-full aspect-square rounded-3xl bg-navy text-mustard text-6xl">BS</div>
     </div>
@@ -559,13 +559,13 @@
 <!-- ====================== FOOTER ====================== -->
 <footer class="bg-navy-ink text-cream/80 py-14">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-4 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       <div class="md:col-span-2">
         <div class="flex items-center gap-3">
           <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
           <div>
             <div class="font-bold text-cream">ThisOrThat</div>
-            <div class="text-[11px] uppercase tracking-widest text-cream/50">with Bhartendra</div>
+            <div class="text-[11px] uppercase tracking-widest text-cream/50">beyond the noise</div>
           </div>
         </div>
         <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, honestly. A media brand built on conversations India isn't having loudly enough.</p>
@@ -662,7 +662,7 @@ if (featured) {
   featuredEl.href = `episode-detail.html?v=${featured.id}`;
   const featGuestLabel = (featured.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : featured.guest;
   featuredEl.innerHTML = `
-    <div class="grid md:grid-cols-12 gap-0">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
       <div class="md:col-span-7 relative aspect-video md:aspect-auto bg-navy-ink overflow-hidden">
         <img src="${featured.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
         <div class="absolute inset-0 bg-gradient-to-t from-navy-ink/40 via-transparent to-transparent"></div>
@@ -755,7 +755,7 @@ const renderFeaturedGuest = (g, rich) => {
   // Use the bio excerpt as quote tease if available, else a generic credibility line
   const tease = (rich && rich.excerpt) || `${g.eps} appearance${g.eps !== 1 ? 's' : ''} on ThisOrThat — bringing some of the most-quoted ideas on the show.`;
   featuredGuestEl.innerHTML = `
-    <div class="grid md:grid-cols-12 gap-0">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
       <div class="md:col-span-4 relative bg-navy-ink p-8 md:p-10 flex items-center justify-center min-h-[280px]">
         <div class="absolute top-5 left-5 flex items-center gap-2 bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">Most appearances</div>
         ${g.photo

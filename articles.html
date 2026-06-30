@@ -58,7 +58,7 @@
       <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
       <div class="leading-tight">
         <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
-        <div class="text-[11px] text-navy/60 uppercase tracking-widest">with Bhartendra</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
       </div>
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
@@ -120,7 +120,7 @@
 <section class="pb-20 bg-cream">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="font-serif text-3xl font-bold text-navy-ink mb-8">All essays</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="art-grid"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="art-grid"></div>
     <div id="art-empty" class="hidden text-center py-20">
       <div class="font-serif text-3xl font-bold text-navy-ink">The first essay drops next Tuesday.</div>
       <p class="mt-3 text-navy-ink/60 max-w-md mx-auto">Subscribe to the weekly Slow Thought newsletter — you'll be the first to read it.</p>
@@ -169,7 +169,7 @@ fetch('content/articles.json')
 
     document.getElementById('featured-slot').innerHTML = `
       <a href="article-detail.html?slug=${featured.slug}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
-        <div class="grid md:grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="thumb ${thumbClass(featured)} aspect-video md:aspect-auto flex items-end p-10">
             <div class="relative z-10">
               <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Featured · ${featured.category}</div>
