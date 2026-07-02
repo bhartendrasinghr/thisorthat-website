@@ -158,6 +158,11 @@
               <input id="in-exp-emi" type="text" value="25,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
             </div>
             <div class="text-[10px] text-ink/55 mt-1">Home loan, car loan, personal loans — all together.</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[11px] text-ink/60">
+              <span>Biggest EMI ends in</span>
+              <input id="in-emi-end" type="text" value="0" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-8 text-right" />
+              <span>yrs <span class="text-ink/40">(0 = skip)</span></span>
+            </div>
           </div>
           <div>
             <label class="text-xs font-semibold text-ink/70 block mb-1">Once-a-year costs / year</label>
@@ -189,6 +194,31 @@
           <span id="out-available" class="font-display text-2xl font-extrabold text-gain tab-num">—</span>
           <span class="text-ink/60 text-sm">/mo</span>
           <span class="text-[11px] text-ink/55 ml-2">(<span id="out-rate">—</span>% of salary)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROTECTION CHECK -->
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Before you invest</div>
+      <div class="font-display text-xl font-extrabold text-ink mb-1">Are you protected first?</div>
+      <div class="text-sm text-ink/65 mb-4">No plan survives a hospital bill or a missing income. Check these two before any SIP.</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Term life cover you have</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-lg">₹</span>
+            <input id="in-term" type="text" value="0" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+          </div>
+          <div id="flag-term" class="text-[11px] mt-1.5 font-semibold">—</div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Health cover you have (family)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-lg">₹</span>
+            <input id="in-health" type="text" value="0" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+          </div>
+          <div id="flag-health" class="text-[11px] mt-1.5 font-semibold">—</div>
         </div>
       </div>
     </div>
@@ -245,6 +275,9 @@
         <span>Your goals need ₹<span id="out-total2">—</span>/mo</span>
         <span>You can invest ₹<span id="out-avail2">—</span>/mo</span>
       </div>
+      <div id="out-existing" class="mt-3 text-[12px] opacity-80 hidden"></div>
+      <div id="out-stepup" class="mt-2 text-[12px] opacity-80 hidden"></div>
+      <div id="out-eminote" class="mt-2 text-[12px] opacity-80 hidden"></div>
       <span id="out-pct" class="hidden">—</span>
     </div>
 
@@ -255,12 +288,25 @@
       <div id="tradeoff-list" class="mt-4 space-y-3 text-sm text-ink/85"></div>
     </div>
 
+    <!-- ACTION PLAN -->
+    <div id="action-card" class="bg-white rounded-2xl border-2 border-thisblue p-6 hidden">
+      <div class="flex items-start justify-between gap-3 flex-wrap">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Your action list</div>
+          <h3 class="font-display text-xl font-extrabold text-ink mt-1">Start these SIPs this month.</h3>
+          <div class="text-sm text-ink/65 mt-0.5">Each goal, where to park it, and how much. Short goals sit in safe funds — long goals ride equity.</div>
+        </div>
+        <button onclick="window.print()" class="text-xs font-semibold text-thisblue border border-thisblue/30 px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Print / save PDF</button>
+      </div>
+      <div id="action-list" class="mt-4 space-y-2 text-sm"></div>
+    </div>
+
     <!-- ASSUMPTIONS -->
     <details class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-      <summary class="cursor-pointer font-semibold text-ink/75">The two assumptions behind the math (tap to change)</summary>
-      <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <summary class="cursor-pointer font-semibold text-ink/75">The assumptions behind the math (tap to change)</summary>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-5">
         <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">Your investments grow at</label>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Long-term investments grow at</label>
           <div class="flex items-baseline gap-1">
             <input id="in-ret" type="text" value="10.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-ink w-14" />
             <span class="text-ink/60 text-sm">% a year</span>
@@ -273,8 +319,15 @@
             <span class="text-ink/60 text-sm">% a year</span>
           </div>
         </div>
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Your salary grows at</label>
+          <div class="flex items-baseline gap-1">
+            <input id="in-salgrowth" type="text" value="8.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-ink w-14" />
+            <span class="text-ink/60 text-sm">% a year</span>
+          </div>
+        </div>
       </div>
-      <p class="text-[11px] text-ink/55 mt-4">10% is what a sensible mix of equity and debt has earned in India over 15+ years. 6% is the long-run inflation average. Leave these alone unless you have a strong reason.</p>
+      <p class="text-[11px] text-ink/55 mt-4">Goals within 3 years are assumed to sit in safe funds earning ~6.5%; goals 3-7 years away in balanced funds at ~9%; only 7+ year goals get the full long-term rate. Education costs rise at 10%/yr, cars at 4%/yr — you can change any goal's rate on its card. Salary growth powers the "start smaller, step up yearly" option.</p>
     </details>
 
     <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
@@ -460,6 +513,38 @@ function monthlyExpenses(s) {
   return (s.expHousehold || 0) + (s.expEmi || 0) + ((s.expYearly || 0) + (s.expInsurance || 0)) / 12;
 }
 
+// Per-type inflation defaults (India): education outruns CPI badly, cars barely move.
+const TYPE_INF = { education: 0.10, car: 0.04, home: 0.07 };
+function goalInf(g) {
+  if (g.inf != null) return g.inf;                      // user override on the card
+  if (TYPE_INF[g.type] != null) return TYPE_INF[g.type];
+  return state.inf;                                     // global default
+}
+
+// Horizon-based returns: short money can't ride equity.
+function goalRet(years) {
+  if (years <= 3) return 0.065;   // liquid / FD funds
+  if (years <= 7) return 0.09;    // hybrid / balanced funds
+  return state.ret;               // long-term equity mix (global assumption)
+}
+function vehicleFor(years) {
+  if (years <= 3) return 'liquid / FD funds (~6.5%)';
+  if (years <= 7) return 'hybrid funds (~9%)';
+  return `equity index funds (~${(state.ret * 100).toFixed(0)}%)`;
+}
+
+// FV of ₹1/mo that steps up `growth`% every 12 months, at annual return `ret`
+function stepUpFactor(years, ret, growth) {
+  const mr = Math.pow(1 + ret, 1/12) - 1;
+  let fv = 0, pay = 1;
+  const months = Math.round(years * 12);
+  for (let m = 0; m < months; m++) {
+    if (m > 0 && m % 12 === 0) pay *= (1 + growth);
+    fv = fv * (1 + mr) + pay;
+  }
+  return fv; // end-of-month deposits, matches requiredSIP's annuity
+}
+
 function makeStarters(state) {
   const exp = monthlyExpenses(state);
   const annualExp = exp * 12;
@@ -480,14 +565,18 @@ const DEFAULT_STATE = {
   expEmi: 25000,
   expYearly: 60000,
   expInsurance: 60000,
+  emiEndYears: 0,
   age: 35,
   retireAge: 60,
   pot: 0,
+  termCover: 0,
+  healthCover: 0,
   ret: 0.10,
   inf: 0.06,
+  salaryGrowth: 0.08,
   goals: [
-    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0 },
-    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 570000, years: 2, allocated: 0 }
+    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0, sip: 0 },
+    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 570000, years: 2, allocated: 0, sip: 0 }
   ]
 };
 
@@ -508,7 +597,9 @@ let state = (() => {
       name: g.name,
       target: g.target,
       years: g.years,
-      allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0)
+      allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0),
+      sip: g.sip || 0,
+      inf: g.inf != null ? g.inf : null
     }));
     return Object.assign({}, DEFAULT_STATE, parsed);
   };
@@ -544,8 +635,12 @@ function renderInputs() {
   setLbl(document.getElementById('in-pot'),           fmtRaw(state.pot));
   setLbl(document.getElementById('in-age'),           state.age);
   setLbl(document.getElementById('in-retire'),        state.retireAge);
+  setLbl(document.getElementById('in-emi-end'),       state.emiEndYears);
+  setLbl(document.getElementById('in-term'),          fmtRaw(state.termCover));
+  setLbl(document.getElementById('in-health'),        fmtRaw(state.healthCover));
   setLbl(document.getElementById('in-ret'),           (state.ret * 100).toFixed(1));
   setLbl(document.getElementById('in-inf'),           (state.inf * 100).toFixed(1));
+  setLbl(document.getElementById('in-salgrowth'),     (state.salaryGrowth * 100).toFixed(1));
 }
 
 function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
@@ -616,7 +711,11 @@ function renderGoals() {
   empty.classList.add('hidden');
 
   list.innerHTML = state.goals.map((g, idx) => {
-    const sip = requiredSIP(g.target, g.years, g.allocated || 0, state.ret, state.inf);
+    const inf = goalInf(g);
+    const ret = goalRet(g.years);
+    const sip = requiredSIP(g.target, g.years, g.allocated || 0, ret, inf);
+    const newSip = Math.max(0, sip - (g.sip || 0));
+    const futureCost = g.target * Math.pow(1 + inf, g.years);
     const typeLabel = (TYPES[g.type] || TYPES.custom).label;
     const hasHelper = !!(TYPES[g.type] && TYPES[g.type].helper);
     const isOpen = openSizer === g.id;
@@ -634,11 +733,12 @@ function renderGoals() {
           <div class="mt-3 sm:mt-0 sm:text-right flex items-baseline gap-2 sm:block sm:shrink-0">
             <div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Invest / month</div>
             <div class="font-display text-xl sm:text-2xl font-extrabold tab-num text-ink">₹${fmtINR(sip)}</div>
+            ${g.sip > 0 ? `<div class="text-[10px] text-gain font-semibold">already doing ₹${fmtINR(Math.min(g.sip, sip))} → add ₹${fmtINR(newSip)}</div>` : ''}
           </div>
         </div>
 
-        <!-- Data rows: stacked label-value on mobile, 3-col on sm+ -->
-        <div class="mt-4 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4">
+        <!-- Data rows: stacked label-value on mobile, grid on sm+ -->
+        <div class="mt-4 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
           <div class="flex items-center justify-between gap-2 sm:block">
             <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Costs <span class="text-ink/40">(at today's prices)</span></div>
             <div class="flex items-baseline gap-1 shrink-0">
@@ -666,6 +766,23 @@ function renderGoals() {
               <input data-field="allocated" type="text" value="${fmtINR(g.allocated || 0)}" inputmode="text" class="editable-num tab-num text-ink/80 w-24 sm:w-full text-right sm:text-left" />
             </div>
           </div>
+          <div class="flex items-center justify-between gap-2 sm:block">
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">SIP you already run</div>
+            <div class="flex items-baseline gap-1 shrink-0">
+              <span class="text-ink/55 text-sm">₹</span>
+              <input data-field="sip" type="text" value="${g.sip ? fmtINR(g.sip) : '0'}" inputmode="text" class="editable-num tab-num text-ink/80 w-24 sm:w-full text-right sm:text-left" />
+              <span class="text-ink/45 text-[10px]">/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The honest math, visible -->
+        <div class="mt-3 bg-warmpaper-2 rounded-lg px-3 py-2 text-[11px] text-ink/70 tab-num flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span>₹${fmtINR(g.target)} today ≈ <strong class="text-ink">₹${fmtINR(futureCost)}</strong> in ${g.years} yrs</span>
+          <span class="text-ink/40">·</span>
+          <span>prices rise <input data-field="infPct" type="text" value="${(inf * 100).toFixed(0)}" inputmode="decimal" class="editable-num tab-num font-bold text-thisblue w-8 text-right" />%/yr</span>
+          <span class="text-ink/40">·</span>
+          <span>park it in <strong class="text-ink">${vehicleFor(g.years)}</strong></span>
         </div>
 
         ${isOpen ? renderSizer(g) : ''}
@@ -687,6 +804,7 @@ function renderGoals() {
         if (!g) return;
         if (field === 'name') g.name = input.value;
         else if (field === 'years') g.years = Math.max(0, parseInt(input.value) || 0);
+        else if (field === 'infPct') g.inf = Math.max(0, Math.min(0.20, (parseFloat(input.value) || 0) / 100));
         else g[field] = parseNumericInput(input.value);
         save();
         recalc();
@@ -765,6 +883,7 @@ function recalc() {
   // Keep ages sane, then derive the retirement timeline from them
   state.age = Math.min(79, Math.max(18, Math.round(state.age || 35)));
   state.retireAge = Math.min(90, Math.max(state.age + 1, Math.round(state.retireAge || 60)));
+  state.emiEndYears = Math.max(0, Math.min(30, Math.round(state.emiEndYears || 0)));
   const retYears = state.retireAge - state.age;
   state.goals.forEach(g => { if (g.type === 'retirement') g.years = retYears; });
 
@@ -780,11 +899,25 @@ function recalc() {
   document.getElementById('out-rate').textContent = ratePct.toFixed(1);
   document.getElementById('out-avail2').textContent = fmtINR(available);
 
-  let totalSIP = 0;
+  let totalSIP = 0;        // gross monthly investing the goals need
+  let totalExisting = 0;   // SIPs already running (capped at each goal's need)
+  let totalStepUp = 0;     // starting amount if payments rise with salary
   let totalAllocated = 0;
+  const goalCalcs = [];
   state.goals.forEach(g => {
-    totalSIP += requiredSIP(g.target, g.years, g.allocated || 0, state.ret, state.inf);
+    const inf = goalInf(g), ret = goalRet(g.years);
+    const sip = requiredSIP(g.target, g.years, g.allocated || 0, ret, inf);
+    const existing = Math.min(g.sip || 0, sip);
+    const goalFuture = g.target * Math.pow(1 + inf, g.years);
+    const allocGrown = (g.allocated || 0) * Math.pow(1 + ret, g.years);
+    const gap = Math.max(0, goalFuture - allocGrown);
+    const suf = g.years > 0 ? stepUpFactor(g.years, ret, state.salaryGrowth) : 0;
+    const stepUp = (g.years > 0 && suf > 0) ? gap / suf : sip;
+    totalSIP += sip;
+    totalExisting += existing;
+    totalStepUp += stepUp;
     totalAllocated += (g.allocated || 0);
+    goalCalcs.push({ g, sip, existing, newSip: Math.max(0, sip - existing), stepUp });
   });
 
   // Pot summary
@@ -881,14 +1014,68 @@ function recalc() {
   }
 
   document.getElementById('reality').textContent = realityText;
+
+  // "You already invest…" line
+  const existingEl = document.getElementById('out-existing');
+  if (totalExisting > 0 && state.goals.length) {
+    existingEl.classList.remove('hidden');
+    existingEl.innerHTML = `You already invest <strong>₹${fmtINR(totalExisting)}/mo</strong> of this — new money needed: <strong>₹${fmtINR(Math.max(0, totalSIP - totalExisting))}/mo</strong>.`;
+  } else existingEl.classList.add('hidden');
+
+  // Step-up alternative (start smaller, grow with salary)
+  const stepupEl = document.getElementById('out-stepup');
+  if (state.goals.length && totalSIP > 0 && totalStepUp < totalSIP * 0.97) {
+    stepupEl.classList.remove('hidden');
+    stepupEl.innerHTML = `Can't start with ₹${fmtINR(totalSIP)}? Start at <strong>₹${fmtINR(totalStepUp)}/mo</strong> and raise it ${(state.salaryGrowth * 100).toFixed(0)}% with every yearly increment — same destination.`;
+  } else stepupEl.classList.add('hidden');
+
+  // EMI-end note
+  const emiEl = document.getElementById('out-eminote');
+  if (state.emiEndYears > 0 && state.expEmi > 0) {
+    emiEl.classList.remove('hidden');
+    emiEl.innerHTML = `Your ₹${fmtINR(state.expEmi)}/mo EMIs end in ~${state.emiEndYears} yrs — that money can then flow straight into the long goals.`;
+  } else emiEl.classList.add('hidden');
+
+  // Protection flags
+  const annualIncome = income * 12;
+  const termNeed = annualIncome * 12;
+  const flagTerm = document.getElementById('flag-term');
+  if ((state.termCover || 0) >= termNeed && termNeed > 0) {
+    flagTerm.className = 'text-[11px] mt-1.5 font-semibold text-gain';
+    flagTerm.textContent = `✓ Solid — you're above the 12× annual income rule (₹${fmtINR(termNeed)}).`;
+  } else {
+    flagTerm.className = 'text-[11px] mt-1.5 font-semibold text-thatred';
+    flagTerm.textContent = `Rule of thumb: 12× your annual income ≈ ₹${fmtINR(termNeed)}. Pure term plans are cheap — fix this before any SIP.`;
+  }
+  const flagHealth = document.getElementById('flag-health');
+  if ((state.healthCover || 0) >= 1000000) {
+    flagHealth.className = 'text-[11px] mt-1.5 font-semibold text-gain';
+    flagHealth.textContent = `✓ At or above the ₹10L family-floater floor.`;
+  } else {
+    flagHealth.className = 'text-[11px] mt-1.5 font-semibold text-thatred';
+    flagHealth.textContent = `₹10L family floater is the sensible floor — one hospitalisation can eat a year of SIPs.`;
+  }
+
+  // Action list
+  const actionCard = document.getElementById('action-card');
+  if (state.goals.length) {
+    actionCard.classList.remove('hidden');
+    document.getElementById('action-list').innerHTML = goalCalcs.map(c => {
+      const done = c.newSip < 1;
+      return `<div class="flex items-baseline justify-between gap-4 border-b border-navy/5 pb-2 last:border-0 last:pb-0">
+        <div><strong>${escapeAttr(c.g.name)}</strong> <span class="text-ink/55">→ ${vehicleFor(c.g.years)}</span></div>
+        <div class="font-mono font-bold whitespace-nowrap ${done ? 'text-gain' : 'text-thisblue'}">${done ? '✓ on track' : '+₹' + fmtINR(c.newSip) + '/mo'}</div>
+      </div>`;
+    }).join('');
+  } else actionCard.classList.add('hidden');
 }
 
 function renderTradeoffs(available) {
   const proposals = [];
   state.goals.forEach(g => {
-    const baseSIP   = requiredSIP(g.target,         g.years,     g.allocated || 0, state.ret, state.inf);
-    const deferSIP  = requiredSIP(g.target,         g.years + 5, g.allocated || 0, state.ret, state.inf);
-    const shrinkSIP = requiredSIP(g.target * 0.75,  g.years,     g.allocated || 0, state.ret, state.inf);
+    const baseSIP   = requiredSIP(g.target,         g.years,     g.allocated || 0, goalRet(g.years),     goalInf(g));
+    const deferSIP  = requiredSIP(g.target,         g.years + 5, g.allocated || 0, goalRet(g.years + 5), goalInf(g));
+    const shrinkSIP = requiredSIP(g.target * 0.75,  g.years,     g.allocated || 0, goalRet(g.years),     goalInf(g));
     if (baseSIP - deferSIP > 100)  proposals.push({ kind: 'defer',  goal: g, savings: baseSIP - deferSIP  });
     if (baseSIP - shrinkSIP > 100) proposals.push({ kind: 'shrink', goal: g, savings: baseSIP - shrinkSIP });
   });
@@ -932,8 +1119,12 @@ wireInput('in-exp-insurance', 'expInsurance', false);
 wireInput('in-pot',           'pot',          false);
 wireInput('in-age',           'age',          false);
 wireInput('in-retire',        'retireAge',    false);
+wireInput('in-emi-end',       'emiEndYears',  false);
+wireInput('in-term',          'termCover',    false);
+wireInput('in-health',        'healthCover',  false);
 wireInput('in-ret',           'ret',          true);
 wireInput('in-inf',           'inf',          true);
+wireInput('in-salgrowth',     'salaryGrowth', true);
 
 document.getElementById('add-blank').addEventListener('click', () => {
   state.goals.push({ id: nextId(), type: 'custom', name: 'New goal', target: 1000000, years: 5, allocated: 0 });
