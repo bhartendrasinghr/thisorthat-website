@@ -52,6 +52,14 @@
   .sizer-panel select { font-family:'Hanken Grotesk',sans-serif; }
   .sizer-panel button { background:#0249B1; color:#FCFBF8; padding:5px 14px; border-radius:999px; font-size:12px; font-weight:600; transition:background 150ms; }
   .sizer-panel button:hover { background:#013580; }
+  .chart-bar { background:#FFC21F; border-radius:3px 3px 0 0; min-height:2px; flex:1; transition:height 300ms ease; }
+  @media print {
+    header, #mobile-menu, footer, .print-hide, #starters, #add-blank, #reset-btn,
+    [data-toggle-sizer], .sizer-panel, .goal-row button, #action-card button { display: none !important; }
+    body { background: white; }
+    section { padding-top: 0 !important; padding-bottom: 12px !important; }
+    .rounded-2xl { border-radius: 8px; box-shadow: none !important; }
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -90,7 +98,7 @@
   </nav>
 </div>
 
-<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60 print-hide">
   <a href="index.html" class="hover:text-navy">Home</a> /
   <a href="calculators.html" class="hover:text-navy">Plan</a> /
   <span class="text-navy-ink">Full Plan</span>
@@ -275,6 +283,7 @@
         <span>Your goals need ₹<span id="out-total2">—</span>/mo</span>
         <span>You can invest ₹<span id="out-avail2">—</span>/mo</span>
       </div>
+      <div id="out-priority" class="mt-3 text-[12px] opacity-90 hidden"></div>
       <div id="out-existing" class="mt-3 text-[12px] opacity-80 hidden"></div>
       <div id="out-stepup" class="mt-2 text-[12px] opacity-80 hidden"></div>
       <div id="out-eminote" class="mt-2 text-[12px] opacity-80 hidden"></div>
@@ -296,9 +305,22 @@
           <h3 class="font-display text-xl font-extrabold text-ink mt-1">Start these SIPs this month.</h3>
           <div class="text-sm text-ink/65 mt-0.5">Each goal, where to park it, and how much. Short goals sit in safe funds — long goals ride equity.</div>
         </div>
-        <button onclick="window.print()" class="text-xs font-semibold text-thisblue border border-thisblue/30 px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Print / save PDF</button>
+        <div class="flex gap-2">
+          <button id="share-btn" class="text-xs font-semibold text-thisblue border border-thisblue/30 px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Copy share link</button>
+          <button onclick="window.print()" class="text-xs font-semibold text-thisblue border border-thisblue/30 px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Print / save PDF</button>
+        </div>
       </div>
       <div id="action-list" class="mt-4 space-y-2 text-sm"></div>
+    </div>
+
+    <!-- YEAR-BY-YEAR PROJECTION -->
+    <div id="chart-card" class="bg-white rounded-2xl border border-navy/10 p-6 hidden">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Watch it build</div>
+      <h3 class="font-display text-xl font-extrabold text-ink mt-1">Your money, year by year.</h3>
+      <div class="text-sm text-ink/65 mt-0.5">If you run the SIPs above. Each flag is a goal getting funded — the dip after it is the money being <em>used</em>, which is the whole point.</div>
+      <div id="chart-bars" class="mt-5 flex items-end gap-[2px] h-36"></div>
+      <div id="chart-axis" class="mt-1 flex justify-between text-[10px] text-ink/45 tab-num"></div>
+      <div id="chart-flags" class="mt-3 flex flex-wrap gap-2"></div>
     </div>
 
     <!-- ASSUMPTIONS -->
@@ -338,7 +360,7 @@
   </div>
 </section>
 
-<section class="py-16 bg-thisblue text-warmpaper">
+<section class="py-16 bg-thisblue text-warmpaper print-hide">
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
     <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
@@ -349,7 +371,7 @@
   </div>
 </section>
 
-<section class="py-16 bg-cream">
+<section class="py-16 bg-cream print-hide">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-display text-3xl font-extrabold text-ink">Single-goal calculators</h2>
     <p class="text-ink/65 mt-2">Want to deep-dive one of these? Each has its own page with year-by-year tables and reality checks.</p>
@@ -446,10 +468,18 @@ const TYPES = {
           { value: 'overseas_ms',  label: 'Overseas MS',              target: 8000000 },
           { value: 'overseas_mba', label: 'Overseas MBA',             target: 20000000 },
           { value: 'custom',       label: 'Custom amount',            target: 5000000 }
-        ]}
+        ]},
+        { key: 'kidAge',    label: 'Your kid\'s age today', kind: 'num', default: 3 },
+        { key: 'collegeAt', label: 'Starts college at age', kind: 'num', default: 18 }
       ],
       compute: (v, opts) => opts.course.target,
-      formula: (v, opts) => `${opts.course.label} preset`
+      formula: (v, opts) => {
+        const yrs = Math.max(1, Math.round((v.collegeAt || 18) - (v.kidAge || 3)));
+        return `${opts.course.label} · college in ${yrs} yrs`;
+      },
+      applyExtra: (g, v) => {
+        g.years = Math.max(1, Math.min(30, Math.round((v.collegeAt || 18) - (v.kidAge || 3))));
+      }
     }
   },
   home: {
@@ -550,12 +580,12 @@ function makeStarters(state) {
   const annualExp = exp * 12;
   const retYears = Math.max(1, (state.retireAge || 60) - (state.age || 35));
   return [
-    { type: 'retirement', name: `Retirement (at ${state.retireAge || 60})`, target: Math.max(10000000, Math.round(annualExp * 30)), years: retYears },
-    { type: 'emergency',  name: 'Emergency fund (6 months)', target: Math.max(100000, Math.round(exp * 6)),  years: 2 },
-    { type: 'education',  name: "Kid's higher education",    target: 5000000,  years: 15 },
-    { type: 'home',       name: 'Home down payment',         target: 3000000,  years: 5  },
-    { type: 'car',        name: 'Car',                       target: 1500000,  years: 4  },
-    { type: 'vacation',   name: 'Vacation fund',             target: 300000,   years: 2  }
+    { type: 'retirement', name: `Retirement (at ${state.retireAge || 60})`, target: Math.max(10000000, Math.round(annualExp * 30)), years: retYears, must: true },
+    { type: 'emergency',  name: 'Emergency fund (6 months)', target: Math.max(100000, Math.round(exp * 6)),  years: 2, must: true },
+    { type: 'education',  name: "Kid's higher education",    target: 5000000,  years: 15, must: true },
+    { type: 'home',       name: 'Home down payment',         target: 3000000,  years: 5,  must: false },
+    { type: 'car',        name: 'Car',                       target: 1500000,  years: 4,  must: false },
+    { type: 'vacation',   name: 'Vacation fund',             target: 300000,   years: 2,  must: false }
   ];
 }
 
@@ -575,8 +605,8 @@ const DEFAULT_STATE = {
   inf: 0.06,
   salaryGrowth: 0.08,
   goals: [
-    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0, sip: 0 },
-    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 570000, years: 2, allocated: 0, sip: 0 }
+    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0, sip: 0, must: true },
+    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 570000, years: 2, allocated: 0, sip: 0, must: true }
   ]
 };
 
@@ -599,10 +629,20 @@ let state = (() => {
       years: g.years,
       allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0),
       sip: g.sip || 0,
-      inf: g.inf != null ? g.inf : null
+      inf: g.inf != null ? g.inf : null,
+      must: g.must !== undefined ? g.must : (g.type === 'retirement' || g.type === 'emergency')
     }));
     return Object.assign({}, DEFAULT_STATE, parsed);
   };
+  // A shared link carries the whole plan in the #fragment — never sent to any server
+  try {
+    const m = location.hash.match(/#p=([A-Za-z0-9+/=_-]+)/);
+    if (m) {
+      const parsed = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
+      history.replaceState(null, '', location.pathname);
+      return migrate(parsed);
+    }
+  } catch (e) {}
   for (const key of ['ttot-planner-v3', 'ttot-planner-v2', 'ttot-planner-v1']) {
     try {
       const raw = localStorage.getItem(key);
@@ -727,6 +767,7 @@ function renderGoals() {
             <div class="flex items-center gap-2 flex-wrap">
               <input data-field="name" type="text" value="${escapeAttr(g.name)}" class="editable-num font-semibold text-ink text-base min-w-[140px] flex-1" />
               <span class="text-[10px] uppercase tracking-widest text-ink/45 font-bold bg-warmpaper-2 px-2 py-0.5 rounded-full whitespace-nowrap">${typeLabel}</span>
+              <button data-toggle-must title="Tap to switch" class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full whitespace-nowrap transition ${g.must ? 'bg-thisblue text-warmpaper' : 'bg-warmpaper-2 text-ink/45 border border-navy/10'}">${g.must ? 'Must-have' : 'Flexible'}</button>
             </div>
             ${hasHelper ? `<div class="mt-1.5"><span class="sizer-toggle" data-toggle-sizer>${isOpen ? 'Close ↓' : 'Help me pick a number →'}</span></div>` : ''}
           </div>
@@ -818,6 +859,15 @@ function renderGoals() {
       if (openSizer === id) openSizer = null;
       save(); renderGoals(); recalc();
     });
+    const mustBtn = row.querySelector('[data-toggle-must]');
+    if (mustBtn) {
+      mustBtn.addEventListener('click', () => {
+        const g = state.goals.find(x => x.id === id);
+        if (!g) return;
+        g.must = !g.must;
+        save(); renderGoals(); recalc();
+      });
+    }
     const sizerToggle = row.querySelector('[data-toggle-sizer]');
     if (sizerToggle) {
       sizerToggle.addEventListener('click', () => {
@@ -859,6 +909,7 @@ function renderGoals() {
           if (f.kind === 'select') opts[f.key] = f.options.find(o => o.value === g._sizer[f.key]) || f.options[0];
         });
         g.target = Math.round(def.helper.compute(g._sizer, opts, state));
+        if (def.helper.applyExtra) def.helper.applyExtra(g, g._sizer, opts, state);
         openSizer = null;
         save(); renderGoals(); recalc();
       });
@@ -873,7 +924,7 @@ function renderStarters() {
   wrap.querySelectorAll('button').forEach((btn, i) => {
     btn.addEventListener('click', () => {
       const s = starters[i];
-      state.goals.push({ id: nextId(), type: s.type, name: s.name, target: s.target, years: s.years, allocated: 0 });
+      state.goals.push({ id: nextId(), type: s.type, name: s.name, target: s.target, years: s.years, allocated: 0, sip: 0, must: !!s.must });
       save(); renderGoals(); recalc();
     });
   });
@@ -1056,6 +1107,28 @@ function recalc() {
     flagHealth.textContent = `₹10L family floater is the sensible floor — one hospitalisation can eat a year of SIPs.`;
   }
 
+  // Must-have vs Flexible breakdown (only when the full plan doesn't fit)
+  const prEl = document.getElementById('out-priority');
+  const musts = goalCalcs.filter(c => c.g.must);
+  const flexes = goalCalcs.filter(c => !c.g.must);
+  if (state.goals.length && available > 0 && totalSIP > available && musts.length) {
+    const mustSIP = musts.reduce((a, c) => a + c.sip, 0);
+    prEl.classList.remove('hidden');
+    if (mustSIP > available) {
+      prEl.innerHTML = `<strong>Even your must-haves alone need ₹${fmtINR(mustSIP)}/mo</strong> — ₹${fmtINR(mustSIP - available)} more than you have. Start there.`;
+    } else if (flexes.length) {
+      let rem = available - mustSIP;
+      const parts = flexes.map(c => {
+        const fits = c.sip <= rem + 0.5;
+        if (fits) rem -= c.sip;
+        return `${escapeAttr(c.g.name)} ${fits ? '✓' : '✗'}`;
+      });
+      prEl.innerHTML = `<strong>Your must-haves fit (₹${fmtINR(mustSIP)}/mo).</strong> With the ₹${fmtINR(available - mustSIP)} left: ${parts.join(' · ')}`;
+    } else {
+      prEl.classList.add('hidden');
+    }
+  } else prEl.classList.add('hidden');
+
   // Action list
   const actionCard = document.getElementById('action-card');
   if (state.goals.length) {
@@ -1068,6 +1141,36 @@ function recalc() {
       </div>`;
     }).join('');
   } else actionCard.classList.add('hidden');
+
+  // Year-by-year projection chart
+  const chartCard = document.getElementById('chart-card');
+  const maxYears = Math.min(40, Math.max(0, ...state.goals.map(g => g.years)));
+  if (state.goals.length && maxYears >= 2) {
+    chartCard.classList.remove('hidden');
+    const values = [];
+    for (let y = 1; y <= maxYears; y++) {
+      let total = 0;
+      state.goals.forEach(g => {
+        if (y > g.years) return; // goal reached — money spent
+        const ret = goalRet(g.years);
+        const mr = Math.pow(1 + ret, 1/12) - 1;
+        const months = y * 12;
+        const sipHere = requiredSIP(g.target, g.years, g.allocated || 0, ret, goalInf(g));
+        total += (g.allocated || 0) * Math.pow(1 + ret, y) + sipHere * ((Math.pow(1 + mr, months) - 1) / mr);
+      });
+      values.push(total);
+    }
+    const peak = Math.max(...values, 1);
+    document.getElementById('chart-bars').innerHTML = values.map((v, i) =>
+      `<div class="chart-bar" style="height:${Math.max(2, v / peak * 100)}%" title="Year ${i + 1}: ₹${fmtINR(v)}"></div>`
+    ).join('');
+    document.getElementById('chart-axis').innerHTML =
+      `<span>Yr 1</span><span>Yr ${Math.round(maxYears / 2)}</span><span>Yr ${maxYears} · peak ₹${fmtINR(peak)}</span>`;
+    const flags = state.goals.slice().sort((a, b) => a.years - b.years).map(g =>
+      `<span class="text-[11px] bg-warmpaper-2 border border-navy/10 rounded-full px-2.5 py-1 tab-num">Yr ${g.years} 🏁 ${escapeAttr(g.name)}</span>`
+    ).join('');
+    document.getElementById('chart-flags').innerHTML = flags;
+  } else chartCard.classList.add('hidden');
 }
 
 function renderTradeoffs(available) {
@@ -1127,8 +1230,23 @@ wireInput('in-inf',           'inf',          true);
 wireInput('in-salgrowth',     'salaryGrowth', true);
 
 document.getElementById('add-blank').addEventListener('click', () => {
-  state.goals.push({ id: nextId(), type: 'custom', name: 'New goal', target: 1000000, years: 5, allocated: 0 });
+  state.goals.push({ id: nextId(), type: 'custom', name: 'New goal', target: 1000000, years: 5, allocated: 0, sip: 0, must: false });
   save(); renderGoals(); recalc();
+});
+
+document.getElementById('share-btn').addEventListener('click', () => {
+  const btn = document.getElementById('share-btn');
+  try {
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(state))));
+    const url = location.origin + location.pathname + '#p=' + encoded;
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = 'Copied ✓';
+      setTimeout(() => { btn.textContent = 'Copy share link'; }, 1500);
+    });
+  } catch (e) {
+    btn.textContent = 'Could not copy';
+    setTimeout(() => { btn.textContent = 'Copy share link'; }, 1500);
+  }
 });
 
 document.getElementById('reset-btn').addEventListener('click', () => {
