@@ -111,21 +111,14 @@
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
       <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Step 1</div>
       <div class="font-display text-xl font-extrabold text-ink mb-4">Start with your money.</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
         <div>
           <label class="text-xs font-semibold text-ink/70 block mb-1">Salary you take home / month</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
             <input id="in-income" type="text" value="1,50,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
-        </div>
-        <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">What you spend / month</label>
-          <div class="flex items-baseline gap-1">
-            <span class="text-ink/60 text-lg">₹</span>
-            <input id="in-expenses" type="text" value="90,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
-          </div>
-          <div class="text-[10px] text-ink/55 mt-1">Rent, EMIs, groceries, school fees — everything.</div>
         </div>
         <div>
           <label class="text-xs font-semibold text-ink/70 block mb-1">Savings you already have</label>
@@ -135,14 +128,67 @@
           </div>
           <div class="text-[10px] text-ink/55 mt-1">FDs, mutual funds, EPF — money you could put toward these goals.</div>
         </div>
-        <div class="border-l border-navy/10 pl-5">
-          <div class="text-xs font-semibold text-ink/70 mb-1">Left over to invest</div>
-          <div class="flex items-baseline gap-1">
-            <span class="text-ink/60 text-lg">₹</span>
-            <span id="out-available" class="font-display text-2xl font-extrabold text-gain tab-num">—</span>
-            <span class="text-ink/60 text-sm">/mo</span>
+        <div>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Your age today → retire at</label>
+          <div class="flex items-baseline gap-2">
+            <input id="in-age" type="text" value="35" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue w-12 text-right" />
+            <span class="text-ink/50">→</span>
+            <input id="in-retire" type="text" value="60" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue w-12 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
           </div>
-          <div class="text-[11px] text-ink/55 mt-0.5">earn − spend = <span id="out-rate">—</span>% of your salary</div>
+          <div class="text-[10px] text-ink/55 mt-1">Sets the timeline for your retirement goal below.</div>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-5 border-t border-navy/10">
+        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">What goes out</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div>
+            <label class="text-xs font-semibold text-ink/70 block mb-1">Household spending / month</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-lg">₹</span>
+              <input id="in-exp-house" type="text" value="60,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            </div>
+            <div class="text-[10px] text-ink/55 mt-1">Rent, groceries, school fees, utilities, fuel.</div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink/70 block mb-1">Loan EMIs / month</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-lg">₹</span>
+              <input id="in-exp-emi" type="text" value="25,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            </div>
+            <div class="text-[10px] text-ink/55 mt-1">Home loan, car loan, personal loans — all together.</div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink/70 block mb-1">Once-a-year costs / year</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-lg">₹</span>
+              <input id="in-exp-yearly" type="text" value="60,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            </div>
+            <div class="text-[10px] text-ink/55 mt-1">Travel, festivals, annual school fees, memberships.</div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink/70 block mb-1">Insurance premiums / year</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-lg">₹</span>
+              <input id="in-exp-insurance" type="text" value="60,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
+            </div>
+            <div class="text-[10px] text-ink/55 mt-1">Life + health + vehicle, added up for the year.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-warmpaper-2 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-sm text-ink/75 tab-num">
+          You spend ≈ <strong class="text-ink">₹<span id="out-spend">—</span>/mo</strong>
+          <span class="text-ink/50 text-xs block sm:inline">(incl. ₹<span id="out-yearly-mo">—</span>/mo set aside for yearly bills)</span>
+        </div>
+        <div class="flex items-baseline gap-1 flex-wrap">
+          <span class="text-xs font-semibold text-ink/70 mr-1">Left over to invest:</span>
+          <span class="text-ink/60 text-lg">₹</span>
+          <span id="out-available" class="font-display text-2xl font-extrabold text-gain tab-num">—</span>
+          <span class="text-ink/60 text-sm">/mo</span>
+          <span class="text-[11px] text-ink/55 ml-2">(<span id="out-rate">—</span>% of salary)</span>
         </div>
       </div>
     </div>
@@ -328,7 +374,7 @@ const TYPES = {
     hint: 'Rule of thumb: 25-30× your annual expenses, so the corpus lasts the rest of your life.',
     helper: {
       fields: [
-        { key: 'monthlyLifestyle', label: 'Monthly lifestyle at 60 (today\'s ₹)', kind: 'money', defaultFn: s => s.expenses },
+        { key: 'monthlyLifestyle', label: 'Monthly lifestyle in retirement (today\'s ₹)', kind: 'money', defaultFn: s => Math.round(monthlyExpenses(s)) },
         { key: 'mult',             label: '× years of retirement', kind: 'num',   default: 25 }
       ],
       compute: (v) => v.monthlyLifestyle * 12 * v.mult,
@@ -395,8 +441,8 @@ const TYPES = {
       fields: [
         { key: 'months', label: 'Months of expenses to cover', kind: 'num', default: 6 }
       ],
-      compute: (v, opts, s) => v.months * s.expenses,
-      formula: (v) => `${v.months} months × your expenses`
+      compute: (v, opts, s) => Math.round(v.months * monthlyExpenses(s)),
+      formula: (v) => `${v.months} months × your monthly spend`
     }
   },
   custom: {
@@ -407,13 +453,20 @@ const TYPES = {
 };
 
 // ─── State ───────────────────────────────────────────────────────────
-const STORAGE_KEY = 'ttot-planner-v2';
+const STORAGE_KEY = 'ttot-planner-v3';
+
+// Total monthly spend: monthly items + yearly items spread across 12 months
+function monthlyExpenses(s) {
+  return (s.expHousehold || 0) + (s.expEmi || 0) + ((s.expYearly || 0) + (s.expInsurance || 0)) / 12;
+}
 
 function makeStarters(state) {
-  const annualExp = state.expenses * 12;
+  const exp = monthlyExpenses(state);
+  const annualExp = exp * 12;
+  const retYears = Math.max(1, (state.retireAge || 60) - (state.age || 35));
   return [
-    { type: 'retirement', name: 'Retirement (corpus at 60)', target: Math.max(10000000, annualExp * 30), years: 25 },
-    { type: 'emergency',  name: 'Emergency fund (6 months)', target: Math.max(100000, state.expenses * 6),  years: 2 },
+    { type: 'retirement', name: `Retirement (at ${state.retireAge || 60})`, target: Math.max(10000000, Math.round(annualExp * 30)), years: retYears },
+    { type: 'emergency',  name: 'Emergency fund (6 months)', target: Math.max(100000, Math.round(exp * 6)),  years: 2 },
     { type: 'education',  name: "Kid's higher education",    target: 5000000,  years: 15 },
     { type: 'home',       name: 'Home down payment',         target: 3000000,  years: 5  },
     { type: 'car',        name: 'Car',                       target: 1500000,  years: 4  },
@@ -423,47 +476,48 @@ function makeStarters(state) {
 
 const DEFAULT_STATE = {
   income: 150000,
-  expenses: 90000,
+  expHousehold: 60000,
+  expEmi: 25000,
+  expYearly: 60000,
+  expInsurance: 60000,
+  age: 35,
+  retireAge: 60,
   pot: 0,
   ret: 0.10,
   inf: 0.06,
   goals: [
-    { id: 'g1', type: 'retirement', name: 'Retirement (corpus at 60)', target: 32400000, years: 25, allocated: 0 },
-    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 540000,   years: 2,  allocated: 0 }
+    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0 },
+    { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 570000, years: 2, allocated: 0 }
   ]
 };
 
 let state = (() => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      // Migrate: rename corpus → allocated, add type, add pot
-      parsed.pot = parsed.pot || 0;
-      parsed.goals = (parsed.goals || []).map(g => ({
-        id: g.id,
-        type: g.type || 'custom',
-        name: g.name,
-        target: g.target,
-        years: g.years,
-        allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0)
-      }));
-      return Object.assign({}, DEFAULT_STATE, parsed);
+  const migrate = (parsed) => {
+    // v2 → v3: the single 'expenses' number becomes household spending
+    if (parsed.expenses !== undefined && parsed.expHousehold === undefined) {
+      parsed.expHousehold = parsed.expenses;
+      parsed.expEmi = 0;
+      parsed.expYearly = 0;
+      parsed.expInsurance = 0;
+      delete parsed.expenses;
     }
-  } catch (e) {}
-  // Try legacy v1
-  try {
-    const raw = localStorage.getItem('ttot-planner-v1');
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      parsed.pot = 0;
-      parsed.goals = (parsed.goals || []).map(g => ({
-        id: g.id, type: 'custom', name: g.name, target: g.target, years: g.years,
-        allocated: g.corpus || 0
-      }));
-      return Object.assign({}, DEFAULT_STATE, parsed);
-    }
-  } catch (e) {}
+    parsed.pot = parsed.pot || 0;
+    parsed.goals = (parsed.goals || []).map(g => ({
+      id: g.id,
+      type: g.type || 'custom',
+      name: g.name,
+      target: g.target,
+      years: g.years,
+      allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0)
+    }));
+    return Object.assign({}, DEFAULT_STATE, parsed);
+  };
+  for (const key of ['ttot-planner-v3', 'ttot-planner-v2', 'ttot-planner-v1']) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw) return migrate(JSON.parse(raw));
+    } catch (e) {}
+  }
   return JSON.parse(JSON.stringify(DEFAULT_STATE));
 })();
 
@@ -482,11 +536,16 @@ let openSizer = null;
 const setLbl = (el, val) => { if (el && document.activeElement !== el) el.value = val; };
 
 function renderInputs() {
-  setLbl(document.getElementById('in-income'),   fmtRaw(state.income));
-  setLbl(document.getElementById('in-expenses'), fmtRaw(state.expenses));
-  setLbl(document.getElementById('in-pot'),      fmtRaw(state.pot));
-  setLbl(document.getElementById('in-ret'),      (state.ret * 100).toFixed(1));
-  setLbl(document.getElementById('in-inf'),      (state.inf * 100).toFixed(1));
+  setLbl(document.getElementById('in-income'),        fmtRaw(state.income));
+  setLbl(document.getElementById('in-exp-house'),     fmtRaw(state.expHousehold));
+  setLbl(document.getElementById('in-exp-emi'),       fmtRaw(state.expEmi));
+  setLbl(document.getElementById('in-exp-yearly'),    fmtRaw(state.expYearly));
+  setLbl(document.getElementById('in-exp-insurance'), fmtRaw(state.expInsurance));
+  setLbl(document.getElementById('in-pot'),           fmtRaw(state.pot));
+  setLbl(document.getElementById('in-age'),           state.age);
+  setLbl(document.getElementById('in-retire'),        state.retireAge);
+  setLbl(document.getElementById('in-ret'),           (state.ret * 100).toFixed(1));
+  setLbl(document.getElementById('in-inf'),           (state.inf * 100).toFixed(1));
 }
 
 function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
@@ -543,6 +602,10 @@ function renderSizer(g) {
 }
 
 function renderGoals() {
+  // Retirement timeline always follows the age fields
+  const retYears = Math.max(1, (state.retireAge || 60) - (state.age || 35));
+  state.goals.forEach(g => { if (g.type === 'retirement') g.years = retYears; });
+
   const list = document.getElementById('goals-list');
   const empty = document.getElementById('goals-empty');
   if (!state.goals.length) {
@@ -585,10 +648,16 @@ function renderGoals() {
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
             <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">How far away</div>
-            <div class="flex items-baseline gap-1 shrink-0">
-              <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-10 text-right" />
-              <span class="text-ink/55 text-sm">yrs</span>
-            </div>
+            ${g.type === 'retirement'
+              ? `<div class="flex items-baseline gap-1 shrink-0">
+                  <span class="tab-num font-bold text-ink">${g.years}</span>
+                  <span class="text-ink/55 text-sm">yrs</span>
+                  <span class="text-[10px] text-ink/45 whitespace-nowrap">· at age ${state.retireAge}</span>
+                </div>`
+              : `<div class="flex items-baseline gap-1 shrink-0">
+                  <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-10 text-right" />
+                  <span class="text-ink/55 text-sm">yrs</span>
+                </div>`}
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
             <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Use from savings</div>
@@ -693,11 +762,21 @@ function renderStarters() {
 }
 
 function recalc() {
-  const income = state.income, exp = state.expenses, pot = state.pot;
-  const available = Math.max(0, income - exp);
+  // Keep ages sane, then derive the retirement timeline from them
+  state.age = Math.min(79, Math.max(18, Math.round(state.age || 35)));
+  state.retireAge = Math.min(90, Math.max(state.age + 1, Math.round(state.retireAge || 60)));
+  const retYears = state.retireAge - state.age;
+  state.goals.forEach(g => { if (g.type === 'retirement') g.years = retYears; });
+
+  const income = state.income, pot = state.pot;
+  const spendMonthly = monthlyExpenses(state);
+  const yearlyMo = ((state.expYearly || 0) + (state.expInsurance || 0)) / 12;
+  const available = Math.max(0, income - spendMonthly);
   const ratePct = income > 0 ? (available / income * 100) : 0;
 
-  document.getElementById('out-available').textContent = fmtRaw(available);
+  document.getElementById('out-spend').textContent = fmtRaw(Math.round(spendMonthly));
+  document.getElementById('out-yearly-mo').textContent = fmtRaw(Math.round(yearlyMo));
+  document.getElementById('out-available').textContent = fmtRaw(Math.round(available));
   document.getElementById('out-rate').textContent = ratePct.toFixed(1);
   document.getElementById('out-avail2').textContent = fmtINR(available);
 
@@ -836,18 +915,25 @@ function wireInput(id, key, isPercent) {
     const raw = parseNumericInput(el.value);
     state[key] = isPercent ? raw / 100 : raw;
     save(); recalc();
-    // Starter target defaults depend on income/expenses — refresh
-    if (key === 'income' || key === 'expenses') renderStarters();
+    // Starter defaults depend on income / spending / ages — refresh
+    if (['income', 'expHousehold', 'expEmi', 'expYearly', 'expInsurance', 'age', 'retireAge'].includes(key)) renderStarters();
+    // Retirement rows display the age-derived timeline — re-render them
+    if (key === 'age' || key === 'retireAge') renderGoals();
   });
   el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
   el.addEventListener('focus', () => el.select());
   el.addEventListener('blur', () => { renderInputs(); recalc(); });
 }
-wireInput('in-income',   'income',   false);
-wireInput('in-expenses', 'expenses', false);
-wireInput('in-pot',      'pot',      false);
-wireInput('in-ret',      'ret',      true);
-wireInput('in-inf',      'inf',      true);
+wireInput('in-income',        'income',       false);
+wireInput('in-exp-house',     'expHousehold', false);
+wireInput('in-exp-emi',       'expEmi',       false);
+wireInput('in-exp-yearly',    'expYearly',    false);
+wireInput('in-exp-insurance', 'expInsurance', false);
+wireInput('in-pot',           'pot',          false);
+wireInput('in-age',           'age',          false);
+wireInput('in-retire',        'retireAge',    false);
+wireInput('in-ret',           'ret',          true);
+wireInput('in-inf',           'inf',          true);
 
 document.getElementById('add-blank').addEventListener('click', () => {
   state.goals.push({ id: nextId(), type: 'custom', name: 'New goal', target: 1000000, years: 5, allocated: 0 });
