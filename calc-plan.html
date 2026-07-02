@@ -98,9 +98,9 @@
 
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Every goal, every SIP, one honest verdict</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Three steps · five minutes</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Your full financial plan.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Drop in everything you're saving for. <strong>Don't know how much you'll need?</strong> Each goal has a "Size this" helper that asks 1-2 questions and gives you the target. Have existing investments? Allocate them across the goals here too. <strong class="text-thisblue">Your numbers never leave the browser.</strong></p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">List what you're saving for — a home, your kid's education, retirement. We'll tell you <strong>how much to put away every month</strong>, and whether that fits what you earn. Not sure what a goal costs? We'll help you figure it out. <strong class="text-thisblue">Everything stays on your phone — no login.</strong></p>
   </div>
 </section>
 
@@ -109,38 +109,40 @@
 
     <!-- CASH FLOW + EXISTING INVESTMENTS -->
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your money, today</div>
+      <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Step 1</div>
+      <div class="font-display text-xl font-extrabold text-ink mb-4">Start with your money.</div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">Take-home / month</label>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Salary you take home / month</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
             <input id="in-income" type="text" value="1,50,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
         </div>
         <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">Committed expenses</label>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">What you spend / month</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
             <input id="in-expenses" type="text" value="90,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
+          <div class="text-[10px] text-ink/55 mt-1">Rent, EMIs, groceries, school fees — everything.</div>
         </div>
         <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">Already invested (lumpsum)</label>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Savings you already have</label>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
             <input id="in-pot" type="text" value="0" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
-          <div class="text-[10px] text-ink/55 mt-1">MFs + EPF + NPS + FDs that you'd allocate to a goal</div>
+          <div class="text-[10px] text-ink/55 mt-1">FDs, mutual funds, EPF — money you could put toward these goals.</div>
         </div>
         <div class="border-l border-navy/10 pl-5">
-          <div class="text-xs font-semibold text-ink/70 mb-1">Available to invest</div>
+          <div class="text-xs font-semibold text-ink/70 mb-1">Left over to invest</div>
           <div class="flex items-baseline gap-1">
             <span class="text-ink/60 text-lg">₹</span>
             <span id="out-available" class="font-display text-2xl font-extrabold text-gain tab-num">—</span>
             <span class="text-ink/60 text-sm">/mo</span>
           </div>
-          <div class="text-[11px] text-ink/55 mt-0.5"><span id="out-rate">—</span>% of take-home</div>
+          <div class="text-[11px] text-ink/55 mt-0.5">earn − spend = <span id="out-rate">—</span>% of your salary</div>
         </div>
       </div>
     </div>
@@ -149,15 +151,16 @@
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
       <div class="flex items-end justify-between mb-4 flex-wrap gap-3">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Your goals</div>
-          <div class="text-sm text-ink/65 mt-0.5">Click any number to edit. Don't know the target? Hit <strong>"Size this →"</strong> on the row.</div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Step 2</div>
+          <div class="font-display text-xl font-extrabold text-ink">What are you saving for?</div>
+          <div class="text-sm text-ink/65 mt-0.5">Tap any number to change it. Not sure what a goal costs? Tap <strong>"Help me pick a number"</strong>.</div>
         </div>
         <button id="reset-btn" class="text-xs text-ink/50 hover:text-thatred font-semibold">Reset plan ↻</button>
       </div>
 
       <div id="goals-empty" class="hidden text-center py-12 text-ink/55">
         <div class="font-serif text-2xl text-ink/70 mb-2">No goals yet.</div>
-        <div class="text-sm">Tap a starter below — or hit + Add custom goal.</div>
+        <div class="text-sm">Tap one of the ready-made goals below to get started.</div>
       </div>
 
       <div id="goals-list" class="space-y-3"></div>
@@ -166,26 +169,26 @@
       <div id="pot-summary" class="mt-5 hidden rounded-xl p-4 text-sm">
         <div class="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <div class="text-[10px] uppercase tracking-widest font-bold opacity-70">Allocation of your existing pot</div>
-            <div class="mt-1 tab-num"><strong id="pot-allocated">₹0</strong> allocated of <strong id="pot-total">₹0</strong> · <span id="pot-unalloc-label">Unallocated:</span> <strong id="pot-unalloc">₹0</strong></div>
+            <div class="text-[10px] uppercase tracking-widest font-bold opacity-70">Your existing savings, put to work</div>
+            <div class="mt-1 tab-num"><strong id="pot-allocated">₹0</strong> of your <strong id="pot-total">₹0</strong> assigned to goals · <span id="pot-unalloc-label">Still idle:</span> <strong id="pot-unalloc">₹0</strong></div>
           </div>
           <div id="pot-warning" class="hidden text-[11px] font-semibold"></div>
         </div>
       </div>
 
       <div class="mt-5 flex flex-wrap gap-2 items-center">
-        <button id="add-blank" class="bg-thisblue text-warmpaper px-4 py-2 rounded-full text-sm font-semibold hover:bg-thisblue-700 transition">+ Add custom goal</button>
-        <span class="text-xs text-ink/45 mx-2">or quick-add a starter:</span>
+        <button id="add-blank" class="bg-thisblue text-warmpaper px-4 py-2 rounded-full text-sm font-semibold hover:bg-thisblue-700 transition">+ Add your own goal</button>
+        <span class="text-xs text-ink/45 mx-2">or tap to add:</span>
         <div id="starters" class="flex flex-wrap gap-2"></div>
       </div>
     </div>
 
     <!-- VERDICT -->
     <div id="verdict-card" class="bg-ink text-warmpaper rounded-2xl p-7">
-      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Total monthly SIP needed</div>
+      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Step 3 · Does it fit?</div>
       <div class="flex items-end gap-4 mt-3 flex-wrap">
         <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none">₹<span id="out-total">—</span></div>
-        <div class="text-base opacity-70 pb-1"><span id="out-pct">—</span>% of your take-home</div>
+        <div class="text-base opacity-70 pb-1">/ month, for all your goals together</div>
       </div>
       <div class="mt-3 text-sm opacity-85" id="out-status">—</div>
 
@@ -193,43 +196,44 @@
         <div id="out-bar" class="bg-marigold" style="width:0%"></div>
       </div>
       <div class="mt-2 flex items-center justify-between text-[11px] opacity-70">
-        <span>Required ₹<span id="out-total2">—</span></span>
-        <span>Available ₹<span id="out-avail2">—</span></span>
+        <span>Your goals need ₹<span id="out-total2">—</span>/mo</span>
+        <span>You can invest ₹<span id="out-avail2">—</span>/mo</span>
       </div>
+      <span id="out-pct" class="hidden">—</span>
     </div>
 
     <!-- TRADE-OFFS -->
     <div id="tradeoff-card" class="bg-white rounded-2xl border-2 border-marigold p-6 hidden">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">If the plan doesn't fit</div>
-      <h3 class="font-display text-xl font-extrabold text-ink mt-1">Three honest moves to close the gap.</h3>
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Ways to make it fit</div>
+      <h3 class="font-display text-xl font-extrabold text-ink mt-1">Change one goal — here's what each change saves you.</h3>
       <div id="tradeoff-list" class="mt-4 space-y-3 text-sm text-ink/85"></div>
     </div>
 
     <!-- ASSUMPTIONS -->
     <details class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-      <summary class="cursor-pointer font-semibold text-ink/75">Returns & inflation assumptions</summary>
+      <summary class="cursor-pointer font-semibold text-ink/75">The two assumptions behind the math (tap to change)</summary>
       <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">Portfolio return / yr</label>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Your investments grow at</label>
           <div class="flex items-baseline gap-1">
             <input id="in-ret" type="text" value="10.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-ink w-14" />
-            <span class="text-ink/60 text-sm">%</span>
+            <span class="text-ink/60 text-sm">% a year</span>
           </div>
         </div>
         <div>
-          <label class="text-xs font-semibold text-ink/70 block mb-1">Inflation / yr (goals scale up)</label>
+          <label class="text-xs font-semibold text-ink/70 block mb-1">Prices rise at (inflation)</label>
           <div class="flex items-baseline gap-1">
             <input id="in-inf" type="text" value="6.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-ink w-14" />
-            <span class="text-ink/60 text-sm">%</span>
+            <span class="text-ink/60 text-sm">% a year</span>
           </div>
         </div>
       </div>
-      <p class="text-[11px] text-ink/55 mt-4">10% portfolio return is a balanced India equity-heavy portfolio over 15+ years. 6% inflation is the long-run RBI average. Tweak if you have reason to.</p>
+      <p class="text-[11px] text-ink/55 mt-4">10% is what a sensible mix of equity and debt has earned in India over 15+ years. 6% is the long-run inflation average. Leave these alone unless you have a strong reason.</p>
     </details>
 
     <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
-      <p>For each goal we inflate the target to the future-rupee amount, subtract what your allocated pot grows into, and solve for the monthly SIP that fills the gap. Then we sum every goal's SIP and compare against (income − expenses) — your investable. <strong>This page never sends your numbers anywhere</strong> — it saves them in your browser only.</p>
+      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How we calculate</div>
+      <p>Prices rise every year — so a goal that costs ₹30 lakh today will cost more by the time you get there. We account for that. We also count the growth on the savings you've assigned, and on every month's investment. Then simple honesty: add up what all goals need per month, compare it with what you have left after spending. <strong>Your numbers never leave this page</strong> — they're saved in your browser only.</p>
     </div>
 
   </div>
@@ -525,13 +529,13 @@ function renderSizer(g) {
 
   return `
     <div class="sizer-panel">
-      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">Help me size this</div>
+      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">Let's work it out together</div>
       ${rows}
       <div class="sz-row mt-3 pt-3 border-t border-ink/10">
         <div class="flex-1 text-ink/70 text-xs">
           <span class="font-mono">${formulaText}</span> = <strong class="text-ink">₹${fmtINR(previewTarget)}</strong> (today's ₹)
         </div>
-        <button data-sz-apply>Apply ↑</button>
+        <button data-sz-apply>Use this number ↑</button>
       </div>
       <div class="text-[11px] text-ink/55 mt-2 leading-snug">${def.hint}</div>
     </div>
@@ -562,10 +566,10 @@ function renderGoals() {
               <input data-field="name" type="text" value="${escapeAttr(g.name)}" class="editable-num font-semibold text-ink text-base min-w-[140px] flex-1" />
               <span class="text-[10px] uppercase tracking-widest text-ink/45 font-bold bg-warmpaper-2 px-2 py-0.5 rounded-full whitespace-nowrap">${typeLabel}</span>
             </div>
-            ${hasHelper ? `<div class="mt-1.5"><span class="sizer-toggle" data-toggle-sizer>${isOpen ? 'Close ↓' : 'Size this →'}</span></div>` : ''}
+            ${hasHelper ? `<div class="mt-1.5"><span class="sizer-toggle" data-toggle-sizer>${isOpen ? 'Close ↓' : 'Help me pick a number →'}</span></div>` : ''}
           </div>
           <div class="mt-3 sm:mt-0 sm:text-right flex items-baseline gap-2 sm:block sm:shrink-0">
-            <div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Needs / mo</div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Invest / month</div>
             <div class="font-display text-xl sm:text-2xl font-extrabold tab-num text-ink">₹${fmtINR(sip)}</div>
           </div>
         </div>
@@ -573,21 +577,21 @@ function renderGoals() {
         <!-- Data rows: stacked label-value on mobile, 3-col on sm+ -->
         <div class="mt-4 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4">
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Target <span class="text-ink/40">(today's ₹)</span></div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Costs <span class="text-ink/40">(at today's prices)</span></div>
             <div class="flex items-baseline gap-1 shrink-0">
               <span class="text-ink/55 text-sm">₹</span>
               <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-24 sm:w-full text-right sm:text-left" />
             </div>
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Years to goal</div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">How far away</div>
             <div class="flex items-baseline gap-1 shrink-0">
               <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-10 text-right" />
               <span class="text-ink/55 text-sm">yrs</span>
             </div>
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">From your pot</div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Use from savings</div>
             <div class="flex items-baseline gap-1 shrink-0">
               <span class="text-ink/55 text-sm">₹</span>
               <input data-field="allocated" type="text" value="${fmtINR(g.allocated || 0)}" inputmode="text" class="editable-num tab-num text-ink/80 w-24 sm:w-full text-right sm:text-left" />
@@ -714,26 +718,26 @@ function recalc() {
     const unalloc = pot - totalAllocated;
     const unallocLabel = document.getElementById('pot-unalloc-label');
     if (unalloc < 0) {
-      unallocLabel.textContent = 'Over-allocated by:';
+      unallocLabel.textContent = 'Assigned too much — over by:';
       document.getElementById('pot-unalloc').textContent = '₹' + fmtINR(-unalloc);
       potSummary.className = 'mt-5 rounded-xl p-4 text-sm bg-thatred/10 border border-thatred/40 text-ink';
       potWarning.classList.remove('hidden');
       potWarning.className = 'text-[11px] font-semibold text-thatred';
-      potWarning.textContent = `⚠ Re-balance your allocations`;
+      potWarning.textContent = `⚠ You've assigned more than you have`;
     } else if (unalloc > 0) {
-      unallocLabel.textContent = 'Unallocated:';
+      unallocLabel.textContent = 'Still idle:';
       document.getElementById('pot-unalloc').textContent = '₹' + fmtINR(unalloc);
       potSummary.className = 'mt-5 rounded-xl p-4 text-sm bg-marigold/15 border border-marigold/50 text-ink';
       potWarning.classList.remove('hidden');
       potWarning.className = 'text-[11px] font-semibold text-mustard-deep';
-      potWarning.textContent = `${((unalloc / pot) * 100).toFixed(0)}% of pot still unallocated`;
+      potWarning.textContent = `₹${fmtINR(unalloc)} isn't working toward any goal yet`;
     } else {
-      unallocLabel.textContent = 'Unallocated:';
+      unallocLabel.textContent = 'Still idle:';
       document.getElementById('pot-unalloc').textContent = '₹0';
       potSummary.className = 'mt-5 rounded-xl p-4 text-sm bg-gain/10 border border-gain/40 text-ink';
       potWarning.classList.remove('hidden');
       potWarning.className = 'text-[11px] font-semibold text-gain';
-      potWarning.textContent = '✓ Pot fully allocated';
+      potWarning.textContent = '✓ Every rupee has a job';
     }
   } else {
     potSummary.classList.add('hidden');
@@ -759,42 +763,42 @@ function recalc() {
     card.className = 'bg-ink text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     bar.className = 'bg-marigold';
-    status.innerHTML = `<strong>No goals to plan.</strong> Add a few above — a starter or your own.`;
+    status.innerHTML = `<strong>Nothing to plan yet.</strong> Add a goal above to see your monthly number.`;
     tradeoffCard.classList.add('hidden');
-    realityText = `A plan with zero goals isn't a plan — it's just a payslip with extra steps. Drop at least one goal in.`;
+    realityText = `A plan with zero goals isn't a plan — it's just a payslip with extra steps. Add at least one goal.`;
   } else if (available <= 0) {
     card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     bar.className = 'bg-marigold';
-    status.innerHTML = `<strong>Expenses ≥ income.</strong> There's nothing to invest. Fix the cash-flow problem before the goals.`;
+    status.innerHTML = `<strong>You're spending everything you earn.</strong> There's nothing left to invest. Fix that first — no plan works without something left over.`;
     tradeoffCard.classList.add('hidden');
-    realityText = `Your committed expenses are eating every rupee that lands. No SIP plan survives this — the work is on the spending side first.`;
+    realityText = `Your spending eats every rupee that comes in. No plan survives this — the work starts on the spending side, not the goals.`;
   } else if (totalSIP <= available) {
     card.className = 'bg-gain text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     bar.className = 'bg-marigold';
     const slack = available - totalSIP;
-    status.innerHTML = `<strong>The plan fits.</strong> ₹${fmtINR(slack)}/mo of slack left over — buffer, extra goal, or just sleep better.`;
+    status.innerHTML = `<strong>This works.</strong> Fund every goal and you still have ₹${fmtINR(slack)} left over each month.`;
     tradeoffCard.classList.add('hidden');
-    realityText = `Plan fits with ₹${fmtINR(slack)}/mo of slack. Don't let that surplus become silent lifestyle inflation — automate it into the longest-horizon goal.`;
+    realityText = `The plan fits, with ₹${fmtINR(slack)}/month to spare. Put that surplus into your longest goal before lifestyle quietly eats it.`;
   } else if (totalSIP <= available * 1.15) {
     card.className = 'bg-marigold text-ink rounded-2xl p-7';
     kicker.className = baseKicker + ' text-thisblue';
     bar.className = 'bg-thisblue';
     const gap = totalSIP - available;
-    status.innerHTML = `<strong>Stretchy.</strong> Plan is over by ₹${fmtINR(gap)}/mo — within 15% of doable. Small trade-offs close it.`;
+    status.innerHTML = `<strong>Almost fits.</strong> You're ₹${fmtINR(gap)}/month short. One small change below closes the gap.`;
     tradeoffCard.classList.remove('hidden');
     renderTradeoffs(available);
-    realityText = `You're ₹${fmtINR(gap)}/mo short of fitting every goal in. The trade-offs below close it without dropping anything.`;
+    realityText = `You're ₹${fmtINR(gap)}/month short. The changes below close the gap without dropping a single goal.`;
   } else {
     card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     bar.className = 'bg-marigold';
     const gap = totalSIP - available;
-    status.innerHTML = `<strong>Over-committed by ${(totalSIP / available * 100 - 100).toFixed(0)}%.</strong> ₹${fmtINR(gap)}/mo more than you can save. One or more goals have to shift.`;
+    status.innerHTML = `<strong>Doesn't fit yet.</strong> Your goals need ₹${fmtINR(gap)}/month more than you have. Change one goal below — don't shave them all.`;
     tradeoffCard.classList.remove('hidden');
     renderTradeoffs(available);
-    realityText = `${totalPct.toFixed(0)}% of your income — the math doesn't work. The honest call: pick one goal to defer or shrink, not all of them slightly.`;
+    realityText = `Your goals need more than you can invest right now. The honest fix: postpone or shrink ONE goal — not all of them slightly.`;
   }
 
   document.getElementById('reality').textContent = realityText;
@@ -813,14 +817,14 @@ function renderTradeoffs(available) {
   const top3 = proposals.slice(0, 3);
   const list = document.getElementById('tradeoff-list');
   if (!top3.length) {
-    list.innerHTML = '<div class="text-ink/60">All goals are already close to optimal. The fix is on the income / expenses side.</div>';
+    list.innerHTML = '<div class="text-ink/60">Your goals are already lean. The gap has to close from the earning or spending side.</div>';
     return;
   }
   list.innerHTML = top3.map(p => {
-    const verb = p.kind === 'defer' ? `Push <strong>${p.goal.name}</strong> by 5 years` : `Shrink <strong>${p.goal.name}</strong> by 25%`;
+    const verb = p.kind === 'defer' ? `Give <strong>${p.goal.name}</strong> 5 more years` : `Aim 25% lower on <strong>${p.goal.name}</strong>`;
     return `<div class="flex items-baseline justify-between gap-4 border-b border-navy/5 pb-3 last:border-0 last:pb-0">
       <div>${verb}</div>
-      <div class="font-mono text-thisblue font-bold whitespace-nowrap">−₹${fmtINR(p.savings)}/mo</div>
+      <div class="font-mono text-thisblue font-bold whitespace-nowrap">frees ₹${fmtINR(p.savings)}/mo</div>
     </div>`;
   }).join('');
 }
