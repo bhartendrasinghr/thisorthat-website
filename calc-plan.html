@@ -446,15 +446,8 @@ function requiredSIP(goalToday, years, allocated, ret, inf) {
 const TYPES = {
   retirement: {
     label: 'Retirement',
-    hint: 'Rule of thumb: 25-30× your annual expenses, so the corpus lasts the rest of your life.',
-    helper: {
-      fields: [
-        { key: 'monthlyLifestyle', label: 'Monthly lifestyle in retirement (today\'s ₹)', kind: 'money', defaultFn: s => Math.round(monthlyExpenses(s)) },
-        { key: 'mult',             label: '× years of retirement', kind: 'num',   default: 25 }
-      ],
-      compute: (v) => v.monthlyLifestyle * 12 * v.mult,
-      formula: (v) => `₹${fmtINR(v.monthlyLifestyle)} × 12 × ${v.mult} yrs`
-    }
+    hint: 'Corpus is derived from your spending above — 25× your yearly spend (excl. EMIs) so it lasts the rest of your life.',
+    helper: null  // fully auto — computed from Step 1 inputs, never asked
   },
   education: {
     label: 'Education',
@@ -543,6 +536,23 @@ function monthlyExpenses(s) {
   return (s.expHousehold || 0) + (s.expEmi || 0) + ((s.expYearly || 0) + (s.expInsurance || 0)) / 12;
 }
 
+// Lifestyle in retirement: same as today minus EMIs (loans should be done by then)
+function retirementSpendMonthly(s) {
+  return (s.expHousehold || 0) + ((s.expYearly || 0) + (s.expInsurance || 0)) / 12;
+}
+
+// Keep retirement goals derived from Step 1 — timeline from the ages,
+// corpus from the spending. Never asked, always in sync.
+function syncRetirementGoals() {
+  const retYears = Math.max(1, (state.retireAge || 60) - (state.age || 35));
+  state.goals.forEach(g => {
+    if (g.type !== 'retirement') return;
+    g.years = retYears;
+    g.mult = Math.max(10, Math.min(40, Math.round(g.mult || 25)));
+    g.target = Math.round(retirementSpendMonthly(state) * 12 * g.mult);
+  });
+}
+
 // Per-type inflation defaults (India): education outruns CPI badly, cars barely move.
 const TYPE_INF = { education: 0.10, car: 0.04, home: 0.07 };
 function goalInf(g) {
@@ -605,7 +615,7 @@ const DEFAULT_STATE = {
   inf: 0.06,
   salaryGrowth: 0.08,
   goals: [
-    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0, sip: 0, must: true },
+    { id: 'g1', type: 'retirement', name: 'Retirement', target: 34200000, years: 25, allocated: 0, sip: 0, must: true, mult: 25 },
     { id: 'g2', type: 'emergency',  name: 'Emergency fund (6 months)', target: 570000, years: 2, allocated: 0, sip: 0, must: true }
   ]
 };
@@ -630,7 +640,8 @@ let state = (() => {
       allocated: g.allocated !== undefined ? g.allocated : (g.corpus || 0),
       sip: g.sip || 0,
       inf: g.inf != null ? g.inf : null,
-      must: g.must !== undefined ? g.must : (g.type === 'retirement' || g.type === 'emergency')
+      must: g.must !== undefined ? g.must : (g.type === 'retirement' || g.type === 'emergency'),
+      mult: g.mult || 25
     }));
     return Object.assign({}, DEFAULT_STATE, parsed);
   };
@@ -737,9 +748,7 @@ function renderSizer(g) {
 }
 
 function renderGoals() {
-  // Retirement timeline always follows the age fields
-  const retYears = Math.max(1, (state.retireAge || 60) - (state.age || 35));
-  state.goals.forEach(g => { if (g.type === 'retirement') g.years = retYears; });
+  syncRetirementGoals();
 
   const list = document.getElementById('goals-list');
   const empty = document.getElementById('goals-empty');
@@ -781,11 +790,17 @@ function renderGoals() {
         <!-- Data rows: stacked label-value on mobile, grid on sm+ -->
         <div class="mt-4 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Costs <span class="text-ink/40">(at today's prices)</span></div>
-            <div class="flex items-baseline gap-1 shrink-0">
-              <span class="text-ink/55 text-sm">₹</span>
-              <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-24 sm:w-full text-right sm:text-left" />
-            </div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">${g.type === 'retirement' ? 'Corpus needed <span class="text-ink/40">(today\'s ₹)</span>' : 'Costs <span class="text-ink/40">(at today\'s prices)</span>'}</div>
+            ${g.type === 'retirement'
+              ? `<div class="flex items-baseline gap-1 shrink-0">
+                  <span class="text-ink/55 text-sm">₹</span>
+                  <span class="tab-num font-bold text-ink">${fmtINR(g.target)}</span>
+                  <span class="text-[10px] text-ink/45 whitespace-nowrap">· auto from your spending</span>
+                </div>`
+              : `<div class="flex items-baseline gap-1 shrink-0">
+                  <span class="text-ink/55 text-sm">₹</span>
+                  <input data-field="target" type="text" value="${fmtINR(g.target)}" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-24 sm:w-full text-right sm:text-left" />
+                </div>`}
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
             <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">How far away</div>
@@ -819,6 +834,9 @@ function renderGoals() {
 
         <!-- The honest math, visible -->
         <div class="mt-3 bg-warmpaper-2 rounded-lg px-3 py-2 text-[11px] text-ink/70 tab-num flex flex-wrap items-center gap-x-2 gap-y-1">
+          ${g.type === 'retirement' ? `
+          <span>corpus = <input data-field="retMult" type="text" value="${g.mult || 25}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-8 text-right" />× your yearly spend <span class="text-ink/45">(excl. EMIs)</span></span>
+          <span class="text-ink/40">·</span>` : ''}
           <span>₹${fmtINR(g.target)} today ≈ <strong class="text-ink">₹${fmtINR(futureCost)}</strong> in ${g.years} yrs</span>
           <span class="text-ink/40">·</span>
           <span>prices rise <input data-field="infPct" type="text" value="${(inf * 100).toFixed(0)}" inputmode="decimal" class="editable-num tab-num font-bold text-thisblue w-8 text-right" />%/yr</span>
@@ -846,6 +864,7 @@ function renderGoals() {
         if (field === 'name') g.name = input.value;
         else if (field === 'years') g.years = Math.max(0, parseInt(input.value) || 0);
         else if (field === 'infPct') g.inf = Math.max(0, Math.min(0.20, (parseFloat(input.value) || 0) / 100));
+        else if (field === 'retMult') g.mult = Math.max(10, Math.min(40, parseInt(input.value) || 25));
         else g[field] = parseNumericInput(input.value);
         save();
         recalc();
@@ -931,12 +950,11 @@ function renderStarters() {
 }
 
 function recalc() {
-  // Keep ages sane, then derive the retirement timeline from them
+  // Keep ages sane, then derive retirement timeline + corpus from Step 1
   state.age = Math.min(79, Math.max(18, Math.round(state.age || 35)));
   state.retireAge = Math.min(90, Math.max(state.age + 1, Math.round(state.retireAge || 60)));
   state.emiEndYears = Math.max(0, Math.min(30, Math.round(state.emiEndYears || 0)));
-  const retYears = state.retireAge - state.age;
-  state.goals.forEach(g => { if (g.type === 'retirement') g.years = retYears; });
+  syncRetirementGoals();
 
   const income = state.income, pot = state.pot;
   const spendMonthly = monthlyExpenses(state);
@@ -1207,8 +1225,8 @@ function wireInput(id, key, isPercent) {
     save(); recalc();
     // Starter defaults depend on income / spending / ages — refresh
     if (['income', 'expHousehold', 'expEmi', 'expYearly', 'expInsurance', 'age', 'retireAge'].includes(key)) renderStarters();
-    // Retirement rows display the age-derived timeline — re-render them
-    if (key === 'age' || key === 'retireAge') renderGoals();
+    // Retirement rows derive timeline + corpus from these — re-render them live
+    if (['age', 'retireAge', 'expHousehold', 'expYearly', 'expInsurance'].includes(key)) renderGoals();
   });
   el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
   el.addEventListener('focus', () => el.select());
