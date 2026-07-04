@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Three Levers of Wealth — ThisOrThat with Bhartendra</title>
+<meta name="description" content="Three things build wealth: how much you save, the return you earn, and time. Play with all three — and watch which one is the real superpower." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-2px); box-shadow:0 10px 30px rgba(2,73,177,0.08); }
+  .lever-card { transition: all 200ms ease; }
+  .lever-win { transform: scale(1.03); }
+  .run-btn { transition: all 150ms ease; }
+  .run-btn:active { transform: scale(0.97); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">The Three Levers</span>
+</div>
+
+<!-- HERO -->
+<section class="bg-cream pb-8">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">How wealth is actually built</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Three things build wealth.<br/><span class="font-script text-thisblue font-bold text-5xl md:text-7xl">Only one is a superpower.</span></h1>
+    <p class="mt-5 text-lg text-ink/75 max-w-2xl">How much you <strong>save</strong>. The <strong>return</strong> you earn. And <strong>time</strong>. All three matter — but they are not equal. Meet Adhiraj and Ananya, and see for yourself.</p>
+  </div>
+</section>
+
+<!-- ① THE RACE -->
+<section class="pb-14 bg-cream">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="bg-white rounded-2xl border-2 border-marigold p-6 md:p-8">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The race</div>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1">Same money. Ten years apart.</h2>
+        </div>
+        <div class="flex gap-2">
+          <button id="preset-famous" class="text-xs font-semibold text-thisblue border border-thisblue/30 px-3 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">★ The famous one</button>
+          <button id="preset-reset" class="text-xs font-semibold text-ink/50 hover:text-ink px-2 py-2">Reset</button>
+        </div>
+      </div>
+
+      <!-- Two investor controls -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        <!-- Adhiraj -->
+        <div class="rounded-xl border-2 border-thisblue/30 p-4 bg-thisblue/[0.03]">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-thisblue"></span>
+            <div class="font-display font-extrabold text-thisblue text-lg">Adhiraj</div>
+            <span class="text-[10px] uppercase tracking-widest text-thisblue/70 font-bold">starts early</span>
+          </div>
+          <div class="mt-3 space-y-3 text-sm">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-ink/70">Invests ₹</span>
+              <input id="a-monthly" type="text" value="5,000" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-20 text-right" />
+              <span class="text-ink/70">/mo</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-ink/70">From age</span>
+              <input id="a-start" type="text" value="25" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-10 text-right" />
+              <span class="text-ink/70">to</span>
+              <input id="a-stop" type="text" value="60" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-10 text-right" />
+            </div>
+          </div>
+        </div>
+        <!-- Ananya -->
+        <div class="rounded-xl border-2 border-thatred/30 p-4 bg-thatred/[0.03]">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-thatred"></span>
+            <div class="font-display font-extrabold text-thatred text-lg">Ananya</div>
+            <span class="text-[10px] uppercase tracking-widest text-thatred/70 font-bold">starts later</span>
+          </div>
+          <div class="mt-3 space-y-3 text-sm">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-ink/70">Invests ₹</span>
+              <input id="b-monthly" type="text" value="5,000" inputmode="text" class="editable-num tab-num font-bold text-thatred w-20 text-right" />
+              <span class="text-ink/70">/mo</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-ink/70">From age</span>
+              <input id="b-start" type="text" value="35" inputmode="numeric" class="editable-num tab-num font-bold text-thatred w-10 text-right" />
+              <span class="text-ink/70">to</span>
+              <input id="b-stop" type="text" value="60" inputmode="numeric" class="editable-num tab-num font-bold text-thatred w-10 text-right" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shared return -->
+      <div class="mt-4 flex items-center gap-2 text-sm text-ink/70">
+        <span>Both earn</span>
+        <input id="race-return" type="text" value="11.0" inputmode="decimal" class="editable-num tab-num font-bold text-ink w-12 text-right" />
+        <span>% a year</span>
+        <span class="text-ink/40 text-xs ml-1">(same market — so this race is only about time)</span>
+      </div>
+
+      <!-- Chart -->
+      <div class="mt-6 relative">
+        <svg id="race-chart" viewBox="0 0 720 320" class="w-full" style="height:auto;">
+          <defs>
+            <clipPath id="reveal"><rect id="reveal-rect" x="0" y="0" width="0" height="320"/></clipPath>
+          </defs>
+          <!-- gridlines + axis drawn by JS -->
+          <g id="race-grid"></g>
+          <g clip-path="url(#reveal)">
+            <polyline id="race-line-a" fill="none" stroke="#0249B1" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="" />
+            <polyline id="race-line-b" fill="none" stroke="#FF302D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="" />
+          </g>
+          <line id="race-now" x1="0" y1="0" x2="0" y2="320" stroke="#1A1813" stroke-width="1" stroke-dasharray="3 3" opacity="0"/>
+          <g id="race-endlabels"></g>
+        </svg>
+        <div class="absolute top-2 left-2 bg-ink/85 text-warmpaper rounded-lg px-3 py-1.5 text-sm tab-num font-bold" id="race-agebox">Age 25</div>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between gap-4 flex-wrap">
+        <div class="flex gap-6">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-thisblue font-bold">Adhiraj has</div>
+            <div class="font-display text-2xl font-extrabold text-thisblue tab-num">₹<span id="a-live">0</span></div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-thatred font-bold">Ananya has</div>
+            <div class="font-display text-2xl font-extrabold text-thatred tab-num">₹<span id="b-live">0</span></div>
+          </div>
+        </div>
+        <button id="run-race" class="run-btn bg-thisblue text-warmpaper font-semibold px-6 py-3 rounded-full hover:bg-thisblue-700">Run to 60 →</button>
+      </div>
+
+      <!-- Punchline -->
+      <div id="race-punch" class="mt-6 rounded-xl bg-ink text-warmpaper p-6 hidden">
+        <div id="punch-text" class="font-display text-xl md:text-2xl font-extrabold leading-snug">—</div>
+        <div id="punch-detail" class="mt-3 text-sm text-warmpaper/80"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② BRIDGE -->
+<section class="py-14 bg-thisblue text-warmpaper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">So what happened?</div>
+    <div class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">Adhiraj's weapon wasn't saving more — it was <span class="text-marigold">time</span>. Time is one of three levers. Here are all three, in your hands.</div>
+  </div>
+</section>
+
+<!-- ③ THE WEALTH MACHINE -->
+<section class="py-14 bg-cream">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The wealth machine</div>
+    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-1">Move a lever. Watch what happens.</h2>
+    <p class="mt-2 text-ink/70 max-w-2xl">Three dials. One number. The machine tells you which lever is your biggest untapped opportunity right now — and it changes as you move them.</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mt-8">
+      <!-- Controls -->
+      <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink">Save — invest per month</label>
+            <div class="flex items-baseline gap-1"><span class="text-ink/60 text-sm">₹</span>
+              <input id="m-save" type="text" value="10,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" /></div>
+          </div>
+          <input id="s-save" type="range" min="500" max="200000" step="500" value="10000" class="w-full mt-2" />
+        </div>
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink">Return — earned per year</label>
+            <div class="flex items-baseline gap-1">
+              <input id="m-ret" type="text" value="11.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" /><span class="text-ink/60 text-sm">%</span></div>
+          </div>
+          <input id="s-ret" type="range" min="1" max="18" step="0.5" value="11" class="w-full mt-2" />
+          <div class="text-[11px] text-navy/55 mt-1">FD ~6% · balanced ~9% · equity ~12% long-run</div>
+        </div>
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink">Time — years invested</label>
+            <div class="flex items-baseline gap-1">
+              <input id="m-yrs" type="text" value="25" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" /><span class="text-ink/60 text-sm">yrs</span></div>
+          </div>
+          <input id="s-yrs" type="range" min="1" max="45" step="1" value="25" class="w-full mt-2" />
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div class="lg:col-span-3 space-y-5">
+        <div class="bg-ink text-warmpaper rounded-2xl p-7">
+          <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">You end with</div>
+          <div class="font-display text-5xl md:text-6xl font-extrabold text-marigold tab-num leading-none mt-2">₹<span id="mach-total">—</span></div>
+          <div class="mt-4 flex gap-6 text-sm">
+            <div><span class="opacity-70">You put in</span><br/><strong class="tab-num">₹<span id="mach-invested">—</span></strong></div>
+            <div><span class="opacity-70">Growth added</span><br/><strong class="tab-num text-marigold">₹<span id="mach-growth">—</span></strong></div>
+            <div><span class="opacity-70">Growth is</span><br/><strong class="tab-num"><span id="mach-growthpct">—</span>%</strong></div>
+          </div>
+          <!-- money vs growth bar -->
+          <div class="mt-4 h-3 rounded-full overflow-hidden bg-warmpaper/20 flex">
+            <div id="bar-invested" class="bg-warmpaper/60 h-full" style="width:50%"></div>
+            <div id="bar-growth" class="bg-marigold h-full" style="width:50%"></div>
+          </div>
+        </div>
+
+        <!-- Growth chart -->
+        <div class="bg-white rounded-2xl border-2 border-marigold p-5">
+          <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">The hockey stick</div>
+          <svg id="mach-chart" viewBox="0 0 520 220" class="w-full" style="height:auto;">
+            <path id="mach-area" fill="rgba(255,194,31,0.18)" stroke="none" d="" />
+            <polyline id="mach-invline" fill="none" stroke="#8A8275" stroke-width="2" stroke-dasharray="4 4" points="" />
+            <polyline id="mach-totalline" fill="none" stroke="#D99B00" stroke-width="3" stroke-linecap="round" points="" />
+          </svg>
+          <div class="text-[11px] text-ink/55 mt-1">Dashed = money you put in. Solid = what it grows to. The gap is compounding doing the work.</div>
+        </div>
+
+        <!-- Strongest lever -->
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">Your strongest lever right now</div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div id="lever-time" class="lever-card rounded-xl border p-3 text-center">
+              <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50">+5 years</div>
+              <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">+₹<span id="d-time">—</span></div>
+            </div>
+            <div id="lever-ret" class="lever-card rounded-xl border p-3 text-center">
+              <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50">+2% return</div>
+              <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">+₹<span id="d-ret">—</span></div>
+            </div>
+            <div id="lever-save" class="lever-card rounded-xl border p-3 text-center">
+              <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50">+₹5k / mo</div>
+              <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">+₹<span id="d-save">—</span></div>
+            </div>
+          </div>
+          <div id="lever-verdict" class="mt-3 text-sm text-ink/80">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ CLOSE -->
+<section class="py-16 bg-warmpaper-2">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The takeaway</div>
+    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-2">The three levers, ranked.</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white rounded-2xl border border-navy/10 p-5">
+        <div class="font-display text-4xl font-extrabold text-marigold-600">01</div>
+        <h3 class="font-display text-xl font-extrabold text-ink mt-2">Time</h3>
+        <p class="text-sm text-ink/70 mt-1">Exponential and uncapped. The one lever you can't buy back later. Starting is worth more than optimising.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-5">
+        <div class="font-display text-4xl font-extrabold text-marigold-600">02</div>
+        <h3 class="font-display text-xl font-extrabold text-ink mt-2">Return</h3>
+        <p class="text-sm text-ink/70 mt-1">Exponential too — but reality caps it. Chasing an extra 3% is real work, and risk. Get it from the right products, not luck.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-5">
+        <div class="font-display text-4xl font-extrabold text-marigold-600">03</div>
+        <h3 class="font-display text-xl font-extrabold text-ink mt-2">Savings</h3>
+        <p class="text-sm text-ink/70 mt-1">Linear, and the one you control most directly. It's how you feed the other two — but on its own, the weakest multiplier.</p>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="calc-plan.html" class="bg-thisblue text-warmpaper px-6 py-3 rounded-full font-semibold hover:bg-thisblue-700 transition">Build your full plan →</a>
+      <button id="share-levers" class="border border-thisblue/30 text-thisblue px-6 py-3 rounded-full font-semibold hover:bg-thisblue hover:text-warmpaper transition">Copy share link</button>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+const fmtINR = (n) => {
+  const a = Math.abs(n);
+  if (a >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (a >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+const fmtRaw = (n) => Math.round(n).toLocaleString('en-IN');
+function parseNum(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0; let m = 1;
+  if (s.endsWith('cr')||s.endsWith('crore')) { m=1e7; s=s.replace(/cr(?:ore)?$/,''); }
+  else if (s.endsWith('l')||s.endsWith('lakh')||s.endsWith('lac')) { m=1e5; s=s.replace(/l(?:akh|ac)?$/,''); }
+  else if (s.endsWith('k')) { m=1e3; s=s.replace(/k$/,''); }
+  const v = parseFloat(s); return isNaN(v) ? 0 : v*m;
+}
+const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+
+// ─────────── SIP maths ───────────
+function sipFV(monthly, ratePct, years) {
+  const r = Math.pow(1 + ratePct/100, 1/12) - 1;
+  const n = Math.round(years * 12);
+  if (r === 0) return monthly * n;
+  return monthly * ((Math.pow(1+r, n) - 1) / r);
+}
+
+// ═══════════ ① THE RACE ═══════════
+const RACE = { a:{color:'#0249B1'}, b:{color:'#FF302D'} };
+function readRace() {
+  return {
+    aMonthly: parseNum(document.getElementById('a-monthly').value),
+    aStart:   Math.max(15, Math.min(70, parseInt(document.getElementById('a-start').value)||25)),
+    aStop:    Math.max(16, Math.min(70, parseInt(document.getElementById('a-stop').value)||60)),
+    bMonthly: parseNum(document.getElementById('b-monthly').value),
+    bStart:   Math.max(15, Math.min(70, parseInt(document.getElementById('b-start').value)||35)),
+    bStop:    Math.max(16, Math.min(70, parseInt(document.getElementById('b-stop').value)||60)),
+    ret:      Math.max(0, Math.min(20, parseFloat(document.getElementById('race-return').value)||11))
+  };
+}
+// corpus at each birthday from fromAge..endAge
+function series(monthly, startAge, stopAge, ret, fromAge, endAge) {
+  const r = Math.pow(1 + ret/100, 1/12) - 1;
+  let bal = 0; const out = [{age: fromAge, corpus: 0}];
+  for (let age = fromAge; age < endAge; age++) {
+    for (let mth = 0; mth < 12; mth++) {
+      if (age >= startAge && age < stopAge) bal += monthly;
+      bal *= (1 + r);
+    }
+    out.push({age: age+1, corpus: bal});
+  }
+  return out;
+}
+function sampleSeries(s, age) {
+  if (age <= s[0].age) return 0;
+  if (age >= s[s.length-1].age) return s[s.length-1].corpus;
+  for (let i = 1; i < s.length; i++) {
+    if (s[i].age >= age) {
+      const t = (age - s[i-1].age) / (s[i].age - s[i-1].age);
+      return s[i-1].corpus + t * (s[i].corpus - s[i-1].corpus);
+    }
+  }
+  return s[s.length-1].corpus;
+}
+
+let raceState = null;
+function buildRace() {
+  cancelAnimationFrame(raceAnim); clearTimeout(raceSafety); raceDone = false;
+  const R = readRace();
+  const fromAge = Math.min(R.aStart, R.bStart);
+  const endAge = 60;
+  const sA = series(R.aMonthly, R.aStart, R.aStop, R.ret, fromAge, endAge);
+  const sB = series(R.bMonthly, R.bStart, R.bStop, R.ret, fromAge, endAge);
+  const peak = Math.max(sA[sA.length-1].corpus, sB[sB.length-1].corpus, 1);
+  const W = 720, H = 320, padL = 8, padR = 60, padT = 16, padB = 28;
+  const xOf = a => padL + (a - fromAge) / (endAge - fromAge) * (W - padL - padR);
+  const yOf = c => H - padB - (c / peak) * (H - padT - padB);
+  const ptsA = sA.map(p => `${xOf(p.age).toFixed(1)},${yOf(p.corpus).toFixed(1)}`).join(' ');
+  const ptsB = sB.map(p => `${xOf(p.age).toFixed(1)},${yOf(p.corpus).toFixed(1)}`).join(' ');
+  document.getElementById('race-line-a').setAttribute('points', ptsA);
+  document.getElementById('race-line-b').setAttribute('points', ptsB);
+  // grid: baseline + a few age ticks
+  const grid = [];
+  grid.push(`<line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#E1DDD1" stroke-width="1"/>`);
+  for (let a = fromAge; a <= endAge; a += 5) {
+    grid.push(`<line x1="${xOf(a)}" y1="${padT}" x2="${xOf(a)}" y2="${H-padB}" stroke="#F0EEE7" stroke-width="1"/>`);
+    grid.push(`<text x="${xOf(a)}" y="${H-8}" font-size="11" fill="#8A8275" text-anchor="middle" font-family="IBM Plex Mono">${a}</text>`);
+  }
+  document.getElementById('race-grid').innerHTML = grid.join('');
+  raceState = { R, sA, sB, fromAge, endAge, peak, xOf, yOf };
+  // static end labels (hidden until run)
+  document.getElementById('race-endlabels').innerHTML = '';
+  document.getElementById('reveal-rect').setAttribute('width', 0);
+  document.getElementById('race-now').setAttribute('opacity', 0);
+  document.getElementById('race-agebox').textContent = 'Age ' + fromAge;
+  document.getElementById('a-live').textContent = '0';
+  document.getElementById('b-live').textContent = '0';
+  document.getElementById('race-punch').classList.add('hidden');
+}
+
+let raceAnim = null, raceSafety = null, raceDone = false;
+function runRace() {
+  if (!raceState) buildRace();
+  const { R, sA, sB, fromAge, endAge, xOf } = raceState;
+  const dur = 2600, t0 = performance.now();
+  cancelAnimationFrame(raceAnim);
+  clearTimeout(raceSafety);
+  raceDone = false;
+  const nowLine = document.getElementById('race-now');
+  nowLine.setAttribute('opacity', 0.4);
+  function frame(now) {
+    let t = Math.min(1, (now - t0) / dur);
+    const ease = 1 - Math.pow(1 - t, 2);
+    const age = fromAge + ease * (endAge - fromAge);
+    const revealX = xOf(age);
+    document.getElementById('reveal-rect').setAttribute('width', revealX);
+    nowLine.setAttribute('x1', revealX); nowLine.setAttribute('x2', revealX);
+    document.getElementById('race-agebox').textContent = 'Age ' + Math.round(age);
+    document.getElementById('a-live').textContent = fmtINR(sampleSeries(sA, age));
+    document.getElementById('b-live').textContent = fmtINR(sampleSeries(sB, age));
+    if (t < 1) { raceAnim = requestAnimationFrame(frame); }
+    else if (!raceDone) { raceDone = true; finishRace(); }
+  }
+  raceAnim = requestAnimationFrame(frame);
+  // Safety net: if rAF is starved (backgrounded tab), snap to the end.
+  raceSafety = setTimeout(() => {
+    if (raceDone) return;
+    raceDone = true;
+    document.getElementById('reveal-rect').setAttribute('width', xOf(endAge));
+    document.getElementById('a-live').textContent = fmtINR(sampleSeries(sA, endAge));
+    document.getElementById('b-live').textContent = fmtINR(sampleSeries(sB, endAge));
+    document.getElementById('race-agebox').textContent = 'Age ' + endAge;
+    finishRace();
+  }, dur + 400);
+}
+function finishRace() {
+  const { R, sA, sB } = raceState;
+  const finA = sA[sA.length-1].corpus, finB = sB[sB.length-1].corpus;
+  document.getElementById('a-live').textContent = fmtINR(finA);
+  document.getElementById('b-live').textContent = fmtINR(finB);
+  const invA = R.aMonthly * 12 * Math.max(0, R.aStop - R.aStart);
+  const invB = R.bMonthly * 12 * Math.max(0, R.bStop - R.bStart);
+  // end labels
+  const { xOf, yOf, endAge } = raceState;
+  document.getElementById('race-endlabels').innerHTML =
+    `<text x="${xOf(endAge)+4}" y="${yOf(finA)+4}" font-size="12" font-weight="700" fill="#0249B1" font-family="Hanken Grotesk">₹${fmtINR(finA)}</text>` +
+    `<text x="${xOf(endAge)+4}" y="${yOf(finB)+4}" font-size="12" font-weight="700" fill="#FF302D" font-family="Hanken Grotesk">₹${fmtINR(finB)}</text>`;
+  const winner = finA >= finB ? 'Adhiraj' : 'Ananya';
+  const loser  = finA >= finB ? 'Ananya' : 'Adhiraj';
+  const winFin = Math.max(finA, finB), loseFin = Math.min(finA, finB);
+  const winInv = finA >= finB ? invA : invB, loseInv = finA >= finB ? invB : invA;
+  const gap = winFin - loseFin;
+  const punch = document.getElementById('race-punch');
+  punch.classList.remove('hidden');
+  const mult = loseFin > 0 ? (winFin/loseFin) : 0;
+  document.getElementById('punch-text').innerHTML =
+    `${winner} ends with <span class="text-marigold">₹${fmtINR(winFin)}</span> — ₹${fmtINR(gap)} more than ${loser}.`;
+  let detail = `${winner} put in ₹${fmtINR(winInv)} total; ${loser} put in ₹${fmtINR(loseInv)}. `;
+  if (winInv <= loseInv) {
+    detail += `${winner} invested ${loseInv > winInv ? '<strong>less</strong> money' : 'the same'} and still ended with ${mult ? mult.toFixed(1)+'×' : 'more'} — because the money had more time to compound. That gap is time, not effort.`;
+  } else {
+    detail += `The head start did the heavy lifting: time in the market beat the extra rupees.`;
+  }
+  document.getElementById('punch-detail').innerHTML = detail;
+}
+
+// Race input wiring
+['a-monthly','a-start','a-stop','b-monthly','b-start','b-stop','race-return'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', buildRace);
+  el.addEventListener('keydown', e => { if (e.key==='Enter'){ e.preventDefault(); el.blur(); } });
+  el.addEventListener('focus', () => el.select());
+});
+document.getElementById('run-race').addEventListener('click', runRace);
+document.getElementById('preset-reset').addEventListener('click', () => {
+  setLbl('a-monthly','5,000'); setLbl('a-start','25'); setLbl('a-stop','60');
+  setLbl('b-monthly','5,000'); setLbl('b-start','35'); setLbl('b-stop','60');
+  setLbl('race-return','11.0'); buildRace();
+});
+document.getElementById('preset-famous').addEventListener('click', () => {
+  // Adhiraj invests only 25→35 then STOPS; Ananya invests 35→60 continuously
+  setLbl('a-monthly','5,000'); setLbl('a-start','25'); setLbl('a-stop','35');
+  setLbl('b-monthly','5,000'); setLbl('b-start','35'); setLbl('b-stop','60');
+  setLbl('race-return','11.0'); buildRace(); setTimeout(runRace, 200);
+});
+
+// ═══════════ ③ THE WEALTH MACHINE ═══════════
+function readMach() {
+  return {
+    save: parseNum(document.getElementById('m-save').value),
+    ret: Math.max(0, Math.min(20, parseFloat(document.getElementById('m-ret').value)||11)),
+    yrs: Math.max(1, Math.min(60, parseInt(document.getElementById('m-yrs').value)||25))
+  };
+}
+function machChart(save, ret, yrs) {
+  const W=520,H=220,padL=6,padR=6,padT=10,padB=16;
+  const total = [], invested = [];
+  for (let y=0; y<=yrs; y++) { total.push(sipFV(save, ret, y)); invested.push(save*12*y); }
+  const peak = Math.max(total[total.length-1], 1);
+  const xOf = y => padL + (y/yrs)*(W-padL-padR);
+  const yOf = v => H-padB - (v/peak)*(H-padT-padB);
+  const tPts = total.map((v,i)=>`${xOf(i).toFixed(1)},${yOf(v).toFixed(1)}`).join(' ');
+  const iPts = invested.map((v,i)=>`${xOf(i).toFixed(1)},${yOf(v).toFixed(1)}`).join(' ');
+  const area = `M ${xOf(0)},${yOf(0)} L ${total.map((v,i)=>`${xOf(i).toFixed(1)},${yOf(v).toFixed(1)}`).join(' L ')} L ${xOf(yrs)},${H-padB} Z`;
+  document.getElementById('mach-totalline').setAttribute('points', tPts);
+  document.getElementById('mach-invline').setAttribute('points', iPts);
+  document.getElementById('mach-area').setAttribute('d', area);
+}
+function recalcMach() {
+  const M = readMach();
+  setLbl('m-save', fmtRaw(M.save)); setLbl('m-ret', M.ret.toFixed(1)); setLbl('m-yrs', M.yrs);
+  const total = sipFV(M.save, M.ret, M.yrs);
+  const invested = M.save * 12 * M.yrs;
+  const growth = Math.max(0, total - invested);
+  const gpct = total > 0 ? (growth/total*100) : 0;
+  document.getElementById('mach-total').textContent = fmtINR(total);
+  document.getElementById('mach-invested').textContent = fmtINR(invested);
+  document.getElementById('mach-growth').textContent = fmtINR(growth);
+  document.getElementById('mach-growthpct').textContent = Math.round(gpct);
+  document.getElementById('bar-invested').style.width = (100-gpct) + '%';
+  document.getElementById('bar-growth').style.width = gpct + '%';
+  machChart(M.save, M.ret, M.yrs);
+  // Levers
+  const dTime = sipFV(M.save, M.ret, M.yrs+5) - total;
+  const dRet  = sipFV(M.save, Math.min(20, M.ret+2), M.yrs) - total;
+  const dSave = sipFV(M.save+5000, M.ret, M.yrs) - total;
+  document.getElementById('d-time').textContent = fmtINR(dTime);
+  document.getElementById('d-ret').textContent = fmtINR(dRet);
+  document.getElementById('d-save').textContent = fmtINR(dSave);
+  const levers = [
+    { el:'lever-time', label:'time', name:'Adding 5 more years', v:dTime },
+    { el:'lever-ret',  label:'return', name:'Earning 2% more', v:dRet },
+    { el:'lever-save', label:'savings', name:'Saving ₹5k more a month', v:dSave }
+  ].sort((a,b)=>b.v-a.v);
+  ['lever-time','lever-ret','lever-save'].forEach(id=>{
+    document.getElementById(id).className = 'lever-card rounded-xl border p-3 text-center border-navy/10';
+  });
+  const winId = levers[0].el;
+  document.getElementById(winId).className = 'lever-card lever-win rounded-xl border-2 border-marigold p-3 text-center bg-marigold/10';
+  document.getElementById('lever-verdict').innerHTML =
+    `<strong>${levers[0].name}</strong> adds ₹${fmtINR(levers[0].v)} — more than ${levers[0].label==='savings'?'either other lever':'earning 2% more or saving ₹5k more'}. ` +
+    `That's your biggest lever right now.`;
+}
+[['m-save','s-save'],['m-ret','s-ret'],['m-yrs','s-yrs']].forEach(([txt,sld])=>{
+  const t=document.getElementById(txt), s=document.getElementById(sld);
+  const mn=+s.min, mx=+s.max;
+  t.addEventListener('input', ()=>{ const v=Math.max(mn,Math.min(mx,parseNum(t.value))); s.value=v; recalcMach(); });
+  t.addEventListener('keydown', e=>{ if(e.key==='Enter'){e.preventDefault();t.blur();} });
+  t.addEventListener('focus', ()=>t.select());
+  s.addEventListener('input', ()=>{ t.value = (sld==='s-ret')? (+s.value).toFixed(1) : fmtRaw(+s.value); recalcMach(); });
+});
+
+// Share
+document.getElementById('share-levers').addEventListener('click', () => {
+  const btn = document.getElementById('share-levers');
+  navigator.clipboard.writeText(location.origin + location.pathname).then(()=>{
+    btn.textContent = 'Copied ✓'; setTimeout(()=>btn.textContent='Copy share link', 1500);
+  }).catch(()=>{ btn.textContent='Could not copy'; setTimeout(()=>btn.textContent='Copy share link',1500); });
+});
+
+// Init
+buildRace();
+recalcMach();
+
+// Mobile menu
+(function(){
+  var btn=document.getElementById('mobile-menu-toggle'),menu=document.getElementById('mobile-menu'),o=document.getElementById('icon-open'),c=document.getElementById('icon-close');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){menu.classList.toggle('hidden');o.classList.toggle('hidden');c.classList.toggle('hidden');});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.add('hidden');o.classList.remove('hidden');c.classList.add('hidden');});});
+})();
+</script>
+</body>
+</html>

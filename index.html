@@ -492,13 +492,27 @@
   <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-mustard/10 blur-3xl"></div>
 
   <div class="relative max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
       <div>
-        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Coming soon</div>
+        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Plan · all live now</div>
         <h2 class="font-serif text-4xl md:text-5xl font-bold mt-2">Calculators that don't lie to you.</h2>
         <p class="text-cream/70 mt-3 max-w-xl">Most online calculators flatter the user. Ours show you the inconvenient number — and what to do with it.</p>
       </div>
     </div>
+
+    <!-- INTERACTIVE TEASER: THREE LEVERS -->
+    <a href="wealth-levers.html" class="lift block bg-cream text-navy-ink rounded-2xl p-6 md:p-8 mb-8 border-2 border-mustard hover:shadow-2xl transition group">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+        <div class="md:col-span-3">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Interactive · new</div>
+          <h3 class="font-serif text-2xl md:text-4xl font-extrabold mt-2 leading-tight">₹5,000 from age 25 beats ₹5,000 from age 35 by <span class="text-thisblue">₹<span id="teaser-gap">1.4 Cr</span></span>.</h3>
+          <p class="text-navy-ink/70 mt-2">Same money, ten years apart. Watch the race — then play with all three levers of wealth.</p>
+        </div>
+        <div class="md:col-span-2 md:text-right">
+          <span class="inline-flex items-center gap-2 bg-thisblue text-cream px-5 py-3 rounded-full font-semibold text-sm group-hover:bg-navy-ink transition">See why time wins →</span>
+        </div>
+      </div>
+    </a>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       <a href="calc-retirement.html" class="lift block bg-navy/50 backdrop-blur border border-cream/10 hover:border-mustard/60 rounded-2xl p-6 transition">
@@ -881,6 +895,16 @@ if (window.EPISODES && window.EPISODES[0]) {
       iconClose.classList.add('hidden');
     }
   });
+})();
+
+// Live-compute the Three Levers teaser gap: ₹5k/mo, 11%, 25→60 vs 35→60
+(function(){
+  var el = document.getElementById('teaser-gap');
+  if (!el) return;
+  function sipFV(m, ratePct, yrs){ var r=Math.pow(1+ratePct/100,1/12)-1, n=yrs*12; return m*((Math.pow(1+r,n)-1)/r); }
+  function fmt(n){ if(n>=1e7) return (n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr'; if(n>=1e5) return (n/1e5).toFixed(2).replace(/\.?0+$/,'')+' L'; return Math.round(n).toLocaleString('en-IN'); }
+  var early = sipFV(5000, 11, 35), late = sipFV(5000, 11, 25);
+  el.textContent = fmt(early - late);
 })();
 </script>
 </body>
