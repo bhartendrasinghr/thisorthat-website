@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Every Place Your Money Can Live — Asset Classes · ThisOrThat</title>
+<meta name="description" content="Equity, fixed income, gold, real estate, crypto and more — mapped by risk and return, with an honest take on each. The full menu of where your money can go in India." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow:0 10px 30px rgba(2,73,177,0.08); }
+  .fam-chip { padding:7px 14px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; transition:all 150ms; white-space:nowrap; border:1.5px solid transparent; }
+  .dot { cursor:pointer; transition: r 150ms ease, opacity 150ms ease; }
+  .dot:hover { opacity:1 !important; }
+  .asset-card { transition: box-shadow 200ms ease, border-color 200ms ease, transform 200ms ease; scroll-margin-top:90px; }
+  .asset-card.flash { border-color:#FFC21F; box-shadow:0 0 0 3px rgba(255,194,31,0.4); }
+  .pip { width:8px; height:8px; border-radius:2px; display:inline-block; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Asset Classes</span>
+</div>
+
+<!-- HERO -->
+<section class="bg-cream pb-8">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The full menu</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Every place your money can live.</h1>
+    <p class="mt-5 text-lg text-ink/75 max-w-3xl">From a fixed deposit to a crypto wallet, there are seven families your money can go into. Each trades <strong>return</strong> for <strong>risk</strong>, <strong>liquidity</strong> and <strong>hassle</strong> differently. Here's the honest map — no product being sold.</p>
+  </div>
+</section>
+
+<!-- RISK–RETURN MAP -->
+<section class="pb-12 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="bg-white rounded-2xl border-2 border-marigold p-5 md:p-7">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The map</div>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1">Risk vs return, at a glance.</h2>
+          <div class="text-sm text-ink/65 mt-1">Tap any dot to read its card below. Higher up = higher expected return. Further right = more risk.</div>
+        </div>
+      </div>
+      <div class="mt-5 relative">
+        <svg id="map" viewBox="0 0 720 440" class="w-full" style="height:auto;">
+          <g id="map-grid"></g>
+          <g id="map-dots"></g>
+        </svg>
+      </div>
+      <div id="map-readout" class="mt-2 rounded-xl bg-warmpaper-2 p-3 text-sm text-ink/75 min-h-[46px] flex items-center">
+        <span class="text-ink/45">Tap a dot to see what it is →</span>
+      </div>
+      <div id="map-legend" class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-[11px]"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER + CARDS -->
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-end justify-between gap-4 mb-5 flex-wrap">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">The seven families</h2>
+      <div class="text-xs text-ink/50 font-mono"><span id="card-count">—</span> instruments</div>
+    </div>
+    <div id="fam-chips" class="flex flex-wrap gap-2 mb-6"></div>
+    <div id="cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="py-16 bg-thisblue text-warmpaper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The takeaway</div>
+    <div class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">There's no <em>best</em> asset class — only the right one for a goal and a time horizon.</div>
+    <p class="mt-5 text-warmpaper/85 leading-relaxed">Short-term money belongs in the boring, liquid stuff. Long-term money can afford to ride equity's storms. Gold is insurance, not an engine. And anything with a lock-in or a 30% tax deserves a very good reason. Match the asset to the job — that's the whole game.</p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a href="calc-plan.html" class="bg-marigold text-ink px-6 py-3 rounded-full font-semibold hover:bg-marigold-soft transition">Build your full plan →</a>
+      <a href="calc-buckets.html" class="border border-warmpaper/40 text-warmpaper px-6 py-3 rounded-full font-semibold hover:bg-warmpaper hover:text-ink transition">See the 3-bucket strategy</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Returns and tax rules are indicative for India (FY 2025-26), not advice. Verify before investing.</div>
+</footer>
+
+<script>
+// ─── Families ───
+const FAMS = {
+  equity:     { label:'Equity',         color:'#0249B1', sub:'The growth engine' },
+  fixed:      { label:'Fixed Income',   color:'#1F8A5B', sub:'Stability & income' },
+  commodity:  { label:'Commodity',      color:'#8A8275', sub:'Price cycles' },
+  gold:       { label:'Precious Metal', color:'#D99B00', sub:'Crisis hedge' },
+  realestate: { label:'Real Estate',    color:'#B4530A', sub:'Bricks & yield' },
+  currency:   { label:'Currency',       color:'#57534A', sub:'Speculation' },
+  alt:        { label:'Alternate',      color:'#FF302D', sub:'Everything else' }
+};
+
+// ─── Assets (indicative India, FY2025-26 — edit freely) ───
+// ret = [low, high] typical long-term % · risk/liq 1-5 · min = ticket · tax + take = strings
+const ASSETS = [
+  { id:'direct-equity', fam:'equity', name:'Direct Equity', what:'Buying individual company shares on the stock exchange.',
+    retLo:12, retHi:15, risk:5, liq:5, min:'₹1 (one share)',
+    tax:'LTCG 12.5% above ₹1.25L/yr · STCG 20%.',
+    take:'The purest wealth engine — and the easiest place to lose money. Stock-picking well is a full-time skill. Most people are better off owning equity through funds.' },
+  { id:'equity-mf', fam:'equity', name:'Equity Mutual Funds', what:'A professionally managed basket of stocks; index funds just track the market cheaply.',
+    retLo:11, retHi:13, risk:4, liq:4, min:'₹100–500 SIP',
+    tax:'Same as equity: LTCG 12.5% above ₹1.25L · STCG 20%.',
+    take:'How most Indians should own equity. Diversified, low-cost (if you pick index funds), SEBI-regulated. Start here, then get fancy later — if ever.' },
+  { id:'unlisted', fam:'equity', name:'Unlisted / Pre-IPO Shares', what:'Shares of companies not yet listed on an exchange.',
+    retLo:0, retHi:25, risk:5, liq:1, min:'Often ₹1L+',
+    tax:'LTCG 12.5% after 24 months · STCG at slab.',
+    take:'Pre-IPO hype sells dreams. Pricing is opaque, exits are hard, and the IPO may never come. For informed risk-takers with money they can lock away.' },
+  { id:'aif', fam:'equity', name:'AIF', what:'Alternative Investment Funds — pooled vehicles running strategies mutual funds can\'t.',
+    retLo:8, retHi:18, risk:5, liq:2, min:'₹1 Cr',
+    tax:'Varies by category; Cat III often taxed at fund level.',
+    take:'HNI territory. ₹1 Cr minimum buys access to hedge-fund-style strategies — and fees to match. The dispersion between good and bad managers is brutal. Read the fine print.' },
+  { id:'sif', fam:'equity', name:'SIF', what:'Specialized Investment Fund — SEBI\'s new middle tier between mutual funds and PMS/AIF.',
+    retLo:9, retHi:14, risk:4, liq:3, min:'₹10 L',
+    tax:'Taxed like the underlying (equity / debt).',
+    take:'The freshly-minted category (2025) for those who\'ve outgrown mutual funds but aren\'t at PMS scale. More flexible strategies, ₹10L entry. Brand new — let the track records build before you pile in.' },
+  { id:'pms', fam:'equity', name:'PMS', what:'Portfolio Management Service — a manager runs a concentrated portfolio held in your own demat.',
+    retLo:10, retHi:16, risk:4, liq:3, min:'₹50 L',
+    tax:'You own the stocks — taxed on each sale (LTCG/STCG).',
+    take:'₹50L minimum for a bespoke, transparent portfolio in your name. The transparency is a genuine plus; the fees and churn can quietly eat the edge. Always benchmark against a plain index fund.' },
+
+  { id:'fd', fam:'fixed', name:'Fixed Deposit', what:'Lend to a bank for a fixed period at a fixed rate.',
+    retLo:6, retHi:7.5, risk:1, liq:3, min:'₹1,000',
+    tax:'Interest taxed at your slab.',
+    take:'Safe, simple, and quietly losing to inflation after tax. A parking lot for money you\'ll need soon — not a place wealth is built.' },
+  { id:'bonds', fam:'fixed', name:'Bonds', what:'Lend to the government (G-Secs) or a company for a fixed coupon.',
+    retLo:6.5, retHi:9, risk:2, liq:3, min:'₹1,000–10,000',
+    tax:'Coupon at slab; capital gains as per holding period.',
+    take:'G-Secs are as close to risk-free as India offers. Corporate bonds pay more for more risk — always ask who you\'re lending to and what could go wrong.' },
+  { id:'debt-mf', fam:'fixed', name:'Debt Mutual Funds', what:'Funds that invest in bonds and money-market instruments.',
+    retLo:6, retHi:8, risk:2, liq:4, min:'₹500',
+    tax:'Gains taxed at slab (LTCG edge removed in 2023).',
+    take:'More flexible and liquid than FDs, professionally managed. Lost their tax advantage in 2023, but still the smart home for 1–3 year money.' },
+
+  { id:'commodity', fam:'commodity', name:'Commodities', what:'Oil, metals, agri — traded via futures, ETFs or commodity funds.',
+    retLo:0, retHi:10, risk:4, liq:3, min:'Varies',
+    tax:'As per instrument; often speculative/business income.',
+    take:'You\'re betting on price cycles, not compounding — commodities produce no cash flow. A trader\'s game. For most portfolios, gold is the only commodity worth a slot.' },
+
+  { id:'gold', fam:'gold', name:'Gold', what:'Physical, ETFs, or the (now-paused) Sovereign Gold Bonds.',
+    retLo:8, retHi:10, risk:3, liq:4, min:'Small',
+    tax:'SGB tax-free on maturity · ETF/physical LTCG 12.5%.',
+    take:'A hedge, not an engine. 5–10% of a portfolio as crisis insurance. Bonds and ETFs beat jewellery every time — you\'re not paying making charges to store value.' },
+
+  { id:'realestate', fam:'realestate', name:'Real Estate', what:'Physical property, or REITs that trade like shares.',
+    retLo:7, retHi:11, risk:4, liq:2, min:'Huge (physical) · ₹100s (REIT)',
+    tax:'LTCG 12.5% after 24 months · rent at slab.',
+    take:'The asset Indians love most and measure least — illiquid, lumpy, full of hidden costs. REITs hand you real-estate returns and liquidity without the tenant calls.' },
+
+  { id:'currency', fam:'currency', name:'Currency / Forex', what:'Betting on one currency rising or falling against another.',
+    retLo:-5, retHi:5, risk:5, liq:5, min:'Varies',
+    tax:'As per instrument; speculative.',
+    take:'Currency isn\'t an investment — it\'s a bet on one country versus another, with no underlying growth. Leave it to traders and treasuries.' },
+
+  { id:'crypto', fam:'alt', name:'Crypto', what:'Digital assets like Bitcoin and Ethereum.',
+    retLo:-50, retHi:50, risk:5, liq:4, min:'₹100',
+    tax:'Flat 30% + 1% TDS · no loss set-off.',
+    take:'The most volatile asset most people can access. 30% tax, no loss offset, no cash flow. If you play, only with money you can afford to lose entirely — and size it like a lottery ticket, not a plan.' },
+  { id:'art', fam:'alt', name:'Art & Collectibles', what:'Paintings, watches, rare objects held for appreciation.',
+    retLo:0, retHi:12, risk:4, liq:1, min:'High',
+    tax:'LTCG as per holding period.',
+    take:'Passion first, investment second. No cash flow, a thin market, and pricing is subjective. Buy what you\'d be happy to keep forever — not what you hope to flip.' },
+  { id:'pe-vc', fam:'alt', name:'Private Equity / VC', what:'Owning slices of unlisted companies via funds.',
+    retLo:0, retHi:25, risk:5, liq:1, min:'Very high',
+    tax:'As per fund structure.',
+    take:'Home-run economics: most bets lose, a few win big enough to carry the fund. Decade-long lock-ins and steep minimums. Institutional and serious-HNI territory.' }
+];
+
+const fmtRet = (lo, hi) => (lo < 0 || hi > 20) ? `${lo > 0 ? '+' : ''}${lo}% to ${hi > 0 ? '+' : ''}${hi}%` : `${lo}–${hi}%`;
+const midRet = a => (a.retLo + a.retHi) / 2;
+
+// ─── Risk–Return map ───
+function drawMap() {
+  const W=720,H=440,padL=40,padR=20,padT=20,padB=40;
+  const rMin=1, rMax=5, yMin=-10, yMax=25;
+  const xOf = risk => padL + (risk - rMin)/(rMax - rMin)*(W-padL-padR);
+  const yOf = ret => H-padB - (ret - yMin)/(yMax - yMin)*(H-padT-padB);
+  const grid = [];
+  // horizontal return lines
+  [0,5,10,15,20].forEach(v => {
+    grid.push(`<line x1="${padL}" y1="${yOf(v)}" x2="${W-padR}" y2="${yOf(v)}" stroke="#F0EEE7" stroke-width="1"/>`);
+    grid.push(`<text x="${padL-6}" y="${yOf(v)+4}" font-size="11" fill="#8A8275" text-anchor="end" font-family="IBM Plex Mono">${v}%</text>`);
+  });
+  // risk labels
+  ['Low','','Medium','','High'].forEach((lab,i) => {
+    if(!lab) return;
+    grid.push(`<text x="${xOf(i+1)}" y="${H-14}" font-size="11" fill="#8A8275" text-anchor="middle" font-family="Hanken Grotesk">${lab} risk</text>`);
+  });
+  grid.push(`<text x="${W-padR}" y="${padT+2}" font-size="10" fill="#8A8275" text-anchor="end" font-family="Hanken Grotesk" font-weight="700">↑ higher return</text>`);
+  document.getElementById('map-grid').innerHTML = grid.join('');
+  // dots (jitter overlapping)
+  const seen = {};
+  const dots = ASSETS.map(a => {
+    let x = xOf(a.risk), y = yOf(midRet(a));
+    const key = a.risk + ':' + Math.round(midRet(a));
+    seen[key] = (seen[key]||0); const n = seen[key]++;
+    x += (n % 3 - 1) * 13; y += Math.floor(n/3) * 12;
+    return `<circle class="dot" data-id="${a.id}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="${FAMS[a.fam].color}" opacity="0.82" stroke="#FCFBF8" stroke-width="1.5"><title>${a.name}</title></circle>`;
+  });
+  document.getElementById('map-dots').innerHTML = dots.join('');
+  document.querySelectorAll('#map-dots .dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const a = ASSETS.find(x => x.id === dot.dataset.id);
+      document.querySelectorAll('#map-dots .dot').forEach(d => d.setAttribute('r', 8));
+      dot.setAttribute('r', 12);
+      document.getElementById('map-readout').innerHTML =
+        `<span class="pip mr-2" style="background:${FAMS[a.fam].color}"></span><strong>${a.name}</strong> · ${FAMS[a.fam].label} — ${a.what} <a href="#${a.id}" class="text-thisblue font-semibold whitespace-nowrap ml-1">read the take →</a>`;
+      const card = document.getElementById(a.id);
+      if (card) { card.scrollIntoView({behavior:'smooth', block:'center'}); card.classList.add('flash'); setTimeout(()=>card.classList.remove('flash'), 1600); }
+    });
+  });
+  // legend
+  document.getElementById('map-legend').innerHTML = Object.entries(FAMS).map(([k,f]) =>
+    `<span class="inline-flex items-center gap-1.5"><span class="pip" style="background:${f.color}"></span>${f.label}</span>`).join('');
+}
+
+// ─── Cards ───
+let activeFam = 'all';
+function pips(n, color) {
+  let s='';
+  for (let i=1;i<=5;i++) s += `<span class="pip" style="background:${i<=n?color:'#E1DDD1'}"></span>`;
+  return `<span class="inline-flex gap-1 align-middle">${s}</span>`;
+}
+function renderCards() {
+  const list = activeFam === 'all' ? ASSETS : ASSETS.filter(a => a.fam === activeFam);
+  document.getElementById('card-count').textContent = list.length;
+  document.getElementById('cards').innerHTML = list.map(a => {
+    const c = FAMS[a.fam].color;
+    return `<div id="${a.id}" class="asset-card bg-white rounded-2xl border border-navy/10 p-5 flex flex-col">
+      <div class="flex items-start justify-between gap-2">
+        <div class="font-display text-lg font-extrabold text-ink leading-tight">${a.name}</div>
+        <span class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full whitespace-nowrap" style="background:${c}1a;color:${c}">${FAMS[a.fam].label}</span>
+      </div>
+      <div class="text-sm text-ink/70 mt-1.5 leading-snug">${a.what}</div>
+      <div class="mt-4 grid grid-cols-2 gap-y-2.5 gap-x-3 text-[13px]">
+        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Typical return</div><div class="font-display font-extrabold text-ink tab-num mt-0.5">${fmtRet(a.retLo,a.retHi)}</div></div>
+        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Min ticket</div><div class="font-semibold text-ink mt-0.5">${a.min}</div></div>
+        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Risk</div><div class="mt-1.5">${pips(a.risk, '#FF302D')}</div></div>
+        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Liquidity</div><div class="mt-1.5">${pips(a.liq, '#1F8A5B')}</div></div>
+      </div>
+      <div class="mt-3 text-[11px] text-ink/60 leading-snug"><span class="font-bold uppercase tracking-widest text-ink/45">Tax</span> · ${a.tax}</div>
+      <div class="mt-3 pt-3 border-t border-navy/5 text-sm text-ink/85 leading-snug">
+        <span class="font-script text-thisblue text-lg font-bold mr-1">The honest take —</span>${a.take}
+      </div>
+    </div>`;
+  }).join('');
+}
+function renderChips() {
+  const chips = [['all','All']].concat(Object.entries(FAMS).map(([k,f]) => [k, f.label]));
+  document.getElementById('fam-chips').innerHTML = chips.map(([k,label]) => {
+    const on = activeFam === k;
+    const c = k==='all' ? '#1A1813' : FAMS[k].color;
+    const count = k==='all' ? ASSETS.length : ASSETS.filter(a=>a.fam===k).length;
+    return `<button class="fam-chip" data-fam="${k}" style="${on?`background:${c};color:#FCFBF8;border-color:${c}`:`background:#fff;color:#1A1813;border-color:#E1DDD1`}">${label} <span class="opacity-60 font-mono text-[11px]">${count}</span></button>`;
+  }).join('');
+  document.querySelectorAll('#fam-chips button').forEach(b => b.addEventListener('click', () => {
+    activeFam = b.dataset.fam; renderChips(); renderCards();
+  }));
+}
+
+drawMap(); renderChips(); renderCards();
+
+// Mobile menu
+(function(){
+  var btn=document.getElementById('mobile-menu-toggle'),menu=document.getElementById('mobile-menu'),o=document.getElementById('icon-open'),c=document.getElementById('icon-close');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){menu.classList.toggle('hidden');o.classList.toggle('hidden');c.classList.toggle('hidden');});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.add('hidden');o.classList.remove('hidden');c.classList.add('hidden');});});
+})();
+</script>
+</body>
+</html>
