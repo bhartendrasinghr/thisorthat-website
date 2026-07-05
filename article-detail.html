@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Article — ThisOrThat with Bhartendra</title>
+<title>Article, ThisOrThat with Bhartendra</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
         ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
         warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
         gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases — keep old class names working, mapped to new values
+        // Legacy aliases, keep old class names working, mapped to new values
         navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
         mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
         alert:   '#FF302D',
@@ -130,7 +130,7 @@
 
   <div class="max-w-6xl mx-auto px-6 mt-12 grid lg:grid-cols-[1fr_240px] gap-12">
     <div id="a-body" class="max-w-2xl mx-auto lg:mx-0 prose-essay"></div>
-    <!-- Sticky TOC (desktop only) — auto-built from H2 headings in the body -->
+    <!-- Sticky TOC (desktop only), auto-built from H2 headings in the body -->
     <aside class="hidden lg:block">
       <nav id="toc-nav" class="sticky top-32 text-sm">
         <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold mb-3">On this page</div>
@@ -178,7 +178,7 @@ fetch('content/articles.json')
     }
 
     const initials = (article.author || 'BS').split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase();
-    document.title = `${article.title} — ThisOrThat`;
+    document.title = `${article.title}, ThisOrThat`;
     document.getElementById('bc-title').textContent = article.title.slice(0, 50) + (article.title.length > 50 ? '…' : '');
     document.getElementById('a-category').textContent = `${article.category} · Essay`;
     document.getElementById('a-title').textContent = article.title;

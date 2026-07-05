@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Episode — ThisOrThat with Bhartendra</title>
+<title>Episode, ThisOrThat with Bhartendra</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
         ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
         warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
         gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases — keep old class names working, mapped to new values
+        // Legacy aliases, keep old class names working, mapped to new values
         navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
         mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
         alert:   '#FF302D',
@@ -37,7 +37,7 @@
   .font-serif { font-family: 'Bricolage Grotesque', serif; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
-  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
+  /* Avatar with initials, on-brand gradient fallback (looks intentional, not placeholder) */
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
     font-weight: 800; letter-spacing: -0.04em;
@@ -52,7 +52,7 @@
   .avatar > * { position: relative; z-index: 1; }
   .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; background: #000; }
   .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-  /* Branded frame around the YouTube embed — visible navy/mustard around the player */
+  /* Branded frame around the YouTube embed, visible navy/mustard around the player */
   .yt-frame { position: relative; padding: 14px; background: linear-gradient(135deg, #0249B1, #1A1813); border-radius: 22px; box-shadow: 0 30px 60px -20px rgba(2, 73, 177, 0.45); }
   .yt-frame::before { content: ''; position: absolute; top: 14px; left: 14px; right: 14px; height: 28px; background: linear-gradient(to bottom, rgba(255,194,31,0.0), transparent); border-radius: 16px 16px 0 0; pointer-events: none; }
   .yt-frame-corner { position: absolute; top: 0; right: 0; padding: 14px 20px; display: flex; align-items: center; gap: 8px; color: #FFC21F; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; z-index: 5; pointer-events: none; }
@@ -125,7 +125,7 @@
       Loading…
     </h1>
 
-    <!-- YouTube Embed — wrapped in branded ThisOrThat frame -->
+    <!-- YouTube Embed, wrapped in branded ThisOrThat frame -->
     <div class="mt-8 yt-frame">
       <div class="yt-frame-corner">Now playing</div>
       <div class="yt-wrap">
@@ -158,12 +158,12 @@
     <div class="lg:col-span-2 space-y-10">
       <div>
         <h2 class="font-serif text-3xl font-bold text-navy-ink">About this episode</h2>
-        <p class="mt-3 text-navy-ink/80 leading-relaxed">Real-time conversations on India's markets, behaviour and money — recorded for the listener who wants the inconvenient version. Watch above or jump to YouTube for the full experience.</p>
+        <p class="mt-3 text-navy-ink/80 leading-relaxed">Real-time conversations on India's markets, behaviour and money, recorded for the listener who wants the inconvenient version. Watch above or jump to YouTube for the full experience.</p>
       </div>
 
       <div class="bg-navy-ink text-cream rounded-2xl p-8">
         <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Show notes</div>
-        <p class="mt-3 text-cream/80 leading-relaxed">Full timestamps, chapters and links to mentioned resources are pinned in the YouTube description. We're working on bringing them inline here — for now, click through to YouTube for the complete notes.</p>
+        <p class="mt-3 text-cream/80 leading-relaxed">Full timestamps, chapters and links to mentioned resources are pinned in the YouTube description. We're working on bringing them inline here, for now, click through to YouTube for the complete notes.</p>
         <a id="yt-link-2" href="#" target="_blank" class="mt-5 inline-flex items-center gap-2 text-mustard font-semibold border-b-2 border-mustard pb-0.5">Open on YouTube →</a>
       </div>
     </div>
@@ -210,7 +210,7 @@ const initialsOf = (n) => {
   return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
 };
 
-document.title = `Ep ${ep.n} — ${ep.title} | ThisOrThat`;
+document.title = `Ep ${ep.n}, ${ep.title} | ThisOrThat`;
 document.getElementById('bc-ep').textContent = `Ep ${String(ep.n).padStart(3,'0')}`;
 document.getElementById('m-num').textContent = `Episode ${String(ep.n).padStart(3,'0')}`;
 document.getElementById('m-cat').textContent = ep.cat;
@@ -221,7 +221,7 @@ document.getElementById('yt-iframe').src = `https://www.youtube.com/embed/${ep.i
 document.getElementById('yt-link').href = `https://www.youtube.com/watch?v=${ep.id}`;
 document.getElementById('yt-link-2').href = `https://www.youtube.com/watch?v=${ep.id}`;
 
-// Guest card — render fast with auto data, then upgrade with rich CMS data
+// Guest card, render fast with auto data, then upgrade with rich CMS data
 const guestName = (ep.guest || '').replace(' (solo)', '');
 const isSolo = (ep.guest || '').toLowerCase().includes('solo');
 const guestInfo = (window.GUESTS || []).find(g => g.name === guestName);
@@ -234,7 +234,7 @@ const renderGuestCard = (rich) => {
       <div class="avatar w-24 h-24 rounded-2xl bg-navy text-mustard text-4xl mt-4">BS</div>
       <div class="mt-4 font-serif text-2xl font-bold text-navy-ink">Bhartendra Singh</div>
       <div class="text-sm text-navy/60">Solo episode</div>
-      <p class="mt-3 text-sm text-navy-ink/70 leading-relaxed">A solo conversation from Bhartendra — no guest, just the host unpacking an idea.</p>
+      <p class="mt-3 text-sm text-navy-ink/70 leading-relaxed">A solo conversation from Bhartendra, no guest, just the host unpacking an idea.</p>
     `;
     return;
   }
@@ -265,7 +265,7 @@ if (!isSolo) {
     });
 }
 
-// Related — same category, exclude current
+// Related, same category, exclude current
 const bgs = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
 const related = window.EPISODES.filter(e => e.cat === ep.cat && e.id !== ep.id).slice(0, 3);
 document.getElementById('related').innerHTML = related.map((e, i) => `

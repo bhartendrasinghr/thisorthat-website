@@ -16,7 +16,7 @@ They are also, almost without exception, getting poorer every year. They just do
 
 ## The maths nobody wants to do
 
-Inflation in India has averaged roughly 6% over the last decade. Your FD pays you 7%. After tax, you take home maybe 5%. That means every year, your "safe" money is losing about 1% of its real value. Over thirty years, that's a third of your purchasing power. Gone — not because you spent it, but because you refused to let it work.
+Inflation in India has averaged roughly 6% over the last decade. Your FD pays you 7%. After tax, you take home maybe 5%. That means every year, your "safe" money is losing about 1% of its real value. Over thirty years, that's a third of your purchasing power. Gone, not because you spent it, but because you refused to let it work.
 
 This is the part the financial industry rarely says out loud. The most expensive decision most Indians make is not buying the wrong stock. It's refusing to buy any stock at all.
 
@@ -30,6 +30,6 @@ The first decade is the most expensive one to skip. The second one is harder to 
 
 ## Why it feels safe
 
-Volatility looks like risk. It isn't. Loss of purchasing power is risk. The market drops 30% and recovers in 18 months — that's an inconvenience. Your money sits in an FD for 30 years compounding at 1% real — that's a quiet, permanent erasure of your future. One is loud. The other is loud only at the end, when there's nothing left to do.
+Volatility looks like risk. It isn't. Loss of purchasing power is risk. The market drops 30% and recovers in 18 months, that's an inconvenience. Your money sits in an FD for 30 years compounding at 1% real, that's a quiet, permanent erasure of your future. One is loud. The other is loud only at the end, when there's nothing left to do.
 
-If you're reading this and thinking *but I have responsibilities, I can't take risks* — I'd gently suggest that responsibility is precisely why you can't afford not to.
+If you're reading this and thinking *but I have responsibilities, I can't take risks*, I'd gently suggest that responsibility is precisely why you can't afford not to.

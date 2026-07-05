@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About — ThisOrThat with Bhartendra</title>
+<title>About, ThisOrThat with Bhartendra</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
         ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
         warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
         gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases — keep old class names working, mapped to new values
+        // Legacy aliases, keep old class names working, mapped to new values
         navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
         mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
         alert:   '#FF302D',
@@ -35,7 +35,7 @@
 <style>
   body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
   .font-serif { font-family: 'Bricolage Grotesque', serif; }
-  /* Avatar with initials — on-brand gradient fallback (looks intentional, not placeholder) */
+  /* Avatar with initials, on-brand gradient fallback (looks intentional, not placeholder) */
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
     font-weight: 800; letter-spacing: -0.04em;
@@ -220,7 +220,7 @@ if (window.GUESTS) {
       document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = total);
     });
 }
-// Calculators live — count the calc-*.html files we link from calculators.html
+// Calculators live, count the calc-*.html files we link from calculators.html
 document.querySelectorAll('[data-stat-calcs]').forEach(el => el.textContent = '7');
 </script>
 
@@ -238,7 +238,7 @@ fetch('content/about.json', { cache: 'no-cache' })
     if (host.kicker) document.getElementById('host-kicker').textContent = host.kicker;
     if (host.name)   document.getElementById('host-name').textContent   = host.name;
     if (host.tagline) document.getElementById('host-tagline').textContent = host.tagline;
-    document.title = `About — ${host.name || 'ThisOrThat'}`;
+    document.title = `About, ${host.name || 'ThisOrThat'}`;
 
     if (host.photo) {
       const ph = document.getElementById('host-photo');

@@ -17,4 +17,4 @@ Founder of Gateway to Financial Freedom. Frequent ThisOrThat guest on gold, inve
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.

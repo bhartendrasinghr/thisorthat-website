@@ -18,4 +18,4 @@ Founder of Investonline.in. Demystifies real estate vs equity, and the emotional
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.

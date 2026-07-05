@@ -8,7 +8,7 @@ linkedin: https://www.linkedin.com/in/aashishpsomaiyaa/
 twitter: ""
 website: ""
 featured: true
-quote: "Most investors don't lose to bad funds — they lose to fund-switching."
+quote: "Most investors don't lose to bad funds, they lose to fund-switching."
 ---
 CEO of WhiteOak Capital. Long-term, valuation-disciplined investor; explains the many paths to financial heaven.
 

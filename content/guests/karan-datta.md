@@ -17,4 +17,4 @@ Chief Business Officer at Axis Mutual Fund. Guest on This or That on silver, tim
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.

@@ -10,7 +10,7 @@ hero_color: "thumb-5"
 slug: "new-tax-regime"
 ---
 
-The new tax regime is simpler. That's its only real selling point — and for most people, that's enough.
+The new tax regime is simpler. That's its only real selling point, and for most people, that's enough.
 
 ## The actual decision
 
@@ -20,9 +20,9 @@ If your annual deductions are under ₹3 lakh, the new regime usually wins. Abov
 
 ## Who benefits
 
-- Salaried with no HRA, no home loan, no 80C investments beyond EPF — **new regime, easy win**
-- Home loan + 80C maxed + HRA — **old regime, still better**
-- Senior citizens with medical premiums — usually old, by a bit
+- Salaried with no HRA, no home loan, no 80C investments beyond EPF, **new regime, easy win**
+- Home loan + 80C maxed + HRA, **old regime, still better**
+- Senior citizens with medical premiums, usually old, by a bit
 
 ## The thing nobody mentions
 

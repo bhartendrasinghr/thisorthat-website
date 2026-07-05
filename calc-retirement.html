@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Real Retirement Calculator — ThisOrThat with Bhartendra</title>
+<title>Real Retirement Calculator, ThisOrThat with Bhartendra</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
         ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
         warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
         gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases — keep old class names working, mapped to new values
+        // Legacy aliases, keep old class names working, mapped to new values
         navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
         mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
         alert:   '#FF302D',
@@ -118,7 +118,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Inflation-adjusted, lifestyle-honest</div>
     <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy-ink mt-3 leading-[1.05]">Real Retirement.</h1>
-    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Most retirement calculators tell you a comfortable number. This one tells you the inconvenient one. ₹2 crore feels like a lot today — let's see what it actually buys in 25 years.</p>
+    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Most retirement calculators tell you a comfortable number. This one tells you the inconvenient one. ₹2 crore feels like a lot today, let's see what it actually buys in 25 years.</p>
   </div>
 </section>
 
@@ -181,7 +181,7 @@
           </div>
         </div>
         <input id="in-cur" type="range" min="0" max="50000000" step="100000" value="0" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/50 mt-1">Tip: type "5L" or "1.5Cr" — both work.</div>
+        <div class="text-[11px] text-navy/50 mt-1">Tip: type "5L" or "1.5Cr", both work.</div>
       </div>
 
       <details class="pt-2 border-t border-navy/10">
@@ -280,7 +280,7 @@
       <!-- Show the math: year-by-year corpus depletion -->
       <details class="bg-white border border-navy/10 rounded-2xl">
         <summary class="cursor-pointer p-5 font-semibold text-navy-ink hover:bg-paper rounded-2xl select-none">
-          📐 Show the maths — year-by-year corpus depletion
+          📐 Show the maths, year-by-year corpus depletion
         </summary>
         <div class="px-5 pb-5">
           <p class="text-xs text-navy/60 mb-3">Each month, you withdraw that month's expense at the start, then the remaining corpus grows for the month at your post-retirement return (compounded monthly). The table summarises each year (12 monthly cycles). Last row should reach ~₹0.</p>
@@ -311,8 +311,8 @@
     <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What this number actually says</div>
     <div id="reality" class="mt-4 font-serif text-2xl md:text-3xl font-bold leading-snug"></div>
     <div class="mt-6 space-y-4 text-cream/80 leading-relaxed">
-      <p>If your current SIP is less than the number above, you're not "behind" — you're <em>under-funding</em>. The two are different. Behind implies you can catch up. Under-funded implies the maths needs to change: <strong>save more, work longer, or accept a smaller retirement</strong>. There is no fourth option.</p>
-      <p>The most expensive sentence in personal finance is <em>"I'll start next year."</em> The cost of 12 missed months at age 30 is roughly 4 months of expenses at age 65. Try it — push your age slider forward by one and watch the SIP number jump.</p>
+      <p>If your current SIP is less than the number above, you're not "behind", you're <em>under-funding</em>. The two are different. Behind implies you can catch up. Under-funded implies the maths needs to change: <strong>save more, work longer, or accept a smaller retirement</strong>. There is no fourth option.</p>
+      <p>The most expensive sentence in personal finance is <em>"I'll start next year."</em> The cost of 12 missed months at age 30 is roughly 4 months of expenses at age 65. Try it, push your age slider forward by one and watch the SIP number jump.</p>
     </div>
     <a href="episode-detail.html?v=C8lNnLi2Ppk" class="mt-8 inline-flex items-center gap-2 bg-mustard text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-mustard-soft transition">Watch: The Truth About This Market →</a>
   </div>
@@ -336,7 +336,7 @@
       <a href="calc-swp.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
         <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-base font-bold mb-3">SWP</div>
         <h3 class="font-serif text-xl font-bold text-navy-ink">Systematic Withdrawal</h3>
-        <p class="text-navy-ink/70 text-sm mt-1">Now that you have the corpus — how much can you pull each month without going dry?</p>
+        <p class="text-navy-ink/70 text-sm mt-1">Now that you have the corpus, how much can you pull each month without going dry?</p>
       </a>
     </div>
   </div>
@@ -366,7 +366,7 @@ function calc() {
   const preRet   = +document.getElementById('in-pre').value / 100;
   const postRet  = +document.getElementById('in-post').value / 100;
 
-  // Update label values — but only if user isn't currently editing that field
+  // Update label values, but only if user isn't currently editing that field
   const setLbl = (id, val) => {
     const el = document.getElementById(id);
     if (el && document.activeElement !== el) el.value = val;
@@ -501,7 +501,7 @@ function calc() {
   document.getElementById('pct-cont-val').textContent = fmtINR(totalContrib);
   document.getElementById('pct-grow-val').textContent = fmtINR(Math.max(0, totalGrowth));
 
-  // Year-by-year simulation table — proves the math (monthly cadence under the hood)
+  // Year-by-year simulation table, proves the math (monthly cadence under the hood)
   const simTable = document.getElementById('sim-table');
   if (simTable) {
     simTable.innerHTML = simulation.map(row => `
@@ -521,15 +521,15 @@ function calc() {
   if (onTrack) {
     const surplus = futureCurCorp - corpusNeeded;
     const surplusYears = Math.round((surplus / (annualExpAtRet)) || 0);
-    reality = `Your current ₹${fmtINR(curCorp)} alone grows to ₹${fmtINR(futureCurCorp)} by age ${retAge} — ₹${fmtINR(surplus)} more than the ₹${fmtINR(corpusNeeded)} you need. That's roughly ${surplusYears} extra years of retirement income, or the option to stop working sooner. This is what compounding looks like when you start early.`;
+    reality = `Your current ₹${fmtINR(curCorp)} alone grows to ₹${fmtINR(futureCurCorp)} by age ${retAge}, ₹${fmtINR(surplus)} more than the ₹${fmtINR(corpusNeeded)} you need. That's roughly ${surplusYears} extra years of retirement income, or the option to stop working sooner. This is what compounding looks like when you start early.`;
   } else if (yearsToRet < 5) {
-    reality = `You have ${yearsToRet} working years left. Even a ₹${fmtINRFull(Math.round(sip))}/month SIP will struggle to bridge this. The honest move is to keep working — or to drop expected expenses.`;
+    reality = `You have ${yearsToRet} working years left. Even a ₹${fmtINRFull(Math.round(sip))}/month SIP will struggle to bridge this. The honest move is to keep working, or to drop expected expenses.`;
   } else if (sip > expToday * 0.5) {
-    reality = `That's ${Math.round((sip / expToday) * 100)}% of your current monthly expense — going into a SIP. Most people can't sustain this. The realistic options are: retire later, spend less in retirement, or accept a corpus shortfall.`;
+    reality = `That's ${Math.round((sip / expToday) * 100)}% of your current monthly expense, going into a SIP. Most people can't sustain this. The realistic options are: retire later, spend less in retirement, or accept a corpus shortfall.`;
   } else if (sip > expToday * 0.25) {
     reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP is doable, but only if you start today and never pause. Most people pause once. That one pause is what makes "₹2 crore" not enough.`;
   } else {
-    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP gets you there — comfortably. The question now isn't "can I save this?" — it's "what happens if I save 20% more?" Move the age slider back by 5 to see.`;
+    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP gets you there, comfortably. The question now isn't "can I save this?", it's "what happens if I save 20% more?" Move the age slider back by 5 to see.`;
   }
   document.getElementById('reality').textContent = reality;
 }

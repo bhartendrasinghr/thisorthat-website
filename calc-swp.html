@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SWP Calculator — Systematic Withdrawal Plan · ThisOrThat with Bhartendra</title>
-<meta name="description" content="How much can you pull out of your corpus each month without emptying the tank? An honest Systematic Withdrawal Plan calculator — inflation-aware, with sustainable-rate guidance." />
+<title>SWP Calculator, Systematic Withdrawal Plan · ThisOrThat with Bhartendra</title>
+<meta name="description" content="How much can you pull out of your corpus each month without emptying the tank? An honest Systematic Withdrawal Plan calculator, inflation-aware, with sustainable-rate guidance." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -106,8 +106,8 @@
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Withdrawing, not just investing</div>
-    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">SWP — how much can the tank give?</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You spent 25 years filling the tank. Now the real question: <strong>how much water can you draw every month — without emptying it?</strong> Pull too much and you go dry. Pull too little and you skimp despite being wealthy. This calculator finds the line.</p>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">SWP, how much can the tank give?</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You spent 25 years filling the tank. Now the real question: <strong>how much water can you draw every month, without emptying it?</strong> Pull too much and you go dry. Pull too little and you skimp despite being wealthy. This calculator finds the line.</p>
   </div>
 </section>
 
@@ -127,7 +127,7 @@
           </div>
         </div>
         <input id="in-corpus" type="range" min="500000" max="200000000" step="500000" value="10000000" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/50 mt-1">Tip: type "1Cr" or "1,00,00,000" — both work.</div>
+        <div class="text-[11px] text-navy/50 mt-1">Tip: type "1Cr" or "1,00,00,000", both work.</div>
       </div>
 
       <div>
@@ -151,7 +151,7 @@
           </div>
         </div>
         <input id="in-years" type="range" min="5" max="50" value="30" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/55 mt-1">Plan for your realistic lifespan — most people underestimate this.</div>
+        <div class="text-[11px] text-navy/55 mt-1">Plan for your realistic lifespan, most people underestimate this.</div>
       </div>
 
       <div class="pt-2 border-t border-navy/10">
@@ -234,7 +234,7 @@
       <!-- HOW IT WORKS -->
       <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
         <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How an SWP actually works</div>
-        <p>Each month, your portfolio pays you a fixed amount — like a self-issued salary. The rest stays invested and keeps growing. If returns out-pace withdrawals, the corpus survives. If they don't, the tank slowly drains. <strong>It's the same maths as your EMI — just running in reverse.</strong></p>
+        <p>Each month, your portfolio pays you a fixed amount, like a self-issued salary. The rest stays invested and keeps growing. If returns out-pace withdrawals, the corpus survives. If they don't, the tank slowly drains. <strong>It's the same maths as your EMI, just running in reverse.</strong></p>
       </div>
 
       <!-- YEAR-BY-YEAR TABLE -->
@@ -298,7 +298,7 @@
       <a href="calc-buckets.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">3B</div>
         <h3 class="font-display text-xl font-extrabold text-ink">3-Bucket Strategy</h3>
-        <p class="text-ink/70 text-sm mt-1">Cash + debt + equity — ride out crashes.</p>
+        <p class="text-ink/70 text-sm mt-1">Cash + debt + equity, ride out crashes.</p>
       </a>
     </div>
   </div>
@@ -332,7 +332,7 @@ function simulate(corpus, monthlyWd, annualReturn, inflation, stepUp, maxYears) 
 
     for (let m = 0; m < 12; m++) {
       if (balance < yearWdMonthly) {
-        // Final partial month — pay what's left, then drain
+        // Final partial month, pay what's left, then drain
         withdrawnThisYear += balance;
         depletionFrac = (year + (m / 12));
         balance = 0;
@@ -430,7 +430,7 @@ function calc() {
     rateZone.innerHTML = '<strong class="text-marigold-600">Stretchy.</strong> 4–6% works only if returns stay above inflation by a healthy margin.';
   } else {
     rateBar.className = 'tank-fill bg-thatred';
-    rateZone.innerHTML = '<strong class="text-thatred">Risky.</strong> Over 6% — your corpus is unlikely to outlive you.';
+    rateZone.innerHTML = '<strong class="text-thatred">Risky.</strong> Over 6%, your corpus is unlikely to outlive you.';
   }
 
   // Max sustainable
@@ -448,13 +448,13 @@ function calc() {
     kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-marigold';
     yrsOut.className = 'text-marigold';
     yrsOut.textContent = Math.floor(yearsLasted);
-    statusOut.innerHTML = `<strong>Dry tank — falls ${targetYrs - Math.floor(yearsLasted)} years short.</strong> Either lower the monthly withdrawal, start with a bigger corpus, or assume better returns.`;
+    statusOut.innerHTML = `<strong>Dry tank, falls ${targetYrs - Math.floor(yearsLasted)} years short.</strong> Either lower the monthly withdrawal, start with a bigger corpus, or assume better returns.`;
   } else if (!depleted && finalCorpus > corpus) {
     lifespanEl.className = 'bg-gain text-warmpaper rounded-2xl p-7';
     kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-marigold';
     yrsOut.className = 'text-marigold';
     yrsOut.textContent = `${targetYrs}+`;
-    statusOut.innerHTML = `<strong>Tank still growing.</strong> After ${targetYrs} years, ₹${fmtINR(finalCorpus)} remains — more than you started with. You're under-withdrawing.`;
+    statusOut.innerHTML = `<strong>Tank still growing.</strong> After ${targetYrs} years, ₹${fmtINR(finalCorpus)} remains, more than you started with. You're under-withdrawing.`;
   } else if (!depleted) {
     lifespanEl.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
     kickerOut.className = 'text-xs uppercase tracking-[0.3em] font-bold text-marigold';
@@ -469,7 +469,7 @@ function calc() {
     statusOut.innerHTML = `<strong>Just enough.</strong> Lasts the ${targetYrs} years you planned for, then runs dry.`;
   }
 
-  // Year-by-year table — show up to 40 rows
+  // Year-by-year table, show up to 40 rows
   const rows = sim.slice(0, Math.min(sim.length, 40));
   document.getElementById('sim-table').innerHTML = rows.map(r => `
     <tr class="border-b border-navy/5 ${r.depleted ? 'bg-thatred/10' : ''}">
@@ -483,17 +483,17 @@ function calc() {
   // Reality message
   const realityEl = document.getElementById('reality');
   if (depleted && yearsLasted < targetYrs) {
-    realityEl.textContent = `At ₹${monthlyWd.toLocaleString('en-IN')}/mo you run out at year ${Math.floor(yearsLasted)}. ${fmtINR(maxWd) ? `The honest number for ${targetYrs} years is ₹${fmtINR(maxWd)}/mo.` : 'No amount makes this corpus last — you need more corpus or different returns.'}`;
+    realityEl.textContent = `At ₹${monthlyWd.toLocaleString('en-IN')}/mo you run out at year ${Math.floor(yearsLasted)}. ${fmtINR(maxWd) ? `The honest number for ${targetYrs} years is ₹${fmtINR(maxWd)}/mo.` : 'No amount makes this corpus last, you need more corpus or different returns.'}`;
   } else if (finalCorpus > corpus * 2) {
-    realityEl.textContent = `You're being too conservative. At this rate, the corpus more than doubles even while you're withdrawing — you could enjoy the life you spent decades funding.`;
+    realityEl.textContent = `You're being too conservative. At this rate, the corpus more than doubles even while you're withdrawing, you could enjoy the life you spent decades funding.`;
   } else if (ratePct < 3) {
-    realityEl.textContent = `${ratePct.toFixed(1)}% withdrawal is barely a drip. The corpus grows faster than you withdraw — you're skimping despite being wealthy.`;
+    realityEl.textContent = `${ratePct.toFixed(1)}% withdrawal is barely a drip. The corpus grows faster than you withdraw, you're skimping despite being wealthy.`;
   } else if (!depleted && ratePct > 6) {
-    realityEl.textContent = `${ratePct.toFixed(1)}% withdrawal looks fine on paper. But one bad market year early on can derail it — sequence-of-returns risk is the silent killer of SWPs.`;
+    realityEl.textContent = `${ratePct.toFixed(1)}% withdrawal looks fine on paper. But one bad market year early on can derail it, sequence-of-returns risk is the silent killer of SWPs.`;
   } else if (!depleted) {
-    realityEl.textContent = `${ratePct.toFixed(1)}% is a reasonable rate. The math works at expected returns — but build a safety net (12-18 months in cash) for the years markets don't cooperate.`;
+    realityEl.textContent = `${ratePct.toFixed(1)}% is a reasonable rate. The math works at expected returns, but build a safety net (12-18 months in cash) for the years markets don't cooperate.`;
   } else {
-    realityEl.textContent = `Just enough is not the same as safe. Markets don't deliver smooth ${(annRet*100).toFixed(1)}% returns — a 2-year drawdown in year 1 changes everything. Leave room.`;
+    realityEl.textContent = `Just enough is not the same as safe. Markets don't deliver smooth ${(annRet*100).toFixed(1)}% returns, a 2-year drawdown in year 1 changes everything. Leave room.`;
   }
 }
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Goal Planner — ThisOrThat with Bhartendra</title>
-<meta name="description" content="Backwards from the goal. How much do you need to invest every month to actually hit it — and is that even realistic?" />
+<title>Goal Planner, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Backwards from the goal. How much do you need to invest every month to actually hit it, and is that even realistic?" />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -89,7 +89,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Reverse-engineered, honest</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Goal Planner.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Down payment in 5 years? Kid's college in 12? Wedding in 3? Tell us the goal — we tell you what it costs <em>per month</em>, and whether the number is realistic at your income.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Down payment in 5 years? Kid's college in 12? Wedding in 3? Tell us the goal, we tell you what it costs <em>per month</em>, and whether the number is realistic at your income.</p>
   </div>
 </section>
 
@@ -107,7 +107,7 @@
           </div>
         </div>
         <input id="in-goal" type="range" min="100000" max="50000000" step="100000" value="5000000" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/55 mt-1">Tip: type "50L" or "2Cr" — both work. Goal grows with inflation by the time you reach it.</div>
+        <div class="text-[11px] text-navy/55 mt-1">Tip: type "50L" or "2Cr", both work. Goal grows with inflation by the time you reach it.</div>
       </div>
 
       <div>
@@ -233,7 +233,7 @@
     <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
     <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
     <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
-      <p>Most "goal calculators" online tell you a comfortable SIP and stop there. They forget that the goal will be more expensive by the time you get to it — and that you have an income, not a magic wallet.</p>
+      <p>Most "goal calculators" online tell you a comfortable SIP and stop there. They forget that the goal will be more expensive by the time you get to it, and that you have an income, not a magic wallet.</p>
       <p>This one shows the <strong class="text-marigold">honest SIP</strong>, the <strong class="text-marigold">share of your income</strong> it would eat, and what changes if you give the goal more time or less ambition.</p>
     </div>
   </div>
@@ -256,7 +256,7 @@
       <a href="calc-swp.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SWP</div>
         <h3 class="font-display text-xl font-extrabold text-ink">Systematic Withdrawal</h3>
-        <p class="text-ink/70 text-sm mt-1">How much you can pull each month — without going dry.</p>
+        <p class="text-ink/70 text-sm mt-1">How much you can pull each month, without going dry.</p>
       </a>
     </div>
   </div>
@@ -349,13 +349,13 @@ function calc() {
     kicker.className = baseKicker + ' text-thisblue';
     sipOut.className = 'text-ink';
     sipOut.textContent = fmtINR(sip);
-    status.innerHTML = `<strong>A stretch.</strong> ${Math.round(sharePct)}% of your take-home — doable, but you'll feel it every month.`;
+    status.innerHTML = `<strong>A stretch.</strong> ${Math.round(sharePct)}% of your take-home, doable, but you'll feel it every month.`;
   } else {
     card.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     sipOut.className = 'text-marigold';
     sipOut.textContent = fmtINR(sip);
-    status.innerHTML = `<strong>Comfortable.</strong> ${Math.round(sharePct)}% of your take-home — well within reach if you start now.`;
+    status.innerHTML = `<strong>Comfortable.</strong> ${Math.round(sharePct)}% of your take-home, well within reach if you start now.`;
   }
 
   // Alternatives table
@@ -378,11 +378,11 @@ function calc() {
   // Reality message
   const realityEl = document.getElementById('reality');
   if (sip <= 0) {
-    realityEl.textContent = `You're already over-funded. Move the surplus to a longer-term, higher-return bucket — don't let it sit idle.`;
+    realityEl.textContent = `You're already over-funded. Move the surplus to a longer-term, higher-return bucket, don't let it sit idle.`;
   } else if (sharePct > 70) {
-    realityEl.textContent = `Saving ${Math.round(sharePct)}% of your income for one goal isn't a plan — it's denial. Either move the deadline or move the goalposts.`;
+    realityEl.textContent = `Saving ${Math.round(sharePct)}% of your income for one goal isn't a plan, it's denial. Either move the deadline or move the goalposts.`;
   } else if (sharePct > 40) {
-    realityEl.textContent = `${Math.round(sharePct)}% of your monthly income, every month, for ${years} years. Make sure you actually want this — not just the idea of it.`;
+    realityEl.textContent = `${Math.round(sharePct)}% of your monthly income, every month, for ${years} years. Make sure you actually want this, not just the idea of it.`;
   } else if (years < 5 && sip > 0) {
     realityEl.textContent = `Short-horizon goals belong in debt and FDs, not equity. At ${years} years, plan for ${(ret*100).toFixed(0)}% returns but don't bet on them.`;
   } else {

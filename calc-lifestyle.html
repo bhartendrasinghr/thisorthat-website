@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lifestyle Inflation Tracker — ThisOrThat with Bhartendra</title>
+<title>Lifestyle Inflation Tracker, ThisOrThat with Bhartendra</title>
 <meta name="description" content="Compare your savings rate now vs five years ago. The gap is usually where the wealth went." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -89,7 +89,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The quiet drain</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Where did the raises go?</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You earn more now than you did 5 years ago. So why does it feel like you save the same — or less? This calculator compares your savings rate <strong>then</strong> vs <strong>now</strong>, shows what % of every raise leaked into expenses, and what your corpus would look like if you'd held the line.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You earn more now than you did 5 years ago. So why does it feel like you save the same, or less? This calculator compares your savings rate <strong>then</strong> vs <strong>now</strong>, shows what % of every raise leaked into expenses, and what your corpus would look like if you'd held the line.</p>
   </div>
 </section>
 
@@ -190,7 +190,7 @@
       </div>
 
       <div class="bg-white rounded-2xl border-2 border-marigold p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Savings rate — then vs now</div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Savings rate, then vs now</div>
 
         <div class="mt-5 space-y-4">
           <div>
@@ -240,8 +240,8 @@
     <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
     <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
     <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
-      <p>Lifestyle inflation isn't a moral failing — it's the default. Income goes up, the rent goes up to match, the car gets nicer, the holiday gets longer. Five years later, you're earning twice as much and saving the same amount.</p>
-      <p>The fix isn't <em>spend less</em>. The fix is to <strong class="text-marigold">save every raise before you see it</strong> — auto-debit it to your SIP the day the increment hits, then live on whatever lands in the account. The lifestyle catches up to whatever's left.</p>
+      <p>Lifestyle inflation isn't a moral failing, it's the default. Income goes up, the rent goes up to match, the car gets nicer, the holiday gets longer. Five years later, you're earning twice as much and saving the same amount.</p>
+      <p>The fix isn't <em>spend less</em>. The fix is to <strong class="text-marigold">save every raise before you see it</strong>, auto-debit it to your SIP the day the increment hits, then live on whatever lands in the account. The lifestyle catches up to whatever's left.</p>
     </div>
   </div>
 </section>
@@ -385,7 +385,7 @@ function calc() {
     card.className = 'bg-marigold text-ink rounded-2xl p-7';
     kicker.className = baseKicker + ' text-thisblue';
     leakEl.className = 'text-ink';
-    status.innerHTML = `<strong>Most of it.</strong> ₹${leakPct.toFixed(0)} of every extra ₹100 in income became extra spending. Some lifestyle creep is normal — this is on the heavy side.`;
+    status.innerHTML = `<strong>Most of it.</strong> ₹${leakPct.toFixed(0)} of every extra ₹100 in income became extra spending. Some lifestyle creep is normal, this is on the heavy side.`;
   } else if (leakPct >= 30) {
     card.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
@@ -403,13 +403,13 @@ function calc() {
   if (incDelta <= 0) {
     realityEl.textContent = `Without a raise, this calculator does not apply. Come back when the income line has moved up.`;
   } else if (rateNow < rateThen - 2) {
-    realityEl.textContent = `You earn more now but save a smaller share of it. ${(rateThen - rateNow).toFixed(1)} percentage points of savings rate, gone — that is exactly where the wealth went.`;
+    realityEl.textContent = `You earn more now but save a smaller share of it. ${(rateThen - rateNow).toFixed(1)} percentage points of savings rate, gone, that is exactly where the wealth went.`;
   } else if (rateNow > rateThen + 2) {
-    realityEl.textContent = `Income went up AND savings rate went up. That is unusually disciplined — most people do the opposite. Keep going.`;
+    realityEl.textContent = `Income went up AND savings rate went up. That is unusually disciplined, most people do the opposite. Keep going.`;
   } else if (leakPct >= 80) {
-    realityEl.textContent = `You spent ${leakPct.toFixed(0)}% of every raise. In ${span} years that compounds to ₹${fmtINR(cf)} you do not have. The next raise — save it first, then notice you don't miss it.`;
+    realityEl.textContent = `You spent ${leakPct.toFixed(0)}% of every raise. In ${span} years that compounds to ₹${fmtINR(cf)} you do not have. The next raise, save it first, then notice you don't miss it.`;
   } else {
-    realityEl.textContent = `Lifestyle inflation of ${leakPct.toFixed(0)}% is normal-to-mild. The trick is not to let it ratchet — set the savings rate floor and never let it slip below.`;
+    realityEl.textContent = `Lifestyle inflation of ${leakPct.toFixed(0)}% is normal-to-mild. The trick is not to let it ratchet, set the savings rate floor and never let it slip below.`;
   }
 }
 

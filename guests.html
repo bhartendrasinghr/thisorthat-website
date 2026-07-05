@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Guests — ThisOrThat with Bhartendra</title>
-<meta name="description" content="Fund managers, founders, advisors, journalists — the voices we sit across from on This or That with Bhartendra." />
+<title>Guests, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Fund managers, founders, advisors, journalists, the voices we sit across from on This or That with Bhartendra." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,7 +85,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-thisblue font-bold">The voices</div>
     <h1 class="font-serif text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Not who they are.<br/><span class="font-script font-bold text-thisblue text-5xl md:text-7xl">What they said.</span></h1>
-    <p class="mt-5 text-ink/80 text-base md:text-lg max-w-2xl">Fund managers, founders, advisors, journalists — <span id="total-count">—</span> people whose work made one Indian money decision a little clearer.</p>
+    <p class="mt-5 text-ink/80 text-base md:text-lg max-w-2xl">Fund managers, founders, advisors, journalists, <span id="total-count">—</span> people whose work made one Indian money decision a little clearer.</p>
   </div>
 </section>
 
@@ -130,9 +130,9 @@ const FALLBACK_QUOTES = [
   "The hardest part of investing is doing nothing.",
   "Most financial mistakes are emotional, not mathematical.",
   "Compounding rewards patience more than intelligence.",
-  "The biggest risk isn't the market — it's reacting to it.",
+  "The biggest risk isn't the market, it's reacting to it.",
   "Discipline beats forecasting. Every cycle.",
-  "Time in the market beats timing the market — by a wide margin."
+  "Time in the market beats timing the market, by a wide margin."
 ];
 const fallbackFor = (name) => FALLBACK_QUOTES[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0)) % FALLBACK_QUOTES.length];
 const quoteFor = (g) => (g.quote && g.quote.trim()) ? g.quote.trim() : fallbackFor(g.name);

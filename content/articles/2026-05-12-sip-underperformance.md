@@ -1,6 +1,6 @@
 ---
 title: "Why your SIP's underperformance is not your fund manager's fault."
-subtitle: "The maths of investor behaviour beats fund selection — most of the time."
+subtitle: "The maths of investor behaviour beats fund selection, most of the time."
 category: "Markets"
 date: 2026-05-12
 read_minutes: 6

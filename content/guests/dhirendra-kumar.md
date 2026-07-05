@@ -17,4 +17,4 @@ CEO of Value Research. India's most-read mutual fund analyst, and a 7-figure-vie
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.

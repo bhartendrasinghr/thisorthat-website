@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Brutal SIP Calculator — ThisOrThat with Bhartendra</title>
+<title>Brutal SIP Calculator, ThisOrThat with Bhartendra</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
         ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
         warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
         gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases — keep old class names working, mapped to new values
+        // Legacy aliases, keep old class names working, mapped to new values
         navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
         mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
         alert:   '#FF302D',
@@ -227,7 +227,7 @@
     <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What the gap means</div>
     <div id="reality" class="mt-4 font-serif text-2xl md:text-3xl font-bold leading-snug"></div>
     <div class="mt-6 space-y-4 text-cream/80 leading-relaxed">
-      <p>That gap isn't because you didn't save. It's because compound growth needs <em>time</em>, not effort. A ₹10,000 SIP starting at 25 beats a ₹20,000 SIP starting at 35 — even though the second person contributed more.</p>
+      <p>That gap isn't because you didn't save. It's because compound growth needs <em>time</em>, not effort. A ₹10,000 SIP starting at 25 beats a ₹20,000 SIP starting at 35, even though the second person contributed more.</p>
       <p>The most expensive decision in personal finance is the one you don't make. <strong>Today is the second-best day to start.</strong> Yesterday was the first.</p>
     </div>
   </div>
@@ -251,7 +251,7 @@
       <a href="calc-swp.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
         <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-base font-bold mb-3">SWP</div>
         <h3 class="font-serif text-xl font-bold text-navy-ink">Systematic Withdrawal</h3>
-        <p class="text-navy-ink/70 text-sm mt-1">How much you can pull each month — without emptying the tank.</p>
+        <p class="text-navy-ink/70 text-sm mt-1">How much you can pull each month, without emptying the tank.</p>
       </a>
     </div>
   </div>
@@ -335,11 +335,11 @@ function calc() {
   const gap10 = corpus10 - corpusNow;
   let reality;
   if (years < 10) {
-    reality = `With only ${years} years to compound, you're investing in your own discipline more than in the market. Compound growth needs time you don't have — so the only lever left is the SIP amount.`;
+    reality = `With only ${years} years to compound, you're investing in your own discipline more than in the market. Compound growth needs time you don't have, so the only lever left is the SIP amount.`;
   } else if (gap10 > corpusNow) {
-    reality = `Starting 10 years earlier would have given you ${fmtINR(corpus10)} — more than DOUBLE what you'll get now. That gap of ₹${fmtINR(gap10)} is the cost of the years you waited.`;
+    reality = `Starting 10 years earlier would have given you ${fmtINR(corpus10)}, more than DOUBLE what you'll get now. That gap of ₹${fmtINR(gap10)} is the cost of the years you waited.`;
   } else {
-    reality = `Even so — the cost of 10 missed years is ₹${fmtINR(gap10)}. That's not a small number. It's roughly ${Math.round((gap10 / corpusNow) * 100)}% extra you could've had, for the same monthly effort.`;
+    reality = `Even so, the cost of 10 missed years is ₹${fmtINR(gap10)}. That's not a small number. It's roughly ${Math.round((gap10 / corpusNow) * 100)}% extra you could've had, for the same monthly effort.`;
   }
   document.getElementById('reality').textContent = reality;
 }

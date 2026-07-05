@@ -18,4 +18,4 @@ Fund manager at Baroda BNP Paribas Mutual Fund. Spoke on This or That about glob
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.

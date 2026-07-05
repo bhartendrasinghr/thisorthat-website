@@ -9,7 +9,7 @@ website: ""
 featured: false
 ---
 
-Founder of Infinite Circle. Brings a global macro lens to Indian markets — covers cross-border investing, bond-equity dynamics, and dollar flows.
+Founder of Infinite Circle. Brings a global macro lens to Indian markets, covers cross-border investing, bond-equity dynamics, and dollar flows.
 
 ## In their own words
 
@@ -17,4 +17,4 @@ Founder of Infinite Circle. Brings a global macro lens to Indian markets — cov
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported — use ## for headings, **bold**, *italic*, > for quotes.
+Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.

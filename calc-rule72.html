@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rule of 72 — How fast does your money double? · ThisOrThat</title>
-<meta name="description" content="The one piece of money math you should know cold. Pick a return rate — see how long your money takes to double, and what each rate actually means." />
+<title>Rule of 72, How fast does your money double? · ThisOrThat</title>
+<meta name="description" content="The one piece of money math you should know cold. Pick a return rate, see how long your money takes to double, and what each rate actually means." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -117,7 +117,7 @@
             <span class="text-ink/60 text-2xl">₹</span>
             <input id="in-amount" type="text" value="1,00,000" inputmode="text" class="editable-num tab-num text-3xl md:text-4xl font-extrabold text-thisblue min-w-0 flex-1 max-w-[260px]" />
           </div>
-          <div class="text-[11px] text-ink/55 mt-1">Tip: type "1L" or "5Cr" — both work.</div>
+          <div class="text-[11px] text-ink/55 mt-1">Tip: type "1L" or "5Cr", both work.</div>
         </div>
 
         <div>
@@ -158,14 +158,14 @@
     <div class="mt-10">
       <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Honest gut-check</div>
       <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-2">What each rate actually means.</h2>
-      <p class="mt-3 text-ink/75 max-w-3xl">A return rate isn't a number — it's a choice about <em>where your money sleeps tonight</em>. Here's the honest version, no marketing.</p>
+      <p class="mt-3 text-ink/75 max-w-3xl">A return rate isn't a number, it's a choice about <em>where your money sleeps tonight</em>. Here's the honest version, no marketing.</p>
       <div id="rate-grid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </div>
 
     <!-- HOW IT WORKS -->
     <div class="mt-10 bg-warmpaper-2 rounded-2xl p-6 text-sm text-ink/80 leading-relaxed">
       <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">The math, in 10 seconds</div>
-      <p><strong>Years to double = 72 ÷ rate.</strong> That's it. It's an approximation of the actual compound formula, accurate to within a few months at typical rates. At 6%, money doubles in ≈12 years. At 12%, it doubles in ≈6 years. <strong>Doubling twice as fast</strong> means three times as many doublings in a 30-year career — which is the difference between ending with ₹X and ending with ₹8X.</p>
+      <p><strong>Years to double = 72 ÷ rate.</strong> That's it. It's an approximation of the actual compound formula, accurate to within a few months at typical rates. At 6%, money doubles in ≈12 years. At 12%, it doubles in ≈6 years. <strong>Doubling twice as fast</strong> means three times as many doublings in a 30-year career, which is the difference between ending with ₹X and ending with ₹8X.</p>
     </div>
 
   </div>
@@ -234,7 +234,7 @@ function parseNumericInput(text) {
 const PRESETS = [
   { rate: 4,  label: 'Savings account / post-tax FD',
     headline: 'You\'re losing to inflation.',
-    body: 'Your money limps along while prices walk faster. Convenience, yes — wealth, no.',
+    body: 'Your money limps along while prices walk faster. Convenience, yes, wealth, no.',
     tone: 'cold' },
   { rate: 6,  label: 'Bank FD (pre-tax)',
     headline: 'Barely keeping up.',
@@ -250,11 +250,11 @@ const PRESETS = [
     tone: 'good' },
   { rate: 15, label: 'Aggressive equity, cherry-picked period',
     headline: 'Possible. Don\'t bank on it.',
-    body: 'Indian equity averages ~12% long-run. 15% requires a great fund or great timing — or both.',
+    body: 'Indian equity averages ~12% long-run. 15% requires a great fund or great timing, or both.',
     tone: 'blue' },
   { rate: 18, label: 'Hedge-fund-manager territory',
     headline: 'Ask why they need your money.',
-    body: 'Sustainable 18% returns mean you\'d be on a Forbes list. If someone is promising this — there\'s a catch you haven\'t found yet.',
+    body: 'Sustainable 18% returns mean you\'d be on a Forbes list. If someone is promising this, there\'s a catch you haven\'t found yet.',
     tone: 'toogood' }
 ];
 
@@ -274,10 +274,10 @@ function pickTagline(rate) {
   if (rate < 5) return 'At this rate, you\'ll see maybe one doubling in your working life. Probably not enough.';
   if (rate < 7) return 'A "safe" rate. Safe from market drops; not safe from inflation eating you alive.';
   if (rate < 9) return 'Just about keeping pace. Useful for short-term money; insufficient for long-term wealth.';
-  if (rate < 11) return 'Now we\'re compounding. 7-9 doublings in a 30-year career — quietly, this is how wealth happens.';
+  if (rate < 11) return 'Now we\'re compounding. 7-9 doublings in a 30-year career, quietly, this is how wealth happens.';
   if (rate < 14) return 'The historical long-run return of Indian equity. The patient money\'s reward.';
   if (rate <= 17) return 'Aspirational but defensible. Requires picking good funds AND not panic-selling for decades.';
-  return 'If someone is promising this consistently — stop and ask what could go wrong. Usually a lot.';
+  return 'If someone is promising this consistently, stop and ask what could go wrong. Usually a lot.';
 }
 
 function renderChips() {

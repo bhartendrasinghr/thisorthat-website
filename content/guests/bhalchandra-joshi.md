@@ -14,4 +14,4 @@ Three decades of mutual fund experience. On the show with the unsexy lesson nobo
 
 ## What we explored
 
-Edit this section via /admin/ — write a few notes on the conversation, your favourite moments, why this guest is worth listening to.
+Edit this section via /admin/, write a few notes on the conversation, your favourite moments, why this guest is worth listening to.
