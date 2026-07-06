@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Asset Allocator, ThisOrThat with Bhartendra</title>
+<meta name="description" content="How should you split your money across equity, debt, gold and cash? Answer six honest questions and get a starting allocation built for your horizon and your temperament." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .chip { transition: all 140ms ease; }
+  .donut-seg { transition: stroke-dasharray 500ms ease, stroke-dashoffset 500ms ease; }
+  .bar-fill { transition: width 500ms ease; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Asset Allocator</span>
+</div>
+
+<section class="bg-cream pb-8">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Where should the money go</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Asset Allocator.</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Picking the right fund matters far less than picking the right <em>mix</em>. Answer six honest questions and get a starting split across equity, debt, gold and cash, built for how long you have and how you actually behave when markets fall.</p>
+  </div>
+</section>
+
+<section class="bg-cream pb-4">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="bg-thatred/8 border border-thatred/30 rounded-xl px-5 py-4 text-sm text-ink/80 leading-relaxed flex gap-3">
+      <span class="text-thatred text-lg leading-none">&#9888;</span>
+      <span>This is an educational starting point, not personal investment advice. Your right mix depends on your full financial picture, taxes and goals. Nothing here is guaranteed, markets rise and fall. For a plan tailored to you, speak to a SEBI-registered investment adviser.</span>
+    </div>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream pt-6">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-8">
+
+      <div class="flex items-center justify-between">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">Your answers</div>
+        <button id="reset-btn" class="text-[11px] font-semibold text-thisblue hover:underline">Reset</button>
+      </div>
+
+      <!-- Age -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-age">Your age</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-age" value="32" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-age" type="range" min="18" max="75" value="32" class="w-full mt-2" />
+      </div>
+
+      <!-- Horizon -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-horizon">When will you need most of this money?</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-horizon" value="15" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-horizon" type="range" min="1" max="30" value="15" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">The single biggest driver. Money you need soon cannot sit in equity, no matter how brave you feel.</div>
+      </div>
+
+      <!-- Income stability -->
+      <div>
+        <label class="text-sm font-semibold text-ink block mb-2">How steady is your income?</label>
+        <div class="grid grid-cols-2 gap-2" data-group="income">
+          <button class="chip text-sm font-semibold py-2.5 px-3 rounded-xl border" data-val="verystable">Very stable</button>
+          <button class="chip text-sm font-semibold py-2.5 px-3 rounded-xl border" data-val="stable">Stable</button>
+          <button class="chip text-sm font-semibold py-2.5 px-3 rounded-xl border" data-val="variable">Variable</button>
+          <button class="chip text-sm font-semibold py-2.5 px-3 rounded-xl border" data-val="irregular">Irregular</button>
+        </div>
+        <div class="text-[11px] text-navy/55 mt-1.5">Salaried and secure, or lumpy and self-employed? A steady paycheque lets you ride out equity dips.</div>
+      </div>
+
+      <!-- Emergency fund -->
+      <div>
+        <label class="text-sm font-semibold text-ink block mb-2">Do you have an emergency fund? (6 months of expenses, set aside)</label>
+        <div class="grid grid-cols-3 gap-2" data-group="ef">
+          <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="yes">Yes</button>
+          <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="partial">Partly</button>
+          <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="none">No</button>
+        </div>
+        <div class="text-[11px] text-navy/55 mt-1.5">Without a cushion, one bad month forces you to sell investments at the worst time.</div>
+      </div>
+
+      <div class="border-t border-navy/10 pt-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-4">And how you behave</div>
+
+        <!-- Drop reaction -->
+        <div>
+          <label class="text-sm font-semibold text-ink block mb-2">Your portfolio falls 25% in a few months. You...</label>
+          <div class="grid grid-cols-2 gap-2" data-group="drop">
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="sellmost">Sell most</button>
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="sellsome">Sell some</button>
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="hold">Do nothing</button>
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="buymore">Buy more</button>
+          </div>
+          <div class="text-[11px] text-navy/55 mt-1.5">Be honest, not aspirational. The mix only works if you can actually stay in it.</div>
+        </div>
+
+        <!-- Experience -->
+        <div class="mt-6">
+          <label class="text-sm font-semibold text-ink block mb-2">Your investing experience</label>
+          <div class="grid grid-cols-3 gap-2" data-group="exp">
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="new">New</button>
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="some">Some</button>
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="experienced">Seasoned</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amount -->
+      <div class="border-t border-navy/10 pt-6">
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-amount">Amount to allocate (optional)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-amount" value="10 L" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-amount" type="range" min="0" max="50000000" step="50000" value="1000000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">We split this by your allocation. The same percentages apply to a monthly SIP too. Type "10L" or "2Cr".</div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- Profile card -->
+      <div id="profile-card" class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] font-bold text-marigold">Your risk profile</div>
+        <div class="flex items-end gap-4 mt-2 flex-wrap">
+          <div id="out-profile" class="font-display text-4xl md:text-5xl font-extrabold leading-none">Balanced</div>
+        </div>
+        <div id="out-profile-line" class="mt-3 text-sm opacity-85 leading-relaxed">A steady mix that grows without keeping you up at night.</div>
+      </div>
+
+      <!-- Capacity vs tolerance -->
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Capacity vs temperament</div>
+        <div class="mt-4 space-y-4">
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-ink/70 mb-1">
+              <span>Risk you <em>can</em> take (capacity)</span>
+              <span class="tab-num"><span id="out-cap">0</span>/100</span>
+            </div>
+            <div class="h-3 rounded-full bg-warmpaper-3 overflow-hidden">
+              <div id="bar-cap" class="bar-fill h-full rounded-full bg-thisblue" style="width:0%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-ink/70 mb-1">
+              <span>Risk you're <em>willing</em> to take (temperament)</span>
+              <span class="tab-num"><span id="out-tol">0</span>/100</span>
+            </div>
+            <div class="h-3 rounded-full bg-warmpaper-3 overflow-hidden">
+              <div id="bar-tol" class="bar-fill h-full rounded-full bg-marigold" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+        <div id="out-govern" class="mt-4 text-[13px] text-ink/75 leading-relaxed bg-warmpaper-2 rounded-xl p-3"></div>
+      </div>
+
+      <!-- Allocation donut + legend -->
+      <div class="bg-white rounded-2xl border-2 border-marigold p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your starting allocation</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+          <div class="relative mx-auto" style="max-width:220px">
+            <svg viewBox="0 0 42 42" class="w-full" aria-label="Allocation donut chart">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#F6F4EE" stroke-width="5"></circle>
+              <circle id="seg-equity" class="donut-seg" cx="21" cy="21" r="15.915" fill="none" stroke="#0249B1" stroke-width="5" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+              <circle id="seg-debt" class="donut-seg" cx="21" cy="21" r="15.915" fill="none" stroke="#57534A" stroke-width="5" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+              <circle id="seg-gold" class="donut-seg" cx="21" cy="21" r="15.915" fill="none" stroke="#FFC21F" stroke-width="5" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+              <circle id="seg-cash" class="donut-seg" cx="21" cy="21" r="15.915" fill="none" stroke="#1F8A5B" stroke-width="5" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div class="font-display text-3xl font-extrabold text-ink tab-num"><span id="out-eq-big">0</span>%</div>
+              <div class="text-[10px] uppercase tracking-widest text-ink/55 font-bold">equity</div>
+            </div>
+          </div>
+          <div class="space-y-2.5" id="legend"></div>
+        </div>
+      </div>
+
+      <!-- Bucket detail cards -->
+      <div class="space-y-3" id="buckets"></div>
+
+      <!-- Equity slice detail -->
+      <details class="bg-white rounded-2xl border border-navy/10 p-5">
+        <summary class="cursor-pointer flex items-center justify-between">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Going one level deeper</div>
+            <div class="text-sm font-semibold text-ink mt-0.5">How to build the equity slice</div>
+          </div>
+          <svg class="w-5 h-5 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="mt-4">
+          <p class="text-[13px] text-ink/70 leading-relaxed mb-3">Your <span id="eq-total-note" class="font-semibold">0%</span> in equity does not have to be one fund. A common way to spread it, tilted to how much risk you can take:</p>
+          <div class="overflow-x-auto -mx-2 px-2">
+            <table class="w-full text-xs tab-num">
+              <thead>
+                <tr class="text-left text-ink/55 border-b border-navy/10">
+                  <th class="py-2 pr-3 font-semibold">Within equity</th>
+                  <th class="py-2 pr-3 font-semibold">Share of equity</th>
+                  <th class="py-2 pr-3 font-semibold">Of total</th>
+                  <th class="py-2 font-semibold">What it is</th>
+                </tr>
+              </thead>
+              <tbody id="eq-table" class="text-ink/80"></tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-ink/50 mt-3 leading-relaxed">Fund categories shown for illustration only, not recommendations of specific schemes. New investors often keep it to a single low-cost index fund plus a flexi-cap, and add the rest later.</p>
+        </div>
+      </details>
+
+      <!-- Rebalance note -->
+      <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The part everyone skips</div>
+        <div class="mt-2 font-display text-xl font-extrabold">Rebalance once a year.</div>
+        <p class="mt-2 text-sm text-warmpaper/85 leading-relaxed">Markets will drift your mix away from these numbers. Once a year, sell a little of whatever grew too big and top up whatever shrank, back to the split above. Boring, mechanical, and it quietly forces you to sell high and buy low.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="py-16 bg-warmpaper-2">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Why we ask two kinds of question</div>
+    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-3">Capacity is math. Temperament is you.</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">1</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Risk capacity</h3>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">How much risk your situation can absorb. A long horizon, a steady income and an emergency fund all mean you can sit through a crash without being forced to sell. Short horizon or shaky income means you cannot, whatever your nerves say.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">2</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Risk temperament</h3>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">How much risk you can stomach. The best allocation on paper is useless if you panic-sell at the bottom. If a 25% fall would make you bail, your mix should hold less equity, so you never reach that point.</p>
+      </div>
+    </div>
+    <div class="mt-6 bg-ink text-warmpaper rounded-2xl p-6">
+      <p class="text-base leading-relaxed"><strong class="text-marigold">The rule:</strong> you take the <em>lower</em> of the two. A brave investor with money needed in two years still cannot put it in equity. A calm long-term investor who panics in every dip should not hold 80% stocks. The mix that survives contact with a real market is the one you can actually stick to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- More -->
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl font-extrabold text-ink">Keep going</h2>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <a href="asset-classes.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">&#9635;</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Asset Classes</h3>
+        <p class="text-ink/70 text-sm mt-1">Understand each bucket before you fill it. Risk, return and volatility, mapped.</p>
+      </a>
+      <a href="calc-plan.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">&#9776;</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Full Plan</h3>
+        <p class="text-ink/70 text-sm mt-1">Every goal, every SIP, in one place. The whole picture.</p>
+      </a>
+      <a href="calc-goal.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">&#8377;</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Goal Planner</h3>
+        <p class="text-ink/70 text-sm mt-1">Backwards from the goal to the monthly SIP that gets you there.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">This tool is for education only and is not investment advice, a recommendation, or a solicitation to buy any security or scheme. Allocations are illustrative rules of thumb, not tailored to your full circumstances. Investments carry risk, including loss of capital, and past patterns do not predict future returns. Consult a SEBI-registered investment adviser before acting.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+const STORE_KEY = 'ttot-allocator-v1';
+
+const fmtINR = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+// ---- state ----
+const state = {
+  age: 32, horizon: 15, amount: 1000000,
+  income: 'stable', ef: 'yes', drop: 'hold', exp: 'some'
+};
+try {
+  const saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+  if (saved) Object.assign(state, saved);
+} catch (e) {}
+
+// ---- scoring ----
+const INCOME_SCORE = { verystable:100, stable:70, variable:40, irregular:15 };
+const EF_SCORE     = { yes:100, partial:50, none:15 };
+const DROP_SCORE   = { sellmost:10, sellsome:40, hold:75, buymore:100 };
+const EXP_SCORE    = { new:35, some:65, experienced:90 };
+
+function horizonCapacity(h){ return 100 * (1 - Math.exp(-h / 7)); }
+
+function equityCeiling(h){
+  if (h <= 1) return 5;
+  if (h <= 2) return 15;
+  if (h <= 3) return 25;
+  if (h <= 4) return 35;
+  if (h <= 5) return 45;
+  if (h <= 7) return 60;
+  if (h <= 10) return 70;
+  if (h <= 15) return 78;
+  return 80;
+}
+
+function profileFor(score){
+  if (score < 25) return { name:'Conservative', line:'Protect first, grow second. Most of the money stays out of harm’s way.' };
+  if (score < 45) return { name:'Cautious',     line:'Steady and defensive, with just enough equity to stay ahead of inflation.' };
+  if (score < 65) return { name:'Balanced',     line:'An even mix that grows without keeping you up at night.' };
+  if (score < 82) return { name:'Growth',       line:'Tilted to equity for the long climb, with a real cushion underneath.' };
+  return { name:'Aggressive', line:'Equity does the heavy lifting. Expect a wild ride, and the returns that can come with it.' };
+}
+
+function compute(s){
+  const capH = horizonCapacity(s.horizon);
+  const capacity  = clamp(capH * 0.60 + INCOME_SCORE[s.income] * 0.25 + EF_SCORE[s.ef] * 0.15, 0, 100);
+  const tolerance = clamp(DROP_SCORE[s.drop] * 0.70 + EXP_SCORE[s.exp] * 0.30, 0, 100);
+  const finalScore = Math.min(capacity, tolerance);
+
+  const eqFromScore = finalScore * 0.85;
+  const ceil = equityCeiling(s.horizon);
+  let equity = Math.round(Math.min(eqFromScore, ceil));
+
+  let gold = s.horizon < 3 ? 5 : clamp(Math.round(7 + equity * 0.04), 5, 12);
+  let cash = s.horizon <= 1 ? 25 : s.horizon <= 2 ? 12 : s.horizon <= 3 ? 8 : 5;
+  let debt = 100 - equity - gold - cash;
+
+  if (debt < 3) {
+    // very long, very aggressive: keep a small floor of debt by trimming equity
+    const deficit = 3 - debt;
+    equity = Math.max(0, equity - deficit);
+    debt = 3;
+  }
+  // final safety: make the four sum to exactly 100
+  const drift = 100 - (equity + debt + gold + cash);
+  debt += drift;
+
+  return { capacity: Math.round(capacity), tolerance: Math.round(tolerance), finalScore, equity, debt, gold, cash };
+}
+
+// within-equity split, tilted by aggression (0..1)
+function equitySplit(finalScore){
+  const a = clamp(finalScore / 100, 0, 1);
+  let large = Math.round(55 - a * 20);      // 35..55
+  let flexi = 30;
+  let midsmall = Math.round(5 + a * 25);    // 5..30
+  let intl = 100 - large - flexi - midsmall;
+  intl = clamp(intl, 5, 20);
+  const drift = 100 - (large + flexi + midsmall + intl);
+  large += drift;
+  return { large, flexi, midsmall, intl };
+}
+
+const BUCKETS = {
+  equity: {
+    label: 'Equity', color: '#0249B1', tclass: 'text-thisblue',
+    what: 'Ownership in businesses. The growth engine, and the one that swings hardest. Over 7 years and longer it has historically beaten every other asset, but it can also fall 30 to 50% in a bad year.',
+    ex: 'Index funds, flexi-cap and diversified equity mutual funds.'
+  },
+  debt: {
+    label: 'Debt', color: '#57534A', tclass: 'text-ink',
+    what: 'You lend, someone pays you a fixed-ish return. Low drama, and the shock absorber that lets you hold equity through the falls without flinching.',
+    ex: 'Short-duration and corporate bond funds, FDs, PPF and EPF.'
+  },
+  gold: {
+    label: 'Gold', color: '#D99B00', tclass: 'text-mustard-deep',
+    what: 'The hedge, not the hero. It often holds up when equity and the rupee wobble together. Think of it as an insurance line, not a growth engine.',
+    ex: 'Gold ETFs or Sovereign Gold Bonds.'
+  },
+  cash: {
+    label: 'Cash', color: '#1F8A5B', tclass: 'text-gain',
+    what: 'Money you can reach this week. It parks near-term needs and gives you dry powder to rebalance when markets fall.',
+    ex: 'Liquid funds and sweep-in FDs.'
+  }
+};
+
+function reasonFor(key, r, s){
+  const yrs = s.horizon;
+  if (key === 'equity') {
+    if (r.equity <= 15) return `Low, because you need this money in about ${yrs} year${yrs>1?'s':''}. Too soon to risk a market fall.`;
+    if (r.equity < 45)  return `Measured, because your horizon or your temperament keeps a lid on how much market swing makes sense for you.`;
+    if (r.equity < 65)  return `A solid core, because you have the time and the composure to let it compound through the dips.`;
+    return `The heavy lifter, because a ${yrs}-year horizon plus your comfort with volatility can put equity to work.`;
+  }
+  if (key === 'debt')  return `Your ballast. It steadies the portfolio and is what you draw on when equity is down.`;
+  if (key === 'gold')  return yrs < 3 ? `Trimmed, since gold itself can be choppy over short periods.` : `A small diversifier that tends to zig when equity zags.`;
+  if (key === 'cash')  return yrs <= 2 ? `Larger than usual, because money needed this soon belongs in safety, not markets.` : `A liquid buffer for near-term needs and yearly rebalancing.`;
+}
+
+// ---- donut ----
+function paintDonut(r){
+  const order = [['seg-equity', r.equity], ['seg-debt', r.debt], ['seg-gold', r.gold], ['seg-cash', r.cash]];
+  let cumulative = 0;
+  order.forEach(([id, pct]) => {
+    const el = document.getElementById(id);
+    el.setAttribute('stroke-dasharray', `${pct} ${100 - pct}`);
+    el.setAttribute('stroke-dashoffset', `${25 - cumulative}`);
+    cumulative += pct;
+  });
+}
+
+const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+
+function render(){
+  const r = compute(state);
+
+  setLbl('lbl-age', state.age);
+  setLbl('lbl-horizon', state.horizon);
+  setLbl('lbl-amount', fmtINR(state.amount));
+
+  // chips
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.getAttribute('data-group');
+    group.querySelectorAll('button').forEach(btn => {
+      const on = btn.getAttribute('data-val') === state[g];
+      btn.className = 'chip text-sm font-semibold py-2.5 px-2 rounded-xl border ' +
+        (on ? 'bg-thisblue text-warmpaper border-thisblue shadow-sm'
+            : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+    });
+  });
+
+  // profile
+  const prof = profileFor(r.finalScore);
+  document.getElementById('out-profile').textContent = prof.name;
+  document.getElementById('out-profile-line').textContent = prof.line;
+  document.getElementById('out-eq-big').textContent = r.equity;
+
+  // capacity / tolerance
+  document.getElementById('out-cap').textContent = r.capacity;
+  document.getElementById('out-tol').textContent = r.tolerance;
+  document.getElementById('bar-cap').style.width = r.capacity + '%';
+  document.getElementById('bar-tol').style.width = r.tolerance + '%';
+  const gov = document.getElementById('out-govern');
+  if (Math.abs(r.capacity - r.tolerance) <= 6) {
+    gov.innerHTML = `Your situation and your nerves point to the same place. We size the mix to that shared level.`;
+  } else if (r.capacity < r.tolerance) {
+    gov.innerHTML = `You are braver than your situation allows right now. We follow the lower number, your <strong>capacity</strong>, so a bad month never forces your hand.`;
+  } else {
+    gov.innerHTML = `Your situation could take more risk than you are comfortable with. We follow the lower number, your <strong>temperament</strong>, so you can actually stay invested.`;
+  }
+
+  // donut
+  paintDonut(r);
+
+  // legend
+  const amt = state.amount;
+  const legendItems = [
+    ['equity', r.equity], ['debt', r.debt], ['gold', r.gold], ['cash', r.cash]
+  ];
+  document.getElementById('legend').innerHTML = legendItems.map(([k, pct]) => {
+    const b = BUCKETS[k];
+    const rupee = amt > 0 ? `<span class="text-ink/55 text-xs ml-1">₹${fmtINR(amt * pct / 100)}</span>` : '';
+    return `<div class="flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="w-3 h-3 rounded-sm shrink-0" style="background:${b.color}"></span>
+        <span class="text-sm font-semibold text-ink truncate">${b.label}</span>
+      </div>
+      <div class="text-right shrink-0"><span class="font-display text-lg font-extrabold ${b.tclass} tab-num">${pct}%</span>${rupee}</div>
+    </div>`;
+  }).join('');
+
+  // bucket cards
+  document.getElementById('buckets').innerHTML = legendItems.map(([k, pct]) => {
+    const b = BUCKETS[k];
+    const rupee = amt > 0 ? ` &middot; ₹${fmtINR(amt * pct / 100)}` : '';
+    return `<div class="bg-white rounded-2xl border border-navy/10 p-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3.5 h-3.5 rounded-sm" style="background:${b.color}"></span>
+          <span class="font-display text-lg font-extrabold text-ink">${b.label}</span>
+        </div>
+        <div class="font-display text-2xl font-extrabold ${b.tclass} tab-num">${pct}%<span class="text-xs font-semibold text-ink/45">${rupee}</span></div>
+      </div>
+      <p class="text-[13px] text-ink/70 leading-relaxed mt-2">${b.what}</p>
+      <div class="mt-3 flex items-start gap-2 text-[12px]">
+        <span class="text-mustard-deep font-bold uppercase tracking-wider shrink-0">Why this</span>
+        <span class="text-ink/70">${reasonFor(k, r, state)}</span>
+      </div>
+      <div class="mt-1.5 flex items-start gap-2 text-[12px]">
+        <span class="text-ink/45 font-bold uppercase tracking-wider shrink-0">Often used</span>
+        <span class="text-ink/60">${b.ex}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // equity sub-split
+  const es = equitySplit(r.finalScore);
+  document.getElementById('eq-total-note').textContent = r.equity + '%';
+  const rows = [
+    ['Large-cap / Index', es.large, 'The steady core: India’s biggest, most-tracked companies.'],
+    ['Flexi / Multi-cap', es.flexi, 'A manager moves across sizes as they see fit.'],
+    ['Mid & Small-cap', es.midsmall, 'Higher growth, much higher swings. The spicy bit.'],
+    ['International', es.intl, 'A slice outside India, for currency and market spread.']
+  ];
+  document.getElementById('eq-table').innerHTML = rows.map(([name, share, desc]) => {
+    const ofTotal = (r.equity * share / 100);
+    return `<tr class="border-b border-navy/5">
+      <td class="py-2 pr-3 font-semibold text-ink">${name}</td>
+      <td class="py-2 pr-3 text-thisblue font-bold">${share}%</td>
+      <td class="py-2 pr-3 text-ink/60">${ofTotal.toFixed(0)}%</td>
+      <td class="py-2 text-ink/60">${desc}</td>
+    </tr>`;
+  }).join('');
+
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+// ---- wiring ----
+document.querySelectorAll('[data-group]').forEach(group => {
+  const g = group.getAttribute('data-group');
+  group.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-val]');
+    if (!btn) return;
+    state[g] = btn.getAttribute('data-val');
+    render();
+  });
+});
+
+const sliders = [['in-age', 'age'], ['in-horizon', 'horizon'], ['in-amount', 'amount']];
+sliders.forEach(([id, key]) => {
+  const el = document.getElementById(id);
+  el.value = state[key];
+  el.addEventListener('input', () => { state[key] = +el.value; render(); });
+});
+
+[['lbl-age', 'in-age', 'age'], ['lbl-horizon', 'in-horizon', 'horizon'], ['lbl-amount', 'in-amount', 'amount']].forEach(([textId, sliderId, key]) => {
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = clamp(parseNumericInput(text.value), min, max);
+    slider.value = v; state[key] = v; render();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', render);
+});
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  Object.assign(state, { age:32, horizon:15, amount:1000000, income:'stable', ef:'yes', drop:'hold', exp:'some' });
+  document.getElementById('in-age').value = 32;
+  document.getElementById('in-horizon').value = 15;
+  document.getElementById('in-amount').value = 1000000;
+  render();
+});
+
+render();
+
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
