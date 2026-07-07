@@ -255,7 +255,7 @@
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
         <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">2</div>
         <h3 class="font-display text-lg font-extrabold text-ink">Nerve sets the tilt</h3>
-        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Careful investors lean on index and flexi-cap funds. Bold ones take a bigger mid and small-cap position, and the deeper falls that come with it.</p>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Careful or short-horizon investors get a cushion of low-volatility hybrid funds and lean on index and flexi-cap. Bold ones swap in a multi-cap core and a bigger mid and small-cap position.</p>
       </div>
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">3</div>
@@ -292,7 +292,7 @@
 
 <footer class="bg-navy-ink text-cream/80 py-14">
   <div class="max-w-3xl mx-auto px-6 text-center">
-    <p class="text-xs text-cream/50 leading-relaxed">For education only, not investment advice, a recommendation, or a solicitation to buy any mutual fund scheme. Category allocations are illustrative rules of thumb; fund categories are named for learning, not as endorsements. Returns are long-run illustrations that will not repeat in any given year and may be negative. Mutual funds are subject to market risks; read all scheme-related documents carefully. Consult a SEBI-registered investment adviser before investing.</p>
+    <p class="text-xs text-cream/50 leading-relaxed">For education only, not investment advice, a recommendation, or a solicitation to buy any mutual fund scheme. Category allocations are illustrative rules of thumb; fund categories are named for learning, not as endorsements. For cautious or shorter-horizon profiles the mix includes hybrid funds (Balanced Advantage, Equity Savings) that hold debt alongside equity. Returns are long-run illustrations that will not repeat in any given year and may be negative. Mutual funds are subject to market risks; read all scheme-related documents carefully. Consult a SEBI-registered investment adviser before investing.</p>
     <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
   </div>
 </footer>
@@ -322,20 +322,26 @@ function parseNumericInput(text) {
 
 // ---- categories ----
 const CATS = {
+  esaver: { label: 'Equity Savings', color: '#1F8A5B', tclass: 'text-gain', ret: 8.5,
+    what: 'The gentlest option. A little equity with a lot of arbitrage and debt, so it barely wobbles, and it is still taxed like equity. For shorter-horizon or nervous money.' },
+  baf: { label: 'Balanced Advantage', color: '#3E9B72', tclass: 'text-gain', ret: 10.0,
+    what: 'Equity that dials itself down when markets look expensive and up when they look cheap. Smaller falls than pure equity, a smoother ride, usually equity taxation.' },
   index: { label: 'Index / Large Cap', color: '#013580', tclass: 'text-thisblue-700', ret: 11.0,
     what: 'The stable core. India\'s biggest, most-tracked companies through a low-cost index or large-cap fund.' },
-  flexi: { label: 'Flexi Cap', color: '#0249B1', tclass: 'text-thisblue', ret: 11.5,
-    what: 'One fund, all sizes. The manager moves between large, mid and small caps as they see fit.' },
+  largemid: { label: 'Large & Mid Cap', color: '#0249B1', tclass: 'text-thisblue', ret: 12.5,
+    what: 'One fund that must hold at least 35% large and 35% mid caps. A built-in growth tilt, without going all the way to pure mid-cap.' },
+  core: { label: 'Flexi Cap', color: '#5B8BD4', tclass: 'text-thisblue', ret: 11.5,
+    what: 'One fund, all sizes, at the manager\'s discretion. Your flexible all-cap core.' },
   mid: { label: 'Mid Cap', color: '#FFC21F', tclass: 'text-mustard-deep', ret: 13.0,
     what: 'Tomorrow\'s large caps. More growth than large caps, and deeper falls when markets turn.' },
   small: { label: 'Small Cap', color: '#FF302D', tclass: 'text-thatred', ret: 14.0,
     what: 'The high-risk, high-reward engine. Can double, can halve. Needs a long horizon and a strong stomach.' },
-  intl: { label: 'International', color: '#1F8A5B', tclass: 'text-gain', ret: 10.5,
+  intl: { label: 'International', color: '#8A8275', tclass: 'text-ink-3', ret: 10.5,
     what: 'A slice outside India, mostly US and global names, for spread across countries and currencies.' },
   elss: { label: 'ELSS (tax-saver)', color: '#D99B00', tclass: 'text-mustard-deep', ret: 11.5,
     what: 'A flexi-cap that also gives an 80C deduction up to ₹1.5L a year. Locks in for 3 years.' }
 };
-const ORDER = ['index', 'flexi', 'mid', 'small', 'intl', 'elss'];
+const ORDER = ['esaver', 'baf', 'index', 'largemid', 'core', 'mid', 'small', 'intl', 'elss'];
 
 // ---- state ----
 const state = { sip: 25000, lump: 100000, horizon: 10, risk: 'moderate', tax: 'no', intl: 'no' };
@@ -354,43 +360,58 @@ function roundTo100(w) {
 
 function buildPortfolio(s) {
   const a = { conservative: 0.25, moderate: 0.55, aggressive: 0.9 }[s.risk];
-  const hf = clamp((s.horizon - 3) / 12, 0, 1);
-  const tilt = a * (0.4 + 0.6 * hf);
+  const timid = { conservative: 1, moderate: 0.4, aggressive: 0 }[s.risk];
+  const shortness = 1 - gate(s.horizon, 3, 9);       // 1 at 3yr, fades to 0 by 9yr
 
-  let w = { index: 0, flexi: 0, mid: 0, small: 0, intl: 0, elss: 0 };
-  w.small = 26 * tilt * gate(s.horizon, 3, 7);       // 0 at 3yr, full by 7yr
-  w.mid = 24 * tilt * gate(s.horizon, 2, 5);         // partial at 3yr, full by 5yr
-  w.intl = s.intl === 'yes' ? (8 + a * 4) : 0;       // 8 to 11.6 when included
-  w.flexi = 30 - a * 4;                              // 30 (careful) to 26.4 (bold)
-  w.index = 100 - w.small - w.mid - w.intl - w.flexi;
+  // 1) Low-volatility hybrid cushion: Equity Savings (gentlest) + Balanced Advantage.
+  //    Grows as the investor gets more cautious and the horizon shorter.
+  const cushion = clamp(0.5 * timid + 0.5 * shortness, 0, 1) * 55;
+  const esFrac = clamp(0.35 * timid + 0.65 * shortness, 0, 1);   // shorter/timider leans to Equity Savings
+  let esaver = cushion * esFrac;
+  let baf = cushion * (1 - esFrac);
+  const pureEq = 100 - cushion;
 
-  // keep a real core: floor index, trimming from small then mid
+  // 2) The pure-equity mix, built to 100 then scaled into the equity budget.
+  const tilt = a * (0.4 + 0.6 * clamp((s.horizon - 3) / 12, 0, 1));
+  const midBand = 26 * tilt * gate(s.horizon, 2, 5);            // total mid-band exposure
+  const pureMidFrac = clamp((a - 0.35) / 0.55, 0, 1);           // careful: all Large&Mid; bold: all pure Mid
+  let w = { index: 0, largemid: 0, core: 0, mid: 0, small: 0, intl: 0, elss: 0 };
+  w.mid = midBand * pureMidFrac;
+  w.largemid = midBand * (1 - pureMidFrac);
+  w.small = 24 * tilt * gate(s.horizon, 3, 7);                  // 0 at 3yr, full by 7yr
+  w.intl = s.intl === 'yes' ? (8 + a * 4) : 0;
+  w.core = 30 - a * 4;                                          // flexi (careful/moderate) or multi (bold)
+  w.index = 100 - w.mid - w.largemid - w.small - w.intl - w.core;
   if (w.index < 15) {
     let d = 15 - w.index;
-    const cs = Math.min(d, w.small); w.small -= cs; d -= cs;
-    const cm = Math.min(d, w.mid); w.mid -= cm;
-    w.index = 100 - w.small - w.mid - w.intl - w.flexi;
+    for (const k of ['small', 'mid', 'largemid']) { const c = Math.min(d, w[k]); w[k] -= c; d -= c; if (d <= 0) break; }
+    w.index = 100 - w.mid - w.largemid - w.small - w.intl - w.core;
   }
+  ['index', 'largemid', 'core', 'mid', 'small', 'intl'].forEach(k => w[k] = w[k] * pureEq / 100);
 
-  // ELSS: sized to fill 80C but capped for diversification, carved from index + flexi
-  let elssCoverage = 0;
+  // 3) ELSS: sized to the 80C limit, capped, carved from index + core (within the equity budget)
   if (s.tax === 'yes') {
     const annual = s.sip * 12 + s.lump;
     const byLimit = annual > 0 ? Math.min(1, 150000 / annual) : 1;
-    let elssPct = clamp(byLimit * 100, 0, 35);
-    const pool = w.index + w.flexi;
+    const elssPct = clamp(byLimit * 100, 0, 35) * pureEq / 100;
+    const pool = w.index + w.core;
     if (pool > elssPct) {
-      const fi = w.index / pool, ff = w.flexi / pool;
-      w.index -= elssPct * fi;
-      w.flexi -= elssPct * ff;
+      w.index -= elssPct * (w.index / pool);
+      w.core -= elssPct * (w.core / pool);
       w.elss = elssPct;
     }
   }
 
-  // drop tiny non-core slices (a 3% fund is just noise) into flexi
-  ['mid', 'small', 'intl'].forEach(k => { if (w[k] > 0 && w[k] < 7) { w.flexi += w[k]; w[k] = 0; } });
+  const full = { esaver, baf, index: w.index, largemid: w.largemid, core: w.core, mid: w.mid, small: w.small, intl: w.intl, elss: w.elss };
 
-  const rounded = roundTo100(w);
+  // 4) Fold tiny slices away so the fund list stays short and each fund matters.
+  ['largemid', 'mid', 'small', 'intl'].forEach(k => { if (full[k] > 0 && full[k] < 6) { full.core += full[k]; full[k] = 0; } });
+  if (full.baf > 0 && full.baf < 6) { full.esaver += full.baf; full.baf = 0; }
+  if (full.esaver > 0 && full.esaver < 6) { full.baf += full.esaver; full.esaver = 0; }
+  ['esaver', 'baf'].forEach(k => { if (full[k] > 0 && full[k] < 6) { full.index += full[k]; full[k] = 0; } });
+
+  const rounded = roundTo100(full);
+  let elssCoverage = 0;
   if (s.tax === 'yes' && rounded.elss > 0) {
     const annual = s.sip * 12 + s.lump;
     elssCoverage = Math.min(annual * rounded.elss / 100, 150000);
@@ -440,6 +461,17 @@ function calc() {
   document.querySelector('.bg-ink.text-warmpaper.rounded-2xl').classList.toggle('hidden', !hasMoney);
   try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
   if (!hasMoney) return;
+
+  // the all-cap core is a Flexi Cap for careful/moderate, a Multi Cap for bold
+  if (state.risk === 'aggressive') {
+    CATS.core.label = 'Multi Cap';
+    CATS.core.what = 'Like flexi-cap, but forced to hold at least 25% each in large, mid and small caps, so your mid and small exposure is guaranteed.';
+    CATS.core.ret = 12.5;
+  } else {
+    CATS.core.label = 'Flexi Cap';
+    CATS.core.what = 'One fund, all sizes, at the manager\'s discretion. Your flexible all-cap core.';
+    CATS.core.ret = 11.5;
+  }
 
   const { w, elssCoverage } = buildPortfolio(state);
   const active = ORDER.filter(k => w[k] > 0);
@@ -503,15 +535,19 @@ function calc() {
 
   // rationale
   const riskWord = { conservative: 'careful', moderate: 'balanced', aggressive: 'bold' }[state.risk];
-  const growthShare = w.mid + w.small;
+  const growthShare = w.mid + w.small + w.largemid;
+  const cushionPct = w.esaver + w.baf;
   let r = `<div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Why this mix</div>`;
   r += `<p class="mt-3 text-sm text-warmpaper/90 leading-relaxed">`;
+  if (cushionPct >= 8) {
+    r += `Because you are ${riskWord}${state.horizon <= 5 ? ' and this is shorter-horizon money' : ''}, about ${Math.round(cushionPct)}% sits in lower-volatility hybrid funds that hold debt alongside equity, still taxed like equity, so the ride is a lot smoother. `;
+  }
   if (state.horizon <= 4) {
-    r += `At ${state.horizon} years, this is on the shorter side for equity, so the portfolio leans hard on index, large and flexi-cap funds and keeps the volatile mid and small caps small. `;
+    r += `At ${state.horizon} years, this is on the shorter side for equity, so the pure-equity part leans on index and ${state.risk === 'aggressive' ? 'multi' : 'flexi'}-cap funds and keeps the volatile small caps out. `;
   } else if (state.horizon >= 12) {
-    r += `With ${state.horizon} years to run, there is real time to ride out crashes, so a ${riskWord} investor can hold a healthy ${Math.round(growthShare)}% in mid and small caps for the extra growth. `;
+    r += `With ${state.horizon} years to run, there is real time to ride out crashes, so a ${riskWord} investor can hold a healthy ${Math.round(growthShare)}% across the mid and small-cap end for extra growth. `;
   } else {
-    r += `Over ${state.horizon} years, a ${riskWord} investor gets a solid core of index and flexi-cap funds, with ${Math.round(growthShare)}% in mid and small caps working for growth. `;
+    r += `Over ${state.horizon} years, a ${riskWord} investor gets a solid index and ${state.risk === 'aggressive' ? 'multi' : 'flexi'}-cap core, with ${Math.round(growthShare)}% working harder for growth. `;
   }
   r += `The blended long-run assumption of ${blended.toFixed(1)}% is an average, not a floor. Stay invested through the ugly years; that is where most of the return quietly hides.</p>`;
   document.getElementById('rationale').innerHTML = r;
