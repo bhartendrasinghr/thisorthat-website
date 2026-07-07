@@ -134,11 +134,12 @@
         <div class="flex justify-between items-baseline">
           <label class="text-sm font-semibold text-ink" for="lbl-tenure">Tenure remaining</label>
           <div class="flex items-baseline gap-1">
-            <input type="text" id="lbl-tenure" value="18" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
-            <span class="text-ink/60 text-sm">yrs</span>
+            <input type="text" id="lbl-tenure" value="216" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-14 text-right" />
+            <span class="text-ink/60 text-sm">months</span>
           </div>
         </div>
-        <input id="in-tenure" type="range" min="1" max="30" value="18" class="w-full mt-2" />
+        <input id="in-tenure" type="range" min="6" max="360" step="1" value="216" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1"><span id="tenure-note">= 18 yrs</span>. Your statement usually shows this in months. Type "216", or "14y 7m".</div>
       </div>
 
       <!-- Derived EMI -->
@@ -469,8 +470,18 @@ let currentEmi = 0;
 function syncEmiFromTenure() {
   const loan = +document.getElementById('in-loan').value;
   const r = +document.getElementById('in-rate').value / 1200;
-  const tenure = +document.getElementById('in-tenure').value;
-  currentEmi = emiFor(loan, r, tenure * 12);
+  const months = +document.getElementById('in-tenure').value;   // tenure is now in months
+  currentEmi = emiFor(loan, r, months);
+}
+
+// Parse a tenure entered as months ("216") or years+months ("14y 7m", "14 yr", "175 months").
+function parseTenureMonths(text) {
+  const s = String(text).toLowerCase().trim();
+  const y = s.match(/(\d+(?:\.\d+)?)\s*(?:y|yr|yrs|year|years)/);
+  const m = s.match(/(\d+)\s*(?:m|mo|mos|month|months)\b/);
+  if (y || m) return Math.round((y ? parseFloat(y[1]) : 0) * 12 + (m ? parseInt(m[1]) : 0));
+  const n = parseFloat(s.replace(/[^\d.]/g, ''));
+  return isNaN(n) ? 0 : Math.round(n);
 }
 
 // ---- chart ----
@@ -585,19 +596,20 @@ function setMode(m) {
 function calc() {
   const loan = +document.getElementById('in-loan').value;
   const rate = +document.getElementById('in-rate').value;
-  const tenure = +document.getElementById('in-tenure').value;
+  const tenure = +document.getElementById('in-tenure').value;   // months
   const r = rate / 1200;
   const emi = currentEmi;
 
-  // keep the deadline slider below the loan's own tenure
+  // keep the deadline slider (in years) below the loan's own tenure
   const tgt = document.getElementById('in-target');
-  const tmax = Math.max(1, tenure - 1);
+  const tmax = Math.max(1, Math.ceil(tenure / 12) - 1);
   if (+tgt.max !== tmax) tgt.max = tmax;
   if (+tgt.value > tmax) tgt.value = tmax;
 
   setLbl('lbl-loan', fmtINR(loan));
   setLbl('lbl-rate', rate.toFixed(2).replace(/\.?0+$/, ''));
   setLbl('lbl-tenure', tenure);
+  document.getElementById('tenure-note').textContent = '= ' + ymFmt(tenure);
   setLbl('lbl-emi', Math.round(emi).toLocaleString('en-IN'));
 
   const base = simulate(loan, r, emi, {});
@@ -699,7 +711,7 @@ function calc() {
     const emi = parseNumericInput(emiEl.value);
     currentEmi = emi;                                   // EMI the user typed is the truth
     const months = tenureMonthsFor(loan, r, emi);
-    if (isFinite(months)) document.getElementById('in-tenure').value = clamp(Math.round(months / 12), 1, 30);
+    if (isFinite(months)) document.getElementById('in-tenure').value = clamp(Math.round(months), 6, 360);
     calc();
   });
   emiEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); emiEl.blur(); } });
@@ -713,19 +725,21 @@ function onLoanTerms() { syncEmiFromTenure(); calc(); }
 ['in-mextra', 'in-yextra', 'in-lump'].forEach(id => document.getElementById(id).addEventListener('input', calc));
 
 // editable labels
-const wire = (textId, sliderId, after) => {
+const wire = (textId, sliderId, after, parser) => {
+  const parse = parser || parseNumericInput;
   const text = document.getElementById(textId);
   const slider = document.getElementById(sliderId);
   const min = +slider.min, max = +slider.max;
   text.addEventListener('input', () => {
-    slider.value = clamp(parseNumericInput(text.value), min, max);
+    slider.value = clamp(parse(text.value), min, max);
     after();
   });
   text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
   text.addEventListener('focus', () => text.select());
   text.addEventListener('blur', after);
 };
-[['lbl-loan', 'in-loan'], ['lbl-rate', 'in-rate'], ['lbl-tenure', 'in-tenure']].forEach(([t, s]) => wire(t, s, onLoanTerms));
+[['lbl-loan', 'in-loan'], ['lbl-rate', 'in-rate']].forEach(([t, s]) => wire(t, s, onLoanTerms));
+wire('lbl-tenure', 'in-tenure', onLoanTerms, parseTenureMonths);
 [['lbl-mextra', 'in-mextra'], ['lbl-yextra', 'in-yextra'], ['lbl-lump', 'in-lump']].forEach(([t, s]) => wire(t, s, calc));
 
 // ---- deadline mode: target input + mode toggle + strategy picker ----
