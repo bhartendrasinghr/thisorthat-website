@@ -92,7 +92,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Break the loan before it breaks you</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Home Loan Prepayment.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">A 20-year home loan is really a plan to pay the bank almost as much in interest as you borrowed. Every rupee you prepay goes straight to principal and quietly deletes years of that interest. See exactly how many.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">A 20-year home loan is really a plan to pay the bank almost as much in interest as you borrowed. Every rupee you prepay goes straight to principal and quietly deletes years of that interest. Tell us your prepayment and see how many, or set a target date and we will show you three ways to hit it.</p>
   </div>
 </section>
 
@@ -153,7 +153,30 @@
         </div>
       </div>
 
+      <!-- Mode toggle -->
       <div class="border-t border-navy/10 pt-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">What do you want to do?</div>
+        <div class="grid grid-cols-2 gap-2" id="mode-toggle">
+          <button data-mode="amount" class="mode-btn text-[13px] font-semibold py-2.5 px-2 rounded-xl border">Set the prepayment</button>
+          <button data-mode="deadline" class="mode-btn text-[13px] font-semibold py-2.5 px-2 rounded-xl border">Set a deadline</button>
+        </div>
+      </div>
+
+      <!-- DEADLINE input -->
+      <div id="deadline-panel" class="hidden">
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-target">Close the loan in</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-target" value="10" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-target" type="range" min="1" max="29" value="10" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">How soon do you want to be debt-free? We work out what it takes, three ways.</div>
+      </div>
+
+      <!-- AMOUNT panel -->
+      <div id="amount-panel">
         <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-4">Your prepayment plan</div>
 
         <!-- Monthly extra -->
@@ -178,6 +201,7 @@
             </div>
           </div>
           <input id="in-yextra" type="range" min="0" max="2000000" step="1000" value="0" class="w-full mt-2" />
+          <div class="text-[11px] text-navy/55 mt-1" id="yextra-note"></div>
         </div>
 
         <!-- Lump sum -->
@@ -208,6 +232,16 @@
 
     <!-- OUTPUT -->
     <div class="lg:col-span-3 space-y-5">
+
+      <!-- STRATEGIES (deadline mode) -->
+      <div id="strategies" class="hidden">
+        <div class="bg-marigold rounded-2xl p-6 border-2 border-ink">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">To be debt-free in <span id="strat-target">10</span> years</div>
+          <div class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1 leading-tight">Three ways to get there. Pick one.</div>
+          <div id="strat-cards" class="grid grid-cols-1 gap-3 mt-4"></div>
+          <p class="text-[12px] text-ink/75 mt-3 leading-snug" id="strat-note"></p>
+        </div>
+      </div>
 
       <!-- Headline -->
       <div id="payoff-card" class="bg-thisblue text-warmpaper rounded-2xl p-7">
@@ -479,6 +513,75 @@ function drawChart(base, prepay, loan) {
     marker;
 }
 
+// ---- goal mode: given a target payoff, find strategies that hit it ----
+let mode = 'amount';               // 'amount' or 'deadline'
+let selectedStrategy = 'monthly';  // 'monthly' | 'yearly' | 'lump'
+
+const STRATS = {
+  monthly: { title: 'Bump your EMI',     key: 'monthlyExtra', desc: (v) => `Pay &#8377;${fmtINR(v)} more every month, on top of your EMI` },
+  yearly:  { title: 'Yearly top-up',     key: 'annualExtra',  desc: (v, emi) => { const n = Math.max(1, Math.round(v / emi)); return `Prepay &#8377;${fmtINR(v)} once a year, about ${n} extra EMI${n > 1 ? 's' : ''}`; } },
+  lump:    { title: 'One lump sum now',  key: 'lumpSum',      desc: (v) => `Prepay &#8377;${fmtINR(v)} today, then keep the same EMI` }
+};
+
+// Solve, by bisection, the yearly prepayment that clears the loan by targetM months.
+function solveYearly(P, r, emi, targetM) {
+  let lo = 0, hi = P;
+  for (let i = 0; i < 50; i++) {
+    const mid = (lo + hi) / 2;
+    const m = simulate(P, r, emi, { annualExtra: mid }).months;
+    if (m > targetM) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+function computeStrategies(loan, r, emi, targetM) {
+  const reqEmi = emiFor(loan, r, targetM);            // EMI that clears the loan in targetM
+  const monthly = Math.max(0, reqEmi - emi);
+  const pv = r > 0 ? emi * (1 - Math.pow(1 + r, -targetM)) / r : emi * targetM;  // PV of targetM EMIs
+  const lump = clamp(loan - pv, 0, loan);             // lump today so the rest amortises in targetM
+  const yearly = solveYearly(loan, r, emi, targetM);
+  return { monthly, yearly, lump };
+}
+
+function renderStrategies(strat, results, base, emi, targetY) {
+  const order = ['monthly', 'yearly', 'lump'];
+  document.getElementById('strat-cards').innerHTML = order.map(k => {
+    const meta = STRATS[k];
+    const saved = Math.max(0, base.totalInterest - results[k].totalInterest);
+    const on = selectedStrategy === k;
+    return `<button data-strat="${k}" class="strat-card text-left w-full rounded-xl p-4 border-2 bg-white transition ${on ? 'border-thisblue shadow' : 'border-white hover:border-thisblue/40'}">
+      <div class="flex justify-between items-start gap-3">
+        <div class="min-w-0">
+          <div class="font-display text-base font-extrabold text-ink flex items-center gap-1.5">
+            <span class="${on ? 'text-thisblue' : 'text-ink/25'}">${on ? '&#9679;' : '&#9711;'}</span>${meta.title}
+          </div>
+          <div class="text-[12px] text-ink/70 mt-0.5">${meta.desc(strat[k], emi)}</div>
+        </div>
+        <div class="text-right shrink-0">
+          <div class="text-[9px] uppercase tracking-wider text-ink/50 font-bold">Interest saved</div>
+          <div class="font-display text-base font-extrabold text-gain tab-num">&#8377;${fmtINR(saved)}</div>
+        </div>
+      </div>
+    </button>`;
+  }).join('');
+  const best = order.reduce((a, b) => (results[b].totalInterest < results[a].totalInterest ? b : a), 'monthly');
+  const bestName = best === 'lump' ? 'The lump sum' : best === 'yearly' ? 'The yearly top-up' : 'The monthly bump';
+  document.getElementById('strat-note').innerHTML = `All three clear the loan in about ${targetY} years. <strong>${bestName} saves the most interest</strong>, because that money reaches the principal soonest. The monthly bump is usually the gentlest on your cash flow.`;
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('amount-panel').classList.toggle('hidden', m !== 'amount');
+  document.getElementById('deadline-panel').classList.toggle('hidden', m !== 'deadline');
+  document.getElementById('strategies').classList.toggle('hidden', m !== 'deadline');
+  document.querySelectorAll('#mode-toggle .mode-btn').forEach(b => {
+    const on = b.getAttribute('data-mode') === m;
+    b.className = 'mode-btn text-[13px] font-semibold py-2.5 px-2 rounded-xl border ' +
+      (on ? 'bg-thisblue text-warmpaper border-thisblue shadow-sm' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+  calc();
+}
+
 function calc() {
   const loan = +document.getElementById('in-loan').value;
   const rate = +document.getElementById('in-rate').value;
@@ -486,20 +589,18 @@ function calc() {
   const r = rate / 1200;
   const emi = currentEmi;
 
+  // keep the deadline slider below the loan's own tenure
+  const tgt = document.getElementById('in-target');
+  const tmax = Math.max(1, tenure - 1);
+  if (+tgt.max !== tmax) tgt.max = tmax;
+  if (+tgt.value > tmax) tgt.value = tmax;
+
   setLbl('lbl-loan', fmtINR(loan));
   setLbl('lbl-rate', rate.toFixed(2).replace(/\.?0+$/, ''));
   setLbl('lbl-tenure', tenure);
   setLbl('lbl-emi', Math.round(emi).toLocaleString('en-IN'));
 
-  const monthlyExtra = +document.getElementById('in-mextra').value;
-  const annualExtra = +document.getElementById('in-yextra').value;
-  const lumpSum = Math.min(+document.getElementById('in-lump').value, loan);
-  setLbl('lbl-mextra', monthlyExtra.toLocaleString('en-IN'));
-  setLbl('lbl-yextra', annualExtra.toLocaleString('en-IN'));
-  setLbl('lbl-lump', lumpSum.toLocaleString('en-IN'));
-
   const base = simulate(loan, r, emi, {});
-  const prepay = simulate(loan, r, emi, { monthlyExtra, annualExtra, lumpSum });
 
   // EMI too low to ever clear the loan on its own
   if (!isFinite(base.months)) {
@@ -511,10 +612,44 @@ function calc() {
     document.getElementById('payoff-card').className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     ['cmp-time-base','cmp-time-prepay','cmp-int-base','cmp-int-prepay','cmp-total-base','cmp-total-prepay'].forEach(id => document.getElementById(id).textContent = '-');
     document.getElementById('chart').innerHTML = '';
+    document.getElementById('strat-cards').innerHTML = '';
+    document.getElementById('strat-note').textContent = '';
     document.getElementById('out-rate-return').textContent = rate.toFixed(2).replace(/\.?0+$/, '');
     document.getElementById('out-rate-return-2').textContent = rate.toFixed(2).replace(/\.?0+$/, '');
     return;
   }
+
+  // Decide the prepayment: read the sliders (amount mode) or derive it from the target (deadline mode)
+  let monthlyExtra = 0, annualExtra = 0, lumpSum = 0;
+  if (mode === 'amount') {
+    monthlyExtra = +document.getElementById('in-mextra').value;
+    annualExtra = +document.getElementById('in-yextra').value;
+    lumpSum = Math.min(+document.getElementById('in-lump').value, loan);
+    setLbl('lbl-mextra', monthlyExtra.toLocaleString('en-IN'));
+    setLbl('lbl-yextra', annualExtra.toLocaleString('en-IN'));
+    setLbl('lbl-lump', lumpSum.toLocaleString('en-IN'));
+    const yn = document.getElementById('yextra-note');
+    yn.textContent = (annualExtra > 0 && emi > 0) ? `About ${(annualExtra / emi).toFixed(1)} extra EMIs a year.` : '';
+  } else {
+    const targetY = +document.getElementById('in-target').value;
+    setLbl('lbl-target', targetY);
+    document.getElementById('strat-target').textContent = targetY;
+    const targetM = targetY * 12;
+    const strat = computeStrategies(loan, r, emi, targetM);
+    const results = {
+      monthly: simulate(loan, r, emi, { monthlyExtra: strat.monthly }),
+      yearly:  simulate(loan, r, emi, { annualExtra: strat.yearly }),
+      lump:    simulate(loan, r, emi, { lumpSum: strat.lump })
+    };
+    renderStrategies(strat, results, base, emi, targetY);
+    const key = STRATS[selectedStrategy].key;
+    const val = strat[selectedStrategy];
+    if (key === 'monthlyExtra') monthlyExtra = val;
+    else if (key === 'annualExtra') annualExtra = val;
+    else lumpSum = val;
+  }
+
+  const prepay = simulate(loan, r, emi, { monthlyExtra, annualExtra, lumpSum });
 
   // headline
   document.getElementById('out-payoff-time').textContent = ymFmt(prepay.months);
@@ -593,6 +728,18 @@ const wire = (textId, sliderId, after) => {
 [['lbl-loan', 'in-loan'], ['lbl-rate', 'in-rate'], ['lbl-tenure', 'in-tenure']].forEach(([t, s]) => wire(t, s, onLoanTerms));
 [['lbl-mextra', 'in-mextra'], ['lbl-yextra', 'in-yextra'], ['lbl-lump', 'in-lump']].forEach(([t, s]) => wire(t, s, calc));
 
+// ---- deadline mode: target input + mode toggle + strategy picker ----
+document.getElementById('in-target').addEventListener('input', calc);
+wire('lbl-target', 'in-target', calc);
+document.getElementById('mode-toggle').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-mode]');
+  if (b) setMode(b.getAttribute('data-mode'));
+});
+document.getElementById('strat-cards').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-strat]');
+  if (b) { selectedStrategy = b.getAttribute('data-strat'); calc(); }
+});
+
 // ---- presets ----
 document.getElementById('presets').addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-preset]');
@@ -614,7 +761,7 @@ document.getElementById('presets').addEventListener('click', (e) => {
 });
 
 syncEmiFromTenure();
-calc();
+setMode('amount');
 
 (function () {
   var btn = document.getElementById('mobile-menu-toggle');
