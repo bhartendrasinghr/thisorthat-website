@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Equity MF Portfolio Builder, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Tell us your SIP or lumpsum, your horizon and your risk appetite, and get a ready equity mutual fund portfolio: which fund categories, and how much money in each." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .chip { transition: all 140ms ease; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Equity MF Portfolio</span>
+</div>
+
+<section class="bg-cream pb-8">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">From money to a real portfolio</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Equity MF Portfolio Builder.</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You have decided to invest in equity mutual funds. Good. Now, which kinds, and how much in each? Tell us the money and a few honest answers, and we will lay out a category split built for your horizon and your nerves.</p>
+  </div>
+</section>
+
+<section class="bg-cream pb-4">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="bg-thatred/8 border border-thatred/30 rounded-xl px-5 py-4 text-sm text-ink/80 leading-relaxed flex gap-3">
+      <span class="text-thatred text-lg leading-none">&#9888;</span>
+      <span>This is an educational starting point, not personal advice or a recommendation of any scheme. Equity is volatile and can fall sharply; returns shown are illustrative long-run averages, not promises, and any year can be negative. Invest through equity only for money you will not need for at least 3, ideally 5, years. For a plan tailored to you, speak to a SEBI-registered investment adviser.</span>
+    </div>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream pt-6">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-8">
+
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">How much, and how</div>
+
+      <!-- SIP -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-sip">Monthly SIP</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-sip" value="25,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-sip" type="range" min="0" max="500000" step="1000" value="25000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">What you will invest every month. Type "25k" or leave 0 if you are only doing a lumpsum.</div>
+      </div>
+
+      <!-- Lumpsum -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-lump">One-time lumpsum</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-lump" value="1 L" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-lump" type="range" min="0" max="20000000" step="50000" value="100000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">A one-time amount to invest now. Large lumpsums are often staggered over a few months.</div>
+      </div>
+
+      <!-- Horizon -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-horizon">Investment horizon</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-horizon" value="10" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-horizon" type="range" min="3" max="20" value="10" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Minimum 3 years for equity. The longer you have, the more small and mid caps earn their place.</div>
+      </div>
+
+      <!-- Risk -->
+      <div>
+        <label class="text-sm font-semibold text-ink block mb-2">How much of a fall can you stomach?</label>
+        <div class="grid grid-cols-3 gap-2" data-group="risk">
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="conservative">Careful</button>
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="moderate">Balanced</button>
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="aggressive">Bold</button>
+        </div>
+        <div class="text-[11px] text-navy/55 mt-1.5">Bold means you can watch the portfolio drop 40% and not sell. Be honest, not aspirational.</div>
+      </div>
+
+      <!-- Tax -->
+      <div>
+        <label class="text-sm font-semibold text-ink block mb-2">Want to save tax under Section 80C?</label>
+        <div class="grid grid-cols-2 gap-2" data-group="tax">
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="yes">Yes, add ELSS</button>
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="no">No need</button>
+        </div>
+        <div class="text-[11px] text-navy/55 mt-1.5">ELSS funds give an 80C deduction up to &#8377;1.5L a year, with a 3-year lock-in.</div>
+      </div>
+
+      <!-- International -->
+      <div>
+        <label class="text-sm font-semibold text-ink block mb-2">Include international funds?</label>
+        <div class="grid grid-cols-2 gap-2" data-group="intl">
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="yes">Yes, some</button>
+          <button class="chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border" data-val="no">India only</button>
+        </div>
+        <div class="text-[11px] text-navy/55 mt-1.5">A small global slice (mostly US) spreads your bets beyond one country and currency.</div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden bg-white rounded-2xl border border-navy/10 p-8 text-center">
+        <div class="font-display text-xl font-extrabold text-ink">Enter a SIP or a lumpsum to begin.</div>
+        <p class="text-sm text-ink/60 mt-2">We need at least some money to build a portfolio around.</p>
+      </div>
+
+      <!-- Portfolio donut -->
+      <div id="portfolio-block">
+        <div class="bg-white rounded-2xl border-2 border-marigold p-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your equity mutual fund portfolio</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+            <div class="relative mx-auto" style="max-width:220px">
+              <svg id="mf-donut" viewBox="0 0 42 42" class="w-full" aria-label="Portfolio allocation donut"></svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <div class="font-display text-3xl font-extrabold text-ink tab-num"><span id="out-fundcount">4</span></div>
+                <div class="text-[10px] uppercase tracking-widest text-ink/55 font-bold">funds</div>
+              </div>
+            </div>
+            <div class="space-y-2.5" id="mf-legend"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category cards -->
+      <div class="space-y-3" id="mf-cards"></div>
+
+      <!-- Fund count note -->
+      <div id="fundcount-note" class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed"></div>
+
+      <!-- Projected corpus -->
+      <div class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] font-bold text-marigold">In <span id="out-hz">10</span> years, this could grow to</div>
+        <div class="flex items-end gap-3 mt-3 flex-wrap">
+          <div class="font-display text-4xl md:text-5xl font-extrabold tab-num leading-none">&#8377;<span id="out-corpus">-</span></div>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-warmpaper/60 font-bold">You invest</div>
+            <div class="font-display text-xl font-extrabold tab-num">&#8377;<span id="out-invested">-</span></div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-warmpaper/60 font-bold">Potential growth</div>
+            <div class="font-display text-xl font-extrabold text-marigold tab-num">&#8377;<span id="out-gain">-</span></div>
+          </div>
+        </div>
+        <div class="mt-4 text-[12px] text-warmpaper/70 leading-relaxed">Illustrative, at a blended <span id="out-blended">-</span>% a year across your mix. Equity does not move in a straight line: expect sharp falls along the way, and know that any single year can be negative. This is a possibility, not a promise.</div>
+      </div>
+
+      <!-- Rationale -->
+      <div id="rationale" class="bg-thisblue text-warmpaper rounded-2xl p-6"></div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="py-16 bg-warmpaper-2">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">How we build the mix</div>
+    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-3">Three dials, one portfolio.</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">1</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Horizon gates the risk</h3>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Small caps can stay underwater for years, so at 3 to 5 years we keep them tiny or out. The longer your horizon, the more room mid and small caps get to do their work.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">2</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Nerve sets the tilt</h3>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Careful investors lean on index and flexi-cap funds. Bold ones take a bigger mid and small-cap position, and the deeper falls that come with it.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">3</div>
+        <h3 class="font-display text-lg font-extrabold text-ink">Fewer funds, not more</h3>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Past 5 or 6 funds you are mostly buying the same stocks twice. We keep the list short, so each fund actually matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- More -->
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl font-extrabold text-ink">Keep going</h2>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <a href="asset-allocator.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">&#9684;</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Asset Allocator</h3>
+        <p class="text-ink/70 text-sm mt-1">Should it even all be in equity? Split across equity, debt, gold and cash first.</p>
+      </a>
+      <a href="asset-classes.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">&#9635;</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Asset Classes</h3>
+        <p class="text-ink/70 text-sm mt-1">What each fund category actually holds, and how it behaves.</p>
+      </a>
+      <a href="calc-goal.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">&#8377;</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Goal Planner</h3>
+        <p class="text-ink/70 text-sm mt-1">Working towards a number? See the SIP it takes to get there.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">For education only, not investment advice, a recommendation, or a solicitation to buy any mutual fund scheme. Category allocations are illustrative rules of thumb; fund categories are named for learning, not as endorsements. Returns are long-run illustrations that will not repeat in any given year and may be negative. Mutual funds are subject to market risks; read all scheme-related documents carefully. Consult a SEBI-registered investment adviser before investing.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+const STORE_KEY = 'ttot-mfportfolio-v1';
+
+const fmtINR = (n) => {
+  n = Math.round(n);
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return n.toLocaleString('en-IN');
+};
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+const gate = (h, lo, hi) => clamp((h - lo) / (hi - lo), 0, 1);
+
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+// ---- categories ----
+const CATS = {
+  index: { label: 'Index / Large Cap', color: '#013580', tclass: 'text-thisblue-700', ret: 11.0,
+    what: 'The stable core. India\'s biggest, most-tracked companies through a low-cost index or large-cap fund.' },
+  flexi: { label: 'Flexi Cap', color: '#0249B1', tclass: 'text-thisblue', ret: 11.5,
+    what: 'One fund, all sizes. The manager moves between large, mid and small caps as they see fit.' },
+  mid: { label: 'Mid Cap', color: '#FFC21F', tclass: 'text-mustard-deep', ret: 13.0,
+    what: 'Tomorrow\'s large caps. More growth than large caps, and deeper falls when markets turn.' },
+  small: { label: 'Small Cap', color: '#FF302D', tclass: 'text-thatred', ret: 14.0,
+    what: 'The high-risk, high-reward engine. Can double, can halve. Needs a long horizon and a strong stomach.' },
+  intl: { label: 'International', color: '#1F8A5B', tclass: 'text-gain', ret: 10.5,
+    what: 'A slice outside India, mostly US and global names, for spread across countries and currencies.' },
+  elss: { label: 'ELSS (tax-saver)', color: '#D99B00', tclass: 'text-mustard-deep', ret: 11.5,
+    what: 'A flexi-cap that also gives an 80C deduction up to ₹1.5L a year. Locks in for 3 years.' }
+};
+const ORDER = ['index', 'flexi', 'mid', 'small', 'intl', 'elss'];
+
+// ---- state ----
+const state = { sip: 25000, lump: 100000, horizon: 10, risk: 'moderate', tax: 'no', intl: 'no' };
+try { const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (s) Object.assign(state, s); } catch (e) {}
+
+function roundTo100(w) {
+  const out = {};
+  ORDER.forEach(k => out[k] = Math.round(w[k] || 0));
+  let sum = ORDER.reduce((s, k) => s + out[k], 0);
+  if (sum !== 100) {
+    const big = ORDER.reduce((a, b) => (out[b] > out[a] ? b : a), ORDER[0]);
+    out[big] += 100 - sum;
+  }
+  return out;
+}
+
+function buildPortfolio(s) {
+  const a = { conservative: 0.25, moderate: 0.55, aggressive: 0.9 }[s.risk];
+  const hf = clamp((s.horizon - 3) / 12, 0, 1);
+  const tilt = a * (0.4 + 0.6 * hf);
+
+  let w = { index: 0, flexi: 0, mid: 0, small: 0, intl: 0, elss: 0 };
+  w.small = 26 * tilt * gate(s.horizon, 3, 7);       // 0 at 3yr, full by 7yr
+  w.mid = 24 * tilt * gate(s.horizon, 2, 5);         // partial at 3yr, full by 5yr
+  w.intl = s.intl === 'yes' ? (8 + a * 4) : 0;       // 8 to 11.6 when included
+  w.flexi = 30 - a * 4;                              // 30 (careful) to 26.4 (bold)
+  w.index = 100 - w.small - w.mid - w.intl - w.flexi;
+
+  // keep a real core: floor index, trimming from small then mid
+  if (w.index < 15) {
+    let d = 15 - w.index;
+    const cs = Math.min(d, w.small); w.small -= cs; d -= cs;
+    const cm = Math.min(d, w.mid); w.mid -= cm;
+    w.index = 100 - w.small - w.mid - w.intl - w.flexi;
+  }
+
+  // ELSS: sized to fill 80C but capped for diversification, carved from index + flexi
+  let elssCoverage = 0;
+  if (s.tax === 'yes') {
+    const annual = s.sip * 12 + s.lump;
+    const byLimit = annual > 0 ? Math.min(1, 150000 / annual) : 1;
+    let elssPct = clamp(byLimit * 100, 0, 35);
+    const pool = w.index + w.flexi;
+    if (pool > elssPct) {
+      const fi = w.index / pool, ff = w.flexi / pool;
+      w.index -= elssPct * fi;
+      w.flexi -= elssPct * ff;
+      w.elss = elssPct;
+    }
+  }
+
+  // drop tiny non-core slices (a 3% fund is just noise) into flexi
+  ['mid', 'small', 'intl'].forEach(k => { if (w[k] > 0 && w[k] < 7) { w.flexi += w[k]; w[k] = 0; } });
+
+  const rounded = roundTo100(w);
+  if (s.tax === 'yes' && rounded.elss > 0) {
+    const annual = s.sip * 12 + s.lump;
+    elssCoverage = Math.min(annual * rounded.elss / 100, 150000);
+  }
+  return { w: rounded, elssCoverage };
+}
+
+function sipFV(monthly, annualPct, years) {
+  const i = annualPct / 100 / 12, n = years * 12;
+  if (i === 0) return monthly * n;
+  return monthly * (Math.pow(1 + i, n) - 1) / i;
+}
+function lumpFV(P, annualPct, years) { return P * Math.pow(1 + annualPct / 100, years); }
+
+function drawDonut(w) {
+  let circles = '<circle cx="21" cy="21" r="15.915" fill="none" stroke="#F6F4EE" stroke-width="5"></circle>';
+  let cum = 0;
+  ORDER.forEach(k => {
+    const pct = w[k]; if (!pct) return;
+    circles += `<circle cx="21" cy="21" r="15.915" fill="none" stroke="${CATS[k].color}" stroke-width="5" stroke-dasharray="${pct} ${100 - pct}" stroke-dashoffset="${25 - cum}"></circle>`;
+    cum += pct;
+  });
+  document.getElementById('mf-donut').innerHTML = circles;
+}
+
+const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+
+function calc() {
+  setLbl('lbl-sip', fmtINR(state.sip));
+  setLbl('lbl-lump', fmtINR(state.lump));
+  setLbl('lbl-horizon', state.horizon);
+
+  // chips
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.getAttribute('data-group');
+    group.querySelectorAll('button').forEach(btn => {
+      const on = btn.getAttribute('data-val') === state[g];
+      btn.className = 'chip text-[13px] font-semibold py-2.5 px-2 rounded-xl border ' +
+        (on ? 'bg-thisblue text-warmpaper border-thisblue shadow-sm' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+    });
+  });
+
+  const hasMoney = state.sip > 0 || state.lump > 0;
+  document.getElementById('empty-state').classList.toggle('hidden', hasMoney);
+  document.getElementById('portfolio-block').classList.toggle('hidden', !hasMoney);
+  ['mf-cards', 'fundcount-note', 'rationale'].forEach(id => document.getElementById(id).classList.toggle('hidden', !hasMoney));
+  document.querySelector('.bg-ink.text-warmpaper.rounded-2xl').classList.toggle('hidden', !hasMoney);
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+  if (!hasMoney) return;
+
+  const { w, elssCoverage } = buildPortfolio(state);
+  const active = ORDER.filter(k => w[k] > 0);
+
+  drawDonut(w);
+  document.getElementById('out-fundcount').textContent = active.length;
+
+  // legend
+  document.getElementById('mf-legend').innerHTML = active.map(k => {
+    const c = CATS[k];
+    return `<div class="flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="w-3 h-3 rounded-sm shrink-0" style="background:${c.color}"></span>
+        <span class="text-sm font-semibold text-ink truncate">${c.label}</span>
+      </div>
+      <div class="font-display text-lg font-extrabold ${c.tclass} tab-num shrink-0">${w[k]}%</div>
+    </div>`;
+  }).join('');
+
+  // category cards with rupee split
+  document.getElementById('mf-cards').innerHTML = active.map(k => {
+    const c = CATS[k];
+    const sipAmt = state.sip * w[k] / 100;
+    const lumpAmt = state.lump * w[k] / 100;
+    const money = [];
+    if (state.sip > 0) money.push(`<div><span class="text-ink/45 font-bold uppercase text-[10px] tracking-wider">SIP</span> <span class="font-bold text-thisblue tab-num">&#8377;${fmtINR(sipAmt)}/mo</span></div>`);
+    if (state.lump > 0) money.push(`<div><span class="text-ink/45 font-bold uppercase text-[10px] tracking-wider">Lumpsum</span> <span class="font-bold text-thisblue tab-num">&#8377;${fmtINR(lumpAmt)}</span></div>`);
+    return `<div class="bg-white rounded-2xl border border-navy/10 p-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3.5 h-3.5 rounded-sm" style="background:${c.color}"></span>
+          <span class="font-display text-lg font-extrabold text-ink">${c.label}</span>
+        </div>
+        <div class="font-display text-2xl font-extrabold ${c.tclass} tab-num">${w[k]}%</div>
+      </div>
+      <p class="text-[13px] text-ink/70 leading-relaxed mt-2">${c.what}</p>
+      <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[12px]">${money.join('')}</div>
+    </div>`;
+  }).join('');
+
+  // fund-count note
+  const fc = active.length;
+  let note = `<div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">A ${fc}-fund portfolio</div>`;
+  note += `<p><strong>${fc} fund${fc > 1 ? 's' : ''} is enough.</strong> One good scheme per category, not three. Buying five large-cap funds does not diversify you, it just hides the same stocks behind different names.`;
+  if (state.tax === 'yes' && w.elss > 0) {
+    note += ` Your ELSS puts about &#8377;${fmtINR(elssCoverage)} a year toward the &#8377;1.5L 80C limit; the rest of that slice still works as a normal equity fund.`;
+  }
+  note += `</p>`;
+  document.getElementById('fundcount-note').innerHTML = note;
+
+  // projected corpus
+  const blended = ORDER.reduce((s, k) => s + (w[k] / 100) * CATS[k].ret, 0);
+  const corpus = sipFV(state.sip, blended, state.horizon) + lumpFV(state.lump, blended, state.horizon);
+  const invested = state.sip * 12 * state.horizon + state.lump;
+  const gainv = Math.max(0, corpus - invested);
+  document.getElementById('out-hz').textContent = state.horizon;
+  document.getElementById('out-corpus').textContent = fmtINR(corpus);
+  document.getElementById('out-invested').textContent = fmtINR(invested);
+  document.getElementById('out-gain').textContent = fmtINR(gainv);
+  document.getElementById('out-blended').textContent = blended.toFixed(1);
+
+  // rationale
+  const riskWord = { conservative: 'careful', moderate: 'balanced', aggressive: 'bold' }[state.risk];
+  const growthShare = w.mid + w.small;
+  let r = `<div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Why this mix</div>`;
+  r += `<p class="mt-3 text-sm text-warmpaper/90 leading-relaxed">`;
+  if (state.horizon <= 4) {
+    r += `At ${state.horizon} years, this is on the shorter side for equity, so the portfolio leans hard on index, large and flexi-cap funds and keeps the volatile mid and small caps small. `;
+  } else if (state.horizon >= 12) {
+    r += `With ${state.horizon} years to run, there is real time to ride out crashes, so a ${riskWord} investor can hold a healthy ${Math.round(growthShare)}% in mid and small caps for the extra growth. `;
+  } else {
+    r += `Over ${state.horizon} years, a ${riskWord} investor gets a solid core of index and flexi-cap funds, with ${Math.round(growthShare)}% in mid and small caps working for growth. `;
+  }
+  r += `The blended long-run assumption of ${blended.toFixed(1)}% is an average, not a floor. Stay invested through the ugly years; that is where most of the return quietly hides.</p>`;
+  document.getElementById('rationale').innerHTML = r;
+}
+
+// ---- wiring ----
+document.querySelectorAll('[data-group]').forEach(group => {
+  const g = group.getAttribute('data-group');
+  group.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-val]');
+    if (!btn) return;
+    state[g] = btn.getAttribute('data-val');
+    calc();
+  });
+});
+
+const sliders = [['in-sip', 'sip'], ['in-lump', 'lump'], ['in-horizon', 'horizon']];
+sliders.forEach(([id, key]) => {
+  const el = document.getElementById(id);
+  el.value = state[key];
+  el.addEventListener('input', () => { state[key] = +el.value; calc(); });
+});
+[['lbl-sip', 'in-sip', 'sip'], ['lbl-lump', 'in-lump', 'lump'], ['lbl-horizon', 'in-horizon', 'horizon']].forEach(([textId, sliderId, key]) => {
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = clamp(parseNumericInput(text.value), min, max);
+    slider.value = v; state[key] = v; calc();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
+
+calc();
+
+(function () {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
