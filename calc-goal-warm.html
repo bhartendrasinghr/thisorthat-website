@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Goal Planner (warm preview), ThisOrThat with Bhartendra</title>
+<meta name="description" content="Backwards from the goal. How much do you need to invest every month to actually hit it, and is that even realistic?" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Goal Planner</span>
+</div>
+
+<section class="bg-cream pb-10">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Start with the dream, work back</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Goal Planner.</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">A home in 5 years? Your kid's college in 12? Tell us the dream and when you want it. We'll work out what it takes <em>each month</em>, honestly, and whether it fits your life right now. If it doesn't fit yet, we'll help you find a version that does.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-goal">Goal amount (in today's rupees)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">₹</span>
+            <input type="text" id="lbl-goal" value="50 L" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-goal" type="range" min="100000" max="50000000" step="100000" value="5000000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Tip: type "50L" or "2Cr", both work. Goal grows with inflation by the time you reach it.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-years">Years to goal</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-years" value="10" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-years" type="range" min="1" max="40" value="10" class="w-full mt-2" />
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-corpus">Already saved (optional)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">₹</span>
+            <input type="text" id="lbl-corpus" value="0" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-corpus" type="range" min="0" max="20000000" step="50000" value="0" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Existing money earmarked for this goal. It compounds along with your SIP.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-income">Your monthly take-home (for the reality check)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">₹</span>
+            <input type="text" id="lbl-income" value="1,00,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-income" type="range" min="20000" max="1000000" step="5000" value="100000" class="w-full mt-2" />
+      </div>
+
+      <details class="pt-2 border-t border-navy/10">
+        <summary class="cursor-pointer text-sm font-semibold text-ink/70 hover:text-ink">Returns & inflation</summary>
+        <div class="mt-4 space-y-4">
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-ink/70">Expected portfolio return</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-ret" value="10.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
+                <span class="text-ink/60 text-xs">%</span>
+              </div>
+            </div>
+            <input id="in-ret" type="range" min="5" max="15" step="0.5" value="10" class="w-full mt-1" />
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <label class="text-xs font-medium text-ink/70">Inflation (goal grows by this)</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-inf" value="6.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
+                <span class="text-ink/60 text-xs">%</span>
+              </div>
+            </div>
+            <input id="in-inf" type="range" min="3" max="10" step="0.5" value="6" class="w-full mt-1" />
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="lg:col-span-3 space-y-5">
+
+      <div id="sip-card" class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Monthly SIP needed</div>
+        <div class="flex items-end gap-4 mt-3">
+          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none">₹<span id="out-sip">-</span></div>
+          <div class="text-base opacity-70 pb-1">/ month</div>
+        </div>
+        <div class="mt-3 text-sm opacity-85" id="out-status">-</div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl border-2 border-marigold p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Future cost of your goal</div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-ink tab-num">₹<span id="out-future">-</span></div>
+          <div class="mt-2 text-[11px] text-ink/65 leading-snug">Today's ₹<span id="out-today">-</span> becomes this much in <span id="out-yrs">-</span> years at <span id="out-inf-pct">-</span>% inflation.</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Your existing corpus grows to</div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-thisblue tab-num">₹<span id="out-corpus-grown">-</span></div>
+          <div class="mt-2 text-[11px] text-ink/65 leading-snug" id="out-corpus-note">If you stop adding anything else, your current ₹<span id="out-corpus-today">0</span> alone gets you here.</div>
+        </div>
+      </div>
+
+      <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
+        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How we get to your number</div>
+        <p>We take your goal in today's money, grow it for inflation so it stays honest about the future, subtract what your existing savings will become, and solve for the monthly amount that closes the gap. <strong>One gentle rule: if that number climbs past half your take-home, treat it as a nudge, not a verdict. The goal usually just wants a little more time.</strong></p>
+      </div>
+
+      <details class="bg-white rounded-2xl border border-navy/10 p-5" open>
+        <summary class="cursor-pointer flex items-center justify-between">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Ways to make it fit</div>
+            <div class="text-sm font-semibold text-ink mt-0.5">If the monthly feels heavy</div>
+          </div>
+          <svg class="w-5 h-5 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="mt-4">
+          <div class="overflow-x-auto -mx-2 px-2">
+            <table class="w-full text-xs tab-num">
+              <thead>
+                <tr class="text-left text-ink/55 border-b border-navy/10">
+                  <th class="py-2 pr-3 font-semibold">Tweak</th>
+                  <th class="py-2 pr-3 font-semibold">Goal</th>
+                  <th class="py-2 pr-3 font-semibold">Years</th>
+                  <th class="py-2 font-semibold">New SIP</th>
+                </tr>
+              </thead>
+              <tbody id="alts-table" class="text-ink/80"></tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-thisblue text-warmpaper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The honest bit</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">-</div>
+    <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
+      <p>Most goal calculators hand you a comfortable-looking number and wave you off. They quietly skip two things: the goal will cost more by the time you reach it, and you're working with a real income, not a bottomless wallet. We'd rather be straight with you now, so nothing catches you out later.</p>
+      <p>So this one shows you the <strong class="text-marigold">real monthly number</strong>, <strong class="text-marigold">how much of your income</strong> it asks for, and exactly how it eases the moment you give the goal a little more time. No judgement in any of it, just a clear picture you can act on.</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl font-extrabold text-ink">More calculators</h2>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <a href="calc-retirement.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xl font-bold mb-3">₹</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Real Retirement</h3>
+        <p class="text-ink/70 text-sm mt-1">Inflation-adjusted corpus you actually need.</p>
+      </a>
+      <a href="calc-sip.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SIP</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Brutal SIP</h3>
+        <p class="text-ink/70 text-sm mt-1">The cost of starting 5 / 10 years late.</p>
+      </a>
+      <a href="calc-swp.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
+        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SWP</div>
+        <h3 class="font-display text-xl font-extrabold text-ink">Systematic Withdrawal</h3>
+        <p class="text-ink/70 text-sm mt-1">How much you can pull each month, without going dry.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+</footer>
+
+<script>
+const fmtINR = (n) => {
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return Math.round(n).toLocaleString('en-IN');
+};
+
+function requiredSIP(goalToday, years, corpus, ret, inf) {
+  if (years <= 0) return Math.max(0, goalToday - corpus);
+  const goalFuture = goalToday * Math.pow(1 + inf, years);
+  const corpusGrown = corpus * Math.pow(1 + ret, years);
+  const gap = Math.max(0, goalFuture - corpusGrown);
+  const monthlyR = Math.pow(1 + ret, 1/12) - 1;
+  const months = years * 12;
+  // FV of SIP (deposit at end of month): SIP * [((1+r)^n - 1)/r]
+  const annuityFactor = (Math.pow(1 + monthlyR, months) - 1) / monthlyR;
+  if (annuityFactor <= 0) return Infinity;
+  return gap / annuityFactor;
+}
+
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+
+function calc() {
+  const goal    = +document.getElementById('in-goal').value;
+  const years   = +document.getElementById('in-years').value;
+  const corpus  = +document.getElementById('in-corpus').value;
+  const income  = +document.getElementById('in-income').value;
+  const ret     = +document.getElementById('in-ret').value / 100;
+  const inf     = +document.getElementById('in-inf').value / 100;
+
+  setLbl('lbl-goal',   fmtINR(goal));
+  setLbl('lbl-years',  years);
+  setLbl('lbl-corpus', corpus.toLocaleString('en-IN'));
+  setLbl('lbl-income', income.toLocaleString('en-IN'));
+  setLbl('lbl-ret',    (ret * 100).toFixed(1));
+  setLbl('lbl-inf',    (inf * 100).toFixed(1));
+
+  const goalFuture  = goal * Math.pow(1 + inf, years);
+  const corpusGrown = corpus * Math.pow(1 + ret, years);
+  const sip = requiredSIP(goal, years, corpus, ret, inf);
+
+  document.getElementById('out-future').textContent = fmtINR(goalFuture);
+  document.getElementById('out-today').textContent = fmtINR(goal);
+  document.getElementById('out-yrs').textContent = years;
+  document.getElementById('out-inf-pct').textContent = (inf * 100).toFixed(1);
+  document.getElementById('out-corpus-grown').textContent = fmtINR(corpusGrown);
+  document.getElementById('out-corpus-today').textContent = corpus.toLocaleString('en-IN');
+
+  const card = document.getElementById('sip-card');
+  const sipOut = document.getElementById('out-sip');
+  const kicker = document.getElementById('out-kicker');
+  const status = document.getElementById('out-status');
+  const sharePct = income > 0 ? (sip / income * 100) : 999;
+  const baseKicker = 'text-xs uppercase tracking-[0.3em] font-bold';
+
+  if (sip <= 0) {
+    card.className = 'bg-gain text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    sipOut.className = 'text-marigold';
+    sipOut.textContent = '0';
+    status.innerHTML = `<strong>You're already there.</strong> Your current savings alone over-fund this by ₹${fmtINR(corpusGrown - goalFuture)} by the time you need it. Lovely place to be.`;
+  } else if (sharePct > 70) {
+    card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    sipOut.className = 'text-marigold';
+    sipOut.textContent = fmtINR(sip);
+    status.innerHTML = `<strong>A stretch too far, for now.</strong> That's ${Math.round(sharePct)}% of your take-home, which is a lot to ask of one goal. This isn't a no, it's a not-like-this. A little more time or a slightly smaller target brings it right back.`;
+  } else if (sharePct > 40) {
+    card.className = 'bg-marigold text-ink rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-thisblue';
+    sipOut.className = 'text-ink';
+    sipOut.textContent = fmtINR(sip);
+    status.innerHTML = `<strong>A real stretch, but doable.</strong> It's ${Math.round(sharePct)}% of your take-home, so you'll feel it. Worth it if this goal genuinely matters to you.`;
+  } else {
+    card.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
+    kicker.className = baseKicker + ' text-marigold';
+    sipOut.className = 'text-marigold';
+    sipOut.textContent = fmtINR(sip);
+    status.innerHTML = `<strong>You've got this.</strong> Just ${Math.round(sharePct)}% of your take-home, comfortably within reach. The only hard part is starting, so start this month and let it run.`;
+  }
+
+  // Alternatives table
+  const alts = [
+    { label: '+5 years',       goalAlt: goal,        yrsAlt: years + 5 },
+    { label: '+10 years',      goalAlt: goal,        yrsAlt: years + 10 },
+    { label: '−25% goal',      goalAlt: goal * 0.75, yrsAlt: years },
+    { label: '−25% goal · +5yrs', goalAlt: goal * 0.75, yrsAlt: years + 5 }
+  ];
+  document.getElementById('alts-table').innerHTML = alts.map(a => {
+    const altSip = requiredSIP(a.goalAlt, a.yrsAlt, corpus, ret, inf);
+    return `<tr class="border-b border-navy/5">
+      <td class="py-1.5 pr-3 font-semibold">${a.label}</td>
+      <td class="py-1.5 pr-3 text-ink/70">₹${fmtINR(a.goalAlt)}</td>
+      <td class="py-1.5 pr-3 text-ink/70">${a.yrsAlt}</td>
+      <td class="py-1.5 font-bold text-thisblue">₹${fmtINR(altSip)}/mo</td>
+    </tr>`;
+  }).join('');
+
+  // Reality message
+  const realityEl = document.getElementById('reality');
+  if (sip <= 0) {
+    realityEl.textContent = `You're already over-funded for this one. Let the surplus keep working somewhere longer-term instead of sitting idle. Enjoy being ahead.`;
+  } else if (sharePct > 70) {
+    realityEl.textContent = `Asking ${Math.round(sharePct)}% of your income for a single goal isn't a plan you can keep, it's a strain you'll quietly drop. Kinder to move the date or right-size the goal now, on your own terms.`;
+  } else if (sharePct > 40) {
+    realityEl.textContent = `${Math.round(sharePct)}% of your income, every month, for ${years} years. That's real commitment, so make sure you want the goal itself, not just the idea of it. If you do, it's absolutely doable.`;
+  } else if (years < 5 && sip > 0) {
+    realityEl.textContent = `For something this close, ${years} years, lean on debt funds and FDs rather than equity. Plan for around ${(ret*100).toFixed(0)}%, and don't count on the market to bail you out in time.`;
+  } else {
+    realityEl.textContent = `${Math.round(sharePct)}% of your income, compounding quietly for ${years} years at ${(ret*100).toFixed(0)}%. The maths clearly works. The only thing left is the easiest and hardest part: actually starting.`;
+  }
+}
+
+document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+[['lbl-goal','in-goal'],['lbl-years','in-years'],['lbl-corpus','in-corpus'],['lbl-income','in-income'],['lbl-ret','in-ret'],['lbl-inf','in-inf']].forEach(([textId, sliderId]) => {
+  const text = document.getElementById(textId);
+  const slider = document.getElementById(sliderId);
+  if (!text || !slider) return;
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => {
+    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
+    slider.value = v; calc();
+  });
+  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
+calc();
+
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
