@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lifestyle Inflation Tracker, ThisOrThat with Bhartendra</title>
-<meta name="description" content="Compare your savings rate now vs five years ago. The gap is usually where the wealth went." />
+<meta name="description" content="Compare your savings rate now vs five years ago. The gap is where lifestyle creep quietly landed, and seeing it is the first step to taking it back." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -89,9 +89,9 @@
 
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The quiet drain</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The quiet drift</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Where did the raises go?</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You earn more now than you did 5 years ago. So why does it feel like you save the same, or less? This calculator compares your savings rate <strong>then</strong> vs <strong>now</strong>, shows what % of every raise leaked into expenses, and what your corpus would look like if you'd held the line.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You earn more now than you did 5 years ago, so why does it feel like you save about the same, or less? You're not doing anything wrong; this just happens to almost everyone. This calculator lines up your savings rate <strong>then</strong> vs <strong>now</strong>, shows what share of each raise slipped into everyday life, and what your corpus could look like if you gently held the line from here.</p>
   </div>
 </section>
 
@@ -185,10 +185,10 @@
       <div id="leak-card" class="bg-ink text-warmpaper rounded-2xl p-7">
         <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Lifestyle inflation</div>
         <div class="flex items-end gap-4 mt-3">
-          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none"><span id="out-leak">—</span><span class="text-3xl opacity-70 align-baseline">%</span></div>
+          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none"><span id="out-leak">-</span><span class="text-3xl opacity-70 align-baseline">%</span></div>
           <div class="text-base opacity-70 pb-1">of every extra rupee went to expenses</div>
         </div>
-        <div class="mt-3 text-sm opacity-85" id="out-status">—</div>
+        <div class="mt-3 text-sm opacity-85" id="out-status">-</div>
       </div>
 
       <div class="bg-white rounded-2xl border-2 border-marigold p-6">
@@ -198,19 +198,19 @@
           <div>
             <div class="flex items-center justify-between text-sm mb-1.5">
               <span class="text-mustard-600 font-semibold">Then · <span class="span-mirror">5y</span> ago</span>
-              <span class="font-display font-bold text-ink tab-num"><span id="rate-then">—</span>%</span>
+              <span class="font-display font-bold text-ink tab-num"><span id="rate-then">-</span>%</span>
             </div>
             <div class="rate-bar"><div id="bar-then" class="bg-marigold" style="width:0%"></div></div>
-            <div class="text-[11px] text-ink/55 mt-1">Saving ₹<span id="save-then">—</span>/mo of ₹<span id="inc-then-out">—</span></div>
+            <div class="text-[11px] text-ink/55 mt-1">Saving ₹<span id="save-then">-</span>/mo of ₹<span id="inc-then-out">-</span></div>
           </div>
 
           <div>
             <div class="flex items-center justify-between text-sm mb-1.5">
               <span class="text-thisblue font-semibold">Now</span>
-              <span class="font-display font-bold text-ink tab-num"><span id="rate-now">—</span>%</span>
+              <span class="font-display font-bold text-ink tab-num"><span id="rate-now">-</span>%</span>
             </div>
             <div class="rate-bar"><div id="bar-now" class="bg-thisblue" style="width:0%"></div></div>
-            <div class="text-[11px] text-ink/55 mt-1">Saving ₹<span id="save-now">—</span>/mo of ₹<span id="inc-now-out">—</span></div>
+            <div class="text-[11px] text-ink/55 mt-1">Saving ₹<span id="save-now">-</span>/mo of ₹<span id="inc-now-out">-</span></div>
           </div>
         </div>
       </div>
@@ -218,20 +218,20 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Income up by</div>
-          <div class="mt-2 font-display text-3xl font-extrabold text-gain tab-num">+₹<span id="out-incdelta">—</span></div>
-          <div class="mt-2 text-[11px] text-ink/65">A <span id="out-incpct">—</span>% jump in <span class="span-mirror">5</span> years.</div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-gain tab-num">+₹<span id="out-incdelta">-</span></div>
+          <div class="mt-2 text-[11px] text-ink/65">A <span id="out-incpct">-</span>% jump in <span class="span-mirror">5</span> years.</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Expenses up by</div>
-          <div class="mt-2 font-display text-3xl font-extrabold text-loss tab-num">+₹<span id="out-expdelta">—</span></div>
-          <div class="mt-2 text-[11px] text-ink/65">A <span id="out-exppct">—</span>% jump in <span class="span-mirror">5</span> years.</div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-loss tab-num">+₹<span id="out-expdelta">-</span></div>
+          <div class="mt-2 text-[11px] text-ink/65">A <span id="out-exppct">-</span>% jump in <span class="span-mirror">5</span> years.</div>
         </div>
       </div>
 
       <div class="bg-warmpaper-2 rounded-2xl p-6 border-l-4 border-marigold">
         <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">What you'd have today, if</div>
-        <div class="mt-2 font-display text-2xl md:text-3xl font-extrabold text-ink leading-tight">…you'd held your <span class="text-mustard-deep" id="rate-then-mirror">—</span>% savings rate.</div>
-        <div class="mt-4 text-sm text-ink/80 leading-relaxed">Compounded at <span id="out-ret">11.0</span>%/yr, the extra <strong>₹<span id="out-extra-monthly">—</span>/month</strong> you would have saved adds up to <strong class="text-thisblue text-lg">₹<span id="out-counterfactual">—</span></strong> in <span class="span-mirror">5</span> years. That is the wealth that walked out the door.</div>
+        <div class="mt-2 font-display text-2xl md:text-3xl font-extrabold text-ink leading-tight">…you'd kept your <span class="text-mustard-deep" id="rate-then-mirror">-</span>% savings rate.</div>
+        <div class="mt-4 text-sm text-ink/80 leading-relaxed">Compounded at <span id="out-ret">11.0</span>%/yr, the extra <strong>₹<span id="out-extra-monthly">-</span>/month</strong> you could have set aside would have grown to <strong class="text-thisblue text-lg">₹<span id="out-counterfactual">-</span></strong> over <span class="span-mirror">5</span> years. Not a scolding, just a number worth seeing, because the same math still works forward from today.</div>
       </div>
     </div>
   </div>
@@ -239,11 +239,11 @@
 
 <section class="py-16 bg-thisblue text-warmpaper">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
-    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The honest bit</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">-</div>
     <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
-      <p>Lifestyle inflation isn't a moral failing, it's the default. Income goes up, the rent goes up to match, the car gets nicer, the holiday gets longer. Five years later, you're earning twice as much and saving the same amount.</p>
-      <p>The fix isn't <em>spend less</em>. The fix is to <strong class="text-marigold">save every raise before you see it</strong>, auto-debit it to your SIP the day the increment hits, then live on whatever lands in the account. The lifestyle catches up to whatever's left.</p>
+      <p>Lifestyle inflation isn't a moral failing, it's just the default setting. Income goes up, the rent rises to meet it, the car gets nicer, the holiday gets longer. Five years on, you're earning twice as much and saving about the same. It happens to almost everyone, and noticing it is the whole win.</p>
+      <p>The fix isn't <em>spend less</em> and feel deprived. It's gentler than that: <strong class="text-marigold">save each raise before it reaches you</strong>, auto-debit it to your SIP the day the increment lands, then live comfortably on the rest. Your lifestyle happily settles into whatever's left, and you barely feel the difference.</p>
     </div>
   </div>
 </section>
@@ -376,42 +376,42 @@ function calc() {
     card.className = 'bg-marigold text-ink rounded-2xl p-7';
     kicker.className = baseKicker + ' text-thisblue';
     leakEl.className = 'text-ink';
-    leakEl.textContent = '—';
-    status.innerHTML = `<strong>Income didn't grow.</strong> Lifestyle inflation only makes sense if your earnings went up first.`;
+    leakEl.textContent = '-';
+    status.innerHTML = `<strong>Income hasn't moved up yet.</strong> This one only kicks in once your earnings rise, so pop back when the income line has climbed and we'll take a look together.`;
   } else if (leakPct >= 90) {
     card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     leakEl.className = 'text-marigold';
-    status.innerHTML = `<strong>Almost all of it.</strong> Of every extra ₹100 you started earning, ₹${leakPct.toFixed(0)} went straight into expenses.`;
+    status.innerHTML = `<strong>Nearly all of it, for now.</strong> Of every extra ₹100 you began earning, about ₹${leakPct.toFixed(0)} flowed into expenses. Very common, and very fixable: the next raise is a fresh chance to keep more.`;
   } else if (leakPct >= 60) {
     card.className = 'bg-marigold text-ink rounded-2xl p-7';
     kicker.className = baseKicker + ' text-thisblue';
     leakEl.className = 'text-ink';
-    status.innerHTML = `<strong>Most of it.</strong> ₹${leakPct.toFixed(0)} of every extra ₹100 in income became extra spending. Some lifestyle creep is normal, this is on the heavy side.`;
+    status.innerHTML = `<strong>Most of it, so far.</strong> About ₹${leakPct.toFixed(0)} of every extra ₹100 turned into spending. A little creep is normal; this is on the heavier side, and easy to nudge back.`;
   } else if (leakPct >= 30) {
     card.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     leakEl.className = 'text-marigold';
-    status.innerHTML = `<strong>About a third.</strong> You let lifestyle scale a bit, but kept most of the raise. That's the healthy zone.`;
+    status.innerHTML = `<strong>About a third.</strong> You let life get a little nicer but kept most of the raise. That's a healthy, sustainable balance.`;
   } else {
     card.className = 'bg-gain text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     leakEl.className = 'text-marigold';
-    status.innerHTML = `<strong>Disciplined.</strong> Only ${leakPct.toFixed(0)}% of every extra rupee went to expenses. Your future self thanks you.`;
+    status.innerHTML = `<strong>Really well held.</strong> Only ${leakPct.toFixed(0)}% of every extra rupee slipped into expenses. Your future self is going to be grateful for this.`;
   }
 
   // Reality
   const realityEl = document.getElementById('reality');
   if (incDelta <= 0) {
-    realityEl.textContent = `Without a raise, this calculator does not apply. Come back when the income line has moved up.`;
+    realityEl.textContent = `Without a raise in the picture, there's nothing for this one to measure yet. Come back when the income line has moved up and we'll pick it up from there.`;
   } else if (rateNow < rateThen - 2) {
-    realityEl.textContent = `You earn more now but save a smaller share of it. ${(rateThen - rateNow).toFixed(1)} percentage points of savings rate, gone, that is exactly where the wealth went.`;
+    realityEl.textContent = `You earn more now but you're keeping a smaller share of it, about ${(rateThen - rateNow).toFixed(1)} percentage points of savings rate. That's the quiet gap where the extra earnings settled. The good news: it's a rate, and rates can be moved back up.`;
   } else if (rateNow > rateThen + 2) {
-    realityEl.textContent = `Income went up AND savings rate went up. That is unusually disciplined, most people do the opposite. Keep going.`;
+    realityEl.textContent = `Income went up AND your savings rate went up with it. That's genuinely rare and hard to do, most people drift the other way. Whatever you're doing, keep going.`;
   } else if (leakPct >= 80) {
-    realityEl.textContent = `You spent ${leakPct.toFixed(0)}% of every raise. In ${span} years that compounds to ₹${fmtINR(cf)} you do not have. The next raise, save it first, then notice you don't miss it.`;
+    realityEl.textContent = `About ${leakPct.toFixed(0)}% of each raise went into everyday life. Over ${span} years that adds up to roughly ₹${fmtINR(cf)} not yet invested. No guilt owed: just save the next raise first, and odds are you won't even miss it.`;
   } else {
-    realityEl.textContent = `Lifestyle inflation of ${leakPct.toFixed(0)}% is normal-to-mild. The trick is not to let it ratchet, set the savings rate floor and never let it slip below.`;
+    realityEl.textContent = `Lifestyle inflation of ${leakPct.toFixed(0)}% is mild and completely normal. The one move that matters: pick a savings-rate floor you're happy with, and gently refuse to let it slip below.`;
   }
 }
 

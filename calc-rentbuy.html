@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rent vs Buy Calculator, ThisOrThat with Bhartendra</title>
-<meta name="description" content="The honest version of rent vs buy. Includes stamp duty, society fees, opportunity cost on your down payment, and the difference between EMI and rent." />
+<meta name="description" content="Rent vs buy, counted honestly and on your side. Includes stamp duty, society fees, opportunity cost on your down payment, and the gap between EMI and rent, so you can pick with clear eyes." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -88,9 +88,9 @@
 
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The honest math</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The honest math, on your side</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Rent <span class="font-script text-thatred font-bold">or</span> Buy?</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Most "rent vs buy" calculators flatter the owner. This one counts <strong>stamp duty</strong>, <strong>society fees</strong>, <strong>opportunity cost on the down payment</strong>, and the gap between your EMI and the rent you'd pay. Then it tells you who's actually ahead.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Most "rent vs buy" calculators quietly flatter the owner. This one counts everything the sales pitch skips: <strong>stamp duty</strong>, <strong>society fees</strong>, <strong>opportunity cost on the down payment</strong>, and the gap between your EMI and the rent you'd pay. Then it shows you, plainly, which path leaves you better off.</p>
   </div>
 </section>
 
@@ -218,9 +218,9 @@
       <div id="verdict-card" class="bg-ink text-warmpaper rounded-2xl p-7">
         <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">After <span id="out-yrs">10</span> years</div>
         <div class="flex items-end gap-4 mt-3">
-          <div class="font-display text-4xl md:text-5xl font-extrabold tab-num leading-none" id="out-verdict">—</div>
+          <div class="font-display text-4xl md:text-5xl font-extrabold tab-num leading-none" id="out-verdict">-</div>
         </div>
-        <div class="mt-3 text-sm opacity-85" id="out-status">—</div>
+        <div class="mt-3 text-sm opacity-85" id="out-status">-</div>
       </div>
 
       <div class="bg-white rounded-2xl border-2 border-marigold p-6">
@@ -232,12 +232,12 @@
         <div class="mt-5 grid grid-cols-2 gap-4">
           <div>
             <div class="flex items-center gap-2 text-[11px] text-ink/60 font-semibold uppercase tracking-widest"><span class="w-2 h-2 rounded-full bg-thisblue"></span> Buy</div>
-            <div class="font-display font-extrabold text-ink text-2xl tab-num mt-1">₹<span id="out-buy">—</span></div>
+            <div class="font-display font-extrabold text-ink text-2xl tab-num mt-1">₹<span id="out-buy">-</span></div>
             <div class="text-[11px] text-ink/55 mt-1">Home equity (value − loan owing)</div>
           </div>
           <div class="text-right">
             <div class="flex items-center gap-2 text-[11px] text-ink/60 font-semibold uppercase tracking-widest justify-end"><span class="w-2 h-2 rounded-full bg-marigold-600"></span> Rent</div>
-            <div class="font-display font-extrabold text-ink text-2xl tab-num mt-1">₹<span id="out-rent">—</span></div>
+            <div class="font-display font-extrabold text-ink text-2xl tab-num mt-1">₹<span id="out-rent">-</span></div>
             <div class="text-[11px] text-ink/55 mt-1">Portfolio (down payment + EMI gap)</div>
           </div>
         </div>
@@ -247,26 +247,26 @@
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">If you buy</div>
           <ul class="mt-3 text-sm text-ink/80 space-y-1.5">
-            <li>EMI: <strong>₹<span id="out-emi">—</span>/mo</strong></li>
-            <li>Stamp duty paid: <strong>₹<span id="out-stampamt">—</span></strong></li>
-            <li>Total out-of-pocket: <strong>₹<span id="out-buyspend">—</span></strong></li>
-            <li>House value at year <span class="out-yrs-mirror">10</span>: <strong>₹<span id="out-housevalue">—</span></strong></li>
+            <li>EMI: <strong>₹<span id="out-emi">-</span>/mo</strong></li>
+            <li>Stamp duty paid: <strong>₹<span id="out-stampamt">-</span></strong></li>
+            <li>Total out-of-pocket: <strong>₹<span id="out-buyspend">-</span></strong></li>
+            <li>House value at year <span class="out-yrs-mirror">10</span>: <strong>₹<span id="out-housevalue">-</span></strong></li>
           </ul>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-600 font-bold">If you rent</div>
           <ul class="mt-3 text-sm text-ink/80 space-y-1.5">
-            <li>Rent paid (inflated): <strong>₹<span id="out-rentpaid">—</span></strong></li>
-            <li>Down payment, invested: <strong>₹<span id="out-downinv">—</span></strong></li>
-            <li>EMI-vs-rent surplus, invested: <strong>₹<span id="out-surplusinv">—</span></strong></li>
-            <li>Portfolio at year <span class="out-yrs-mirror">10</span>: <strong>₹<span id="out-rentcorpus">—</span></strong></li>
+            <li>Rent paid (inflated): <strong>₹<span id="out-rentpaid">-</span></strong></li>
+            <li>Down payment, invested: <strong>₹<span id="out-downinv">-</span></strong></li>
+            <li>EMI-vs-rent surplus, invested: <strong>₹<span id="out-surplusinv">-</span></strong></li>
+            <li>Portfolio at year <span class="out-yrs-mirror">10</span>: <strong>₹<span id="out-rentcorpus">-</span></strong></li>
           </ul>
         </div>
       </div>
 
       <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
         <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
-        <p>Both paths assume the <strong>same monthly outflow</strong>. If your EMI + maintenance exceeds rent, the buyer is "spending" more cash each month than the renter, so the renter gets to invest that surplus into equity. We compound the down payment + the monthly surplus at your equity-return assumption. The buyer's wealth is the house value at year Y minus the loan still owed.</p>
+        <p>We give both paths the <strong>same monthly outflow</strong>, so it's a fair fight. If your EMI + maintenance is more than rent, the buyer is putting more cash out each month, so we let the renter invest that surplus into equity. We compound the down payment + the monthly surplus at your equity-return assumption. The buyer's wealth is the house value at year Y minus the loan still owed.</p>
       </div>
     </div>
   </div>
@@ -274,11 +274,11 @@
 
 <section class="py-16 bg-thisblue text-warmpaper">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
-    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The honest bit</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">-</div>
     <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
-      <p>The "rent is throwing money away" line forgets two things: <strong class="text-marigold">stamp duty is also throwing money away</strong>, and so is the difference between your EMI and the rent. The renter who invests that gap consistently can out-build the buyer over 10–15 years, especially in cities where the price-to-rent ratio is high.</p>
-      <p>None of this captures the emotional value of owning a home you can paint without permission. That's real. Just don't confuse it with the math.</p>
+      <p>The "rent is throwing money away" line leaves out two costs: <strong class="text-marigold">stamp duty is money gone too</strong>, and so is the gap between your EMI and the rent. A renter who invests that gap, month after month, can quietly out-build the buyer over 10 to 15 years, especially in cities where the price-to-rent ratio runs high.</p>
+      <p>What the math can't price is the feeling of owning a home you can paint without asking anyone. That's real, and it's allowed to win. Just make the call knowing which part is the money and which part is the heart.</p>
     </div>
   </div>
 </section>
@@ -434,38 +434,38 @@ function calc() {
     card.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     verdict.className = 'font-display text-4xl md:text-5xl font-extrabold tab-num leading-none text-marigold';
-    verdict.textContent = 'Buying wins by ₹' + fmtINR(Math.abs(diff));
-    status.innerHTML = `Owner ends with <strong>₹${fmtINR(buyNetWealth)}</strong> in home equity vs renter's <strong>₹${fmtINR(rentNetWealth)}</strong> in portfolio.`;
+    verdict.textContent = 'Buying comes out ahead by ₹' + fmtINR(Math.abs(diff));
+    status.innerHTML = `You'd end with <strong>₹${fmtINR(buyNetWealth)}</strong> in home equity, against <strong>₹${fmtINR(rentNetWealth)}</strong> if you rented and invested. If you'll stay the course, buying is the stronger call here.`;
   } else if (rentNetWealth > buyNetWealth * 1.05) {
     card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     verdict.className = 'font-display text-4xl md:text-5xl font-extrabold tab-num leading-none text-marigold';
-    verdict.textContent = 'Renting wins by ₹' + fmtINR(Math.abs(diff));
-    status.innerHTML = `Renter + invested ends with <strong>₹${fmtINR(rentNetWealth)}</strong> vs owner's <strong>₹${fmtINR(buyNetWealth)}</strong> in home equity.`;
+    verdict.textContent = 'Renting comes out ahead by ₹' + fmtINR(Math.abs(diff));
+    status.innerHTML = `Renting and investing the gap would leave you with <strong>₹${fmtINR(rentNetWealth)}</strong>, against <strong>₹${fmtINR(buyNetWealth)}</strong> in home equity if you bought. The catch is real: this only holds if you actually invest the surplus, every month.`;
   } else {
     card.className = 'bg-marigold text-ink rounded-2xl p-7';
     kicker.className = baseKicker + ' text-thisblue';
     verdict.className = 'font-display text-4xl md:text-5xl font-extrabold tab-num leading-none text-ink';
-    verdict.textContent = "It's a wash";
-    status.innerHTML = `Both paths land within 5% of each other. <strong>Now it's a lifestyle question, not a money one.</strong>`;
+    verdict.textContent = "It's basically a tie";
+    status.innerHTML = `Both paths land within 5% of each other, so the money isn't deciding this one. <strong>You're free to choose on how you want to live, roots or flexibility.</strong>`;
   }
 
   // Reality
   const realityEl = document.getElementById('reality');
   const priceToRent = price / (rent * 12);
   if (years < 5) {
-    realityEl.textContent = `At ${years} years, stamp duty alone (${(stamp*100).toFixed(1)}%) often outweighs any appreciation. Short horizons strongly favour renting.`;
+    realityEl.textContent = `At just ${years} years, stamp duty alone (${(stamp*100).toFixed(1)}%) often outweighs any appreciation you'd see. Over a short stay like this, renting is usually the kinder call on your wallet.`;
   } else if (priceToRent > 30) {
-    realityEl.textContent = `Price-to-rent of ${Math.round(priceToRent)}× is high, anything above 25× usually means renting wins on the math. The premium is for emotional ownership, not returns.`;
+    realityEl.textContent = `A price-to-rent of ${Math.round(priceToRent)}× is on the high side, and above 25× the math tends to favour renting. Buying here is buying a feeling, the pride of ownership, more than a return. Worth it if that feeling matters to you.`;
   } else if (priceToRent < 18) {
-    realityEl.textContent = `Price-to-rent of ${Math.round(priceToRent)}× is low, buying tends to win below 20×. The math is on your side if you'll stay long enough.`;
+    realityEl.textContent = `A price-to-rent of ${Math.round(priceToRent)}× is low, and below 20× buying usually pulls ahead. The math is on your side here, as long as you stay long enough to let it work.`;
   } else if (Math.abs(diff) / Math.max(buyNetWealth, rentNetWealth) < 0.1) {
-    realityEl.textContent = `The numbers are within 10%. At this point it's not a financial decision, it's a question of whether you want roots or flexibility.`;
+    realityEl.textContent = `The two paths are within 10% of each other, so this isn't really a money decision. It comes down to what you want more: roots, or the freedom to move.`;
   } else {
     const tail = diff > 0
-      ? 'But that assumes you actually stay the full term.'
-      : 'Provided you actually invest the EMI-vs-rent gap every month, most people do not.';
-    realityEl.textContent = `Over ${years} years, ${diff > 0 ? 'buying' : 'renting'} ends up ahead by ₹${fmtINR(Math.abs(diff))}. ${tail}`;
+      ? 'The one condition: you stay the full term you planned for.'
+      : 'The one condition: you actually invest the EMI-vs-rent gap every month, which is the part most people quietly skip.';
+    realityEl.textContent = `Over ${years} years, ${diff > 0 ? 'buying' : 'renting'} comes out ahead by ₹${fmtINR(Math.abs(diff))}. ${tail}`;
   }
 }
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Goal Planner, ThisOrThat with Bhartendra</title>
-<meta name="description" content="Backwards from the goal. How much do you need to invest every month to actually hit it, and is that even realistic?" />
+<meta name="description" content="Start with the dream and work back to the honest monthly number, plus friendly ways to make any goal fit your life." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -89,9 +89,9 @@
 
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Reverse-engineered, honest</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Start with the dream, work back</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Goal Planner.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Down payment in 5 years? Kid's college in 12? Wedding in 3? Tell us the goal, we tell you what it costs <em>per month</em>, and whether the number is realistic at your income.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">A home in 5 years? Your kid's college in 12? Tell us the dream and when you want it. We'll work out what it takes <em>each month</em>, honestly, and whether it fits your life right now. If it doesn't fit yet, we'll help you find a version that does.</p>
   </div>
 </section>
 
@@ -178,35 +178,35 @@
       <div id="sip-card" class="bg-ink text-warmpaper rounded-2xl p-7">
         <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Monthly SIP needed</div>
         <div class="flex items-end gap-4 mt-3">
-          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none">₹<span id="out-sip">—</span></div>
+          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none">₹<span id="out-sip">-</span></div>
           <div class="text-base opacity-70 pb-1">/ month</div>
         </div>
-        <div class="mt-3 text-sm opacity-85" id="out-status">—</div>
+        <div class="mt-3 text-sm opacity-85" id="out-status">-</div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl border-2 border-marigold p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Future cost of your goal</div>
-          <div class="mt-2 font-display text-3xl font-extrabold text-ink tab-num">₹<span id="out-future">—</span></div>
-          <div class="mt-2 text-[11px] text-ink/65 leading-snug">Today's ₹<span id="out-today">—</span> becomes this much in <span id="out-yrs">—</span> years at <span id="out-inf-pct">—</span>% inflation.</div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-ink tab-num">₹<span id="out-future">-</span></div>
+          <div class="mt-2 text-[11px] text-ink/65 leading-snug">Today's ₹<span id="out-today">-</span> becomes this much in <span id="out-yrs">-</span> years at <span id="out-inf-pct">-</span>% inflation.</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Your existing corpus grows to</div>
-          <div class="mt-2 font-display text-3xl font-extrabold text-thisblue tab-num">₹<span id="out-corpus-grown">—</span></div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-thisblue tab-num">₹<span id="out-corpus-grown">-</span></div>
           <div class="mt-2 text-[11px] text-ink/65 leading-snug" id="out-corpus-note">If you stop adding anything else, your current ₹<span id="out-corpus-today">0</span> alone gets you here.</div>
         </div>
       </div>
 
       <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
-        <p>We take your goal (in today's rupees), inflate it for the years you've got, subtract whatever your existing corpus will grow into, and solve for the monthly SIP that fills the gap. <strong>If the required SIP is more than 50% of your take-home, that's a signal: the goal needs more time, less ambition, or a different income.</strong></p>
+        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How we get to your number</div>
+        <p>We take your goal in today's money, grow it for inflation so it stays honest about the future, subtract what your existing savings will become, and solve for the monthly amount that closes the gap. <strong>One gentle rule: if that number climbs past half your take-home, treat it as a nudge, not a verdict. The goal usually just wants a little more time.</strong></p>
       </div>
 
       <details class="bg-white rounded-2xl border border-navy/10 p-5" open>
         <summary class="cursor-pointer flex items-center justify-between">
           <div>
-            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Three honest alternatives</div>
-            <div class="text-sm font-semibold text-ink mt-0.5">What if the SIP is too steep?</div>
+            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Ways to make it fit</div>
+            <div class="text-sm font-semibold text-ink mt-0.5">If the monthly feels heavy</div>
           </div>
           <svg class="w-5 h-5 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </summary>
@@ -232,11 +232,11 @@
 
 <section class="py-16 bg-thisblue text-warmpaper">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The uncomfortable bit</div>
-    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">—</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The honest bit</div>
+    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">-</div>
     <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
-      <p>Most "goal calculators" online tell you a comfortable SIP and stop there. They forget that the goal will be more expensive by the time you get to it, and that you have an income, not a magic wallet.</p>
-      <p>This one shows the <strong class="text-marigold">honest SIP</strong>, the <strong class="text-marigold">share of your income</strong> it would eat, and what changes if you give the goal more time or less ambition.</p>
+      <p>Most goal calculators hand you a comfortable-looking number and wave you off. They quietly skip two things: the goal will cost more by the time you reach it, and you're working with a real income, not a bottomless wallet. We'd rather be straight with you now, so nothing catches you out later.</p>
+      <p>So this one shows you the <strong class="text-marigold">real monthly number</strong>, <strong class="text-marigold">how much of your income</strong> it asks for, and exactly how it eases the moment you give the goal a little more time. No judgement in any of it, just a clear picture you can act on.</p>
     </div>
   </div>
 </section>
@@ -252,7 +252,7 @@
       </a>
       <a href="calc-sip.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SIP</div>
-        <h3 class="font-display text-xl font-extrabold text-ink">Brutal SIP</h3>
+        <h3 class="font-display text-xl font-extrabold text-ink">Honest SIP</h3>
         <p class="text-ink/70 text-sm mt-1">The cost of starting 5 / 10 years late.</p>
       </a>
       <a href="calc-swp.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
@@ -339,25 +339,25 @@ function calc() {
     kicker.className = baseKicker + ' text-marigold';
     sipOut.className = 'text-marigold';
     sipOut.textContent = '0';
-    status.innerHTML = `<strong>Already there.</strong> Your existing corpus alone over-funds this goal by ₹${fmtINR(corpusGrown - goalFuture)} when you need it.`;
+    status.innerHTML = `<strong>You're already there.</strong> Your current savings alone over-fund this by ₹${fmtINR(corpusGrown - goalFuture)} by the time you need it. Lovely place to be.`;
   } else if (sharePct > 70) {
     card.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     sipOut.className = 'text-marigold';
     sipOut.textContent = fmtINR(sip);
-    status.innerHTML = `<strong>Not realistic.</strong> That's ${Math.round(sharePct)}% of your take-home. Give the goal more years, shrink it, or earn more first.`;
+    status.innerHTML = `<strong>A stretch too far, for now.</strong> That's ${Math.round(sharePct)}% of your take-home, which is a lot to ask of one goal. This isn't a no, it's a not-like-this. A little more time or a slightly smaller target brings it right back.`;
   } else if (sharePct > 40) {
     card.className = 'bg-marigold text-ink rounded-2xl p-7';
     kicker.className = baseKicker + ' text-thisblue';
     sipOut.className = 'text-ink';
     sipOut.textContent = fmtINR(sip);
-    status.innerHTML = `<strong>A stretch.</strong> ${Math.round(sharePct)}% of your take-home, doable, but you'll feel it every month.`;
+    status.innerHTML = `<strong>A real stretch, but doable.</strong> It's ${Math.round(sharePct)}% of your take-home, so you'll feel it. Worth it if this goal genuinely matters to you.`;
   } else {
     card.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
     kicker.className = baseKicker + ' text-marigold';
     sipOut.className = 'text-marigold';
     sipOut.textContent = fmtINR(sip);
-    status.innerHTML = `<strong>Comfortable.</strong> ${Math.round(sharePct)}% of your take-home, well within reach if you start now.`;
+    status.innerHTML = `<strong>You've got this.</strong> Just ${Math.round(sharePct)}% of your take-home, comfortably within reach. The only hard part is starting, so start this month and let it run.`;
   }
 
   // Alternatives table
@@ -380,15 +380,15 @@ function calc() {
   // Reality message
   const realityEl = document.getElementById('reality');
   if (sip <= 0) {
-    realityEl.textContent = `You're already over-funded. Move the surplus to a longer-term, higher-return bucket, don't let it sit idle.`;
+    realityEl.textContent = `You're already over-funded for this one. Let the surplus keep working somewhere longer-term instead of sitting idle. Enjoy being ahead.`;
   } else if (sharePct > 70) {
-    realityEl.textContent = `Saving ${Math.round(sharePct)}% of your income for one goal isn't a plan, it's denial. Either move the deadline or move the goalposts.`;
+    realityEl.textContent = `Asking ${Math.round(sharePct)}% of your income for a single goal isn't a plan you can keep, it's a strain you'll quietly drop. Kinder to move the date or right-size the goal now, on your own terms.`;
   } else if (sharePct > 40) {
-    realityEl.textContent = `${Math.round(sharePct)}% of your monthly income, every month, for ${years} years. Make sure you actually want this, not just the idea of it.`;
+    realityEl.textContent = `${Math.round(sharePct)}% of your income, every month, for ${years} years. That's real commitment, so make sure you want the goal itself, not just the idea of it. If you do, it's absolutely doable.`;
   } else if (years < 5 && sip > 0) {
-    realityEl.textContent = `Short-horizon goals belong in debt and FDs, not equity. At ${years} years, plan for ${(ret*100).toFixed(0)}% returns but don't bet on them.`;
+    realityEl.textContent = `For something this close, ${years} years, lean on debt funds and FDs rather than equity. Plan for around ${(ret*100).toFixed(0)}%, and don't count on the market to bail you out in time.`;
   } else {
-    realityEl.textContent = `${Math.round(sharePct)}% of your income, compounded for ${years} years at ${(ret*100).toFixed(0)}%. The math works. Now the only question is whether you actually start.`;
+    realityEl.textContent = `${Math.round(sharePct)}% of your income, compounding quietly for ${years} years at ${(ret*100).toFixed(0)}%. The maths clearly works. The only thing left is the easiest and hardest part: actually starting.`;
   }
 }
 

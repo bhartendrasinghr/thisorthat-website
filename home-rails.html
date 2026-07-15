@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Home (rails preview), ThisOrThat with Bhartendra</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .font-display { font-family:'Bricolage Grotesque',Georgia,serif; }
+  .rail { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+  .rail > * { scroll-snap-align:start; flex:0 0 auto; }
+  .rail::-webkit-scrollbar { height:8px; }
+  .rail::-webkit-scrollbar-thumb { background:#E1DDD1; border-radius:999px; }
+  .lift { transition: transform 180ms ease, box-shadow 180ms ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow:0 12px 28px rgba(26,24,19,0.10); }
+  .tile-play { opacity:0; transition:opacity 160ms ease; }
+  .ep:hover .tile-play { opacity:1; }
+  /* placeholder poster gradients, all on-brand */
+  .g1{ background:linear-gradient(135deg,#0249B1,#013580); }
+  .g2{ background:linear-gradient(135deg,#1A1813,#2C2A23); }
+  .g3{ background:linear-gradient(135deg,#FFC21F,#D99B00); }
+  .g4{ background:linear-gradient(135deg,#FF302D,#B4231F); }
+  .g5{ background:linear-gradient(135deg,#1F8A5B,#14603E); }
+  .g6{ background:linear-gradient(135deg,#0249B1,#1F8A5B); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="hover:text-navy-ink">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden md:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button class="md:hidden text-navy-ink p-2 -mr-2" aria-label="Menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </div>
+</header>
+
+<!-- ============ BILLBOARD HERO (latest episode) ============ -->
+<section class="pt-6 pb-4">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="rounded-3xl overflow-hidden border-2 border-navy-ink bg-warmpaper-2 grid md:grid-cols-5">
+      <!-- poster -->
+      <div class="md:col-span-2 g2 relative min-h-[240px] flex items-center justify-center">
+        <div class="text-center px-6">
+          <div class="text-warmpaper/50 text-[11px] uppercase tracking-[0.3em] font-bold">Episode poster</div>
+          <div class="text-warmpaper/30 text-xs mt-1">(guest photo goes here)</div>
+        </div>
+        <div class="absolute bottom-4 left-4 bg-marigold text-ink text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">New this week</div>
+      </div>
+      <!-- copy -->
+      <div class="md:col-span-3 p-7 md:p-10 flex flex-col justify-center">
+        <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Latest episode &middot; Ep 14</div>
+        <h1 class="font-display text-3xl md:text-5xl font-extrabold text-ink mt-2 leading-[1.03]">Is your SIP quietly working against you?</h1>
+        <p class="mt-3 text-ink/70 md:text-lg max-w-xl">With <strong>Mrin Agarwal</strong>. We take apart the most popular way Indians invest, and the small things that quietly cost you a decade of growth.</p>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a class="lift inline-flex items-center gap-2 bg-thisblue text-warmpaper px-6 py-3 rounded-full font-semibold">&#9654; Watch the episode</a>
+          <a href="calculators.html" class="inline-flex items-center gap-2 bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold hover:bg-warmpaper transition">or start a plan &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RAIL 1: PLAN YOUR MONEY (tools, high up) ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Do, don't just watch</div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Plan your money</h2>
+      </div>
+      <a href="calculators.html" class="text-sm text-thisblue font-semibold shrink-0">All 12 tools &rarr;</a>
+    </div>
+    <div class="rail">
+      <a href="calc-plan.html" class="lift w-72 bg-marigold rounded-2xl p-6 border-2 border-navy-ink">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Flagship</div>
+        <div class="font-display text-xl font-extrabold text-ink mt-1 leading-tight">Your full financial plan</div>
+        <p class="text-ink/75 text-sm mt-2">Every goal in one honest picture.</p>
+        <div class="mt-6 text-sm font-bold text-ink">Build it &rarr;</div>
+      </a>
+      <a href="asset-allocator.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#9684;</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Asset Allocator</div>
+        <p class="text-ink/65 text-sm mt-1">Equity, debt, gold, cash, in your mix.</p>
+      </a>
+      <a href="calc-mf-portfolio.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-sm font-bold">MF</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">MF Portfolio</div>
+        <p class="text-ink/65 text-sm mt-1">Which fund categories, how much each.</p>
+      </a>
+      <a href="calc-prepay.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xs font-bold">EMI</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Loan Prepayment</div>
+        <p class="text-ink/65 text-sm mt-1">Clear the home loan years early.</p>
+      </a>
+      <a href="calc-retirement.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold">&#8377;</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Real Retirement</div>
+        <p class="text-ink/65 text-sm mt-1">The corpus you actually need.</p>
+      </a>
+      <a href="calc-goal.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold">G</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Goal Planner</div>
+        <p class="text-ink/65 text-sm mt-1">Start with the dream, work back.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RAIL 2: LATEST EPISODES ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Latest episodes</h2>
+      <a href="episodes.html" class="text-sm text-thisblue font-semibold shrink-0">All episodes &rarr;</a>
+    </div>
+    <div class="rail">
+      <!-- episode tiles: poster + title, placeholder gradients -->
+      <a class="ep lift w-72 group">
+        <div class="g1 relative rounded-2xl h-40 flex items-end p-4 overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
+          <span class="relative bg-black/25 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep 14 &middot; 48 min</span>
+        </div>
+        <div class="mt-2 font-semibold text-ink leading-snug">Is your SIP quietly working against you?</div>
+        <div class="text-xs text-ink/55 mt-0.5">Mrin Agarwal</div>
+      </a>
+      <a class="ep lift w-72 group">
+        <div class="g3 relative rounded-2xl h-40 flex items-end p-4 overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
+          <span class="relative bg-black/25 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep 13 &middot; 52 min</span>
+        </div>
+        <div class="mt-2 font-semibold text-ink leading-snug">Rent or buy? The honest maths.</div>
+        <div class="text-xs text-ink/55 mt-0.5">With a real Mumbai example</div>
+      </a>
+      <a class="ep lift w-72 group">
+        <div class="g2 relative rounded-2xl h-40 flex items-end p-4 overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
+          <span class="relative bg-black/25 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep 12 &middot; 41 min</span>
+        </div>
+        <div class="mt-2 font-semibold text-ink leading-snug">Why your emergency fund is too small</div>
+        <div class="text-xs text-ink/55 mt-0.5">Behaviour</div>
+      </a>
+      <a class="ep lift w-72 group">
+        <div class="g5 relative rounded-2xl h-40 flex items-end p-4 overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
+          <span class="relative bg-black/25 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep 11 &middot; 39 min</span>
+        </div>
+        <div class="mt-2 font-semibold text-ink leading-snug">Gold: hedge or hype?</div>
+        <div class="text-xs text-ink/55 mt-0.5">Commodities</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RAIL 3: READ (articles + slow thought, not buried) ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Prefer to read</div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Articles &amp; Slow Thought</h2>
+      </div>
+      <a href="articles.html" class="text-sm text-thisblue font-semibold shrink-0">All writing &rarr;</a>
+    </div>
+    <div class="rail">
+      <a class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden">
+        <div class="g6 h-28"></div>
+        <div class="p-5">
+          <div class="text-[10px] uppercase tracking-widest text-mustard-deep font-bold">Behaviour</div>
+          <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">The tax on impatience</div>
+          <div class="text-xs text-ink/55 mt-2">5 min read</div>
+        </div>
+      </a>
+      <a class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden">
+        <div class="g4 h-28"></div>
+        <div class="p-5">
+          <div class="text-[10px] uppercase tracking-widest text-mustard-deep font-bold">Markets</div>
+          <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">Nobody rings a bell at the top</div>
+          <div class="text-xs text-ink/55 mt-2">7 min read</div>
+        </div>
+      </a>
+      <a class="lift w-72 bg-ink text-warmpaper rounded-2xl overflow-hidden border border-navy-ink">
+        <div class="p-6 h-full flex flex-col justify-between min-h-[172px]">
+          <div class="text-[10px] uppercase tracking-widest text-marigold font-bold">Slow Thought</div>
+          <div class="font-script text-2xl text-warmpaper leading-snug">The money you don't spend is the freedom you're buying.</div>
+          <div class="text-xs text-warmpaper/50 mt-2">A weekly note</div>
+        </div>
+      </a>
+      <a class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden">
+        <div class="g3 h-28"></div>
+        <div class="p-5">
+          <div class="text-[10px] uppercase tracking-widest text-mustard-deep font-bold">Retirement</div>
+          <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">The number nobody tells you</div>
+          <div class="text-xs text-ink/55 mt-2">6 min read</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RAIL 4: BY TOPIC ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mb-4">Browse by topic</h2>
+    <div class="rail">
+      <a class="lift w-52 h-28 rounded-2xl g1 text-white p-5 flex flex-col justify-between"><span class="text-2xl">&#127974;</span><span class="font-display text-lg font-extrabold">Retirement</span></a>
+      <a class="lift w-52 h-28 rounded-2xl g3 text-ink p-5 flex flex-col justify-between"><span class="text-2xl">&#128200;</span><span class="font-display text-lg font-extrabold">Markets</span></a>
+      <a class="lift w-52 h-28 rounded-2xl g2 text-white p-5 flex flex-col justify-between"><span class="text-2xl">&#129504;</span><span class="font-display text-lg font-extrabold">Behaviour</span></a>
+      <a class="lift w-52 h-28 rounded-2xl g5 text-white p-5 flex flex-col justify-between"><span class="text-2xl">&#127968;</span><span class="font-display text-lg font-extrabold">Real Estate</span></a>
+      <a class="lift w-52 h-28 rounded-2xl g4 text-white p-5 flex flex-col justify-between"><span class="text-2xl">&#129534;</span><span class="font-display text-lg font-extrabold">Tax</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RAIL 5: THE GUESTS ============ -->
+<section class="py-6 pb-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">The guests</h2>
+      <a href="guests.html" class="text-sm text-thisblue font-semibold shrink-0">Meet everyone &rarr;</a>
+    </div>
+    <div class="rail">
+      <a class="lift w-40 text-center"><div class="g1 w-40 h-40 rounded-2xl flex items-center justify-center text-white/40 text-xs">photo</div><div class="mt-2 font-semibold text-ink text-sm">Mrin Agarwal</div><div class="text-xs text-ink/50">Financial educator</div></a>
+      <a class="lift w-40 text-center"><div class="g3 w-40 h-40 rounded-2xl flex items-center justify-center text-ink/40 text-xs">photo</div><div class="mt-2 font-semibold text-ink text-sm">Guest name</div><div class="text-xs text-ink/50">Fund manager</div></a>
+      <a class="lift w-40 text-center"><div class="g2 w-40 h-40 rounded-2xl flex items-center justify-center text-white/40 text-xs">photo</div><div class="mt-2 font-semibold text-ink text-sm">Guest name</div><div class="text-xs text-ink/50">Founder</div></a>
+      <a class="lift w-40 text-center"><div class="g5 w-40 h-40 rounded-2xl flex items-center justify-center text-white/40 text-xs">photo</div><div class="mt-2 font-semibold text-ink text-sm">Guest name</div><div class="text-xs text-ink/50">Economist</div></a>
+      <a class="lift w-40 text-center"><div class="g6 w-40 h-40 rounded-2xl flex items-center justify-center text-white/40 text-xs">photo</div><div class="mt-2 font-semibold text-ink text-sm">Guest name</div><div class="text-xs text-ink/50">Author</div></a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/70 py-12">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">&copy; 2026 ThisOrThat with Bhartendra. &middot; Layout preview, not live.</div>
+</footer>
+
+</body>
+</html>

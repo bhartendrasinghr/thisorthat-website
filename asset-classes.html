@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Every Place Your Money Can Live, Asset Classes · ThisOrThat</title>
-<meta name="description" content="Equity, fixed income, gold, real estate, crypto and more, mapped by risk and return, with an honest take on each. The full menu of where your money can go in India." />
+<meta name="description" content="Equity, fixed income, gold, real estate, crypto and more, mapped by risk and return, with an honest take on each. The full menu of where your money can go in India, no jargon, nothing being sold." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -87,9 +87,9 @@
 <!-- HERO -->
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The full menu</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The full menu, laid out plainly</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Every place your money can live.</h1>
-    <p class="mt-5 text-lg text-ink/75 max-w-3xl">From a fixed deposit to a crypto wallet, there are seven families your money can go into. Each trades <strong>potential return</strong> for <strong>risk</strong>, <strong>volatility</strong>, <strong>liquidity</strong> and <strong>hassle</strong> differently. Here's the honest map, no product being sold.</p>
+    <p class="mt-5 text-lg text-ink/75 max-w-3xl">From a fixed deposit to a crypto wallet, there are seven families your money can go into. Each one trades <strong>potential return</strong> for <strong>risk</strong>, <strong>volatility</strong>, <strong>liquidity</strong> and <strong>hassle</strong> in its own way. Here's the honest map, with nobody selling you a thing.</p>
   </div>
 </section>
 
@@ -116,6 +116,7 @@
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The map</div>
           <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1">Risk vs potential return.</h2>
           <div class="text-sm text-ink/65 mt-1">Tap any dot to read its card below. Higher up = higher <em>potential</em> return (never guaranteed). Further right = more risk.</div>
+          <!-- map risk/return axis wording kept precise -->
         </div>
       </div>
       <div class="mt-5 relative">
@@ -125,7 +126,7 @@
         </svg>
       </div>
       <div id="map-readout" class="mt-2 rounded-xl bg-warmpaper-2 p-3 text-sm text-ink/75 min-h-[46px] flex items-center">
-        <span class="text-ink/45">Tap a dot to see what it is →</span>
+        <span class="text-ink/45">Tap any dot and we'll tell you what it is →</span>
       </div>
       <div id="map-legend" class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-[11px]"></div>
     </div>
@@ -136,8 +137,8 @@
 <section class="pb-16 bg-cream">
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex items-end justify-between gap-4 mb-5 flex-wrap">
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">The seven families</h2>
-      <div class="text-xs text-ink/50 font-mono"><span id="card-count">—</span> instruments</div>
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">The seven families, one by one</h2>
+      <div class="text-xs text-ink/50 font-mono"><span id="card-count">-</span> instruments</div>
     </div>
     <div id="fam-chips" class="flex flex-wrap gap-2 mb-6"></div>
     <div id="cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -149,9 +150,9 @@
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The takeaway</div>
     <div class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">There's no <em>best</em> asset class, only the right one for a goal and a time horizon.</div>
-    <p class="mt-5 text-warmpaper/85 leading-relaxed">Short-term money belongs in the boring, liquid stuff. Long-term money can afford to ride equity's storms. Gold is insurance, not an engine. And anything with a lock-in or a 30% tax deserves a very good reason. Match the asset to the job, that's the whole game.</p>
+    <p class="mt-5 text-warmpaper/85 leading-relaxed">Short-term money belongs in the boring, liquid stuff, and that's a good thing. Long-term money can afford to ride equity's storms. Gold is insurance, not an engine. And anything with a lock-in or a 30% tax deserves a very good reason before you commit to it. Match the asset to the job it has to do, and you've got the whole game.</p>
     <div class="mt-7 flex flex-wrap gap-3">
-      <a href="asset-allocator.html" class="bg-marigold text-ink px-6 py-3 rounded-full font-semibold hover:bg-marigold-soft transition">Find your mix →</a>
+      <a href="asset-allocator.html" class="bg-marigold text-ink px-6 py-3 rounded-full font-semibold hover:bg-marigold-soft transition">Let's find your mix →</a>
       <a href="calc-plan.html" class="border border-warmpaper/40 text-warmpaper px-6 py-3 rounded-full font-semibold hover:bg-warmpaper hover:text-ink transition">Build your full plan</a>
     </div>
   </div>
@@ -201,73 +202,73 @@ const ASSETS = [
   { id:'direct-equity', fam:'equity', name:'Direct Equity', what:'Buying individual company shares on the stock exchange.',
     retLo:12, retHi:15, risk:5, vol:5, liq:5, min:'₹1 (one share)',
     tax:'LTCG 12.5% above ₹1.25L/yr · STCG 20%.',
-    take:'The purest wealth engine, and the easiest place to lose money. Stock-picking well is a full-time skill. Most people are better off owning equity through funds.' },
+    take:'The purest wealth engine, and the easiest place to lose money. Picking stocks well is genuinely a full-time skill, and there\'s no shame in not having the hours for it. Most of us are better off owning equity through funds.' },
   { id:'equity-mf', fam:'equity', name:'Equity Mutual Funds', what:'A professionally managed basket of stocks; index funds just track the market cheaply.',
     retLo:11, retHi:13, risk:4, vol:4, liq:4, min:'₹100–500 SIP',
     tax:'Same as equity: LTCG 12.5% above ₹1.25L · STCG 20%.',
-    take:'How most Indians should own equity. Diversified, low-cost (if you pick index funds), SEBI-regulated. Start here, then get fancy later, if ever.' },
+    take:'How most Indians are best off owning equity. Diversified, low-cost (if you pick index funds), SEBI-regulated. Start here with a clear conscience, and get fancy later, if ever.' },
   { id:'unlisted', fam:'equity', name:'Unlisted / Pre-IPO Shares', what:'Shares of companies not yet listed on an exchange.',
     retLo:0, retHi:25, risk:5, vol:5, liq:1, min:'Often ₹1L+',
     tax:'LTCG 12.5% after 24 months · STCG at slab.',
-    take:'Pre-IPO hype sells dreams. Pricing is opaque, exits are hard, and the IPO may never come. For informed risk-takers with money they can lock away.' },
+    take:'Pre-IPO hype sells dreams, so go in clear-eyed. Pricing is opaque, exits are hard, and the IPO may never come. Best kept to informed risk-takers with money they can happily lock away.' },
   { id:'aif', fam:'equity', name:'AIF', what:'Alternative Investment Funds, pooled vehicles running strategies mutual funds can\'t.',
     retLo:8, retHi:18, risk:5, vol:4, liq:2, min:'₹1 Cr',
     tax:'Varies by category; Cat III often taxed at fund level.',
-    take:'HNI territory. ₹1 Cr minimum buys access to hedge-fund-style strategies, and fees to match. The dispersion between good and bad managers is brutal. Read the fine print.' },
+    take:'HNI territory. ₹1 Cr minimum buys access to hedge-fund-style strategies, and fees to match. The gap between good and bad managers is wide, so read the fine print before you commit.' },
   { id:'sif', fam:'equity', name:'SIF', what:'Specialized Investment Fund, SEBI\'s new middle tier between mutual funds and PMS/AIF.',
     retLo:9, retHi:14, risk:4, vol:4, liq:3, min:'₹10 L',
     tax:'Taxed like the underlying (equity / debt).',
-    take:'The freshly-minted category (2025) for those who\'ve outgrown mutual funds but aren\'t at PMS scale. More flexible strategies, ₹10L entry. Brand new, let the track records build before you pile in.' },
+    take:'The freshly-minted category (2025) for those who\'ve outgrown mutual funds but aren\'t at PMS scale. More flexible strategies, ₹10L entry. It\'s brand new, so there\'s no rush: let the track records build before you pile in.' },
   { id:'pms', fam:'equity', name:'PMS', what:'Portfolio Management Service, a manager runs a concentrated portfolio held in your own demat.',
     retLo:10, retHi:16, risk:4, vol:4, liq:3, min:'₹50 L',
     tax:'You own the stocks, taxed on each sale (LTCG/STCG).',
-    take:'₹50L minimum for a bespoke, transparent portfolio in your name. The transparency is a genuine plus; the fees and churn can quietly eat the edge. Always benchmark against a plain index fund.' },
+    take:'₹50L minimum for a bespoke, transparent portfolio in your name. The transparency is a genuine plus; just keep an eye on fees and churn, which can quietly eat the edge. Always benchmark it against a plain index fund.' },
 
   { id:'fd', fam:'fixed', name:'Fixed Deposit', what:'Lend to a bank for a fixed period at a fixed rate.',
     retLo:6, retHi:7.5, risk:1, vol:1, liq:3, min:'₹1,000',
     tax:'Interest taxed at your slab.',
-    take:'Safe, simple, and quietly losing to inflation after tax. A parking lot for money you\'ll need soon, not a place wealth is built.' },
+    take:'Safe, simple, and quietly losing to inflation after tax. Think of it as a parking spot for money you\'ll need soon, not the place wealth is built. It has its job, just a small one.' },
   { id:'bonds', fam:'fixed', name:'Bonds', what:'Lend to the government (G-Secs) or a company for a fixed coupon.',
     retLo:6.5, retHi:9, risk:2, vol:2, liq:3, min:'₹1,000–10,000',
     tax:'Coupon at slab; capital gains as per holding period.',
-    take:'G-Secs are as close to risk-free as India offers. Corporate bonds pay more for more risk, always ask who you\'re lending to and what could go wrong.' },
+    take:'G-Secs are as close to risk-free as India offers. Corporate bonds pay more because they carry more risk, so it\'s always worth asking who you\'re lending to and what could go wrong.' },
   { id:'debt-mf', fam:'fixed', name:'Debt Mutual Funds', what:'Funds that invest in bonds and money-market instruments.',
     retLo:6, retHi:8, risk:2, vol:2, liq:4, min:'₹500',
     tax:'Gains taxed at slab (LTCG edge removed in 2023).',
-    take:'More flexible and liquid than FDs, professionally managed. Lost their tax advantage in 2023, but still the smart home for 1–3 year money.' },
+    take:'More flexible and liquid than FDs, and professionally managed. They lost their tax advantage in 2023, but they\'re still a smart home for 1–3 year money.' },
 
   { id:'commodity', fam:'commodity', name:'Commodities', what:'Oil, metals, agri, traded via futures, ETFs or commodity funds.',
     retLo:0, retHi:10, risk:4, vol:4, liq:3, min:'Varies',
     tax:'As per instrument; often speculative/business income.',
-    take:'You\'re betting on price cycles, not compounding, commodities produce no cash flow. A trader\'s game. For most portfolios, gold is the only commodity worth a slot.' },
+    take:'Here you\'re betting on price cycles, not compounding, because commodities produce no cash flow. It\'s largely a trader\'s game. For most portfolios, gold is the only commodity worth a slot.' },
 
   { id:'gold', fam:'gold', name:'Gold', what:'Physical, ETFs, or the (now-paused) Sovereign Gold Bonds.',
     retLo:8, retHi:10, risk:3, vol:3, liq:4, min:'Small',
     tax:'SGB tax-free on maturity · ETF/physical LTCG 12.5%.',
-    take:'A hedge, not an engine. 5–10% of a portfolio as crisis insurance. Bonds and ETFs beat jewellery every time, you\'re not paying making charges to store value.' },
+    take:'A hedge, not an engine. 5–10% of a portfolio as crisis insurance is plenty. Bonds and ETFs beat jewellery every time here, since you\'re not paying making charges just to store value.' },
 
   { id:'realestate', fam:'realestate', name:'Real Estate', what:'Physical property, or REITs that trade like shares.',
     retLo:7, retHi:11, risk:4, vol:3, liq:2, min:'Huge (physical) · ₹100s (REIT)',
     tax:'LTCG 12.5% after 24 months · rent at slab.',
-    take:'The asset Indians love most and measure least, illiquid, lumpy, full of hidden costs. REITs hand you real-estate returns and liquidity without the tenant calls.' },
+    take:'The asset Indians love most and measure least: illiquid, lumpy, full of hidden costs that are easy to miss. If you want the returns without the tenant calls, REITs hand you real-estate exposure and liquidity in one.' },
 
   { id:'currency', fam:'currency', name:'Currency / Forex', what:'Betting on one currency rising or falling against another.',
     retLo:-5, retHi:5, risk:5, vol:5, liq:5, min:'Varies',
     tax:'As per instrument; speculative.',
-    take:'Currency isn\'t an investment, it\'s a bet on one country versus another, with no underlying growth. Leave it to traders and treasuries.' },
+    take:'Currency isn\'t really an investment, it\'s a bet on one country versus another, with no underlying growth to carry you. Best left to traders and treasuries.' },
 
   { id:'crypto', fam:'alt', name:'Crypto', what:'Digital assets like Bitcoin and Ethereum.',
     retLo:-50, retHi:50, risk:5, vol:5, liq:4, min:'₹100',
     tax:'Flat 30% + 1% TDS · no loss set-off.',
-    take:'The most volatile asset most people can access. 30% tax, no loss offset, no cash flow. If you play, only with money you can afford to lose entirely, and size it like a lottery ticket, not a plan.' },
+    take:'The most volatile asset most people can access. 30% tax, no loss offset, no cash flow. If you do play, only with money you could lose entirely without it hurting, and size it like a lottery ticket, not a plan.' },
   { id:'art', fam:'alt', name:'Art & Collectibles', what:'Paintings, watches, rare objects held for appreciation.',
     retLo:0, retHi:12, risk:4, vol:3, liq:1, min:'High',
     tax:'LTCG as per holding period.',
-    take:'Passion first, investment second. No cash flow, a thin market, and pricing is subjective. Buy what you\'d be happy to keep forever, not what you hope to flip.' },
+    take:'Passion first, investment second. No cash flow, a thin market, and pricing that\'s a matter of taste. Buy what you\'d be happy to keep forever, not what you\'re hoping to flip.' },
   { id:'pe-vc', fam:'alt', name:'Private Equity / VC', what:'Owning slices of unlisted companies via funds.',
     retLo:0, retHi:25, risk:5, vol:4, liq:1, min:'Very high',
     tax:'As per fund structure.',
-    take:'Home-run economics: most bets lose, a few win big enough to carry the fund. Decade-long lock-ins and steep minimums. Institutional and serious-HNI territory.' }
+    take:'Home-run economics: most bets lose, and a few win big enough to carry the whole fund. Decade-long lock-ins and steep minimums come with it. Really institutional and serious-HNI territory.' }
 ];
 
 const fmtRet = (lo, hi) => (lo < 0 || hi > 20) ? `${lo > 0 ? '+' : ''}${lo}% to ${hi > 0 ? '+' : ''}${hi}%` : `${lo}–${hi}%`;
