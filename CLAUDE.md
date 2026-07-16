@@ -34,7 +34,16 @@ Static website for the "This or That with Bhartendra" Indian personal-finance po
 - 8px grid for spacing (8/16/24/32/48/64)
 - Radii: sm 6px · md 12px · lg 18px · xl 36px
 
-**Voice:** Sharp, warm, picks a side. Pose a fork → guide → pick one. We don't promise returns, hedge endlessly, or shout in caps.
+**Voice (warm AND sharp — locked in July 2026, applies to ALL copy):**
+- On the reader's side, never across the table. "A friend who has their life sorted, helping you get there" — not "a smart person correcting you."
+- No shame: money confusion is never the reader's fault. Blame the system, never the reader.
+- Every hard number leaves a door open: "This isn't a no, it's a not-like-this." Verdicts hold the reader, then hand them the next step.
+- Still sharp and honest — the truth doesn't get softer, the hand delivering it does. Never hedgy advisor-mush.
+- No em-dashes anywhere (the "AI give-away") except brand.html. Use commas, colons, or hyphens.
+- No emoji spam, no cutesy tone. Disclaimers stay precise and serious.
+- Gold-standard reference: calc-goal.html verdict strings.
+- Naming: it's "Honest SIP" (renamed from "Brutal SIP" in the warm pass).
+- Pose a fork → guide → pick one. We don't promise returns, hedge endlessly, or shout in caps.
 
 **Logo:**
 - `logo.png` — square mark for cover art / avatars / app icon
