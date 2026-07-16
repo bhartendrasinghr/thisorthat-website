@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Real Retirement Calculator, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Most retirement calculators hand you a comfortable number. This one, inflation-adjusted and lifestyle-honest, shows you the real one, then walks you to the monthly SIP that gets you there." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,7 +121,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Inflation-adjusted, lifestyle-honest</div>
     <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy-ink mt-3 leading-[1.05]">Real Retirement.</h1>
-    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Most retirement calculators tell you a comfortable number. This one tells you the inconvenient one. ₹2 crore feels like a lot today, let's see what it actually buys in 25 years.</p>
+    <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Most calculators hand you a comfortable number. We'd rather show you the real one, so you can plan around it with time to spare. ₹2 crore feels like a lot today, so let's see together what it actually buys in 25 years.</p>
   </div>
 </section>
 
@@ -229,7 +230,7 @@
       <!-- Big number: corpus required -->
       <div class="bg-navy-ink text-cream rounded-2xl p-7">
         <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Corpus you need at retirement</div>
-        <div class="font-serif text-5xl md:text-6xl font-bold text-mustard mt-3 tab-num leading-none">₹<span id="out-corpus">—</span></div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-mustard mt-3 tab-num leading-none">₹<span id="out-corpus">-</span></div>
         <div class="mt-3 text-sm text-cream/70" id="out-corpus-words">in <span id="out-yrs">30</span> years from today</div>
       </div>
 
@@ -237,21 +238,21 @@
       <div id="sip-card" class="bg-white rounded-2xl border-2 border-mustard p-7">
         <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold" id="out-sip-label">Monthly SIP needed from today</div>
         <div class="flex items-end gap-4 mt-3">
-          <div class="font-serif text-5xl md:text-6xl font-bold text-navy-ink tab-num leading-none"><span id="out-sip-prefix">₹</span><span id="out-sip">—</span></div>
+          <div class="font-serif text-5xl md:text-6xl font-bold text-navy-ink tab-num leading-none"><span id="out-sip-prefix">₹</span><span id="out-sip">-</span></div>
         </div>
-        <div class="mt-3 text-sm text-navy/60" id="out-sip-note">Assuming you keep this up till retirement, with no breaks.</div>
+        <div class="mt-3 text-sm text-navy/60" id="out-sip-note">This assumes you keep it going till retirement. Start this month and let it run.</div>
       </div>
 
       <!-- The math: 4 mini cards -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div class="bg-white rounded-xl p-4 border border-navy/10">
           <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">First month at retirement</div>
-          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-exp">—</span></div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-exp">-</span></div>
           <div class="text-[10px] text-navy/50 mt-1">vs ₹<span id="out-today-exp">50,000</span> today</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
           <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Your existing corpus grows to</div>
-          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-cur">—</span></div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-cur">-</span></div>
           <div class="text-[10px] text-navy/50 mt-1">at <span id="out-pre-pct">12</span>% over <span id="out-yrs-grow">30</span> yrs</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
@@ -261,7 +262,7 @@
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
           <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Total you'll contribute</div>
-          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-total-cont">—</span></div>
+          <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-total-cont">-</span></div>
           <div class="text-[10px] text-navy/50 mt-1">the rest is compounding</div>
         </div>
       </div>
@@ -274,18 +275,18 @@
           <div id="bar-grow" class="bar bg-mustard" style="width: 70%"></div>
         </div>
         <div class="flex justify-between mt-3 text-xs">
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-navy"></span><span class="text-navy-ink/70">Your contributions: <strong class="tab-num text-navy-ink">₹<span id="pct-cont-val">—</span></strong> <span class="text-navy/50">(<span id="pct-cont">30</span>%)</span></span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-mustard"></span><span class="text-navy-ink/70">Growth: <strong class="tab-num text-navy-ink">₹<span id="pct-grow-val">—</span></strong> <span class="text-navy/50">(<span id="pct-grow">70</span>%)</span></span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-navy"></span><span class="text-navy-ink/70">Your contributions: <strong class="tab-num text-navy-ink">₹<span id="pct-cont-val">-</span></strong> <span class="text-navy/50">(<span id="pct-cont">30</span>%)</span></span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-mustard"></span><span class="text-navy-ink/70">Growth: <strong class="tab-num text-navy-ink">₹<span id="pct-grow-val">-</span></strong> <span class="text-navy/50">(<span id="pct-grow">70</span>%)</span></span></div>
         </div>
       </div>
 
       <!-- Show the math: year-by-year corpus depletion -->
       <details class="bg-white border border-navy/10 rounded-2xl">
         <summary class="cursor-pointer p-5 font-semibold text-navy-ink hover:bg-paper rounded-2xl select-none">
-          📐 Show the maths, year-by-year corpus depletion
+          📐 Show the maths, year by year, so you can trust the number
         </summary>
         <div class="px-5 pb-5">
-          <p class="text-xs text-navy/60 mb-3">Each month, you withdraw that month's expense at the start, then the remaining corpus grows for the month at your post-retirement return (compounded monthly). The table summarises each year (12 monthly cycles). Last row should reach ~₹0.</p>
+          <p class="text-xs text-navy/60 mb-3">Each month, you withdraw that month's expense at the start, then the remaining corpus grows for the month at your post-retirement return (compounded monthly). The table summarises each year (12 monthly cycles). The last row should land near ₹0, which is the plan working exactly as designed.</p>
           <div class="overflow-x-auto -mx-5 px-5">
             <table class="w-full text-xs tab-num">
               <thead>
@@ -307,14 +308,14 @@
   </div>
 </section>
 
-<!-- THE INCONVENIENT BIT -->
+<!-- THE HONEST BIT -->
 <section class="py-16 bg-navy text-cream">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What this number actually says</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">What this number is really telling you</div>
     <div id="reality" class="mt-4 font-serif text-2xl md:text-3xl font-bold leading-snug"></div>
     <div class="mt-6 space-y-4 text-cream/80 leading-relaxed">
-      <p>If your current SIP is less than the number above, you're not "behind", you're <em>under-funding</em>. The two are different. Behind implies you can catch up. Under-funded implies the maths needs to change: <strong>save more, work longer, or accept a smaller retirement</strong>. There is no fourth option.</p>
-      <p>The most expensive sentence in personal finance is <em>"I'll start next year."</em> The cost of 12 missed months at age 30 is roughly 4 months of expenses at age 65. Try it, push your age slider forward by one and watch the SIP number jump.</p>
+      <p>If your current SIP is below the number above, you're not "behind", and this isn't a scolding. It just means the maths is asking for one honest adjustment: <strong>save a little more, work a little longer, or gently right-size the retirement you're picturing</strong>. Pick the lever that fits your life. Any one of them moves you forward.</p>
+      <p>The kindest thing you can do for your future self is to start before you feel fully ready. Twelve months of waiting at 30 costs roughly four months of expenses at 65, which is exactly why starting small today beats starting big someday. Try it: nudge your age slider forward by one and watch the SIP number move.</p>
     </div>
     <a href="episode-detail.html?v=C8lNnLi2Ppk" class="mt-8 inline-flex items-center gap-2 bg-mustard text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-mustard-soft transition">Watch: The Truth About This Market →</a>
   </div>
@@ -327,8 +328,8 @@
     <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
       <a href="calc-sip.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
         <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-base font-bold mb-3">SIP</div>
-        <h3 class="font-serif text-xl font-bold text-navy-ink">Brutal SIP</h3>
-        <p class="text-navy-ink/70 text-sm mt-1">Shows you the corpus AND the corpus you'd have had if you started 5 years earlier.</p>
+        <h3 class="font-serif text-xl font-bold text-navy-ink">Honest SIP</h3>
+        <p class="text-navy-ink/70 text-sm mt-1">Your corpus, plus a gentle look at what starting five years sooner would add.</p>
       </a>
       <a href="calc-buckets.html" class="block bg-white border border-navy/10 rounded-2xl p-6 hover:border-navy/30 transition">
         <div class="w-10 h-10 rounded-xl bg-navy text-mustard flex items-center justify-center text-base font-bold mb-3">3B</div>
@@ -486,14 +487,14 @@ function calc() {
     sipLabel.className = 'text-xs uppercase tracking-[0.3em] text-emerald-600 font-semibold';
     sipPrefix.textContent = '';
     sipValue.textContent = '₹0 needed';
-    sipNote.innerHTML = `Your current corpus alone (₹${fmtINR(curCorp)} → ₹${fmtINR(futureCurCorp)} at retirement) over-funds you by <strong class="text-emerald-700">₹${fmtINR(surplus)}</strong>. You could retire earlier, spend more, or just keep investing for legacy.`;
+    sipNote.innerHTML = `Your current corpus alone (₹${fmtINR(curCorp)} → ₹${fmtINR(futureCurCorp)} at retirement) already covers you, with <strong class="text-emerald-700">₹${fmtINR(surplus)}</strong> to spare. That's real freedom: retire a little earlier, spend a little more, or keep investing for the people you love.`;
   } else {
     sipCard.className = 'bg-white rounded-2xl border-2 border-mustard p-7';
     sipLabel.textContent = 'Monthly SIP needed from today';
     sipLabel.className = 'text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold';
     sipPrefix.textContent = '₹';
     sipValue.textContent = fmtINRFull(Math.round(sip));
-    sipNote.textContent = 'Assuming you keep this up till retirement, with no breaks.';
+    sipNote.textContent = 'This assumes you keep it going till retirement. Start this month and let it run.';
   }
 
   document.getElementById('bar-cont').style.width = contribPct + '%';
@@ -523,15 +524,15 @@ function calc() {
   if (onTrack) {
     const surplus = futureCurCorp - corpusNeeded;
     const surplusYears = Math.round((surplus / (annualExpAtRet)) || 0);
-    reality = `Your current ₹${fmtINR(curCorp)} alone grows to ₹${fmtINR(futureCurCorp)} by age ${retAge}, ₹${fmtINR(surplus)} more than the ₹${fmtINR(corpusNeeded)} you need. That's roughly ${surplusYears} extra years of retirement income, or the option to stop working sooner. This is what compounding looks like when you start early.`;
+    reality = `Your current ₹${fmtINR(curCorp)} alone grows to ₹${fmtINR(futureCurCorp)} by age ${retAge}, which is ₹${fmtINR(surplus)} more than the ₹${fmtINR(corpusNeeded)} you need. That's roughly ${surplusYears} extra years of income, or the freedom to stop working sooner. This is what starting early quietly does for you.`;
   } else if (yearsToRet < 5) {
-    reality = `You have ${yearsToRet} working years left. Even a ₹${fmtINRFull(Math.round(sip))}/month SIP will struggle to bridge this. The honest move is to keep working, or to drop expected expenses.`;
+    reality = `You have ${yearsToRet} working years left, so a ₹${fmtINRFull(Math.round(sip))}/month SIP alone has a lot to carry. This isn't a no, it's a not-like-this. A few more working years, or a gently trimmed expense target, brings the plan right back within reach.`;
   } else if (sip > expToday * 0.5) {
-    reality = `That's ${Math.round((sip / expToday) * 100)}% of your current monthly expense, going into a SIP. Most people can't sustain this. The realistic options are: retire later, spend less in retirement, or accept a corpus shortfall.`;
+    reality = `That's ${Math.round((sip / expToday) * 100)}% of your monthly expenses going into a SIP, which is a lot to ask of one plan. So let's not force it: a slightly later retirement, a slightly leaner target, or a mix of both makes this feel doable again. You have room to choose.`;
   } else if (sip > expToday * 0.25) {
-    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP is doable, but only if you start today and never pause. Most people pause once. That one pause is what makes "₹2 crore" not enough.`;
+    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP is genuinely doable if you start now and let it run. Life happens and a pause or two is normal, so if you can, just restart the moment you're able. Steadiness, not perfection, is what gets you there.`;
   } else {
-    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP gets you there, comfortably. The question now isn't "can I save this?", it's "what happens if I save 20% more?" Move the age slider back by 5 to see.`;
+    reality = `A ₹${fmtINRFull(Math.round(sip))} monthly SIP gets you there comfortably. You've got this. The fun question now isn't "can I save this?", it's "what could saving 20% more unlock?" Move the age slider back by 5 to see.`;
   }
   document.getElementById('reality').textContent = reality;
 }

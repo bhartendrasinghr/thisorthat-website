@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Equity MF Portfolio Builder, ThisOrThat with Bhartendra</title>
-<meta name="description" content="Tell us your SIP or lumpsum, your horizon and your risk appetite, and get a ready equity mutual fund portfolio: which fund categories, and how much money in each." />
+<meta name="description" content="Tell us your SIP or lumpsum, your horizon and how much of a fall you can sit through, and we'll build you a ready equity mutual fund portfolio: which fund categories, and how much money in each." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -92,7 +92,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">From money to a real portfolio</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Equity MF Portfolio Builder.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You have decided to invest in equity mutual funds. Good. Now, which kinds, and how much in each? Tell us the money and a few honest answers, and we will lay out a category split built for your horizon and your nerves.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">You've decided to invest in equity mutual funds. That's a good decision already made. The next question, which kinds and how much in each, is the one that trips most people up, so let's take it together. Tell us the money and a few honest answers, and we'll lay out a category split that fits your horizon and your nerves.</p>
   </div>
 </section>
 
@@ -100,7 +100,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="bg-thatred/8 border border-thatred/30 rounded-xl px-5 py-4 text-sm text-ink/80 leading-relaxed flex gap-3">
       <span class="text-thatred text-lg leading-none">&#9888;</span>
-      <span>This is an educational starting point, not personal advice or a recommendation of any scheme. Equity is volatile and can fall sharply; returns shown are illustrative long-run averages, not promises, and any year can be negative. Invest through equity only for money you will not need for at least 3, ideally 5, years. For a plan tailored to you, speak to a SEBI-registered investment adviser.</span>
+      <span>Think of this as an educational starting point, not personal advice or a recommendation of any scheme. Equity is volatile and can fall sharply; returns shown are illustrative long-run averages, not promises, and any year can be negative. Invest through equity only for money you will not need for at least 3, ideally 5, years. For a plan tailored to you, speak to a SEBI-registered investment adviser.</span>
     </div>
   </div>
 </section>
@@ -189,8 +189,8 @@
 
       <!-- Empty state -->
       <div id="empty-state" class="hidden bg-white rounded-2xl border border-navy/10 p-8 text-center">
-        <div class="font-display text-xl font-extrabold text-ink">Enter a SIP or a lumpsum to begin.</div>
-        <p class="text-sm text-ink/60 mt-2">We need at least some money to build a portfolio around.</p>
+        <div class="font-display text-xl font-extrabold text-ink">Pop in a SIP or a lumpsum, and we'll begin.</div>
+        <p class="text-sm text-ink/60 mt-2">Even a small amount is enough for us to build a portfolio around.</p>
       </div>
 
       <!-- Portfolio donut -->
@@ -232,7 +232,7 @@
             <div class="font-display text-xl font-extrabold text-marigold tab-num">&#8377;<span id="out-gain">-</span></div>
           </div>
         </div>
-        <div class="mt-4 text-[12px] text-warmpaper/70 leading-relaxed">Illustrative, at a blended <span id="out-blended">-</span>% a year across your mix. Equity does not move in a straight line: expect sharp falls along the way, and know that any single year can be negative. This is a possibility, not a promise.</div>
+        <div class="mt-4 text-[12px] text-warmpaper/70 leading-relaxed">Illustrative, at a blended <span id="out-blended">-</span>% a year across your mix. Equity never moves in a straight line, so expect sharp falls along the way, and know that any single year can be negative. Treat this as a possibility to aim at, not a promise.</div>
       </div>
 
       <!-- Rationale -->
@@ -250,17 +250,17 @@
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">1</div>
         <h3 class="font-display text-lg font-extrabold text-ink">Horizon gates the risk</h3>
-        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Small caps can stay underwater for years, so at 3 to 5 years we keep them tiny or out. The longer your horizon, the more room mid and small caps get to do their work.</p>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Small caps can stay underwater for years, so at 3 to 5 years we keep them tiny or leave them out, to protect you. The longer your horizon, the more room mid and small caps get to do their work.</p>
       </div>
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
         <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">2</div>
         <h3 class="font-display text-lg font-extrabold text-ink">Nerve sets the tilt</h3>
-        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Careful or short-horizon investors get a cushion of low-volatility hybrid funds and lean on index and flexi-cap. Bold ones swap in a multi-cap core and a bigger mid and small-cap position.</p>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">If you're careful, or this is shorter-horizon money, you get a cushion of low-volatility hybrid funds and lean on index and flexi-cap. If you're bold, we swap in a multi-cap core and a bigger mid and small-cap position. Both are valid, they just fit different people.</p>
       </div>
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">3</div>
         <h3 class="font-display text-lg font-extrabold text-ink">Fewer funds, not more</h3>
-        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Past 5 or 6 funds you are mostly buying the same stocks twice. We keep the list short, so each fund actually matters.</p>
+        <p class="text-sm text-ink/70 mt-2 leading-relaxed">Past 5 or 6 funds, you're mostly buying the same stocks twice over. So we keep your list short, which means each fund actually earns its place, and your portfolio stays easy to hold.</p>
       </div>
     </div>
   </div>
@@ -274,7 +274,7 @@
       <a href="asset-allocator.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
         <div class="w-10 h-10 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold mb-3">&#9684;</div>
         <h3 class="font-display text-xl font-extrabold text-ink">Asset Allocator</h3>
-        <p class="text-ink/70 text-sm mt-1">Should it even all be in equity? Split across equity, debt, gold and cash first.</p>
+        <p class="text-ink/70 text-sm mt-1">Not sure it should all be in equity? Let's split across equity, debt, gold and cash first.</p>
       </a>
       <a href="asset-classes.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
         <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold mb-3">&#9635;</div>
@@ -515,9 +515,9 @@ function calc() {
   // fund-count note
   const fc = active.length;
   let note = `<div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">A ${fc}-fund portfolio</div>`;
-  note += `<p><strong>${fc} fund${fc > 1 ? 's' : ''} is enough.</strong> One good scheme per category, not three. Buying five large-cap funds does not diversify you, it just hides the same stocks behind different names.`;
+  note += `<p><strong>${fc} fund${fc > 1 ? 's' : ''} is genuinely enough.</strong> One good scheme per category, not three. Buying five large-cap funds does not diversify you, it just hides the same stocks behind different names, so you can relax about owning more.`;
   if (state.tax === 'yes' && w.elss > 0) {
-    note += ` Your ELSS puts about &#8377;${fmtINR(elssCoverage)} a year toward the &#8377;1.5L 80C limit; the rest of that slice still works as a normal equity fund.`;
+    note += ` Your ELSS puts about &#8377;${fmtINR(elssCoverage)} a year toward the &#8377;1.5L 80C limit, and the rest of that slice still works as a normal equity fund.`;
   }
   note += `</p>`;
   document.getElementById('fundcount-note').innerHTML = note;
@@ -537,19 +537,19 @@ function calc() {
   const riskWord = { conservative: 'careful', moderate: 'balanced', aggressive: 'bold' }[state.risk];
   const growthShare = w.mid + w.small + w.largemid;
   const cushionPct = w.esaver + w.baf;
-  let r = `<div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Why this mix</div>`;
+  let r = `<div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Why this mix suits you</div>`;
   r += `<p class="mt-3 text-sm text-warmpaper/90 leading-relaxed">`;
   if (cushionPct >= 8) {
-    r += `Because you are ${riskWord}${state.horizon <= 5 ? ' and this is shorter-horizon money' : ''}, about ${Math.round(cushionPct)}% sits in lower-volatility hybrid funds that hold debt alongside equity, still taxed like equity, so the ride is a lot smoother. `;
+    r += `Because you are ${riskWord}${state.horizon <= 5 ? ' and this is shorter-horizon money' : ''}, we put about ${Math.round(cushionPct)}% into lower-volatility hybrid funds that hold debt alongside equity, still taxed like equity, so the ride is a lot smoother for you. `;
   }
   if (state.horizon <= 4) {
-    r += `At ${state.horizon} years, this is on the shorter side for equity, so the pure-equity part leans on index and ${state.risk === 'aggressive' ? 'multi' : 'flexi'}-cap funds and keeps the volatile small caps out. `;
+    r += `At ${state.horizon} years, this is on the shorter side for equity, so the pure-equity part leans on index and ${state.risk === 'aggressive' ? 'multi' : 'flexi'}-cap funds and keeps the volatile small caps out, to keep you steady. `;
   } else if (state.horizon >= 12) {
-    r += `With ${state.horizon} years to run, there is real time to ride out crashes, so a ${riskWord} investor can hold a healthy ${Math.round(growthShare)}% across the mid and small-cap end for extra growth. `;
+    r += `With ${state.horizon} years to run, you have real time to ride out crashes, so as a ${riskWord} investor you can comfortably hold a healthy ${Math.round(growthShare)}% across the mid and small-cap end for extra growth. `;
   } else {
-    r += `Over ${state.horizon} years, a ${riskWord} investor gets a solid index and ${state.risk === 'aggressive' ? 'multi' : 'flexi'}-cap core, with ${Math.round(growthShare)}% working harder for growth. `;
+    r += `Over ${state.horizon} years, a ${riskWord} investor like you gets a solid index and ${state.risk === 'aggressive' ? 'multi' : 'flexi'}-cap core, with ${Math.round(growthShare)}% working harder for growth. `;
   }
-  r += `The blended long-run assumption of ${blended.toFixed(1)}% is an average, not a floor. Stay invested through the ugly years; that is where most of the return quietly hides.</p>`;
+  r += `The blended long-run assumption of ${blended.toFixed(1)}% is an average, not a floor. The real trick is simple: stay invested through the ugly years, because that is where most of the return quietly hides.</p>`;
   document.getElementById('rationale').innerHTML = r;
 }
 
