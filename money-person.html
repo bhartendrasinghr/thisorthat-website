@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Find Your Money Person, ThisOrThat with Bhartendra</title>
+<meta name="description" content="When you're ready for a human: tell us your goals and we'll connect you with a SEBI-registered investment adviser or AMFI-registered mutual fund distributor. No tips-sellers, no Telegram gurus." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .font-display { font-family:'Bricolage Grotesque',Georgia,serif; }
+  .chip { transition: all 140ms ease; cursor:pointer; }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .field { width:100%; background:#fff; border:1.5px solid rgba(2,73,177,0.15); border-radius:14px; padding:12px 16px; font-size:15px; transition: border-color 150ms, box-shadow 150ms; }
+  .field:focus { outline:none; border-color:#0249B1; box-shadow:0 0 0 3px rgba(255,194,31,0.25); }
+  .field::placeholder { color:#8A8275; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="hover:text-navy-ink">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden md:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<section class="bg-cream pb-8 pt-10">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">When you're ready for a human</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Find your money person.</h1>
+    <p class="mt-5 text-lg text-ink/75 leading-relaxed">The calculators take you far. A good human takes you the rest of the way. Tell us a little about yourself and what you're working towards, and we'll connect you with a <strong>SEBI-registered investment adviser</strong> or an <strong>AMFI-registered mutual fund distributor</strong>, someone whose registration you can verify, not a tips-seller with a Telegram channel.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream pt-2">
+  <div class="max-w-2xl mx-auto px-6">
+
+    <form id="lead-form" class="bg-white rounded-2xl border border-navy/10 p-6 md:p-8 space-y-7">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="f-name" class="text-sm font-semibold text-ink block mb-1.5">Your name</label>
+          <input id="f-name" type="text" class="field" placeholder="First name is fine" autocomplete="name" />
+        </div>
+        <div>
+          <label for="f-age" class="text-sm font-semibold text-ink block mb-1.5">Your age</label>
+          <input id="f-age" type="text" inputmode="numeric" class="field" placeholder="e.g. 32" />
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm font-semibold text-ink block mb-2">What kind of help are you after? <span class="text-ink/45 font-normal">(tap all that fit)</span></label>
+        <div id="f-types" class="flex flex-wrap gap-2">
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="A full financial plan">A full financial plan</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Starting to invest">Starting to invest</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Retirement planning">Retirement</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Kids' education">Kids' education</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Portfolio review">Portfolio review</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Insurance check">Insurance check</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Tax planning">Tax planning</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="NRI money matters">NRI money matters</button>
+          <button type="button" class="chip text-[13px] font-semibold py-2 px-3.5 rounded-full border" data-val="Something else">Something else</button>
+        </div>
+      </div>
+
+      <div>
+        <label for="f-goals" class="text-sm font-semibold text-ink block mb-1.5">Your goals, in your own words</label>
+        <textarea id="f-goals" rows="4" class="field" placeholder="e.g. Retire by 55, a home in 6 years, and I have no idea if my current SIPs are right. Write as much or as little as you like."></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="f-email" class="text-sm font-semibold text-ink block mb-1.5">Email</label>
+          <input id="f-email" type="email" class="field" placeholder="you@email.com" autocomplete="email" />
+        </div>
+        <div>
+          <label for="f-phone" class="text-sm font-semibold text-ink block mb-1.5">Mobile</label>
+          <input id="f-phone" type="tel" inputmode="tel" class="field" placeholder="+91..." autocomplete="tel" />
+        </div>
+      </div>
+
+      <label class="flex items-start gap-3 cursor-pointer bg-warmpaper-2 rounded-xl p-4">
+        <input id="f-consent" type="checkbox" class="mt-1 w-4 h-4 accent-thisblue" />
+        <span class="text-[13px] text-ink/75 leading-relaxed">I'm happy to be contacted about this, and only this. My details go towards making the introduction, nothing else: no spam, no lists, no selling my data.</span>
+      </label>
+
+      <div id="form-error" class="hidden text-sm text-loss font-semibold"></div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button type="submit" class="lift flex-1 bg-thisblue text-warmpaper font-semibold py-3.5 rounded-full">Send my details &rarr;</button>
+        <button type="button" id="copy-btn" class="lift bg-white border-2 border-navy-ink text-ink font-semibold py-3 px-6 rounded-full">Copy instead</button>
+      </div>
+      <p class="text-[11px] text-ink/45 text-center leading-relaxed">"Send" opens your email app with everything neatly filled in, so you can read exactly what you're sending before you hit send. Old-school, and honest that way.</p>
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div id="sent-note" class="hidden bg-gain text-warmpaper rounded-2xl p-7 text-center">
+      <div class="text-4xl">&#129309;</div>
+      <div class="font-display text-2xl font-extrabold mt-3">Lovely. Check your email app.</div>
+      <p class="text-sm text-warmpaper/85 mt-2 leading-relaxed">Your details are drafted and ready to send. Once it reaches us, expect a reply within a couple of days with the introduction, and nothing else.</p>
+    </div>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white rounded-2xl border border-navy/10 p-5">
+        <div class="w-9 h-9 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center font-bold">1</div>
+        <div class="text-sm text-ink/75 mt-3 leading-relaxed"><strong class="text-ink">You write, we read.</strong> Your goals tell us whether you need an adviser (plans, fees, fiduciary duty) or a distributor (execution and hand-holding).</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-5">
+        <div class="w-9 h-9 rounded-xl bg-marigold text-ink flex items-center justify-center font-bold">2</div>
+        <div class="text-sm text-ink/75 mt-3 leading-relaxed"><strong class="text-ink">We introduce, once.</strong> One registered professional whose registration number you can check on SEBI or AMFI's own site. Please do check it, always, for anyone.</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-5">
+        <div class="w-9 h-9 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center font-bold">3</div>
+        <div class="text-sm text-ink/75 mt-3 leading-relaxed"><strong class="text-ink">You decide.</strong> Meet them, question them, and only continue if it feels right. No pressure from them, and none from us.</div>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-ink text-warmpaper rounded-2xl p-6">
+      <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Why we're fussy about registration</div>
+      <p class="text-sm text-warmpaper/85 mt-2 leading-relaxed">India has two kinds of money help worth having: <strong class="text-warmpaper">SEBI-registered investment advisers</strong>, who are paid by you and owe their advice to you, and <strong class="text-warmpaper">AMFI-registered mutual fund distributors</strong>, who help you invest and earn a commission from the fund house, disclosed upfront. Both are regulated, accountable and checkable. Everyone else with a hot tip is entertainment, at best.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">ThisOrThat is a media brand, not a SEBI-registered investment adviser or a mutual fund distributor, and this page is not investment advice. We only make introductions to registered professionals; any engagement, fees and advice are strictly between you and them, so verify their registration before proceeding. Your details are used solely to make the introduction and are never sold or added to marketing lists.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+const LEAD_EMAIL = 'thisorthatpodcast2025@gmail.com';
+const $ = id => document.getElementById(id);
+const picked = new Set();
+
+$('f-types').addEventListener('click', e => {
+  const b = e.target.closest('button[data-val]');
+  if (!b) return;
+  const v = b.dataset.val;
+  picked.has(v) ? picked.delete(v) : picked.add(v);
+  paintChips();
+});
+function paintChips() {
+  document.querySelectorAll('#f-types button').forEach(b => {
+    const on = picked.has(b.dataset.val);
+    b.className = 'chip text-[13px] font-semibold py-2 px-3.5 rounded-full border ' +
+      (on ? 'bg-thisblue text-warmpaper border-thisblue shadow-sm' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+}
+paintChips();
+
+function buildBody() {
+  const name = $('f-name').value.trim();
+  const age = $('f-age').value.trim();
+  const goals = $('f-goals').value.trim();
+  const email = $('f-email').value.trim();
+  const phone = $('f-phone').value.trim();
+  const types = [...picked].join(', ');
+  return {
+    name, age, email, phone,
+    subject: `Money-person introduction: ${name || 'new request'}${types ? ' (' + types.split(',')[0].trim() + ')' : ''}`,
+    body: [
+      'Hi Bhartendra,',
+      '',
+      'I would like an introduction to a registered adviser or distributor.',
+      '',
+      'Name: ' + (name || '-'),
+      'Age: ' + (age || '-'),
+      'Looking for: ' + (types || '-'),
+      'Email: ' + (email || '-'),
+      'Mobile: ' + (phone || '-'),
+      '',
+      'My goals:',
+      (goals || '-'),
+      '',
+      '(Sent from thisorthatshow.in/money-person)'
+    ].join('\n')
+  };
+}
+
+function validate() {
+  const d = buildBody();
+  const err = $('form-error');
+  let msg = '';
+  if (!d.name) msg = 'A name would help, even just your first.';
+  else if (!picked.size) msg = 'Tap at least one kind of help, so we know who fits you.';
+  else if (!d.email && !d.phone) msg = 'Leave an email or a mobile number, or the introduction has nowhere to go.';
+  else if (d.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) msg = 'That email does not look quite right.';
+  else if (!$('f-consent').checked) msg = 'Please tick the consent box, we only reach out if you say so.';
+  if (msg) { err.textContent = msg; err.classList.remove('hidden'); return null; }
+  err.classList.add('hidden');
+  return d;
+}
+
+$('lead-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = validate();
+  if (!d) return;
+  window.location.href = 'mailto:' + LEAD_EMAIL + '?subject=' + encodeURIComponent(d.subject) + '&body=' + encodeURIComponent(d.body);
+  $('lead-form').classList.add('hidden');
+  $('sent-note').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+$('copy-btn').addEventListener('click', async () => {
+  const d = validate();
+  if (!d) return;
+  try {
+    await navigator.clipboard.writeText(d.body + '\n\nEmail this to: ' + LEAD_EMAIL);
+    $('copy-btn').textContent = 'Copied! Email it to us.';
+    setTimeout(() => { $('copy-btn').textContent = 'Copy instead'; }, 2500);
+  } catch (e) {}
+});
+
+(function () {
+  var btn = $('mobile-menu-toggle'), menu = $('mobile-menu'),
+      iconOpen = $('icon-open'), iconClose = $('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
