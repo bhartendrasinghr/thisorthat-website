@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ThisOrThat with Bhartendra, Personal Finance, Honestly.</title>
+<meta name="description" content="Money conversations India isn't having loudly enough. Episodes, honest calculators, and plain-English guides, all on your side, nothing being sold." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,113 +12,48 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
-        // Brand colors (per Brand Guidelines v1.0)
-        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
-        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
-        thatred:   { DEFAULT: '#FF302D' },
-        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
-        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
-        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases, keep old class names working, mapped to new values
-        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
-        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
-        alert:   '#FF302D',
-        cream:   '#FCFBF8',
-        paper:   '#F6F4EE'
-      }, fontFamily: {
-        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
-        serif:   ['Bricolage Grotesque','Georgia','serif'],
-        display: ['Bricolage Grotesque','Georgia','serif'],
-        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
-        script:  ['Caveat','cursive']
-      } } } };
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
 </script>
 <style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
-  .font-serif { font-family: 'Bricolage Grotesque', serif; }
-
-  /* Thumbnail gradient art */
-  .thumb { position: relative; overflow: hidden; background: linear-gradient(135deg, #0249B1, #013580); }
-  .thumb::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(255,194,31,0.35), transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,48,45,0.25), transparent 50%);
-  }
-  .thumb-1 { background: linear-gradient(135deg, #0249B1, #4A148C); }
-  .thumb-2 { background: linear-gradient(135deg, #013580, #0249B1); }
-  .thumb-3 { background: linear-gradient(135deg, #D99B00, #FFC21F); }
-  .thumb-4 { background: linear-gradient(135deg, #1A1813, #0249B1); }
-  .thumb-5 { background: linear-gradient(135deg, #FF302D, #A6201E); }
-  .thumb-6 { background: linear-gradient(135deg, #0249B1, #1A1813); }
-
-  /* Insta card variants */
-  .ig-1 { background: #0249B1; color: #FCFBF8; }
-  .ig-2 { background: #FFC21F; color: #1A1813; }
-  .ig-3 { background: #FCFBF8; color: #1A1813; border: 1px solid #E1DDD1; }
-  .ig-4 { background: #FF302D; color: #FCFBF8; }
-  .ig-5 { background: #1A1813; color: #FFC21F; }
-  .ig-6 { background: #FCFBF8; color: #0249B1; border: 1px solid #E1DDD1; }
-
-  /* Subtle grain */
-  .grain { position: relative; }
-  .grain::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  /* Marquee */
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .marquee-track { animation: marquee 40s linear infinite; }
-
-  /* Hover lift */
-  .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
-  .lift:hover { transform: translateY(-2px); }
-
-  /* Chip */
-  .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
-
-  /* Search */
-  .search input::placeholder { color: #8B8676; }
-
-  /* Avatar with initials, on-brand gradient fallback (looks intentional, not placeholder) */
-  .avatar {
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 800; letter-spacing: -0.04em;
-    font-family: 'Bricolage Grotesque', serif;
-    position: relative; overflow: hidden;
-  }
-  .avatar::before {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%),
-                radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
-  }
-  .avatar > * { position: relative; z-index: 1; }
-
-  /* Tabular numbers */
-  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
-
-  /* Hero mini-calculator sliders */
-  .hero-slider { -webkit-appearance: none; appearance: none; height: 4px; background: #E1DDD1; border-radius: 999px; outline: none; }
-  .hero-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 3px solid #FFC21F; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  .hero-slider::-moz-range-thumb { width: 20px; height: 20px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 3px solid #FFC21F; }
-
-  /* Scroll-triggered fade-in */
-  .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  /* Editable numeric inputs in hero mini-calc */
-  .editable-hero { background: transparent; border: none; border-bottom: 1.5px dashed rgba(2, 73, 177, 0.25); padding: 0 1px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
-  .editable-hero:hover { border-bottom-color: rgba(2, 73, 177, 0.5); background: rgba(255, 194, 31, 0.08); }
-  .editable-hero:focus { outline: none; border-bottom: 1.5px solid #FFC21F; background: rgba(255, 194, 31, 0.12); }
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .font-display { font-family:'Bricolage Grotesque',Georgia,serif; }
+  .rail { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+  .rail > * { scroll-snap-align:start; flex:0 0 auto; }
+  .rail::-webkit-scrollbar { height:8px; }
+  .rail::-webkit-scrollbar-thumb { background:#E1DDD1; border-radius:999px; }
+  .lift { transition: transform 180ms ease, box-shadow 180ms ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow:0 12px 28px rgba(26,24,19,0.10); }
+  .tile-play { opacity:0; transition:opacity 160ms ease; }
+  .ep:hover .tile-play { opacity:1; }
+  .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .g1{ background:linear-gradient(135deg,#0249B1,#013580); }
+  .g2{ background:linear-gradient(135deg,#1A1813,#2C2A23); }
+  .g3{ background:linear-gradient(135deg,#FFC21F,#D99B00); }
+  .g4{ background:linear-gradient(135deg,#FF302D,#B4231F); }
+  .g5{ background:linear-gradient(135deg,#1F8A5B,#14603E); }
+  .g6{ background:linear-gradient(135deg,#0249B1,#1F8A5B); }
 </style>
 </head>
 <body class="antialiased">
 
-<!-- ====================== NAV ====================== -->
 <header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-3">
+    <a href="index.html" class="flex items-center gap-3">
       <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
       <div class="leading-tight">
         <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
@@ -133,24 +69,16 @@
       <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
-    <div class="hidden md:flex items-center gap-3">
-      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden sm:inline-flex text-sm font-semibold text-navy-ink hover:text-navy">Subscribe</a>
-      <a id="nav-watch-latest" href="episode-detail.html" class="inline-flex items-center gap-2 bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition whitespace-nowrap">
-        <span>▶</span> Watch latest
-      </a>
-    </div>
-      <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden md:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
-
   </div>
 </header>
 
-<!-- MOBILE MENU PANEL -->
 <div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
   <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
-    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
     <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
     <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
     <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
@@ -162,420 +90,126 @@
   </nav>
 </div>
 
-<!-- ====================== HERO, Brand Guidelines v1.0 ====================== -->
-<section id="top" class="relative bg-marigold text-ink overflow-hidden">
-  <div class="absolute -top-40 -right-32 w-[500px] h-[500px] rounded-full bg-thisblue/8 blur-3xl pointer-events-none"></div>
-  <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-thatred/10 blur-3xl pointer-events-none"></div>
-
-  <div class="relative max-w-7xl mx-auto px-6 pt-14 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-
-    <!-- LEFT: editorial -->
-    <div class="lg:col-span-6">
-      <div class="inline-flex items-center gap-2 bg-ink/8 border border-ink/15 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide">
-        <span class="w-1.5 h-1.5 rounded-full bg-thatred animate-pulse"></span>
-        Beyond the noise · New episode every Tuesday
-      </div>
-
-      <h1 class="mt-6 font-display text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight">
-        Too much noise.<br/>
-        Not enough signal.<br/>
-        <span class="text-thisblue">We help you make the call.</span>
-      </h1>
-
-      <p class="mt-5 text-base md:text-lg text-ink/75 max-w-xl leading-relaxed">
-        A finance podcast that cuts the noise, one money decision per episode, weighed both ways, settled. Hosted by Bhartendra Singh.
-      </p>
-
-      <div class="mt-7 flex flex-wrap gap-3">
-        <a id="hero-watch-latest" href="episode-detail.html" class="inline-flex items-center gap-2 bg-thisblue text-warmpaper px-5 py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition shadow-lg shadow-thisblue/20">
-          <span>▶</span> Watch this week's fork
-        </a>
-        <a href="wealth-levers.html" class="inline-flex items-center gap-2 bg-ink text-warmpaper px-5 py-3 rounded-full font-semibold text-sm hover:bg-ink-2 transition">
-          <span>▶</span> Play: the 3 levers of wealth
-        </a>
-        <a href="calc-plan.html" class="inline-flex items-center gap-2 border-2 border-ink/30 text-ink px-5 py-3 rounded-full font-semibold text-sm hover:bg-ink hover:text-warmpaper transition">
-          Plan your money →
-        </a>
-      </div>
-
-      <!-- Stats, mono numbers, ink labels, no marigold-on-marigold -->
-      <div class="mt-10 grid grid-cols-3 gap-6 max-w-md">
-        <div>
-          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num"><span data-stat-episodes>58</span></div>
-          <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Episodes</div>
-        </div>
-        <div>
-          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num"><span data-stat-guests>31</span></div>
-          <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Guests</div>
-        </div>
-        <div>
-          <div class="font-display text-3xl md:text-4xl font-extrabold text-ink tab-num">8</div>
-          <div class="text-[10px] uppercase tracking-widest text-ink/60 mt-1 font-semibold">Calculators</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT: THE RETIREMENT FORK CARD, links to and explains the calculator -->
-    <div class="lg:col-span-6">
-      <a href="calc-retirement.html" class="block group">
-        <div class="relative">
-          <!-- soft ink shadow -->
-          <div class="absolute -inset-1 bg-ink/20 rounded-3xl blur-2xl"></div>
-
-          <div class="relative bg-warmpaper text-ink rounded-3xl p-8 md:p-10 border-2 border-ink shadow-2xl overflow-hidden">
-            <!-- Eyebrow -->
-            <div class="flex items-center justify-between gap-3">
-              <div class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-ink/60 font-bold">The retirement calculator</div>
-              <div class="text-[10px] uppercase tracking-widest text-ink/40 font-semibold">30 seconds</div>
-            </div>
-
-            <!-- THE QUESTION, display type -->
-            <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-5 leading-[1.05]">
-              How much do<br/>you need at 60?
-            </h2>
-
-            <!-- The fork visual: This / or / That, the two answers -->
-            <div class="mt-7 flex items-center gap-3 md:gap-4 justify-center">
-              <div class="flex-1 bg-thisblue text-warmpaper rounded-2xl px-3 py-5 md:py-6 text-center">
-                <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-80">Comfortable</div>
-                <div class="font-display text-2xl md:text-3xl font-extrabold mt-1.5 leading-tight tab-num">₹2 Cr</div>
-              </div>
-              <div class="font-script text-4xl md:text-5xl text-ink/70 transform -rotate-6 -my-2 select-none">or</div>
-              <div class="flex-1 bg-thatred text-warmpaper rounded-2xl px-3 py-5 md:py-6 text-center">
-                <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-80">Honest</div>
-                <div class="font-display text-2xl md:text-3xl font-extrabold mt-1.5 leading-tight tab-num">₹6.82 Cr</div>
-              </div>
-            </div>
-
-            <!-- Explanation -->
-            <p class="mt-7 text-sm md:text-base text-ink/75 leading-relaxed">
-              Most retirement calculators hand you the comfortable number. Ours runs inflation, longevity and lifestyle creep, year by year, so you see the real one, early enough to do something about it.
-            </p>
-
-            <!-- CTA -->
-            <div class="mt-7 inline-flex items-center gap-2 font-semibold text-sm text-thisblue group-hover:gap-3 transition-all border-b-2 border-thisblue pb-0.5">
-              Run your number →
-            </div>
-
-            <!-- decorative arrow motif from brand book -->
-            <div class="absolute -top-4 -right-4 text-thatred/15 font-display text-9xl font-extrabold pointer-events-none select-none">↘</div>
-          </div>
-        </div>
-      </a>
-
-      <!-- Caption -->
-      <div class="mt-4 text-center text-[11px] text-ink/60 font-semibold tracking-wide">
-        Year-by-year math · No signup · Indian context
-      </div>
-    </div>
-  </div>
-
-  <!-- Guests marquee, sits on marigold, ink text -->
-  <div class="relative border-t border-ink/15 py-5 overflow-hidden">
-    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 text-center mb-3 font-bold">As heard on the show</div>
-    <div id="guest-marquee" class="flex marquee-track gap-12 whitespace-nowrap"></div>
-  </div>
-</section>
-
-<!-- ====================== EPISODES ====================== -->
-<section id="episodes" class="pt-24 pb-12 bg-cream relative">
-  <!-- decorative shape -->
-  <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-mustard/5 blur-3xl pointer-events-none"></div>
-
-  <div class="relative max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div class="max-w-2xl">
-        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The archive</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Every conversation, indexed.</h2>
-        <p class="text-navy-ink/70 mt-3"><span data-ep-count>54</span> episodes · <span data-guest-count>30</span> guests · auto-updated from YouTube. Search by topic, guest, or the exact moment you'll want to share.</p>
-      </div>
-      <a href="episodes.html" class="shrink-0 inline-flex items-center gap-2 bg-navy-ink text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy transition">
-        Open the archive →
-      </a>
-    </div>
-
-    <!-- FEATURED LATEST, magazine hero card -->
-    <a id="featured-latest" href="episode-detail.html" class="lift group block bg-white rounded-3xl overflow-hidden border border-navy/10 shadow-sm hover:shadow-xl transition-shadow mb-12"></a>
-
-    <!-- Section divider -->
-    <div class="flex items-center gap-4 mb-8">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">More recent episodes</div>
-      <div class="flex-1 h-px bg-navy/10"></div>
-    </div>
-
-    <!-- Episode grid, full-width, 3 columns -->
-    <div id="latest" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-    <div class="mt-10 mb-16 text-center">
-      <a href="episodes.html" class="inline-flex items-center gap-2 text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy text-sm">
-        See all <span data-ep-count>54</span> episodes →
-      </a>
-    </div>
-
-    <!-- QUICK TAKES STRIP, horizontal row of 4 Insta-style cards -->
-    <div class="flex items-center gap-4 mb-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold whitespace-nowrap">Quick takes from the show</div>
-      <div class="flex-1 h-px bg-navy/10"></div>
-      <a href="feed.html" class="text-xs text-navy/60 hover:text-navy font-semibold whitespace-nowrap">See full feed →</a>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <a href="feed.html" class="lift ig-1 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Slow Thought · 042</div>
-        <div class="font-serif text-lg md:text-xl leading-tight font-bold">The market doesn't reward intelligence. It rewards patience that looks like stupidity.</div>
-        <div class="flex items-center justify-between text-[10px] opacity-70">
-          <span>ThisOrThat</span>
-          <span>♥ 4.2K</span>
-        </div>
-      </a>
-
-      <a href="feed.html" class="lift ig-2 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Data card</div>
-        <div>
-          <div class="font-serif text-4xl md:text-5xl font-black">73%</div>
-          <div class="font-serif text-sm font-semibold mt-2 leading-snug">of active equity funds underperform their benchmark over 10 years.</div>
-        </div>
-        <div class="text-[10px] opacity-70">SPIVA India 2024</div>
-      </a>
-
-      <a href="feed.html" class="lift ig-3 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-70 font-semibold">Quote · Ep 086</div>
-        <div class="font-serif text-base md:text-lg leading-snug font-semibold">"The hardest part isn't picking the right stock. It's not selling the right stock too early."</div>
-        <div>
-          <div class="text-xs font-semibold">- Saurabh Mukherjea</div>
-          <div class="text-[10px] opacity-60">Marcellus</div>
-        </div>
-      </a>
-
-      <a href="feed.html" class="lift ig-4 block aspect-square rounded-2xl p-5 flex flex-col justify-between">
-        <div class="text-[10px] uppercase tracking-widest opacity-80 font-semibold">ThisOrThat</div>
-        <div class="font-serif text-lg md:text-2xl font-bold leading-tight">A 1% expense ratio over 30 years eats 26% of your final corpus.</div>
-        <div class="text-[10px] opacity-80">♥ 5.1K</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== TOPICS STRIP ====================== -->
-<section class="bg-cream pb-20">
+<!-- ============ BILLBOARD HERO: latest episode ============ -->
+<section class="pt-6 pb-4">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-center gap-4 mb-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">Browse by topic</div>
-      <div class="flex-1 h-px bg-navy/10"></div>
-    </div>
-    <div id="topics-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+    <div id="billboard" class="rounded-3xl overflow-hidden border-2 border-navy-ink bg-warmpaper-2 grid md:grid-cols-5"></div>
   </div>
 </section>
 
-<!-- ====================== STATS BANNER ====================== -->
-<section class="bg-navy-ink text-cream py-10 relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-mustard/10 blur-3xl"></div>
-  <div class="relative max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
-      <div>
-        <div class="font-serif text-4xl font-bold text-mustard"><span data-ep-count>54</span></div>
-        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Episodes published</div>
-      </div>
-      <div>
-        <div class="font-serif text-4xl font-bold text-mustard">185K</div>
-        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Top episode views</div>
-      </div>
-      <div>
-        <div class="font-serif text-4xl font-bold text-mustard"><span data-guest-count>30</span></div>
-        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">Guests featured</div>
-      </div>
-      <div>
-        <div class="font-serif text-4xl font-bold text-mustard">3 yrs</div>
-        <div class="text-[11px] uppercase tracking-widest text-cream/60 mt-1">On the air since</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== GUESTS ====================== -->
-<section id="guests" class="py-20 bg-paper">
+<!-- ============ RAIL: PLAN YOUR MONEY ============ -->
+<section class="py-6">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div class="max-w-2xl">
-        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The voices</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">The people behind the money.</h2>
-        <p class="text-navy-ink/70 mt-3"><span data-guest-count>30</span> fund managers, founders, journalists and contrarians, each indexed with their best ideas and every episode they've appeared on.</p>
+    <div class="flex items-end justify-between mb-4">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Do, don't just watch</div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Plan your money</h2>
       </div>
-      <a href="guests.html" class="shrink-0 inline-flex items-center gap-2 bg-navy-ink text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy transition">View all guests →</a>
+      <a href="calculators.html" class="text-sm text-thisblue font-semibold shrink-0">All tools &rarr;</a>
     </div>
-
-    <!-- FEATURED GUEST, quote spotlight -->
-    <a id="featured-guest" href="guest-detail.html" class="lift group block bg-white rounded-3xl overflow-hidden border border-navy/10 shadow-sm hover:shadow-xl transition-shadow mb-12"></a>
-
-    <!-- Section divider -->
-    <div class="flex items-center gap-4 mb-8">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-navy/50 font-bold whitespace-nowrap">More voices</div>
-      <div class="flex-1 h-px bg-navy/15"></div>
-    </div>
-
-    <!-- Guest cards grid -->
-    <div id="home-guests" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
-
-    <!-- Pitch CTA -->
-    <div class="mt-14 bg-navy-ink text-cream rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden">
-      <div class="absolute -bottom-12 -right-12 w-64 h-64 rounded-full bg-mustard/15 blur-3xl"></div>
-      <div class="relative">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard font-bold">Want to be on the show?</div>
-        <div class="font-serif text-2xl md:text-3xl font-bold mt-2 leading-snug">Pitch us a guest. Or yourself.</div>
-        <p class="text-cream/70 mt-2 text-sm max-w-md">We're booking 2026 episodes now. Fund managers, founders, behavioural economists, contrarians, bring us the inconvenient idea.</p>
-      </div>
-      <a href="mailto:hello@thisorthat.in" class="relative shrink-0 inline-flex items-center gap-2 bg-mustard text-navy-ink px-5 py-3 rounded-full font-semibold hover:bg-mustard-soft transition">
-        hello@thisorthat.in
+    <div class="rail">
+      <a href="calc-plan.html" class="lift w-72 bg-marigold rounded-2xl p-6 border-2 border-navy-ink">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Flagship</div>
+        <div class="font-display text-xl font-extrabold text-ink mt-1 leading-tight">Your full financial plan</div>
+        <p class="text-ink/75 text-sm mt-2">Every goal in one honest picture. We'll show you what fits, and how to get there.</p>
+        <div class="mt-6 text-sm font-bold text-ink">Build it &rarr;</div>
+      </a>
+      <a href="asset-allocator.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#9684;</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Asset Allocator</div>
+        <p class="text-ink/65 text-sm mt-1">Equity, debt, gold, cash, in your mix.</p>
+      </a>
+      <a href="calc-mf-portfolio.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-sm font-bold">MF</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">MF Portfolio</div>
+        <p class="text-ink/65 text-sm mt-1">Which fund categories, how much in each.</p>
+      </a>
+      <a href="calc-prepay.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xs font-bold">EMI</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Loan Prepayment</div>
+        <p class="text-ink/65 text-sm mt-1">Clear the home loan years early.</p>
+      </a>
+      <a href="calc-retirement.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold">&#8377;</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Real Retirement</div>
+        <p class="text-ink/65 text-sm mt-1">The corpus you actually need.</p>
+      </a>
+      <a href="calc-goal.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold">G</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Goal Planner</div>
+        <p class="text-ink/65 text-sm mt-1">Start with the dream, work back.</p>
+      </a>
+      <a href="calc-sip.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
+        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-sm font-bold">SIP</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-4">Honest SIP</div>
+        <p class="text-ink/65 text-sm mt-1">What time in the market really adds.</p>
+      </a>
+      <a href="wealth-levers.html" class="lift w-60 bg-navy-ink text-warmpaper rounded-2xl p-6 border border-navy-ink">
+        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#9654;</div>
+        <div class="font-display text-lg font-extrabold mt-4">The 3 levers</div>
+        <p class="text-warmpaper/65 text-sm mt-1">Watch Adhiraj and Ananya race.</p>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ====================== ARTICLES ====================== -->
-<section id="articles" class="py-20 bg-paper">
+<!-- ============ RAIL: LATEST EPISODES ============ -->
+<section class="py-6">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div>
-        <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">Long-form</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Read the show.</h2>
-        <p class="text-navy-ink/70 mt-3 max-w-xl">Essays, breakdowns and the occasional rant. Built for the readers, not the algorithm.</p>
-      </div>
-      <a href="articles.html" class="text-navy-ink font-semibold border-b-2 border-mustard pb-1 hover:border-navy">All articles →</a>
+    <div class="flex items-end justify-between mb-4">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Latest episodes</h2>
+      <a href="episodes.html" class="text-sm text-thisblue font-semibold shrink-0">All episodes &rarr;</a>
     </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Featured article -->
-      <a href="article-detail.html" class="lift block lg:row-span-2 lg:col-span-2 bg-white rounded-2xl overflow-hidden border border-navy/10">
-        <div class="thumb thumb-1 aspect-[16/10] flex items-end p-8">
-          <div class="relative z-10">
-            <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Featured · Behaviour</div>
-            <div class="font-serif text-3xl md:text-4xl font-bold text-cream mt-2 leading-tight max-w-xl">The quiet violence of "playing it safe" with your money.</div>
-          </div>
-        </div>
-        <div class="p-8">
-          <p class="text-navy-ink/80 leading-relaxed">Most people don't lose money on bad investments. They lose it on good investments they were too afraid to make. A 12-minute essay on inflation, fear, and the cost of waiting…</p>
-          <div class="flex items-center justify-between mt-6 text-sm">
-            <div class="flex items-center gap-3">
-              <div class="avatar w-9 h-9 rounded-full bg-navy text-mustard text-xs">BS</div>
-              <div>
-                <div class="font-semibold text-navy-ink">Bhartendra Singh</div>
-                <div class="text-xs text-navy/60">May 18, 2026 · 12 min read</div>
-              </div>
-            </div>
-            <span class="text-navy-ink font-semibold">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="article-detail.html" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
-        <div class="thumb thumb-3 aspect-[16/10]"></div>
-        <div class="p-6">
-          <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">Markets</div>
-          <h3 class="font-serif text-xl font-bold text-navy-ink mt-2 leading-tight">Why your SIP's underperformance is not your fund manager's fault.</h3>
-          <div class="flex items-center gap-2 mt-4 text-xs text-navy/60">
-            <span>6 min read</span><span>·</span><span>May 12, 2026</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="article-detail.html" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
-        <div class="thumb thumb-5 aspect-[16/10]"></div>
-        <div class="p-6">
-          <div class="text-xs uppercase tracking-widest text-navy/60 font-semibold">Tax</div>
-          <h3 class="font-serif text-xl font-bold text-navy-ink mt-2 leading-tight">The new tax regime, decoded for people who'd rather not read 47 pages.</h3>
-          <div class="flex items-center gap-2 mt-4 text-xs text-navy/60">
-            <span>8 min read</span><span>·</span><span>May 5, 2026</span>
-          </div>
-        </div>
-      </a>
-    </div>
+    <div id="rail-episodes" class="rail"></div>
   </div>
 </section>
 
-<!-- ====================== CALCULATORS ====================== -->
-<section id="calculators" class="py-20 bg-navy-ink text-cream relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-mustard/10 blur-3xl"></div>
-
-  <div class="relative max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+<!-- ============ RAIL: READ ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
       <div>
-        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Plan · all live now</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold mt-2">Calculators that stay on your side.</h2>
-        <p class="text-cream/70 mt-3 max-w-xl">A lot of online calculators tell you what you want to hear. Ours give you the real number, and walk you through what to do next.</p>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Prefer to read</div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Articles &amp; Slow Thought</h2>
       </div>
+      <a href="articles.html" class="text-sm text-thisblue font-semibold shrink-0">All writing &rarr;</a>
     </div>
-
-    <!-- INTERACTIVE TEASER: THREE LEVERS -->
-    <a href="wealth-levers.html" class="lift block bg-cream text-navy-ink rounded-2xl p-6 md:p-8 mb-8 border-2 border-mustard hover:shadow-2xl transition group">
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
-        <div class="md:col-span-3">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Interactive · new</div>
-          <h3 class="font-serif text-2xl md:text-4xl font-extrabold mt-2 leading-tight">₹5,000 from age 25 beats ₹5,000 from age 35 by <span class="text-thisblue">₹<span id="teaser-gap">1.4 Cr</span></span>.</h3>
-          <p class="text-navy-ink/70 mt-2">Same money, ten years apart. Watch the race, then play with all three levers of wealth.</p>
-        </div>
-        <div class="md:col-span-2 md:text-right">
-          <span class="inline-flex items-center gap-2 bg-thisblue text-cream px-5 py-3 rounded-full font-semibold text-sm group-hover:bg-navy-ink transition">See why time wins →</span>
-        </div>
-      </div>
-    </a>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      <a href="calc-retirement.html" class="lift block bg-navy/50 backdrop-blur border border-cream/10 hover:border-mustard/60 rounded-2xl p-6 transition">
-        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold mb-4">₹</div>
-        <h3 class="font-serif text-2xl font-bold">Real Retirement</h3>
-        <p class="text-cream/70 text-sm mt-2 leading-relaxed">Inflation-adjusted, lifestyle-honest. See the corpus you actually need.</p>
-        <div class="mt-6 text-xs uppercase tracking-widest text-mustard font-semibold">Live now →</div>
-      </a>
-      <a href="calc-buckets.html" class="lift block bg-navy/50 backdrop-blur border border-cream/10 hover:border-mustard/60 rounded-2xl p-6 transition">
-        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-lg font-bold mb-4">3B</div>
-        <h3 class="font-serif text-2xl font-bold">3-Bucket Strategy</h3>
-        <p class="text-cream/70 text-sm mt-2 leading-relaxed">Split your retirement corpus across cash, debt and equity. Ride out crashes without selling.</p>
-        <div class="mt-6 text-xs uppercase tracking-widest text-mustard font-semibold">Live now →</div>
-      </a>
-      <a href="calc-swp.html" class="lift block bg-navy/50 backdrop-blur border border-cream/10 hover:border-mustard/60 rounded-2xl p-6 transition">
-        <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold mb-4">SWP</div>
-        <h3 class="font-serif text-2xl font-bold">Systematic Withdrawal</h3>
-        <p class="text-cream/70 text-sm mt-2 leading-relaxed">How much can you pull out each month, without emptying the tank? Finds your sustainable rate.</p>
-        <div class="mt-6 text-xs uppercase tracking-widest text-mustard font-semibold">Live now →</div>
-      </a>
-    </div>
+    <div id="rail-read" class="rail"></div>
   </div>
 </section>
 
-<!-- ====================== NEWSLETTER ====================== -->
-<section id="newsletter" class="py-20 bg-mustard text-navy-ink">
+<!-- ============ RAIL: BY TOPIC ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mb-4">Browse by topic</h2>
+    <div id="rail-topics" class="rail"></div>
+  </div>
+</section>
+
+<!-- ============ RAIL: THE GUESTS ============ -->
+<section class="py-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">The guests</h2>
+      <a href="guests.html" class="text-sm text-thisblue font-semibold shrink-0">Meet everyone &rarr;</a>
+    </div>
+    <div id="rail-guests" class="rail"></div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section id="newsletter" class="py-16 bg-mustard text-navy-ink mt-8">
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
-    <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3">One uncomfortable idea. Every Sunday.</h2>
-    <p class="mt-4 text-navy-ink/80 max-w-xl mx-auto">A short, sharp observation on money and behaviour, written, not generated. 14,000 readers and counting.</p>
-    <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+    <h2 class="font-display text-3xl md:text-4xl font-bold mt-3">One honest idea. Every Sunday.</h2>
+    <p class="mt-3 opacity-80">A short note on money and behaviour, written for you, not at you. Plus first dibs on new tools.</p>
+    <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
       <input type="email" placeholder="you@email.com" class="flex-1 bg-cream border border-navy/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy" />
-      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe →</button>
+      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe &rarr;</button>
     </form>
-    <div class="text-xs text-navy-ink/60 mt-3">Free. Unsubscribe anytime. No "course launches" disguised as emails.</div>
   </div>
 </section>
 
-<!-- ====================== ABOUT ====================== -->
-<section id="about" class="py-20 bg-cream">
-  <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
-    <div class="md:col-span-2">
-      <div class="avatar w-full aspect-square rounded-3xl bg-navy text-mustard text-6xl">BS</div>
-    </div>
-    <div class="md:col-span-3">
-      <div class="text-xs uppercase tracking-[0.3em] text-navy/60 font-semibold">The host</div>
-      <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-ink mt-2">Bhartendra Singh</h2>
-      <p class="mt-4 text-navy-ink/80 leading-relaxed">Twenty years in markets, ten in asking better questions. <em>ThisOrThat</em> started as a frustration with the noise around personal finance in India, and became a brand built on the opposite: clarity, candour, and conversations that don't pretend.</p>
-      <div class="mt-6 flex gap-3">
-        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">LinkedIn</a>
-        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">Twitter / X</a>
-        <a href="#" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">Email Bhartendra</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== FOOTER ====================== -->
 <footer class="bg-navy-ink text-cream/80 py-14">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -602,7 +236,7 @@
       <div>
         <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Listen / Watch</div>
         <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:text-cream">YouTube</a></li>
+          <li><a href="https://www.youtube.com/@ThisOrThatPodcastIndia" target="_blank" class="hover:text-cream">YouTube</a></li>
           <li><a href="#" class="hover:text-cream">Spotify</a></li>
           <li><a href="#" class="hover:text-cream">Apple Podcasts</a></li>
           <li><a href="#" class="hover:text-cream">Instagram</a></li>
@@ -611,7 +245,7 @@
       </div>
     </div>
     <div class="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-cream/40">
-      <div>© 2026 ThisOrThat with Bhartendra. All rights reserved. <span id="sync-info" class="ml-3 opacity-70"></span></div>
+      <div>&copy; 2026 ThisOrThat with Bhartendra. All rights reserved. <span id="sync-info" class="ml-3 opacity-70"></span></div>
       <div class="flex gap-4">
         <a href="brand.html" class="hover:text-cream">Brand</a>
         <a href="#" class="hover:text-cream">Privacy</a>
@@ -625,291 +259,134 @@
 <!-- Real data from YouTube channel -->
 <script src="episodes.js"></script>
 <script>
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const initialsOf = (n) => {
   if (!n || n.toLowerCase().includes('solo')) return 'BS';
   const parts = n.replace(/^CA\s+|^Mr\.?\s+/i, '').split(/\s+/).filter(p => p[0] && p[0] === p[0].toUpperCase());
   return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
 };
-const bgs = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
+const isSolo = (g) => !g || g.toLowerCase().includes('solo');
+const GRADS = ['g1','g3','g2','g5','g6','g4'];
 
-// 1. Hero featured = latest episode (top of EPISODES array)
-const latest = window.EPISODES[0];
-const heroEl = document.getElementById('hero-featured');
-heroEl.innerHTML = `
-  <a href="episode-detail.html?v=${latest.id}" class="block group">
-    <div class="relative">
-      <div class="absolute -inset-2 bg-mustard/30 rounded-3xl blur-2xl group-hover:bg-mustard/50 transition"></div>
-      <div class="relative bg-navy-ink rounded-3xl overflow-hidden border border-cream/10">
-        <div class="aspect-video relative overflow-hidden">
-          <img src="${latest.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-ink/80 via-transparent to-transparent"></div>
-          <div class="absolute bottom-4 left-4 right-4 z-10">
-            <div class="text-xs uppercase tracking-widest text-mustard font-semibold">Episode ${String(latest.n).padStart(3,'0')} • ${latest.published || 'New'}</div>
-            <div class="font-serif text-xl font-bold text-cream mt-1 leading-tight">${latest.title}</div>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="w-20 h-20 rounded-full bg-cream/90 group-hover:bg-mustard transition flex items-center justify-center">
-              <span class="text-navy-ink text-2xl ml-1">▶</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-6 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="avatar w-10 h-10 rounded-full bg-mustard text-navy-ink">${initialsOf(latest.guest)}</div>
-            <div>
-              <div class="text-sm font-semibold text-cream">${(latest.guest||'').replace(' (solo)','')}</div>
-              <div class="text-xs text-cream/60">${latest.cat}</div>
-            </div>
-          </div>
-          ${latest.views ? `<div class="text-xs text-cream/60">${latest.views} views</div>` : ''}
-        </div>
-      </div>
-    </div>
-  </a>
-`;
-document.getElementById('nav-watch-latest').href = `episode-detail.html?v=${latest.id}`;
-
-// 2. Guest marquee, top 10 guests by episode count, duplicated for seamless loop
-const marqueeNames = window.GUESTS.slice(0, 10).map(g => g.name);
-const marqueeHtml = marqueeNames.map(n => `<span class="font-display text-2xl font-bold text-ink/75">${n}</span><span class="text-thatred font-bold">•</span>`).join('');
-document.getElementById('guest-marquee').innerHTML = `<div class="flex gap-12 items-center">${marqueeHtml}</div><div class="flex gap-12 items-center" aria-hidden="true">${marqueeHtml}</div>`;
-
-// 3a. FEATURED LATEST, magazine-style hero card
-const featured = window.EPISODES[0];
-if (featured) {
-  const featuredEl = document.getElementById('featured-latest');
-  featuredEl.href = `episode-detail.html?v=${featured.id}`;
-  const featGuestLabel = (featured.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : featured.guest;
-  featuredEl.innerHTML = `
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-      <div class="md:col-span-7 relative aspect-video md:aspect-auto bg-navy-ink overflow-hidden">
-        <img src="${featured.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy-ink/40 via-transparent to-transparent"></div>
-        <div class="absolute top-5 left-5 flex items-center gap-2 bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-navy-ink animate-pulse"></span>
-          Latest episode
-        </div>
-        <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">
-          <div class="flex items-center justify-center w-16 h-16 rounded-full bg-cream/95 group-hover:bg-mustard transition shadow-lg">
-            <span class="text-navy-ink text-xl ml-1">▶</span>
-          </div>
-          ${featured.views ? `<div class="bg-navy-ink/85 text-cream text-xs px-2.5 py-1 rounded-full">${featured.views} views</div>` : ''}
-        </div>
-      </div>
-      <div class="md:col-span-5 p-7 md:p-10 flex flex-col justify-center">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Ep ${String(featured.n).padStart(3,'0')} · ${featured.cat} · ${featured.published || 'New'}</div>
-        <h3 class="font-serif text-2xl md:text-3xl font-bold text-navy-ink mt-3 leading-tight group-hover:text-navy transition">${featured.title}</h3>
-        <div class="flex items-center gap-3 mt-5 pt-5 border-t border-navy/10">
-          <div class="avatar w-10 h-10 rounded-full ${bgs[0]} text-xs">${initialsOf(featured.guest)}</div>
-          <div>
-            <div class="font-semibold text-navy-ink text-sm">${featGuestLabel}</div>
-            <div class="text-xs text-navy/60">on this week's episode</div>
-          </div>
-        </div>
-        <div class="mt-6 inline-flex items-center gap-2 text-navy-ink font-semibold text-sm border-b-2 border-mustard pb-0.5 self-start group-hover:gap-3 transition-all">
-          Watch the full conversation →
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-// 3b. More recent episodes (6 cards in a 3-column grid)
-const latestGrid = document.getElementById('latest');
-latestGrid.innerHTML = window.EPISODES.slice(1, 7).map((ep, i) => {
-  const guestLabel = (ep.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : ep.guest;
-  return `
-  <a href="episode-detail.html?v=${ep.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10 hover:border-navy/30 hover:shadow-lg transition">
-    <div class="aspect-video relative overflow-hidden bg-navy-ink">
-      <img src="${ep.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(ep.n).padStart(3,'0')}</div>
-      ${ep.views ? `<div class="absolute bottom-3 right-3 bg-navy-ink/85 text-cream text-xs px-2 py-1 rounded">${ep.views} views</div>` : ''}
-    </div>
-    <div class="p-5">
-      <div class="text-xs text-navy/60 uppercase tracking-widest font-semibold">${ep.cat}</div>
-      <h3 class="font-serif text-lg font-bold text-navy-ink mt-1 leading-snug">${ep.title}</h3>
-      <div class="flex items-center gap-2 mt-4">
-        <div class="avatar w-7 h-7 rounded-full ${bgs[i % bgs.length]} text-xs">${initialsOf(ep.guest)}</div>
-        <span class="text-sm text-navy-ink/70">${guestLabel}</span>
-      </div>
-    </div>
-  </a>`;
-}).join('');
-
-// 3c. Topics strip, count episodes per category + render colored tiles
-const TOPIC_STYLES = {
-  'Investing':   { bg: 'bg-navy text-mustard',       icon: '₹'  },
-  'Markets':     { bg: 'bg-navy-ink text-mustard',   icon: '📈' },
-  'Behaviour':   { bg: 'bg-mustard text-navy-ink',   icon: '🧠' },
-  'Retirement':  { bg: 'bg-alert text-cream',        icon: '⌛' },
-  'Real Estate': { bg: 'bg-paper text-navy-ink border border-navy/15', icon: '🏠' },
-  'Tax':         { bg: 'bg-navy text-mustard',       icon: '%'  },
-  'Commodities': { bg: 'bg-mustard text-navy-ink',   icon: '🥇' },
-  'Global':      { bg: 'bg-navy-ink text-mustard',   icon: '🌐' },
-  'Wealth':      { bg: 'bg-mustard text-navy-ink',   icon: '◆'  },
-};
-const catCounts = window.EPISODES.reduce((acc, e) => { acc[e.cat] = (acc[e.cat] || 0) + 1; return acc; }, {});
-const topCats = Object.entries(catCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
-document.getElementById('topics-grid').innerHTML = topCats.map(([cat, count]) => {
-  const style = TOPIC_STYLES[cat] || { bg: 'bg-navy text-mustard', icon: '◆' };
-  return `
-    <a href="episodes.html?cat=${encodeURIComponent(cat)}" class="lift block ${style.bg} rounded-2xl p-5 group transition">
-      <div class="text-3xl">${style.icon}</div>
-      <div class="font-serif text-xl font-bold mt-3 leading-tight">${cat}</div>
-      <div class="text-xs opacity-70 mt-1 flex items-center justify-between">
-        <span>${count} episode${count !== 1 ? 's' : ''}</span>
-        <span class="group-hover:translate-x-1 transition">→</span>
-      </div>
+// ---- billboard: latest episode ----
+const eps = window.EPISODES || [];
+if (eps.length) {
+  const L = eps[0];
+  const withLine = isSolo(L.guest) ? 'A solo episode with Bhartendra.' : `With <strong>${esc(L.guest)}</strong>.`;
+  document.getElementById('billboard').innerHTML = `
+    <a href="episode-detail.html?v=${esc(L.id)}" class="md:col-span-2 relative min-h-[240px] block group">
+      <img src="https://i.ytimg.com/vi/${esc(L.id)}/maxresdefault.jpg" onerror="this.onerror=null;this.src='${esc(L.thumb)}'" alt="${esc(L.title)}" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+      <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><span class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center text-ink text-xl">&#9654;</span></div>
+      <div class="absolute bottom-4 left-4 bg-marigold text-ink text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">${esc(L.published || 'Latest')}</div>
     </a>
-  `;
-}).join('');
-
-// 4a. FEATURED GUEST, quote spotlight (top guest by episode count)
-const guestsEl = document.getElementById('home-guests');
-const featuredGuestEl = document.getElementById('featured-guest');
-
-const renderFeaturedGuest = (g, rich) => {
-  if (!g) return;
-  featuredGuestEl.href = `guest-detail.html?g=${encodeURIComponent(g.name)}`;
-  // Use the bio excerpt as quote tease if available, else a generic credibility line
-  const tease = (rich && rich.excerpt) || `${g.eps} appearance${g.eps !== 1 ? 's' : ''} on ThisOrThat, bringing some of the most-quoted ideas on the show.`;
-  featuredGuestEl.innerHTML = `
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-      <div class="md:col-span-4 relative bg-navy-ink p-8 md:p-10 flex items-center justify-center min-h-[280px]">
-        <div class="absolute top-5 left-5 flex items-center gap-2 bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">Most appearances</div>
-        ${g.photo
-          ? `<div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-mustard shadow-2xl"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" /></div>`
-          : `<div class="avatar relative w-44 h-44 rounded-full ${g.bg || 'bg-mustard text-navy-ink'} text-7xl border-4 border-mustard shadow-2xl">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
-        }
+    <div class="md:col-span-3 p-7 md:p-10 flex flex-col justify-center">
+      <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Latest episode &middot; Ep ${esc(L.n)}</div>
+      <h1 class="font-display text-3xl md:text-5xl font-extrabold text-ink mt-2 leading-[1.03]">${esc(L.title)}</h1>
+      <p class="mt-3 text-ink/70 md:text-lg max-w-xl">${withLine} Straight talk, no jargon, nothing being sold.</p>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a href="episode-detail.html?v=${esc(L.id)}" class="lift inline-flex items-center gap-2 bg-thisblue text-warmpaper px-6 py-3 rounded-full font-semibold">&#9654; Watch the episode</a>
+        <a href="calculators.html" class="inline-flex items-center gap-2 bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold hover:bg-warmpaper transition">or start a plan &rarr;</a>
       </div>
-      <div class="md:col-span-8 p-8 md:p-12 flex flex-col justify-center">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Featured guest</div>
-        <h3 class="font-serif text-3xl md:text-4xl font-bold text-navy-ink mt-3 leading-tight">${g.name}</h3>
-        <div class="text-sm text-navy/60 mt-1">${g.role || 'Guest expert'}</div>
-        <p class="mt-5 text-navy-ink/80 leading-relaxed">${tease}</p>
-        <div class="mt-6 flex items-center gap-3">
-          <span class="bg-mustard text-navy-ink text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-bold">${g.eps} episode${g.eps !== 1 ? 's' : ''}</span>
-          <span class="inline-flex items-center gap-2 text-navy-ink font-semibold text-sm border-b-2 border-mustard pb-0.5 group-hover:gap-3 transition-all">
-            See all their episodes →
-          </span>
-        </div>
-      </div>
+    </div>`;
+}
+
+// ---- episodes rail ----
+document.getElementById('rail-episodes').innerHTML = eps.slice(1, 13).map(e => `
+  <a href="episode-detail.html?v=${esc(e.id)}" class="ep lift w-72 group block">
+    <div class="relative rounded-2xl h-40 overflow-hidden bg-warmpaper-3">
+      <img src="${esc(e.thumb)}" alt="${esc(e.title)}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
+      <span class="absolute bottom-3 left-3 bg-black/40 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep ${esc(e.n)}${e.published ? ' &middot; ' + esc(e.published) : ''}</span>
     </div>
-  `;
-};
+    <div class="mt-2 font-semibold text-ink leading-snug line-clamp-2">${esc(e.title)}</div>
+    <div class="text-xs text-ink/55 mt-0.5">${isSolo(e.guest) ? 'Solo' : esc(e.guest)}${e.cat ? ' &middot; ' + esc(e.cat) : ''}</div>
+  </a>`).join('');
 
-const renderGuests = (guests) => {
-  guestsEl.innerHTML = guests.slice(0, 12).map(g => `
-    <a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift group text-center">
-      ${g.photo
-        ? `<div class="w-full aspect-square rounded-2xl overflow-hidden ring-2 ring-transparent group-hover:ring-mustard transition"><img src="${g.photo}" alt="${g.name}" class="w-full h-full object-cover" loading="lazy" /></div>`
-        : `<div class="avatar w-full aspect-square rounded-2xl ${g.bg || 'bg-navy text-mustard'} text-3xl group-hover:ring-2 group-hover:ring-mustard transition">${g.initials || g.name.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>`
-      }
-      <div class="mt-3 font-semibold text-navy-ink text-sm group-hover:text-navy leading-tight">${g.name}</div>
-      <div class="text-xs text-navy/60 mt-0.5 leading-tight">${g.role || ''}</div>
-      <div class="text-[10px] uppercase tracking-widest font-bold mt-1.5 ${g.eps > 0 ? 'text-mustard-deep' : 'text-alert'}">${g.eps > 0 ? g.eps + ' ep' + (g.eps !== 1 ? 's' : '') : 'Upcoming'}</div>
-    </a>
-  `).join('');
-};
+// ---- read rail: articles + slow thought ----
+fetch('content/articles.json').then(r => r.json()).then(arts => {
+  const colorFor = (hc) => { const n = parseInt(String(hc || '').replace('thumb-','')) || 1; return GRADS[(n - 1) % GRADS.length]; };
+  const cards = arts.map(a => `
+    <a href="article-detail.html?slug=${encodeURIComponent(a.slug)}" class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden block">
+      <div class="${colorFor(a.hero_color)} h-28"></div>
+      <div class="p-5">
+        <div class="text-[10px] uppercase tracking-widest text-mustard-deep font-bold">${esc(a.category || 'Essay')}</div>
+        <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">${esc(a.title)}</div>
+        <div class="text-xs text-ink/55 mt-2">${esc(a.read_minutes || 5)} min read</div>
+      </div>
+    </a>`);
+  fetch('content/feed.json').then(r => r.json()).then(f => {
+    const st = (f.items || []).find(i => (i.label || '').toLowerCase().includes('slow thought'));
+    if (st) cards.splice(1, 0, `
+      <a href="feed.html" class="lift w-72 bg-ink text-warmpaper rounded-2xl overflow-hidden border border-navy-ink block">
+        <div class="p-6 h-full flex flex-col justify-between min-h-[196px]">
+          <div class="text-[10px] uppercase tracking-widest text-marigold font-bold">${esc(st.label)}</div>
+          <div class="font-script text-2xl text-warmpaper leading-snug">${esc(st.title)}</div>
+          <div class="text-xs text-warmpaper/50 mt-2">From the feed</div>
+        </div>
+      </a>`);
+    document.getElementById('rail-read').innerHTML = cards.join('');
+  }).catch(() => { document.getElementById('rail-read').innerHTML = cards.join(''); });
+}).catch(() => {});
 
-// Initial render with auto data only
-renderGuests(window.GUESTS);
-renderFeaturedGuest(window.GUESTS[0], null);
+// ---- topics rail (real counts, deep-links into the episodes filter) ----
+(() => {
+  const counts = {};
+  eps.forEach(e => { if (e.cat) counts[e.cat] = (counts[e.cat] || 0) + 1; });
+  const order = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const EMOJI = { Investing:'&#128200;', Wealth:'&#127942;', Retirement:'&#127958;', Markets:'&#128201;', Global:'&#127758;', Commodities:'&#129689;', Behaviour:'&#129504;', 'Real Estate':'&#127968;', Tax:'&#129534;' };
+  document.getElementById('rail-topics').innerHTML = order.map(([cat, n], i) => {
+    const g = GRADS[i % GRADS.length];
+    const txt = g === 'g3' ? 'text-ink' : 'text-white';
+    return `<a href="episodes.html?cat=${encodeURIComponent(cat)}" class="lift w-52 h-28 rounded-2xl ${g} ${txt} p-5 flex flex-col justify-between">
+      <div class="flex items-center justify-between"><span class="text-2xl">${EMOJI[cat] || '&#128181;'}</span><span class="text-[11px] font-mono opacity-80">${n} ep${n > 1 ? 's' : ''}</span></div>
+      <span class="font-display text-lg font-extrabold">${esc(cat)}</span>
+    </a>`;
+  }).join('');
+})();
 
-// Then upgrade with rich CMS data (photos, bios, "upcoming" guests)
-const bgPool = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
-const makeInitials = (name) => name.split(' ').filter(p => p[0] && p[0] === p[0].toUpperCase()).map(p => p[0]).join('').slice(0, 2).toUpperCase();
-fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
-  .then(rich => {
-    const richByName = Object.fromEntries(rich.map(g => [g.name, g]));
-    const autoNames = new Set(window.GUESTS.map(g => g.name));
-    const withEps = window.GUESTS.map(g => ({ ...g, ...(richByName[g.name] || {}) }));
-    const upcoming = rich.filter(g => !autoNames.has(g.name)).map((g, i) => ({
-      ...g, eps: 0, ep_ids: [], bg: bgPool[(withEps.length + i) % bgPool.length], initials: makeInitials(g.name)
-    }));
-    const merged = [...withEps, ...upcoming]
-      .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.eps - a.eps);
-    renderGuests(merged);
-    renderFeaturedGuest(merged[0], richByName[merged[0]?.name]);
-    document.querySelectorAll('[data-guest-count]').forEach(el => el.textContent = merged.length);
-    document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = merged.length);
-  });
+// ---- guests rail ----
+fetch('content/guests.json').then(r => r.json()).then(gs => {
+  const pick = gs.filter(g => g.photo).concat(gs.filter(g => !g.photo)).slice(0, 14);
+  document.getElementById('rail-guests').innerHTML = pick.map((g, i) => {
+    const bg = GRADS[i % GRADS.length];
+    const txt = bg === 'g3' ? 'text-ink/70' : 'text-white/80';
+    const media = g.photo
+      ? `<img src="${esc(g.photo)}" alt="${esc(g.name)}" class="w-40 h-40 rounded-2xl object-cover bg-warmpaper-3 mx-auto" loading="lazy" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${bg} w-40 h-40 rounded-2xl flex items-center justify-center ${txt} font-display text-3xl font-extrabold mx-auto',textContent:'${initialsOf(g.name)}'}))" />`
+      : `<div class="${bg} w-40 h-40 rounded-2xl flex items-center justify-center ${txt} font-display text-3xl font-extrabold mx-auto">${initialsOf(g.name)}</div>`;
+    const role = (g.role || '').split(/[;,]/)[0].trim();
+    return `<a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift w-40 text-center block">
+      ${media}
+      <div class="mt-2 font-semibold text-ink text-sm leading-tight">${esc(g.name)}</div>
+      <div class="text-xs text-ink/50 leading-tight mt-0.5">${esc(role)}</div>
+    </a>`;
+  }).join('');
+}).catch(() => {});
 
-// 5. Counts
-document.querySelectorAll('[data-ep-count]').forEach(el => el.textContent = window.EPISODES.length);
-document.querySelectorAll('[data-guest-count]').forEach(el => el.textContent = window.GUESTS.length);
-document.querySelectorAll('[data-stat-episodes]').forEach(el => el.textContent = window.EPISODES.length);
-document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = window.GUESTS.length);
-
-// 6. Sync timestamp ("Last synced X ago")
-const syncInfo = document.getElementById('sync-info');
-if (syncInfo && window.SYNCED_AT) {
-  const synced = new Date(window.SYNCED_AT);
-  const diffMs = Date.now() - synced.getTime();
-  const minutes = Math.floor(diffMs / 60000);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const rel = days > 0 ? `${days} day${days>1?'s':''} ago` : hours > 0 ? `${hours} hour${hours>1?'s':''} ago` : minutes > 0 ? `${minutes} min ago` : 'just now';
-  syncInfo.textContent = `· Last synced from YouTube ${rel}`;
+// ---- sync info ----
+if (window.SYNCED_AT) {
+  try { document.getElementById('sync-info').textContent = 'Episodes synced ' + new Date(window.SYNCED_AT).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); } catch (e) {}
 }
 
-// 7. Wire up the "Watch latest" CTA to the actual latest episode
-if (window.EPISODES && window.EPISODES[0]) {
-  const watchLink = document.getElementById('hero-watch-latest');
-  if (watchLink) watchLink.href = `episode-detail.html?v=${window.EPISODES[0].id}`;
-}
-
-// 8. Cards render immediately, no fade-in animation (was occasionally hiding cards on slow paints)
-</script>
-
-
-<script>
-// Mobile menu toggle
-(function() {
+// ---- mobile menu ----
+(function () {
   var btn = document.getElementById('mobile-menu-toggle');
   var menu = document.getElementById('mobile-menu');
   var iconOpen = document.getElementById('icon-open');
   var iconClose = document.getElementById('icon-close');
   if (!btn || !menu) return;
-  btn.addEventListener('click', function() {
-    var isOpen = !menu.classList.contains('hidden');
+  btn.addEventListener('click', function () {
     menu.classList.toggle('hidden');
-    iconOpen.classList.toggle('hidden', !isOpen ? false : true);
-    iconClose.classList.toggle('hidden', !isOpen ? true : false);
-    if (!isOpen) {
-      iconOpen.classList.add('hidden');
-      iconClose.classList.remove('hidden');
-    } else {
-      iconOpen.classList.remove('hidden');
-      iconClose.classList.add('hidden');
-    }
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
   });
-  // Close on link tap inside menu
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
       menu.classList.add('hidden');
       iconOpen.classList.remove('hidden');
       iconClose.classList.add('hidden');
     });
   });
-  // Close on Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-      menu.classList.add('hidden');
-      iconOpen.classList.remove('hidden');
-      iconClose.classList.add('hidden');
-    }
-  });
-})();
-
-// Live-compute the Three Levers teaser gap: ₹5k/mo, 11%, 25→60 vs 35→60
-(function(){
-  var el = document.getElementById('teaser-gap');
-  if (!el) return;
-  function sipFV(m, ratePct, yrs){ var r=Math.pow(1+ratePct/100,1/12)-1, n=yrs*12; return m*((Math.pow(1+r,n)-1)/r); }
-  function fmt(n){ if(n>=1e7) return (n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr'; if(n>=1e5) return (n/1e5).toFixed(2).replace(/\.?0+$/,'')+' L'; return Math.round(n).toLocaleString('en-IN'); }
-  var early = sipFV(5000, 11, 35), late = sipFV(5000, 11, 25);
-  el.textContent = fmt(early - late);
 })();
 </script>
 </body>
