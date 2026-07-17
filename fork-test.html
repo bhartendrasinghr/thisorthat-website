@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Fork Test, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Nine tiny money decisions. One honest mirror. Tap through nine forks and meet your money archetype, in under a minute, nothing stored, only slightly judged." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .font-display { font-family:'Bricolage Grotesque',Georgia,serif; }
+  .fade-in { animation: fadeUp 260ms ease both; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  .fork-btn { transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease; cursor:pointer; }
+  .fork-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(26,24,19,0.18); }
+  .fork-btn:active { transform: scale(0.985); }
+  .dot { width:8px; height:8px; border-radius:999px; background:#E1DDD1; transition: background 200ms; }
+  .dot.on { background:#FFC21F; }
+  .dot.done { background:#0249B1; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden md:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<main class="max-w-3xl mx-auto px-6 pb-20">
+
+  <!-- ============ INTRO ============ -->
+  <section id="intro" class="pt-14 md:pt-20 text-center fade-in">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">A 60-second mirror</div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold text-ink mt-4 leading-[0.98]">The Fork Test.</h1>
+    <p class="mt-6 text-lg md:text-xl text-ink/75 max-w-xl mx-auto leading-relaxed">Your money life is nine small forks. Which way you turn at each one says more than any spreadsheet ever will.</p>
+    <div class="mt-8 flex flex-col items-center gap-3">
+      <button id="start-btn" class="fork-btn bg-ink text-warmpaper font-display text-xl font-extrabold px-10 py-4 rounded-full">Take the test &rarr;</button>
+      <div class="text-sm text-ink/55 font-mono mt-2">9 taps &middot; under a minute &middot; nothing stored</div>
+      <div class="text-sm text-ink/55 font-mono">Nothing judged. Okay, slightly judged.</div>
+    </div>
+    <div class="mt-14 flex items-center justify-center gap-2 text-ink/30">
+      <span class="font-script text-2xl text-ink/50 rotate-[-2deg] inline-block">this way?</span>
+      <svg class="w-24 h-10 text-marigold" viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 20 H45 M45 20 L75 6 M45 20 L75 34" stroke-linecap="round"/></svg>
+      <span class="font-script text-2xl text-ink/50 rotate-[2deg] inline-block">or that way?</span>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="quiz" class="hidden pt-10 md:pt-16">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex gap-2" id="dots"></div>
+      <div class="text-xs font-mono text-ink/50"><span id="q-num">1</span> / 9</div>
+    </div>
+    <div id="q-card"></div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section id="result" class="hidden pt-10 md:pt-14"></section>
+</main>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">The Fork Test is a mirror for your money habits, made for learning and a little self-recognition. It is an archetype, not advice, and certainly not a scheme recommendation. Your answers never leave this page: nothing is stored, sent, or tracked. For decisions about real money, the calculators go deeper, and a SEBI-registered investment adviser goes deepest.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+// ---------- the nine forks ----------
+// Axes: steady (patience/discipline), spark (thrill/impulse), shield (safety-first), engage (+looks at money) / avoid handled as low engage
+const QUESTIONS = [
+  { q: "Salary lands on the 1st. By the 10th, it is...",
+    a: { t: "Mostly still there, doing its job", s: { steady:2, engage:1 } },
+    b: { t: "Mostly... elsewhere. It moves fast", s: { spark:2 } } },
+  { q: "The market falls 30% next Monday. You...",
+    a: { t: "Sit tight. Maybe even buy a little", s: { steady:2, engage:1 } },
+    b: { t: "Feel sick. Check the app every hour", s: { shield:1, spark:1 } } },
+  { q: "A friend doubled their money in crypto last month. You think...",
+    a: { t: "Good for them. My SIP is boring on purpose", s: { steady:2 } },
+    b: { t: "Okay, where exactly does one sign up", s: { spark:2 } } },
+  { q: "If your income stopped today, your savings would last...",
+    a: { t: "Six months or more, comfortably", s: { shield:2, engage:1 } },
+    b: { t: "Weeks. Let's please change the subject", s: { spark:1 } } },
+  { q: "Term insurance?",
+    a: { t: "Sorted, and sized to my income", s: { shield:2, engage:1 } },
+    b: { t: "There's... some policy, somewhere", s: {} } },
+  { q: "Your investments look like...",
+    a: { t: "A short list I check twice a year", s: { steady:2, engage:1 } },
+    b: { t: "Seventeen apps, thirty funds, no map", s: { spark:1, engage:1 } } },
+  { q: "EMIs take how much of your month?",
+    a: { t: "Little or nothing. Breathing room", s: { shield:1, steady:1 } },
+    b: { t: "Enough that payday feels like a rescue", s: { spark:1 } } },
+  { q: "Your net worth, roughly?",
+    a: { t: "I know the number, give or take", s: { engage:2 } },
+    b: { t: "No idea. And please don't ask", s: {} } },
+  { q: "Honestly, money mostly makes you feel...",
+    a: { t: "In control. Mostly", s: { engage:2, steady:1 } },
+    b: { t: "Anxious, so I try not to look", s: {} } }
+];
+
+// ---------- archetypes ----------
+const ARCHETYPES = {
+  compounder: {
+    name: "The Compounder", mark: "&#127793;", card: "bg-gain text-warmpaper",
+    tag: "Patient, boring, quietly unbeatable.",
+    right: "You've understood the one thing most people never do: wealth is built by the investor who stays. Your money compounds while other people's money commutes.",
+    nudge: "Your risk now isn't recklessness, it's autopilot. A plan this good deserves a yearly review, protection that matches it, and goals with names on them.",
+    tool: { href: "calc-plan.html", label: "Stress-test the whole plan" }
+  },
+  guardian: {
+    name: "The Guardian", mark: "&#128737;", card: "bg-thisblue text-warmpaper",
+    tag: "Safe. Very safe. Possibly too safe.",
+    right: "Emergency fund, insurance, no scary debt: you've built real armour, and most people never get this far.",
+    nudge: "But armour doesn't grow. Somewhere between the FDs, inflation is quietly winning. A measured slice of equity is not a betrayal of safety, it's what keeps safety affordable at 60.",
+    tool: { href: "asset-allocator.html", label: "Find your honest mix" }
+  },
+  gambler: {
+    name: "The Adventurer", mark: "&#127922;", card: "bg-thatred text-warmpaper",
+    tag: "All accelerator, no seatbelt.",
+    right: "You have the one trait money can't teach: the nerve to act. Markets don't scare you, and that courage is genuinely rare.",
+    nudge: "But courage without a cushion is just exposure. Before the next thrilling bet: six months of expenses somewhere boring, term cover, and then be as bold as you like with the rest.",
+    tool: { href: "asset-allocator.html", label: "See what your nerve can afford" }
+  },
+  ostrich: {
+    name: "The Ostrich", mark: "&#128038;", card: "bg-ink text-warmpaper",
+    tag: "If I can't see the money, the money can't see me.",
+    right: "Here's the secret nobody tells you: not looking is usually fear, not laziness, and fear means you actually care. That's raw material.",
+    nudge: "Money loves being looked at. One glance a month is enough to change everything. Start with a single number: what you'd need for one goal you actually want.",
+    tool: { href: "calc-goal.html", label: "Start with one dream" }
+  },
+  juggler: {
+    name: "The Juggler", mark: "&#129337;", card: "bg-marigold text-ink",
+    tag: "So much motion. So little direction.",
+    right: "You're engaged, curious, and genuinely trying: apps, funds, ideas, action everywhere. The energy is real and most people never bring it.",
+    nudge: "But seventeen small bets are not a strategy, they're seventeen distractions. Fold them into one boring system and your effort finally starts pointing the same way.",
+    tool: { href: "calc-mf-portfolio.html", label: "Turn the chaos into a portfolio" }
+  }
+};
+
+function classify(s) {
+  const engage = s.engage || 0, steady = s.steady || 0, spark = s.spark || 0, shield = s.shield || 0;
+  if (engage <= 2) return "ostrich";                       // barely looks at money
+  if (spark >= 4 && spark >= steady) return "gambler";     // thrill dominates
+  if (shield >= 4 && steady <= 4 && shield >= spark) return "guardian"; // armour dominates
+  if (steady >= 5 && engage >= 4) return "compounder";     // discipline + eyes open
+  return "juggler";                                        // engaged but scattered
+}
+
+// ---------- state & flow ----------
+const scores = { steady:0, spark:0, shield:0, engage:0 };
+let qi = 0, t0 = null;
+
+const $ = id => document.getElementById(id);
+
+function startQuiz() {
+  $('intro').classList.add('hidden');
+  $('quiz').classList.remove('hidden');
+  t0 = Date.now();
+  $('dots').innerHTML = QUESTIONS.map((_, i) => `<span class="dot" id="dot-${i}"></span>`).join('');
+  renderQ();
+}
+
+function renderQ() {
+  QUESTIONS.forEach((_, i) => {
+    const d = $('dot-' + i);
+    d.className = 'dot' + (i < qi ? ' done' : i === qi ? ' on' : '');
+  });
+  $('q-num').textContent = qi + 1;
+  const Q = QUESTIONS[qi];
+  $('q-card').innerHTML = `
+    <div class="fade-in">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink leading-tight text-center">${Q.q}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 items-stretch">
+        <button class="fork-btn bg-thisblue text-warmpaper rounded-2xl p-7 text-left" data-pick="a">
+          <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-marigold">This</div>
+          <div class="font-display text-xl md:text-2xl font-extrabold mt-2 leading-snug">${Q.a.t}</div>
+        </button>
+        <button class="fork-btn bg-thatred text-warmpaper rounded-2xl p-7 text-left" data-pick="b">
+          <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-warmpaper/70">That</div>
+          <div class="font-display text-xl md:text-2xl font-extrabold mt-2 leading-snug">${Q.b.t}</div>
+        </button>
+      </div>
+      <div class="text-center mt-6 text-xs text-ink/45 font-mono">Answer with your habits, not your intentions.</div>
+    </div>`;
+  $('q-card').querySelectorAll('button[data-pick]').forEach(btn => {
+    btn.addEventListener('click', () => pick(btn.dataset.pick));
+  });
+}
+
+function pick(which) {
+  const s = QUESTIONS[qi][which].s;
+  Object.keys(s).forEach(k => scores[k] += s[k]);
+  qi++;
+  if (qi < QUESTIONS.length) renderQ();
+  else showResult();
+}
+
+function showResult() {
+  $('quiz').classList.add('hidden');
+  const secs = Math.max(5, Math.round((Date.now() - t0) / 1000));
+  const A = ARCHETYPES[classify(scores)];
+  const shareText = `The Fork Test says I'm ${A.name}. ${A.tag} Nine taps, slightly judged: thisorthatshow.in/fork-test.html`;
+  $('result').innerHTML = `
+    <div class="fade-in">
+      <div class="text-center text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Nine forks &middot; ${secs} seconds &middot; verdict</div>
+      <div class="${A.card} rounded-3xl border-2 border-navy-ink p-8 md:p-10 mt-5 text-center">
+        <div class="text-6xl">${A.mark}</div>
+        <h2 class="font-display text-4xl md:text-6xl font-extrabold mt-4 leading-none">${A.name}</h2>
+        <div class="font-script text-2xl mt-4 opacity-90">${A.tag}</div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+        <div class="bg-white rounded-2xl border border-navy/10 p-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-gain font-bold">What you've got right</div>
+          <p class="mt-3 text-ink/80 leading-relaxed text-[15px]">${A.right}</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-navy/10 p-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">The honest nudge</div>
+          <p class="mt-3 text-ink/80 leading-relaxed text-[15px]">${A.nudge}</p>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="${A.tool.href}" class="fork-btn inline-flex bg-thisblue text-warmpaper px-7 py-3.5 rounded-full font-semibold">${A.tool.label} &rarr;</a>
+        <button id="share-btn" class="fork-btn inline-flex bg-white border-2 border-navy-ink text-ink px-6 py-3 rounded-full font-semibold">Share your fork &rarr;</button>
+        <button id="retake-btn" class="text-sm text-ink/55 font-semibold underline underline-offset-4 px-3 py-3">Retake</button>
+      </div>
+      <p class="text-center text-xs text-ink/45 mt-6">An archetype, not advice. Your taps never left this page.</p>
+    </div>`;
+  $('share-btn').addEventListener('click', async () => {
+    if (navigator.share) { try { await navigator.share({ text: shareText }); } catch (e) {} }
+    else {
+      try { await navigator.clipboard.writeText(shareText); } catch (e) {}
+      $('share-btn').textContent = 'Copied!';
+      setTimeout(() => { $('share-btn').innerHTML = 'Share your fork &rarr;'; }, 1600);
+    }
+  });
+  $('retake-btn').addEventListener('click', () => {
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    qi = 0;
+    $('result').innerHTML = ''; $('result').classList.add('hidden');
+    $('quiz').classList.remove('hidden');
+    t0 = Date.now();
+    renderQ();
+  });
+  $('result').classList.remove('hidden');
+  window.scrollTo({ top: 0 });
+}
+
+$('start-btn').addEventListener('click', startQuiz);
+
+// ---------- mobile menu ----------
+(function () {
+  var btn = $('mobile-menu-toggle'), menu = $('mobile-menu'),
+      iconOpen = $('icon-open'), iconClose = $('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
