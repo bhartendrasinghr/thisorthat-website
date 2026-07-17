@@ -74,12 +74,7 @@ collections:
             name: "home"
             widget: "object"
             fields:
-              - { name: "hero_pill", label: "Hero pill text", widget: "string", hint: "e.g. 'New episode every Tuesday'" }
-              - { name: "hero_title_line1", label: "Hero title — line 1", widget: "string" }
-              - { name: "hero_title_line2", label: "Hero title — line 2 (italic accent)", widget: "string" }
-              - { name: "hero_subtitle", label: "Hero subtitle", widget: "text" }
-              - { name: "stat_3_label", label: "3rd stat label", widget: "string" }
-              - { name: "stat_3_value", label: "3rd stat value", widget: "string" }
+              - { name: "featured_video_id", label: "Featured episode (YouTube video ID)", widget: "string", required: false, hint: "Pin an episode to the homepage billboard. Paste the ID from its YouTube URL (the part after v=). Leave blank to always show the newest upload." }
           - label: "Newsletter"
             name: "newsletter"
             widget: "object"

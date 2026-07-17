@@ -11,12 +11,7 @@
     "contact_email": "hello@thisorthat.in"
   },
   "home": {
-    "hero_pill": "New episode every week ",
-    "hero_title_line1": "Personal finance,",
-    "hero_title_line2": "honestly.",
-    "hero_subtitle": "Unfiltered conversations with India's sharpest minds on money, markets and the behaviour behind both. Hosted by Bhartendra Singh.",
-    "stat_3_label": "Top episode views",
-    "stat_3_value": "185K"
+    "featured_video_id": ""
   },
   "newsletter": {
     "name": "Slow Thought",

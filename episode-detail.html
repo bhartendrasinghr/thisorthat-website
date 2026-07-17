@@ -37,6 +37,13 @@
   .font-serif { font-family: 'Bricolage Grotesque', serif; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
+  .rail { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+  .rail > * { scroll-snap-align:start; flex:0 0 auto; }
+  .rail::-webkit-scrollbar { height:8px; }
+  .rail::-webkit-scrollbar-thumb { background:#E1DDD1; border-radius:999px; }
+  .tile-play { opacity:0; transition:opacity 160ms ease; }
+  .ep:hover .tile-play { opacity:1; }
+  .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   /* Avatar with initials, on-brand gradient fallback (looks intentional, not placeholder) */
   .avatar {
     display: inline-flex; align-items: center; justify-content: center;
@@ -81,7 +88,7 @@
       <a href="kyc.html" class="hover:text-navy">KYC</a>
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden sm:inline-flex text-sm font-semibold text-navy-ink hover:text-navy">Subscribe</a>
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden md:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
       <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -160,7 +167,7 @@
     <div class="lg:col-span-2 space-y-10">
       <div>
         <h2 class="font-serif text-3xl font-bold text-navy-ink">About this episode</h2>
-        <p class="mt-3 text-navy-ink/80 leading-relaxed">Real-time conversations on India's markets, behaviour and money, recorded for the listener who wants the inconvenient version. Watch above or jump to YouTube for the full experience.</p>
+        <p class="mt-3 text-navy-ink/80 leading-relaxed">Real conversations on India's markets, behaviour and money, recorded for the listener who wants the honest version, not the comfortable one. Watch right here, or jump to YouTube for the full experience.</p>
       </div>
 
       <div class="bg-navy-ink text-cream rounded-2xl p-8">
@@ -174,9 +181,27 @@
 
 <!-- RELATED EPISODES -->
 <section class="py-16 bg-cream">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="font-serif text-3xl font-bold text-navy-ink">More like this</h2>
-    <div id="related" class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-4">
+      <h2 class="font-serif text-3xl font-bold text-navy-ink">More like this</h2>
+      <a href="episodes.html" class="text-sm text-thisblue font-semibold shrink-0">All episodes &rarr;</a>
+    </div>
+    <div id="related" class="rail"></div>
+  </div>
+</section>
+
+<!-- PLAN NUDGE -->
+<section class="pb-16 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <a href="calculators.html" class="lift block bg-marigold rounded-2xl p-7 md:p-8 border-2 border-navy-ink group">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Do, don't just watch</div>
+          <div class="font-serif text-2xl md:text-3xl font-extrabold text-navy-ink mt-1">Heard something worth acting on? Run your own numbers.</div>
+        </div>
+        <div class="inline-flex items-center gap-2 bg-navy text-cream px-5 py-3 rounded-full font-semibold text-sm group-hover:bg-navy-ink transition shrink-0">Open the tools &rarr;</div>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -184,7 +209,7 @@
 <section class="py-16 bg-mustard text-navy-ink">
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
-    <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">One uncomfortable idea every Sunday.</h2>
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">One honest idea. Every Sunday.</h2>
     <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
       <input type="email" placeholder="you@email.com" class="flex-1 bg-cream border border-navy/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy" />
       <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe →</button>
@@ -194,8 +219,37 @@
 
 <!-- FOOTER -->
 <footer class="bg-navy-ink text-cream/80 py-14">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <div class="text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra.</div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+          <div>
+            <div class="font-bold text-cream">ThisOrThat</div>
+            <div class="text-[11px] uppercase tracking-widest text-cream/50">beyond the noise</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, honestly.</p>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Explore</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="episodes.html" class="hover:text-cream">Episodes</a></li>
+          <li><a href="guests.html" class="hover:text-cream">Guests</a></li>
+          <li><a href="articles.html" class="hover:text-cream">Articles</a></li>
+          <li><a href="feed.html" class="hover:text-cream">Feed</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Listen / Watch</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-cream">YouTube</a></li>
+          <li><a href="#" class="hover:text-cream">Spotify</a></li>
+          <li><a href="#" class="hover:text-cream">Apple Podcasts</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-cream/10 text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra.</div>
   </div>
 </footer>
 
@@ -267,19 +321,19 @@ if (!isSolo) {
     });
 }
 
-// Related, same category, exclude current
-const bgs = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
-const related = window.EPISODES.filter(e => e.cat === ep.cat && e.id !== ep.id).slice(0, 3);
-document.getElementById('related').innerHTML = related.map((e, i) => `
-  <a href="episode-detail.html?v=${e.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
-    <div class="aspect-video relative overflow-hidden bg-navy-ink">
-      <img src="${e.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(e.n).padStart(3,'0')}</div>
+// Related rail: same category first, then backfill with the newest of everything else,
+// so a thin category (like Tax) never leaves this section empty.
+const sameCat = window.EPISODES.filter(e => e.cat === ep.cat && e.id !== ep.id);
+const others = window.EPISODES.filter(e => e.cat !== ep.cat && e.id !== ep.id);
+const related = sameCat.concat(others).slice(0, 10);
+document.getElementById('related').innerHTML = related.map(e => `
+  <a href="episode-detail.html?v=${e.id}" class="ep lift w-72 group block">
+    <div class="relative rounded-2xl h-40 overflow-hidden bg-paper">
+      <img src="${e.thumb}" alt="${e.title.replace(/"/g,'&quot;')}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-navy-ink">&#9654;</span></div>
+      <span class="absolute bottom-3 left-3 bg-black/40 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep ${e.n}${e.cat ? ' &middot; ' + e.cat : ''}</span>
     </div>
-    <div class="p-5">
-      <div class="text-xs text-navy/60 uppercase tracking-widest font-semibold">${e.cat}</div>
-      <h3 class="font-serif text-lg font-bold text-navy-ink mt-1 leading-snug">${e.title}</h3>
-    </div>
+    <div class="mt-2 font-semibold text-navy-ink leading-snug line-clamp-2">${e.title}</div>
   </a>
 `).join('');
 

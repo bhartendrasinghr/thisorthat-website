@@ -268,10 +268,10 @@ const initialsOf = (n) => {
 const isSolo = (g) => !g || g.toLowerCase().includes('solo');
 const GRADS = ['g1','g3','g2','g5','g6','g4'];
 
-// ---- billboard: latest episode ----
+// ---- billboard: latest episode, or the CMS-featured one if set ----
 const eps = window.EPISODES || [];
-if (eps.length) {
-  const L = eps[0];
+function renderBillboard(L, pinned) {
+  const kicker = pinned ? 'Featured episode' : 'Latest episode';
   const withLine = isSolo(L.guest) ? 'A solo episode with Bhartendra.' : `With <strong>${esc(L.guest)}</strong>.`;
   document.getElementById('billboard').innerHTML = `
     <a href="episode-detail.html?v=${esc(L.id)}" class="md:col-span-2 relative min-h-[240px] block group">
@@ -281,7 +281,7 @@ if (eps.length) {
       <div class="absolute bottom-4 left-4 bg-marigold text-ink text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">${esc(L.published || 'Latest')}</div>
     </a>
     <div class="md:col-span-3 p-7 md:p-10 flex flex-col justify-center">
-      <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Latest episode &middot; Ep ${esc(L.n)}</div>
+      <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">${kicker} &middot; Ep ${esc(L.n)}</div>
       <h1 class="font-display text-3xl md:text-5xl font-extrabold text-ink mt-2 leading-[1.03]">${esc(L.title)}</h1>
       <p class="mt-3 text-ink/70 md:text-lg max-w-xl">${withLine} Straight talk, no jargon, nothing being sold.</p>
       <div class="mt-6 flex flex-wrap items-center gap-3">
@@ -289,6 +289,16 @@ if (eps.length) {
         <a href="calculators.html" class="inline-flex items-center gap-2 bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold hover:bg-warmpaper transition">or start a plan &rarr;</a>
       </div>
     </div>`;
+}
+if (eps.length) {
+  renderBillboard(eps[0]);
+  // CMS override: Site Settings -> Homepage -> featured episode video ID
+  fetch('content/site.json').then(r => r.json()).then(s => {
+    const fid = s && s.home && s.home.featured_video_id;
+    if (!fid) return;
+    const featured = eps.find(e => e.id === fid.trim());
+    if (featured && featured.id !== eps[0].id) renderBillboard(featured, true);
+  }).catch(() => {});
 }
 
 // ---- episodes rail ----
