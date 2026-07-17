@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Become a Crorepati, ThisOrThat with Bhartendra</title>
+<meta name="description" content="The road to your first crore, drawn honestly. See when you get there by investing vs just saving, what a crore will actually buy by then, and why the first 25 lakh is the slowest." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .chip { transition: all 140ms ease; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden md:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Become a Crorepati</span>
+</div>
+
+<section class="bg-cream pb-8">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Two roads to the same number</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Become a crorepati.</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Everyone wants the crore. Few people look at the road. Set your monthly amount and see when you arrive, on the investing road versus the savings-account road, plus two honest things about that crore nobody puts on the poster.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream pt-4">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">The target</div>
+        <div class="flex flex-wrap gap-2" id="target-chips">
+          <button class="chip text-sm font-bold py-2 px-4 rounded-full border" data-t="5000000">&#8377;50 L</button>
+          <button class="chip text-sm font-bold py-2 px-4 rounded-full border" data-t="10000000">&#8377;1 Cr</button>
+          <button class="chip text-sm font-bold py-2 px-4 rounded-full border" data-t="20000000">&#8377;2 Cr</button>
+          <button class="chip text-sm font-bold py-2 px-4 rounded-full border" data-t="50000000">&#8377;5 Cr</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-sip">You put away, every month</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-sip" value="25,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-sip" type="range" min="1000" max="300000" step="1000" value="25000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Type "25k" or "1L". The same rupees travel both roads; only the vehicle changes.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-ret">Expected return, if invested</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-ret" value="12.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
+            <span class="text-ink/60 text-sm">% p.a.</span>
+          </div>
+        </div>
+        <input id="in-ret" type="range" min="6" max="15" step="0.5" value="12" class="w-full mt-2" />
+        <div id="ret-note" class="text-[11px] text-navy/55 mt-1">12% is a reasonable long-run hope for equity. It is a hope, not a promise.</div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-start">Already saved (optional)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-start" value="0" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-start" type="range" min="0" max="20000000" step="100000" value="0" class="w-full mt-2" />
+      </div>
+
+      <div class="bg-warmpaper-2 rounded-xl p-4 text-[12px] text-ink/70 leading-relaxed">
+        <strong>The other road:</strong> the same money in a savings account at 3% a year. Not zero, we play fair, but not much of an engine either.
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- ROAD SCENE -->
+      <div class="bg-white rounded-2xl border-2 border-marigold overflow-hidden">
+        <div class="px-6 pt-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The road to <span id="road-target">&#8377;1 Cr</span></div>
+        </div>
+        <svg id="road" viewBox="0 0 600 300" class="w-full h-auto" preserveAspectRatio="xMidYMid meet">
+          <!-- sky -->
+          <rect x="0" y="0" width="600" height="190" fill="#FCFBF8"/>
+          <circle cx="510" cy="52" r="26" fill="#FFC21F" opacity="0.9"/>
+          <path d="M60 80 q18 -16 40 -8 q10 -14 30 -8 q16 -4 22 8 q-46 10 -92 8 Z" fill="#F6F4EE"/>
+          <path d="M400 120 q20 -18 44 -9 q11 -15 33 -9 q18 -4 24 9 q-50 11 -101 9 Z" fill="#F6F4EE"/>
+          <!-- hills -->
+          <path d="M0 190 Q120 130 260 185 T600 178 V190 Z" fill="#FFF7DE"/>
+          <!-- ground -->
+          <rect x="0" y="188" width="600" height="112" fill="#F6F4EE"/>
+          <!-- road -->
+          <path d="M270 300 L292 188 L308 188 L330 300 Z" fill="#57534A" opacity="0.25"/>
+          <path d="M240 300 L286 188 L314 188 L360 300 Z" fill="#8A8275" opacity="0.9"/>
+          <path d="M297 300 L299.4 188 L300.6 188 L303 300 Z" fill="#FCFBF8"/>
+          <!-- destination -->
+          <text x="300" y="176" text-anchor="middle" font-family="Bricolage Grotesque, serif" font-weight="800" font-size="44" fill="#D99B00" id="road-cr">&#8377;1 Cr</text>
+          <!-- left sign: investing -->
+          <g id="sign-invest">
+            <rect x="60" y="234" width="8" height="60" rx="2" fill="#8A8275"/>
+            <rect x="20" y="176" width="150" height="64" rx="10" fill="#0249B1" stroke="#1A1813" stroke-width="3"/>
+            <text x="95" y="199" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="12" fill="#FFC21F" letter-spacing="1">INVESTING</text>
+            <text x="95" y="228" text-anchor="middle" font-family="Bricolage Grotesque, serif" font-weight="800" font-size="24" fill="#FCFBF8" id="sign-invest-years">5.2 yrs</text>
+          </g>
+          <!-- right sign: saving -->
+          <g id="sign-save">
+            <rect x="522" y="244" width="8" height="50" rx="2" fill="#8A8275"/>
+            <rect x="452" y="192" width="148" height="58" rx="10" fill="#FCFBF8" stroke="#57534A" stroke-width="3"/>
+            <text x="526" y="213" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="12" fill="#57534A" letter-spacing="1">JUST SAVING</text>
+            <text x="526" y="239" text-anchor="middle" font-family="Bricolage Grotesque, serif" font-weight="800" font-size="22" fill="#1A1813" id="sign-save-years">8.1 yrs</text>
+          </g>
+        </svg>
+        <div class="px-6 pb-5 -mt-2">
+          <div class="text-center text-sm text-ink/75"><strong class="text-thisblue" id="years-saved">3 years</strong> <span id="years-saved-note">of your life, returned to you by compounding.</span></div>
+        </div>
+      </div>
+
+      <!-- ARRIVAL CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-marigold">Investing road</div>
+          <div class="mt-2 font-display text-3xl font-extrabold tab-num" id="out-invest-when">-</div>
+          <div class="mt-1 text-xs text-warmpaper/75" id="out-invest-note">-</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-navy/10 p-6">
+          <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-ink/55">Savings-account road</div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-ink tab-num" id="out-save-when">-</div>
+          <div class="mt-1 text-xs text-ink/60" id="out-save-note">-</div>
+        </div>
+      </div>
+
+      <!-- MILESTONES -->
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The secret of the road</div>
+        <div class="font-display text-xl font-extrabold text-ink mt-1">The first quarter is the slowest. On purpose.</div>
+        <div id="milestones" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+        <p class="text-[12px] text-ink/60 mt-4 leading-relaxed">That's compounding warming up. Most people quit on the first stretch, exactly where the road is meant to feel long. The last quarter almost drives itself.</p>
+      </div>
+
+      <!-- HONEST BOX -->
+      <div class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The part the poster skips</div>
+        <div class="mt-3 space-y-4 text-sm leading-relaxed text-warmpaper/85">
+          <p><strong class="text-warmpaper">Your crore will shrink on the way.</strong> By the time you arrive in <span id="hn-years">-</span>, <span id="hn-target">&#8377;1 Cr</span> will buy what <strong class="text-marigold tab-num" id="hn-real">-</strong> buys today, at 6% inflation. Still worth the drive, just pack accordingly.</p>
+          <p><strong class="text-warmpaper">And the crore that keeps its meaning:</strong> to arrive with today's <span id="hn-target-2">&#8377;1 Cr</span> of buying power, you'd aim for <strong class="text-marigold tab-num" id="hn-nominal">-</strong>. Bigger number, same dream, honest maths.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Like the blue road?</div>
+          <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Build the portfolio that drives it.</div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="calc-mf-portfolio.html" class="lift inline-flex bg-navy text-cream px-5 py-3 rounded-full font-semibold text-sm">MF Portfolio Builder &rarr;</a>
+          <a href="calc-sip.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold text-sm">Honest SIP &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">Estimates for education, not advice and not a promise of returns. The investing road assumes a steady annual return that real markets will not deliver in a straight line; some years will be negative. The savings road assumes 3% a year, and actual rates vary. Mutual fund investments are subject to market risks. For a plan built around your life, talk to a SEBI-registered investment adviser.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+const SAVE_RATE = 3.0, INFLATION = 6.0;
+const fmtINR = (n) => {
+  n = Math.round(n);
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return n.toLocaleString('en-IN');
+};
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+// months for start + monthly SIP at annual rate to reach target
+function monthsTo(target, monthly, annualPct, start) {
+  const i = annualPct / 100 / 12;
+  if (start >= target) return 0;
+  if (i === 0) return (target - start) / monthly;
+  // FV = start*(1+i)^n + monthly*((1+i)^n - 1)/i  >= target  ->  solve for n
+  const A = (target + monthly / i) / (start + monthly / i);
+  return Math.log(A) / Math.log(1 + i);
+}
+const yrsFmt = m => {
+  if (!isFinite(m) || m > 1200) return '100+ yrs';
+  const y = m / 12;
+  return y >= 10 ? Math.round(y) + ' yrs' : y.toFixed(1).replace(/\.0$/, '') + ' yrs';
+};
+const dateAfter = m => {
+  const d = new Date();
+  d.setMonth(d.getMonth() + Math.round(m));
+  return d.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
+};
+
+let target = 10000000;
+const $ = id => document.getElementById(id);
+const setLbl = (id, val) => { const el = $(id); if (el && document.activeElement !== el) el.value = val; };
+
+function calc() {
+  const sip = +$('in-sip').value;
+  const ret = +$('in-ret').value;
+  const start = Math.min(+$('in-start').value, target * 0.95);
+  setLbl('lbl-sip', sip.toLocaleString('en-IN'));
+  setLbl('lbl-ret', ret.toFixed(1));
+  setLbl('lbl-start', start.toLocaleString('en-IN'));
+
+  // chips
+  document.querySelectorAll('#target-chips button').forEach(b => {
+    const on = +b.dataset.t === target;
+    b.className = 'chip text-sm font-bold py-2 px-4 rounded-full border ' +
+      (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+
+  $('ret-note').textContent = ret >= 14
+    ? 'Careful: at ' + ret.toFixed(1).replace(/\.0$/,'') + '% you are assuming a great decade, not planning one. We keep the slider capped for a reason.'
+    : ret >= 12
+      ? ret.toFixed(1).replace(/\.0$/,'') + '% is a reasonable long-run hope for equity. It is a hope, not a promise.'
+      : 'A modest assumption. If reality does better, you arrive early, which is the good kind of surprise.';
+
+  const mInv = monthsTo(target, sip, ret, start);
+  const mSave = monthsTo(target, sip, SAVE_RATE, start);
+  const tLabel = '₹' + fmtINR(target);
+
+  $('road-target').textContent = tLabel;
+  $('road-cr').textContent = '₹' + (target >= 1e7 ? (target / 1e7).toFixed(0) + ' Cr' : '50 L');
+  $('sign-invest-years').textContent = yrsFmt(mInv);
+  $('sign-save-years').textContent = yrsFmt(mSave);
+
+  const saved = mSave - mInv;
+  if (isFinite(mInv) && isFinite(mSave) && saved > 1 && mSave <= 1200) {
+    $('years-saved').textContent = saved >= 24 ? Math.round(saved / 12) + ' years' : Math.round(saved) + ' months';
+    $('years-saved-note').textContent = 'of your life, returned to you by compounding.';
+  } else if (mSave > 1200 && isFinite(mInv) && mInv <= 1200) {
+    $('years-saved').textContent = 'The savings road never quite arrives.';
+    $('years-saved-note').textContent = 'At this pace, only the investing road gets there in a lifetime.';
+  } else {
+    $('years-saved').textContent = '';
+    $('years-saved-note').textContent = 'Nudge the monthly amount up and watch the signs move.';
+  }
+
+  $('out-invest-when').textContent = mInv <= 1200 ? dateAfter(mInv) : 'Not in reach yet';
+  $('out-invest-note').textContent = mInv <= 1200 ? yrsFmt(mInv) + ' at ' + ret.toFixed(1).replace(/\.0$/,'') + '% a year, invested every month without fail.' : 'Raise the monthly amount to bring the date into view.';
+  $('out-save-when').textContent = mSave <= 1200 ? dateAfter(mSave) : 'Beyond a lifetime';
+  $('out-save-note').textContent = mSave <= 1200 ? yrsFmt(mSave) + ' at ' + SAVE_RATE + '% in a savings account. Same effort, slower vehicle.' : 'At 3%, this road is longer than a working life.';
+
+  // milestones: quarters of the target on the investing road
+  const qs = [0.25, 0.5, 0.75, 1];
+  let prev = 0, cells = '';
+  qs.forEach((f, idx) => {
+    const m = monthsTo(target * f, sip, ret, start);
+    const leg = m - prev;
+    prev = m;
+    const labels = ['First 25%', '25 to 50%', '50 to 75%', 'The last 25%'];
+    const hot = idx === 3;
+    cells += `<div class="rounded-xl p-3 text-center ${hot ? 'bg-marigold/20 border border-marigold' : 'bg-warmpaper-2'}">
+      <div class="text-[10px] uppercase tracking-widest font-bold ${hot ? 'text-mustard-deep' : 'text-ink/50'}">${labels[idx]}</div>
+      <div class="font-display text-xl font-extrabold tab-num ${hot ? 'text-mustard-deep' : 'text-ink'}">${isFinite(leg) && m <= 1200 ? yrsFmt(Math.max(0, leg)) : '-'}</div>
+    </div>`;
+  });
+  $('milestones').innerHTML = cells;
+
+  // honesty box
+  if (isFinite(mInv) && mInv <= 1200) {
+    const yrs = mInv / 12;
+    const real = target / Math.pow(1 + INFLATION / 100, yrs);
+    const nominal = target * Math.pow(1 + INFLATION / 100, yrs);
+    $('hn-years').textContent = dateAfter(mInv);
+    $('hn-target').textContent = tLabel;
+    $('hn-target-2').textContent = tLabel;
+    $('hn-real').textContent = '₹' + fmtINR(real);
+    $('hn-nominal').textContent = '₹' + fmtINR(nominal);
+  }
+}
+
+// wiring
+['in-sip', 'in-ret', 'in-start'].forEach(id => $(id).addEventListener('input', calc));
+[['lbl-sip','in-sip'], ['lbl-ret','in-ret'], ['lbl-start','in-start']].forEach(([t, s]) => {
+  const text = $(t), slider = $(s);
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => { slider.value = clamp(parseNumericInput(text.value), min, max); calc(); });
+  text.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
+$('target-chips').addEventListener('click', e => {
+  const b = e.target.closest('button[data-t]');
+  if (!b) return;
+  target = +b.dataset.t;
+  calc();
+});
+calc();
+
+(function () {
+  var btn = $('mobile-menu-toggle'), menu = $('mobile-menu'),
+      iconOpen = $('icon-open'), iconClose = $('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
