@@ -191,6 +191,16 @@
             <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="experienced">Seasoned</button>
           </div>
         </div>
+
+        <!-- Equity route -->
+        <div class="mt-6">
+          <label class="text-sm font-semibold text-ink block mb-2">How would you hold equity?</label>
+          <div class="grid grid-cols-2 gap-2" data-group="route">
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="mf">Mutual funds</button>
+            <button class="chip text-sm font-semibold py-2.5 px-2 rounded-xl border" data-val="direct">MFs + own stocks</button>
+          </div>
+          <div class="text-[11px] text-navy/55 mt-1.5">Own stocks means researching and tracking companies yourself. Rewarding, but it is genuinely a part-time job.</div>
+        </div>
       </div>
 
       <!-- Amount -->
@@ -270,33 +280,11 @@
       <!-- Bucket detail cards -->
       <div class="space-y-3" id="buckets"></div>
 
-      <!-- Equity slice detail -->
-      <details id="equity-details" class="bg-white rounded-2xl border border-navy/10 p-5">
-        <summary class="cursor-pointer flex items-center justify-between">
-          <div>
-            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Going one level deeper</div>
-            <div class="text-sm font-semibold text-ink mt-0.5">How to build the equity slice</div>
-          </div>
-          <svg class="w-5 h-5 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="mt-4">
-          <p class="text-[13px] text-ink/70 leading-relaxed mb-3">You can hold your <span id="eq-total-note" class="font-semibold">0%</span> equity as <strong>direct stocks</strong> (only if you'll genuinely research and track them) or, more simply, as a few <strong>equity mutual funds</strong>. Here's a common fund mix, tilted to how much risk you can comfortably take:</p>
-          <div class="overflow-x-auto -mx-2 px-2">
-            <table class="w-full text-xs tab-num">
-              <thead>
-                <tr class="text-left text-ink/55 border-b border-navy/10">
-                  <th class="py-2 pr-3 font-semibold">Within equity</th>
-                  <th class="py-2 pr-3 font-semibold">Share of equity</th>
-                  <th class="py-2 pr-3 font-semibold">Of total</th>
-                  <th class="py-2 font-semibold">What it is</th>
-                </tr>
-              </thead>
-              <tbody id="eq-table" class="text-ink/80"></tbody>
-            </table>
-          </div>
-          <p class="text-[11px] text-ink/50 mt-3 leading-relaxed">Fund categories are for illustration, not recommendations of specific schemes. An <strong>ELSS fund</strong> also counts as equity and gives an 80C tax deduction, but locks in for 3 years. If you're just starting out, there's no shame in beginning with only an index fund plus a flexi-cap and adding the rest later.</p>
-        </div>
-      </details>
+      <!-- Fund-level next step -->
+      <div class="bg-white rounded-2xl border border-navy/10 p-5 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-[13px] text-ink/70 leading-relaxed max-w-md">Fund categories here are for learning, not scheme recommendations. An <strong>ELSS fund</strong> also counts as equity and earns an 80C deduction, with a 3-year lock-in. Want the equity slice designed properly, category by category?</div>
+        <a href="calc-mf-portfolio.html" class="lift inline-flex bg-thisblue text-warmpaper px-5 py-2.5 rounded-full font-semibold text-sm shrink-0">Build the MF portfolio &rarr;</a>
+      </div>
 
       <!-- Rebalance note -->
       <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
@@ -386,7 +374,7 @@ function parseNumericInput(text) {
 // ---- state ----
 const state = {
   age: 32, horizon: 15, amount: 1000000,
-  income: 'stable', ef: 'yes', drop: 'hold', exp: 'some'
+  income: 'stable', ef: 'yes', drop: 'hold', exp: 'some', route: 'mf'
 };
 try {
   const saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
@@ -450,17 +438,69 @@ function compute(s){
   return { capacity: Math.round(capacity), tolerance: Math.round(tolerance), finalScore, equity, debt, gold, cash };
 }
 
-// within-equity split, tilted by aggression (0..1)
-function equitySplit(finalScore){
+// within-equity split: large / mid / small / international, plus your own stocks if chosen.
+// Mid caps need 4+ years to earn a place, small caps 6+; aggression sets how big they get.
+function equitySplit(finalScore, s){
   const a = clamp(finalScore / 100, 0, 1);
-  let large = Math.round(55 - a * 20);      // 35..55
-  let flexi = 30;
-  let midsmall = Math.round(5 + a * 25);    // 5..30
-  let intl = 100 - large - flexi - midsmall;
-  intl = clamp(intl, 5, 20);
-  const drift = 100 - (large + flexi + midsmall + intl);
-  large += drift;
-  return { large, flexi, midsmall, intl };
+  const gate = (h, lo, hi) => clamp((h - lo) / (hi - lo), 0, 1);
+  let mid   = Math.round((8 + a * 17) * gate(s.horizon, 4, 7));
+  let small = Math.round((a * 18) * gate(s.horizon, 6, 10));
+  const intl = 10;
+  const direct = s.route === 'direct' ? (s.exp === 'experienced' ? 15 : 10) : 0;
+  let large = 100 - mid - small - intl - direct;
+  if (large < 30) {
+    let d = 30 - large;
+    const cs = Math.min(d, small); small -= cs; d -= cs;
+    const cm = Math.min(d, mid); mid -= cm;
+    large = 100 - mid - small - intl - direct;
+  }
+  return { large, mid, small, intl, direct };
+}
+
+// within-debt split, by how soon the money is needed
+function debtSplit(s){
+  const yrs = s.horizon;
+  if (yrs <= 3) return [
+    ['Liquid / ultra-short funds', 50, 'In and out within a day or two, near-FD returns, no lock-in.'],
+    ['Bank FDs', 30, 'Fixed, boring, and exactly as advertised.'],
+    ['Arbitrage funds', 20, 'Debt-like steadiness, equity-like tax if held over a year.']
+  ];
+  if (yrs <= 7) return [
+    ['Short-duration / corporate bond funds', 45, 'The workhorse for the middle years.'],
+    ['Target-maturity funds', 30, 'Built to mature near your goal date, so the timing takes care of itself.'],
+    ['Bank FDs', 25, 'The sleep-well layer.']
+  ];
+  return [
+    ['PPF / EPF', 40, 'Locked in, but safe and tax-free. Long money loves it.'],
+    ['Corporate bond / target-maturity funds', 35, 'A better yield than FDs, still investment-grade.'],
+    ['RBI Floating Rate Bonds', 25, 'Government-backed, and the rate moves with the times.']
+  ];
+}
+
+// stacked bar + rows for a bucket's inner split
+function breakdownHTML(rowsArr, bucketPct, amt, color, footnote){
+  const shown = rowsArr.filter(r => r[1] > 0);
+  const bar = shown.map((r, i) => `<div style="width:${r[1]}%; background:${color}; opacity:${Math.max(0.25, 1 - i * 0.19)}"></div>`).join('');
+  const rows = shown.map(([n, sh, note]) => {
+    const ofTotal = bucketPct * sh / 100;
+    const rupee = amt > 0 ? ` &middot; ₹${fmtINR(amt * ofTotal / 100)}` : '';
+    return `<div class="flex items-baseline justify-between gap-3 py-2 border-b border-navy/5 last:border-0">
+      <div class="min-w-0">
+        <div class="text-[13px] font-semibold text-ink leading-tight">${n}</div>
+        <div class="text-[11px] text-ink/55 leading-snug mt-0.5">${note}</div>
+      </div>
+      <div class="text-right shrink-0">
+        <div class="font-bold text-thisblue tab-num text-[14px]">${sh}%</div>
+        <div class="text-[11px] text-ink/50 tab-num">${ofTotal.toFixed(0)}% of total${rupee}</div>
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="mt-3 rounded-xl bg-warmpaper-2 p-4">
+    <div class="h-2 rounded-full overflow-hidden flex mb-2">${bar}</div>
+    <div class="text-[10px] text-ink/45 mb-1">share of this bucket</div>
+    ${rows}
+    ${footnote ? `<div class="text-[11px] text-ink/55 leading-snug mt-2 pt-2 border-t border-navy/5">${footnote}</div>` : ''}
+  </div>`;
 }
 
 const BUCKETS = {
@@ -598,9 +638,32 @@ function render(){
          <span>At ${state.horizon} year${state.horizon>1?'s':''}, this money is needed too soon to risk a market fall. So this is a capital-preservation mix: safety and liquidity first, growth later, when you have the time for it.</span>
        </div>`
     : '';
+  const es = equitySplit(r.finalScore, state);
+  const eqRows = [
+    ['Large-cap / index funds', es.large, 'Nifty 50 or Sensex index funds, or a large-cap fund. The steady core.'],
+    ['Mid-cap funds', es.mid, 'Tomorrow\'s big names. More growth, deeper dips.'],
+    ['Small-cap funds', es.small, 'The spicy slice. It needs your longest, calmest years.'],
+    ['International funds', es.intl, 'A slice beyond India, for currency and market spread.'],
+    ['Your own stocks (direct equity)', es.direct, 'Only as much as you can genuinely research and keep watching.']
+  ];
+  const eqFoot = state.route === 'direct'
+    ? (state.exp === 'experienced'
+        ? 'The rest works through mutual funds, so your stock picks stay a slice, never the whole meal.'
+        : 'We kept the own-stocks slice small until picking companies is a habit, not an experiment. The funds carry the rest.')
+    : 'All of this works through mutual funds. No stock-picking required, and no shame in that: it is how most wealth actually gets built.';
+  const dbRows = debtSplit(state);
+
   document.getElementById('buckets').innerHTML = noEquityNote + legendItems.filter(([, pct]) => pct > 0).map(([k, pct]) => {
     const b = BUCKETS[k];
     const rupee = amt > 0 ? ` &middot; ₹${fmtINR(amt * pct / 100)}` : '';
+    const bucketAmt = amt * pct / 100;
+    let inner;
+    if (k === 'equity') inner = breakdownHTML(eqRows, pct, amt, b.color, eqFoot);
+    else if (k === 'debt') inner = breakdownHTML(dbRows, pct, amt, b.color, null);
+    else inner = `<div class="mt-1.5 flex items-start gap-2 text-[12px]">
+        <span class="text-thisblue font-bold uppercase tracking-wider shrink-0">How to hold it</span>
+        <span class="text-ink/70">${holdFor(k, r, state)}</span>
+      </div>`;
     return `<div class="bg-white rounded-2xl border border-navy/10 p-5">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2.5">
@@ -614,32 +677,8 @@ function render(){
         <span class="text-mustard-deep font-bold uppercase tracking-wider shrink-0">Why this</span>
         <span class="text-ink/70">${reasonFor(k, r, state)}</span>
       </div>
-      <div class="mt-1.5 flex items-start gap-2 text-[12px]">
-        <span class="text-thisblue font-bold uppercase tracking-wider shrink-0">How to hold it</span>
-        <span class="text-ink/70">${holdFor(k, r, state)}</span>
-      </div>
+      ${inner}
     </div>`;
-  }).join('');
-
-  // equity sub-split (hidden entirely when there is no equity)
-  const eqDetails = document.getElementById('equity-details');
-  if (eqDetails) eqDetails.style.display = r.equity === 0 ? 'none' : '';
-  const es = equitySplit(r.finalScore);
-  document.getElementById('eq-total-note').textContent = r.equity + '%';
-  const rows = [
-    ['Large-cap / Index', es.large, 'Nifty 50 or Sensex index funds, or a large-cap fund. The steady core.'],
-    ['Flexi / Multi-cap', es.flexi, 'One flexi-cap or multi-cap fund; the manager shifts across company sizes.'],
-    ['Mid & Small-cap', es.midsmall, 'Mid-cap and small-cap funds. Higher growth, much sharper swings.'],
-    ['International', es.intl, 'A global or US or international fund, for spread beyond India.']
-  ];
-  document.getElementById('eq-table').innerHTML = rows.map(([name, share, desc]) => {
-    const ofTotal = (r.equity * share / 100);
-    return `<tr class="border-b border-navy/5">
-      <td class="py-2 pr-3 font-semibold text-ink">${name}</td>
-      <td class="py-2 pr-3 text-thisblue font-bold">${share}%</td>
-      <td class="py-2 pr-3 text-ink/60">${ofTotal.toFixed(0)}%</td>
-      <td class="py-2 text-ink/60">${desc}</td>
-    </tr>`;
   }).join('');
 
   try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
@@ -677,7 +716,7 @@ sliders.forEach(([id, key]) => {
 });
 
 document.getElementById('reset-btn').addEventListener('click', () => {
-  Object.assign(state, { age:32, horizon:15, amount:1000000, income:'stable', ef:'yes', drop:'hold', exp:'some' });
+  Object.assign(state, { age:32, horizon:15, amount:1000000, income:'stable', ef:'yes', drop:'hold', exp:'some', route:'mf' });
   document.getElementById('in-age').value = 32;
   document.getElementById('in-horizon').value = 15;
   document.getElementById('in-amount').value = 1000000;
