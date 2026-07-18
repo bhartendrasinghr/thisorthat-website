@@ -2,7 +2,7 @@
 name: Aashish Sommaiya
 slug: aashish-sommaiya
 role: Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset
-  Management Ltd.
+  Management Ltd
 photo: /media/chatgpt-image-jul-18-2026-11_21_00-pm.png
 linkedin: https://www.linkedin.com/in/aashishpsomaiyaa/
 twitter: ""
