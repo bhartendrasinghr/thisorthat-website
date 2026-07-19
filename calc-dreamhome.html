@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dream Home Plan, ThisOrThat with Bhartendra</title>
+<meta name="description" content="How much home can you actually afford? The 3/20/30/40 rule, applied to your income and then reality-checked: the real EMI, the down-payment mountain, and where the dream turns into a trap." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .gauge-fill { transition: width 400ms ease, background 300ms ease; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+    <a href="money-person.html" class="mt-3 bg-marigold text-ink text-center py-3 rounded-full font-bold">Talk to a human &rarr;</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Dream Home Plan</span>
+</div>
+
+<section class="bg-cream pb-6">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The 3 &middot; 20 &middot; 30 &middot; 40 rule</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">How much home, honestly.</h1>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">A lovely old rule of thumb: a home worth up to <strong>3&times;</strong> your income, repaid over <strong>20</strong> years, EMI under <strong>30%</strong> of your monthly pay, with <strong>40%</strong> down. We apply it to your number, then do the bit the poster skips: check whether the maths actually holds, and show you where the dream quietly turns into a trap.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream pt-4">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">Your numbers</div>
+
+      <!-- Income -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-income">Your annual income (take-home)</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-income" value="12 L" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-income" type="range" min="300000" max="10000000" step="50000" value="1200000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1" id="income-note">That's about &#8377;1,00,000 a month. Type "12L" or "24L".</div>
+      </div>
+
+      <!-- Multiple -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-mult">Home budget, as a multiple of income</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-mult" value="3.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">&times;</span>
+          </div>
+        </div>
+        <input id="in-mult" type="range" min="2" max="6" step="0.1" value="3" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">The rule says 3&times;. Metros tempt you higher. Drag it and watch what breaks.</div>
+      </div>
+
+      <!-- Down payment -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-down">Down payment</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-down" value="40" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">%</span>
+          </div>
+        </div>
+        <input id="in-down" type="range" min="10" max="60" step="5" value="40" class="w-full mt-2" />
+      </div>
+
+      <!-- Tenure -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-tenure">Loan tenure</label>
+          <div class="flex items-baseline gap-1">
+            <input type="text" id="lbl-tenure" value="20" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" />
+            <span class="text-ink/60 text-sm">yrs</span>
+          </div>
+        </div>
+        <input id="in-tenure" type="range" min="10" max="30" step="1" value="20" class="w-full mt-2" />
+      </div>
+
+      <!-- Rate -->
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-rate">Interest rate</label>
+          <div class="flex items-baseline">
+            <input type="text" id="lbl-rate" value="8.5" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
+            <span class="text-ink/60 text-sm">% p.a.</span>
+          </div>
+        </div>
+        <input id="in-rate" type="range" min="6" max="12" step="0.05" value="8.5" class="w-full mt-2" />
+      </div>
+
+      <!-- Savings toward down payment -->
+      <div class="border-t border-navy/10 pt-6">
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-save">You can save each month, for the down payment</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-save" value="30,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-20 text-right" />
+          </div>
+        </div>
+        <input id="in-save" type="range" min="0" max="300000" step="1000" value="30000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">To work out how long the down payment really takes to build.</div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- Headline budget -->
+      <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-7">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Your home budget</div>
+        <div class="flex items-end gap-3 mt-2 flex-wrap">
+          <div class="font-display text-4xl md:text-5xl font-extrabold text-ink tab-num leading-none">&#8377;<span id="out-budget">-</span></div>
+          <div class="text-sm text-ink/70 pb-1" id="out-budget-note">-</div>
+        </div>
+      </div>
+
+      <!-- The four numbers -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Down payment (upfront)</div>
+          <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-down">-</span></div>
+          <div class="text-[11px] text-ink/60 mt-1" id="out-down-pct">-</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Home loan</div>
+          <div class="mt-2 font-display text-2xl font-extrabold text-thisblue tab-num">&#8377;<span id="out-loan">-</span></div>
+          <div class="text-[11px] text-ink/60 mt-1" id="out-loan-pct">-</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Your actual EMI</div>
+          <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-emi">-</span></div>
+          <div class="text-[11px] text-ink/60 mt-1" id="out-emi-note">-</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-navy/10 p-5">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Total interest paid</div>
+          <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-interest">-</span></div>
+          <div class="text-[11px] text-ink/60 mt-1" id="out-interest-note">over the life of the loan</div>
+        </div>
+      </div>
+
+      <!-- EMI gauge: the honest bit -->
+      <div id="emi-card" class="bg-white rounded-2xl border-2 border-navy/10 p-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Does the EMI actually fit?</div>
+          <div class="text-xs font-mono text-ink/55">EMI is <strong id="emi-share" class="tab-num">-</strong> of your take-home</div>
+        </div>
+        <div class="mt-4 relative h-6 rounded-full bg-warmpaper-2 overflow-hidden">
+          <div id="emi-gauge" class="gauge-fill h-full rounded-full bg-gain" style="width:0%"></div>
+          <div class="absolute top-0 bottom-0" style="left:60%" title="The 30% comfort line">
+            <div class="w-0.5 h-full bg-ink/70"></div>
+          </div>
+        </div>
+        <div class="flex justify-between text-[10px] text-ink/45 font-mono mt-1">
+          <span>0%</span><span style="margin-left:8%">the 30% comfort line &darr;</span><span>50% of income</span>
+        </div>
+        <div id="emi-verdict" class="mt-4 text-sm text-ink/80 leading-relaxed">-</div>
+      </div>
+
+      <!-- Rule scorecard -->
+      <div class="bg-warmpaper-2 rounded-2xl p-5">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-3">Still playing by the rule?</div>
+        <div id="scorecard" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      </div>
+
+      <!-- Down payment mountain -->
+      <div class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The real hurdle nobody mentions</div>
+        <div class="mt-2 font-display text-xl md:text-2xl font-extrabold leading-snug">The EMI is the easy part. The <span id="hn-down">&#8377;-</span> down payment is the mountain.</div>
+        <p class="mt-3 text-sm text-warmpaper/85 leading-relaxed" id="down-timeline">-</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-white rounded-2xl border border-navy/10 p-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-[13px] text-ink/70 max-w-md">Before you fall for a listing: is buying even the right call for you right now, and once you own it, how fast could you be free of the loan?</div>
+        <div class="flex flex-wrap gap-3">
+          <a href="calc-rentbuy.html" class="lift inline-flex bg-thisblue text-warmpaper px-5 py-2.5 rounded-full font-semibold text-sm shrink-0">Rent vs Buy &rarr;</a>
+          <a href="calc-prepay.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-2.5 rounded-full font-semibold text-sm shrink-0">Prepay it early &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">Estimates for education, not financial advice. The 3/20/30/40 rule is a guideline, not a law; your right number depends on job stability, other goals, existing loans, and local property prices, which vary hugely across India. EMIs assume a fixed rate; real home-loan rates float and change. Registration, stamp duty, GST, society and maintenance costs are extra. For a plan built around your life, speak to a SEBI-registered investment adviser.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmtINR = (n) => {
+  n = Math.round(n);
+  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return n.toLocaleString('en-IN');
+};
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+function emiFor(P, annualPct, years) {
+  const i = annualPct / 1200, n = years * 12;
+  if (P <= 0) return 0;
+  if (i === 0) return P / n;
+  const f = Math.pow(1 + i, n);
+  return P * i * f / (f - 1);
+}
+const yrsFmt = m => {
+  if (!isFinite(m) || m <= 0) return 'right away';
+  const y = Math.floor(m / 12), mo = Math.round(m % 12);
+  const yp = y ? y + (y === 1 ? ' year' : ' years') : '';
+  const mp = mo ? mo + ' mo' : '';
+  return (yp + (yp && mp ? ' ' : '') + mp) || '0 mo';
+};
+const setLbl = (id, val) => { const el = $(id); if (el && document.activeElement !== el) el.value = val; };
+
+function calc() {
+  const income = +$('in-income').value;
+  const mult = +$('in-mult').value;
+  const downPct = +$('in-down').value;
+  const tenure = +$('in-tenure').value;
+  const rate = +$('in-rate').value;
+  const save = +$('in-save').value;
+
+  setLbl('lbl-income', fmtINR(income));
+  setLbl('lbl-mult', mult.toFixed(1));
+  setLbl('lbl-down', downPct);
+  setLbl('lbl-tenure', tenure);
+  setLbl('lbl-rate', rate.toFixed(2).replace(/\.?0+$/, ''));
+  setLbl('lbl-save', save.toLocaleString('en-IN'));
+
+  const monthlyIncome = income / 12;
+  $('income-note').textContent = `That's about ₹${fmtINR(monthlyIncome)} a month. Type "12L" or "24L".`;
+
+  const budget = income * mult;
+  const down = budget * downPct / 100;
+  const loan = budget - down;
+  const emi = emiFor(loan, rate, tenure);
+  const totalInterest = emi * tenure * 12 - loan;
+  const emiShare = monthlyIncome > 0 ? (emi / monthlyIncome * 100) : 0;
+
+  $('out-budget').textContent = fmtINR(budget);
+  $('out-budget-note').textContent = `${mult.toFixed(1).replace(/\.0$/,'')}x your annual income`;
+  $('out-down').textContent = fmtINR(down);
+  $('out-down-pct').textContent = `${downPct}% of the home, paid upfront`;
+  $('out-loan').textContent = fmtINR(loan);
+  $('out-loan-pct').textContent = `${100 - downPct}% financed, over ${tenure} years`;
+  $('out-emi').textContent = fmtINR(emi) + '/mo';
+  $('out-emi-note').textContent = `${Math.round(emiShare)}% of your monthly take-home`;
+  $('out-interest').textContent = fmtINR(totalInterest);
+  $('out-interest-note').textContent = `You repay ₹${fmtINR(loan + totalInterest)} for a ₹${fmtINR(loan)} loan`;
+
+  // EMI gauge (bar spans 0 to 50% of income; comfort line at 30% -> 60% of bar)
+  const gauge = $('emi-gauge');
+  gauge.style.width = clamp(emiShare / 50 * 100, 0, 100) + '%';
+  $('emi-share').textContent = Math.round(emiShare) + '%';
+  let col, verdict;
+  if (emiShare <= 30) {
+    col = '#1F8A5B';
+    verdict = `<strong class="text-gain">Comfortable.</strong> At ${Math.round(emiShare)}% of your take-home, this sits under the 30% line with room to spare. That gap is the rule's quiet genius: it leaves you money to live, save and absorb a bad month.`;
+  } else if (emiShare <= 40) {
+    col = '#D99B00';
+    verdict = `<strong class="text-mustard-deep">A stretch.</strong> At ${Math.round(emiShare)}%, you're past the 30% comfort line. Doable, but it will be felt every single month for ${tenure} years. Trim the budget, grow the down payment, or stretch the tenure a little before you commit.`;
+  } else {
+    col = '#FF302D';
+    verdict = `<strong class="text-thatred">This is where the dream becomes a trap.</strong> ${Math.round(emiShare)}% of your take-home to one EMI leaves too little for everything else that makes a house a home. This isn't a no, it's a not-like-this: a smaller place, a bigger down payment, or a little more time brings it back to earth.`;
+  }
+  gauge.style.background = col;
+  $('emi-verdict').innerHTML = verdict;
+  $('emi-card').style.borderColor = col;
+
+  // scorecard
+  const pills = [
+    { k: '3x home', good: mult <= 3.05, warn: mult <= 4.05, val: mult.toFixed(1).replace(/\.0$/,'') + 'x' },
+    { k: '20-yr loan', good: tenure <= 20, warn: tenure <= 25, val: tenure + ' yr' },
+    { k: 'EMI < 30%', good: emiShare <= 30, warn: emiShare <= 40, val: Math.round(emiShare) + '%' },
+    { k: '40% down', good: downPct >= 40, warn: downPct >= 25, val: downPct + '%' }
+  ];
+  $('scorecard').innerHTML = pills.map(p => {
+    const state = p.good ? 'good' : p.warn ? 'warn' : 'bad';
+    const cls = state === 'good' ? 'bg-gain/10 border-gain/40 text-gain' : state === 'warn' ? 'bg-marigold/15 border-marigold/50 text-mustard-deep' : 'bg-thatred/8 border-thatred/40 text-thatred';
+    const mark = state === 'good' ? '&#10003;' : state === 'warn' ? '&#8776;' : '&#10007;';
+    return `<div class="rounded-xl border p-3 text-center ${cls}">
+      <div class="text-[10px] uppercase tracking-wider font-bold opacity-80">${p.k}</div>
+      <div class="font-display text-lg font-extrabold tab-num mt-0.5">${mark} ${p.val}</div>
+    </div>`;
+  }).join('');
+
+  // down payment mountain
+  $('hn-down').textContent = '₹' + fmtINR(down);
+  if (save > 0) {
+    const months = down / save;
+    $('down-timeline').innerHTML = `At ₹${fmtINR(save)} saved every month, that upfront ₹${fmtINR(down)} takes about <strong class="text-marigold">${yrsFmt(months)}</strong> to build, before you have paid a single EMI. Park it somewhere safe and liquid while you save, not in equity: this money has a near-term job. The sooner you start this pot, the sooner the keys are real.`;
+  } else {
+    $('down-timeline').innerHTML = `Tell us what you can save each month, on the left, and we'll show how long the ₹${fmtINR(down)} down payment actually takes to build. It is almost always the real reason the dream waits.`;
+  }
+}
+
+['in-income','in-mult','in-down','in-tenure','in-rate','in-save'].forEach(id => $(id).addEventListener('input', calc));
+[['lbl-income','in-income'],['lbl-mult','in-mult'],['lbl-down','in-down'],['lbl-tenure','in-tenure'],['lbl-rate','in-rate'],['lbl-save','in-save']].forEach(([t, s]) => {
+  const text = $(t), slider = $(s);
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => { slider.value = clamp(parseNumericInput(text.value), min, max); calc(); });
+  text.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+});
+calc();
+
+(function () {
+  var btn = $('mobile-menu-toggle'), menu = $('mobile-menu'),
+      iconOpen = $('icon-open'), iconClose = $('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
