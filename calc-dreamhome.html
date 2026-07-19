@@ -116,8 +116,8 @@
             <input type="text" id="lbl-income" value="12 L" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
           </div>
         </div>
-        <input id="in-income" type="range" min="300000" max="10000000" step="50000" value="1200000" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/55 mt-1" id="income-note">That's about &#8377;1,00,000 a month. Type "12L" or "24L".</div>
+        <input id="in-income" type="range" min="300000" max="30000000" step="50000" value="1200000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1" id="income-note">That's about &#8377;1,00,000 a month. Slider goes to &#8377;3 Cr; earning more? Just type it, "5cr" and all.</div>
       </div>
 
       <!-- Multiple -->
@@ -304,8 +304,11 @@ const yrsFmt = m => {
 };
 const setLbl = (id, val) => { const el = $(id); if (el && document.activeElement !== el) el.value = val; };
 
+// Income lives in its own state so a typed value ("3cr", "5cr") can go past the slider ceiling.
+let incomeVal = +$('in-income').value;
+
 function calc() {
-  const income = +$('in-income').value;
+  const income = incomeVal;
   const mult = +$('in-mult').value;
   const downPct = +$('in-down').value;
   const tenure = +$('in-tenure').value;
@@ -320,7 +323,7 @@ function calc() {
   setLbl('lbl-save', save.toLocaleString('en-IN'));
 
   const monthlyIncome = income / 12;
-  $('income-note').textContent = `That's about ₹${fmtINR(monthlyIncome)} a month. Type "12L" or "24L".`;
+  $('income-note').textContent = `That's about ₹${fmtINR(monthlyIncome)} a month. Slider stops at ₹3 Cr; earning more? Just type it, "5cr" and all.`;
 
   const budget = income * mult;
   const down = budget * downPct / 100;
@@ -386,8 +389,20 @@ function calc() {
   }
 }
 
-['in-income','in-mult','in-down','in-tenure','in-rate','in-save'].forEach(id => $(id).addEventListener('input', calc));
-[['lbl-income','in-income'],['lbl-mult','in-mult'],['lbl-down','in-down'],['lbl-tenure','in-tenure'],['lbl-rate','in-rate'],['lbl-save','in-save']].forEach(([t, s]) => {
+// Income: slider moves incomeVal within its range; the typed field can push it past the ceiling.
+const incSlider = $('in-income'), incText = $('lbl-income');
+incSlider.addEventListener('input', () => { incomeVal = +incSlider.value; calc(); });
+incText.addEventListener('input', () => {
+  incomeVal = clamp(parseNumericInput(incText.value), +incSlider.min, 1000000000); // up to ₹100 Cr
+  incSlider.value = clamp(incomeVal, +incSlider.min, +incSlider.max); // slider pins at its max when income is higher
+  calc();
+});
+incText.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); incText.blur(); } });
+incText.addEventListener('focus', () => incText.select());
+incText.addEventListener('blur', calc);
+
+['in-mult','in-down','in-tenure','in-rate','in-save'].forEach(id => $(id).addEventListener('input', calc));
+[['lbl-mult','in-mult'],['lbl-down','in-down'],['lbl-tenure','in-tenure'],['lbl-rate','in-rate'],['lbl-save','in-save']].forEach(([t, s]) => {
   const text = $(t), slider = $(s);
   const min = +slider.min, max = +slider.max;
   text.addEventListener('input', () => { slider.value = clamp(parseNumericInput(text.value), min, max); calc(); });
