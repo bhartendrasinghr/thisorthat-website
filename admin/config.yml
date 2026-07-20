@@ -187,6 +187,75 @@ collections:
               - { name: "category", label: "Override category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities"], required: false }
               - { name: "title", label: "Override title (rarely needed)", widget: "string", required: false }
 
+  # ───────── EPISODE NOTES (the fork, takeaways, chapters) ─────────
+  # One JSON file per episode in content/episodes/, named by the YouTube video ID.
+  # Fills the rich episode page: summary, the fork, takeaways, timestamped chapters,
+  # a matched tool, guest disclosure and disclaimer. Episodes without a file here fall
+  # back to the generic layout, so you can add these one at a time (top episodes first).
+  - name: "episode_notes"
+    label: "Episode Notes"
+    label_singular: "Episode note"
+    folder: "content/episodes"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "id"
+    slug: "{{fields.id}}"
+    summary: "{{id}}"
+    fields:
+      - { name: "id", label: "YouTube video ID", widget: "string", hint: "The 11-character ID after v= in the YouTube URL. This is also the filename." }
+      - { name: "duration", label: "Duration (shown on page)", widget: "string", required: false, hint: "e.g. '32 min'" }
+      - { name: "durationISO", label: "Duration ISO 8601 (SEO)", widget: "string", required: false, hint: "e.g. 'PT32M24S'. Powers video schema. Optional." }
+      - { name: "uploadDate", label: "Upload date YYYY-MM-DD (SEO)", widget: "string", required: false }
+      - { name: "summary", label: "About this episode", widget: "text", hint: "2-3 lines. The unique summary Google and readers see." }
+      - name: "fork"
+        label: "The fork (signature block)"
+        widget: "object"
+        required: false
+        collapsed: false
+        fields:
+          - { name: "decision", label: "The decision", widget: "text", hint: "The one money question this episode settles. Phrase it as a question." }
+          - name: "this"
+            label: "THIS side"
+            widget: "object"
+            fields:
+              - { name: "label", label: "Label", widget: "string", hint: "e.g. 'Go global'" }
+              - { name: "points", label: "Points (one argument each)", widget: "list", field: { name: "text", label: "Point", widget: "string" } }
+          - name: "that"
+            label: "THAT side"
+            widget: "object"
+            fields:
+              - { name: "label", label: "Label", widget: "string", hint: "e.g. 'Stay home'" }
+              - { name: "points", label: "Points (one argument each)", widget: "list", field: { name: "text", label: "Point", widget: "string" } }
+          - { name: "pick", label: "We pick (the verdict)", widget: "text", hint: "Hold the reader, then hand them the honest call." }
+      - { name: "takeaways", label: "Takeaways (3 to 5)", widget: "list", required: false, field: { name: "text", label: "Takeaway", widget: "string" } }
+      - name: "chapters"
+        label: "Chapters (timestamped)"
+        widget: "list"
+        required: false
+        summary: "{{fields.t}}s · {{fields.label}}"
+        fields:
+          - { name: "t", label: "Start (seconds)", widget: "number", value_type: "int", min: 0 }
+          - { name: "label", label: "Chapter title", widget: "string" }
+      - name: "tool"
+        label: "Matched tool (the do-don't-just-watch nudge)"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "slug", label: "Tool page", widget: "string", hint: "e.g. 'asset-allocator.html'" }
+          - { name: "label", label: "Tool name", widget: "string", hint: "e.g. 'Asset Allocator'" }
+          - { name: "reason", label: "Why this tool", widget: "text" }
+      - { name: "guestDisclosure", label: "Guest disclosure (AMFI / SEBI reg)", widget: "text", required: false }
+      - { name: "disclaimer", label: "Disclaimer", widget: "text", required: false }
+      - name: "seo"
+        label: "SEO"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "title", label: "SEO title", widget: "string", required: false }
+          - { name: "description", label: "Meta description", widget: "string", required: false }
+
   # ───────── GUESTS (photos + bios) ─────────
   # One markdown file per guest in content/guests/.
   # The "name" field MUST match exactly how the guest appears in episode credits

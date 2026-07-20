@@ -1,0 +1,66 @@
+{
+  "id": "sjjwPzGaF0I",
+  "duration": "32 min",
+  "durationISO": "PT32M24S",
+  "uploadDate": "2026-06-13",
+  "summary": "A Taiwan fund returned 400% in a year. The same fund turned ₹1 lakh into ₹88,000 over its life. Both are true. Bhartendra and Vijai Mantri take apart the international investing story everyone is suddenly telling, Brazil, Taiwan, Korea, AI semiconductors, and ask the only question that matters: what should an Indian investor actually do about it?",
+  "fork": {
+    "decision": "Should you chase international funds out of India, Brazil, Taiwan, Korea, the AI-semiconductor names?",
+    "this": {
+      "label": "Go global",
+      "points": [
+        "The headline returns are real: a Taiwan fund did 400% in a single year.",
+        "Diversification beyond one country and one currency.",
+        "Access to the AI and semiconductor giants India simply does not have."
+      ]
+    },
+    "that": {
+      "label": "Stay home",
+      "points": [
+        "That same Taiwan fund turned ₹1 lakh into ₹88,000 over its life.",
+        "A Brazil fund went almost nowhere for 15 years.",
+        "The brochure shows you the returns. It never shows you the volatility."
+      ]
+    },
+    "pick": "Mostly India, and go global only with your eyes fully open. Vijai's contrarian read: the most hated market on earth right now is India, and hated is usually where the opportunity is hiding. Chase last year's 400% and you are often just buying the top."
+  },
+  "takeaways": [
+    "Headline return and lived return are different animals. 400% in a year, and still ₹1 lakh shrunk to ₹88,000 over the fund's life.",
+    "A single-country bet can go nowhere for a very long time. One Brazil fund delivered almost nothing across 15 years.",
+    "The global-fund rush is a narrative. The returns get advertised, the volatility rarely does.",
+    "The rule of the episode: buy the most hated asset. Right now, Vijai argues, that is India itself.",
+    "Before you buy a country because it is up, ask what it looked like in the years the pitch quietly skips."
+  ],
+  "chapters": [
+    { "t": 0, "label": "Introduction" },
+    { "t": 132, "label": "Why is everyone talking about international investing?" },
+    { "t": 198, "label": "Brazil fund: 15 years, almost zero return" },
+    { "t": 344, "label": "Taiwan: a 400% return with a catch" },
+    { "t": 510, "label": "Korea, Samsung and SK Hynix" },
+    { "t": 701, "label": "The brutal history behind today's hot stocks" },
+    { "t": 1042, "label": "Why everyone suddenly loves global funds" },
+    { "t": 1126, "label": "The Invesco global fund rollercoaster" },
+    { "t": 1228, "label": "The oncologist and the anganwadi worker" },
+    { "t": 1291, "label": "Gold, silver and the narrative that quietly died" },
+    { "t": 1336, "label": "The only two markets that stayed consistent" },
+    { "t": 1434, "label": "Is Nvidia priced for perfection?" },
+    { "t": 1466, "label": "Always buy the most hated asset" },
+    { "t": 1488, "label": "Where the negativity around India is coming from" },
+    { "t": 1592, "label": "\"Businessman is a thief\": India's real problem" },
+    { "t": 1678, "label": "The IPL is foreign-owned, and so is the profit" },
+    { "t": 1755, "label": "Rare earth, chokepoints and hard power" },
+    { "t": 1851, "label": "So what should an Indian investor actually do?" },
+    { "t": 1934, "label": "Conclusion" }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "This whole episode is one question: how much of your money, if any, belongs outside India? Put in your numbers and see the split, equity, debt, gold, and how big an international sleeve actually makes sense."
+  },
+  "guestDisclosure": "Vijai Mantri, Founder & Chief Investment Strategist, Vijai Mantri Financial Services Pvt. Ltd. AMFI Registered Mutual Fund Distributor; ARN 346147 (valid to 20 Nov 2028).",
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Brazil, Taiwan, Korea: The International Investing Trap | Vijai Mantri",
+    "description": "A Taiwan fund did 400% in a year and still lost money over its life. Bhartendra and Vijai Mantri unpack the international investing trap, and what Indian investors should actually do."
+  }
+}
