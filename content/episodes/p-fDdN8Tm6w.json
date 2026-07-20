@@ -1,0 +1,115 @@
+{
+  "id": "p-fDdN8Tm6w",
+  "duration": "70 min",
+  "durationISO": "PT1H10M7S",
+  "uploadDate": "2026-02-23",
+  "summary": "In this episode of This or That, I’m joined by CA Abhishek Mehta (Founder, Investa | Wealth Insight Podcast). He advises families on taxation + wealth management and manages ~200 Cr AUM.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlight & Introduction"
+    },
+    {
+      "t": 162,
+      "label": "Budget changes: what changed (and what didn’t)"
+    },
+    {
+      "t": 562,
+      "label": "Old vs New regime: simplest thumb rule (HRA decides)"
+    },
+    {
+      "t": 731,
+      "label": "Car leasing: how it saves tax"
+    },
+    {
+      "t": 867,
+      "label": "New regime: practical tax levers (Employer NPS, etc.)"
+    },
+    {
+      "t": 960,
+      "label": "Rental income & interest set-off logic under new regime"
+    },
+    {
+      "t": 1051,
+      "label": "Exemption for Old regime"
+    },
+    {
+      "t": 1122,
+      "label": "HUF: who it’s for & how it saves tax"
+    },
+    {
+      "t": 1295,
+      "label": "Clubbing of Income"
+    },
+    {
+      "t": 1370,
+      "label": "Smart move: investing via children’s account (guardian model)"
+    },
+    {
+      "t": 1469,
+      "label": "DTAA explained with a simple example"
+    },
+    {
+      "t": 1591,
+      "label": "Gifting rules: what’s tax-free & documentation basics"
+    },
+    {
+      "t": 1830,
+      "label": "NRI property sale: TDS shock & lower TDS certificate approach"
+    },
+    {
+      "t": 1953,
+      "label": "Sections 54 & 54F: Capital gains tax planning around property"
+    },
+    {
+      "t": 2195,
+      "label": "Capital gains rules: LTCG vs STCG & surcharge note"
+    },
+    {
+      "t": 2245,
+      "label": "Tax-loss harvesting before 31 March (sell-buy back)"
+    },
+    {
+      "t": 2425,
+      "label": "Why paying a good CA/advisor fee is worth it"
+    },
+    {
+      "t": 2600,
+      "label": "Market view: the 5-objective framework (wealth/death/taxes & guardrails)"
+    },
+    {
+      "t": 2983,
+      "label": "Asset allocation across 4 asset classes (debt/commodities/equity/real estate)"
+    },
+    {
+      "t": 3473,
+      "label": "Equity Asset Allocation"
+    },
+    {
+      "t": 3552,
+      "label": "Global investing: why he keeps it simple (TCS & operational friction)"
+    },
+    {
+      "t": 3710,
+      "label": "Why 10–12 funds ?"
+    },
+    {
+      "t": 3877,
+      "label": "Buy & hold vs portfolio review (don’t time the market)"
+    },
+    {
+      "t": 4007,
+      "label": "Closing - Asset Allocation"
+    }
+  ],
+  "tool": {
+    "slug": "calc-plan.html",
+    "label": "Full financial plan",
+    "reason": "Put every goal in one honest picture and see what fits, and what has to wait."
+  },
+  "disclaimer": "This content is for education only. It is not financial, tax, or legal advice. Please consult your CA/financial advisor for your specific situation. Markets are subject to risk. Past performance does not guarantee future results.",
+  "seo": {
+    "title": "Budget 2026: Tax Changes & Investing Playbook (Old vs New, HUF, LTCG, Allocation)",
+    "description": "In this episode of This or That, I’m joined by CA Abhishek Mehta (Founder, Investa | Wealth Insight Podcast). He advises families on taxation + wealth"
+  }
+}

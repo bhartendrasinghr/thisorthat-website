@@ -1,0 +1,17 @@
+{
+  "id": "dkQ9JW-Py9A",
+  "duration": "32 min",
+  "durationISO": "PT32M10S",
+  "uploadDate": "2026-02-02",
+  "summary": "What if your salary stops one day? This video brings together insights from three different conversations to challenge common retirement assumptions:",
+  "tool": {
+    "slug": "calc-retirement.html",
+    "label": "Real Retirement",
+    "reason": "Find the corpus you actually need to retire, and whether your current savings get you there."
+  },
+  "disclaimer": "This video is for educational and informational purposes only. It does not constitute financial or investment advice. Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully and consult a SEBI-registered financial advisor before making any financial decisions.",
+  "seo": {
+    "title": "The biggest retirement risk is having only one income",
+    "description": "What if your salary stops one day? This video brings together insights from three different conversations to challenge common retirement"
+  }
+}

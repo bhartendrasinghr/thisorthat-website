@@ -1,0 +1,119 @@
+{
+  "id": "YH2ZegF1ewk",
+  "duration": "63 min",
+  "durationISO": "PT1H2M59S",
+  "uploadDate": "2025-02-22",
+  "summary": "Financial freedom is about being in control of your time, allowing you to live life as you choose, with enough resources to meet all your financial goals. Mrin Agarwal has educated 300,000+ investors.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Intro"
+    },
+    {
+      "t": 74,
+      "label": "What is financial planning ?"
+    },
+    {
+      "t": 180,
+      "label": "Retirement planning"
+    },
+    {
+      "t": 498,
+      "label": "Investment option for retirement"
+    },
+    {
+      "t": 620,
+      "label": "National pension scheme"
+    },
+    {
+      "t": 801,
+      "label": "Understanding risk profile"
+    },
+    {
+      "t": 868,
+      "label": "Step up sip"
+    },
+    {
+      "t": 1075,
+      "label": "Goal Priority"
+    },
+    {
+      "t": 1183,
+      "label": "Equity & Portfolio expectation"
+    },
+    {
+      "t": 1300,
+      "label": "Beyond Mutual Funds & NPS"
+    },
+    {
+      "t": 1353,
+      "label": "Unregulated Investments"
+    },
+    {
+      "t": 1440,
+      "label": "Chasing returns vs Building Portfolio"
+    },
+    {
+      "t": 1516,
+      "label": "New Fund Offer"
+    },
+    {
+      "t": 1590,
+      "label": "Rebalancing the Portfolio"
+    },
+    {
+      "t": 1663,
+      "label": "Financial Advisors"
+    },
+    {
+      "t": 1775,
+      "label": "Role of Debt Mutual Funds"
+    },
+    {
+      "t": 2084,
+      "label": "Emergency Fund"
+    },
+    {
+      "t": 2130,
+      "label": "Direct Equity & Equity Baskets"
+    },
+    {
+      "t": 2303,
+      "label": "Portfolios for different goals"
+    },
+    {
+      "t": 2428,
+      "label": "Diversification"
+    },
+    {
+      "t": 2597,
+      "label": "SWP"
+    },
+    {
+      "t": 2777,
+      "label": "Life & Health Insurance"
+    },
+    {
+      "t": 3178,
+      "label": "Nominee & Legal Heir"
+    },
+    {
+      "t": 3384,
+      "label": "General guidelines for Investments"
+    },
+    {
+      "t": 3722,
+      "label": "Closing Remarks"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "This episode is really about your mix. Put in your numbers and see the equity, debt, gold and international split that actually fits you."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Essentials of Financial Planning with Mrin Agarwal",
+    "description": "Financial freedom is about being in control of your time, allowing you to live life as you choose, with enough resources to meet all your financial goals."
+  }
+}

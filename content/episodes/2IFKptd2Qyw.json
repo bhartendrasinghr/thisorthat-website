@@ -1,0 +1,103 @@
+{
+  "id": "2IFKptd2Qyw",
+  "duration": "53 min",
+  "durationISO": "PT52M36S",
+  "uploadDate": "2025-03-07",
+  "summary": "Join us for an insightful conversation with Raghav Iyengar, a mutual fund industry veteran with over three decades of experience. As the current CEO of 360 One Asset Management, Raghav shares valuable insights on the evolution of investor behavior from short-term trading to goal-based investing, provides tailored recommendations for beginners, and emphasizes the critical importance of early investing and financial discipline.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Intro"
+    },
+    {
+      "t": 79,
+      "label": "Budget 2025 for Investors"
+    },
+    {
+      "t": 131,
+      "label": "Evolution of Mutual Fund Investor"
+    },
+    {
+      "t": 329,
+      "label": "Guidance on Constructing MF portfolio"
+    },
+    {
+      "t": 496,
+      "label": "Index Funds, passive & active funds"
+    },
+    {
+      "t": 774,
+      "label": "Investing in Mid & Small Cap Funds"
+    },
+    {
+      "t": 809,
+      "label": "How to evaluate an underperforming Mutual Fund?"
+    },
+    {
+      "t": 1047,
+      "label": "Role of a debt & debt funds"
+    },
+    {
+      "t": 1230,
+      "label": "International & Sectoral Funds"
+    },
+    {
+      "t": 1454,
+      "label": "Evaluating Right Mutual Fund"
+    },
+    {
+      "t": 1620,
+      "label": "Fund Manager as a criteria for evaluating Mutual Fund."
+    },
+    {
+      "t": 1710,
+      "label": "Role of a New Fund Offer"
+    },
+    {
+      "t": 1909,
+      "label": "Quant Funds & ESG Funds"
+    },
+    {
+      "t": 2009,
+      "label": "What are the right fund category to form the core of your portfolio ?"
+    },
+    {
+      "t": 2207,
+      "label": "Ideas to be warry off"
+    },
+    {
+      "t": 2362,
+      "label": "Mutual Fund Industry View"
+    },
+    {
+      "t": 2445,
+      "label": "Non Traditional Investment Options"
+    },
+    {
+      "t": 2537,
+      "label": "Mistakes & learning from failed investments"
+    },
+    {
+      "t": 2686,
+      "label": "Mental Model During Volatile Market"
+    },
+    {
+      "t": 2766,
+      "label": "Large Fund Houses Vs Small Fund Houses."
+    },
+    {
+      "t": 2951,
+      "label": "Raghav's Guidance to Young Investors"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "This episode is really about your mix. Put in your numbers and see the equity, debt, gold and international split that actually fits you."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Mutual Fund Investing Insights I Raghav Iyengar",
+    "description": "Join us for an insightful conversation with Raghav Iyengar, a mutual fund industry veteran with over three decades of experience. As the current CEO of"
+  }
+}

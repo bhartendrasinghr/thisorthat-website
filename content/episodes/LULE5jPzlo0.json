@@ -1,0 +1,95 @@
+{
+  "id": "LULE5jPzlo0",
+  "duration": "66 min",
+  "durationISO": "PT1H6M29S",
+  "uploadDate": "2025-12-13",
+  "summary": "In this deep and honest conversation, Bhartendra Singh sits down with Thomas Priju, a portfolio manager with 25+ years of experience across Mutual Funds, PMS, Hedge Funds, and AIFs. This episode breaks down how fund managers really think, how alpha is created, how sector cycles work, and why most investors fail to build long-term wealth.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Introduction & Highlight"
+    },
+    {
+      "t": 136,
+      "label": "What does a fund manager do?"
+    },
+    {
+      "t": 390,
+      "label": "How alpha is generated"
+    },
+    {
+      "t": 810,
+      "label": "How to think about equity ?"
+    },
+    {
+      "t": 1000,
+      "label": "IPO Over Subscription & Hype"
+    },
+    {
+      "t": 1380,
+      "label": "Investment philosophy"
+    },
+    {
+      "t": 1620,
+      "label": "Buy and Forget or Evaluate the stocks"
+    },
+    {
+      "t": 1885,
+      "label": "How Fund Managers Manage Risk"
+    },
+    {
+      "t": 2010,
+      "label": "How to Deal With Wrong Decisions ?"
+    },
+    {
+      "t": 2360,
+      "label": "How Long Should You Stick with Underperforming Funds?"
+    },
+    {
+      "t": 2700,
+      "label": "Mutual, PMS & SIF"
+    },
+    {
+      "t": 2892,
+      "label": "What makes a great investor"
+    },
+    {
+      "t": 3060,
+      "label": "What to track?"
+    },
+    {
+      "t": 3223,
+      "label": "Good Books to read"
+    },
+    {
+      "t": 3340,
+      "label": "Sectors for next decade"
+    },
+    {
+      "t": 3480,
+      "label": "Global investing"
+    },
+    {
+      "t": 3590,
+      "label": "Should young investors go 100% equity?"
+    },
+    {
+      "t": 3651,
+      "label": "Fixed income"
+    },
+    {
+      "t": 3690,
+      "label": "Closing thoughts"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "This episode is really about your mix. Put in your numbers and see the equity, debt, gold and international split that actually fits you."
+  },
+  "disclaimer": "All content in this podcast is for educational purposes only. This is not investment advice. Please consult a SEBI-registered advisor before making financial decisions.",
+  "seo": {
+    "title": "How Fund Managers Really Think: Stock Picking, Sector Cycles & Alpha Explained | Thomas Priju",
+    "description": "In this deep and honest conversation, Bhartendra Singh sits down with Thomas Priju, a portfolio manager with 25+ years of experience across Mutual Funds,"
+  }
+}

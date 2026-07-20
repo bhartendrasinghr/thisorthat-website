@@ -1,0 +1,55 @@
+{
+  "id": "an4dvf0llMM",
+  "duration": "36 min",
+  "durationISO": "PT35M56S",
+  "uploadDate": "2026-02-16",
+  "summary": "Indian markets have been volatile and many investors are worried because recent returns feel lower than FD. In this video, we explain what is really happening in the market, why equity should be viewed with a 3–5 year horizon, and how to invest with discipline instead of chasing what is trending (silver, smallcaps, etc.).",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Introduction & Highlight"
+    },
+    {
+      "t": 150,
+      "label": "Why 1 year returns can mislead (FD vs equity)"
+    },
+    {
+      "t": 360,
+      "label": "Long-term mindset: patience and cycles"
+    },
+    {
+      "t": 600,
+      "label": "Global investing and diversification"
+    },
+    {
+      "t": 780,
+      "label": "Avoid chasing trends: silver vs smallcaps"
+    },
+    {
+      "t": 1080,
+      "label": "Lumpsum strategy: staggered investing"
+    },
+    {
+      "t": 1200,
+      "label": "SIP during downturns: what to do"
+    },
+    {
+      "t": 1290,
+      "label": "Asset allocation and rebalancing framework"
+    },
+    {
+      "t": 1820,
+      "label": "Sector outlook and closing"
+    }
+  ],
+  "tool": {
+    "slug": "calc-crorepati.html",
+    "label": "Become a Crorepati",
+    "reason": "Turn the idea into a number. See the two roads to your first crore, and which one is faster for you."
+  },
+  "disclaimer": "This video is for educational purposes only and does not constitute financial advice. Investing in stocks, mutual funds, and other assets involves risk, and returns are not guaranteed. Please do your own research and consider speaking with a SEBI-registered financial advisor before making investment decisions. We are not responsible for any losses arising from the use of this information. Chapters",
+  "seo": {
+    "title": "Markets Are Flat. Don’t Panic.The Real Wealth Game Is Patience.",
+    "description": "Indian markets have been volatile and many investors are worried because recent returns feel lower than FD. In this video, we explain what is really"
+  }
+}

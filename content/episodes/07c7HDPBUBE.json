@@ -1,0 +1,63 @@
+{
+  "id": "07c7HDPBUBE",
+  "duration": "28 min",
+  "durationISO": "PT28M20S",
+  "uploadDate": "2025-06-03",
+  "summary": "Most Indians underestimate what it takes to retire comfortably. In this episode, Sneha Jain, Founder of Wealth Trust, breaks down the essentials of retirement planning for India. From the right investment strategies to managing inflation and rising healthcare costs, we cover what you really need to know.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Introduction"
+    },
+    {
+      "t": 150,
+      "label": "Why retirement planning is more important than ever"
+    },
+    {
+      "t": 185,
+      "label": "How do we go about Retirement Planning"
+    },
+    {
+      "t": 231,
+      "label": "Start Early vs. Late"
+    },
+    {
+      "t": 362,
+      "label": "How to Calculate Your Retirement Corpus"
+    },
+    {
+      "t": 481,
+      "label": "Rule of 72 Example for Inflation"
+    },
+    {
+      "t": 660,
+      "label": "Where to Invest for Retirement"
+    },
+    {
+      "t": 834,
+      "label": "How Often to Review Your Retirement Plan"
+    },
+    {
+      "t": 972,
+      "label": "What is the Right Return Expectation across investment products"
+    },
+    {
+      "t": 1344,
+      "label": "Balancing today and the future"
+    },
+    {
+      "t": 1680,
+      "label": "Final advice for investors"
+    }
+  ],
+  "tool": {
+    "slug": "calc-retirement.html",
+    "label": "Real Retirement",
+    "reason": "Find the corpus you actually need to retire, and whether your current savings get you there."
+  },
+  "disclaimer": "This video is for educational purposes only and does not constitute financial advice. Please consult a qualified financial advisor before making any investment decisions. The opinions expressed are personal and do not represent the views of any organization.Like, Share & Subscribe",
+  "seo": {
+    "title": "Retirement Planning in India: What You Need to Know Today | Sneha Jain, CEO WealthTrust",
+    "description": "Most Indians underestimate what it takes to retire comfortably. In this episode, Sneha Jain, Founder of Wealth Trust, breaks down the essentials of"
+  }
+}

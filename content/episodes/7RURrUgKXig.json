@@ -1,0 +1,103 @@
+{
+  "id": "7RURrUgKXig",
+  "duration": "57 min",
+  "durationISO": "PT56M39S",
+  "uploadDate": "2025-09-27",
+  "summary": "Buying a home in India? This episode is your one-stop playbook—from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and the hidden costs that turn a ₹2 Cr home into ₹2.4–2.5 Cr. We also cover red flags like “proposed development”, show-apartment traps, APF checks, CIBIL/ITR, broker value, and the age-old question: buy now or wait?",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlight & Introduction"
+    },
+    {
+      "t": 130,
+      "label": "Have prices really fallen? Reports vs reality"
+    },
+    {
+      "t": 522,
+      "label": "₹50L in Mumbai—what do you really get?"
+    },
+    {
+      "t": 588,
+      "label": "2BHK budgets by locality (Western suburbs, South of Andheri)"
+    },
+    {
+      "t": 800,
+      "label": "Thane pricing & why it varies by micro-market/developer"
+    },
+    {
+      "t": 920,
+      "label": "Are you financially ready? (close liabilities, combine incomes)"
+    },
+    {
+      "t": 1065,
+      "label": "What lenders check: ITR, CIBIL, bank statements, savings"
+    },
+    {
+      "t": 1182,
+      "label": "APF numbers, big-bank due diligence & red flags"
+    },
+    {
+      "t": 1436,
+      "label": "What Should Buyers Consider While Evaluating a Property ?"
+    },
+    {
+      "t": 1592,
+      "label": "Easy-to-miss basics (dry area, natural light, nuisances)"
+    },
+    {
+      "t": 1766,
+      "label": "“Bang on main road” trap & infra timelines"
+    },
+    {
+      "t": 1861,
+      "label": "Resale due diligence: OC, water, gas, inspection checklist"
+    },
+    {
+      "t": 1995,
+      "label": "Should you hire a broker? Value add & RERA angle"
+    },
+    {
+      "t": 2261,
+      "label": "Spotting a good broker vs a red flag"
+    },
+    {
+      "t": 2417,
+      "label": "Hidden costs breakdown (stamp duty 6% + GST 5% + fees)"
+    },
+    {
+      "t": 2581,
+      "label": "Loan charges people forget (processing, loan stamp duty)"
+    },
+    {
+      "t": 2698,
+      "label": "Interiors budget most people miss (₹10–30L)"
+    },
+    {
+      "t": 2906,
+      "label": "Location evaluation checklist (commute, schools, hospitals)"
+    },
+    {
+      "t": 2917,
+      "label": "Buy now vs wait? The nuanced answer"
+    },
+    {
+      "t": 3209,
+      "label": "Appreciation vs rental yield, legacy & “bragging rights”"
+    },
+    {
+      "t": 3338,
+      "label": "Final takeaways & how to decide for your context"
+    }
+  ],
+  "tool": {
+    "slug": "calc-dreamhome.html",
+    "label": "Dream Home Plan",
+    "reason": "Run the honest version for your own home: how much you can afford, and what the EMI really costs your month."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Hidden Home-Buying Costs & Smart Buying Guide (India) | घर खरीदने से पहले ज़रूर देखें",
+    "description": "Buying a home in India? This episode is your one-stop playbook—from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and"
+  }
+}

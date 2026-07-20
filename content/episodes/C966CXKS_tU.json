@@ -1,0 +1,55 @@
+{
+  "id": "C966CXKS_tU",
+  "duration": "27 min",
+  "durationISO": "PT27M14S",
+  "uploadDate": "2025-09-03",
+  "summary": "Why does retirement scare us? It’s not about money — it’s about the mind. Most people delay planning because the brain can’t imagine life at 75. That distance creates retirement anxiety.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Why Retirement Feels Scary"
+    },
+    {
+      "t": 120,
+      "label": "The Psychology of Retirement Anxiety"
+    },
+    {
+      "t": 310,
+      "label": "Why Retirement Is Not a ‘Happy Goal’"
+    },
+    {
+      "t": 500,
+      "label": "Reframe It as Financial Freedom"
+    },
+    {
+      "t": 660,
+      "label": "The Biggest Risk: Depending on One Skill"
+    },
+    {
+      "t": 860,
+      "label": "Second Income & Side Skills That Reduce Anxiety"
+    },
+    {
+      "t": 1020,
+      "label": "The 4-Step Money System (Budget, Protect, Emergency Fund, Invest)"
+    },
+    {
+      "t": 1170,
+      "label": "Lifestyle, Clarity & Planning Ahead"
+    },
+    {
+      "t": 1412,
+      "label": "Final Advice for Young Investors"
+    }
+  ],
+  "tool": {
+    "slug": "calc-retirement.html",
+    "label": "Real Retirement",
+    "reason": "Find the corpus you actually need to retire, and whether your current savings get you there."
+  },
+  "disclaimer": "This video is for educational purposes only and reflects individual opinions, not organizational advice. It is not financial or investment advice. Investments are subject to market risks. Please consult a qualified financial advisor before making any financial decisions.",
+  "seo": {
+    "title": "Why Retirement Scares Us (And How To Fix It)",
+    "description": "Why does retirement scare us? It’s not about money — it’s about the mind. Most people delay planning because the brain can’t imagine life at 75. That"
+  }
+}
