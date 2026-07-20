@@ -3,15 +3,15 @@
   "duration": "67 min",
   "durationISO": "PT1H7M6S",
   "uploadDate": "2025-09-19",
-  "summary": "Equity is the backbone of long-term wealth creation — but should you invest directly in stocks, or through mutual funds? 🤔 In this episode of This or That, Bhartendra Singh speaks with Sneha Jain, CEO of Wealth Trust, to simplify equity investing, bust myths around SIPs, and give you a clear roadmap for building wealth.",
+  "summary": "Equity is the backbone of long-term wealth creation, but should you invest directly in stocks, or through mutual funds? 🤔 In this episode of This or That, Bhartendra Singh speaks with Sneha Jain, CEO of Wealth Trust, to simplify equity investing, bust myths around SIPs, and give you a clear roadmap for building wealth.",
   "chapters": [
     {
       "t": 0,
-      "label": "Intro & Highlights — Why equity feels invisible compared to real estate & gold"
+      "label": "Intro & Highlights, Why equity feels invisible compared to real estate & gold"
     },
     {
       "t": 165,
-      "label": "Equity 101 — What you’re really buying when you invest in stocks"
+      "label": "Equity 101, What you’re really buying when you invest in stocks"
     },
     {
       "t": 313,
@@ -27,7 +27,7 @@
     },
     {
       "t": 734,
-      "label": "Thinking like an owner — cycles vs company quality"
+      "label": "Thinking like an owner, cycles vs company quality"
     },
     {
       "t": 970,
@@ -47,7 +47,7 @@
     },
     {
       "t": 1543,
-      "label": "Futures & Options — why most should avoid & trading thrill"
+      "label": "Futures & Options, why most should avoid & trading thrill"
     },
     {
       "t": 1884,
@@ -59,7 +59,7 @@
     },
     {
       "t": 2474,
-      "label": "SIP is not the investment — know the underlying"
+      "label": "SIP is not the investment, know the underlying"
     },
     {
       "t": 2572,
@@ -71,7 +71,7 @@
     },
     {
       "t": 2830,
-      "label": "Large & Mid-cap blend — where alpha comes from"
+      "label": "Large & Mid-cap blend, where alpha comes from"
     },
     {
       "t": 2856,
@@ -79,7 +79,7 @@
     },
     {
       "t": 2929,
-      "label": "Flexicap vs Multicap — what’s the difference?"
+      "label": "Flexicap vs Multicap, what’s the difference?"
     },
     {
       "t": 3083,
@@ -118,6 +118,33 @@
   "disclaimer": "This podcast is for educational purposes only. It should not be considered financial advice. Please consult a SEBI-registered investment advisor before making any investment decisions.",
   "seo": {
     "title": "Stocks vs Mutual Funds: The Truth About SIP & Equity Investing | Sneha Jain",
-    "description": "Equity is the backbone of long-term wealth creation — but should you invest directly in stocks, or through mutual funds? 🤔 In this episode of This or"
+    "description": "Equity is the backbone of long-term wealth creation, but should you invest directly in stocks, or through mutual funds? 🤔 In this episode of This or"
+  },
+  "takeaways": [
+    "Equity is treated as the backbone of long-term wealth, so the real question is not whether to own it but how: directly through stocks or through mutual funds.",
+    "SIP is not the investment. It is only the method you use, so what actually matters is the underlying fund you are putting money into.",
+    "Direct stocks come with real risks, costs, and a need for discipline, and evaluating a company means looking at promoters, debt, ROE/ROCE, and PE rather than chasing IPOs or tips.",
+    "The episode's portfolio idea leans on mutual funds for the bulk of your equity, roughly 60 to 65 percent, with direct stocks playing a smaller role.",
+    "Most investors are told to avoid futures and options and to watch for recency bias, like piling into small-caps after a surge."
+  ],
+  "fork": {
+    "decision": "Should you build your equity through direct stocks or through mutual funds?",
+    "this": {
+      "label": "Direct stocks",
+      "points": [
+        "Start with large-caps and judge a company on promoters, debt, ROE/ROCE, and PE, not on IPO buzz or tips.",
+        "Think like an owner and focus on company quality across cycles rather than short-term trading thrill.",
+        "It demands more time, discipline, and cost tolerance, which the episode is candid about."
+      ]
+    },
+    "that": {
+      "label": "Mutual funds",
+      "points": [
+        "Simplify equity across index, flexicap, multicap, thematic, and hybrid without picking single stocks.",
+        "Build a large, mid, and small-cap mix, then use a core-satellite approach for thematic or global funds.",
+        "Lets you diversify and declutter instead of managing a crowded, self-built stock portfolio."
+      ]
+    },
+    "pick": "Make mutual funds the base of your equity, around 60 to 65 percent, and keep direct stocks as a smaller, disciplined satellite you actually have time to research. And whichever you choose, remember the SIP is just the pipe: know the underlying fund before you commit."
   }
 }

@@ -3,7 +3,7 @@
   "duration": "45 min",
   "durationISO": "PT45M9S",
   "uploadDate": "2026-03-30",
-  "summary": "- Most Indians are chasing global markets because US and European indices delivered 3x Indian market returns in 2024–25. But Mahmood Basha — 30 years in mutual funds — says that's the wrong reason. The real case for global investing is simpler and more personal: your children's education, your foreign vacation, your Dubai property — all of those are liabilities in foreign currency.",
+  "summary": "- Most Indians are chasing global markets because US and European indices delivered 3x Indian market returns in 2024–25. But Mahmood Basha, 30 years in mutual funds, says that's the wrong reason. The real case for global investing is simpler and more personal: your children's education, your foreign vacation, your Dubai property, all of those are liabilities in foreign currency.",
   "chapters": [
     {
       "t": 0,
@@ -138,6 +138,32 @@
   "disclaimer": "This podcast is for educational and informational purposes only. Nothing discussed here constitutes financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any financial decisions.",
   "seo": {
     "title": "NASDAQ vs Nifty: Should Indians Invest Globally? | Mahmood Basha, Baroda BNP Paribas",
-    "description": "- Most Indians are chasing global markets because US and European indices delivered 3x Indian market returns in 2024–25. But Mahmood Basha — 30 years in"
+    "description": "- Most Indians are chasing global markets because US and European indices delivered 3x Indian market returns in 2024–25. But Mahmood Basha, 30 years in"
+  },
+  "takeaways": [
+    "The strongest reason to invest globally is not that US and European indices delivered roughly 3x Indian returns in 2024-25, it is that many of your future costs, your children's education, foreign vacations, an overseas property, are denominated in foreign currency.",
+    "If all your assets sit in rupees while some of your liabilities are in dollars, you carry a currency mismatch that quietly compounds against you every year.",
+    "Access has genuinely changed: routes like LRS, feeder funds and GIFT City now open international markets to retail investors, with GIFT City tickets starting at around $500.",
+    "The episode points to a global allocation of roughly 10 to 30 percent, usually starting with the US market and looking beyond big tech to areas like US small caps.",
+    "Global investing is not for everyone, and the guest frames the decision through a Triple A lens: Aspirations, Awareness and Access."
+  ],
+  "fork": {
+    "decision": "Should Indians move part of their portfolio into global markets, or keep it in Indian equities like the Nifty?",
+    "this": {
+      "label": "Add global exposure",
+      "points": [
+        "Aspirational future costs like children's education abroad, foreign vacations and a Dubai property are foreign-currency liabilities, so rupee-only assets leave you with a mismatch.",
+        "Diversifying across markets reduces your dependence on a single economy, which is the real role of global investing in portfolio construction.",
+        "Access is now practical for retail investors through LRS, feeder funds and GIFT City, with minimum tickets as low as $500."
+      ]
+    },
+    "that": {
+      "label": "Stay in Indian markets",
+      "points": [
+        "Going global just because US and European indices ran about 3x recently is, in the guest's words, the wrong reason to invest abroad.",
+        "Global investing is not a fit for every investor, so the honest first question is who actually needs it, not how much to put in."
+      ]
+    },
+    "pick": "Add global exposure, but for the right reason. Match the foreign-currency liabilities you will actually face and diversify your portfolio, rather than chase the last two years of returns. For most investors that means keeping the global slice to roughly 10 to 30 percent, often starting with the US market."
   }
 }

@@ -3,7 +3,7 @@
   "duration": "29 min",
   "durationISO": "PT28M58S",
   "uploadDate": "2026-03-24",
-  "summary": "Kalpen Parekh — MD & CEO of DSP Mutual Fund — said something most fund managers would never dare say on camera: \"If someone gives you a fund recommendation without understanding your time horizon, your risk appetite, and your current portfolio — that is fraught with risk.\"",
+  "summary": "Kalpen Parekh, MD & CEO of DSP Mutual Fund, said something most fund managers would never dare say on camera: \"If someone gives you a fund recommendation without understanding your time horizon, your risk appetite, and your current portfolio, that is fraught with risk.\"",
   "chapters": [
     {
       "t": 0,
@@ -15,7 +15,7 @@
     },
     {
       "t": 140,
-      "label": "\"Buy good and hold — if you buy bad, don't hold even for a day\""
+      "label": "\"Buy good and hold, if you buy bad, don't hold even for a day\""
     },
     {
       "t": 155,
@@ -31,7 +31,7 @@
     },
     {
       "t": 437,
-      "label": "How fund managers actually generate alpha — it's not secret information"
+      "label": "How fund managers actually generate alpha, it's not secret information"
     },
     {
       "t": 493,
@@ -69,7 +69,14 @@
   },
   "disclaimer": "This podcast is for educational and informational purposes only. Nothing discussed here constitutes financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any financial decisions.",
   "seo": {
-    "title": "Buy Good, Buy Cheap, Stay Long — Kalpen Parekh, DSP Mutual Fund",
-    "description": "Kalpen Parekh — MD & CEO of DSP Mutual Fund — said something most fund managers would never dare say on camera: \"If someone gives you a fund"
-  }
+    "title": "Buy Good, Buy Cheap, Stay Long, Kalpen Parekh, DSP Mutual Fund",
+    "description": "Kalpen Parekh, MD & CEO of DSP Mutual Fund, said something most fund managers would never dare say on camera: \"If someone gives you a fund"
+  },
+  "takeaways": [
+    "Kalpen Parekh, MD and CEO of DSP Mutual Fund, says a fund recommendation given without understanding your time horizon, your risk appetite and your current portfolio is fraught with risk.",
+    "\"Which fund should I buy?\" is almost always the wrong question, because it skips the personal context that decides whether a fund actually fits you.",
+    "Indian investors keep losing money even when they know the right theory, so the real gap is usually behaviour, not knowledge.",
+    "Good investing comes down to three rules: quality, valuation and time horizon. Buy good and hold, and if you buy bad, do not hold even for a day.",
+    "With India and the US among the most expensive markets, equities in a correction and gold at all-time highs, Kalpen leans on multi-asset investing precisely because you cannot know in advance what will win."
+  ]
 }

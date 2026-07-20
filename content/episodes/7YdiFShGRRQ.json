@@ -3,7 +3,7 @@
   "duration": "23 min",
   "durationISO": "PT22M51S",
   "uploadDate": "2025-09-05",
-  "summary": "Most people think you need a huge salary to build wealth. Truth: even with a limited income, you can retire well—if you set realistic expectations (10–12%), protect the downside, and avoid lottery-style bets. In this clip, we break Sequence of Returns Risk, the Rule of 72, and a simple Core vs Explore framework so middle-class investors can invest correctly.",
+  "summary": "Most people think you need a huge salary to build wealth. Truth: even with a limited income, you can retire well, if you set realistic expectations (10–12%), protect the downside, and avoid lottery-style bets. In this clip, we break Sequence of Returns Risk, the Rule of 72, and a simple Core vs Explore framework so middle-class investors can invest correctly.",
   "chapters": [
     {
       "t": 0,
@@ -11,7 +11,7 @@
     },
     {
       "t": 122,
-      "label": "Sequence of Returns—why order of returns matters"
+      "label": "Sequence of Returns, why order of returns matters"
     },
     {
       "t": 248,
@@ -34,6 +34,13 @@
   "disclaimer": "This video is for education and awareness only. It is NOT investment advice. Please consult a SEBI-registered financial advisor before making any investment decisions. 📌 Follow for More 🔔 Subscribe for weekly videos on personal finance, investing, and smart money habits. 🎙️ Full podcast episodes on “This or That with Bhartendra” are available on YouTube.",
   "seo": {
     "title": "How to Create Wealth with Limited Income | Smart Investing Explained",
-    "description": "Most people think you need a huge salary to build wealth. Truth: even with a limited income, you can retire well—if you set realistic expectations"
-  }
+    "description": "Most people think you need a huge salary to build wealth. Truth: even with a limited income, you can retire well, if you set realistic expectations"
+  },
+  "takeaways": [
+    "You do not need a huge salary to build wealth: even on a limited income you can retire well if you set realistic expectations, protect the downside, and skip lottery-style bets.",
+    "The order of your returns matters, not just the average: sequence of returns risk means the same corpus can last comfortably for one person and run out for another.",
+    "Set a realistic return mindset: India's nominal returns run around 10 to 11 percent, so plan for roughly 10 to 12 percent rather than counting on more.",
+    "Protecting the downside is simple math: a 50 percent fall needs a 100 percent gain just to get back to even, which is why avoiding deep losses matters so much.",
+    "Split your money with Core vs Explore: keep 90 to 95 percent in a diversified or hybrid Core and only 5 to 10 percent in risky Explore bets, paired with goal-based SIPs and a bucket strategy for emergencies and retirement."
+  ]
 }

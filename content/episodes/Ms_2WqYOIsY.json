@@ -75,5 +75,32 @@
   "seo": {
     "title": "Should You Buy House? I घर की बात, दिल से",
     "description": "🏠 Real Estate Masterclass: Should You Buy a House? 🤔 Thinking about buying a home but not sure if it's the right"
+  },
+  "takeaways": [
+    "Buying a home is not one-size-fits-all: the right call depends on your life stage, your cash flow and your financial readiness, not on what worked for someone else.",
+    "Real estate is relatively illiquid, so think hard about how easily you could pull that money out before you lock it into a property.",
+    "Hidden charges beyond the headline price catch most first-time buyers off guard, so budget for the full cost of ownership, not just the sticker.",
+    "A house should fit inside a diversified portfolio, not swallow it, which is why financial planning has to come before the purchase.",
+    "There are people who simply should not buy right now, and whether to prepay a home loan is a decision to think through, not a default to accept."
+  ],
+  "fork": {
+    "decision": "Should you buy a house now, or keep renting for now?",
+    "this": {
+      "label": "Buy the house",
+      "points": [
+        "Ownership can suit your life stage, especially if you are settled and ready to commit for the long run.",
+        "Real estate can sit inside your portfolio as one investment option, provided it is part of a diversified mix.",
+        "An EMI puts your monthly outflow toward an asset you own rather than rent you do not get back."
+      ]
+    },
+    "that": {
+      "label": "Keep renting",
+      "points": [
+        "Real estate is illiquid, so your money is hard to access when you actually need it.",
+        "Hidden charges and the full cost of ownership can outweigh what the price tag suggests.",
+        "Some buyers simply should not buy yet, and renting keeps you flexible while you build financial readiness."
+      ]
+    },
+    "pick": "Buy only when your life stage, cash flow and financial planning all line up and the house fits a diversified portfolio. If you are not there yet, keep renting: it is the sound, flexible choice while you get ready, not a failure."
   }
 }

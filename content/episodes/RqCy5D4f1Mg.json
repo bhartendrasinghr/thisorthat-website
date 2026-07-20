@@ -13,5 +13,30 @@
   "seo": {
     "title": "Active vs Passive Funds: The Real Answer for Indian Investors",
     "description": "Active vs Passive investing is one of the biggest debates in mutual funds. But is there one universal answer? In this clip, Anupam Tiwari, Head of"
+  },
+  "takeaways": [
+    "Active versus passive is one of the biggest debates in mutual funds, but this episode argues there is no single universal answer for every investor.",
+    "Anupam Tiwari, Head of Equities at Groww Mutual Fund, explains why the rise of passive investing in the US may not map directly onto India.",
+    "The US market has narrowed over time, with fewer listed companies and growth concentrated in a handful of large winners, which is friendlier ground for passive.",
+    "India's listed universe is still expanding, especially beyond large caps, giving active fund managers a broader opportunity set to work with.",
+    "The real answer may depend less on active or passive as a slogan and more on where you are investing: large cap, mid cap, or small cap."
+  ],
+  "fork": {
+    "decision": "Should Indian investors go active or passive?",
+    "this": {
+      "label": "Passive funds",
+      "points": [
+        "Passive tends to work well when a market is narrow, with growth concentrated in a handful of large winners, as has happened in the US.",
+        "In large caps, where the opportunity set is more concentrated, tracking the index at low cost is a reasonable default."
+      ]
+    },
+    "that": {
+      "label": "Active funds",
+      "points": [
+        "India's listed universe is still expanding, especially beyond large caps, so the opportunity set for managers stays broad.",
+        "Active can still create alpha when the opportunity universe is broad, which is where mid and small caps sit."
+      ]
+    },
+    "pick": "Do not answer this once for your whole portfolio. Match the choice to the cap: in large caps, where the field is narrow, low-cost passive is a fair default, while in mid and small caps, where India's listed universe is still widening, an active manager has real room to add value."
   }
 }

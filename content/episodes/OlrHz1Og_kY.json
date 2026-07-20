@@ -3,7 +3,7 @@
   "duration": "69 min",
   "durationISO": "PT1H8M46S",
   "uploadDate": "2025-07-01",
-  "summary": "Why do most investors fail — even with the right information? In this episode of ThisOrThat with Bhartendra, Nimesh Chandan(CIO, Bajaj Finserv AMC) shares what really matters in investing today.",
+  "summary": "Why do most investors fail, even with the right information? In this episode of ThisOrThat with Bhartendra, Nimesh Chandan(CIO, Bajaj Finserv AMC) shares what really matters in investing today.",
   "chapters": [
     {
       "t": 0,
@@ -138,6 +138,13 @@
   "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
   "seo": {
     "title": "Ways to Win In Investing – Behavioral Edge Explained by a CIO",
-    "description": "Why do most investors fail — even with the right information? In this episode of ThisOrThat with Bhartendra, Nimesh Chandan(CIO, Bajaj Finserv AMC) shares"
-  }
+    "description": "Why do most investors fail, even with the right information? In this episode of ThisOrThat with Bhartendra, Nimesh Chandan(CIO, Bajaj Finserv AMC) shares"
+  },
+  "takeaways": [
+    "Most investors fail not for lack of information but because of how they behave, and the behavioral edge is the one advantage still left now that everyone can access the same data.",
+    "The episode names three recurring traps: overconfidence, often through the F&O route, confirmation bias, and loss aversion, where losses hurt more than equal gains feel good.",
+    "The disposition effect gets named plainly here: we sell our winners too early and cling to our losers on hope, the opposite of what usually serves us.",
+    "More information tends to add confidence, not accuracy, so chasing every macro headline, new NFO, or IPO rarely improves your decisions.",
+    "The closing idea is that temperament beats timing: how you wait, hold, and evaluate matters more than when you buy or sell, which is why SIPs and realistic return expectations do the quiet work."
+  ]
 }

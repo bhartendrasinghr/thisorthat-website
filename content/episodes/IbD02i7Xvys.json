@@ -19,7 +19,7 @@
     },
     {
       "t": 393,
-      "label": "SIP removes the most dangerous variable — you"
+      "label": "SIP removes the most dangerous variable, you"
     },
     {
       "t": 567,
@@ -39,7 +39,7 @@
     },
     {
       "t": 1478,
-      "label": "Gold is insurance — not a return engine"
+      "label": "Gold is insurance, not a return engine"
     },
     {
       "t": 1700,
@@ -47,7 +47,7 @@
     },
     {
       "t": 1910,
-      "label": "Active vs Passive — the veg/non-veg debate"
+      "label": "Active vs Passive, the veg/non-veg debate"
     },
     {
       "t": 2107,
@@ -63,11 +63,11 @@
     },
     {
       "t": 3128,
-      "label": "SIP vs Lumpsum — a simple rule"
+      "label": "SIP vs Lumpsum, a simple rule"
     },
     {
       "t": 3221,
-      "label": "FIRE at 45 — a cold reality check"
+      "label": "FIRE at 45, a cold reality check"
     },
     {
       "t": 3423,
@@ -97,7 +97,14 @@
   },
   "disclaimer": "This podcast is for educational and informational purposes only. Nothing discussed here constitutes financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any financial decisions.",
   "seo": {
-    "title": "Your SIP Isn’t the Problem — You Are",
+    "title": "Your SIP Isn’t the Problem, You Are",
     "description": "In this episode, Bhartendra sits down with Amit Bivalkar, Founder of Sapient Finserv (now in partnership with Equirus), for one of the most candid"
-  }
+  },
+  "takeaways": [
+    "The biggest threat to your SIP is your own behaviour, not the market, which is exactly why an automated SIP removes the most dangerous variable: you.",
+    "FIIs behave like tourists who come and go, so their selling is not a reason to abandon a plan built for your own life.",
+    "A 10 to 12% long-term return is something to be genuinely happy about, not disappointed by.",
+    "Amit's 60-15-15-10 framework treats gold as insurance rather than a return engine, and is built for a 15-year horizon.",
+    "Your savings rate is the one number most Indian investors refuse to track, and 30% is meant to be the floor, not the goal."
+  ]
 }

@@ -75,5 +75,32 @@
   "seo": {
     "title": "The Truth About SIPs: Most Investors Quit Too Early",
     "description": "Can a simple SIP actually build real wealth, or is that just a story we keep repeating? Part 1 with Roopa Venkatkrishnan. In this episode of This or That"
+  },
+  "takeaways": [
+    "Roopa Venkatkrishnan, who has guided families for over 25 years and manages 2,000+ crore across about 2,500 families, argues the real wealth in an SIP only shows up after you stay invested for decades.",
+    "The episode reframes market corrections as a feature of investing rather than a flaw, treating volatility as the mechanism behind rupee cost averaging instead of a reason to stop.",
+    "With roughly half of all SIPs reportedly getting cancelled, the conversation digs into the psychology of quitting too early and why the current negativity around mutual funds misses the longer arc.",
+    "An illustration in the episode traces 10,000 a month growing to 18 to 22 crore over a long horizon, making the point that compounding does most of its work in a silent decade you rarely notice.",
+    "This is Part 1, covering the case for SIPs, the psychology of staying invested, and why the noise rarely fits your own situation."
+  ],
+  "fork": {
+    "decision": "When markets fall and the mood turns negative, should you cancel your SIP or keep it running?",
+    "this": {
+      "label": "Cancel the SIP",
+      "points": [
+        "The negativity around mutual funds right now makes many people doubt that SIPs really work.",
+        "Corrections and volatility feel like a warning sign, so pausing seems like the safe move.",
+        "Roughly half of all SIPs are already being cancelled, which makes quitting feel like the normal choice."
+      ]
+    },
+    "that": {
+      "label": "Stay invested",
+      "points": [
+        "The episode's case is that SIPs build wealth through corrections, not despite them, because rupee cost averaging needs the dips to work.",
+        "Compounding does its real work in a silent decade most people quit before they ever reach it.",
+        "An SIP is built for a long goal like retirement, so short term noise rarely fits your actual situation."
+      ]
+    },
+    "pick": "Stay invested. This episode lands on keeping the SIP running through the corrections and the negativity, because the payoff comes from the long, unglamorous decade of compounding you almost never see, and quitting early is the one move that reliably cuts it short. When the noise does not fit your situation, mute the noise, not the SIP."
   }
 }

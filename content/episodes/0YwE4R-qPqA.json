@@ -3,7 +3,7 @@
   "duration": "13 min",
   "durationISO": "PT13M12S",
   "uploadDate": "2026-01-14",
-  "summary": "Everyone has a loud opinion on the rent vs buy debate—especially online. But the truth is: there is no one-size-fits-all answer. In this episode cut, I bring together perspectives from Abhijit More, Lakshmi Iyer, and Aashiah Somaiyaa to decode what actually matters before you decide:",
+  "summary": "Everyone has a loud opinion on the rent vs buy debate, especially online. But the truth is: there is no one-size-fits-all answer. In this episode cut, I bring together perspectives from Abhijit More, Lakshmi Iyer, and Aashiah Somaiyaa to decode what actually matters before you decide:",
   "chapters": [
     {
       "t": 0,
@@ -30,6 +30,33 @@
   "disclaimer": "This content is for educational purposes only and is not financial advice. Please consult a qualified financial advisor before making any investment decision.",
   "seo": {
     "title": "Should You Buy a House or Keep Renting? 3 Expert Views, No Noise",
-    "description": "Everyone has a loud opinion on the rent vs buy debate—especially online. But the truth is: there is no one-size-fits-all answer. In this episode cut, I"
+    "description": "Everyone has a loud opinion on the rent vs buy debate, especially online. But the truth is: there is no one-size-fits-all answer. In this episode cut, I"
+  },
+  "takeaways": [
+    "There is no one-size-fits-all answer to rent vs buy; the right call depends on your life stage, cash flows and risk, not on loud opinions online.",
+    "The biggest mistake is over-leveraging: taking on a home loan while you are already carrying other loans.",
+    "Real estate is not like stocks or mutual funds; it is a high-involvement, family decision with both an emotional and a practical side.",
+    "If you want real estate exposure without buying a house, alternatives like REITs are worth a look.",
+    "The real question is whether you see a house as an investment or as security, and thinking it through beats generic influencer advice."
+  ],
+  "fork": {
+    "decision": "Should you buy a house or keep renting?",
+    "this": {
+      "label": "Buy the house",
+      "points": [
+        "Owning your home carries real emotional and practical security that renting does not.",
+        "For most people one house makes sense when it fits your life stage and cash flows.",
+        "A home is a high-involvement family decision, not just a line on a spreadsheet."
+      ]
+    },
+    "that": {
+      "label": "Keep renting",
+      "points": [
+        "Buying is a bad move if it forces you to over-leverage while you are already carrying loans.",
+        "Real estate is not flexible like stocks or mutual funds, so it can lock you in.",
+        "If you only want real estate exposure, REITs can offer it without buying property."
+      ]
+    },
+    "pick": "Buy one home for security when your life stage and cash flows can carry it without piling on debt; if you only want real estate as an investment, take the REIT route instead of stacking another property loan."
   }
 }

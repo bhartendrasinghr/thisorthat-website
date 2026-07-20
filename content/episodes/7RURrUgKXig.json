@@ -3,7 +3,7 @@
   "duration": "57 min",
   "durationISO": "PT56M39S",
   "uploadDate": "2025-09-27",
-  "summary": "Buying a home in India? This episode is your one-stop playbook—from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and the hidden costs that turn a ₹2 Cr home into ₹2.4–2.5 Cr. We also cover red flags like “proposed development”, show-apartment traps, APF checks, CIBIL/ITR, broker value, and the age-old question: buy now or wait?",
+  "summary": "Buying a home in India? This episode is your one-stop playbook, from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and the hidden costs that turn a ₹2 Cr home into ₹2.4–2.5 Cr. We also cover red flags like “proposed development”, show-apartment traps, APF checks, CIBIL/ITR, broker value, and the age-old question: buy now or wait?",
   "chapters": [
     {
       "t": 0,
@@ -15,7 +15,7 @@
     },
     {
       "t": 522,
-      "label": "₹50L in Mumbai—what do you really get?"
+      "label": "₹50L in Mumbai, what do you really get?"
     },
     {
       "t": 588,
@@ -98,6 +98,13 @@
   "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
   "seo": {
     "title": "Hidden Home-Buying Costs & Smart Buying Guide (India) | घर खरीदने से पहले ज़रूर देखें",
-    "description": "Buying a home in India? This episode is your one-stop playbook—from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and"
-  }
+    "description": "Buying a home in India? This episode is your one-stop playbook, from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and"
+  },
+  "takeaways": [
+    "A ₹2 crore home rarely costs ₹2 crore: stamp duty near 6%, GST near 5%, registration, processing fees and interiors can push the real outlay to ₹2.4 to 2.5 crore.",
+    "Get loan-ready before you house-hunt, because lenders read your ITR, CIBIL, bank statements and savings, so closing liabilities and combining incomes lifts your eligibility.",
+    "If HDFC, ICICI or SBI will not lend against a project, treat it as a warning sign, since big-bank APF approval doubles as built-in due diligence.",
+    "Look past the show apartment: verify OC, title chain, water and gas, watch for 'proposed development' and 'bang on main road' traps, and see the property in both daylight and at night.",
+    "Interiors are the cost most buyers forget, often ₹10 to 30 lakh, so build them into the budget from day one rather than after possession."
+  ]
 }

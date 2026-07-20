@@ -3,7 +3,7 @@
   "duration": "59 min",
   "durationISO": "PT58M33S",
   "uploadDate": "2025-11-12",
-  "summary": "Think your PF is 100% safe? Think again. 😬 In this highlight from This or That Podcast, Bhartendra Singh talks with Ketan Das - @FinRight about the shocking realities behind EPF (Employee Provident Fund) — and how your hard-earned money can actually get stuck in the system.",
+  "summary": "Think your PF is 100% safe? Think again. 😬 In this highlight from This or That Podcast, Bhartendra Singh talks with Ketan Das - @FinRight about the shocking realities behind EPF (Employee Provident Fund), and how your hard-earned money can actually get stuck in the system.",
   "chapters": [
     {
       "t": 0,
@@ -47,5 +47,12 @@
   "seo": {
     "title": "How Your PF Actually Gets Stuck (And What To Do About It)",
     "description": "Think your PF is 100% safe? Think again. 😬 In this highlight from This or That Podcast, Bhartendra Singh talks with Ketan Das - @FinRight about the"
-  }
+  },
+  "takeaways": [
+    "EPF is not as automatically safe as most salaried people assume, and withdrawals get rejected more often than you would expect.",
+    "Your PF money can quietly fail to reflect or transfer during a job switch, leaving it effectively stuck in the system.",
+    "The idea that EPF interest stops once you leave a job, or after three years, is a myth the episode clears up.",
+    "Most PF trouble traces back to small mistakes made during job changes, like not transferring or consolidating old accounts.",
+    "Consolidating your PF into one account and keeping it trackable is the simplest way to avoid money getting stuck later."
+  ]
 }

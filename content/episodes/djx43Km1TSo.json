@@ -55,7 +55,7 @@
     },
     {
       "t": 1805,
-      "label": "You use 160 listed companies daily—be an owner, not just a user"
+      "label": "You use 160 listed companies daily, be an owner, not just a user"
     },
     {
       "t": 1912,
@@ -91,5 +91,12 @@
   "seo": {
     "title": "Bad Returns Are the BEST Returns | Vijai Mantri on Advisors, Mutual Fund SIP, Gold vs Equity",
     "description": "In this episode, Bhartendra Singh sits down with renowned wealth expert Vijay Mantri to decode the truths most investors miss: why “bad returns” are often"
-  }
+  },
+  "takeaways": [
+    "A good advisor leads with risk and mentions returns last; if the pitch opens with how much you will make, treat that as the red flag.",
+    "Chasing past performance sets you up to be disappointed; what matters more is what you check next, like YTM on debt funds instead of just historical returns.",
+    "Great funds still come with rough journeys: the HDFC Flexi Cap illustration shows strong outcomes arrived alongside real, stomach-testing drawdowns.",
+    "Gold and Titan are made of the same gold, yet Titan compounded far more, a reminder that productive assets do work that a metal sitting in a locker cannot.",
+    "For a SIP investor, a falling NAV is not the enemy; rupee-cost averaging means the down phase is often when your money is buying the most units."
+  ]
 }

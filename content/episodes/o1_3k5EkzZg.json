@@ -13,5 +13,31 @@
   "seo": {
     "title": "The Rupee Keeps Falling… Should You Invest Abroad Too?",
     "description": "In this clip from This or That with Bhartendra, Devina Mehra explains why Indian investors can’t afford to stay concentrated only in India. The rupee has"
+  },
+  "takeaways": [
+    "The rupee has depreciated 90% against the dollar over a single career span, so wealth held only in rupees quietly loses global buying power over time.",
+    "India is less than 5% of global market cap, which means an India-only portfolio leaves out the vast majority of the world's markets.",
+    "Concentration in one country is a real risk, not safety: a single country crisis, like the Asian Crisis, can wipe out a net worth.",
+    "Hard-currency costs like foreign education, travel, and retirement abroad are rising, so a chunk of future spending will not be in rupees.",
+    "Global does not mean only the U.S.: themes rotate across countries and asset classes, and dedicated products now let Indian investors access true global diversification from under 9 lakh rupees."
+  ],
+  "fork": {
+    "decision": "Should you add global exposure to your portfolio, or keep everything invested in India?",
+    "this": {
+      "label": "Add global exposure",
+      "points": [
+        "The rupee has depreciated 90% against the dollar over a career span, steadily eroding rupee-only wealth.",
+        "India is less than 5% of global market cap, so investing only at home ignores most of the world's opportunities.",
+        "One country's crisis, like the Asian Crisis, can wipe out a net worth that sits in a single market."
+      ]
+    },
+    "that": {
+      "label": "Stay India-only",
+      "points": [
+        "Your income and everyday expenses are in rupees, so keeping money at home feels like the natural default.",
+        "True global diversification beyond the usual U.S. indices needed a dedicated product starting under 9 lakh rupees, making it less accessible than simply investing at home."
+      ]
+    },
+    "pick": "Add global exposure. With the rupee down 90% over a career and India under 5% of world market cap, holding everything in one country is a concentration risk, not safety. Spread across countries and asset classes rather than only U.S. indices, and know that going truly global can now start from under 9 lakh rupees."
   }
 }

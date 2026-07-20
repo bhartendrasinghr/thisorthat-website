@@ -27,7 +27,7 @@
     },
     {
       "t": 1014,
-      "label": "FII vs Retail Investor — Who Should You Follow?"
+      "label": "FII vs Retail Investor, Who Should You Follow?"
     },
     {
       "t": 1520,
@@ -39,7 +39,7 @@
     },
     {
       "t": 1978,
-      "label": "Gold's New Character — From Insurance to Trade Asset"
+      "label": "Gold's New Character, From Insurance to Trade Asset"
     },
     {
       "t": 2460,
@@ -59,7 +59,7 @@
     },
     {
       "t": 3511,
-      "label": "Mandi Mein Tezi Ki Taiyari — Prepare for the Bull in the Bear"
+      "label": "Mandi Mein Tezi Ki Taiyari, Prepare for the Bull in the Bear"
     },
     {
       "t": 3720,
@@ -73,7 +73,14 @@
   },
   "disclaimer": "This podcast is for educational and informational purposes only. Nothing discussed here constitutes financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any financial decisions.",
   "seo": {
-    "title": "Gold इतना महंगा है — फिर भी खरीदना सही है?",
+    "title": "Gold इतना महंगा है, फिर भी खरीदना सही है?",
     "description": "In this second conversation with Krishna Sharma on This or That with Bhartendra, we go deep on the one principle most investors ignore: economic"
-  }
+  },
+  "takeaways": [
+    "The core lens is economic equilibrium: what is happening right now matters less than what must happen next, which is why two years of flat markets is framed as Newton's Third Law quietly at work.",
+    "The same valuation number can mean completely different things in different moments, so comparing today to COVID on the headline figure alone will mislead you.",
+    "Asking whether to follow FIIs or retail investors is the wrong question; the episode instead hands you a Sensex 17,000 homework exercise to test whether the active funds you pay for actually earn their fees.",
+    "Gold's character has shifted from insurance to a trade asset, which is why this war pushed gold down for the first time rather than up.",
+    "Match your money to when you will spend it: liquid, short term, medium, hybrid, then equity, and only consider global investing once you have built a solid Indian portfolio of roughly ₹2 to 4 crore."
+  ]
 }
