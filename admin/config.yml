@@ -256,6 +256,37 @@ collections:
           - { name: "title", label: "SEO title", widget: "string", required: false }
           - { name: "description", label: "Meta description", widget: "string", required: false }
 
+  # ───────── MONEY PEOPLE (advisors / distributors on the Talk-to-a-human page) ─────────
+  # Drives the selector on money-person.html. Add only registered MFDs or RIAs who have
+  # agreed to receive introductions. Link to a guest profile via "guest_slug" to reuse their
+  # photo and show an "On the show" badge. Registration is displayed for transparency.
+  - name: "money_people"
+    label: "Money People"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "advisors"
+        label: "Advisors & distributors"
+        file: "content/advisors.json"
+        fields:
+          - name: "advisors"
+            label: "People (drag to reorder)"
+            widget: "list"
+            summary: "{{fields.name}}{{#if fields.type}} · {{fields.type}}{{/if}}"
+            fields:
+              - { name: "name", label: "Name", widget: "string" }
+              - { name: "type", label: "Type", widget: "select", options: ["Mutual Fund Distributor", "Financial Advisor (RIA)"], required: false, hint: "Only list registered MFDs or RIAs who take retail clients." }
+              - { name: "reg", label: "Registration number (ARN / SEBI RIA)", widget: "string", required: false, hint: "Shown so visitors can verify on AMFI or SEBI. Leave blank to hide." }
+              - { name: "firm", label: "Firm / role", widget: "string", required: false }
+              - { name: "guest_slug", label: "Link to guest profile (slug)", widget: "string", required: false, hint: "e.g. vijai-mantri. Reuses their photo and shows an 'On the show' badge." }
+              - { name: "photo", label: "Photo", widget: "image", required: false, hint: "If blank and a guest is linked, the guest photo is used, else initials." }
+              - { name: "blurb", label: "Good for (one line)", widget: "string", required: false }
+              - { name: "specialties", label: "Specialties", widget: "list", required: false }
+              - { name: "consent_confirmed", label: "Consent confirmed?", widget: "boolean", default: false, hint: "Tick only once this person has agreed to be listed and to receive introductions." }
+              - { name: "featured", label: "Featured", widget: "boolean", default: false }
+              - { name: "active", label: "Show on site", widget: "boolean", default: true }
+
   # ───────── GUESTS (photos + bios) ─────────
   # One markdown file per guest in content/guests/.
   # The "name" field MUST match exactly how the guest appears in episode credits

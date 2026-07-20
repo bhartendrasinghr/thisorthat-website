@@ -1,0 +1,121 @@
+{
+  "advisors": [
+    {
+      "name": "Vijai Mantri",
+      "type": "",
+      "reg": "",
+      "firm": "Founder, VMFS",
+      "guest_slug": "vijai-mantri",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Roopa Venkatkrishnan",
+      "type": "",
+      "reg": "",
+      "firm": "",
+      "guest_slug": "",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Kirtan Shah",
+      "type": "",
+      "reg": "",
+      "firm": "Founder, Credence Wealth",
+      "guest_slug": "kirtan-shah",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Sneha Jain",
+      "type": "",
+      "reg": "",
+      "firm": "Fund Manager",
+      "guest_slug": "sneha-jain",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Neil Borate",
+      "type": "",
+      "reg": "",
+      "firm": "Deputy Editor, Mint",
+      "guest_slug": "neil-borate",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Pooja Bhinde",
+      "type": "",
+      "reg": "",
+      "firm": "Financial Planner",
+      "guest_slug": "pooja-bhinde",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Vishesh Gandhi",
+      "type": "",
+      "reg": "",
+      "firm": "",
+      "guest_slug": "",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "CA Abhishek Mehta",
+      "type": "",
+      "reg": "",
+      "firm": "",
+      "guest_slug": "",
+      "photo": "",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    },
+    {
+      "name": "Devina Mehra",
+      "type": "",
+      "reg": "",
+      "firm": "Founder, First Global",
+      "guest_slug": "devina-mehra",
+      "photo": "/media/chatgpt-image-jun-23-2026-08_45_11-pm.png",
+      "blurb": "",
+      "specialties": [],
+      "featured": false,
+      "consent_confirmed": false,
+      "active": false
+    }
+  ]
+}

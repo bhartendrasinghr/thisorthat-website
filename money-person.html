@@ -96,6 +96,12 @@
 
     <form id="lead-form" class="bg-white rounded-2xl border border-navy/10 p-6 md:p-8 space-y-7">
 
+      <div id="advisor-section" class="hidden">
+        <label class="text-sm font-semibold text-ink block mb-2">Anyone in particular you'd like to be introduced to? <span class="text-ink/45 font-normal">(optional)</span></label>
+        <div id="advisor-select" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+        <p class="text-[11px] text-ink/45 mt-2 leading-relaxed">These are people who have been on the show. An introduction is not a recommendation or an endorsement. Always check a professional's SEBI or AMFI registration yourself before you engage.</p>
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label for="f-name" class="text-sm font-semibold text-ink block mb-1.5">Your name</label>
@@ -210,6 +216,47 @@ function paintChips() {
 }
 paintChips();
 
+// ---- Advisor / distributor selector (optional, single-select) ----
+let selectedAdvisor = '';
+const initialsOf = n => n.replace(/^CA\s+/i, '').split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+const advCard = (val, title, sub, badge, photo) => `
+  <button type="button" data-adv="${val.replace(/"/g,'&quot;')}" class="adv-card text-left rounded-xl border p-3 flex items-center gap-3 transition">
+    ${photo
+      ? `<img src="${photo}" alt="" class="w-11 h-11 rounded-lg object-cover shrink-0" />`
+      : `<span class="w-11 h-11 rounded-lg ${val ? 'bg-navy text-mustard' : 'bg-marigold text-ink'} flex items-center justify-center font-bold text-sm shrink-0">${val ? initialsOf(title) : '?'}</span>`}
+    <span class="min-w-0">
+      <span class="block font-semibold text-ink text-sm truncate">${title}</span>
+      ${sub ? `<span class="block text-[11px] text-ink/55 truncate">${sub}</span>` : ''}
+      ${badge ? `<span class="inline-block mt-0.5 text-[9px] uppercase tracking-wider font-bold text-thisblue">${badge}</span>` : ''}
+    </span>
+  </button>`;
+function paintAdv() {
+  document.querySelectorAll('#advisor-select .adv-card').forEach(b => {
+    const on = b.dataset.adv === selectedAdvisor;
+    b.className = 'adv-card text-left rounded-xl border p-3 flex items-center gap-3 transition ' +
+      (on ? 'border-thisblue bg-thisblue/5 ring-1 ring-thisblue' : 'border-navy/15 bg-white hover:border-thisblue/40');
+  });
+}
+fetch('content/advisors.json').then(r => r.ok ? r.json() : null).catch(() => null).then(data => {
+  const wrap = $('advisor-select');
+  const section = $('advisor-section');
+  if (!wrap || !data) return;
+  const list = Array.isArray(data) ? data : (data.advisors || []);
+  const active = list.filter(a => a.active !== false);
+  if (!active.length) return;              // keep the section hidden until someone is activated in the CMS
+  if (section) section.classList.remove('hidden');
+  let html = advCard('', 'Not sure, help me choose', 'We match you from your goals below', '', '');
+  html += active.map(a => advCard(a.name, a.name, a.firm || a.type || '', a.guest_slug ? 'On the show' : '', a.photo || '')).join('');
+  wrap.innerHTML = html;
+  wrap.addEventListener('click', e => {
+    const b = e.target.closest('.adv-card');
+    if (!b) return;
+    selectedAdvisor = b.dataset.adv;
+    paintAdv();
+  });
+  paintAdv();
+});
+
 function buildBody() {
   const name = $('f-name').value.trim();
   const age = $('f-age').value.trim();
@@ -227,6 +274,7 @@ function buildBody() {
       '',
       'Name: ' + (name || '-'),
       'Age: ' + (age || '-'),
+      'Wants an introduction to: ' + (selectedAdvisor || 'No preference, please match me from my goals'),
       'Looking for: ' + (types || '-'),
       'Email: ' + (email || '-'),
       'Mobile: ' + (phone || '-'),
