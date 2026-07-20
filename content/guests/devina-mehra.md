@@ -7,14 +7,17 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: true
+quote: "Betting only on India can quietly cap your wealth, so spread risk across countries, currencies and assets."
 ---
 
 Founder of First Global. Among India's most-quoted contrarian investors on why Indian-only portfolios are risky.
 
 ## In their own words
 
-> Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.
+> Betting only on India can quietly cap your wealth, so spread risk across countries, currencies and assets.
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.
+Devina Mehra, founder of First Global, argues that good investing is meant to be boring: asset allocation, diversification and risk management doing the quiet work in the background, not clever stock tips. She pushes back on the small-cap and hot-IPO chase, pointing out that most small caps do not survive, and on the comfort of betting only on India, making the case for spreading risk across countries, currencies and assets.
+
+Her recurring theme is that your brain is not wired for markets, so sticking to a system tends to beat reacting to emotion or noise. A listener leaves questioning the investing truths they have quietly absorbed, including the assumption that they are automatically their own best fund manager.

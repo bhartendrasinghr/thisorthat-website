@@ -7,14 +7,17 @@ linkedin: ""
 twitter: ""
 website: ""
 featured: true
+quote: "Don't be a fund collector: three or four funds, disciplined SIPs, and the noise tuned out."
 ---
 
 CEO of Value Research. India's most-read mutual fund analyst, and a 7-figure-view ThisOrThat episode.
 
 ## In their own words
 
-> Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.
+> Don't be a fund collector: three or four funds, disciplined SIPs, and the noise tuned out.
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.
+Dhirendra Kumar, CEO of Value Research, has spent 30 years arguing that investing is simpler than it looks. On the show he pushes back against over-engineering your portfolio: three or four funds, regular SIPs, and the discipline to ignore market and social media noise are what build lasting wealth in India, not clever timing.
+
+He treats equity, fixed income, and insurance as separate jobs, with asset allocation there mainly to manage risk. A listener leaves with the everyday calls sorted: how much to hold in equity, when to exit a fund, SIP versus lumpsum, and direct versus regular plans.

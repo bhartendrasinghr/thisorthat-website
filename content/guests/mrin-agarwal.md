@@ -7,14 +7,17 @@ linkedin: https://www.linkedin.com/in/mrin-agarwal-9445425/
 twitter: ""
 website: ""
 featured: false
-quote: ""
+quote: "Financial freedom is control over your time and meeting your goals, not a number chased for its own sake."
 ---
-30 years of experience in wealth management and financial education and inclusion. Her passion is to empower millions of working Indians by providing them the tools needed to manage their personal finance and be financially independent. 
+
+30 years of experience in wealth management and financial education and inclusion. Her passion is to empower millions of working Indians by providing them the tools needed to manage their personal finance and be financially independent.
 
 ## In their own words
 
-> We need to move away from trying to forecast returns to what we can control, which is how much we are investing, where and for how lon
+> Financial freedom is control over your time and meeting your goals, not a number chased for its own sake.
 
 ## What they care about
 
-She cares deeply about shifting the investor’s focus from things they cannot control (market movements, high-return predictions) to the structural pillars they can control.
+Mrin Agarwal, founder of Finsafe, has educated over 300,000 investors, and she reframes financial freedom as control over your time and enough to meet your goals rather than a number chased for its own sake. Her guidance is practical and unhyped: start early so compounding has years to work, know your own risk profile, and diversify instead of chasing last year's returns.
+
+A listener leaves seeing equity funds and NPS as the long-term growth engine and debt funds as the safety net for emergency money, with a step-up SIP as a realistic path for those who started late.

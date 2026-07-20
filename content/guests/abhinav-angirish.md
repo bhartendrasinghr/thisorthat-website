@@ -14,8 +14,10 @@ Founder of Investonline.in. Demystifies real estate vs equity, and the emotional
 
 ## In their own words
 
-> Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.
+> A house you live in is a lifestyle decision, not an investment.
 
 ## What they care about
 
-Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, **bold**, *italic*, > for quotes.
+Abhinav argues that buying a home is never one-size-fits-all: the right call turns on your life stage, your cash flow and your financial readiness, not on what worked for someone else. He is candid about what first-time buyers miss, the illiquidity of property and the hidden charges beyond the sticker price, and he insists a house should fit inside a diversified portfolio rather than swallow it.
+
+The takeaway for listeners: renting while you get ready is a sound, flexible choice, not a failure, and financial planning comes before the purchase.
