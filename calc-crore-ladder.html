@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Crore Ladder, ThisOrThat with Bhartendra</title>
-<meta name="description" content="Set your years and expected return, and see the monthly SIP that reaches every target from ₹1 crore to ₹10 crore, the lumpsum that does the same job today, and why the first crore is the slowest." />
+<meta name="description" content="Pick a target from ₹1 crore to ₹10 crore and see the monthly SIP it needs in every vehicle, from a bank FD at 6% to a small-cap fund's hoped-for 15%, across 5 to 30 years." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,15 +32,9 @@
 <style>
   body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
   .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
-  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
-  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
-  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
-  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
-  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
-  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
-  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
+  .chip { transition: all 140ms ease; }
 </style>
 </head>
 <body class="antialiased">
@@ -97,89 +91,73 @@
     <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">From 1 to 10, honestly</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Pick your crore. See its monthly price.</h1>
     <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Har crore ki ek kisht hoti hai.</div>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Choose how long you'll invest and what return you expect. The ladder shows the monthly SIP that reaches every target from &#8377;1 crore to &#8377;10 crore, the one-time lumpsum that would do the same job today, and the secret the ladder keeps: the first crore is the slowest.</p>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Pick a target from &#8377;1 crore to &#8377;10 crore. The grid shows the monthly SIP it needs in each vehicle, from a bank FD's near-certain 6% to a small-cap fund's hoped-for 15%, across 5 to 30 years. Two levers decide everything: the return you chase, and the years you give it. Only one of them is free.</p>
   </div>
 </section>
 
-<section class="pb-16 bg-cream pt-4">
-  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+<section class="pb-16 bg-cream pt-2">
+  <div class="max-w-6xl mx-auto px-6 space-y-5">
 
-    <!-- INPUTS -->
-    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7 self-start">
+    <!-- TARGET CHIPS -->
+    <div class="bg-white rounded-2xl border border-navy/10 p-5">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">Your target</div>
+      <div class="flex flex-wrap gap-2" id="target-chips"></div>
+    </div>
 
-      <div>
-        <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-ink" for="lbl-years">You'll invest for</label>
-          <div class="flex items-baseline gap-1">
-            <input type="text" id="lbl-years" value="20" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
-            <span class="text-ink/60 text-sm">yrs</span>
-          </div>
+    <!-- THE GRID -->
+    <div class="bg-white rounded-2xl border-2 border-marigold overflow-hidden">
+      <div class="px-5 pt-5 pb-3 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">What <span id="grid-target">&#8377;1 Cr</span> needs, by vehicle</div>
+          <div class="text-[11px] text-ink/55 mt-0.5">Tap any cell to see what that target is really worth when it arrives.</div>
         </div>
-        <input id="in-years" type="range" min="5" max="40" step="1" value="20" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/55 mt-1">More years beat more return. It is not even close.</div>
-      </div>
-
-      <div>
-        <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-ink" for="lbl-ret">Expected return</label>
-          <div class="flex items-baseline">
-            <input type="text" id="lbl-ret" value="12.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
-            <span class="text-ink/60 text-sm">% p.a.</span>
-          </div>
+        <div class="flex rounded-full border border-navy/15 overflow-hidden text-[12px] font-bold" id="mode-toggle">
+          <button type="button" data-m="sip" class="px-4 py-2">SIP every month</button>
+          <button type="button" data-m="lump" class="px-4 py-2">One-time today</button>
         </div>
-        <input id="in-ret" type="range" min="6" max="15" step="0.5" value="12" class="w-full mt-2" />
-        <div id="ret-note" class="text-[11px] text-navy/55 mt-1">12% is a reasonable long-run hope for equity. It is a hope, not a promise.</div>
       </div>
+      <div class="overflow-x-auto">
+        <div class="min-w-[700px]">
+          <div class="grid grid-cols-[11rem_repeat(6,1fr)] px-5 pb-2 pt-1 items-end border-b border-navy/10">
+            <span class="text-[10px] uppercase tracking-widest font-bold text-ink/45">Where the money sits</span>
+            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">5 yrs</span>
+            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">10 yrs</span>
+            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">15 yrs</span>
+            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">20 yrs</span>
+            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">25 yrs</span>
+            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45 pr-1">30 yrs</span>
+          </div>
+          <div id="grid" class="divide-y divide-navy/5"></div>
+        </div>
+      </div>
+      <div class="px-5 py-3 text-[11px] text-ink/50 leading-relaxed border-t border-navy/10">The returns are assumptions, not promises: an FD's 6% is near-certain, a small-cap fund's 15% is a hope with a seatbelt warning. Read down any column and the SIP falls while the ride gets bumpier. That trade is the whole game.</div>
+    </div>
 
-      <div class="bg-warmpaper-2 rounded-xl p-4 text-[12px] text-ink/70 leading-relaxed">
-        <strong>How to read the ladder:</strong> tap any rung to see what that crore is really worth by the time you arrive. The maths assumes you invest every month without fail and the return arrives evenly. Real life is lumpier; the ladder still points true.
+    <!-- TIME IS THE DISCOUNT -->
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The grid's secret</div>
+      <div class="font-display text-xl font-extrabold text-ink mt-1">Time is the discount.</div>
+      <p id="discount-line" class="text-sm text-ink/75 mt-2 leading-relaxed">-</p>
+    </div>
+
+    <!-- HONEST BOX -->
+    <div class="bg-ink text-warmpaper rounded-2xl p-7">
+      <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The part the grid hides</div>
+      <div class="mt-3 space-y-4 text-sm leading-relaxed text-warmpaper/85">
+        <p><strong class="text-warmpaper">Your target will shrink on the way.</strong> <span id="hn-target">&#8377;1 Cr</span> arriving in <span id="hn-years">-</span> buys what <strong class="text-marigold tab-num" id="hn-real">-</strong> buys today, at 6% inflation. Still worth the climb, just know what's at the top.</p>
+        <p><strong class="text-warmpaper">To arrive with today's buying power intact:</strong> aim for <strong class="text-marigold tab-num" id="hn-nominal">-</strong> instead, which needs <strong class="text-marigold tab-num" id="hn-nominal-amt">-</strong> <span id="hn-mode-note">a month</span> in <span id="hn-vehicle">a large cap fund at 12%</span>. Bigger number, same dream, honest maths.</p>
       </div>
     </div>
 
-    <!-- OUTPUT -->
-    <div class="lg:col-span-3 space-y-5">
-
-      <!-- THE LADDER -->
-      <div class="bg-white rounded-2xl border-2 border-marigold overflow-hidden">
-        <div class="px-5 pt-5 pb-3 flex flex-wrap items-baseline justify-between gap-2">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The ladder</div>
-          <div id="ladder-assume" class="text-[11px] text-ink/55 tab-num">20 years at 12% a year, invested monthly</div>
-        </div>
-        <div class="grid grid-cols-[4.2rem_1fr_1fr] px-5 pb-2 text-[10px] uppercase tracking-widest font-bold text-ink/45">
-          <span>Target</span>
-          <span class="text-right">SIP every month</span>
-          <span class="text-right">Or one lumpsum today</span>
-        </div>
-        <div id="ladder" class="divide-y divide-navy/5 border-t border-navy/10"></div>
+    <!-- CTA -->
+    <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Found your cell?</div>
+        <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Now see the road that gets you there.</div>
       </div>
-
-      <!-- SECRET OF THE LADDER -->
-      <div class="bg-white rounded-2xl border border-navy/10 p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The ladder's secret</div>
-        <div class="font-display text-xl font-extrabold text-ink mt-1">The first crore is the slowest. Every crore after it arrives faster.</div>
-        <p class="text-[13px] text-ink/65 mt-2 leading-relaxed">Keep the &#8377;1-crore SIP running past your tenure and watch the gaps shrink. That is compounding taking over the climb.</p>
-        <div id="milestones" class="mt-4 grid grid-cols-2 md:grid-cols-5 gap-3"></div>
-      </div>
-
-      <!-- HONEST BOX -->
-      <div class="bg-ink text-warmpaper rounded-2xl p-7">
-        <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">The part the ladder hides</div>
-        <div class="mt-3 space-y-4 text-sm leading-relaxed text-warmpaper/85">
-          <p><strong class="text-warmpaper">Your rung will shrink on the way up.</strong> <span id="hn-target">&#8377;1 Cr</span> arriving in <span id="hn-when">-</span> buys what <strong class="text-marigold tab-num" id="hn-real">-</strong> buys today, at 6% inflation. Still worth the climb, just know what's at the top.</p>
-          <p><strong class="text-warmpaper">To arrive with today's buying power intact:</strong> aim for <strong class="text-marigold tab-num" id="hn-nominal">-</strong> instead, which costs <strong class="text-marigold tab-num" id="hn-nominal-sip">-</strong> a month on this ladder. Bigger number, same dream, honest maths.</p>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Found your rung?</div>
-          <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Now see the road that gets you there.</div>
-        </div>
-        <div class="flex flex-wrap gap-3">
-          <a href="calc-crorepati.html" class="lift inline-flex bg-navy text-cream px-5 py-3 rounded-full font-semibold text-sm">Become a Crorepati &rarr;</a>
-          <a href="calc-sip.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold text-sm">Honest SIP &rarr;</a>
-        </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="calc-crorepati.html" class="lift inline-flex bg-navy text-cream px-5 py-3 rounded-full font-semibold text-sm">Become a Crorepati &rarr;</a>
+        <a href="calc-mf-portfolio.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold text-sm">MF Portfolio &rarr;</a>
       </div>
     </div>
   </div>
@@ -187,115 +165,109 @@
 
 <footer class="bg-navy-ink text-cream/80 py-14">
   <div class="max-w-3xl mx-auto px-6 text-center">
-    <p class="text-xs text-cream/50 leading-relaxed">Estimates for education, not advice and not a promise of returns. The ladder assumes a steady annual return that real markets will not deliver in a straight line; some years will be negative. SIP amounts are rounded and assume investing every month without fail. Mutual fund investments are subject to market risks. For a plan built around your life, talk to a SEBI-registered investment adviser.</p>
+    <p class="text-xs text-cream/50 leading-relaxed">Estimates for education, not advice and not a promise of returns. Assumed returns are illustrative for each category; real markets will not deliver them in a straight line, and some years will be negative. SIP amounts are rounded and assume investing every month without fail. Mutual fund investments are subject to market risks; read all scheme related documents carefully. For a plan built around your life, talk to a SEBI-registered investment adviser.</p>
     <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
   </div>
 </footer>
 
 <script>
 const INFLATION = 6.0, CR = 1e7;
+const YEARS = [5, 10, 15, 20, 25, 30];
+const OPTIONS = [
+  { name: 'Bank FD',                    r: 6,  vol: 'zero',      v: 0 },
+  { name: 'Debt fund',                  r: 7,  vol: 'very low',  v: 1 },
+  { name: 'Equity savings fund',        r: 8,  vol: 'low',       v: 2 },
+  { name: 'Multi asset / balanced adv.',r: 10, vol: 'moderate',  v: 3 },
+  { name: 'Large cap fund',             r: 12, vol: 'average',   v: 4 },
+  { name: 'Flexi & multicap fund',      r: 13, vol: 'high',      v: 5 },
+  { name: 'Mid cap fund',               r: 14, vol: 'very high', v: 6 },
+  { name: 'Small cap fund',             r: 15, vol: 'extreme',   v: 7 }
+];
+const volClass = v => v <= 2 ? 'text-gain' : v <= 4 ? 'text-mustard-deep' : v <= 6 ? 'text-thatred' : 'text-loss font-extrabold';
+
 const fmtINR = (n) => {
   n = Math.round(n);
   if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
   if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
   return n.toLocaleString('en-IN');
 };
-const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
-function parseNumericInput(text) {
-  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
-  if (!s) return 0;
-  let m = 1;
-  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
-  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
-  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
-  const n = parseFloat(s);
-  return isNaN(n) ? 0 : n * m;
-}
-const yrsFmt = m => {
-  const y = m / 12;
-  return y >= 10 ? Math.round(y) + ' yrs' : y.toFixed(1).replace(/\.0$/, '') + ' yrs';
-};
-const dateAfter = m => {
-  const d = new Date();
-  d.setMonth(d.getMonth() + Math.round(m));
-  return d.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
-};
+const sipFactor = (y, r) => { const i = r / 1200, n = y * 12; return (Math.pow(1 + i, n) - 1) / i; };
+const lumpFactor = (y, r) => Math.pow(1 + r / 100, y);
 
-let selK = 1; // selected rung, in crores
+let targetCr = 1, mode = 'sip', selY = 20, selOpt = OPTIONS[4]; // default: large cap, 20 yrs
 const $ = id => document.getElementById(id);
-const setLbl = (id, val) => { const el = $(id); if (el && document.activeElement !== el) el.value = val; };
+const amountFor = (y, r) => {
+  const T = targetCr * CR;
+  return mode === 'sip' ? T / sipFactor(y, r) : T / lumpFactor(y, r);
+};
 
 function calc() {
-  const years = +$('in-years').value;
-  const ret = +$('in-ret').value;
-  setLbl('lbl-years', years);
-  setLbl('lbl-ret', ret.toFixed(1));
-
-  $('ret-note').textContent = ret >= 14
-    ? 'Careful: at ' + ret.toFixed(1).replace(/\.0$/,'') + '% you are assuming a great decade, not planning one. We keep the slider capped for a reason.'
-    : ret >= 12
-      ? ret.toFixed(1).replace(/\.0$/,'') + '% is a reasonable long-run hope for equity. It is a hope, not a promise.'
-      : 'A modest assumption. If reality does better, you arrive early, which is the good kind of surprise.';
-
-  const i = ret / 1200, n = years * 12;
-  const F = (Math.pow(1 + i, n) - 1) / i;           // SIP future-value factor
-  const disc = Math.pow(1 + ret / 100, years);       // lumpsum growth factor
-
-  $('ladder-assume').textContent = years + ' years at ' + ret.toFixed(1).replace(/\.0$/,'') + '% a year, invested monthly';
-
-  // ladder rows: 1..10 Cr
-  let rows = '';
+  // target chips
+  let chips = '';
   for (let k = 1; k <= 10; k++) {
-    const sip = k * CR / F;
-    const lump = k * CR / disc;
-    const on = k === selK;
-    rows += `<button type="button" data-k="${k}" class="w-full grid grid-cols-[4.2rem_1fr_1fr] items-baseline text-left px-5 py-3 transition ${on ? 'bg-marigold/20' : 'hover:bg-warmpaper-2'}">
-      <span class="font-display font-extrabold ${on ? 'text-mustard-deep' : 'text-ink'} text-lg tab-num">&#8377;${k} Cr</span>
-      <span class="text-right font-mono tab-num font-semibold text-thisblue">&#8377;${fmtINR(sip)}<span class="text-[10px] text-ink/40 font-sans">/mo</span></span>
-      <span class="text-right font-mono tab-num text-ink/65 text-sm">&#8377;${fmtINR(lump)}</span>
-    </button>`;
+    const on = k === targetCr;
+    chips += `<button type="button" data-t="${k}" class="chip text-sm font-bold py-2 px-3.5 rounded-full border tab-num ${on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50'}">&#8377;${k} Cr</button>`;
   }
-  $('ladder').innerHTML = rows;
+  $('target-chips').innerHTML = chips;
+  $('grid-target').textContent = '₹' + targetCr + ' Cr';
 
-  // the secret: with the 1-Cr SIP, when each crore lands
-  const P1 = CR / F;
-  let prev = 0, cells = '';
-  for (let k = 1; k <= 5; k++) {
-    const m = Math.log(1 + k * CR * i / P1) / Math.log(1 + i);
-    const leg = m - prev; prev = m;
-    const first = k === 1;
-    cells += `<div class="rounded-xl p-3 text-center ${first ? 'bg-marigold/20 border border-marigold' : 'bg-warmpaper-2'}">
-      <div class="text-[10px] uppercase tracking-widest font-bold ${first ? 'text-mustard-deep' : 'text-ink/50'}">Crore ${k}</div>
-      <div class="font-display text-lg font-extrabold tab-num ${first ? 'text-mustard-deep' : 'text-ink'}">${first ? yrsFmt(m) : '+' + yrsFmt(leg)}</div>
-    </div>`;
-  }
-  $('milestones').innerHTML = cells;
+  // mode toggle paint
+  document.querySelectorAll('#mode-toggle button').forEach(b => {
+    const on = b.dataset.m === mode;
+    b.className = 'px-4 py-2 ' + (on ? 'bg-thisblue text-warmpaper' : 'bg-white text-ink/60 hover:text-ink');
+  });
 
-  // honest box for the selected rung
-  const T = selK * CR;
-  const real = T / Math.pow(1 + INFLATION / 100, years);
-  const nominal = T * Math.pow(1 + INFLATION / 100, years);
-  $('hn-target').textContent = '₹' + selK + ' Cr';
-  $('hn-when').textContent = dateAfter(n);
+  // the grid: one row per vehicle
+  let rows = '';
+  OPTIONS.forEach(o => {
+    let cells = `<span class="pl-5 pr-2 py-3">
+      <span class="block text-[13px] font-semibold text-ink leading-tight">${o.name}</span>
+      <span class="block mt-0.5 text-[10px]"><span class="font-mono tab-num font-bold ${o.r === 12 ? 'text-thisblue' : 'text-ink/60'}">${o.r}%</span><span class="text-ink/35"> · </span><span class="uppercase tracking-wider font-bold ${volClass(o.v)}">${o.vol}</span></span>
+    </span>`;
+    YEARS.forEach(y => {
+      const on = y === selY && o.r === selOpt.r;
+      cells += `<button type="button" data-y="${y}" data-r="${o.r}" class="text-right px-1.5 py-3 last:pr-5 font-mono tab-num text-[13px] transition ${on ? 'bg-marigold/25 font-bold text-ink' : o.r === 12 ? 'text-thisblue hover:bg-warmpaper-2' : 'text-ink/70 hover:bg-warmpaper-2'}">&#8377;${fmtINR(amountFor(y, o.r))}</button>`;
+    });
+    rows += `<div class="grid grid-cols-[11rem_repeat(6,1fr)] items-center">${cells}</div>`;
+  });
+  $('grid').innerHTML = rows;
+
+  // time is the discount (large cap 12%, monthly)
+  const T = targetCr * CR;
+  const a5 = T / sipFactor(5, 12), a30 = T / sipFactor(30, 12);
+  const times = Math.round(a5 / a30);
+  $('discount-line').innerHTML = `Give the same &#8377;${targetCr} crore thirty years instead of five, in a large cap fund at 12%: the monthly price falls from <strong class="tab-num">&#8377;${fmtINR(a5)}</strong> to <strong class="tab-num text-thisblue">&#8377;${fmtINR(a30)}</strong>. Same target, about <strong>${times}x cheaper</strong>. The years do the paying, if you let them.`;
+
+  // honest box for selected cell
+  const real = T / Math.pow(1 + INFLATION / 100, selY);
+  const nominal = T * Math.pow(1 + INFLATION / 100, selY);
+  const nomAmt = mode === 'sip' ? nominal / sipFactor(selY, selOpt.r) : nominal / lumpFactor(selY, selOpt.r);
+  $('hn-target').textContent = '₹' + targetCr + ' Cr';
+  $('hn-years').textContent = selY + ' years';
   $('hn-real').textContent = '₹' + fmtINR(real);
   $('hn-nominal').textContent = '₹' + fmtINR(nominal);
-  $('hn-nominal-sip').textContent = '₹' + fmtINR(nominal / F);
+  $('hn-nominal-amt').textContent = '₹' + fmtINR(nomAmt);
+  $('hn-mode-note').textContent = mode === 'sip' ? 'a month' : 'as one cheque today';
+  $('hn-vehicle').textContent = selOpt.name.toLowerCase().replace('adv.', 'advantage') + ' at ' + selOpt.r + '%';
 }
 
-// wiring
-['in-years', 'in-ret'].forEach(id => $(id).addEventListener('input', calc));
-[['lbl-years','in-years'], ['lbl-ret','in-ret']].forEach(([t, s]) => {
-  const text = $(t), slider = $(s);
-  const min = +slider.min, max = +slider.max;
-  text.addEventListener('input', () => { slider.value = clamp(parseNumericInput(text.value), min, max); calc(); });
-  text.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
-  text.addEventListener('focus', () => text.select());
-  text.addEventListener('blur', calc);
-});
-$('ladder').addEventListener('click', e => {
-  const b = e.target.closest('button[data-k]');
+$('target-chips').addEventListener('click', e => {
+  const b = e.target.closest('button[data-t]');
   if (!b) return;
-  selK = +b.dataset.k;
+  targetCr = +b.dataset.t;
+  calc();
+});
+$('mode-toggle').addEventListener('click', e => {
+  const b = e.target.closest('button[data-m]');
+  if (!b) return;
+  mode = b.dataset.m;
+  calc();
+});
+$('grid').addEventListener('click', e => {
+  const b = e.target.closest('button[data-y]');
+  if (!b) return;
+  selY = +b.dataset.y;
+  selOpt = OPTIONS.find(o => o.r === +b.dataset.r) || selOpt;
   calc();
 });
 calc();
