@@ -88,7 +88,7 @@
 
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">From 1 to 10, honestly</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">From 1 to 10, no promises</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Pick your crore. See its monthly price.</h1>
     <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Har crore ki ek kisht hoti hai.</div>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">Pick a target from &#8377;1 crore to &#8377;10 crore. The grid shows the monthly SIP it needs in each vehicle, from a bank FD's near-certain 6% to a small-cap fund's hoped-for 15%, across 5 to 30 years. Two levers decide everything: the return you chase, and the years you give it. Only one of them is free.</p>
@@ -118,7 +118,7 @@
       </div>
       <div class="overflow-x-auto">
         <div class="min-w-[700px]">
-          <div class="grid grid-cols-[11rem_repeat(6,1fr)] px-5 pb-2 pt-1 items-end border-b border-navy/10">
+          <div class="grid grid-cols-[12.5rem_repeat(6,1fr)] px-5 pb-2 pt-1 items-end border-b border-navy/10">
             <span class="text-[10px] uppercase tracking-widest font-bold text-ink/45">Where the money sits</span>
             <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">5 yrs</span>
             <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">10 yrs</span>
@@ -183,7 +183,7 @@ const OPTIONS = [
   { name: 'Mid cap fund',               r: 14, vol: 'very high', v: 6 },
   { name: 'Small cap fund',             r: 15, vol: 'extreme',   v: 7 }
 ];
-const volClass = v => v <= 2 ? 'text-gain' : v <= 4 ? 'text-mustard-deep' : v <= 6 ? 'text-thatred' : 'text-loss font-extrabold';
+const volPill = v => v <= 2 ? 'bg-gain/10 text-gain' : v <= 4 ? 'bg-marigold/25 text-mustard-deep' : v <= 6 ? 'bg-thatred/10 text-thatred' : 'bg-loss/10 text-loss';
 
 const fmtINR = (n) => {
   n = Math.round(n);
@@ -222,13 +222,13 @@ function calc() {
   OPTIONS.forEach(o => {
     let cells = `<span class="pl-5 pr-2 py-3">
       <span class="block text-[13px] font-semibold text-ink leading-tight">${o.name}</span>
-      <span class="block mt-0.5 text-[10px]"><span class="font-mono tab-num font-bold ${o.r === 12 ? 'text-thisblue' : 'text-ink/60'}">${o.r}%</span><span class="text-ink/35"> · </span><span class="uppercase tracking-wider font-bold ${volClass(o.v)}">${o.vol}</span></span>
+      <span class="mt-1 flex items-center gap-1.5"><span class="font-mono tab-num font-bold text-[10px] ${o.r === 12 ? 'text-thisblue' : 'text-ink/60'}">${o.r}%</span><span class="uppercase tracking-wider font-bold text-[9px] px-1.5 py-0.5 rounded ${volPill(o.v)}">${o.vol} volatility</span></span>
     </span>`;
     YEARS.forEach(y => {
       const on = y === selY && o.r === selOpt.r;
       cells += `<button type="button" data-y="${y}" data-r="${o.r}" class="text-right px-1.5 py-3 last:pr-5 font-mono tab-num text-[13px] transition ${on ? 'bg-marigold/25 font-bold text-ink' : o.r === 12 ? 'text-thisblue hover:bg-warmpaper-2' : 'text-ink/70 hover:bg-warmpaper-2'}">&#8377;${fmtINR(amountFor(y, o.r))}</button>`;
     });
-    rows += `<div class="grid grid-cols-[11rem_repeat(6,1fr)] items-center">${cells}</div>`;
+    rows += `<div class="grid grid-cols-[12.5rem_repeat(6,1fr)] items-center">${cells}</div>`;
   });
   $('grid').innerHTML = rows;
 
