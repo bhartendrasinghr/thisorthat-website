@@ -33,7 +33,6 @@
   .tab-num { font-variant-numeric: tabular-nums; font-feature-settings:'tnum'; }
   .lift { transition: transform 200ms ease; }
   .lift:hover { transform: translateY(-2px); }
-  .seg { transition: all 140ms ease; }
   .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.3); padding:1px 2px; border-radius:2px; }
   .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
 </style>
@@ -67,19 +66,17 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-[11px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Do, don't just watch</div>
     <h1 class="font-display text-4xl md:text-5xl font-extrabold text-ink mt-2 leading-[1.03] max-w-3xl">Let's build your plan. Two minutes, on your side.</h1>
-    <div class="mt-5 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-      <div class="flex items-center gap-3">
-        <img src="logo.png" alt="Bhartendra" class="w-11 h-11 rounded-full object-cover border-2 border-navy-ink shrink-0" />
-        <div class="text-sm leading-snug">
-          <div class="font-bold text-ink">Hosted by Bhartendra</div>
-          <div class="text-ink/60">60 conversations with fund managers, CXOs and financial experts.</div>
-        </div>
+    <div class="mt-5 flex items-center gap-3">
+      <img src="logo.png" alt="Bhartendra" class="w-11 h-11 rounded-full object-cover border-2 border-navy-ink shrink-0" />
+      <div class="text-sm leading-snug">
+        <div class="font-bold text-ink">Hosted by Bhartendra</div>
+        <div class="text-ink/60">60 conversations with fund managers, CXOs and financial experts.</div>
       </div>
     </div>
 
     <!-- THE PLANNER MODULE -->
     <div class="mt-7 grid grid-cols-1 lg:grid-cols-3 gap-5">
-      <div class="lg:col-span-2 bg-white rounded-3xl border-2 border-marigold overflow-hidden">
+      <div class="lg:col-span-2 bg-white rounded-3xl border-2 border-marigold overflow-hidden self-start">
         <!-- door tabs -->
         <div class="p-2 bg-warmpaper-2 border-b border-navy/10 grid grid-cols-2 gap-2">
           <button data-door="invest" class="door-tab rounded-2xl px-4 py-3 text-left">
@@ -93,7 +90,7 @@
         </div>
 
         <div class="p-6 md:p-7">
-          <!-- DOOR A: how you invest -->
+          <!-- DOOR A -->
           <div id="door-invest">
             <div>
               <div class="text-sm font-semibold text-ink mb-2">How long will this money stay invested?</div>
@@ -111,9 +108,15 @@
                 <button data-m="mfeq" class="mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border">Mutual funds + my own stocks</button>
               </div>
             </div>
+            <div class="mt-4 bg-warmpaper-2 rounded-xl px-4 py-3 text-sm flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <span>I can invest about &#8377;</span>
+              <input id="inv-amt" value="25,000" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-20 text-right" />
+              <span>a month.</span>
+              <span class="text-[11px] text-ink/45">Type "25k" or "1L". Rough is fine.</span>
+            </div>
           </div>
 
-          <!-- DOOR B: a goal -->
+          <!-- DOOR B -->
           <div id="door-goal" class="hidden">
             <div class="text-sm font-semibold text-ink mb-2">What are you saving for?</div>
             <div class="grid grid-cols-2 gap-2" id="goal-buttons">
@@ -132,7 +135,7 @@
         </div>
       </div>
 
-      <!-- SIDE: latest episode + newsletter (demoted, still present) -->
+      <!-- SIDE: latest episode + newsletter -->
       <div class="space-y-5">
         <a href="#" class="lift block bg-white rounded-3xl border-2 border-navy-ink overflow-hidden">
           <div class="relative bg-ink aspect-video">
@@ -148,10 +151,14 @@
           <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Slow Thought, weekly</div>
           <div class="font-display text-lg font-extrabold text-ink mt-1 leading-tight">One honest idea. Every Sunday.</div>
           <div class="mt-3 flex gap-2">
-            <input type="email" placeholder="you@email.com" class="flex-1 bg-white border border-navy/20 rounded-full px-4 py-2 text-sm" />
-            <button class="bg-navy text-cream px-4 py-2 rounded-full font-semibold text-sm">Join</button>
+            <input type="email" placeholder="you@email.com" class="flex-1 min-w-0 bg-white border border-navy/20 rounded-full px-4 py-2 text-sm" />
+            <button class="bg-navy text-cream px-4 py-2 rounded-full font-semibold text-sm shrink-0">Join</button>
           </div>
         </div>
+        <a href="fork-test.html" class="lift block bg-white rounded-3xl border border-navy/10 p-4">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Not sure where to start?</div>
+          <div class="font-display text-base font-extrabold text-ink mt-1 leading-tight">Take the 60-second Fork Test &rarr;</div>
+        </a>
       </div>
     </div>
 
@@ -162,20 +169,50 @@
 <script>
 const $ = id => document.getElementById(id);
 const fmtINR = (n) => { n = Math.round(n); if (n>=1e7) return (n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr'; if (n>=1e5) return (n/1e5).toFixed(2).replace(/\.?0+$/,'')+' L'; return n.toLocaleString('en-IN'); };
+const parseNum = (text) => {
+  let s = String(text).replace(/[₹\s,]/g,'').trim().toLowerCase();
+  if (!s) return 0; let m = 1;
+  if (s.endsWith('cr')) { m=1e7; s=s.slice(0,-2); }
+  else if (s.endsWith('l')) { m=1e5; s=s.slice(0,-1); }
+  else if (s.endsWith('k')) { m=1e3; s=s.slice(0,-1); }
+  const n = parseFloat(s); return isNaN(n) ? 0 : n*m;
+};
 const sipFor = (target, years, ratePct) => { const i=ratePct/1200, n=years*12; return target / ((Math.pow(1+i,n)-1)/i); };
 
+// ---- assumptions, aligned with the site's deep calculators ----
+const INF = 0.06;        // household inflation (Real Retirement default)
+const EDU_INF = 0.08;    // education costs run hotter
+const PROP_INF = 0.07;   // property prices
+const POST_RET = 0.08;   // post-retirement return (Real Retirement default)
+const YEARS_IN_RET = 30; // a long, safe retirement
+
 const H = {
-  '1-3': { label:'1 to 3 years', eq:0, note:"Under three years, equity is a coin flip. We would not put this money at risk. Keep it in safe, liquid debt and sleep at night.",
+  '1-3': { label:'1 to 3 years', eq:0, note:"Under three years, equity is a coin flip and we will not pretend otherwise. Keep this money safe and liquid; boring is the strategy.",
     eqMix:[], debtMix:[['Liquid / ultra-short debt',100]] },
-  '3-5': { label:'3 to 5 years', eq:30, note:"Mostly stability, with a little growth riding on top. Enough equity to beat an FD, not enough to lose sleep over.",
+  '3-5': { label:'3 to 5 years', eq:30, note:"Mostly stability, with a little growth riding on top. Enough equity to beat an FD over the stretch, not enough to lose sleep over.",
     eqMix:[['Large cap fund',70],['Flexi cap fund',30]], debtMix:[['Short duration debt',60],['Corporate bond fund',40]] },
   '5-10': { label:'5 to 10 years', eq:65, note:"Now equity earns its place. A real cushion of debt keeps one bad year from derailing the whole plan.",
     eqMix:[['Large cap fund',50],['Flexi cap fund',30],['Mid cap fund',20]], debtMix:[['Short duration debt',50],['Dynamic bond fund',50]] },
   '10+': { label:'10 years plus', eq:85, note:"Time is the one edge money cannot buy, and you have it. Let equity do the heavy lifting; a little debt just steadies the ride.",
     eqMix:[['Large cap fund',40],['Flexi cap fund',30],['Mid cap fund',20],['Small cap fund',10]], debtMix:[['Dynamic bond fund',60],['Target maturity fund',40]] }
 };
-const DIRECT = { '5-10':15, '10+':25 }; // % of the equity sleeve to direct stocks when MF + own stocks
+// direct-stock carve of the equity sleeve, deliberately modest
+const DIRECT = { '5-10':10, '10+':15 };
 const blended = eq => (eq*12 + (100-eq)*6) / 100;
+const horizonForYears = y => y<=3 ? '1-3' : y<=5 ? '3-5' : y<=10 ? '5-10' : '10+';
+
+const EXPLAIN = {
+  'Liquid / ultra-short debt': 'a parking spot for money you will need soon; withdraw any time',
+  'Short duration debt': 'steady, low-drama bonds for two-to-three-year money',
+  'Corporate bond fund': 'lends to strong companies for a bit more than an FD',
+  'Dynamic bond fund': 'a manager adjusts the bonds as interest rates move',
+  'Target maturity fund': 'bonds that mature on a set date, like an FD with better tax',
+  'Large cap fund': "India's biggest 100 companies; the steadiest equity there is",
+  'Flexi cap fund': 'one fund, one manager, roaming across large, mid and small',
+  'Mid cap fund': 'the next rung down; bumpier ride, more room to grow',
+  'Small cap fund': 'the wild end of the market; highest hope, hardest ride',
+  'Direct stocks you pick': 'companies you research and own directly, no fund in between'
+};
 
 function allocRows(hKey, mfeq) {
   const h = H[hKey], eq = h.eq, debt = 100 - eq;
@@ -187,47 +224,61 @@ function allocRows(hKey, mfeq) {
     h.eqMix.forEach(([k,w]) => eqRows.push([k, fundShare*w/100, false]));
   }
   h.debtMix.forEach(([k,w]) => debtRows.push([k, debt*w/100]));
-  return { eq, debt, eqRows, debtRows, note: h.note };
+  return { eq, debt, eqRows, debtRows, note: h.note, hasDirect: !!(mfeq && DIRECT[hKey] && eq>0) };
 }
 
-function renderResult(hKey, mfeq, moneyHtml) {
+function renderResult(hKey, mfeq, opts) {
+  const { moneyHtml = '', monthly = 0, deepLink = null, glideNote = '' } = opts || {};
   const a = allocRows(hKey, mfeq);
-  const pill = (rows, tint) => rows.map(([k,v,dir]) => `
+  const row = ([k,v,dir]) => `
     <div class="flex items-center justify-between gap-3 py-1.5">
       <span class="text-[13px] ${dir ? 'text-thatred font-semibold' : 'text-ink/80'}">${k}</span>
-      <span class="font-mono text-[13px] font-semibold text-ink tab-num">${Math.round(v)}%</span>
-    </div>`).join('');
+      <span class="text-right shrink-0">
+        <span class="font-mono text-[13px] font-semibold text-ink tab-num">${Math.round(v)}%</span>
+        ${monthly > 0 ? `<span class="block font-mono text-[11px] text-ink/50 tab-num">&#8377;${fmtINR(monthly*v/100)}/mo</span>` : ''}
+      </span>
+    </div>`;
   const eqCol = a.eq > 0 ? `
     <div>
       <div class="text-[10px] uppercase tracking-widest font-bold text-thisblue mb-1">Equity &middot; ${a.eq}%</div>
-      ${pill(a.eqRows)}
+      ${a.eqRows.map(row).join('')}
     </div>` : '';
   const debtCol = `
     <div>
       <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 mb-1">Debt &middot; ${a.debt}%</div>
-      ${pill(a.debtRows)}
+      ${a.debtRows.map(row).join('')}
     </div>`;
+  const names = [...a.eqRows, ...a.debtRows].map(r => r[0]);
+  const explain = names.map(n => `<div class="flex gap-2 py-1"><span class="font-semibold text-ink/80 shrink-0">${n}:</span><span class="text-ink/60">${EXPLAIN[n] || ''}</span></div>`).join('');
+  const directWarn = a.hasDirect ? `
+    <p class="text-[12px] text-thatred/90 mt-3 leading-relaxed"><strong>About that stocks slice:</strong> keep it to companies you can research and hold through a bad year. If a stock needs checking every morning, it is a worry, not an investment. When in doubt, the fund wins.</p>` : '';
   return `
     <div class="bg-warmpaper-2 rounded-2xl p-5">
-      ${moneyHtml || ''}
+      ${moneyHtml}
       <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-2">Your starting mix</div>
       <div class="flex h-9 rounded-lg overflow-hidden border border-navy/15 mb-4">
         ${a.eq > 0 ? `<div style="width:${a.eq}%" class="bg-thisblue text-warmpaper flex items-center justify-center text-[11px] font-bold">${a.eq}%</div>` : ''}
         <div style="width:${a.debt}%" class="bg-warmpaper-3 text-ink flex items-center justify-center text-[11px] font-bold">${a.debt}%</div>
       </div>
-      <div class="grid ${a.eq > 0 ? 'sm:grid-cols-2' : 'grid-cols-1'} gap-x-6 gap-y-2 divide-y sm:divide-y-0 divide-navy/5">
+      <div class="grid ${a.eq > 0 ? 'sm:grid-cols-2' : 'grid-cols-1'} gap-x-6 gap-y-2">
         ${eqCol}${debtCol}
       </div>
-      <p class="text-[12px] text-ink/70 mt-4 leading-relaxed border-t border-navy/10 pt-3">${a.note}</p>
-      <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+      ${directWarn}
+      <p class="text-[12px] text-ink/70 mt-3 leading-relaxed border-t border-navy/10 pt-3">${a.note}${glideNote ? ' ' + glideNote : ''}</p>
+      <details class="mt-3">
+        <summary class="text-[12px] font-semibold text-thisblue cursor-pointer select-none">What do these names mean?</summary>
+        <div class="mt-2 text-[12px] leading-relaxed">${explain}</div>
+      </details>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
         <a href="money-person.html" class="inline-flex bg-navy text-cream px-4 py-2.5 rounded-full font-semibold text-sm">Make it real, find your money person &rarr;</a>
-        <span class="text-[10px] text-ink/40 max-w-[16rem]">A common starting point, not personalised advice. Verify any registration on SEBI or AMFI.</span>
+        ${deepLink ? `<a href="${deepLink.href}" class="inline-flex bg-white border border-navy/20 text-ink px-4 py-2.5 rounded-full font-semibold text-sm">${deepLink.label} &rarr;</a>` : `<a href="calc-mf-portfolio.html" class="inline-flex bg-white border border-navy/20 text-ink px-4 py-2.5 rounded-full font-semibold text-sm">Build the fund mix &rarr;</a>`}
       </div>
+      <p class="text-[10px] text-ink/40 mt-3">A common starting point, not personalised advice. Returns are assumptions, not promises. Verify any professional's registration on SEBI or AMFI before engaging.</p>
     </div>`;
 }
 
-// ---- Door A: how you invest ----
-let hKey = '10+', mfeq = false;
+// ---- Door A ----
+let hKey = '10+', mfeq = false, invMonthly = 25000;
 function paintInvest() {
   document.querySelectorAll('#horizon-buttons .hbtn').forEach(b => {
     const on = b.dataset.h === hKey;
@@ -237,54 +288,108 @@ function paintInvest() {
     const on = (b.dataset.m === 'mfeq') === mfeq;
     b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-thisblue text-warmpaper border-thisblue' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
   });
-  $('result').innerHTML = renderResult(hKey, mfeq, '');
+  $('result').innerHTML = renderResult(hKey, mfeq, { monthly: invMonthly });
 }
 $('horizon-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-h]'); if(!b) return; hKey=b.dataset.h; paintInvest(); });
 $('hold-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-m]'); if(!b) return; mfeq=(b.dataset.m==='mfeq'); paintInvest(); });
+$('inv-amt').addEventListener('input', () => { invMonthly = parseNum($('inv-amt').value); paintInvest(); });
 
-// ---- Door B: a goal ----
+// ---- Door B ----
+// Retirement corpus: expenses inflated to retirement, then a monthly-withdrawal
+// annuity at POST_RET that depletes to zero over YEARS_IN_RET. Same method as
+// the Real Retirement calculator, with its default assumptions.
+function retirementCorpus(expToday, yearsToRet) {
+  const expAtRet = expToday * Math.pow(1 + INF, yearsToRet);
+  const mR = Math.pow(1 + POST_RET, 1/12) - 1;
+  const monthlyDue = (1 - Math.pow(1 + mR, -12)) * (1 + mR) / mR;
+  const ratio = (1 + INF) / (1 + POST_RET);
+  const ratioYearSum = (1 - Math.pow(ratio, YEARS_IN_RET)) / (1 - ratio);
+  return { corpus: expAtRet * monthlyDue * ratioYearSum, expAtRet };
+}
+
 const GOALS = {
-  retire: { label:'Retirement', h:'10+', years:25, kind:'retire' },
-  edu:    { label:"Child's education", h:'5-10', years:12, kind:'target', dflt:2500000, word:"today's cost" },
-  house:  { label:'House down payment', h:'3-5', years:4, kind:'house', dflt:8000000 },
-  wealth: { label:'Wealth creation', h:'10+', years:15, kind:'target', dflt:10000000, word:'target' }
+  retire: { label:'Retirement', kind:'retire', dfltAmt:50000, dfltYrs:25 },
+  edu:    { label:"Child's education", kind:'edu', dfltAmt:2500000, dfltYrs:12 },
+  house:  { label:'House down payment', kind:'house', dfltAmt:8000000, dfltYrs:4 },
+  wealth: { label:'Wealth creation', kind:'wealth', dfltAmt:10000000, dfltYrs:15 }
 };
 let goalKey = null, goalAmt = 0, goalYears = 0;
+
 function paintGoal() {
   document.querySelectorAll('#goal-buttons .gbtn').forEach(b => {
     const on = b.dataset.g === goalKey;
     b.className = 'gbtn text-sm font-bold py-3 px-3 rounded-xl border text-left ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
   });
 }
+
 function computeGoal() {
   const g = GOALS[goalKey];
-  let target, years = goalYears || g.years, label;
-  if (g.kind === 'retire') { const annual = goalAmt*12; target = annual*25; label = `To retire on <strong class="tab-num">&#8377;${fmtINR(goalAmt)}</strong>/month, a rough 25x rule points to a corpus of`; }
-  else if (g.kind === 'house') { target = goalAmt*0.2; label = `A 20% down payment on a <strong class="tab-num">&#8377;${fmtINR(goalAmt)}</strong> home is`; }
-  else { target = goalAmt * Math.pow(1.08, years); label = `Grown for inflation, your ${g.word} becomes`; }
-  const rate = blended(H[g.h].eq);
-  const sip = sipFor(target, years, rate);
-  const money = `
-    <div class="mb-4">
-      <div class="text-[13px] text-ink/70">${label}</div>
-      <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmtINR(target)}</div>
-      <div class="text-[13px] text-ink/70 mt-1">That is about <strong class="text-thisblue tab-num">&#8377;${fmtINR(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below.</div>
-    </div>`;
-  $('result').innerHTML = renderResult(g.h, false, money);
+  const years = Math.max(1, goalYears || g.dfltYrs);
+  const hk = horizonForYears(years);
+  const rate = blended(H[hk].eq);
+  let target, money = '', deepLink = null, glideNote = '';
+
+  if (g.kind === 'retire') {
+    const { corpus, expAtRet } = retirementCorpus(goalAmt, years);
+    target = corpus;
+    const sip = sipFor(target, years, rate);
+    money = `
+      <div class="mb-4">
+        <div class="text-[13px] text-ink/70">At 6% inflation, today's <strong class="tab-num">&#8377;${fmtINR(goalAmt)}</strong>/month of expenses becomes <strong class="tab-num">&#8377;${fmtINR(expAtRet)}</strong>/month by the time you retire. To fund 30 years of that, you are aiming for</div>
+        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmtINR(target)}</div>
+        <div class="text-[13px] text-ink/70 mt-1">Roughly <strong class="text-thisblue tab-num">&#8377;${fmtINR(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below. Already saved something? The full calculator counts it.</div>
+      </div>`;
+    deepLink = { href:'calc-retirement.html', label:'Refine it in Real Retirement' };
+    glideNote = 'As retirement gets close, this mix should glide toward debt. That is by design, not cold feet.';
+  } else if (g.kind === 'house') {
+    const priceAtBuy = goalAmt * Math.pow(1 + PROP_INF, years);
+    target = priceAtBuy * 0.2;
+    const sip = sipFor(target, years, rate);
+    money = `
+      <div class="mb-4">
+        <div class="text-[13px] text-ink/70">At 7% property inflation, today's <strong class="tab-num">&#8377;${fmtINR(goalAmt)}</strong> home costs about <strong class="tab-num">&#8377;${fmtINR(priceAtBuy)}</strong> in ${years} year${years>1?'s':''}. A 20% down payment is</div>
+        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmtINR(target)}</div>
+        <div class="text-[13px] text-ink/70 mt-1">Roughly <strong class="text-thisblue tab-num">&#8377;${fmtINR(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below.</div>
+      </div>`;
+    deepLink = { href:'calc-dreamhome.html', label:'Check the full Dream Home Plan' };
+  } else if (g.kind === 'edu') {
+    target = goalAmt * Math.pow(1 + EDU_INF, years);
+    const sip = sipFor(target, years, rate);
+    money = `
+      <div class="mb-4">
+        <div class="text-[13px] text-ink/70">Education inflation runs hot, near 8%. Today's <strong class="tab-num">&#8377;${fmtINR(goalAmt)}</strong> course becomes</div>
+        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmtINR(target)}</div>
+        <div class="text-[13px] text-ink/70 mt-1">in ${years} years. Roughly <strong class="text-thisblue tab-num">&#8377;${fmtINR(sip)}/month</strong>, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below.</div>
+      </div>`;
+    deepLink = { href:'calc-goal.html', label:'Plan it properly in Goal Planner' };
+  } else {
+    target = goalAmt;
+    const todayWorth = goalAmt / Math.pow(1 + INF, years);
+    const sip = sipFor(target, years, rate);
+    money = `
+      <div class="mb-4">
+        <div class="text-[13px] text-ink/70">Your target:</div>
+        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmtINR(target)}</div>
+        <div class="text-[13px] text-ink/70 mt-1">Roughly <strong class="text-thisblue tab-num">&#8377;${fmtINR(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below. One thing to know: in ${years} years that buys what <strong class="tab-num">&#8377;${fmtINR(todayWorth)}</strong> buys today.</div>
+      </div>`;
+    deepLink = { href:'calc-crore-ladder.html', label:'See every target on the Crore Ladder' };
+  }
+  $('result').innerHTML = renderResult(hk, false, { moneyHtml: money, deepLink, glideNote });
 }
+
 function renderGoalInput() {
   const g = GOALS[goalKey];
-  goalYears = g.years;
+  goalAmt = g.dfltAmt; goalYears = g.dfltYrs;
   const box = $('goal-input'); box.classList.remove('hidden');
+  const amtStr = g.dfltAmt.toLocaleString('en-IN');
   let inner;
-  if (g.kind === 'retire') { goalAmt = 50000; inner = `<span>My expenses are about &#8377;</span><input id="gi-amt" value="50,000" class="editable-num tab-num font-bold text-thisblue w-20 text-right" /><span>a month, and I have</span><input id="gi-yrs" value="25" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years to go.</span>`; }
-  else if (g.kind === 'house') { goalAmt = g.dflt; inner = `<span>The home costs about &#8377;</span><input id="gi-amt" value="80,00,000" class="editable-num tab-num font-bold text-thisblue w-24 text-right" /><span>and I want it in</span><input id="gi-yrs" value="4" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years.</span>`; }
-  else if (g.kind === 'edu') { goalAmt = g.dflt; inner = `<span>College costs about &#8377;</span><input id="gi-amt" value="25,00,000" class="editable-num tab-num font-bold text-thisblue w-24 text-right" /><span>today, and it is</span><input id="gi-yrs" value="12" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years away.</span>`; }
-  else { goalAmt = g.dflt; inner = `<span>I want &#8377;</span><input id="gi-amt" value="1,00,00,000" class="editable-num tab-num font-bold text-thisblue w-28 text-right" /><span>in</span><input id="gi-yrs" value="15" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years.</span>`; }
+  if (g.kind === 'retire') inner = `<span>My expenses are about &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-20 text-right" /><span>a month, and I have</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years to go.</span>`;
+  else if (g.kind === 'house') inner = `<span>The home costs about &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-28 text-right" /><span>today, and I want it in</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years.</span>`;
+  else if (g.kind === 'edu') inner = `<span>College costs about &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-28 text-right" /><span>today, and it is</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years away.</span>`;
+  else inner = `<span>I want &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-32 text-right" /><span>in</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years.</span>`;
   $('goal-input-inner').innerHTML = inner;
-  const parse = s => { s=String(s).replace(/[^\d.]/g,''); return parseFloat(s)||0; };
   const amtEl = $('gi-amt'), yrsEl = $('gi-yrs');
-  const upd = () => { goalAmt = parse(amtEl.value); goalYears = parse(yrsEl.value)||g.years; computeGoal(); };
+  const upd = () => { goalAmt = parseNum(amtEl.value) || g.dfltAmt; goalYears = Math.min(60, parseNum(yrsEl.value) || g.dfltYrs); computeGoal(); };
   amtEl.addEventListener('input', upd); yrsEl.addEventListener('input', upd);
   computeGoal();
 }
@@ -299,11 +404,10 @@ function paintDoors(door) {
   $('door-invest').classList.toggle('hidden', door !== 'invest');
   $('door-goal').classList.toggle('hidden', door !== 'goal');
   if (door === 'invest') paintInvest();
-  else { $('result').innerHTML = '<div class="text-sm text-ink/50 bg-warmpaper-2 rounded-2xl p-6 text-center">Pick a goal above to see the amount you need and a starting mix.</div>'; if (goalKey) renderGoalInput(); }
+  else { if (goalKey) { paintGoal(); renderGoalInput(); } else $('result').innerHTML = '<div class="text-sm text-ink/50 bg-warmpaper-2 rounded-2xl p-6 text-center">Pick a goal above to see the amount you need and a starting mix.</div>'; }
 }
 document.querySelectorAll('.door-tab').forEach(b => b.addEventListener('click', () => paintDoors(b.dataset.door)));
 
-// init on door A with a sensible default
 paintDoors('invest');
 </script>
 </body>
