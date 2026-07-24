@@ -149,28 +149,50 @@
     "description": "India-Pakistan war happened in 2025. Tariffs hit 50%. FIIs pulled out $22 billion. And STILL, Nifty closed positive for the year. Meanwhile, people are"
   },
   "takeaways": [
-    "Despite the India-Pakistan war, 50% tariffs and FIIs pulling out 22 billion dollars, the Nifty still closed 2025 positive, and over the last 10 years it has had zero negative years.",
-    "Kirtan Shah's blunt read is that most of the global-investing buzz online is FOMO-driven, and for 99% of retail investors a simple India-focused portfolio with smart asset allocation is still the sensible path.",
-    "Silver's last leg was largely speculation, so entering now could mean 4 to 5 years of disappointment.",
-    "Asset allocation is behavioral management, not just risk management: it is there to keep you steady, not only to cap risk.",
-    "Country returns swing wildly year to year, like South Korea up 80% in one year against a 2.2% five-year average, which is why chasing last year's winner is a trap."
+    {
+      "text": "Despite the India-Pakistan war, 50% tariffs and FIIs pulling out 22 billion dollars, the Nifty still closed 2025 positive, and over the last 10 years it has had zero negative years."
+    },
+    {
+      "text": "Kirtan Shah's blunt read is that most of the global-investing buzz online is FOMO-driven, and for 99% of retail investors a simple India-focused portfolio with smart asset allocation is still the sensible path."
+    },
+    {
+      "text": "Silver's last leg was largely speculation, so entering now could mean 4 to 5 years of disappointment."
+    },
+    {
+      "text": "Asset allocation is behavioral management, not just risk management: it is there to keep you steady, not only to cap risk."
+    },
+    {
+      "text": "Country returns swing wildly year to year, like South Korea up 80% in one year against a 2.2% five-year average, which is why chasing last year's winner is a trap."
+    }
   ],
   "fork": {
     "decision": "Should you add global investing to your portfolio, or stay India-focused?",
     "this": {
       "label": "Go global",
       "points": [
-        "India underperformed in 2025, and dollar-term return data invites a hard comparison with world markets.",
-        "Global investing has become a genuine topic, with voices like Radhika Gupta weighing in on who it actually suits.",
-        "For a specific investor profile, some diversification outside India can be a fit-based choice."
+        {
+          "text": "India underperformed in 2025, and dollar-term return data invites a hard comparison with world markets."
+        },
+        {
+          "text": "Global investing has become a genuine topic, with voices like Radhika Gupta weighing in on who it actually suits."
+        },
+        {
+          "text": "For a specific investor profile, some diversification outside India can be a fit-based choice."
+        }
       ]
     },
     "that": {
       "label": "Stay India-focused",
       "points": [
-        "For 99% of retail investors, a simple India-focused portfolio with smart asset allocation is still the sensible path.",
-        "Much of the global-investing chatter is FOMO-driven noise from the internet, not a real need.",
-        "Even after war, tariffs and 22 billion dollars of FII selling, the Nifty closed 2025 positive and has had zero negative years in a decade."
+        {
+          "text": "For 99% of retail investors, a simple India-focused portfolio with smart asset allocation is still the sensible path."
+        },
+        {
+          "text": "Much of the global-investing chatter is FOMO-driven noise from the internet, not a real need."
+        },
+        {
+          "text": "Even after war, tariffs and 22 billion dollars of FII selling, the Nifty closed 2025 positive and has had zero negative years in a decade."
+        }
       ]
     },
     "pick": "For the 99%, stay India-focused and let disciplined asset allocation do the work. Treat global investing as a fit-based decision for a specific few, not a FOMO reaction to one painful year, and do not chase Silver's last leg."

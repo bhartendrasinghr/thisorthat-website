@@ -117,10 +117,20 @@
     "description": "Financial freedom is about being in control of your time, allowing you to live life as you choose, with enough resources to meet all your financial goals."
   },
   "takeaways": [
-    "Financial freedom, in Mrin Agarwal's framing, is about controlling your time and having enough to meet your goals, not chasing a number for its own sake.",
-    "Start financial planning early, especially for retirement, so compounding has more years to do the heavy lifting for you.",
-    "Equity mutual funds and NPS carry the long-term growth, while debt funds are there to keep your emergency money safe.",
-    "A step-up SIP, where you raise the amount you invest every year, gives late starters a realistic path to build wealth.",
-    "Knowing your own risk profile and diversifying your portfolio matters more than chasing last year's returns."
+    {
+      "text": "Financial freedom, in Mrin Agarwal's framing, is about controlling your time and having enough to meet your goals, not chasing a number for its own sake."
+    },
+    {
+      "text": "Start financial planning early, especially for retirement, so compounding has more years to do the heavy lifting for you."
+    },
+    {
+      "text": "Equity mutual funds and NPS carry the long-term growth, while debt funds are there to keep your emergency money safe."
+    },
+    {
+      "text": "A step-up SIP, where you raise the amount you invest every year, gives late starters a realistic path to build wealth."
+    },
+    {
+      "text": "Knowing your own risk profile and diversifying your portfolio matters more than chasing last year's returns."
+    }
   ]
 }

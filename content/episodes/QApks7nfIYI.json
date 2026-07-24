@@ -15,10 +15,20 @@
     "description": "Most people think investing is about finding the best fund or timing the market. It isn’t. It’s about behaviour, discipline, and the ability to stay the"
   },
   "takeaways": [
-    "Building wealth is less about finding the best fund or timing the market and more about behaviour, discipline, and staying the course when everything around you moves.",
-    "Small, steady habits compound: a ₹5,000 SIP, held for the long term, can grow into meaningful wealth over time.",
-    "Over-diversification tends to hurt more than it helps, so owning fewer, well-chosen funds can serve you better than spreading yourself thin.",
-    "Most investing mistakes come from thinking too much or acting too little, not from a lack of intelligence or brilliance.",
-    "A coach or distributor earns their place by helping you stay invested and out of your own way, which is where ordinary investors quietly pull ahead."
+    {
+      "text": "Building wealth is less about finding the best fund or timing the market and more about behaviour, discipline, and staying the course when everything around you moves."
+    },
+    {
+      "text": "Small, steady habits compound: a ₹5,000 SIP, held for the long term, can grow into meaningful wealth over time."
+    },
+    {
+      "text": "Over-diversification tends to hurt more than it helps, so owning fewer, well-chosen funds can serve you better than spreading yourself thin."
+    },
+    {
+      "text": "Most investing mistakes come from thinking too much or acting too little, not from a lack of intelligence or brilliance."
+    },
+    {
+      "text": "A coach or distributor earns their place by helping you stay invested and out of your own way, which is where ordinary investors quietly pull ahead."
+    }
   ]
 }

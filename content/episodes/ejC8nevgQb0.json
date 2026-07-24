@@ -81,10 +81,20 @@
     "description": "One house = smart. Two = rich. Three = fool.” and “Gold is insurance, not investment.”, Veteran investor Lakshmi Iyer (Group President, Bajaj Finserv &"
   },
   "takeaways": [
-    "Gold is framed as insurance, not investment: it protects your portfolio against shocks but rarely compounds wealth, so it plays defense rather than driving your growth.",
-    "The episode reframes real estate with a blunt line, one house is smart, two is rich, three is a fool, and separates when it actually makes sense to buy a home from when to get property exposure through markets like REITs.",
-    "Long term is not a number of years, it is defined by market cycles and your tolerance for shocks, which changes how you judge whether you are being patient or just stuck.",
-    "The biggest investor mistakes here are behavioral, not technical: fear, greed, and killing your SIPs at the wrong moment, while rebalancing and discipline are the boring edge that quietly wins.",
-    "Asset allocation is presented as a simple framework where equity, debt and gold each do a different job, paired with a blended-return mental model for thinking about how to stay ahead of inflation."
+    {
+      "text": "Gold is framed as insurance, not investment: it protects your portfolio against shocks but rarely compounds wealth, so it plays defense rather than driving your growth."
+    },
+    {
+      "text": "The episode reframes real estate with a blunt line, one house is smart, two is rich, three is a fool, and separates when it actually makes sense to buy a home from when to get property exposure through markets like REITs."
+    },
+    {
+      "text": "Long term is not a number of years, it is defined by market cycles and your tolerance for shocks, which changes how you judge whether you are being patient or just stuck."
+    },
+    {
+      "text": "The biggest investor mistakes here are behavioral, not technical: fear, greed, and killing your SIPs at the wrong moment, while rebalancing and discipline are the boring edge that quietly wins."
+    },
+    {
+      "text": "Asset allocation is presented as a simple framework where equity, debt and gold each do a different job, paired with a blended-return mental model for thinking about how to stay ahead of inflation."
+    }
   ]
 }

@@ -93,10 +93,20 @@
     "description": "In this special HEALTH edition of This or That, Bhartendra Singh sits down with Chirag Barjatya (Founder, Progressive Fitness Club – PFC) to cut through"
   },
   "takeaways": [
-    "Fitness is not about aesthetics. Chirag Barjatya frames it as strength, endurance, and real health markers like lipids, LFT/KFT, and fasting glucose.",
-    "India gives you an edge here: full-body blood work costs roughly ₹1,600 to 1,800, so tracking your health markers is genuinely affordable.",
-    "Protein and carbs are not the villains. The episode covers veg and non-veg protein sources, safe whey use, creatine basics, and why rice or wheat portions matter more than cutting carbs out.",
-    "If you are 40-plus or a beginner, the path is step by step: walk first, then lift, then run, rather than chasing hacks.",
-    "Accountability beats information. Even in the age of AI, a coach helps because consistency, not the next trick, is what actually sticks."
+    {
+      "text": "Fitness is not about aesthetics. Chirag Barjatya frames it as strength, endurance, and real health markers like lipids, LFT/KFT, and fasting glucose."
+    },
+    {
+      "text": "India gives you an edge here: full-body blood work costs roughly ₹1,600 to 1,800, so tracking your health markers is genuinely affordable."
+    },
+    {
+      "text": "Protein and carbs are not the villains. The episode covers veg and non-veg protein sources, safe whey use, creatine basics, and why rice or wheat portions matter more than cutting carbs out."
+    },
+    {
+      "text": "If you are 40-plus or a beginner, the path is step by step: walk first, then lift, then run, rather than chasing hacks."
+    },
+    {
+      "text": "Accountability beats information. Even in the age of AI, a coach helps because consistency, not the next trick, is what actually sticks."
+    }
   ]
 }

@@ -61,26 +61,44 @@
     "description": "Most people buy the wrong health insurance. Don’t be one of them! Health insurance is confusing, and most people get it wrong. This video breaks down 10"
   },
   "takeaways": [
-    "Keep your parents' health policy separate from your own. It usually means lower premiums and better coverage for both.",
-    "As a rough floor, aim for 20 to 25 lakh of cover per adult, and around 50 lakh for a couple, because medical costs climb 10 to 15% every year.",
-    "Do not judge an insurer by its claim settlement ratio alone. Check the complaints ratio, the network hospitals, and how smoothly it actually pays.",
-    "The proposal form is legally binding. An honest, careful declaration is the single biggest thing standing between you and a rejected claim later.",
-    "Corporate health cover is not enough on its own, and it ends the day you leave the job. Your own policy is the one that stays."
+    {
+      "text": "Keep your parents' health policy separate from your own. It usually means lower premiums and better coverage for both."
+    },
+    {
+      "text": "As a rough floor, aim for 20 to 25 lakh of cover per adult, and around 50 lakh for a couple, because medical costs climb 10 to 15% every year."
+    },
+    {
+      "text": "Do not judge an insurer by its claim settlement ratio alone. Check the complaints ratio, the network hospitals, and how smoothly it actually pays."
+    },
+    {
+      "text": "The proposal form is legally binding. An honest, careful declaration is the single biggest thing standing between you and a rejected claim later."
+    },
+    {
+      "text": "Corporate health cover is not enough on its own, and it ends the day you leave the job. Your own policy is the one that stays."
+    }
   ],
   "fork": {
     "decision": "Is your employer's health cover enough, or do you need your own policy too?",
     "this": {
       "label": "Lean on corporate cover",
       "points": [
-        "It is already there, often free, and covers you while you are employed.",
-        "For a young, healthy person it can feel like plenty for now."
+        {
+          "text": "It is already there, often free, and covers you while you are employed."
+        },
+        {
+          "text": "For a young, healthy person it can feel like plenty for now."
+        }
       ]
     },
     "that": {
       "label": "Buy your own policy",
       "points": [
-        "Corporate cover ends the day you leave or lose the job, exactly when fresh cover is hardest to get.",
-        "Group limits are often thin against 10 to 15% medical inflation, and you do not control the terms."
+        {
+          "text": "Corporate cover ends the day you leave or lose the job, exactly when fresh cover is hardest to get."
+        },
+        {
+          "text": "Group limits are often thin against 10 to 15% medical inflation, and you do not control the terms."
+        }
       ]
     },
     "pick": "Own your own policy, and treat corporate cover as a top-up, not the foundation. The one you own is the one that stays with you through a job change, a layoff or a diagnosis, which is exactly when you need it most."

@@ -109,10 +109,20 @@
     "description": "Imagine investing ₹1 Lakh in a fund that grows to ₹1.8 Crore… but exiting at just ₹5 Lakh. This is not fiction. It’s the story of most"
   },
   "takeaways": [
-    "A fund's return and your return are two different numbers: the episode illustrates a fund turning 1 lakh into 1.8 crore while most people exited at just 5 lakh.",
-    "The gap is caused by behaviour, not the market: investors pocket only about 7% from a fund that delivered 19% CAGR because they exit too early, chase noise, or invest without a process.",
-    "Indians will comfortably hold gold for 30 years yet sell equity within 3, and that impatience, not a lack of intelligence, is what quietly breaks compounding.",
-    "Real wealth is built through behaviour and a process you can actually stick to, not through a higher IQ or clever timing.",
-    "Staying invested through the noise instead of reacting to it is the one fix that lets long-term SIPs and compounding do their work."
+    {
+      "text": "A fund's return and your return are two different numbers: the episode illustrates a fund turning 1 lakh into 1.8 crore while most people exited at just 5 lakh."
+    },
+    {
+      "text": "The gap is caused by behaviour, not the market: investors pocket only about 7% from a fund that delivered 19% CAGR because they exit too early, chase noise, or invest without a process."
+    },
+    {
+      "text": "Indians will comfortably hold gold for 30 years yet sell equity within 3, and that impatience, not a lack of intelligence, is what quietly breaks compounding."
+    },
+    {
+      "text": "Real wealth is built through behaviour and a process you can actually stick to, not through a higher IQ or clever timing."
+    },
+    {
+      "text": "Staying invested through the noise instead of reacting to it is the one fix that lets long-term SIPs and compounding do their work."
+    }
   ]
 }

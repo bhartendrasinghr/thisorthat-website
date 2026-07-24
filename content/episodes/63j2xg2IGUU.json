@@ -15,10 +15,20 @@
     "description": "What 40 Podcasts Taught Me About Investing Over the last year, I recorded 40+ podcasts with CEOs, Fund Managers, Financial Coaches, Journalists and"
   },
   "takeaways": [
-    "After more than 40 conversations with CEOs, fund managers, coaches, journalists and authors, one pattern kept surfacing: most of us are asking the wrong questions about money.",
-    "\"Which stock should I buy?\" is the wrong place to start, and this episode explains why that question quietly leads investors astray.",
-    "You really only need to understand 7 asset classes, not chase every new product that lands in your feed.",
-    "Even the best fund managers cannot predict the market, which is exactly why diversification matters when no one knows what comes next.",
-    "One habit is what separates smart investors from everyone else, and it has little to do with picking the perfect stock."
+    {
+      "text": "After more than 40 conversations with CEOs, fund managers, coaches, journalists and authors, one pattern kept surfacing: most of us are asking the wrong questions about money."
+    },
+    {
+      "text": "\"Which stock should I buy?\" is the wrong place to start, and this episode explains why that question quietly leads investors astray."
+    },
+    {
+      "text": "You really only need to understand 7 asset classes, not chase every new product that lands in your feed."
+    },
+    {
+      "text": "Even the best fund managers cannot predict the market, which is exactly why diversification matters when no one knows what comes next."
+    },
+    {
+      "text": "One habit is what separates smart investors from everyone else, and it has little to do with picking the perfect stock."
+    }
   ]
 }

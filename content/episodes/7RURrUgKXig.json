@@ -101,10 +101,20 @@
     "description": "Buying a home in India? This episode is your one-stop playbook, from real budgets in Mumbai/Thane to loan readiness, resale vs developer due-diligence, and"
   },
   "takeaways": [
-    "A ₹2 crore home rarely costs ₹2 crore: stamp duty near 6%, GST near 5%, registration, processing fees and interiors can push the real outlay to ₹2.4 to 2.5 crore.",
-    "Get loan-ready before you house-hunt, because lenders read your ITR, CIBIL, bank statements and savings, so closing liabilities and combining incomes lifts your eligibility.",
-    "If HDFC, ICICI or SBI will not lend against a project, treat it as a warning sign, since big-bank APF approval doubles as built-in due diligence.",
-    "Look past the show apartment: verify OC, title chain, water and gas, watch for 'proposed development' and 'bang on main road' traps, and see the property in both daylight and at night.",
-    "Interiors are the cost most buyers forget, often ₹10 to 30 lakh, so build them into the budget from day one rather than after possession."
+    {
+      "text": "A ₹2 crore home rarely costs ₹2 crore: stamp duty near 6%, GST near 5%, registration, processing fees and interiors can push the real outlay to ₹2.4 to 2.5 crore."
+    },
+    {
+      "text": "Get loan-ready before you house-hunt, because lenders read your ITR, CIBIL, bank statements and savings, so closing liabilities and combining incomes lifts your eligibility."
+    },
+    {
+      "text": "If HDFC, ICICI or SBI will not lend against a project, treat it as a warning sign, since big-bank APF approval doubles as built-in due diligence."
+    },
+    {
+      "text": "Look past the show apartment: verify OC, title chain, water and gas, watch for 'proposed development' and 'bang on main road' traps, and see the property in both daylight and at night."
+    },
+    {
+      "text": "Interiors are the cost most buyers forget, often ₹10 to 30 lakh, so build them into the budget from day one rather than after possession."
+    }
   ]
 }

@@ -125,27 +125,47 @@
     "description": "For Most Investors, Mutual Funds ही काफी हैं. In this episode of This or That Podcast, Neil Borate, one of India’s most respected personal-finance"
   },
   "takeaways": [
-    "Neil Borate makes the case that for most investors mutual funds are enough, and around 90% of people do not need PMS, AIF or other complex products.",
-    "Return expectations should stay grounded: the episode argues that 20% returns are a fantasy, not something to build a plan around.",
-    "A core-satellite portfolio is offered as a simple way to keep your investments balanced without piling on complexity.",
-    "Global investing and GIFT City are treated as increasingly relevant for Indian investors who want exposure beyond home markets.",
-    "NPS still works even under the new tax regime, and the real edge comes from behaviour rather than the product you pick."
+    {
+      "text": "Neil Borate makes the case that for most investors mutual funds are enough, and around 90% of people do not need PMS, AIF or other complex products."
+    },
+    {
+      "text": "Return expectations should stay grounded: the episode argues that 20% returns are a fantasy, not something to build a plan around."
+    },
+    {
+      "text": "A core-satellite portfolio is offered as a simple way to keep your investments balanced without piling on complexity."
+    },
+    {
+      "text": "Global investing and GIFT City are treated as increasingly relevant for Indian investors who want exposure beyond home markets."
+    },
+    {
+      "text": "NPS still works even under the new tax regime, and the real edge comes from behaviour rather than the product you pick."
+    }
   ],
   "fork": {
     "decision": "Should I move beyond mutual funds into PMS, AIF and complex products, or are mutual funds enough?",
     "this": {
       "label": "Stick with mutual funds",
       "points": [
-        "For roughly 90% of investors, mutual funds cover what they actually need, without PMS, AIF or complex products.",
-        "A simple core-satellite portfolio built with mutual funds stays balanced and easy to manage.",
-        "Behaviour matters more than product, and mutual funds let you focus on staying the course instead of chasing complexity."
+        {
+          "text": "For roughly 90% of investors, mutual funds cover what they actually need, without PMS, AIF or complex products."
+        },
+        {
+          "text": "A simple core-satellite portfolio built with mutual funds stays balanced and easy to manage."
+        },
+        {
+          "text": "Behaviour matters more than product, and mutual funds let you focus on staying the course instead of chasing complexity."
+        }
       ]
     },
     "that": {
       "label": "Move to complex products",
       "points": [
-        "PMS and AIF are marketed as more sophisticated options for investors who feel plain mutual funds are not enough.",
-        "The pull is often FOMO and the hope of outsized returns like 20%, which the episode calls a fantasy."
+        {
+          "text": "PMS and AIF are marketed as more sophisticated options for investors who feel plain mutual funds are not enough."
+        },
+        {
+          "text": "The pull is often FOMO and the hope of outsized returns like 20%, which the episode calls a fantasy."
+        }
       ]
     },
     "pick": "For about 90% of investors, mutual funds are enough. Skip PMS and AIF, build a simple core-satellite portfolio, keep your return expectations realistic, and spend your energy on behaviour rather than chasing complex products."

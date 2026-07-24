@@ -81,28 +81,50 @@
     "description": "Are You Making These Costly Insurance Mistakes? Most Indians are buying insurance completely wrong, and it could cost you your savings when your family"
   },
   "takeaways": [
-    "Many claims get rejected for reasons set at the buying stage, so being transparent and accurate in your proposal form is what actually protects your family later.",
-    "Insurance in India is widely misunderstood, and treating a policy as risk protection rather than an investment changes which product you should pick.",
-    "ULIPs and endowment plans bundle cover with returns, but the episode's guidance is to keep protection and investing separate instead of chasing equity-like returns inside a policy.",
-    "Your buying channel matters, and the conversation weighs online versus agent and flags the problems with aggregators so you choose deliberately.",
-    "Before signing, understand your policy and don't overpay for coverage that doesn't actually serve your needs."
+    {
+      "text": "Many claims get rejected for reasons set at the buying stage, so being transparent and accurate in your proposal form is what actually protects your family later."
+    },
+    {
+      "text": "Insurance in India is widely misunderstood, and treating a policy as risk protection rather than an investment changes which product you should pick."
+    },
+    {
+      "text": "ULIPs and endowment plans bundle cover with returns, but the episode's guidance is to keep protection and investing separate instead of chasing equity-like returns inside a policy."
+    },
+    {
+      "text": "Your buying channel matters, and the conversation weighs online versus agent and flags the problems with aggregators so you choose deliberately."
+    },
+    {
+      "text": "Before signing, understand your policy and don't overpay for coverage that doesn't actually serve your needs."
+    }
   ],
   "fork": {
     "decision": "Should you buy insurance that also invests your money, or keep protection and investing separate?",
     "this": {
       "label": "Insurance as investment",
       "points": [
-        "ULIPs and endowment plans give you cover and a savings or investment component in one product",
-        "Some of these products are pitched as offering equity-like returns alongside protection",
-        "It feels convenient to handle protection and growth through a single policy"
+        {
+          "text": "ULIPs and endowment plans give you cover and a savings or investment component in one product"
+        },
+        {
+          "text": "Some of these products are pitched as offering equity-like returns alongside protection"
+        },
+        {
+          "text": "It feels convenient to handle protection and growth through a single policy"
+        }
       ]
     },
     "that": {
       "label": "Term plus invest apart",
       "points": [
-        "Term insurance is a pure risk management tool, giving more cover for less money",
-        "Keeping investing separate means you don't dilute either your protection or your returns",
-        "The episode's core advice is to focus on risk protection, not investment returns, and to avoid overpaying for bad coverage"
+        {
+          "text": "Term insurance is a pure risk management tool, giving more cover for less money"
+        },
+        {
+          "text": "Keeping investing separate means you don't dilute either your protection or your returns"
+        },
+        {
+          "text": "The episode's core advice is to focus on risk protection, not investment returns, and to avoid overpaying for bad coverage"
+        }
       ]
     },
     "pick": "Keep them separate. Buy term insurance for genuine protection, invest your money on its own, and don't let a bundled ULIP or endowment plan quietly weaken both your cover and your savings."

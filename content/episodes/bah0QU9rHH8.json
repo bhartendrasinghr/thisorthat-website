@@ -53,10 +53,20 @@
     "description": "How much money is “enough”? Karan Datta makes a powerful point: “How much is enough” has no meaning unless you make it personal. Because even at ₹80,000"
   },
   "takeaways": [
-    "\"How much is enough\" stays meaningless as a number until you make it personal to your own life and goals.",
-    "Even at 80,000 crore net worth, the biggest industrialists are still working, which shows the number keeps moving unless you decide where it stops.",
-    "Money can be made again, but time cannot, so treat time as the scarcer of the two.",
-    "Once you define your \"enough\", you can plan your life and finances backwards from that number instead of chasing an endless target.",
-    "The specific products you pick matter less than getting clear on your number and the goals behind it."
+    {
+      "text": "\"How much is enough\" stays meaningless as a number until you make it personal to your own life and goals."
+    },
+    {
+      "text": "Even at 80,000 crore net worth, the biggest industrialists are still working, which shows the number keeps moving unless you decide where it stops."
+    },
+    {
+      "text": "Money can be made again, but time cannot, so treat time as the scarcer of the two."
+    },
+    {
+      "text": "Once you define your \"enough\", you can plan your life and finances backwards from that number instead of chasing an endless target."
+    },
+    {
+      "text": "The specific products you pick matter less than getting clear on your number and the goals behind it."
+    }
   ]
 }

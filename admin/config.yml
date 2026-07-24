@@ -31,7 +31,8 @@ collections:
     summary: "{{title}} — {{category}} · {{date}}"
     sortable_fields: ['date', 'title', 'category']
     view_filters:
-      - label: "Featured"
+      - name: "featured"
+        label: "Featured"
         field: featured
         pattern: true
     fields:
@@ -273,7 +274,7 @@ collections:
           - name: "advisors"
             label: "People (drag to reorder)"
             widget: "list"
-            summary: "{{fields.name}}{{#if fields.type}} · {{fields.type}}{{/if}}"
+            summary: "{{fields.name}}"
             fields:
               - { name: "name", label: "Name", widget: "string" }
               - { name: "type", label: "Type", widget: "select", options: ["Mutual Fund Distributor", "Financial Advisor (RIA)"], required: false, hint: "Only list registered MFDs or RIAs who take retail clients." }
@@ -304,7 +305,8 @@ collections:
     summary: "{{name}} — {{role}}"
     sortable_fields: ['name', 'featured']
     view_filters:
-      - label: "Featured"
+      - name: "featured"
+        label: "Featured"
         field: featured
         pattern: true
       - label: "Has photo"

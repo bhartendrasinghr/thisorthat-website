@@ -89,10 +89,20 @@
     "description": "In this episode of This or That, Bhartendra Singh sits down with Vijai Mantri (Founder & Chief Investment Strategist, VMFS) to decode what’s really"
   },
   "takeaways": [
-    "News flow and market reality are not the same thing: geopolitics, AI disruption and daily volatility create noise that rarely changes the fundamentals you actually invest in.",
-    "Markets tend to move in long cycles of roughly 8 to 10 years, so what feels urgent today usually looks smaller once you zoom out to how industries and returns really play out.",
-    "AI is reshaping IT jobs and industries, and Vijai Mantri's honest read is that IT may not deliver the way it once did, a reminder to question any sector you assume will always win.",
-    "Chasing direct stocks you do not fully understand can quietly destroy wealth, a point the episode grounds in a real story of a 50 percent portfolio loss.",
-    "In uncertain times how you behave as an investor matters more than the headline of the day, and the real choice is whether you act from optimism or from fear."
+    {
+      "text": "News flow and market reality are not the same thing: geopolitics, AI disruption and daily volatility create noise that rarely changes the fundamentals you actually invest in."
+    },
+    {
+      "text": "Markets tend to move in long cycles of roughly 8 to 10 years, so what feels urgent today usually looks smaller once you zoom out to how industries and returns really play out."
+    },
+    {
+      "text": "AI is reshaping IT jobs and industries, and Vijai Mantri's honest read is that IT may not deliver the way it once did, a reminder to question any sector you assume will always win."
+    },
+    {
+      "text": "Chasing direct stocks you do not fully understand can quietly destroy wealth, a point the episode grounds in a real story of a 50 percent portfolio loss."
+    },
+    {
+      "text": "In uncertain times how you behave as an investor matters more than the headline of the day, and the real choice is whether you act from optimism or from fear."
+    }
   ]
 }

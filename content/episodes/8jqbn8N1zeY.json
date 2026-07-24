@@ -89,28 +89,50 @@
     "description": "Most Indians invest 100% in India. Neil Borate thinks that's a mistake, and the numbers back him up. India is just 4% of global markets. Which means"
   },
   "takeaways": [
-    "India is roughly 4% of global markets, so a 100% India portfolio is a concentrated bet on a small-cap economy, not real diversification.",
-    "Whole categories driving global profits, AI, defence, manufacturing and commodities, barely exist on the NSE or BSE, so staying India-only means sitting them out entirely.",
-    "There are two practical routes out of India: LRS to open a US broker account step by step, and Gift City, which Neil used to buy DSP's global fund in about 10 minutes from his sofa.",
-    "Global investing carries real, knowable costs, remittance, brokerage and taxes, which Neil breaks down rather than glosses over.",
-    "This is a portfolio-size question: with a serious India portfolio around 25 to 30 lakh, Neil argues a 30 to 40% global allocation is worth considering, and there are people who should wait or not do it at all."
+    {
+      "text": "India is roughly 4% of global markets, so a 100% India portfolio is a concentrated bet on a small-cap economy, not real diversification."
+    },
+    {
+      "text": "Whole categories driving global profits, AI, defence, manufacturing and commodities, barely exist on the NSE or BSE, so staying India-only means sitting them out entirely."
+    },
+    {
+      "text": "There are two practical routes out of India: LRS to open a US broker account step by step, and Gift City, which Neil used to buy DSP's global fund in about 10 minutes from his sofa."
+    },
+    {
+      "text": "Global investing carries real, knowable costs, remittance, brokerage and taxes, which Neil breaks down rather than glosses over."
+    },
+    {
+      "text": "This is a portfolio-size question: with a serious India portfolio around 25 to 30 lakh, Neil argues a 30 to 40% global allocation is worth considering, and there are people who should wait or not do it at all."
+    }
   ],
   "fork": {
     "decision": "Should you put some of your money outside India, or keep your whole portfolio at home?",
     "this": {
       "label": "Allocate globally",
       "points": [
-        "India is only about 4% of global markets, so India-only is concentration, not diversification.",
-        "Sectors driving global profits, AI, defence, manufacturing and commodities, are largely absent from Indian exchanges.",
-        "Neil points to the world index versus India across every time horizon as the data point that stumps India bulls."
+        {
+          "text": "India is only about 4% of global markets, so India-only is concentration, not diversification."
+        },
+        {
+          "text": "Sectors driving global profits, AI, defence, manufacturing and commodities, are largely absent from Indian exchanges."
+        },
+        {
+          "text": "Neil points to the world index versus India across every time horizon as the data point that stumps India bulls."
+        }
       ]
     },
     "that": {
       "label": "Stay India-only for now",
       "points": [
-        "Global investing adds real costs: remittance, brokerage and taxes that weigh more on a small portfolio.",
-        "If your portfolio is still small, the effort may not be worth it yet, and the episode makes the case for waiting.",
-        "By Neil's own framing, some investors should not invest globally, so it is not for everyone."
+        {
+          "text": "Global investing adds real costs: remittance, brokerage and taxes that weigh more on a small portfolio."
+        },
+        {
+          "text": "If your portfolio is still small, the effort may not be worth it yet, and the episode makes the case for waiting."
+        },
+        {
+          "text": "By Neil's own framing, some investors should not invest globally, so it is not for everyone."
+        }
       ]
     },
     "pick": "If you already have a serious India portfolio, roughly 25 to 30 lakh or more, start moving toward a 30 to 40% global allocation, and use Gift City if you want the simplest on-ramp. If you are still building your first portfolio, it is reasonable to wait until you cross that size before going global."
