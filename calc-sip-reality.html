@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The SIP Reality Check, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Most SIP calculators show one rosy number. This one shows the real range from 30 years of Sensex data: how often a SIP that length finished in the red, plus the worst, typical and best you would have seen." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:28px; height:28px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:32px;height:32px;} }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.25); padding:1px 2px; transition:border-color 150ms,background 150ms; border-radius:2px; }
+  .editable-num:hover { border-bottom-color:rgba(2,73,177,0.5); background:rgba(255,194,31,0.08); }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .chip { transition: all 140ms ease; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="kyc.html" class="hover:text-navy-ink">KYC</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
+    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
+    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="kyc.html" class="py-3 border-b border-navy/5">KYC</a>
+    <a href="about.html" class="py-3">About</a>
+    <a href="money-person.html" class="mt-3 bg-marigold text-ink text-center py-3 rounded-full font-bold">Talk to a human &rarr;</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">The SIP Reality Check</span>
+</div>
+
+<section class="bg-cream pb-8">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">30 years of real Sensex data</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Your SIP's real range, not the brochure number.</h1>
+    <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Ek number nahi, poori kahani.</div>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">Every SIP calculator shows one smooth, rising line. Real markets do not move in a line. This one runs your SIP against every start month from 1996 to 2026 and shows the full spread: how often a SIP that length still finished in the red, and the worst, the typical and the best you would have lived through.</p>
+  </div>
+</section>
+
+<section class="pb-16 bg-cream pt-2">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- INPUTS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7 self-start">
+      <div>
+        <div class="flex justify-between items-baseline">
+          <label class="text-sm font-semibold text-ink" for="lbl-sip">You invest, every month</label>
+          <div class="flex items-baseline gap-1">
+            <span class="text-ink/60 text-sm">&#8377;</span>
+            <input type="text" id="lbl-sip" value="10,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
+          </div>
+        </div>
+        <input id="in-sip" type="range" min="1000" max="200000" step="1000" value="10000" class="w-full mt-2" />
+        <div class="text-[11px] text-navy/55 mt-1">Type "10k" or "25k". The percentages come from history; we just scale them to your cheque.</div>
+      </div>
+
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">You stay invested for</div>
+        <div class="flex flex-wrap gap-2" id="year-chips"></div>
+      </div>
+
+      <div class="bg-warmpaper-2 rounded-xl p-4 text-[12px] text-ink/70 leading-relaxed">
+        The numbers come from a &#8377;10,000 monthly SIP into the BSE Sensex, tested across every start month from June 1996 to June 2026, thirty years. Not a forecast: a record of what actually happened.
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="lg:col-span-3 space-y-5">
+
+      <!-- HEADLINE STAT -->
+      <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-marigold">The number the brochure skips</div>
+        <div class="mt-2 text-lg leading-relaxed">Over <strong id="s-years" class="text-marigold">10 years</strong>, a Sensex SIP finished in the red only <strong id="s-neg" class="font-display text-3xl align-middle text-marigold tab-num">6%</strong> of the time. <span id="s-neg-note" class="text-warmpaper/80">The other 94% of start dates, you were ahead.</span></div>
+      </div>
+
+      <!-- RANGE CARDS -->
+      <div class="bg-white rounded-2xl border-2 border-marigold p-6">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">What <span id="r-invested">&#8377;12 L</span> invested became, across every start date</div>
+          <div class="text-[11px] text-ink/55" id="r-window">10-year windows</div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+          <div class="rounded-xl border border-loss/30 bg-loss/5 p-4">
+            <div class="text-[10px] uppercase tracking-widest font-bold text-loss">Worst you'd have seen</div>
+            <div class="font-display text-2xl font-extrabold text-loss tab-num mt-1" id="o-worst">-</div>
+            <div class="text-[11px] text-ink/55 mt-0.5" id="o-worst-note">-</div>
+          </div>
+          <div class="rounded-xl border border-navy/15 bg-warmpaper-2 p-4">
+            <div class="text-[10px] uppercase tracking-widest font-bold text-ink/60">A typical run</div>
+            <div class="font-display text-2xl font-extrabold text-ink tab-num mt-1" id="o-avg">-</div>
+            <div class="text-[11px] text-ink/55 mt-0.5" id="o-avg-note">-</div>
+          </div>
+          <div class="rounded-xl border border-gain/30 bg-gain/5 p-4">
+            <div class="text-[10px] uppercase tracking-widest font-bold text-gain">Best you'd have seen</div>
+            <div class="font-display text-2xl font-extrabold text-gain tab-num mt-1" id="o-best">-</div>
+            <div class="text-[11px] text-ink/55 mt-0.5" id="o-best-note">-</div>
+          </div>
+        </div>
+        <!-- spread bar -->
+        <div class="mt-5">
+          <div class="relative h-3 rounded-full bg-warmpaper-3 overflow-hidden">
+            <div id="bar-zero" class="absolute top-0 bottom-0 w-px bg-ink/30"></div>
+            <div id="bar-fill" class="absolute top-0 bottom-0 rounded-full bg-gradient-to-r from-loss via-marigold to-gain"></div>
+          </div>
+          <div class="flex justify-between text-[10px] text-ink/45 font-mono mt-1.5 tab-num">
+            <span id="bar-lo">-</span><span id="bar-hi">-</span>
+          </div>
+          <div class="text-[10px] text-ink/35 mt-0.5">The thin line marks breakeven. Almost the entire spread sits to its right.</div>
+        </div>
+      </div>
+
+      <!-- RISK SHRINKS WITH TIME -->
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Why time is the risk-killer</div>
+        <div class="font-display text-xl font-extrabold text-ink mt-1">The longer you hold, the rarer a loss.</div>
+        <div id="neg-bars" class="mt-4 grid grid-cols-5 gap-3 items-end"></div>
+        <p class="text-[12px] text-ink/60 mt-4 leading-relaxed">Same market, same SIP. The only thing that changes is how long you sat still. The worst one-year run lost 36%; the worst ten-year run lost 17% and there were far fewer of them. Quitting early is the one move that locks the bad number in.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Seen the range? Now aim it.</div>
+          <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Set a target and see the monthly price.</div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="calc-crore-ladder.html" class="lift inline-flex bg-navy text-cream px-5 py-3 rounded-full font-semibold text-sm">The Crore Ladder &rarr;</a>
+          <a href="calc-sip.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold text-sm">Honest SIP &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">Source: a &#8377;10,000 monthly SIP into the BSE Sensex, rolling across every start month from June 1996 to June 2026, compiled by Vijai Mantri Financial Services (VMFS). Returns are absolute (total gain over the amount invested), not annualised. For education, not advice, and past performance is not a promise of future results. Mutual fund investments are subject to market risks; read all scheme related documents carefully. For a plan built around your life, talk to a SEBI-registered investment adviser.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
+</footer>
+
+<script>
+// VMFS 30-year Sensex SIP data (absolute returns, % of amount invested)
+const DATA = {
+  1:  { neg: 38, worst: -36, avg: 6,   best: 54  },
+  3:  { neg: 19, worst: -32, avg: 21,  best: 103 },
+  5:  { neg: 12, worst: -25, avg: 38,  best: 207 },
+  7:  { neg: 9,  worst: -23, avg: 58,  best: 288 },
+  10: { neg: 6,  worst: -17, avg: 100, best: 328 }
+};
+const YEARS = [1, 3, 5, 7, 10];
+
+const fmtINR = (n) => {
+  const sign = n < 0 ? '-' : ''; n = Math.abs(Math.round(n));
+  if (n >= 1e7) return sign + (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (n >= 1e5) return sign + (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return sign + n.toLocaleString('en-IN');
+};
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+function parseNumericInput(text) {
+  let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
+  if (!s) return 0;
+  let m = 1;
+  if (s.endsWith('cr') || s.endsWith('crore')) { m = 1e7; s = s.replace(/cr(?:ore)?$/, ''); }
+  else if (s.endsWith('l') || s.endsWith('lakh') || s.endsWith('lac')) { m = 1e5; s = s.replace(/l(?:akh|ac)?$/, ''); }
+  else if (s.endsWith('k')) { m = 1e3; s = s.replace(/k$/, ''); }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n * m;
+}
+
+let sel = 10;
+const $ = id => document.getElementById(id);
+const setLbl = (id, val) => { const el = $(id); if (el && document.activeElement !== el) el.value = val; };
+
+function calc() {
+  const sip = +$('in-sip').value;
+  setLbl('lbl-sip', sip.toLocaleString('en-IN'));
+  const d = DATA[sel];
+  const invested = sip * 12 * sel;
+  const finalOf = pct => invested * (1 + pct / 100);
+
+  // year chips
+  let chips = '';
+  YEARS.forEach(y => {
+    const on = y === sel;
+    chips += `<button type="button" data-y="${y}" class="chip text-sm font-bold py-2 px-4 rounded-full border tab-num ${on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50'}">${y} yr${y > 1 ? 's' : ''}</button>`;
+  });
+  $('year-chips').innerHTML = chips;
+
+  // headline
+  $('s-years').textContent = sel + (sel > 1 ? ' years' : ' year');
+  $('s-neg').textContent = d.neg + '%';
+  $('s-neg-note').textContent = `The other ${100 - d.neg}% of start dates, you were ahead.`;
+
+  // range
+  $('r-invested').textContent = '₹' + fmtINR(invested);
+  $('r-window').textContent = sel + '-year windows';
+  $('o-worst').textContent = '₹' + fmtINR(finalOf(d.worst));
+  $('o-worst-note').textContent = `${d.worst}% return. A loss of ₹${fmtINR(invested * -d.worst / 100)}.`;
+  $('o-avg').textContent = '₹' + fmtINR(finalOf(d.avg));
+  $('o-avg-note').textContent = `+${d.avg}% return, the middle of the pack.`;
+  $('o-best').textContent = '₹' + fmtINR(finalOf(d.best));
+  $('o-best-note').textContent = `+${d.best}% return. A gain of ₹${fmtINR(invested * d.best / 100)}.`;
+
+  // spread bar: map [worst, best] onto the track, breakeven line at 0
+  const lo = d.worst, hi = d.best, span = hi - lo;
+  const zeroPct = (0 - lo) / span * 100;
+  $('bar-zero').style.left = zeroPct + '%';
+  $('bar-fill').style.left = '0%';
+  $('bar-fill').style.right = '0%';
+  $('bar-lo').textContent = d.worst + '%';
+  $('bar-hi').textContent = '+' + d.best + '%';
+
+  // negative-frequency mini bars
+  const maxNeg = 38;
+  let bars = '';
+  YEARS.forEach(y => {
+    const dd = DATA[y];
+    const h = Math.max(8, dd.neg / maxNeg * 90);
+    const on = y === sel;
+    bars += `<button type="button" data-y="${y}" class="flex flex-col items-center justify-end gap-1 group">
+      <span class="font-mono tab-num text-[11px] font-bold ${on ? 'text-thatred' : 'text-ink/50'}">${dd.neg}%</span>
+      <span class="w-full rounded-t ${on ? 'bg-thatred' : 'bg-warmpaper-3 group-hover:bg-thatred/40'}" style="height:${h}px"></span>
+      <span class="text-[10px] font-bold ${on ? 'text-ink' : 'text-ink/45'} tab-num">${y}y</span>
+    </button>`;
+  });
+  $('neg-bars').innerHTML = bars;
+}
+
+// wiring
+$('in-sip').addEventListener('input', calc);
+(() => {
+  const text = $('lbl-sip'), slider = $('in-sip');
+  const min = +slider.min, max = +slider.max;
+  text.addEventListener('input', () => { slider.value = clamp(parseNumericInput(text.value), min, max); calc(); });
+  text.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  text.addEventListener('focus', () => text.select());
+  text.addEventListener('blur', calc);
+})();
+$('year-chips').addEventListener('click', e => {
+  const b = e.target.closest('button[data-y]'); if (!b) return;
+  sel = +b.dataset.y; calc();
+});
+$('neg-bars').addEventListener('click', e => {
+  const b = e.target.closest('button[data-y]'); if (!b) return;
+  sel = +b.dataset.y; calc();
+});
+calc();
+
+(function () {
+  var btn = $('mobile-menu-toggle'), menu = $('mobile-menu'),
+      iconOpen = $('icon-open'), iconClose = $('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
