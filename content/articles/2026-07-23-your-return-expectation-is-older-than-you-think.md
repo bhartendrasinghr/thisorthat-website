@@ -1,6 +1,6 @@
 ---
 title: Your Return Expectation Is Older Than You Think
-slug: "Your Expectations "
+slug: "your-return-expectation-is-older-than-you-think"
 category: Behaviour
 date: 2026-07-24
 author: Bhartendra Singh

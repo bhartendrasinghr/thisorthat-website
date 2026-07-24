@@ -38,7 +38,7 @@ collections:
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "subtitle", label: "Subtitle / dek", widget: "string", required: false }
-      - { name: "slug", label: "URL slug", widget: "string", hint: "Letters, numbers, hyphens only. Used in URL: /article-detail.html?slug=YOUR-SLUG" }
+      - { name: "slug", label: "URL slug", widget: "string", pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Lowercase letters, numbers and single hyphens only. No spaces or capitals, e.g. your-return-expectation"], hint: "Lowercase letters, numbers and hyphens only, no spaces. Used in the URL: /article-detail.html?slug=YOUR-SLUG" }
       - { name: "category", label: "Category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities", "Slow Thought"] }
       - { name: "date", label: "Publish date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { name: "author", label: "Author", widget: "string", default: "Bhartendra Singh" }
