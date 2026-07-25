@@ -199,6 +199,30 @@ def sync_youtube():
     else:
         print('  sync.py not found, skipping YouTube sync')
 
+def build_sitemap():
+    """Generate sitemap.xml (core pages + every episode URL) and robots.txt."""
+    import re as _re, json as _json, datetime as _dt
+    site = 'https://thisorthatshow.in'
+    skip = {'404.html', 'admin'}
+    core = sorted(p.name for p in ROOT.glob('*.html') if p.name not in skip)
+    urls = [f'{site}/' if p == 'index.html' else f'{site}/{p}' for p in core]
+    eps_path = ROOT / 'episodes.js'
+    if eps_path.exists():
+        m = _re.search(r'window\.EPISODES\s*=\s*(\[.*?\]);', eps_path.read_text(encoding='utf-8'), _re.S)
+        if m:
+            for e in _json.loads(m.group(1)):
+                urls.append(f'{site}/episode-detail.html?v={e["id"]}')
+    today = _dt.date.today().isoformat()
+    entries = '\n'.join(
+        f'  <url><loc>{u.replace("&", "&amp;")}</loc><lastmod>{today}</lastmod></url>' for u in urls)
+    (ROOT / 'sitemap.xml').write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f'{entries}\n</urlset>\n', encoding='utf-8')
+    (ROOT / 'robots.txt').write_text(
+        f'User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: {site}/sitemap.xml\n', encoding='utf-8')
+    print(f'  Wrote sitemap.xml ({len(urls)} URLs) + robots.txt')
+
 # ─── Main ────────────────────────────────────────────────────────────────
 def main():
     print('=== ThisOrThat build ===')
@@ -212,6 +236,9 @@ def main():
     # YouTube sync can fail in CI if network is blocked — make optional
     if os.environ.get('SKIP_YT_SYNC') != '1':
         sync_youtube()
+    print()
+    print('→ Generating sitemap + robots...')
+    build_sitemap()
     print()
     print('✓ Build complete')
 

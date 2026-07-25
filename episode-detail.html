@@ -218,10 +218,7 @@
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
     <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">One honest idea. Every Sunday.</h2>
-    <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-      <input type="email" placeholder="you@email.com" class="flex-1 bg-cream border border-navy/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy" />
-      <button class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe →</button>
-    </form>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-6 inline-flex bg-navy text-cream px-7 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe on YouTube &rarr;</a>
   </div>
 </section>
 
@@ -237,7 +234,7 @@
             <div class="text-[11px] uppercase tracking-widest text-cream/50">beyond the noise</div>
           </div>
         </div>
-        <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, honestly.</p>
+        <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, on your side.</p>
       </div>
       <div>
         <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Explore</div>
@@ -422,7 +419,7 @@ const PAGE_URL = `https://thisorthatshow.in/episode-detail.html?v=${ep.id}`;
 const OG_IMG = `https://i.ytimg.com/vi/${ep.id}/maxresdefault.jpg`;
 
 function applySeo(c) {
-  const desc = (c && c.seo && c.seo.description) || (c && c.summary) || `${ep.title}. An episode of This or That with Bhartendra, personal finance, honestly.`;
+  const desc = (c && c.seo && c.seo.description) || (c && c.summary) || `${ep.title}. An episode of This or That with Bhartendra, personal finance, on your side.`;
   const title = (c && c.seo && c.seo.title) ? `${c.seo.title} | ThisOrThat` : `Ep ${ep.n}, ${ep.title} | ThisOrThat`;
   document.title = title;
   setAttr('meta-desc','content',desc);

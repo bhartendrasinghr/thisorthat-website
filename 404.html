@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page not found, ThisOrThat with Bhartendra</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' }, thisblue:{ DEFAULT:'#0249B1', 700:'#013580' }, thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813' }, warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE' },
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' }, mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' }, cream:'#FCFBF8'
+  }, fontFamily:{ sans:['Hanken Grotesk','system-ui','sans-serif'], display:['Bricolage Grotesque','Georgia','serif'], script:['Caveat','cursive'] } } } };
+</script>
+<style>body{font-family:'Hanken Grotesk',sans-serif;background:#FCFBF8;color:#1A1813;}.lift{transition:transform 200ms ease;}.lift:hover{transform:translateY(-2px);}</style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+<header class="border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <a href="/" class="inline-flex items-center gap-3">
+      <img src="/logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+  </div>
+</header>
+
+<main class="flex-1 flex items-center">
+  <div class="max-w-3xl mx-auto px-6 py-16 text-center">
+    <svg class="w-32 h-16 text-marigold mx-auto" viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="5"><path d="M5 20 H45 M45 20 L78 6 M45 20 L78 34" stroke-linecap="round"/></svg>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-6 leading-[1.05]">This page took the wrong fork.</h1>
+    <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-3 rotate-[-1deg] inline-block">Hota hai. Chaliye wapas.</div>
+    <p class="mt-4 text-lg text-ink/70 max-w-xl mx-auto">The page you were after has moved, or never existed. Either way, the good stuff is one tap away.</p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <a href="/" class="lift inline-flex bg-thisblue text-warmpaper px-6 py-3 rounded-full font-semibold">Take me home &rarr;</a>
+      <a href="/episodes.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold">Latest episodes</a>
+      <a href="/calculators.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold">Build a plan</a>
+    </div>
+  </div>
+</main>
+
+<footer class="bg-navy-ink text-cream/60 py-8">
+  <div class="max-w-3xl mx-auto px-6 text-center text-xs">&copy; 2026 ThisOrThat with Bhartendra.</div>
+</footer>
+</body>
+</html>
