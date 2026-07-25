@@ -161,6 +161,15 @@
                 <button data-m="mfeq" class="mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border">Mutual funds + my own stocks</button>
               </div>
             </div>
+            <div class="mt-5" id="risk-block">
+              <div class="text-sm font-semibold text-ink mb-2">A bad year hits and your &#8377;10 lakh shows &#8377;8 lakh. What do you actually do?</div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="risk-buttons">
+                <button data-r="sell" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sell, stop the pain</button>
+                <button data-r="hold" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sit tight</button>
+                <button data-r="buy" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Buy more</button>
+              </div>
+              <div id="risk-nudge" class="hidden text-[12px] text-thatred font-semibold mt-2">One more: the bad-year answer changes the mix. No wrong answers, only wrong-sized plans.</div>
+            </div>
             <div class="mt-4 bg-warmpaper-2 rounded-xl px-4 py-3 text-sm flex flex-wrap items-baseline gap-x-2 gap-y-1">
               <span>I can invest about &#8377;</span>
               <input id="inv-amt" value="25,000" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-20 text-right" />
@@ -543,6 +552,23 @@ const H = {
     eqMix:[['Large cap fund',40],['Flexi cap fund',30],['Mid cap fund',20],['Small cap fund',10]], debtMix:[['Dynamic bond fund',60],['Corporate bond fund',40]] }
 };
 const DIRECT = { '5-10':10, '10+':15 };
+// Temperament only lowers equity, never raises it past what the years allow.
+const SELL_EQ = { '1-3':0, '3-5':20, '5-10':45, '10+':60 };
+const SELL_EQMIX = [['Large cap fund',60],['Flexi cap fund',40]]; // steadier sleeve, no mid or small
+function riskAdjust(hKey, risk) {
+  const base = H[hKey];
+  if (risk !== 'sell' || base.eq === 0) return { eq: base.eq, eqMix: base.eqMix, baseEq: base.eq, lowered: false };
+  return { eq: SELL_EQ[hKey], eqMix: hKey === '3-5' ? base.eqMix : SELL_EQMIX, baseEq: base.eq, lowered: true };
+}
+function riskNote(risk, adj) {
+  if (adj.lowered)
+    return `Your years said ${adj.baseEq}% equity. Your bad-year answer said you would sell, so we sized it to ${adj.eq}% and kept the funds steadier. The plan you can hold through a bad year beats the plan that looks best on paper.`;
+  if (risk === 'buy' && adj.eq > 0)
+    return `Bad years read as discounts to you. Even so, the mix stays at ${adj.eq}%, exactly what your years allow and not a point more. Temperament cannot stretch time.`;
+  if (risk === 'hold' && adj.eq > 0)
+    return `You said you would sit tight in a bad year. That is the whole job. This mix assumes you mean it.`;
+  return '';
+}
 const blended = eq => (eq*12 + (100-eq)*6) / 100;
 const horizonForYears = y => y<=3 ? '1-3' : y<=5 ? '3-5' : y<=10 ? '5-10' : '10+';
 
@@ -558,22 +584,26 @@ const EXPLAIN = {
   'Direct stocks you pick': 'companies you research and own directly, no fund in between'
 };
 
-function allocRows(hKey, mfeq) {
-  const h = H[hKey], eq = h.eq, debt = 100 - eq;
+function allocRows(hKey, mfeq, risk) {
+  const h = H[hKey];
+  const adj = riskAdjust(hKey, risk);
+  const eq = adj.eq, debt = 100 - eq;
   const eqRows = [], debtRows = [];
   if (eq > 0) {
-    const dPct = (mfeq && DIRECT[hKey]) ? DIRECT[hKey] : 0;
+    const dPct = (mfeq && DIRECT[hKey] && !adj.lowered) ? DIRECT[hKey] : 0; // sell-types skip direct stocks
     if (dPct > 0) eqRows.push(['Direct stocks you pick', eq*dPct/100, true]);
     const fundShare = eq*(100-dPct)/100;
-    h.eqMix.forEach(([k,w]) => eqRows.push([k, fundShare*w/100, false]));
+    adj.eqMix.forEach(([k,w]) => eqRows.push([k, fundShare*w/100, false]));
   }
   h.debtMix.forEach(([k,w]) => debtRows.push([k, debt*w/100]));
-  return { eq, debt, eqRows, debtRows, note: h.note, hasDirect: !!(mfeq && DIRECT[hKey] && eq>0) };
+  return { eq, debt, eqRows, debtRows, note: h.note, rnote: riskNote(risk, adj),
+           hasDirect: !!(mfeq && DIRECT[hKey] && eq>0 && !adj.lowered),
+           skippedDirect: !!(mfeq && DIRECT[hKey] && adj.lowered) };
 }
 
 function renderResult(hKey, mfeq, opts) {
-  const { moneyHtml = '', monthly = 0, deepLink = null, glideNote = '' } = opts || {};
-  const a = allocRows(hKey, mfeq);
+  const { moneyHtml = '', monthly = 0, deepLink = null, glideNote = '', risk = null } = opts || {};
+  const a = allocRows(hKey, mfeq, risk);
   const row = ([k,v,dir]) => `
     <div class="flex items-center justify-between gap-3 py-1.5">
       <span class="text-[13px] ${dir ? 'text-thatred font-semibold' : 'text-ink/80'}">${k}</span>
@@ -607,6 +637,8 @@ function renderResult(hKey, mfeq, opts) {
       <div class="grid ${a.eq > 0 ? 'sm:grid-cols-2' : 'grid-cols-1'} gap-x-6 gap-y-2">
         ${eqCol}${debtCol}
       </div>
+      ${a.rnote ? `<p class="text-[13px] font-semibold text-ink mt-3 leading-relaxed bg-marigold/20 border border-marigold rounded-xl p-3">${a.rnote}</p>` : ''}
+      ${a.skippedDirect ? `<p class="text-[12px] text-thatred/90 mt-3 leading-relaxed">We also left out the direct-stocks slice: picking your own stocks and selling in bad years is an expensive combination. Funds first; stocks when the bad-year answer changes.</p>` : ''}
       ${directWarn}
       <p class="text-[12px] text-ink/70 mt-3 leading-relaxed border-t border-navy/10 pt-3">${a.note}${glideNote ? ' ' + glideNote : ''}</p>
       <details class="mt-3">
@@ -617,14 +649,14 @@ function renderResult(hKey, mfeq, opts) {
         <a href="money-person.html" class="inline-flex bg-navy text-cream px-4 py-2.5 rounded-full font-semibold text-sm">Make it real, find your money person &rarr;</a>
         ${deepLink ? `<a href="${deepLink.href}" class="inline-flex bg-white border border-navy/20 text-ink px-4 py-2.5 rounded-full font-semibold text-sm">${deepLink.label} &rarr;</a>` : `<a href="calc-mf-portfolio.html" class="inline-flex bg-white border border-navy/20 text-ink px-4 py-2.5 rounded-full font-semibold text-sm">Build the fund mix &rarr;</a>`}
       </div>
-      <p class="text-[10px] text-ink/40 mt-3">A common starting point, not personalised advice. Returns are assumptions, not promises. Verify any professional's registration on SEBI or AMFI before engaging.</p>
+      <p class="text-[11px] text-ink/60 mt-3 leading-relaxed border-t border-navy/10 pt-3"><strong class="text-ink/80">Disclaimer:</strong> this is a high-level example for education, not investment advice and not a recommendation. Returns are assumptions, not promises. Before investing, consult a SEBI-registered investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or AMFI's own websites.</p>
     </div>`;
 }
 
 // ---- Door A ----
 // The mix stays hidden until the visitor asks for it; after the first
 // reveal, changes update it live.
-let hKey = '10+', mfeq = false, invMonthly = 25000;
+let hKey = '10+', mfeq = false, invMonthly = 25000, risk = null;
 let revealedA = false, revealedB = false;
 function paintInvest() {
   document.querySelectorAll('#horizon-buttons .hbtn').forEach(b => {
@@ -635,12 +667,28 @@ function paintInvest() {
     const on = (b.dataset.m === 'mfeq') === mfeq;
     b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-thisblue text-warmpaper border-thisblue' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
   });
-  p$('planner-result').innerHTML = revealedA ? renderResult(hKey, mfeq, { monthly: invMonthly }) : '';
+  document.querySelectorAll('#risk-buttons .rbtn').forEach(b => {
+    const on = b.dataset.r === risk;
+    b.className = 'rbtn text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+  p$('planner-result').innerHTML = revealedA && risk ? renderResult(hKey, mfeq, { monthly: invMonthly, risk }) : '';
 }
 p$('horizon-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-h]'); if(!b) return; hKey=b.dataset.h; paintInvest(); });
 p$('hold-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-m]'); if(!b) return; mfeq=(b.dataset.m==='mfeq'); paintInvest(); });
 p$('inv-amt').addEventListener('input', () => { invMonthly = parseNum(p$('inv-amt').value); paintInvest(); });
+p$('risk-buttons').addEventListener('click', e => {
+  const b = e.target.closest('button[data-r]');
+  if (!b) return;
+  risk = b.dataset.r;
+  p$('risk-nudge').classList.add('hidden');
+  paintInvest();
+});
 p$('reveal-a').addEventListener('click', () => {
+  if (!risk) {
+    p$('risk-nudge').classList.remove('hidden');
+    p$('risk-block').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
   revealedA = true;
   p$('reveal-a').classList.add('hidden');
   paintInvest();
