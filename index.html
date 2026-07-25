@@ -167,6 +167,7 @@
               <span>a month.</span>
               <span class="text-[11px] text-ink/45">Type "25k" or "1L". Rough is fine.</span>
             </div>
+            <button id="reveal-a" type="button" class="mt-4 w-full bg-thisblue text-warmpaper py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition">Tell me my mix &rarr;</button>
           </div>
 
           <div id="door-goal" class="hidden">
@@ -179,6 +180,7 @@
             </div>
             <div id="goal-input" class="mt-4 bg-warmpaper-2 rounded-xl p-4 text-sm hidden">
               <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1" id="goal-input-inner"></div>
+              <button id="reveal-b" type="button" class="mt-4 w-full bg-thisblue text-warmpaper py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition">Tell me the number &rarr;</button>
             </div>
           </div>
 
@@ -625,7 +627,10 @@ function renderResult(hKey, mfeq, opts) {
 }
 
 // ---- Door A ----
+// The mix stays hidden until the visitor asks for it; after the first
+// reveal, changes update it live.
 let hKey = '10+', mfeq = false, invMonthly = 25000;
+let revealedA = false, revealedB = false;
 function paintInvest() {
   document.querySelectorAll('#horizon-buttons .hbtn').forEach(b => {
     const on = b.dataset.h === hKey;
@@ -635,11 +640,17 @@ function paintInvest() {
     const on = (b.dataset.m === 'mfeq') === mfeq;
     b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-thisblue text-warmpaper border-thisblue' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
   });
-  p$('planner-result').innerHTML = renderResult(hKey, mfeq, { monthly: invMonthly });
+  p$('planner-result').innerHTML = revealedA ? renderResult(hKey, mfeq, { monthly: invMonthly }) : '';
 }
 p$('horizon-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-h]'); if(!b) return; hKey=b.dataset.h; paintInvest(); });
 p$('hold-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-m]'); if(!b) return; mfeq=(b.dataset.m==='mfeq'); paintInvest(); });
 p$('inv-amt').addEventListener('input', () => { invMonthly = parseNum(p$('inv-amt').value); paintInvest(); });
+p$('reveal-a').addEventListener('click', () => {
+  revealedA = true;
+  p$('reveal-a').classList.add('hidden');
+  paintInvest();
+  p$('planner-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
 
 // ---- Door B ----
 // Retirement: expenses inflated to retirement, then a monthly-withdrawal
@@ -670,6 +681,7 @@ function paintGoal() {
 }
 
 function computeGoal() {
+  if (!revealedB) return;
   const g = GOALS[goalKey];
   const years = Math.max(1, goalYears || g.dfltYrs);
   const hk = horizonForYears(years);
@@ -738,9 +750,16 @@ function renderGoalInput() {
   const amtEl = p$('gi-amt'), yrsEl = p$('gi-yrs');
   const upd = () => { goalAmt = parseNum(amtEl.value) || g.dfltAmt; goalYears = Math.min(60, parseNum(yrsEl.value) || g.dfltYrs); computeGoal(); };
   amtEl.addEventListener('input', upd); yrsEl.addEventListener('input', upd);
-  computeGoal();
+  if (revealedB) computeGoal();
+  else p$('planner-result').innerHTML = '';
 }
 p$('goal-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-g]'); if(!b) return; goalKey=b.dataset.g; paintGoal(); renderGoalInput(); });
+p$('reveal-b').addEventListener('click', () => {
+  revealedB = true;
+  p$('reveal-b').classList.add('hidden');
+  computeGoal();
+  p$('planner-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
 
 // ---- door tabs ----
 function paintDoors(door) {
