@@ -157,20 +157,19 @@
         <span class="text-[13px] text-ink/75 leading-relaxed">I'm happy to be contacted about this, and only this. My details go towards making the introduction, nothing else: no spam, no lists, no selling my data.</span>
       </label>
 
+      <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+
       <div id="form-error" class="hidden text-sm text-loss font-semibold"></div>
 
-      <div class="flex flex-col sm:flex-row gap-3">
-        <button type="submit" class="lift flex-1 bg-thisblue text-warmpaper font-semibold py-3.5 rounded-full">Send my details &rarr;</button>
-        <button type="button" id="copy-btn" class="lift bg-white border-2 border-navy-ink text-ink font-semibold py-3 px-6 rounded-full">Copy instead</button>
-      </div>
-      <p class="text-[11px] text-ink/45 text-center leading-relaxed">"Send" opens your email app with everything neatly filled in, so you can read exactly what you're sending before you hit send. Old-school, and honest that way.</p>
+      <button type="submit" id="submit-btn" class="lift w-full bg-thisblue text-warmpaper font-semibold py-3.5 rounded-full">Send my details &rarr;</button>
+      <p class="text-[11px] text-ink/45 text-center leading-relaxed">Your details go straight to us over a secure connection, and nowhere else. We reply from thisorthatpodcast2025@gmail.com.</p>
     </form>
 
     <!-- SUCCESS STATE -->
     <div id="sent-note" class="hidden bg-gain text-warmpaper rounded-2xl p-7 text-center">
       <div class="text-4xl">&#129309;</div>
-      <div class="font-display text-2xl font-extrabold mt-3">Lovely. Check your email app.</div>
-      <p class="text-sm text-warmpaper/85 mt-2 leading-relaxed">Your details are drafted and ready to send. Once it reaches us, expect a reply within a couple of days with the introduction, and nothing else.</p>
+      <div class="font-display text-2xl font-extrabold mt-3">Got it. Your details are with us.</div>
+      <p class="text-sm text-warmpaper/85 mt-2 leading-relaxed">Expect a reply within a couple of days with the introduction, and nothing else. No lists, no spam, no selling your data.</p>
     </div>
 
     <!-- WHAT HAPPENS NEXT -->
@@ -204,7 +203,6 @@
 </footer>
 
 <script>
-const LEAD_EMAIL = 'thisorthatpodcast2025@gmail.com';
 const $ = id => document.getElementById(id);
 const picked = new Set();
 
@@ -265,68 +263,59 @@ fetch('content/advisors.json').then(r => r.ok ? r.json() : null).catch(() => nul
   paintAdv();
 });
 
-function buildBody() {
-  const name = $('f-name').value.trim();
-  const age = $('f-age').value.trim();
-  const goals = $('f-goals').value.trim();
-  const email = $('f-email').value.trim();
-  const phone = $('f-phone').value.trim();
-  const types = [...picked].join(', ');
+function buildPayload() {
   return {
-    name, age, email, phone,
-    subject: `Money-person introduction: ${name || 'new request'}${types ? ' (' + types.split(',')[0].trim() + ')' : ''}`,
-    body: [
-      'Hi Bhartendra,',
-      '',
-      'I would like an introduction to a registered adviser or distributor.',
-      '',
-      'Name: ' + (name || '-'),
-      'Age: ' + (age || '-'),
-      'Wants an introduction to: ' + (selectedAdvisor || 'No preference, please match me from my goals'),
-      'Looking for: ' + (types || '-'),
-      'Email: ' + (email || '-'),
-      'Mobile: ' + (phone || '-'),
-      '',
-      'My goals:',
-      (goals || '-'),
-      '',
-      '(Sent from thisorthatshow.in/money-person)'
-    ].join('\n')
+    name: $('f-name').value.trim(),
+    age: $('f-age').value.trim(),
+    email: $('f-email').value.trim(),
+    phone: $('f-phone').value.trim(),
+    types: [...picked],
+    goals: $('f-goals').value.trim(),
+    advisor: selectedAdvisor || '',
+    consent: $('f-consent').checked,
+    website: $('f-website').value, // honeypot, humans leave it empty
+    page: 'money-person'
   };
 }
 
 function validate() {
-  const d = buildBody();
+  const d = buildPayload();
   const err = $('form-error');
   let msg = '';
   if (!d.name) msg = 'A name would help, even just your first.';
   else if (!picked.size) msg = 'Tap at least one kind of help, so we know who fits you.';
   else if (!d.email && !d.phone) msg = 'Leave an email or a mobile number, or the introduction has nowhere to go.';
   else if (d.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) msg = 'That email does not look quite right.';
-  else if (!$('f-consent').checked) msg = 'Please tick the consent box, we only reach out if you say so.';
+  else if (!d.consent) msg = 'Please tick the consent box, we only reach out if you say so.';
   if (msg) { err.textContent = msg; err.classList.remove('hidden'); return null; }
   err.classList.add('hidden');
   return d;
 }
 
-$('lead-form').addEventListener('submit', e => {
+$('lead-form').addEventListener('submit', async e => {
   e.preventDefault();
   const d = validate();
   if (!d) return;
-  window.location.href = 'mailto:' + LEAD_EMAIL + '?subject=' + encodeURIComponent(d.subject) + '&body=' + encodeURIComponent(d.body);
-  $('lead-form').classList.add('hidden');
-  $('sent-note').classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-$('copy-btn').addEventListener('click', async () => {
-  const d = validate();
-  if (!d) return;
+  const btn = $('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
   try {
-    await navigator.clipboard.writeText(d.body + '\n\nEmail this to: ' + LEAD_EMAIL);
-    $('copy-btn').textContent = 'Copied! Email it to us.';
-    setTimeout(() => { $('copy-btn').textContent = 'Copy instead'; }, 2500);
-  } catch (e) {}
+    const r = await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(d)
+    });
+    if (!r.ok) throw new Error('send failed');
+    $('lead-form').classList.add('hidden');
+    $('sent-note').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err2) {
+    const err = $('form-error');
+    err.textContent = 'Could not send just now. Give it a minute and try again, your details are still filled in.';
+    err.classList.remove('hidden');
+    btn.disabled = false;
+    btn.innerHTML = 'Send my details &rarr;';
+  }
 });
 
 (function () {
