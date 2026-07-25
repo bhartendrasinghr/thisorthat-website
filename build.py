@@ -204,7 +204,8 @@ def build_sitemap():
     import re as _re, json as _json, datetime as _dt
     site = 'https://thisorthatshow.in'
     skip = {'404.html', 'admin'}
-    core = sorted(p.name for p in ROOT.glob('*.html') if p.name not in skip)
+    core = sorted(p.name for p in ROOT.glob('*.html')
+                  if p.name not in skip and not p.name.endswith('-mock.html'))
     urls = [f'{site}/' if p == 'index.html' else f'{site}/{p}' for p in core]
     eps_path = ROOT / 'episodes.js'
     if eps_path.exists():

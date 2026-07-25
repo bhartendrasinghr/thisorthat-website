@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Risk-aware planner mock, ThisOrThat</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' }, cream:'#FCFBF8'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings:'tnum'; }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.3); padding:1px 2px; border-radius:2px; }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="max-w-3xl mx-auto px-6 py-10">
+  <div class="text-[11px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Mockup, not linked anywhere</div>
+  <h1 class="font-display text-3xl font-extrabold text-ink mt-2">Door A with the bad-year question</h1>
+  <p class="mt-2 text-ink/65 text-sm">Same planner as the homepage, plus one behavioural question. Temperament can lower equity below what the years allow; it can never raise it. Try: 10 yrs+ then each of the three answers.</p>
+
+  <div class="mt-6 bg-white rounded-3xl border-2 border-marigold overflow-hidden">
+    <div class="p-6 md:p-7">
+      <div>
+        <div class="text-sm font-semibold text-ink mb-2">How long will this money stay invested?</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="horizon-buttons">
+          <button data-h="1-3" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">1 to 3 yrs</button>
+          <button data-h="3-5" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">3 to 5 yrs</button>
+          <button data-h="5-10" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">5 to 10 yrs</button>
+          <button data-h="10+" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">10 yrs +</button>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <div class="text-sm font-semibold text-ink mb-2">And how do you want to hold it?</div>
+        <div class="flex flex-col sm:flex-row gap-2" id="hold-buttons">
+          <button data-m="mf" class="mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border">Only mutual funds</button>
+          <button data-m="mfeq" class="mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border">Mutual funds + my own stocks</button>
+        </div>
+      </div>
+
+      <!-- NEW: the bad-year question -->
+      <div class="mt-5" id="risk-block">
+        <div class="text-sm font-semibold text-ink mb-2">A bad year hits and your &#8377;10 lakh shows &#8377;8 lakh. What do you actually do?</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="risk-buttons">
+          <button data-r="sell" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sell, stop the pain</button>
+          <button data-r="hold" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sit tight</button>
+          <button data-r="buy" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Buy more</button>
+        </div>
+        <div id="risk-nudge" class="hidden text-[12px] text-thatred font-semibold mt-2">One more: the bad-year answer changes the mix. No wrong answers, only wrong-sized plans.</div>
+      </div>
+
+      <div class="mt-4 bg-warmpaper-2 rounded-xl px-4 py-3 text-sm flex flex-wrap items-baseline gap-x-2 gap-y-1">
+        <span>I can invest about &#8377;</span>
+        <input id="inv-amt" value="25,000" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-20 text-right" />
+        <span>a month.</span>
+        <span class="text-[11px] text-ink/45">Type "25k" or "1L". Rough is fine.</span>
+      </div>
+      <button id="reveal-a" type="button" class="mt-4 w-full bg-thisblue text-warmpaper py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition">Tell me my mix &rarr;</button>
+
+      <div id="planner-result" class="mt-6"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+const p$ = id => document.getElementById(id);
+const fmt = (n) => { n = Math.round(n); if (n>=1e7) return (n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr'; if (n>=1e5) return (n/1e5).toFixed(2).replace(/\.?0+$/,'')+' L'; return n.toLocaleString('en-IN'); };
+const parseNum = (t) => { let s=String(t).replace(/[₹\s,]/g,'').toLowerCase(); if(!s) return 0; let m=1;
+  if(s.endsWith('cr')){m=1e7;s=s.slice(0,-2);} else if(s.endsWith('l')){m=1e5;s=s.slice(0,-1);} else if(s.endsWith('k')){m=1e3;s=s.slice(0,-1);}
+  const n=parseFloat(s); return isNaN(n)?0:n*m; };
+
+const H = {
+  '1-3': { eq:0, note:"Under three years, equity is a coin flip and we will not pretend otherwise. Keep this money safe and liquid; boring is the strategy.",
+    eqMix:[], debtMix:[['Liquid / ultra-short debt',100]] },
+  '3-5': { eq:30, note:"Mostly stability, with a little growth riding on top. Enough equity to beat an FD over the stretch, not enough to lose sleep over.",
+    eqMix:[['Large cap fund',70],['Flexi cap fund',30]], debtMix:[['Short duration debt',60],['Corporate bond fund',40]] },
+  '5-10': { eq:65, note:"Now equity earns its place. A real cushion of debt keeps one bad year from derailing the whole plan.",
+    eqMix:[['Large cap fund',50],['Flexi cap fund',30],['Mid cap fund',20]], debtMix:[['Short duration debt',50],['Dynamic bond fund',50]] },
+  '10+': { eq:85, note:"Time is the one edge money cannot buy, and you have it. Let equity do the heavy lifting; a little debt just steadies the ride.",
+    eqMix:[['Large cap fund',40],['Flexi cap fund',30],['Mid cap fund',20],['Small cap fund',10]], debtMix:[['Dynamic bond fund',60],['Target maturity fund',40]] }
+};
+const DIRECT = { '5-10':10, '10+':15 };
+
+// Temperament only lowers equity, never raises it past what the years allow.
+const SELL_EQ = { '1-3':0, '3-5':20, '5-10':45, '10+':60 };
+const SELL_EQMIX = [['Large cap fund',60],['Flexi cap fund',40]];  // steadier sleeve, no mid or small
+
+function riskAdjust(hKey, risk) {
+  const base = H[hKey];
+  if (risk !== 'sell' || base.eq === 0) {
+    return { eq: base.eq, eqMix: base.eqMix, baseEq: base.eq, lowered: false };
+  }
+  return { eq: SELL_EQ[hKey], eqMix: hKey === '3-5' ? base.eqMix : SELL_EQMIX, baseEq: base.eq, lowered: true };
+}
+
+function riskNote(risk, adj) {
+  if (adj.lowered)
+    return `Your years said ${adj.baseEq}% equity. Your bad-year answer said you would sell, so we sized it to ${adj.eq}% and kept the funds steadier. The plan you can hold through a bad year beats the plan that looks best on paper.`;
+  if (risk === 'buy' && adj.eq > 0)
+    return `Bad years read as discounts to you. Even so, the mix stays at ${adj.eq}%, exactly what your years allow and not a point more. Temperament cannot stretch time.`;
+  if (risk === 'hold' && adj.eq > 0)
+    return `You said you would sit tight in a bad year. That is the whole job. This mix assumes you mean it.`;
+  return '';
+}
+
+function allocRows(hKey, mfeq, risk) {
+  const h = H[hKey];
+  const adj = riskAdjust(hKey, risk);
+  const eq = adj.eq, debt = 100 - eq;
+  const eqRows = [], debtRows = [];
+  if (eq > 0) {
+    const dPct = (mfeq && DIRECT[hKey] && !adj.lowered) ? DIRECT[hKey] : 0; // sell-types skip direct stocks
+    if (dPct > 0) eqRows.push(['Direct stocks you pick', eq*dPct/100, true]);
+    const fundShare = eq*(100-dPct)/100;
+    adj.eqMix.forEach(([k,w]) => eqRows.push([k, fundShare*w/100, false]));
+  }
+  h.debtMix.forEach(([k,w]) => debtRows.push([k, debt*w/100]));
+  return { eq, debt, eqRows, debtRows, note: h.note, rnote: riskNote(risk, adj), skippedDirect: (mfeq && DIRECT[hKey] && adj.lowered) };
+}
+
+function render(hKey, mfeq, risk, monthly) {
+  const a = allocRows(hKey, mfeq, risk);
+  const row = ([k,v,dir]) => `
+    <div class="flex items-center justify-between gap-3 py-1.5">
+      <span class="text-[13px] ${dir ? 'text-thatred font-semibold' : 'text-ink/80'}">${k}</span>
+      <span class="text-right shrink-0">
+        <span class="font-mono text-[13px] font-semibold text-ink tab-num">${Math.round(v)}%</span>
+        ${monthly > 0 ? `<span class="block font-mono text-[11px] text-ink/50 tab-num">&#8377;${fmt(monthly*v/100)}/mo</span>` : ''}
+      </span>
+    </div>`;
+  const eqCol = a.eq > 0 ? `<div><div class="text-[10px] uppercase tracking-widest font-bold text-thisblue mb-1">Equity &middot; ${a.eq}%</div>${a.eqRows.map(row).join('')}</div>` : '';
+  const debtCol = `<div><div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 mb-1">Debt &middot; ${a.debt}%</div>${a.debtRows.map(row).join('')}</div>`;
+  return `
+    <div class="bg-warmpaper-2 rounded-2xl p-5">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-2">Your starting mix</div>
+      <div class="flex h-9 rounded-lg overflow-hidden border border-navy/15 mb-4">
+        ${a.eq > 0 ? `<div style="width:${a.eq}%" class="bg-thisblue text-warmpaper flex items-center justify-center text-[11px] font-bold">${a.eq}%</div>` : ''}
+        <div style="width:${a.debt}%" class="bg-warmpaper-3 text-ink flex items-center justify-center text-[11px] font-bold">${a.debt}%</div>
+      </div>
+      <div class="grid ${a.eq > 0 ? 'sm:grid-cols-2' : 'grid-cols-1'} gap-x-6 gap-y-2">${eqCol}${debtCol}</div>
+      ${a.rnote ? `<p class="text-[13px] font-semibold text-ink mt-3 leading-relaxed bg-marigold/20 border border-marigold rounded-xl p-3">${a.rnote}</p>` : ''}
+      ${a.skippedDirect ? `<p class="text-[12px] text-thatred/90 mt-3 leading-relaxed">We also left out the direct-stocks slice: picking your own stocks and selling in bad years is an expensive combination. Funds first; stocks when the bad-year answer changes.</p>` : ''}
+      <p class="text-[12px] text-ink/70 mt-3 leading-relaxed border-t border-navy/10 pt-3">${a.note}</p>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <a href="money-person.html" class="inline-flex bg-navy text-cream px-4 py-2.5 rounded-full font-semibold text-sm">Make it real, find your money person &rarr;</a>
+      </div>
+      <p class="text-[10px] text-ink/40 mt-3">A common starting point, not personalised advice. Returns are assumptions, not promises.</p>
+    </div>`;
+}
+
+let hKey = '10+', mfeq = false, risk = null, invMonthly = 25000, revealed = false;
+function paint() {
+  document.querySelectorAll('#horizon-buttons .hbtn').forEach(b => {
+    const on = b.dataset.h === hKey;
+    b.className = 'hbtn text-sm font-bold py-3 px-2 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+  document.querySelectorAll('#hold-buttons .mbtn').forEach(b => {
+    const on = (b.dataset.m === 'mfeq') === mfeq;
+    b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-thisblue text-warmpaper border-thisblue' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+  document.querySelectorAll('#risk-buttons .rbtn').forEach(b => {
+    const on = b.dataset.r === risk;
+    b.className = 'rbtn text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+  p$('planner-result').innerHTML = revealed && risk ? render(hKey, mfeq, risk, invMonthly) : '';
+}
+p$('horizon-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-h]'); if(!b) return; hKey=b.dataset.h; paint(); });
+p$('hold-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-m]'); if(!b) return; mfeq=(b.dataset.m==='mfeq'); paint(); });
+p$('risk-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-r]'); if(!b) return; risk=b.dataset.r; p$('risk-nudge').classList.add('hidden'); paint(); });
+p$('inv-amt').addEventListener('input', () => { invMonthly = parseNum(p$('inv-amt').value); paint(); });
+p$('reveal-a').addEventListener('click', () => {
+  if (!risk) { p$('risk-nudge').classList.remove('hidden'); p$('risk-block').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+  revealed = true;
+  p$('reveal-a').classList.add('hidden');
+  paint();
+  p$('planner-result').scrollIntoView({ behavior:'smooth', block:'nearest' });
+});
+paint();
+})();
+</script>
+</body>
+</html>
