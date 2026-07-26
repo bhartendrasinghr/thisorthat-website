@@ -212,16 +212,19 @@ def clean_title(title):
     return t
 
 def categorize(title):
+    # Word-boundary matching: "Different" must not match "rent", "expensive" not "pens", etc.
     t = title.lower()
-    if any(w in t for w in ['retire','pension',' pf ','epf','insurance','health']): return 'Retirement'
-    if any(w in t for w in ['gold','silver','metal']): return 'Commodities'
-    if any(w in t for w in ['global',' us ','nasdaq','dollar','magnificent','abroad','india is not']): return 'Global'
-    if any(w in t for w in ['real estate','house','home','rent','property','घर']): return 'Real Estate'
-    if any(w in t for w in ['budget','tax','ltcg']): return 'Tax'
-    if any(w in t for w in ['sip','mutual fund','fund','equity','stock']): return 'Investing'
-    if any(w in t for w in ['family','couple','wealth','financial freedom','crore','rich']): return 'Wealth'
-    if any(w in t for w in ['market','pe','bond','yield']): return 'Markets'
-    if any(w in t for w in ['hidden','mistake','mindset','panic','simple','emotion','women','behavior','behavioral']): return 'Behaviour'
+    def hit(words):
+        return any(re.search(r'\b' + re.escape(w) + r'\b', t) for w in words)
+    if hit(['retire','retirement','pension','pf','epf','insurance','health']): return 'Retirement'
+    if hit(['gold','silver','metal','metals']): return 'Commodities'
+    if hit(['global','us','nasdaq','dollar','magnificent','abroad']) or 'india is not' in t: return 'Global'
+    if hit(['real estate','house','home','rent','property','घर']): return 'Real Estate'
+    if hit(['budget','tax','ltcg']): return 'Tax'
+    if hit(['sip','mutual fund','fund','funds','equity','stock','stocks']): return 'Investing'
+    if hit(['family','couple','wealth','financial freedom','crore','rich','crorepati']): return 'Wealth'
+    if hit(['market','markets','crash','crisis','correction','bond','yield']): return 'Markets'
+    if hit(['hidden','mistake','mistakes','mindset','panic','simple','emotion','emotions','women','behavior','behavioral','behaviour']): return 'Behaviour'
     return 'Investing'
 
 def initials_of(name):
