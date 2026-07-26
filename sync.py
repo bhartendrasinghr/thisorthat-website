@@ -18,6 +18,12 @@ OUT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'episodes.js
 
 UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
+# ─── Uploads that are NOT full episodes (clips, shorts, trailers) ────────
+# Anything listed here is dropped from episodes.js entirely.
+EXCLUDE_IDS = {
+    'RqCy5D4f1Mg',  # "Active vs Passive Funds" - a clip, not a full podcast (per Bhartendra)
+}
+
 # ─── Manual guest overrides ──────────────────────────────────────────────
 # When auto-parsing can't reliably extract the guest from the title, use these.
 # Keyed by YouTube video ID. Use "Bhartendra (solo)" for solo episodes.
@@ -225,7 +231,8 @@ def initials_of(name):
 def main():
     print(f'→ Syncing from YouTube channel {CHANNEL_HANDLE} …')
     raw = fetch_channel_videos()
-    print(f'  Found {len(raw)} long-form episodes')
+    raw = [v for v in raw if v['id'] not in EXCLUDE_IDS]
+    print(f'  Found {len(raw)} long-form episodes (after excluding clips)')
 
     episodes = []
     for i, v in enumerate(raw):
