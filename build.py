@@ -199,6 +199,26 @@ def sync_youtube():
     else:
         print('  sync.py not found, skipping YouTube sync')
 
+def build_stats():
+    """Count the live tools and stamp the number wherever it is displayed.
+    Runs every deploy, so adding or removing a calc-*.html updates all counts."""
+    import re as _re
+    calcs = sorted(ROOT.glob('calc-*.html'))
+    tools = len(calcs) + (1 if (ROOT / 'asset-allocator.html').exists() else 0)
+    ncalc = len(calcs) - (1 if (ROOT / 'calc-plan.html').exists() else 0)
+    # about.html stat tile: total interactive tools
+    ab = ROOT / 'about.html'
+    t = ab.read_text(encoding='utf-8')
+    t2 = _re.sub(r"(\[data-stat-calcs\]'\)\.forEach\(el => el\.textContent = ')\d+(')",
+                 lambda m: m.group(1) + str(tools) + m.group(2), t)
+    if t2 != t: ab.write_text(t2, encoding='utf-8')
+    # calculators.html badge + meta: "planner, allocator + N calculators"
+    ch = ROOT / 'calculators.html'
+    c = ch.read_text(encoding='utf-8')
+    c2 = _re.sub(r'allocator \+ \d+ calculators', f'allocator + {ncalc} calculators', c)
+    if c2 != c: ch.write_text(c2, encoding='utf-8')
+    print(f'  Stats: {tools} tools live ({ncalc} calculators + planner + allocator)')
+
 def build_sitemap():
     """Generate sitemap.xml (core pages + every episode URL) and robots.txt."""
     import re as _re, json as _json, datetime as _dt
@@ -237,6 +257,9 @@ def main():
     # YouTube sync can fail in CI if network is blocked — make optional
     if os.environ.get('SKIP_YT_SYNC') != '1':
         sync_youtube()
+    print()
+    print('→ Updating tool counts...')
+    build_stats()
     print()
     print('→ Generating sitemap + robots...')
     build_sitemap()

@@ -263,8 +263,8 @@ if (window.GUESTS) {
       document.querySelectorAll('[data-stat-guests]').forEach(el => el.textContent = total);
     });
 }
-// Calculators live, count the calc-*.html files we link from calculators.html
-document.querySelectorAll('[data-stat-calcs]').forEach(el => el.textContent = '7');
+// Calculators live: this number is stamped by build.py on every deploy, do not edit by hand
+document.querySelectorAll('[data-stat-calcs]').forEach(el => el.textContent = '16');
 </script>
 
 <script>
