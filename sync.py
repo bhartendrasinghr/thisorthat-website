@@ -23,6 +23,7 @@ UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
 # Keyed by YouTube video ID. Use "Bhartendra (solo)" for solo episodes.
 GUEST_OVERRIDES = {
     # Episodes where guest is named in title but wasn't auto-extracted:
+    'tbQBKyeGydU': 'Aashish Sommaiya',      # Ep 61 — title spells Somaiyaa; profile name is Sommaiya
     'qR1CZ2dWr5Q': 'Anupam Tiwari',         # Ep 55 — "Groww MF's Equity Head Answers"
     'Bnv2OOb5irs': 'Bhalchandra Joshi',     # Ep 57 — "30 Years of MF Lessons | Bhalchandra Joshi"
     'vIL33wnD5lk': 'Debashish Bose',        # Ep 53

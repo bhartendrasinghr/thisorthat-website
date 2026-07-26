@@ -1,0 +1,133 @@
+{
+  "id": "tbQBKyeGydU",
+  "duration": "67 min",
+  "durationISO": "PT1H7M5S",
+  "uploadDate": "2026-07-26",
+  "summary": "Every generation believes this market crash is different. History says otherwise. Aashish Somaiyaa, CEO of WhiteOak Capital AMC, walks through every defining crisis he has witnessed in 27 years, Pokhran sanctions, the dot-com crash, the GFC, COVID, the 2022 FII sell-off, and why successful investing is less about predicting the next crisis and more about understanding how markets behave through them.",
+  "fork": {
+    "decision": "A crisis is on every front page. Do you act on the prediction, or stay for the recovery?",
+    "this": {
+      "label": "React to the crisis",
+      "points": [
+        "Every generation believes this crash is different, and the fear feels completely real in the moment.",
+        "The media runs negative around the clock, and exiting feels like the only responsible move."
+      ]
+    },
+    "that": {
+      "label": "Stay invested",
+      "points": [
+        "Six major crises in 27 years, and every single time markets recovered and long-term wealth creation continued.",
+        "Every past crisis, in hindsight, became an opportunity.",
+        "The edge is not predicting the next crisis; it is understanding how markets behave through one."
+      ]
+    },
+    "pick": "Stay. Not because this crisis is not real, but because the last six were real too, and the investors who kept their conviction were the ones compounding on the other side. This is not a conversation about predicting markets; it is about building the conviction to stay invested when everyone else is losing theirs."
+  },
+  "takeaways": [
+    "Six major crises in 27 years, from Pokhran sanctions to the 2022 FII sell-off, and each time investors questioned India's future. Each time markets recovered and wealth creation continued.",
+    "Expectations need resetting: 12 to 13% returns today may be the new 16 to 17%.",
+    "The direct vs regular mutual fund debate, in Aashish's telling, often comes down to a surprisingly small amount, roughly 240 rupees a year.",
+    "On the AI boom, the honest position is discernment: it can be both a bubble in places and a once-in-a-generation shift, and your portfolio should not bet on one headline.",
+    "The biggest mistake investors make is underperforming their own funds, by acting on predictions instead of staying through the cycle."
+  ],
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlight and introduction"
+    },
+    {
+      "t": 165,
+      "label": "Why this market panic is not new"
+    },
+    {
+      "t": 340,
+      "label": "Every past crisis became an opportunity"
+    },
+    {
+      "t": 440,
+      "label": "Should you continue your SIP right now?"
+    },
+    {
+      "t": 550,
+      "label": "Is India's growth story still intact?"
+    },
+    {
+      "t": 775,
+      "label": "Should Indians invest internationally?"
+    },
+    {
+      "t": 940,
+      "label": "How much should you invest outside India?"
+    },
+    {
+      "t": 1020,
+      "label": "Is the US market too expensive today?"
+    },
+    {
+      "t": 1130,
+      "label": "AI boom: bubble or once-in-a-lifetime opportunity?"
+    },
+    {
+      "t": 1295,
+      "label": "Where will India's next alpha come from?"
+    },
+    {
+      "t": 1615,
+      "label": "Why media always sounds so negative"
+    },
+    {
+      "t": 1825,
+      "label": "Why some mutual funds beat the market"
+    },
+    {
+      "t": 2010,
+      "label": "The biggest mistake investors make"
+    },
+    {
+      "t": 2260,
+      "label": "Active vs passive investing"
+    },
+    {
+      "t": 2460,
+      "label": "Should you buy the entire market?"
+    },
+    {
+      "t": 2670,
+      "label": "How fund managers actually think"
+    },
+    {
+      "t": 2895,
+      "label": "Investing vs predicting the future"
+    },
+    {
+      "t": 3140,
+      "label": "Why most investors underperform"
+    },
+    {
+      "t": 3280,
+      "label": "The problem with bold market predictions"
+    },
+    {
+      "t": 3420,
+      "label": "Will AI destroy the middle class?"
+    },
+    {
+      "t": 3665,
+      "label": "Direct vs regular mutual funds"
+    },
+    {
+      "t": 3930,
+      "label": "Final advice for every long-term investor"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "Markets move, your plan should not. See the equity, debt and gold split that holds through the noise."
+  },
+  "disclaimer": "For education only. Nothing here is investment advice or a recommendation to buy or sell any security or mutual fund. Mutual fund investments are subject to market risks; read all scheme related documents carefully. Views expressed by the guest are personal. Please consult a SEBI-registered investment adviser before making investment decisions.",
+  "seo": {
+    "title": "India's 6th Market Crisis in 27 Years | Aashish Somaiyaa",
+    "description": "Six crises, 27 years, six recoveries. WhiteOak's Aashish Somaiyaa on why investing is less about predicting the next crash and more about staying through it."
+  }
+}
