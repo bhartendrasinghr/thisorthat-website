@@ -1,7 +1,7 @@
 ---
 name: "Swaroop Mohanty"
 slug: "swaroop-mohanty"
-role: "CEO, Mirae Asset Mutual Fund"
+role: "Vice Chairman & CEO, Mirae Asset Investment Managers"
 photo: ""
 linkedin: ""
 twitter: ""

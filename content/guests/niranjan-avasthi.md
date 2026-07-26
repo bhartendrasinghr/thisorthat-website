@@ -1,7 +1,7 @@
 ---
 name: "Niranjan Avasthi"
 slug: "niranjan-avasthi"
-role: "Head of Product, Edelweiss MF"
+role: "Head of Product & Marketing, Edelweiss MF"
 photo: ""
 linkedin: ""
 twitter: ""

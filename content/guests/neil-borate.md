@@ -1,7 +1,7 @@
 ---
 name: "Neil Borate"
 slug: "neil-borate"
-role: "Deputy Editor, Mint"
+role: "Founder, thefynprint"
 photo: ""
 linkedin: ""
 twitter: ""

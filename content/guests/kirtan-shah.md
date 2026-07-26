@@ -1,7 +1,7 @@
 ---
 name: "Kirtan Shah"
 slug: "kirtan-shah"
-role: "Founder, Credence Wealth"
+role: "Founder, Credence Wealth, Mutual Fund Distributor"
 photo: ""
 linkedin: ""
 twitter: ""

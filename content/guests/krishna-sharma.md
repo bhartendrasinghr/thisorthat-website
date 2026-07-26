@@ -1,7 +1,7 @@
 ---
 name: "Krishna Sharma"
 slug: "krishna-sharma"
-role: "Gateway to Financial Freedom"
+role: "Financial Coach"
 photo: ""
 linkedin: ""
 twitter: ""

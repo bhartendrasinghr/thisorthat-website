@@ -29,7 +29,8 @@ EXCLUDE_IDS = {
 # Keyed by YouTube video ID. Use "Bhartendra (solo)" for solo episodes.
 GUEST_OVERRIDES = {
     # Episodes where guest is named in title but wasn't auto-extracted:
-    'tbQBKyeGydU': 'Aashish Sommaiya',      # Ep 61 — title spells Somaiyaa; profile name is Sommaiya
+    'tbQBKyeGydU': 'Aashish Sommaiya',      # Ep 60 - title spells Somaiyaa; profile name is Sommaiya
+    'GFtYcvEftNQ': 'Roopa Venkatkrishnan',  # Ep 58 - SIP for 30 years (was mis-tagged solo)
     'qR1CZ2dWr5Q': 'Anupam Tiwari',         # Ep 55 — "Groww MF's Equity Head Answers"
     'Bnv2OOb5irs': 'Bhalchandra Joshi',     # Ep 57 — "30 Years of MF Lessons | Bhalchandra Joshi"
     'vIL33wnD5lk': 'Debashish Bose',        # Ep 53
@@ -56,7 +57,7 @@ GUEST_OVERRIDES = {
     'LJBgwAlx_MM': 'Mahavir Chopra',
     'y467zmb9coo': 'Kirtan Shah',
     'qCMA_zCb-38': 'Aashish Sommaiya',
-    'Ms_2WqYOIsY': 'Abhinav Angirish',
+    'Ms_2WqYOIsY': 'Abhijit More',
     'YH2ZegF1ewk': 'Mrin Agarwal',
     '2IFKptd2Qyw': 'Raghav Iyengar',
     # Confirmed solo / compilation episodes:
@@ -83,33 +84,34 @@ GUEST_OVERRIDES = {
 # Guest → role/title. Add to this as new guests come on the show.
 GUEST_ROLES = {
     'Vijai Mantri': 'Founder, VMFS',
-    'Debashish Bose': 'Founder, Infinite Circle',
-    'Krishna Sharma': 'Gateway to Financial Freedom',
-    'Mahmood Basha Shaik': 'Baroda BNP Paribas',
+    'Debashish Bose': 'Founder & Managing Partner, Infinite Circle Asset Manager',
+    'Krishna Sharma': 'Financial Coach',
+    'Mahmood Basha Shaik': 'Head International Business, Baroda BNP Paribas',
     'Kalpen Parekh': 'CEO, DSP Mutual Fund',
-    'Kirtan Shah': 'Founder, Credence Wealth',
-    'Neil Borate': 'Deputy Editor, Mint',
-    'Karan Datta': 'CBO, Axis Mutual Fund',
+    'Kirtan Shah': 'Founder, Credence Wealth, Mutual Fund Distributor',
+    'Neil Borate': 'Founder, thefynprint',
+    'Karan Datta': 'Former CBO, Axis Mutual Fund',
     'Thomas Priju': 'Fund Manager',
     'Mohit Bhatia': 'CEO, Bank of India MF',
     'Vinayak Sapre': 'Financial Coach',
-    'Chirag Barjatya': 'Founder, PFC',
-    'CA Anuj Jain': 'Chartered Accountant',
+    'Chirag Barjatya': 'Founder, PFC, Fitness Coach',
+    'CA Anuj Jain': 'Fund Manager & Founder, Green Portfolio',
     'Sneha Jain': 'Fund Manager',
     'Devina Mehra': 'Founder, First Global',
-    'Pooja Bhinde': 'Financial Planner',
-    'Ajit Menon': 'Investment Strategist',
+    'Pooja Bhinde': 'Certified Financial Planner',
+    'Ajit Menon': 'Former CEO, PGIM Mutual Fund',
     'Dhirendra Kumar': 'CEO, Value Research',
-    'Lisa Pallavi Barbora': 'Financial Journalist',
+    'Lisa Pallavi Barbora': 'Content Creator, Author',
     'Mahavir Chopra': 'Founder, Beshak.org',
-    'Aashish Sommaiya': 'CEO, WhiteOak Capital',
-    'Abhinav Angirish': 'Founder, Investonline.in',
-    'Raghav Iyengar': 'CEO, Axis Mutual Fund',
+    'Aashish Sommaiya': 'Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset',
+    'Abhijit More': 'Real Estate',
+    'Roopa Venkatkrishnan': 'Director, Sapient Wealth Advisors and Brokers Pvt Ltd',
+    'Raghav Iyengar': 'CEO, 360 One AMC',
     'Mrin Agarwal': 'Founder, Finsafe',
-    'Niranjan Avasthi': 'Head of Product, Edelweiss MF',
+    'Niranjan Avasthi': 'Head of Product & Marketing, Edelweiss MF',
     'Shaymali Basu': 'Financial Planner',
     'Anupam Tiwari': 'Head of Equities, Groww Mutual Fund',
-    'Bhalchandra Joshi': 'Mutual Fund Veteran',
+    'Bhalchandra Joshi': 'Mutual Fund Veteran, COO The Wealth Company',
 }
 
 # ─── Fetch from YouTube ──────────────────────────────────────────────────

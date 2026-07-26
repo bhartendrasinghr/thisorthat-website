@@ -1,7 +1,7 @@
 ---
 name: "Karan Datta"
 slug: "karan-datta"
-role: "CBO, Axis Mutual Fund"
+role: "Former CBO, Axis Mutual Fund"
 photo: ""
 linkedin: ""
 twitter: ""

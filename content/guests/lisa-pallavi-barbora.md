@@ -1,7 +1,7 @@
 ---
 name: "Lisa Pallavi Barbora"
 slug: "lisa-pallavi-barbora"
-role: "Financial Journalist"
+role: "Content Creator, Author"
 photo: ""
 linkedin: ""
 twitter: ""

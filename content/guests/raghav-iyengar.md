@@ -1,7 +1,7 @@
 ---
 name: "Raghav Iyengar"
 slug: "raghav-iyengar"
-role: "CEO, Axis Mutual Fund"
+role: "CEO, 360 One AMC"
 photo: ""
 linkedin: ""
 twitter: ""

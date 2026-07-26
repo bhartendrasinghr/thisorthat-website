@@ -1,7 +1,7 @@
 ---
 name: "Pooja Bhinde"
 slug: "pooja-bhinde"
-role: "Financial Planner"
+role: "Certified Financial Planner"
 photo: ""
 linkedin: ""
 twitter: ""

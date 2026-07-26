@@ -1,7 +1,7 @@
 ---
 name: "CA Anuj Jain"
 slug: "anuj-jain"
-role: "Chartered Accountant"
+role: "Fund Manager & Founder, Green Portfolio"
 photo: ""
 linkedin: ""
 twitter: ""

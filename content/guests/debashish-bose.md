@@ -1,7 +1,7 @@
 ---
 name: "Debashish Bose"
 slug: "debashish-bose"
-role: "Founder, Infinite Circle"
+role: "Founder & Managing Partner, Infinite Circle Asset Manager"
 photo: ""
 linkedin: ""
 twitter: ""

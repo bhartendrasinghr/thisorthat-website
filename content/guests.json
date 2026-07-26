@@ -13,22 +13,22 @@
     "excerpt": "CEO of WhiteOak Capital. Long-term, valuation-disciplined investor; explains the many paths to financial heaven."
   },
   {
-    "name": "Abhinav Angirish",
-    "slug": "abhinav-angirish",
-    "role": "Founder, Investonline.in",
+    "name": "Abhijit More",
+    "slug": "abhijit-more",
+    "role": "Real Estate",
     "photo": "",
     "linkedin": "",
     "twitter": "",
     "website": "",
     "featured": false,
-    "quote": "A house you live in is a lifestyle decision, not an investment.",
-    "bio_html": "<p>Founder of Investonline.in. Demystifies real estate vs equity, and the emotional side of buying a house.</p>\n<h2>In their own words</h2>\n<blockquote>A house you live in is a lifestyle decision, not an investment.</blockquote>\n<h2>What they care about</h2>\n<p>Abhinav argues that buying a home is never one-size-fits-all: the right call turns on your life stage, your cash flow and your financial readiness, not on what worked for someone else. He is candid about what first-time buyers miss, the illiquidity of property and the hidden charges beyond the sticker price, and he insists a house should fit inside a diversified portfolio rather than swallow it.</p>\n<p>The takeaway for listeners: renting while you get ready is a sound, flexible choice, not a failure, and financial planning comes before the purchase.</p>",
-    "excerpt": "Founder of Investonline.in. Demystifies real estate vs equity, and the emotional side of buying a house."
+    "quote": "",
+    "bio_html": "<p>Real estate specialist. Guest on the Should You Buy a House conversation.</p>",
+    "excerpt": "Real estate specialist. Guest on the Should You Buy a House conversation."
   },
   {
     "name": "Ajit Menon",
     "slug": "ajit-menon",
-    "role": "Former CEO, PGIM Mutual Fund ",
+    "role": "Former CEO, PGIM Mutual Fund",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -54,7 +54,7 @@
   {
     "name": "CA Anuj Jain",
     "slug": "anuj-jain",
-    "role": "Chartered Accountant",
+    "role": "Fund Manager & Founder, Green Portfolio",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -80,7 +80,7 @@
   {
     "name": "Bhalchandra Joshi",
     "slug": "bhalchandra-joshi",
-    "role": "Mutual Fund Veteran",
+    "role": "Mutual Fund Veteran, COO The Wealth Company",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -93,7 +93,7 @@
   {
     "name": "Chirag Barjatya",
     "slug": "chirag-barjatya",
-    "role": "Founder, PFC",
+    "role": "Founder, PFC, Fitness Coach",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -105,7 +105,7 @@
   {
     "name": "Debashish Bose",
     "slug": "debashish-bose",
-    "role": "Founder, Infinite Circle",
+    "role": "Founder & Managing Partner, Infinite Circle Asset Manager",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -157,7 +157,7 @@
   {
     "name": "Karan Datta",
     "slug": "karan-datta",
-    "role": "CBO, Axis Mutual Fund",
+    "role": "Former CBO, Axis Mutual Fund",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -167,9 +167,22 @@
     "excerpt": "Chief Business Officer at Axis Mutual Fund. Guest on This or That on silver, time vs money, and wealth psychology."
   },
   {
+    "name": "Ketan Das",
+    "slug": "ketan-das",
+    "role": "Founding Team Member, FinRight",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "quote": "",
+    "bio_html": "<p>Founding team member at FinRight.</p>",
+    "excerpt": "Founding team member at FinRight."
+  },
+  {
     "name": "Kirtan Shah",
     "slug": "kirtan-shah",
-    "role": "Founder, Credence Wealth",
+    "role": "Founder, Credence Wealth, Mutual Fund Distributor",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -182,7 +195,7 @@
   {
     "name": "Krishna Sharma",
     "slug": "krishna-sharma",
-    "role": "Gateway to Financial Freedom",
+    "role": "Financial Coach",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -194,7 +207,7 @@
   {
     "name": "Lisa Pallavi Barbora",
     "slug": "lisa-pallavi-barbora",
-    "role": "Financial Journalist",
+    "role": "Content Creator, Author",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -220,7 +233,7 @@
   {
     "name": "Mahmood Basha Shaik",
     "slug": "mahmood-basha-shaik",
-    "role": "Baroda BNP Paribas",
+    "role": "Head International Business, Baroda BNP Paribas",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -259,7 +272,7 @@
   {
     "name": "Neil Borate",
     "slug": "neil-borate",
-    "role": "Deputy Editor, Mint",
+    "role": "Founder, thefynprint",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -285,7 +298,7 @@
   {
     "name": "Niranjan Avasthi",
     "slug": "niranjan-avasthi",
-    "role": "Head of Product, Edelweiss MF",
+    "role": "Head of Product & Marketing, Edelweiss MF",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -298,7 +311,7 @@
   {
     "name": "Pooja Bhinde",
     "slug": "pooja-bhinde",
-    "role": "Financial Planner",
+    "role": "Certified Financial Planner",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -311,7 +324,7 @@
   {
     "name": "Raghav Iyengar",
     "slug": "raghav-iyengar",
-    "role": "CEO, Axis Mutual Fund",
+    "role": "CEO, 360 One AMC",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -320,6 +333,19 @@
     "quote": "Staying steady when markets swing is a skill you practice, not a temperament you were born with.",
     "bio_html": "<p>CEO of Axis Mutual Fund. Veteran of the Indian asset management industry.</p>\n<h2>In their own words</h2>\n<blockquote>Staying steady when markets swing is a skill you practice, not a temperament you were born with.</blockquote>\n<h2>What they care about</h2>\n<p>Raghav Iyengar brings over three decades in the mutual fund industry, and what he cares about most is how investor behavior has shifted: from short-term trading to goal-based investing.</p>\n<p>His discipline is concrete: aim to save at least 30% of your monthly income, build an emergency fund before you reach for anything riskier, stick with regulated investment managers, and get honest about your own risk profile. The idea that stays with a listener is that staying calm through volatile markets is a practiced skill, not a personality trait, and it matters as much as which fund you pick.</p>",
     "excerpt": "CEO of Axis Mutual Fund. Veteran of the Indian asset management industry."
+  },
+  {
+    "name": "Roopa Venkatkrishnan",
+    "slug": "roopa-venkatkrishnan",
+    "role": "Director, Sapient Wealth Advisors and Brokers Pvt Ltd",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "quote": "",
+    "bio_html": "<p>Director at Sapient Wealth Advisors and Brokers, and an AMFI Registered Mutual Fund Distributor. Has guided families through markets for over 25 years.</p>",
+    "excerpt": "Director at Sapient Wealth Advisors and Brokers, and an AMFI Registered Mutual Fund Distributor. Has guided families through markets for over 25 years."
   },
   {
     "name": "Shaymali Basu",
@@ -350,7 +376,7 @@
   {
     "name": "Swaroop Mohanty",
     "slug": "swaroop-mohanty",
-    "role": "CEO, Mirae Asset Mutual Fund",
+    "role": "Vice Chairman & CEO, Mirae Asset Investment Managers",
     "photo": "",
     "linkedin": "",
     "twitter": "",
@@ -398,5 +424,18 @@
     "quote": "Your temperament, not your spreadsheet, decides your money, and Kabir and Rahim knew that before Excel did.",
     "bio_html": "<p>Financial coach with a quiet, disciplined approach to wealth-building. Built financial freedom at 40.</p>\n<h2>In their own words</h2>\n<blockquote>Your temperament, not your spreadsheet, decides your money, and Kabir and Rahim knew that before Excel did.</blockquote>\n<h2>What they care about</h2>\n<p>Vinayak Sapre is a financial coach who reached financial freedom in 2011 and has argued ever since that money is mostly a temperament problem, not a products or Excel-sheet one. He leans on Kabir and Rahim's dohas to link old wisdom to modern decisions, reframes retirement as FILE, financial independence with life at ease, and warns that chasing the biggest returns usually ends in disappointment.</p>\n<p>A listener comes away seeing a good advisor as a filter, a saadhu jaisa soop that keeps only what belongs in your portfolio, and remembering that the point is to enjoy your money, not just accumulate it, even if you are starting late.</p>",
     "excerpt": "Financial coach with a quiet, disciplined approach to wealth-building. Built financial freedom at 40."
+  },
+  {
+    "name": "Vishesh Gandhi",
+    "slug": "vishesh-gandhi",
+    "role": "Mutual Fund Distributor",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "quote": "",
+    "bio_html": "<p>Mutual fund distributor.</p>",
+    "excerpt": "Mutual fund distributor."
   }
 ]
