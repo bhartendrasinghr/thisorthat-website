@@ -24,8 +24,8 @@
   "values_heading": "What this brand stands for.",
   "host": {
     "name": "Bhartendra Singh",
-    "tagline": "One podcast, one job: to make money make sense.",
-    "photo": "/media/screenshot-2026-06-20-at-7.22.22 pm.png",
+    "tagline": "One podcast, one job: to make money, health and career make sense.",
+    "photo": "/media/bhartendra.jpg",
     "kicker": "The host",
     "linkedin_url": "",
     "twitter_url": "",
@@ -33,10 +33,11 @@
     "contact_email": "hello@thisorthat.in"
   },
   "press_kit_url": "",
-    "story_paragraphs": [
-    "Most of us have a money problem that no one names clearly. We're told to save, then told what to save in, often by people whose income depends on us picking the wrong thing. The advice is loud, the conflicts are quiet, and the cost is decades of compounding quietly lost, usually by those who can least afford it.",
-    "ThisOrThat with Bhartendra began in 2025, with a single conversation with Mrin Agarwal. Every episode since has chased the same objective: talk about money with clarity, candour, and the willingness to ask the questions that actually matter to us.",
-    "If the show has one goal, it's this: that every listener learns to think about money, investing, and their own behaviour with clarity, purpose, and confidence. Money shapes so much of our lives; it deserves that kind of attention."
+  "story_paragraphs": [
+    "Most of us have a money problem that no one names clearly. We are told to save, then told what to save in, often by people whose income depends on us picking the wrong thing. The advice is loud, the conflicts are quiet, and the cost is decades of compounding lost, usually by those who can least afford it.",
+    "ThisOrThat with Bhartendra began in 2025, with a single conversation with Mrin Agarwal. Every episode since has chased the same objective: talk about money with candour, ask the questions that actually matter, and pick a side instead of hedging.",
+    "And because money is never the whole story, the same lens now turns to health and career, the other two decisions that compound. What you earn, what you keep and how long you stay well enough to enjoy it are one conversation, not three.",
+    "If the show has one goal, it is this: that every listener learns to think about money, work, health and their own behaviour with clarity, purpose and confidence. These decisions shape most of a life. They deserve that kind of attention."
   ],
   "contact_kicker": "Get in touch",
   "stats_kicker": "By the numbers",
