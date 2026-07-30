@@ -4,7 +4,7 @@
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": false,
-  "trailingSlash": true,
+  "trailingSlash": false,
   "crons": [
     {
       "path": "/api/cron-sync",
@@ -14,15 +14,197 @@
   "headers": [
     {
       "source": "/logo.png",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/episodes.js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
     },
     {
       "source": "/content/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/about.html",
+      "permanent": false
+    },
+    {
+      "source": "/article-detail",
+      "destination": "/article-detail.html",
+      "permanent": false
+    },
+    {
+      "source": "/articles",
+      "destination": "/articles.html",
+      "permanent": false
+    },
+    {
+      "source": "/asset-allocator",
+      "destination": "/asset-allocator.html",
+      "permanent": false
+    },
+    {
+      "source": "/asset-classes",
+      "destination": "/asset-classes.html",
+      "permanent": false
+    },
+    {
+      "source": "/brand",
+      "destination": "/brand.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-buckets",
+      "destination": "/calc-buckets.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-crore-ladder",
+      "destination": "/calc-crore-ladder.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-crorepati",
+      "destination": "/calc-crorepati.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-dreamhome",
+      "destination": "/calc-dreamhome.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-goal",
+      "destination": "/calc-goal.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-lifestyle",
+      "destination": "/calc-lifestyle.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-mf-portfolio",
+      "destination": "/calc-mf-portfolio.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-plan",
+      "destination": "/calc-plan.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-prepay",
+      "destination": "/calc-prepay.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-rentbuy",
+      "destination": "/calc-rentbuy.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-retirement",
+      "destination": "/calc-retirement.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-rule72",
+      "destination": "/calc-rule72.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-sip",
+      "destination": "/calc-sip.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-sip-reality",
+      "destination": "/calc-sip-reality.html",
+      "permanent": false
+    },
+    {
+      "source": "/calc-swp",
+      "destination": "/calc-swp.html",
+      "permanent": false
+    },
+    {
+      "source": "/calculators",
+      "destination": "/calculators.html",
+      "permanent": false
+    },
+    {
+      "source": "/episode-detail",
+      "destination": "/episode-detail.html",
+      "permanent": false
+    },
+    {
+      "source": "/episodes",
+      "destination": "/episodes.html",
+      "permanent": false
+    },
+    {
+      "source": "/feed",
+      "destination": "/feed.html",
+      "permanent": false
+    },
+    {
+      "source": "/guest-detail",
+      "destination": "/guest-detail.html",
+      "permanent": false
+    },
+    {
+      "source": "/guests",
+      "destination": "/guests.html",
+      "permanent": false
+    },
+    {
+      "source": "/index",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/money-person",
+      "destination": "/money-person.html",
+      "permanent": false
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html",
+      "permanent": false
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html",
+      "permanent": false
+    },
+    {
+      "source": "/wealth-levers",
+      "destination": "/wealth-levers.html",
+      "permanent": false
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
