@@ -202,7 +202,7 @@ def sync_youtube():
 def build_stats():
     """Count the live tools and stamp the number wherever it is displayed.
     Runs every deploy, so adding or removing a calc-*.html updates all counts."""
-    import re as _re
+    import re as _re, json as _json
     calcs = sorted(ROOT.glob('calc-*.html'))
     tools = len(calcs) + (1 if (ROOT / 'asset-allocator.html').exists() else 0)
     ncalc = len(calcs) - (1 if (ROOT / 'calc-plan.html').exists() else 0)
@@ -216,8 +216,17 @@ def build_stats():
     ch = ROOT / 'calculators.html'
     c = ch.read_text(encoding='utf-8')
     c2 = _re.sub(r'allocator \+ \d+ calculators', f'allocator + {ncalc} calculators', c)
+    # MF category count, read from the data array so the hub card can never go stale
+    mf = ROOT / 'mf-categories.html'
+    nmf = 0
+    if mf.exists():
+        m = _re.search(r'const CATS = (\[.*?\]);\n', mf.read_text(encoding='utf-8'), _re.S)
+        if m:
+            nmf = len(_json.loads(m.group(1)))
+            c2 = _re.sub(r'(All <span class="font-mono tab-num">)\d+(</span> SEBI categories)',
+                         lambda x: x.group(1) + str(nmf) + x.group(2), c2)
     if c2 != c: ch.write_text(c2, encoding='utf-8')
-    print(f'  Stats: {tools} tools live ({ncalc} calculators + planner + allocator)')
+    print(f'  Stats: {tools} tools live ({ncalc} calculators + planner + allocator), {nmf} MF categories')
 
 def build_sitemap():
     """Generate sitemap.xml (core pages + every episode URL) and robots.txt."""
