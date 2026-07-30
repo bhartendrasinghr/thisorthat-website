@@ -177,8 +177,18 @@
       "permanent": false
     },
     {
+      "source": "/home",
+      "destination": "/",
+      "permanent": false
+    },
+    {
       "source": "/index",
       "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/mf-categories",
+      "destination": "/mf-categories.html",
       "permanent": false
     },
     {
@@ -199,11 +209,6 @@
     {
       "source": "/wealth-levers",
       "destination": "/wealth-levers.html",
-      "permanent": false
-    },
-    {
-      "source": "/home",
-      "destination": "/",
       "permanent": false
     }
   ]

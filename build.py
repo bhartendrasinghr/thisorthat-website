@@ -253,6 +253,24 @@ def build_sitemap():
         f'User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: {site}/sitemap.xml\n', encoding='utf-8')
     print(f'  Wrote sitemap.xml ({len(urls)} URLs) + robots.txt')
 
+def check_redirects():
+    """Every page needs an extensionless redirect in vercel.json, or /about style
+    URLs 404. Vercel reads vercel.json before the build, so this can only warn:
+    add the entry by hand, then redeploy."""
+    import json as _json
+    cfg_path = ROOT / 'vercel.json'
+    if not cfg_path.exists():
+        return
+    cfg = _json.loads(cfg_path.read_text(encoding='utf-8'))
+    have = {r['source'].lstrip('/') for r in cfg.get('redirects', [])}
+    skip = {'404', 'home-v2-mock'}
+    missing = sorted(p.stem for p in ROOT.glob('*.html') if p.stem not in skip and p.stem not in have)
+    if missing:
+        print('  ⚠ No extensionless redirect for: ' + ', '.join(missing))
+        print('    Add {"source":"/NAME","destination":"/NAME.html","permanent":false} to vercel.json')
+    else:
+        print(f'  All {len(have)} page redirects present')
+
 # ─── Main ────────────────────────────────────────────────────────────────
 def main():
     print('=== ThisOrThat build ===')
@@ -272,6 +290,9 @@ def main():
     print()
     print('→ Generating sitemap + robots...')
     build_sitemap()
+    print()
+    print('→ Checking page redirects...')
+    check_redirects()
     print()
     print('✓ Build complete')
 
