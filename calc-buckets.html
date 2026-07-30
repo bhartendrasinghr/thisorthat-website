@@ -172,13 +172,14 @@
 
         <div>
           <div class="flex justify-between items-baseline">
-            <label class="text-sm font-semibold text-ink" for="lbl-exp">Monthly expenses, today</label>
+            <label class="text-sm font-semibold text-ink" for="lbl-exp">Monthly expenses at retirement</label>
             <div class="flex items-baseline gap-1">
               <span class="text-ink/60 text-sm">&#8377;</span>
               <input type="text" id="lbl-exp" value="1,00,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" aria-label="Monthly expenses" />
             </div>
           </div>
           <input id="in-exp" type="range" min="10000" max="1000000" step="5000" value="100000" class="mt-2" aria-label="Monthly expenses slider" />
+          <div class="text-[11px] text-navy/55 mt-1">What you will spend in the year you retire, not today. If that is years away, use today's spending grown by inflation. This tool starts the clock on retirement day.</div>
         </div>
 
         <div>
@@ -297,6 +298,7 @@
         <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Day one, this is the split</div>
         <div class="font-display text-xl font-extrabold text-ink mt-1">Every rupee sorted by when you need it.</div>
         <div id="vessels" class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+        <div id="split-note" class="mt-4 text-[12px] leading-relaxed text-ink/70 border-t border-navy/10 pt-4"></div>
       </div>
 
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
@@ -561,6 +563,13 @@ function renderVessels(p, s) {
         <div class="text-[11px] text-ink/45 mt-1.5 leading-snug">${b.how}</div>
       </div>
     </div>`).join('');
+
+  // this split is deliberately blind to how long you plan for, and people notice, so say why
+  const yrs = p.b1y + p.b2y;
+  const full = d.b3 > 1;
+  $('split-note').innerHTML = full
+    ? `<strong class="text-ink">Why this split does not move when you change "plan till".</strong> Buckets 1 and 2 are sized to hold a set number of years of spending, ${p.b1y} and ${p.b2y}, so they come to <span class="tab-num">&#8377;${fmtINR(d.b1 + d.b2)}</span> whether you plan to 70 or 100. Growth simply keeps the rest. Planning longer changes whether the money lasts, not how you split it today. What does move this split: your monthly spending, inflation, and the years each bucket covers.`
+    : `<strong class="text-ink">Growth is empty, and that is the signal.</strong> The first ${yrs} years of spending alone need <span class="tab-num">&#8377;${fmtINR(d.t1 + d.t2)}</span>, which is more than this corpus, so buckets 1 and 2 have taken all of it. Until that changes, adjusting "plan till" will not move this split, because there is nothing left over to place.`;
 }
 
 function renderChart(p, s) {
