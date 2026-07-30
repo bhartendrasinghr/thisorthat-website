@@ -345,7 +345,7 @@
 
 <footer class="bg-navy-ink text-cream/80 py-14">
   <div class="max-w-3xl mx-auto px-6 text-center">
-    <p class="text-xs text-cream/50 leading-relaxed">A planning aid for education, not investment advice and not a recommendation. Returns here are steady averages; real markets are lumpy, and this model does not simulate a bad first decade, taxes on moving money between buckets, or sequence of returns risk. Mutual fund investments are subject to market risks; read all scheme related documents carefully. Before acting on any of this, consult a SEBI-registered investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or AMFI's own websites.</p>
+    <p class="text-xs text-cream/50 leading-relaxed">A planning aid for education, not investment advice and not a recommendation. Returns here are steady averages; real markets are lumpy, and this model does not simulate a bad first decade, taxes on moving money between buckets, or sequence of returns risk. Money only ever moves down, from growth to stability to liquidity, never back up. Each bucket also holds the full rupee value of the years it covers while still earning on that money, so a plan that holds will usually finish with more left over than you expected. Mutual fund investments are subject to market risks; read all scheme related documents carefully. Before acting on any of this, consult a SEBI-registered investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or AMFI's own websites.</p>
     <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
   </div>
 </footer>
@@ -404,9 +404,10 @@ function simulate(p) {
     const age = p.retireAge + i;
     const g = p.monthlyExp * 12 * Math.pow(1 + inf, i);
     const inAmt = (p.incomeMode && age < p.earnTill) ? p.monthlyIncome * 12 * Math.pow(1 + ig, i) : 0;
+    const inPlan = i < years;                  // nothing is funded past the plan horizon
     gross.push(g); inc.push(inAmt);
-    net.push(Math.max(0, g - inAmt));
-    sur.push(Math.max(0, inAmt - g));
+    net.push(inPlan ? Math.max(0, g - inAmt) : 0);
+    sur.push(inPlan ? Math.max(0, inAmt - g) : 0);
   }
   // lookahead targets computed on NET expenses, so both modes use one engine
   const targetsAt = (i) => {
