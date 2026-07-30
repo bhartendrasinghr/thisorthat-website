@@ -3,67 +3,61 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>3-Bucket Retirement Strategy, ThisOrThat with Bhartendra</title>
+<title>Three Buckets Retirement Planner, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Split your retirement corpus by when you will spend it, then watch year by year whether the money lasts. Two modes: divide the corpus, or bridge the early years with income. If it falls short, we show exactly what closes the gap." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ThisOrThat with Bhartendra" />
-<meta property="og:title" content="3-Bucket Retirement Strategy, ThisOrThat with Bhartendra" />
-<meta property="og:description" content="Split your retirement corpus into cash, debt and equity so you never have to sell at the bottom. A warm, honest 3-bucket calculator that buys you years of patience and lets you sleep at night." />
+<meta property="og:title" content="Three Buckets Retirement Planner, ThisOrThat with Bhartendra" />
+<meta property="og:description" content="Split your retirement corpus by when you will spend it, then watch year by year whether the money lasts. If it falls short, we show exactly what closes the gap." />
 <meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
 <meta property="og:url" content="https://thisorthatshow.in/calc-buckets.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="3-Bucket Retirement Strategy, ThisOrThat with Bhartendra" />
-<meta name="twitter:description" content="Split your retirement corpus into cash, debt and equity so you never have to sell at the bottom. A warm, honest 3-bucket calculator that buys you years of patience and lets you sleep at night." />
+<meta name="twitter:title" content="Three Buckets Retirement Planner, ThisOrThat with Bhartendra" />
+<meta name="twitter:description" content="Split your retirement corpus by when you will spend it, then watch year by year whether the money lasts." />
 <meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
-<meta name="description" content="Split your retirement corpus into cash, debt and equity so you never have to sell at the bottom. A warm, honest 3-bucket calculator that buys you years of patience and lets you sleep at night." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
-        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
-        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
-        thatred:   { DEFAULT: '#FF302D' },
-        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
-        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
-        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
-        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
-        alert:   '#FF302D',
-        cream:   '#FCFBF8',
-        paper:   '#F6F4EE'
-      }, fontFamily: {
-        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
-        serif:   ['Bricolage Grotesque','Georgia','serif'],
-        display: ['Bricolage Grotesque','Georgia','serif'],
-        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
-        script:  ['Caveat','cursive']
-      } } } };
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1', 4:'#8A8275' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
 </script>
 <style>
-  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
-  .font-serif { font-family: 'Bricolage Grotesque', serif; }
-  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
-  input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; background: #E1DDD1; border-radius: 999px; outline: none; touch-action: pan-y; }
-  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 4px solid #FFC21F; box-shadow: 0 2px 8px rgba(0,0,0,0.18); transition: transform 120ms ease; }
-  input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.15); }
-  input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; background: #0249B1; border-radius: 50%; cursor: pointer; border: 4px solid #FFC21F; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
-  @media (max-width: 768px) {
-    input[type="range"] { height: 8px; }
-    input[type="range"]::-webkit-slider-thumb { width: 32px; height: 32px; }
-    input[type="range"]::-moz-range-thumb { width: 32px; height: 32px; }
-  }
-  .bar { transition: width 400ms cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .editable-num { background: transparent; border: none; border-bottom: 1.5px dashed rgba(2, 73, 177, 0.25); padding: 1px 2px; transition: border-color 150ms ease, background 150ms ease; border-radius: 2px; }
-  .editable-num:hover { border-bottom-color: rgba(2, 73, 177, 0.5); background: rgba(255, 194, 31, 0.08); }
-  .editable-num:focus { outline: none; border-bottom: 1.5px solid #FFC21F; background: rgba(255, 194, 31, 0.12); }
-  .bucket-bar-stack { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: #F6F4EE; }
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings:'tnum'; }
+  input[type="range"] { -webkit-appearance:none; appearance:none; height:6px; background:#E1DDD1; border-radius:999px; outline:none; touch-action:pan-y; width:100%; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:26px; height:26px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  input[type="range"]::-moz-range-thumb { width:26px; height:26px; background:#0249B1; border-radius:50%; cursor:pointer; border:4px solid #FFC21F; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  @media (max-width:768px){ input[type="range"]{height:8px;} input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb{width:30px;height:30px;} }
+  input[type="range"]:focus-visible { outline:2px solid #0249B1; outline-offset:4px; }
+  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.3); padding:1px 2px; border-radius:2px; }
+  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid #0249B1; outline-offset:3px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} .lift:hover{transform:none} }
+  .chart-hit { fill:transparent; cursor:crosshair; }
 </style>
 </head>
 <body class="antialiased">
 
-<!-- NAV -->
 <header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3">
@@ -90,7 +84,6 @@
   </div>
 </header>
 
-<!-- MOBILE MENU PANEL -->
 <div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
   <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
     <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
@@ -101,419 +94,271 @@
     <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
     <a href="about.html" class="py-3">About</a>
     <a href="money-person.html" class="mt-3 bg-marigold text-ink text-center py-3 rounded-full font-bold">Talk to a human &rarr;</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 bg-navy text-cream text-center py-3 rounded-full font-semibold">Subscribe on YouTube</a>
   </nav>
 </div>
 
-<!-- BREADCRUMB -->
 <div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
   <a href="index.html" class="hover:text-navy">Home</a> /
   <a href="calculators.html" class="hover:text-navy">Plan</a> /
-  <span class="text-navy-ink">3-Bucket Strategy</span>
+  <span class="text-navy-ink">Three Buckets</span>
 </div>
 
-<!-- HERO -->
-<section class="bg-cream pb-10">
+<section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Retirement, structured to calm nerves</div>
-    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">The 3-Bucket Strategy.</h1>
-    <p class="mt-4 text-lg text-ink/75 max-w-3xl">When your corpus is one big pot, a market dip tempts anyone to sell at the bottom. That's not weakness, it's just how one pot feels. So let's split it the way seasoned planners do: <strong>2 to 3 years in cash, 5 to 7 years in debt, the rest in equity.</strong> That way you can ride out crashes without ever having to sell.</p>
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Retirement, split by when you spend it</div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Three buckets. One question: does the money last?</h1>
+    <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Kitne saal chalega?</div>
+    <p class="mt-4 text-lg text-ink/75 max-w-3xl">A thirty year retirement needs equity to survive inflation. It also needs you to never sell equity in a crash to buy next month's groceries. Splitting the corpus by <em>when</em> you will spend it solves both: near term money sits in cash, and market noise never touches the bills. Set your numbers and watch it run, year by year.</p>
   </div>
 </section>
 
-<!-- CALCULATOR -->
-<section class="pb-16 bg-cream">
+<section class="pb-16 bg-cream pt-4">
   <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
 
-    <!-- INPUTS -->
-    <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
+    <!-- ============ INPUTS ============ -->
+    <div class="lg:col-span-2 space-y-5 self-start">
 
-      <div>
-        <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-ink" for="lbl-corpus">Corpus at retirement</label>
-          <div class="flex items-baseline gap-1">
-            <span class="text-ink/60 text-sm">₹</span>
-            <input type="text" id="lbl-corpus" value="5 Cr" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
-          </div>
-        </div>
-        <input id="in-corpus" type="range" min="5000000" max="200000000" step="500000" value="50000000" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/50 mt-1">Tip: type "5Cr" or "5,00,00,000", both work.</div>
-      </div>
-
-      <div>
-        <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-ink" for="lbl-exp">Monthly expenses now</label>
-          <div class="flex items-baseline gap-1">
-            <span class="text-ink/60 text-sm">₹</span>
-            <input type="text" id="lbl-exp" value="1,00,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
-          </div>
-        </div>
-        <input id="in-exp" type="range" min="20000" max="500000" step="5000" value="100000" class="w-full mt-2" />
-      </div>
-
-      <div>
-        <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-ink" for="lbl-income">Monthly income in retirement</label>
-          <div class="flex items-baseline gap-1">
-            <span class="text-ink/60 text-sm">₹</span>
-            <input type="text" id="lbl-income" value="0" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" />
-          </div>
-        </div>
-        <input id="in-income" type="range" min="0" max="500000" step="5000" value="0" class="w-full mt-2" />
-        <div class="text-[11px] text-navy/55 mt-1">Hobby, part-time consulting, pension, rental, anything that keeps coming in. Inflates with expenses.</div>
-        <div class="flex items-center gap-2 mt-2">
-          <label class="text-[11px] text-ink/60 cursor-pointer flex items-center gap-1.5">
-            <input type="checkbox" id="in-income-limit" class="accent-thisblue" />
-            Only for first
-          </label>
-          <input type="text" id="lbl-income-yrs" value="10" inputmode="numeric" class="editable-num tab-num text-[11px] font-bold text-thisblue w-8 text-right" disabled />
-          <span class="text-[11px] text-ink/60">years</span>
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">How you will fund it</div>
+        <div class="grid grid-cols-1 gap-2" id="mode-buttons">
+          <button data-m="divide" class="mbtn text-sm font-bold py-3 px-4 rounded-xl border text-left">
+            <span class="block">No income after I retire</span>
+            <span class="block text-[11px] font-medium opacity-70 mt-0.5">The corpus funds every single year on its own.</span>
+          </button>
+          <button data-m="bridge" class="mbtn text-sm font-bold py-3 px-4 rounded-xl border text-left">
+            <span class="block">I keep earning for a few years</span>
+            <span class="block text-[11px] font-medium opacity-70 mt-0.5">Income pays the bills first, the corpus takes over later.</span>
+          </button>
         </div>
       </div>
 
-      <div>
-        <div class="flex justify-between items-baseline">
-          <label class="text-sm font-semibold text-ink" for="lbl-years">Years in retirement</label>
-          <div class="flex items-baseline gap-1">
-            <input type="text" id="lbl-years" value="25" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" />
-            <span class="text-ink/60 text-sm">yrs</span>
-          </div>
-        </div>
-        <input id="in-years" type="range" min="10" max="40" value="25" class="w-full mt-2" />
-      </div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-6 space-y-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">The basics</div>
 
-      <div class="pt-2 border-t border-navy/10">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Bucket sizing</div>
-
-        <div class="mb-5">
+        <div>
           <div class="flex justify-between items-baseline">
-            <label class="text-sm font-medium text-ink"><span class="inline-block w-3 h-3 rounded-full bg-thisblue mr-2 align-middle"></span>Bucket 1, Cash & FD</label>
+            <label class="text-sm font-semibold text-ink" for="lbl-retire">Retire at</label>
             <div class="flex items-baseline gap-1">
-              <input type="text" id="lbl-b1y" value="3" inputmode="numeric" class="editable-num tab-num text-base font-bold text-thisblue w-10 text-right" />
-              <span class="text-ink/60 text-xs">yrs of expenses</span>
+              <input type="text" id="lbl-retire" value="60" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" aria-label="Retirement age" />
+              <span class="text-ink/60 text-sm">yrs</span>
             </div>
           </div>
-          <input id="in-b1y" type="range" min="1" max="5" value="3" class="w-full mt-1.5" />
+          <input id="in-retire" type="range" min="40" max="75" step="1" value="60" class="mt-2" aria-label="Retirement age slider" />
         </div>
 
         <div>
           <div class="flex justify-between items-baseline">
-            <label class="text-sm font-medium text-ink"><span class="inline-block w-3 h-3 rounded-full bg-marigold mr-2 align-middle"></span>Bucket 2, Debt funds</label>
+            <label class="text-sm font-semibold text-ink" for="lbl-plan">Plan till</label>
             <div class="flex items-baseline gap-1">
-              <input type="text" id="lbl-b2y" value="7" inputmode="numeric" class="editable-num tab-num text-base font-bold text-thisblue w-10 text-right" />
-              <span class="text-ink/60 text-xs">yrs of expenses</span>
+              <input type="text" id="lbl-plan" value="90" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" aria-label="Plan till age" />
+              <span class="text-ink/60 text-sm">yrs</span>
             </div>
           </div>
-          <input id="in-b2y" type="range" min="3" max="12" value="7" class="w-full mt-1.5" />
+          <input id="in-plan" type="range" min="70" max="100" step="1" value="90" class="mt-2" aria-label="Plan till age slider" />
+          <div id="plan-note" class="text-[11px] text-navy/55 mt-1">A 30 year retirement. Plan long: outliving the money is the real risk.</div>
         </div>
 
-        <div class="mt-4 text-[11px] text-ink/60 bg-warmpaper-2 rounded-lg p-3">
-          <span class="inline-block w-3 h-3 rounded-full bg-thatred mr-2 align-middle"></span>
-          <strong>Bucket 3, Equity</strong> gets whatever's left of your corpus. It grows long-term and tops up Bucket 2 each year.
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink" for="lbl-corpus">Corpus at retirement</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-sm">&#8377;</span>
+              <input type="text" id="lbl-corpus" value="3 Cr" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" aria-label="Corpus" />
+            </div>
+          </div>
+          <input id="in-corpus" type="range" min="2500000" max="200000000" step="500000" value="30000000" class="mt-2" aria-label="Corpus slider" />
+          <div class="text-[11px] text-navy/55 mt-1">Type "3cr" or "75L". Everything you have earmarked for retirement.</div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink" for="lbl-exp">Monthly expenses, today</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-sm">&#8377;</span>
+              <input type="text" id="lbl-exp" value="1,00,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" aria-label="Monthly expenses" />
+            </div>
+          </div>
+          <input id="in-exp" type="range" min="10000" max="1000000" step="5000" value="100000" class="mt-2" aria-label="Monthly expenses slider" />
+        </div>
+
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink" for="lbl-inf">Inflation</label>
+            <div class="flex items-baseline">
+              <input type="text" id="lbl-inf" value="6.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" aria-label="Inflation" />
+              <span class="text-ink/60 text-sm">% p.a.</span>
+            </div>
+          </div>
+          <input id="in-inf" type="range" min="3" max="10" step="0.5" value="6" class="mt-2" aria-label="Inflation slider" />
         </div>
       </div>
 
-      <details class="pt-2 border-t border-navy/10">
-        <summary class="cursor-pointer text-sm font-semibold text-ink/70 hover:text-ink">Returns & inflation</summary>
-        <div class="mt-4 space-y-4">
-          <div>
-            <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-ink/70">B1 return (cash / liquid)</label>
-              <div class="flex items-baseline">
-                <input type="text" id="lbl-b1r" value="6.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
-                <span class="text-ink/60 text-xs">%</span>
-              </div>
+      <div id="income-panel" class="bg-white rounded-2xl border-2 border-marigold p-6 space-y-6 hidden">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Your bridge income</div>
+
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink" for="lbl-inc">Monthly income after retiring</label>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink/60 text-sm">&#8377;</span>
+              <input type="text" id="lbl-inc" value="50,000" inputmode="text" class="editable-num tab-num text-lg font-bold text-thisblue w-24 text-right" aria-label="Monthly income" />
             </div>
-            <input id="in-b1r" type="range" min="3" max="8" step="0.5" value="6" class="w-full mt-1" />
           </div>
-          <div>
-            <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-ink/70">B2 return (debt funds)</label>
-              <div class="flex items-baseline">
-                <input type="text" id="lbl-b2r" value="8.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
-                <span class="text-ink/60 text-xs">%</span>
-              </div>
+          <input id="in-inc" type="range" min="0" max="1000000" step="5000" value="50000" class="mt-2" aria-label="Monthly income slider" />
+          <div class="text-[11px] text-navy/55 mt-1">Consulting, part time work, rent. Anything that keeps arriving.</div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink" for="lbl-earn">Earn till</label>
+            <div class="flex items-baseline gap-1">
+              <input type="text" id="lbl-earn" value="67" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-10 text-right" aria-label="Earn till age" />
+              <span class="text-ink/60 text-sm">yrs</span>
             </div>
-            <input id="in-b2r" type="range" min="5" max="11" step="0.5" value="8" class="w-full mt-1" />
           </div>
-          <div>
-            <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-ink/70">B3 return (equity)</label>
-              <div class="flex items-baseline">
-                <input type="text" id="lbl-b3r" value="11.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
-                <span class="text-ink/60 text-xs">%</span>
-              </div>
+          <input id="in-earn" type="range" min="41" max="85" step="1" value="67" class="mt-2" aria-label="Earn till age slider" />
+        </div>
+
+        <div>
+          <div class="flex justify-between items-baseline">
+            <label class="text-sm font-semibold text-ink" for="lbl-incg">Income grows at</label>
+            <div class="flex items-baseline">
+              <input type="text" id="lbl-incg" value="0.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" aria-label="Income growth" />
+              <span class="text-ink/60 text-sm">% p.a.</span>
             </div>
-            <input id="in-b3r" type="range" min="7" max="15" step="0.5" value="11" class="w-full mt-1" />
           </div>
+          <input id="in-incg" type="range" min="-10" max="15" step="0.5" value="0" class="mt-2" aria-label="Income growth slider" />
+          <div class="text-[11px] text-navy/55 mt-1">Negative is allowed. Consulting work often tapers.</div>
+        </div>
+      </div>
+
+      <details class="bg-white rounded-2xl border border-navy/10 p-6">
+        <summary class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold cursor-pointer select-none">The buckets, if you want to tune them</summary>
+        <div class="mt-5 space-y-6">
           <div>
             <div class="flex justify-between items-baseline">
-              <label class="text-xs font-medium text-ink/70">Inflation</label>
-              <div class="flex items-baseline">
-                <input type="text" id="lbl-inf" value="6.0" inputmode="decimal" class="editable-num tab-num text-sm font-bold text-ink w-10 text-right" />
-                <span class="text-ink/60 text-xs">%</span>
+              <label class="text-sm font-semibold text-ink" for="lbl-b1y">Bucket 1 holds</label>
+              <div class="flex items-baseline gap-1">
+                <input type="text" id="lbl-b1y" value="3" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-8 text-right" aria-label="Bucket 1 years" />
+                <span class="text-ink/60 text-sm">yrs of spends</span>
               </div>
             </div>
-            <input id="in-inf" type="range" min="3" max="10" step="0.5" value="6" class="w-full mt-1" />
+            <input id="in-b1y" type="range" min="1" max="6" step="1" value="3" class="mt-2" aria-label="Bucket 1 years slider" />
+            <div class="flex justify-between items-baseline mt-3">
+              <label class="text-sm text-ink/70" for="lbl-b1r">and earns</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-b1r" value="6.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-thisblue w-12 text-right" aria-label="Bucket 1 return" />
+                <span class="text-ink/60 text-sm">%</span>
+              </div>
+            </div>
+            <input id="in-b1r" type="range" min="2" max="9" step="0.25" value="6" class="mt-2" aria-label="Bucket 1 return slider" />
+          </div>
+          <div class="border-t border-navy/10 pt-5">
+            <div class="flex justify-between items-baseline">
+              <label class="text-sm font-semibold text-ink" for="lbl-b2y">Bucket 2 holds</label>
+              <div class="flex items-baseline gap-1">
+                <input type="text" id="lbl-b2y" value="7" inputmode="numeric" class="editable-num tab-num text-lg font-bold text-thisblue w-8 text-right" aria-label="Bucket 2 years" />
+                <span class="text-ink/60 text-sm">yrs after that</span>
+              </div>
+            </div>
+            <input id="in-b2y" type="range" min="2" max="15" step="1" value="7" class="mt-2" aria-label="Bucket 2 years slider" />
+            <div class="flex justify-between items-baseline mt-3">
+              <label class="text-sm text-ink/70" for="lbl-b2r">and earns</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-b2r" value="8.0" inputmode="decimal" class="editable-num tab-num text-base font-bold text-thisblue w-12 text-right" aria-label="Bucket 2 return" />
+                <span class="text-ink/60 text-sm">%</span>
+              </div>
+            </div>
+            <input id="in-b2r" type="range" min="4" max="11" step="0.25" value="8" class="mt-2" aria-label="Bucket 2 return slider" />
+          </div>
+          <div class="border-t border-navy/10 pt-5">
+            <div class="flex justify-between items-baseline">
+              <label class="text-sm font-semibold text-ink" for="lbl-b3r">Bucket 3, the rest, earns</label>
+              <div class="flex items-baseline">
+                <input type="text" id="lbl-b3r" value="12.0" inputmode="decimal" class="editable-num tab-num text-lg font-bold text-thisblue w-12 text-right" aria-label="Bucket 3 return" />
+                <span class="text-ink/60 text-sm">%</span>
+              </div>
+            </div>
+            <input id="in-b3r" type="range" min="6" max="15" step="0.25" value="12" class="mt-2" aria-label="Bucket 3 return slider" />
+            <div class="text-[11px] text-navy/55 mt-1">12% is a long run hope for equity, not a promise. Some years will be negative.</div>
           </div>
         </div>
       </details>
     </div>
 
-    <!-- RESULTS -->
+    <!-- ============ RESULTS ============ -->
     <div class="lg:col-span-3 space-y-5">
 
-      <!-- BIG NUMBER: Corpus lifespan -->
-      <div id="lifespan-card" class="bg-ink text-warmpaper rounded-2xl p-7">
-        <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Your corpus lasts</div>
-        <div class="flex items-end gap-4 mt-3">
-          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none"><span id="out-years">-</span></div>
-          <div class="text-base opacity-70 pb-1">years of retirement</div>
-        </div>
-        <div class="mt-3 text-sm opacity-80" id="out-status">-</div>
+      <div id="verdict" class="rounded-2xl border-2 p-6" aria-live="polite"></div>
+
+      <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Day one, this is the split</div>
+        <div class="font-display text-xl font-extrabold text-ink mt-1">Every rupee sorted by when you need it.</div>
+        <div id="vessels" class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
       </div>
 
-      <!-- BUCKET ALLOCATION -->
-      <div class="bg-white rounded-2xl border-2 border-marigold p-6">
-        <div class="text-xs uppercase tracking-[0.3em] text-ink/60 font-bold">Initial bucket allocation</div>
-
-        <div class="bucket-bar-stack mt-4">
-          <div id="bar-b1" class="bar bg-thisblue" style="width: 0%"></div>
-          <div id="bar-b2" class="bar bg-marigold" style="width: 0%"></div>
-          <div id="bar-b3" class="bar bg-thatred" style="width: 0%"></div>
+      <div class="bg-white rounded-2xl border border-navy/10 p-6">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The money, year by year</div>
+            <div class="font-display text-xl font-extrabold text-ink mt-1">Watch the buckets drain and refill.</div>
+          </div>
+          <div class="flex items-center gap-3 text-[11px] font-semibold">
+            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background:#FFC21F"></span>Liquidity</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background:#8A8275"></span>Stability</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background:#0249B1"></span>Growth</span>
+          </div>
         </div>
-
-        <div class="mt-5 space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-3 h-3 rounded-full bg-thisblue shrink-0"></span>
-              <div>
-                <div class="font-semibold text-ink text-sm">Bucket 1 · Cash & FD</div>
-                <div class="text-[11px] text-ink/60"><span id="lbl-b1y-out">3</span> yrs of immediate expenses</div>
-              </div>
-            </div>
-            <div class="text-right">
-              <div class="font-display font-bold text-ink tab-num">₹<span id="out-b1">-</span></div>
-              <div class="text-[11px] text-ink/50"><span id="pct-b1">-</span>%</div>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-3 h-3 rounded-full bg-marigold shrink-0"></span>
-              <div>
-                <div class="font-semibold text-ink text-sm">Bucket 2 · Debt funds</div>
-                <div class="text-[11px] text-ink/60"><span id="lbl-b2y-out">7</span> yrs of inflated expenses</div>
-              </div>
-            </div>
-            <div class="text-right">
-              <div class="font-display font-bold text-ink tab-num">₹<span id="out-b2">-</span></div>
-              <div class="text-[11px] text-ink/50"><span id="pct-b2">-</span>%</div>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-3 h-3 rounded-full bg-thatred shrink-0"></span>
-              <div>
-                <div class="font-semibold text-ink text-sm">Bucket 3 · Equity</div>
-                <div class="text-[11px] text-ink/60">Everything else, long-term growth</div>
-              </div>
-            </div>
-            <div class="text-right">
-              <div class="font-display font-bold text-ink tab-num">₹<span id="out-b3">-</span></div>
-              <div class="text-[11px] text-ink/50"><span id="pct-b3">-</span>%</div>
-            </div>
-          </div>
+        <div class="mt-4 relative">
+          <svg id="chart" viewBox="0 0 780 300" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stacked chart of bucket balances by age"></svg>
+          <div id="tip" class="hidden absolute pointer-events-none bg-ink text-warmpaper rounded-xl px-3 py-2 text-[11px] leading-relaxed shadow-lg z-10"></div>
         </div>
       </div>
 
-      <!-- HOW IT WORKS -->
-      <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How the 3 buckets work</div>
-        <p>You withdraw monthly from <strong class="text-thisblue">Bucket 1</strong>. Each year, <strong class="text-marigold-600">Bucket 2</strong> tops up Bucket 1. When equity has a good year, <strong class="text-thatred">Bucket 3</strong> tops up Bucket 2. When markets crash, you leave Bucket 3 alone and let it recover, you're still spending from cash. <strong>In years where hobby/part-time income exceeds your expenses, the surplus is invested back into Bucket 3.</strong></p>
+      <div class="bg-ink text-warmpaper rounded-2xl p-7">
+        <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">What this actually tells you</div>
+        <div id="insights" class="mt-3 space-y-4 text-sm leading-relaxed text-warmpaper/85"></div>
       </div>
 
-      <!-- Show the maths -->
-      <details class="bg-white border border-navy/10 rounded-2xl">
-        <summary class="cursor-pointer p-5 font-semibold text-ink hover:bg-warmpaper-2 rounded-2xl select-none">
-          📐 Show the maths, year-by-year bucket simulation
-        </summary>
-        <div class="px-5 pb-5">
-          <p class="text-xs text-ink/60 mb-3">Each year: withdraw inflated expenses from B1 → top up B1 from B2 → top up B2 from B3. All three grow at their respective rates. Last row shows when corpus depletes.</p>
-          <div class="overflow-x-auto -mx-5 px-5">
-            <table class="w-full text-xs tab-num">
-              <thead>
-                <tr class="border-b-2 border-navy/20 text-ink text-left">
-                  <th class="py-2 pr-3 font-semibold">Yr</th>
-                  <th class="py-2 pr-3 font-semibold">Net flow</th>
-                  <th class="py-2 pr-3 font-semibold text-thisblue">B1 · Cash</th>
-                  <th class="py-2 pr-3 font-semibold text-marigold-600">B2 · Debt</th>
-                  <th class="py-2 pr-3 font-semibold text-thatred">B3 · Equity</th>
-                  <th class="py-2 font-semibold">Total</th>
-                </tr>
-              </thead>
-              <tbody id="sim-table" class="text-ink/80"></tbody>
-            </table>
-          </div>
+      <details class="bg-white rounded-2xl border border-navy/10 p-6">
+        <summary class="text-sm font-semibold text-thisblue cursor-pointer select-none">Show the full year by year ledger</summary>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-[12px] tab-num" id="ledger"></table>
         </div>
       </details>
-    </div>
-  </div>
-</section>
 
-<!-- THE INCONVENIENT BIT -->
-<section class="py-16 bg-thisblue text-warmpaper">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-marigold font-bold">Why buckets beat one big pot</div>
-    <div id="reality" class="mt-4 font-display text-2xl md:text-3xl font-extrabold leading-snug">-</div>
-    <div class="mt-6 space-y-4 text-warmpaper/85 leading-relaxed">
-      <p>Picture everything in equity, and the market drops 30% in your first year. You'd be forced to sell at the bottom just to cover the month, locking in losses you can't undo. The three-bucket setup exists so you're never put in that spot.</p>
-      <p>It buys you <strong class="text-marigold">8 to 10 years of patience</strong>, and markets have historically recovered well within that window. Your equity gets the time to do its job, and you get to sleep at night while it does.</p>
-    </div>
-  </div>
-</section>
-
-<!-- MORE CALCULATORS -->
-<section class="py-16 bg-cream">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="font-display text-3xl font-extrabold text-ink">More calculators</h2>
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-      <a href="calc-retirement.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
-        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xl font-bold mb-3">₹</div>
-        <h3 class="font-display text-xl font-extrabold text-ink">Real Retirement</h3>
-        <p class="text-ink/70 text-sm mt-1">Inflation-adjusted corpus you actually need.</p>
-      </a>
-      <a href="calc-sip.html" class="lift block bg-white border border-navy/10 rounded-2xl p-6 hover:border-thisblue transition">
-        <div class="w-10 h-10 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-base font-bold mb-3">SIP</div>
-        <h3 class="font-display text-xl font-extrabold text-ink">Honest SIP</h3>
-        <p class="text-ink/70 text-sm mt-1">What a 5 or 10-year head start would add.</p>
-      </a>
+      <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Still building the corpus?</div>
+          <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Find the number you are aiming for.</div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="calc-retirement.html" class="lift inline-flex bg-navy text-cream px-5 py-3 rounded-full font-semibold text-sm">Real Retirement &rarr;</a>
+          <a href="money-person.html" class="lift inline-flex bg-white border-2 border-navy-ink text-ink px-5 py-3 rounded-full font-semibold text-sm">Talk to a human &rarr;</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <footer class="bg-navy-ink text-cream/80 py-14">
-  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra. · Numbers are estimates, not advice.</div>
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-xs text-cream/50 leading-relaxed">A planning aid for education, not investment advice and not a recommendation. Returns here are steady averages; real markets are lumpy, and this model does not simulate a bad first decade, taxes on moving money between buckets, or sequence of returns risk. Mutual fund investments are subject to market risks; read all scheme related documents carefully. Before acting on any of this, consult a SEBI-registered investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or AMFI's own websites.</p>
+    <p class="text-xs text-cream/40 mt-4">&copy; 2026 ThisOrThat with Bhartendra.</p>
+  </div>
 </footer>
 
 <script>
+const $ = id => document.getElementById(id);
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
 const fmtINR = (n) => {
-  if (n >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
-  if (n >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
-  return Math.round(n).toLocaleString('en-IN');
+  n = Math.round(n);
+  if (Math.abs(n) >= 1e7) return (n / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+  if (Math.abs(n) >= 1e5) return (n / 1e5).toFixed(2).replace(/\.?0+$/, '') + ' L';
+  return n.toLocaleString('en-IN');
 };
-const fmtINRFull = (n) => Math.round(n).toLocaleString('en-IN');
-
-// ─── Core 3-bucket simulation ───
-function simulate(corpus, monthlyExp, monthlyIncome, incomeYearsLimit, b1Years, b2Years, b1Ret, b2Ret, b3Ret, inflation, maxYears) {
-  const annualExp = monthlyExp * 12;
-  const annualIncome = monthlyIncome * 12;
-  // NET annual outflow at year 0 = expense - income (floored at 0)
-  const annualNet0 = Math.max(0, annualExp - annualIncome);
-
-  // Sizing buckets on the NET outflow (since income is covering part of expenses,
-  // we need less cash on hand). If income runs out earlier, B2 and B3 absorb that
-  // transition via annual rebalancing.
-  let b1 = Math.min(b1Years * annualNet0, corpus);
-  let remaining = corpus - b1;
-
-  let b2Target = 0;
-  for (let y = b1Years; y < b1Years + b2Years; y++) {
-    b2Target += annualNet0 * Math.pow(1 + inflation, y);
-  }
-  let b2 = Math.min(b2Target, remaining);
-  let b3 = Math.max(0, remaining - b2);
-
-  const initial = { b1, b2, b3 };
-  const sim = [];
-  let depleted = false;
-  let yearsLasted = 0;
-
-  for (let year = 0; year < maxYears; year++) {
-    // Income still flowing this year? (incomeYearsLimit = 0 means forever)
-    const incomeActive = incomeYearsLimit === 0 || year < incomeYearsLimit;
-    const incomeThisYear = incomeActive ? annualIncome * Math.pow(1 + inflation, year) : 0;
-    const yearExpense = annualExp * Math.pow(1 + inflation, year);
-    const netOutflow = yearExpense - incomeThisYear;
-    const yearWithdraw = Math.max(0, netOutflow);   // pulled from buckets
-    const yearInvest   = Math.max(0, -netOutflow);  // surplus → into B3
-
-    // Withdraw from B1 first
-    b1 -= yearWithdraw;
-    if (b1 < 0) {
-      // B1 depleted, draw from B2
-      const short1 = -b1;
-      b1 = 0;
-      b2 -= short1;
-      if (b2 < 0) {
-        // B2 also depleted, draw from B3
-        const short2 = -b2;
-        b2 = 0;
-        b3 -= short2;
-        if (b3 < 0) {
-          depleted = true;
-          b3 = 0;
-          yearsLasted = year + (yearWithdraw + b3) / yearWithdraw;
-          sim.push({ year: year + 1, withdraw: yearWithdraw, invest: 0, b1: 0, b2: 0, b3: 0, total: 0, depleted: true });
-          break;
-        }
-      }
-    }
-
-    // Surplus year: income exceeded expense, invest the extra into B3 (long-term equity)
-    b3 += yearInvest;
-
-    // Grow each bucket for the year
-    b1 *= (1 + b1Ret);
-    b2 *= (1 + b2Ret);
-    b3 *= (1 + b3Ret);
-
-    // Rebalance against the NET outflow expected next year (after income)
-    const incomeNextYear = (incomeYearsLimit === 0 || (year + 1) < incomeYearsLimit)
-      ? annualIncome * Math.pow(1 + inflation, year + 1) : 0;
-    const nextYearNet = Math.max(0, annualExp * Math.pow(1 + inflation, year + 1) - incomeNextYear);
-    const targetB1 = nextYearNet * b1Years;
-    if (b1 < targetB1) {
-      const need = targetB1 - b1;
-      const fromB2 = Math.min(need, b2);
-      b1 += fromB2;
-      b2 -= fromB2;
-    }
-    let targetB2 = 0;
-    for (let y = b1Years; y < b1Years + b2Years; y++) {
-      const futureYear = year + 1 + y;
-      const futureIncome = (incomeYearsLimit === 0 || futureYear < incomeYearsLimit)
-        ? annualIncome * Math.pow(1 + inflation, futureYear) : 0;
-      const futureNet = Math.max(0, annualExp * Math.pow(1 + inflation, futureYear) - futureIncome);
-      targetB2 += futureNet;
-    }
-    if (b2 < targetB2) {
-      const need = targetB2 - b2;
-      const fromB3 = Math.min(need, b3);
-      b2 += fromB3;
-      b3 -= fromB3;
-    }
-
-    yearsLasted = year + 1;
-    sim.push({
-      year: year + 1,
-      withdraw: yearWithdraw,
-      invest: yearInvest,
-      b1, b2, b3,
-      total: b1 + b2 + b3,
-      depleted: false,
-    });
-
-    if (b1 + b2 + b3 <= 1) {
-      depleted = true;
-      break;
-    }
-  }
-
-  return { initial, sim, yearsLasted, depleted, finalTotal: b1 + b2 + b3 };
-}
-
 function parseNumericInput(text) {
   let s = String(text).replace(/[₹\s,%]/g, '').trim().toLowerCase();
   if (!s) return 0;
@@ -524,164 +369,391 @@ function parseNumericInput(text) {
   const n = parseFloat(s);
   return isNaN(n) ? 0 : n * m;
 }
+const setLbl = (id, val) => { const el = $(id); if (el && document.activeElement !== el) el.value = val; };
+const C = { b1:'#FFC21F', b2:'#8A8275', b3:'#0249B1' };
 
-const setLbl = (id, val) => { const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val; };
+let mode = 'divide';
 
-function calc() {
-  const corpus       = +document.getElementById('in-corpus').value;
-  const monthlyEx    = +document.getElementById('in-exp').value;
-  const monthlyInc   = +document.getElementById('in-income').value;
-  const incomeLimit  = document.getElementById('in-income-limit').checked;
-  const incomeYrs    = incomeLimit ? Math.max(1, parseInt(document.getElementById('lbl-income-yrs').value) || 10) : 0;
-  const targetYrs    = +document.getElementById('in-years').value;
-  const b1y          = +document.getElementById('in-b1y').value;
-  const b2y          = +document.getElementById('in-b2y').value;
-  const b1r          = +document.getElementById('in-b1r').value / 100;
-  const b2r          = +document.getElementById('in-b2r').value / 100;
-  const b3r          = +document.getElementById('in-b3r').value / 100;
-  const inf          = +document.getElementById('in-inf').value / 100;
-
-  setLbl('lbl-corpus', fmtINR(corpus));
-  setLbl('lbl-exp',    monthlyEx.toLocaleString('en-IN'));
-  setLbl('lbl-income', monthlyInc.toLocaleString('en-IN'));
-  setLbl('lbl-years',  targetYrs);
-  setLbl('lbl-b1y',    b1y);
-  setLbl('lbl-b2y',    b2y);
-  setLbl('lbl-b1r',    (b1r * 100).toFixed(1));
-  setLbl('lbl-b2r',    (b2r * 100).toFixed(1));
-  setLbl('lbl-b3r',    (b3r * 100).toFixed(1));
-  setLbl('lbl-inf',    (inf  * 100).toFixed(1));
-
-  document.getElementById('lbl-b1y-out').textContent = b1y;
-  document.getElementById('lbl-b2y-out').textContent = b2y;
-
-  // Enable/disable the income-years input based on checkbox
-  document.getElementById('lbl-income-yrs').disabled = !incomeLimit;
-
-  // Simulate up to 2x target years so we can find the depletion year
-  const result = simulate(corpus, monthlyEx, monthlyInc, incomeYrs, b1y, b2y, b1r, b2r, b3r, inf, targetYrs * 2 + 5);
-  const { initial, sim, yearsLasted, depleted, finalTotal } = result;
-
-  // Allocation card
-  document.getElementById('out-b1').textContent = fmtINR(initial.b1);
-  document.getElementById('out-b2').textContent = fmtINR(initial.b2);
-  document.getElementById('out-b3').textContent = fmtINR(initial.b3);
-
-  const total = initial.b1 + initial.b2 + initial.b3;
-  const p1 = total > 0 ? (initial.b1 / total * 100) : 33;
-  const p2 = total > 0 ? (initial.b2 / total * 100) : 33;
-  const p3 = total > 0 ? (initial.b3 / total * 100) : 34;
-  document.getElementById('bar-b1').style.width = p1 + '%';
-  document.getElementById('bar-b2').style.width = p2 + '%';
-  document.getElementById('bar-b3').style.width = p3 + '%';
-  document.getElementById('pct-b1').textContent = Math.round(p1);
-  document.getElementById('pct-b2').textContent = Math.round(p2);
-  document.getElementById('pct-b3').textContent = Math.round(p3);
-
-  // Lifespan + status
-  const lifespanEl = document.getElementById('lifespan-card');
-  const yrsOut = document.getElementById('out-years');
-  const kickerOut = document.getElementById('out-kicker');
-  const statusOut = document.getElementById('out-status');
-  const baseKicker = 'text-xs uppercase tracking-[0.3em] font-bold';
-  if (depleted && yearsLasted < targetYrs) {
-    lifespanEl.className = 'bg-thatred text-warmpaper rounded-2xl p-7';
-    kickerOut.className = baseKicker + ' text-marigold';
-    yrsOut.className = 'text-marigold';
-    yrsOut.textContent = Math.round(yearsLasted);
-    statusOut.innerHTML = `<strong>Falls ${targetYrs - Math.round(yearsLasted)} years short, so let's close the gap.</strong> This isn't a no, it's a not-like-this. A bit more corpus, gently trimmed expenses, or steadier returns brings the plan back in reach.`;
-  } else if (!depleted && finalTotal > corpus * 0.5) {
-    lifespanEl.className = 'bg-thisblue text-warmpaper rounded-2xl p-7';
-    kickerOut.className = baseKicker + ' text-marigold';
-    yrsOut.className = 'text-marigold';
-    yrsOut.textContent = `${targetYrs}+`;
-    statusOut.innerHTML = `<strong>More than enough.</strong> Even after ${targetYrs} years, ₹${fmtINR(finalTotal)} remains. You've earned the option to retire earlier or spend a little more.`;
-  } else if (!depleted) {
-    lifespanEl.className = 'bg-ink text-warmpaper rounded-2xl p-7';
-    kickerOut.className = baseKicker + ' text-marigold';
-    yrsOut.className = 'text-marigold';
-    yrsOut.textContent = `${targetYrs}+`;
-    statusOut.innerHTML = `<strong>You're set.</strong> Ends with ₹${fmtINR(finalTotal)} remaining at year ${targetYrs}. That's the plan holding.`;
-  } else {
-    lifespanEl.className = 'bg-marigold text-ink rounded-2xl p-7';
-    kickerOut.className = baseKicker + ' text-thisblue';
-    yrsOut.className = 'text-ink';
-    yrsOut.textContent = Math.round(yearsLasted);
-    statusOut.innerHTML = `<strong>Just enough, with little to spare.</strong> It covers the ${targetYrs} years you planned for. Worth leaving yourself a small cushion for surprises.`;
-  }
-
-  // Simulation table, show first 30 rows max
-  const rows = sim.slice(0, Math.min(sim.length, 40));
-  document.getElementById('sim-table').innerHTML = rows.map(r => `
-    <tr class="border-b border-navy/5 ${r.depleted ? 'bg-thatred/5' : ''}">
-      <td class="py-1.5 pr-3 font-semibold">${r.year}</td>
-      <td class="py-1.5 pr-3 ${r.invest > 0 ? 'text-gain' : 'text-thatred'}">${r.invest > 0 ? '+₹' + fmtINR(r.invest) : '−₹' + fmtINR(r.withdraw)}</td>
-      <td class="py-1.5 pr-3 text-thisblue">₹${fmtINR(r.b1)}</td>
-      <td class="py-1.5 pr-3 text-marigold-600">₹${fmtINR(r.b2)}</td>
-      <td class="py-1.5 pr-3 text-thatred">₹${fmtINR(r.b3)}</td>
-      <td class="py-1.5 font-semibold">₹${fmtINR(r.total)}</td>
-    </tr>
-  `).join('');
-
-  // Reality message
-  const realityEl = document.getElementById('reality');
-  const incomePct = monthlyEx > 0 ? Math.round((monthlyInc / monthlyEx) * 100) : 0;
-  if (monthlyInc >= monthlyEx && monthlyInc > 0 && (incomeYrs === 0 || incomeYrs >= targetYrs)) {
-    realityEl.textContent = `Your income (₹${monthlyInc.toLocaleString('en-IN')}/mo) fully covers your expenses, and the surplus flows back into Bucket 3, so your corpus actually grows in retirement. This is what financial independence feels like in real life. Enjoy it.`;
-  } else if (incomePct >= 30 && monthlyInc > 0) {
-    const incomeNote = incomeYrs > 0 ? ` for the first ${incomeYrs} years` : '';
-    realityEl.textContent = `Your hobby or part-time income covers ${incomePct}% of your monthly expenses${incomeNote}. That's the quiet hero of a good retirement: it meaningfully shrinks the corpus you need, and takes pressure off everything else.`;
-  } else if (depleted && yearsLasted < targetYrs) {
-    realityEl.textContent = `Even with three buckets, the corpus runs low around year ${Math.round(yearsLasted)}. The buckets are doing their job, this is really about the size of the corpus. A little more corpus or slightly leaner expenses closes the gap.`;
-  } else if (initial.b3 / total > 0.6) {
-    realityEl.textContent = `${Math.round(p3)}% of your corpus sits in equity (Bucket 3), and that's exactly where your long-term growth comes from. It works because B1 and B2 give you ${b1y + b2y} years to ride out any crash without ever having to sell.`;
-  } else if (initial.b3 / total < 0.2) {
-    realityEl.textContent = `Only ${Math.round(p3)}% in equity is on the cautious side. Your corpus will comfortably last, though it won't grow much. If it fits your comfort, a little more in equity could let it stretch further.`;
-  } else {
-    realityEl.textContent = `A nicely balanced split: ${Math.round(p1)}% cash for safety, ${Math.round(p2)}% debt as a buffer, ${Math.round(p3)}% equity for growth. This is close to what seasoned retirement planners tend to recommend. You're in good shape.`;
-  }
+function readParams() {
+  return {
+    retireAge: +$('in-retire').value,
+    planTill: Math.max(+$('in-plan').value, +$('in-retire').value + 1),
+    corpus: +$('in-corpus').value,
+    monthlyExp: +$('in-exp').value,
+    inflation: +$('in-inf').value,
+    b1y: +$('in-b1y').value,
+    b1r: +$('in-b1r').value,
+    b2y: +$('in-b2y').value,
+    b2r: +$('in-b2r').value,
+    b3r: +$('in-b3r').value,
+    incomeMode: mode === 'bridge',
+    monthlyIncome: +$('in-inc').value,
+    earnTill: +$('in-earn').value,
+    incomeGrowth: +$('in-incg').value
+  };
 }
 
-// Wire up sliders
-document.querySelectorAll('input[type="range"]').forEach(el => el.addEventListener('input', calc));
+// ── the engine ─────────────────────────────────────────────
+function simulate(p) {
+  const years = p.planTill - p.retireAge + 1;
+  const inf = p.inflation / 100, ig = p.incomeGrowth / 100;
+  const horizon = years + p.b1y + p.b2y + 2;   // tail so lookahead targets always exist
 
-// Income inputs (no slider for the years-limit, just the text field + checkbox)
-document.getElementById('in-income-limit').addEventListener('change', calc);
-document.getElementById('lbl-income-yrs').addEventListener('input', calc);
-document.getElementById('lbl-income-yrs').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); } });
+  const gross = [], inc = [], net = [], sur = [];
+  for (let i = 0; i < horizon; i++) {
+    const age = p.retireAge + i;
+    const g = p.monthlyExp * 12 * Math.pow(1 + inf, i);
+    const inAmt = (p.incomeMode && age < p.earnTill) ? p.monthlyIncome * 12 * Math.pow(1 + ig, i) : 0;
+    gross.push(g); inc.push(inAmt);
+    net.push(Math.max(0, g - inAmt));
+    sur.push(Math.max(0, inAmt - g));
+  }
+  // lookahead targets computed on NET expenses, so both modes use one engine
+  const targetsAt = (i) => {
+    let t1 = 0, t2 = 0;
+    for (let k = i; k < i + p.b1y; k++) t1 += net[k] || 0;
+    for (let k = i + p.b1y; k < i + p.b1y + p.b2y; k++) t2 += net[k] || 0;
+    return [t1, t2];
+  };
 
-// Wire up text inputs (income reuses the same pattern via its slider)
-[['lbl-corpus','in-corpus'],['lbl-exp','in-exp'],['lbl-income','in-income'],['lbl-years','in-years'],['lbl-b1y','in-b1y'],['lbl-b2y','in-b2y'],['lbl-b1r','in-b1r'],['lbl-b2r','in-b2r'],['lbl-b3r','in-b3r'],['lbl-inf','in-inf']].forEach(([textId, sliderId]) => {
-  const text = document.getElementById(textId);
-  const slider = document.getElementById(sliderId);
-  if (!text || !slider) return;
-  const min = +slider.min, max = +slider.max;
-  text.addEventListener('input', () => {
-    const v = Math.max(min, Math.min(max, parseNumericInput(text.value)));
-    slider.value = v;
-    calc();
+  const [t1, t2] = targetsAt(0);
+  let b1 = Math.min(p.corpus, t1);
+  let b2 = Math.min(p.corpus - b1, t2);
+  let b3 = Math.max(0, p.corpus - b1 - b2);
+  const dayOne = { b1, b2, b3, t1, t2, funded: b1 >= t1 - 1 && b2 >= t2 - 1 };
+
+  const rows = [];
+  let depletedAt = null, firstGrowthSale = null, totalWithdrawn = 0, totalIncome = 0;
+  let moved32 = 0, moved21 = 0;
+
+  for (let i = 0; i < years; i++) {
+    const age = p.retireAge + i;
+    const need = net[i];
+    totalIncome += inc[i];
+
+    let rest = need;
+    const f1 = Math.min(b1, rest); b1 -= f1; rest -= f1;
+    const f2 = Math.min(b2, rest); b2 -= f2; rest -= f2;
+    const f3 = Math.min(b3, rest); b3 -= f3; rest -= f3;
+    if (f3 > 0.5 && firstGrowthSale === null) firstGrowthSale = age;
+    totalWithdrawn += (need - rest);
+
+    if (rest > 1) {
+      depletedAt = age;
+      rows.push({ age, gross: gross[i], income: inc[i], net: need, b1: 0, b2: 0, b3: 0, depleted: true });
+      break;
+    }
+
+    b3 += sur[i];                                        // surplus income compounds in growth
+    b1 *= (1 + p.b1r / 100); b2 *= (1 + p.b2r / 100); b3 *= (1 + p.b3r / 100);
+
+    // cascade refill toward next year: growth tops up stability, stability tops up liquidity
+    const [n1, n2] = targetsAt(i + 1);
+    let in2 = 0, in1 = 0;
+    if (b2 < n2) { const mv = Math.min(b3, n2 - b2); b2 += mv; b3 -= mv; in2 += mv; }
+    if (b1 < n1) {
+      let gap = n1 - b1;
+      const m2 = Math.min(b2, gap); b1 += m2; b2 -= m2; gap -= m2; in1 += m2;
+      if (gap > 0) { const m3 = Math.min(b3, gap); b1 += m3; b3 -= m3; in1 += m3; }
+    }
+    moved32 += in2; moved21 += in1;
+    rows.push({ age, gross: gross[i], income: inc[i], net: need, b1, b2, b3, in2, in1 });
+  }
+
+  return { rows, dayOne, depletedAt, firstGrowthSale, totalWithdrawn, totalIncome, moved32, moved21,
+           endBal: depletedAt ? 0 : b1 + b2 + b3 };
+}
+
+function corpusNeeded(p) {
+  let hi = Math.max(p.corpus * 2, p.monthlyExp * 12 * 40), tries = 0;
+  while (simulate({ ...p, corpus: hi }).depletedAt && tries++ < 10) hi *= 2;
+  if (simulate({ ...p, corpus: hi }).depletedAt) return null;
+  let lo = 0;
+  for (let k = 0; k < 60; k++) {
+    const mid = (lo + hi) / 2;
+    if (simulate({ ...p, corpus: mid }).depletedAt) lo = mid; else hi = mid;
+  }
+  return hi;
+}
+function incomeNeeded(p) {
+  let hi = Math.max(p.monthlyExp * 2, 20000), tries = 0;
+  while (simulate({ ...p, monthlyIncome: hi }).depletedAt && tries++ < 10) hi *= 2;
+  if (simulate({ ...p, monthlyIncome: hi }).depletedAt) return null;
+  let lo = 0;
+  for (let k = 0; k < 50; k++) {
+    const mid = (lo + hi) / 2;
+    if (simulate({ ...p, monthlyIncome: mid }).depletedAt) lo = mid; else hi = mid;
+  }
+  return hi;
+}
+
+// ── rendering ──────────────────────────────────────────────
+function renderVerdict(p, s) {
+  const box = $('verdict');
+  if (!s.depletedAt) {
+    box.className = 'rounded-2xl border-2 border-gain bg-gain/5 p-6';
+    box.innerHTML = `
+      <div class="text-[10px] uppercase tracking-[0.3em] text-gain font-bold">The plan holds</div>
+      <div class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1 leading-snug">The money lasts till ${p.planTill}, with <span class="tab-num">&#8377;${fmtINR(s.endBal)}</span> still there.</div>
+      <p class="text-sm text-ink/75 mt-2 leading-relaxed">That leftover is not waste. It is the buffer for the year nobody plans for: a health event, a helping hand, a longer life than the table assumed.</p>`;
+    return;
+  }
+  const lasted = s.depletedAt - p.retireAge;
+  const need = corpusNeeded(p);
+  const short = need === null ? null : Math.max(0, need - p.corpus);
+  const incFix = p.incomeMode ? incomeNeeded(p) : null;
+  box.className = 'rounded-2xl border-2 border-thatred bg-thatred/5 p-6';
+  box.innerHTML = `
+    <div class="text-[10px] uppercase tracking-[0.3em] text-thatred font-bold">The plan runs short</div>
+    <div class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1 leading-snug">The money runs out at ${s.depletedAt}, ${lasted} years in.</div>
+    <p class="text-sm text-ink/75 mt-2 leading-relaxed">This is not a no, it is a not like this. Here is exactly what closes the gap:</p>
+    <div class="mt-4 grid grid-cols-1 ${p.incomeMode && incFix !== null ? 'sm:grid-cols-2' : ''} gap-3">
+      ${need === null ? '' : `<div class="bg-white rounded-xl border border-navy/10 p-4">
+        <div class="text-[10px] uppercase tracking-widest text-ink/50 font-bold">Corpus that would do it</div>
+        <div class="font-display text-2xl font-extrabold text-ink tab-num mt-1">&#8377;${fmtINR(need)}</div>
+        <div class="text-[12px] text-ink/60 mt-1">You are <strong class="text-thatred tab-num">&#8377;${fmtINR(short)}</strong> short of that.</div>
+      </div>`}
+      ${p.incomeMode && incFix !== null ? `<div class="bg-white rounded-xl border border-navy/10 p-4">
+        <div class="text-[10px] uppercase tracking-widest text-ink/50 font-bold">Or income till ${p.earnTill}, of</div>
+        <div class="font-display text-2xl font-extrabold text-ink tab-num mt-1">&#8377;${fmtINR(incFix)}/mo</div>
+        <div class="text-[12px] text-ink/60 mt-1">Instead of the &#8377;${fmtINR(p.monthlyIncome)} you have now.</div>
+      </div>` : ''}
+    </div>`;
+}
+
+function renderStats(p, s) {
+  const annualExp = p.monthlyExp * 12;
+  const multiple = annualExp > 0 ? p.corpus / annualExp : 0;
+  const d = s.dayOne, tot = d.b1 + d.b2 + d.b3 || 1;
+  const blended = (d.b1 * p.b1r + d.b2 * p.b2r + d.b3 * p.b3r) / tot;
+  const items = [
+    { k: 'Corpus is', v: multiple.toFixed(1).replace(/\.0$/, '') + 'x', s: 'your yearly spend' },
+    { k: 'Day one blend', v: blended.toFixed(1).replace(/\.0$/, '') + '%', s: 'across the buckets' },
+    { k: 'Lifetime draw', v: '₹' + fmtINR(s.totalWithdrawn), s: 'taken from the corpus' },
+    p.incomeMode
+      ? { k: 'Income earned', v: '₹' + fmtINR(s.totalIncome), s: 'over the bridge years' }
+      : { k: 'Year one draw', v: (annualExp / (p.corpus || 1) * 100).toFixed(1).replace(/\.0$/, '') + '%', s: 'of the corpus' }
+  ];
+  $('stats').innerHTML = items.map(i => `
+    <div class="bg-white rounded-xl border border-navy/10 p-4">
+      <div class="text-[10px] uppercase tracking-widest text-ink/50 font-bold">${i.k}</div>
+      <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">${i.v}</div>
+      <div class="text-[11px] text-ink/55 mt-0.5">${i.s}</div>
+    </div>`).join('');
+}
+
+function renderVessels(p, s) {
+  const d = s.dayOne, tot = d.b1 + d.b2 + d.b3 || 1;
+  const defs = [
+    { n:'1', name:'Liquidity', col:C.b1, label:'#D99B00', amt:d.b1, role:`The next ${p.b1y} year${p.b1y > 1 ? 's' : ''} of bills`, how:'Savings, liquid funds, ultra short debt, FDs, SCSS' },
+    { n:'2', name:'Stability', col:C.b2, label:'#57534A', amt:d.b2, role:`Years ${p.b1y + 1} to ${p.b1y + p.b2y}, waiting their turn`, how:'Quality debt funds, conservative hybrid' },
+    { n:'3', name:'Growth', col:C.b3, label:'#0249B1', amt:d.b3, role:'Everything else, fighting inflation', how:'Index funds, flexicap, a 10 year plus horizon' }
+  ];
+  $('vessels').innerHTML = defs.map(b => `
+    <div class="rounded-xl border border-navy/10 overflow-hidden">
+      <div class="h-1.5" style="background:${b.col}"></div>
+      <div class="p-4">
+        <div class="text-[10px] uppercase tracking-widest font-bold" style="color:${b.label}">Bucket ${b.n} &middot; ${b.name}</div>
+        <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">&#8377;${fmtINR(b.amt)}</div>
+        <div class="font-mono text-[11px] text-ink/50">${Math.round(b.amt / tot * 100)}% of the corpus</div>
+        <div class="text-[12px] text-ink/70 mt-2 leading-snug">${b.role}</div>
+        <div class="text-[11px] text-ink/45 mt-1.5 leading-snug">${b.how}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderChart(p, s) {
+  const svg = $('chart'), W = 780, H = 300, L = 56, R = 12, T = 16, B = 30;
+  const rows = s.rows;
+  if (!rows.length) { svg.innerHTML = ''; return; }
+  const maxTot = Math.max(...rows.map(r => r.b1 + r.b2 + r.b3), s.dayOne.b1 + s.dayOne.b2 + s.dayOne.b3, 1);
+  const x = i => L + (rows.length === 1 ? 0 : i * (W - L - R) / (rows.length - 1));
+  const y = v => H - B - (v / maxTot) * (H - T - B);
+
+  const band = (lowFn, highFn, col) => {
+    let up = '', down = '';
+    rows.forEach((r, i) => { up += `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(highFn(r)).toFixed(1)}`; });
+    for (let i = rows.length - 1; i >= 0; i--) down += `L${x(i).toFixed(1)},${y(lowFn(rows[i])).toFixed(1)}`;
+    return `<path d="${up}${down}Z" fill="${col}" opacity="0.92" />`;
+  };
+
+  let grid = '';
+  for (let g = 0; g <= 4; g++) {
+    const v = maxTot * g / 4, yy = y(v);
+    grid += `<line x1="${L}" y1="${yy.toFixed(1)}" x2="${W - R}" y2="${yy.toFixed(1)}" stroke="#E1DDD1" stroke-width="1" />
+             <text x="${L - 8}" y="${(yy + 3.5).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="#8A8275">${g === 0 ? '0' : fmtINR(v)}</text>`;
+  }
+  let xl = '';
+  rows.forEach((r, i) => {
+    if (i === 0 || i === rows.length - 1 || r.age % 5 === 0) {
+      xl += `<text x="${x(i).toFixed(1)}" y="${H - 10}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#8A8275">${r.age}</text>`;
+    }
   });
-  text.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
+  let mk = '';
+  if (p.incomeMode && p.monthlyIncome > 0) {
+    const idx = rows.findIndex(r => r.age >= p.earnTill);
+    if (idx > 0) mk += `<line x1="${x(idx).toFixed(1)}" y1="${T}" x2="${x(idx).toFixed(1)}" y2="${H - B}" stroke="#1A1813" stroke-width="1.5" stroke-dasharray="4 4" />
+      <text x="${x(idx).toFixed(1)}" y="${T + 10}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1A1813">income stops</text>`;
+  }
+  if (s.depletedAt) {
+    const idx = rows.findIndex(r => r.age === s.depletedAt);
+    if (idx >= 0) mk += `<line x1="${x(idx).toFixed(1)}" y1="${T}" x2="${x(idx).toFixed(1)}" y2="${H - B}" stroke="#FF302D" stroke-width="2" />
+      <text x="${x(idx).toFixed(1)}" y="${T + 10}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#FF302D">runs out</text>`;
+  }
+  const step = (W - L - R) / Math.max(rows.length - 1, 1);
+  const hits = rows.map((r, i) =>
+    `<rect class="chart-hit" data-i="${i}" x="${(x(i) - step / 2).toFixed(1)}" y="${T}" width="${step.toFixed(1)}" height="${H - T - B}" />`).join('');
+
+  svg.innerHTML = `${grid}
+    ${band(() => 0, r => r.b1, C.b1)}
+    ${band(r => r.b1, r => r.b1 + r.b2, C.b2)}
+    ${band(r => r.b1 + r.b2, r => r.b1 + r.b2 + r.b3, C.b3)}
+    <line x1="${L}" y1="${H - B}" x2="${W - R}" y2="${H - B}" stroke="#1A1813" stroke-width="1.5" />
+    ${xl}${mk}${hits}`;
+
+  const tip = $('tip');
+  svg.querySelectorAll('.chart-hit').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      const r = rows[+el.dataset.i];
+      tip.innerHTML = `<strong>Age ${r.age}</strong><br>
+        Spend &#8377;${fmtINR(r.gross)}${r.income ? `<br>Income &#8377;${fmtINR(r.income)}` : ''}<br>
+        Drawn &#8377;${fmtINR(r.net)}<br>
+        <span style="color:${C.b1}">&#9632;</span> &#8377;${fmtINR(r.b1)}
+        <span style="color:#CFC9BA">&#9632;</span> &#8377;${fmtINR(r.b2)}
+        <span style="color:#7FA8E8">&#9632;</span> &#8377;${fmtINR(r.b3)}`;
+      tip.classList.remove('hidden');
+      const box = svg.getBoundingClientRect(), pos = el.getBoundingClientRect();
+      tip.style.left = Math.min(box.width - 160, Math.max(0, pos.left - box.left)) + 'px';
+      tip.style.top = '8px';
+    });
+    el.addEventListener('mouseleave', () => tip.classList.add('hidden'));
+  });
+}
+
+function renderInsights(p, s) {
+  const years = p.planTill - p.retireAge;
+  const endMonthly = p.monthlyExp * Math.pow(1 + p.inflation / 100, years);
+  const runway = p.b1y + p.b2y;
+  const out = [];
+
+  out.push(`<p><strong class="text-warmpaper">Inflation is the opponent.</strong> Today's &#8377;${fmtINR(p.monthlyExp)} a month becomes <strong class="text-marigold tab-num">&#8377;${fmtINR(endMonthly)}</strong> a month by ${p.planTill} at ${p.inflation}%. That number is the entire reason bucket 3 exists.</p>`);
+
+  if (s.dayOne.funded) {
+    out.push(`<p><strong class="text-warmpaper">The money moves down, never up.</strong> Across the plan, <strong class="text-marigold tab-num">&#8377;${fmtINR(s.moved32)}</strong> shifts from growth into stability, and <strong class="text-marigold tab-num">&#8377;${fmtINR(s.moved21)}</strong> from stability into liquidity. You never spend equity directly. You top up the safe buckets from it, on a schedule, and spend from those.</p>`);
+    out.push(`<p><strong class="text-warmpaper">Your runway is ${runway} years.</strong> Buckets 1 and 2 together hold ${runway} years of spending, so a bad market has ${runway} years to recover before it can reach the money you actually live on. That is the real edge of this system, and it is behavioural, not mathematical: it is what lets you leave equity alone in a crash instead of selling it.</p>`);
+  } else {
+    const filled = s.dayOne.b3 > 1 ? 'buckets 1 and 2' : (s.dayOne.b2 > 1 ? 'bucket 1, and part of bucket 2' : 'part of bucket 1');
+    out.push(`<p><strong class="text-warmpaper">There is nothing left for growth.</strong> The next ${runway} years of spending alone need <strong class="text-marigold tab-num">&#8377;${fmtINR(s.dayOne.t1 + s.dayOne.t2)}</strong>, and this corpus fills only ${filled}. Every rupee is already spoken for by the near term, so nothing is left to fight inflation for the years after that. That, and not the market, is why the plan runs short.</p>`);
+    out.push(`<p><strong class="text-warmpaper">Buckets cannot fix a funding gap.</strong> Splitting money by when you will spend it protects you from bad timing, it does not create money that is not there. At this corpus the honest levers are the ones above: a bigger corpus, a later retirement, lower expenses, or income that runs longer.</p>`);
+  }
+
+  if (p.incomeMode && p.monthlyIncome > 0) {
+    const alt = simulate({ ...p, monthlyIncome: 0, incomeMode: false });
+    if (alt.depletedAt && !s.depletedAt) {
+      out.push(`<p><strong class="text-warmpaper">The bridge income is doing the heavy lifting.</strong> Without it, the same corpus runs out at <strong class="text-marigold">${alt.depletedAt}</strong>. Earning &#8377;${fmtINR(p.monthlyIncome)} a month till ${p.earnTill} is what turns that into a plan that lasts.</p>`);
+    } else if (alt.depletedAt && s.depletedAt) {
+      out.push(`<p><strong class="text-warmpaper">The income helps, just not enough yet.</strong> Without it the money runs out at ${alt.depletedAt}; with it, ${s.depletedAt}. You have bought ${s.depletedAt - alt.depletedAt} years and need a few more.</p>`);
+    } else {
+      out.push(`<p><strong class="text-warmpaper">Worth knowing:</strong> this corpus reaches ${p.planTill} even with no post retirement income at all. The bridge income is a cushion here, not a crutch.</p>`);
+    }
+  }
+
+  $('insights').innerHTML = out.join('');
+}
+
+function renderLedger(p, s) {
+  const head = `<thead><tr class="text-left text-[10px] uppercase tracking-widest text-ink/50 border-b border-navy/10">
+    <th class="py-2 pr-3">Age</th><th class="py-2 pr-3 text-right">Spend</th>
+    ${p.incomeMode ? '<th class="py-2 pr-3 text-right">Income</th>' : ''}
+    <th class="py-2 pr-3 text-right">Drawn</th>
+    <th class="py-2 pr-3 text-right">Liquidity</th><th class="py-2 pr-3 text-right">Stability</th><th class="py-2 pr-3 text-right">Growth</th>
+    <th class="py-2 pr-3 text-right" style="color:#0249B1">Growth to stability</th>
+    <th class="py-2 text-right" style="color:#8A8275">Stability to liquidity</th>
+  </tr></thead>`;
+  const body = s.rows.map(r => `<tr class="border-b border-navy/5 ${r.depleted ? 'text-thatred font-semibold' : 'text-ink/80'}">
+    <td class="py-1.5 pr-3">${r.age}</td>
+    <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.gross)}</td>
+    ${p.incomeMode ? `<td class="py-1.5 pr-3 text-right text-gain">${r.income ? '&#8377;' + fmtINR(r.income) : '-'}</td>` : ''}
+    <td class="py-1.5 pr-3 text-right">${r.net ? '&#8377;' + fmtINR(r.net) : '-'}</td>
+    <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.b1)}</td>
+    <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.b2)}</td>
+    <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.b3)}</td>
+    <td class="py-1.5 pr-3 text-right text-ink/55">${r.in2 > 1 ? '&#8377;' + fmtINR(r.in2) : '-'}</td>
+    <td class="py-1.5 text-right text-ink/55">${r.in1 > 1 ? '&#8377;' + fmtINR(r.in1) : '-'}</td>
+  </tr>`).join('');
+  $('ledger').innerHTML = head + '<tbody>' + body + '</tbody>';
+}
+
+function calc() {
+  const retire = +$('in-retire').value;
+  if (+$('in-plan').value <= retire) $('in-plan').value = retire + 1;
+  $('in-earn').min = retire + 1;
+  if (+$('in-earn').value <= retire) $('in-earn').value = retire + 1;
+
+  const p = readParams();
+
+  setLbl('lbl-retire', p.retireAge);
+  setLbl('lbl-plan', p.planTill);
+  setLbl('lbl-corpus', fmtINR(p.corpus));
+  setLbl('lbl-exp', p.monthlyExp.toLocaleString('en-IN'));
+  setLbl('lbl-inf', p.inflation.toFixed(1));
+  setLbl('lbl-b1y', p.b1y);
+  setLbl('lbl-b1r', p.b1r.toFixed(1));
+  setLbl('lbl-b2y', p.b2y);
+  setLbl('lbl-b2r', p.b2r.toFixed(1));
+  setLbl('lbl-b3r', p.b3r.toFixed(1));
+  setLbl('lbl-inc', p.monthlyIncome.toLocaleString('en-IN'));
+  setLbl('lbl-earn', p.earnTill);
+  setLbl('lbl-incg', p.incomeGrowth.toFixed(1));
+
+  $('plan-note').textContent = `A ${p.planTill - p.retireAge} year retirement. Plan long: outliving the money is the real risk.`;
+
+  document.querySelectorAll('#mode-buttons .mbtn').forEach(b => {
+    const on = b.dataset.m === mode;
+    b.className = 'mbtn text-sm font-bold py-3 px-4 rounded-xl border text-left ' +
+      (on ? 'bg-thisblue text-warmpaper border-thisblue' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+  });
+  $('income-panel').classList.toggle('hidden', mode !== 'bridge');
+
+  const s = simulate(p);
+  renderVerdict(p, s);
+  renderStats(p, s);
+  renderVessels(p, s);
+  renderChart(p, s);
+  renderInsights(p, s);
+  renderLedger(p, s);
+}
+
+['in-retire','in-plan','in-corpus','in-exp','in-inf','in-b1y','in-b1r','in-b2y','in-b2r','in-b3r','in-inc','in-earn','in-incg']
+  .forEach(id => $(id).addEventListener('input', calc));
+[['lbl-retire','in-retire'],['lbl-plan','in-plan'],['lbl-corpus','in-corpus'],['lbl-exp','in-exp'],['lbl-inf','in-inf'],
+ ['lbl-b1y','in-b1y'],['lbl-b1r','in-b1r'],['lbl-b2y','in-b2y'],['lbl-b2r','in-b2r'],['lbl-b3r','in-b3r'],
+ ['lbl-inc','in-inc'],['lbl-earn','in-earn'],['lbl-incg','in-incg']].forEach(([t, sl]) => {
+  const text = $(t), slider = $(sl);
+  text.addEventListener('input', () => { slider.value = clamp(parseNumericInput(text.value), +slider.min, +slider.max); calc(); });
+  text.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); text.blur(); } });
   text.addEventListener('focus', () => text.select());
   text.addEventListener('blur', calc);
 });
-
+$('mode-buttons').addEventListener('click', e => {
+  const b = e.target.closest('button[data-m]');
+  if (!b) return;
+  mode = b.dataset.m;
+  calc();
+});
 calc();
 
-// Mobile menu toggle
-(function() {
-  var btn = document.getElementById('mobile-menu-toggle');
-  var menu = document.getElementById('mobile-menu');
-  var iconOpen = document.getElementById('icon-open');
-  var iconClose = document.getElementById('icon-close');
+(function () {
+  var btn = $('mobile-menu-toggle'), menu = $('mobile-menu'),
+      iconOpen = $('icon-open'), iconClose = $('icon-close');
   if (!btn || !menu) return;
-  btn.addEventListener('click', function() {
+  btn.addEventListener('click', function () {
     menu.classList.toggle('hidden');
     iconOpen.classList.toggle('hidden');
     iconClose.classList.toggle('hidden');
   });
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
       menu.classList.add('hidden');
       iconOpen.classList.remove('hidden');
       iconClose.classList.add('hidden');
@@ -689,6 +761,5 @@ calc();
   });
 })();
 </script>
-
 </body>
 </html>
