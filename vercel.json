@@ -188,8 +188,13 @@
     },
     {
       "source": "/mf-categories",
-      "destination": "/mf-categories.html",
-      "permanent": false
+      "destination": "/understanding-mutual-funds.html",
+      "permanent": true
+    },
+    {
+      "source": "/mf-categories.html",
+      "destination": "/understanding-mutual-funds.html",
+      "permanent": true
     },
     {
       "source": "/money-person",
@@ -204,6 +209,11 @@
     {
       "source": "/terms",
       "destination": "/terms.html",
+      "permanent": false
+    },
+    {
+      "source": "/understanding-mutual-funds",
+      "destination": "/understanding-mutual-funds.html",
       "permanent": false
     },
     {

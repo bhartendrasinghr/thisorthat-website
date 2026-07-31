@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Understanding your mutual funds · ThisOrThat</title>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="Understanding your mutual funds · ThisOrThat" />
+<meta property="og:description" content="Every SEBI mutual fund category explained with its benchmark and its volatility, plus a plain language guide to what those benchmarks actually are: TRI, the size bands, the debt risk codes and Macaulay duration. See growth and worst-case fall together for 35 categories." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/understanding-mutual-funds.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Understanding your mutual funds · ThisOrThat" />
+<meta name="twitter:description" content="Every SEBI mutual fund category explained with its benchmark and its volatility, plus a plain language guide to what those benchmarks actually are: TRI, the size bands, the debt risk codes and Macaulay duration. See growth and worst-case fall together for 35 categories." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<meta name="description" content="Every SEBI mutual fund category explained with its benchmark and its volatility, plus a plain language guide to what those benchmarks actually are: TRI, the size bands, the debt risk codes and Macaulay duration. See growth and worst-case fall together for 35 categories." />
+<link rel="canonical" href="https://thisorthatshow.in/understanding-mutual-funds.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1', 4:'#8A8275' },
+    gain:'#1F8A5B', loss:'#E0211E',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
+    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace'],
+    script:['Caveat','cursive']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings:'tnum'; }
+  .fam-chip { padding:7px 14px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; transition:all 150ms; white-space:nowrap; border:1.5px solid transparent; }
+  .cat-card { transition: box-shadow 200ms ease, transform 200ms ease; scroll-margin-top:150px; }
+  .cat-card:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(2,73,177,0.07); }
+  mark { background:#FFF7DE; color:inherit; padding:0 1px; border-radius:2px; }
+  .jump { scroll-margin-top:132px; }
+  .dot { cursor:pointer; transition:opacity 120ms ease; }
+  .dot:hover { opacity:1 !important; }
+  details > summary { list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker { display:none; }
+  details[open] .chev { transform:rotate(180deg); }
+  .chev { transition:transform 180ms ease; }
+  @media (prefers-reduced-motion: reduce) { *{ transition:none !important; } .cat-card:hover{ transform:none; } }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80">
+      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
+      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
+      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
+      <a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a>
+      <a href="about.html" class="hover:text-navy-ink">About</a>
+    </nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
+    <a href="index.html" class="py-3 border-b border-navy/5">Home</a>
+    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
+    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
+    <a href="about.html" class="py-3">About</a>
+    <a href="money-person.html" class="mt-3 bg-marigold text-ink text-center py-3 rounded-full font-bold">Talk to a human &rarr;</a>
+  </nav>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-4 text-xs text-navy/60">
+  <a href="index.html" class="hover:text-navy">Home</a> /
+  <a href="calculators.html" class="hover:text-navy">Plan</a> /
+  <span class="text-navy-ink">Understanding your mutual funds</span>
+</div>
+
+<!-- HERO -->
+<section class="bg-marigold">
+  <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The whole fund universe, in plain language</div>
+    <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold text-thisblue mt-3 leading-[1.05] max-w-4xl">Understanding your mutual funds.</h1>
+    <p class="mt-5 text-ink font-semibold text-base md:text-lg max-w-2xl leading-relaxed">
+      Every category, the yardstick it is judged against, and how hard it can fall. Plus the part nobody
+      explains: what those benchmarks actually are, and how to read the code in their names.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <a href="#together" class="bg-thisblue text-warmpaper text-sm font-bold px-5 py-2.5 rounded-full hover:bg-thisblue-700 transition">Growth and fall, together</a>
+      <a href="#benchmarks" class="bg-white/70 text-ink text-sm font-bold px-5 py-2.5 rounded-full hover:bg-white transition">Decode a benchmark</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION NAV -->
+<div class="sticky top-[73px] z-40 bg-warmpaper/95 backdrop-blur border-b border-navy/10">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex gap-5 overflow-x-auto text-[13px] font-semibold text-ink/60 whitespace-nowrap">
+    <a href="#three" class="hover:text-thisblue">Three questions</a>
+    <a href="#together" class="hover:text-thisblue">The two numbers</a>
+    <a href="#benchmarks" class="hover:text-thisblue">What a benchmark is</a>
+    <a href="#decoder" class="hover:text-thisblue">Benchmark decoder</a>
+    <a href="#routes" class="hover:text-thisblue">Ways to own equity</a>
+    <a href="#adjacent" class="hover:text-thisblue">Not mutual funds</a>
+    <a href="#volatility" class="hover:text-thisblue">Volatility</a>
+    <a href="#categories" class="hover:text-thisblue">All categories</a>
+  </div>
+</div>
+
+<!-- 1. THREE QUESTIONS -->
+<section id="three" class="jump max-w-6xl mx-auto px-6 pt-12">
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Read any fund in three questions.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    A fund name tells you almost nothing. A fund's <em>box</em> tells you nearly everything: what it is allowed to
+    buy, what it is measured against, and how badly it has hurt people before. Everything on this page hangs off
+    these three.
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="font-mono text-[11px] text-marigold-600 font-bold">01</div>
+      <h3 class="font-display text-lg font-extrabold text-ink mt-1">What box is it in?</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-snug">The category sets hard rules the fund manager cannot break: how much equity, which sizes of company, how long the bonds can be. Rules, not promises.</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="font-mono text-[11px] text-marigold-600 font-bold">02</div>
+      <h3 class="font-display text-lg font-extrabold text-ink mt-1">What is it measured against?</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-snug">Every scheme must declare a benchmark. Beating it is the whole job. If a fund brags about returns without naming its benchmark, that is the tell.</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <div class="font-mono text-[11px] text-marigold-600 font-bold">03</div>
+      <h3 class="font-display text-lg font-extrabold text-ink mt-1">How hard can it fall?</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-snug">The number that decides whether you stay invested long enough to get the returns. Growth is the reward. The fall is the price of entry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. THE TWO NUMBERS TOGETHER -->
+<section id="together" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <div class="text-[10px] uppercase tracking-[0.3em] text-marigold-600 font-bold">The two numbers nobody shows you together</div>
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-2">What it grows <span class="font-script text-3xl text-ink/60">or</span> what it costs you to hold.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    Every fund advert shows you growth. Almost none show you the fall next to it. Here they are on one chart:
+    long run growth across the bottom, worst 12 months up the side. Up and to the right is more growth. Lower down
+    is a harder fall. Hover any dot.
+  </p>
+
+  <div class="bg-white rounded-2xl border border-navy/10 p-4 md:p-6 mt-5">
+    <div id="legend" class="flex flex-wrap gap-2 mb-3"></div>
+    <div class="relative">
+      <svg id="scatter" viewBox="0 0 820 460" class="w-full h-auto" role="img" aria-label="Long run growth plotted against worst 12 month fall for 35 mutual fund categories"></svg>
+      <div id="tip" class="hidden absolute pointer-events-none bg-navy-ink text-cream text-[11px] rounded-lg px-3 py-2 shadow-xl z-10 max-w-[230px]"></div>
+    </div>
+    <p class="text-[12px] text-ink/55 mt-3 leading-relaxed">
+      <span id="plotted" class="tab-num font-mono"></span> of <span class="tab-num font-mono">42</span> categories are plotted.
+      The rest have no single published figure for one of the two numbers, so they are listed below rather than guessed at.
+    </p>
+    <div id="unplotted" class="mt-2 flex flex-wrap gap-1.5"></div>
+  </div>
+</section>
+
+<!-- 3. WHAT A BENCHMARK IS -->
+<section id="benchmarks" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">What a benchmark actually is.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    A benchmark is the scoreboard. It is a basket of the same kind of things the fund is allowed to buy, tracked
+    without a manager. If the fund cannot beat that basket over a full cycle, you are paying a fee for the privilege
+    of doing worse than a machine. SEBI makes every scheme declare one, and the fund cannot change it quietly.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+    <div class="bg-white rounded-2xl border-2 border-thisblue/20 p-6">
+      <div class="text-[10px] uppercase tracking-[0.2em] text-thisblue font-bold">The three letters that matter</div>
+      <h3 class="font-display text-xl font-extrabold text-ink mt-1">TRI</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+        <strong class="text-ink">Total Return Index.</strong> It counts the dividends the companies paid, reinvested,
+        not just the share price. A price-only index looks lower than reality, which makes any fund measured against
+        it look better than it is. Since 2018 funds must use TRI, which quietly ended a lot of flattering maths.
+      </p>
+      <p class="text-[13px] text-ink/60 mt-3 leading-relaxed">
+        If you see a fund compared to a plain price index anywhere, that comparison is doing the fund a favour.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl border-2 border-marigold-600/30 p-6">
+      <div class="text-[10px] uppercase tracking-[0.2em] text-marigold-600 font-bold">The numbers in index names</div>
+      <h3 class="font-display text-xl font-extrabold text-ink mt-1">100, 150, 250, 500</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+        Companies are ranked by market value twice a year. That ranking is the whole naming system:
+      </p>
+      <ul class="text-[13px] text-ink-3 mt-3 space-y-1.5">
+        <li><span class="font-mono text-thisblue">1 to 100</span> = large cap, so <strong class="text-ink">Nifty 100</strong></li>
+        <li><span class="font-mono text-thisblue">101 to 250</span> = mid cap, so <strong class="text-ink">Nifty Midcap 150</strong>, which is 150 companies</li>
+        <li><span class="font-mono text-thisblue">251 onwards</span> = small cap, so <strong class="text-ink">Nifty Smallcap 250</strong></li>
+        <li><span class="font-mono text-thisblue">1 to 500</span> = <strong class="text-ink">Nifty 500</strong>, most of the listed market</li>
+      </ul>
+      <p class="text-[13px] text-ink/60 mt-3 leading-relaxed">
+        A ratio like <span class="font-mono">50:25:25</span> just means the index was re-weighted to hold that split
+        of large, mid and small.
+      </p>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-navy/10 p-6 mt-4">
+    <div class="text-[10px] uppercase tracking-[0.2em] text-ink/50 font-bold">The code on every debt benchmark</div>
+    <h3 class="font-display text-xl font-extrabold text-ink mt-1">A-I, A-II, A-III, B-II</h3>
+    <p class="text-[14px] text-ink-3 mt-2 leading-relaxed max-w-3xl">
+      Debt benchmarks carry a two part risk code. The letter is <strong class="text-ink">credit risk</strong>, meaning
+      the chance a borrower does not pay you back. The roman numeral is <strong class="text-ink">interest rate
+      risk</strong>, meaning how much the price moves when rates change. Read them together and you know what a debt
+      fund can do to you before you read a single return.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+      <div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold mb-2">Letter, credit risk</div>
+        <div class="space-y-1.5 text-[13px]">
+          <div class="flex gap-3"><span class="font-mono font-bold text-thisblue w-5">A</span><span class="text-ink-3">Highest credit quality, the safest borrowers</span></div>
+          <div class="flex gap-3"><span class="font-mono font-bold text-marigold-600 w-5">B</span><span class="text-ink-3">Moderate credit risk, more yield, more chance of trouble</span></div>
+          <div class="flex gap-3"><span class="font-mono font-bold text-loss w-5">C</span><span class="text-ink-3">Relatively high credit risk</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold mb-2">Numeral, interest rate risk</div>
+        <div class="space-y-1.5 text-[13px]">
+          <div class="flex gap-3"><span class="font-mono font-bold text-thisblue w-6">I</span><span class="text-ink-3">Lowest, very short maturities</span></div>
+          <div class="flex gap-3"><span class="font-mono font-bold text-marigold-600 w-6">II</span><span class="text-ink-3">Moderate</span></div>
+          <div class="flex gap-3"><span class="font-mono font-bold text-loss w-6">III</span><span class="text-ink-3">Highest, long or unconstrained maturities</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 pt-4 border-t border-navy/10 text-[13px] text-ink-3 leading-relaxed">
+      So <span class="font-mono text-ink font-semibold">A-I</span> is the calmest corner of debt: safest borrowers,
+      shortest paper. <span class="font-mono text-ink font-semibold">B-II</span>, the credit risk benchmark, tells you
+      plainly that you are taking on weaker borrowers to earn more. Neither is wrong. They are just different jobs.
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-navy/10 p-6 mt-4">
+    <div class="text-[10px] uppercase tracking-[0.2em] text-ink/50 font-bold">The word in every debt category rule</div>
+    <h3 class="font-display text-xl font-extrabold text-ink mt-1">Macaulay duration</h3>
+    <p class="text-[14px] text-ink-3 mt-2 leading-relaxed max-w-3xl">
+      The average wait, in years, to get your money back from a bond portfolio, counting every interest payment along
+      the way. It is the closest thing to a speedometer for rate risk. As a rough rule of thumb, if rates rise by 1%,
+      a portfolio with a duration of 5 loses roughly 5% of its value, and gains about that much if rates fall.
+      That is why SEBI defines most debt categories by duration bands rather than by fund names: the band is the risk.
+    </p>
+  </div>
+
+  <div class="bg-marigold-50 border border-marigold-600 rounded-2xl p-6 mt-4">
+    <div class="text-[10px] uppercase tracking-[0.2em] text-marigold-600 font-bold">One naming trap</div>
+    <h3 class="font-display text-xl font-extrabold text-ink mt-1">Hybrid index names are written debt first.</h3>
+    <p class="text-[14px] text-ink-3 mt-2 leading-relaxed max-w-3xl">
+      <span class="font-mono text-ink">CRISIL Hybrid 85+15 Conservative</span> is 85% debt and 15% equity, not the other
+      way round. <span class="font-mono text-ink">CRISIL Hybrid 35+65 Aggressive</span> is 35% debt and 65% equity.
+      The first number is the quiet half. Read it backwards and you will badly misjudge what you own.
+    </p>
+  </div>
+</section>
+
+<!-- 4. BENCHMARK DECODER -->
+<section id="decoder" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Every benchmark on this page, decoded.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    <span id="bm-count" class="tab-num font-mono"></span> distinct yardsticks run across all the categories. Here is what
+    each one holds, what its name is telling you, and which categories are judged against it.
+  </p>
+  <div class="relative mt-5">
+    <input id="bq" type="search" placeholder="Find a benchmark. Try &quot;gilt&quot;, &quot;TRI&quot; or &quot;hybrid&quot;"
+      class="w-full bg-white border border-navy/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-thisblue/30 focus:border-thisblue/40" />
+  </div>
+  <div id="bm-list" class="mt-4 space-y-2"></div>
+</section>
+
+<!-- 4c. EVERY WAY TO OWN EQUITY -->
+<section id="routes" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <div class="text-[10px] uppercase tracking-[0.3em] text-marigold-600 font-bold">The full map</div>
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-2">Every way to own equity in India.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    A mutual fund is one door into equity. There are <span id="route-count" class="font-mono tab-num"></span> of them, and
+    they are not interchangeable. What separates them is not returns, it is what you actually end up holding, what it
+    costs to get in, and how easily you can get out. Grouped by what lands in your name at the end.
+  </p>
+  <div id="route-groups" class="flex flex-wrap gap-2 mt-5"></div>
+  <div id="routes-out" class="mt-6"></div>
+  <p class="text-[12px] text-ink/50 mt-4 leading-relaxed max-w-3xl">
+    Minimum ticket sizes are indicative and set by regulation or by the provider, and they change. Confirm the current
+    figure before acting. This is a map of what exists, not a recommendation of any route.
+  </p>
+</section>
+
+<!-- 4b. ADJACENT PRODUCTS -->
+<section id="adjacent" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <div class="text-[10px] uppercase tracking-[0.3em] text-thatred font-bold">Sold alongside, regulated apart</div>
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-2">These are not mutual funds.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    Three products get offered in the same conversation as mutual funds, often by the same person, and they are not
+    mutual funds. Different rulebook, different minimum, different tax treatment. None of this makes them worse. It
+    makes them a different decision, and the sales pitch rarely says so.
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div class="bg-white rounded-2xl border-2 border-thatred/25 p-6">
+      <div class="flex items-baseline justify-between gap-2">
+        <h3 class="font-display text-xl font-extrabold text-ink">PMS</h3>
+        <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" style="background:#FDE4E3;color:#9E1512">Min &#8377;50 L</span>
+      </div>
+      <div class="font-mono text-[11px] text-ink/50 mt-1">Portfolio Management Services</div>
+      <p class="text-[14px] text-ink-3 mt-3 leading-relaxed">
+        You own the shares themselves, in your own demat account. No units, no NAV. A manager runs the account under
+        your name.
+      </p>
+      <ul class="text-[13px] text-ink-3 mt-3 space-y-1.5">
+        <li><strong class="text-ink">Tax is yours, per trade.</strong> Every sale the manager makes is a taxable event for you. Inside a mutual fund it is not.</li>
+        <li><strong class="text-ink">Fewer limits.</strong> Mutual funds face hard caps on how much can sit in one stock or sector. PMS has far more room, which is both the appeal and the risk.</li>
+        <li><strong class="text-ink">Fees are higher</strong>, usually a fixed fee plus a share of the gains.</li>
+        <li><strong class="text-ink">Comparing is harder.</strong> No single NAV, and returns are reported per SEBI and APMI rules rather than as one published series.</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-2xl border-2 border-marigold-600/30 p-6">
+      <div class="flex items-baseline justify-between gap-2">
+        <h3 class="font-display text-xl font-extrabold text-ink">AIF</h3>
+        <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" style="background:#FBF1D6;color:#7A5600">Min &#8377;1 Cr</span>
+      </div>
+      <div class="font-mono text-[11px] text-ink/50 mt-1">Alternative Investment Fund</div>
+      <p class="text-[14px] text-ink-3 mt-3 leading-relaxed">
+        A pooled fund like a mutual fund, but for strategies mutual funds are not allowed to run, across three
+        categories from venture and infrastructure through to long-short and derivative-led funds.
+      </p>
+      <ul class="text-[13px] text-ink-3 mt-3 space-y-1.5">
+        <li><strong class="text-ink">Money is usually locked</strong> for years, with no daily redemption.</li>
+        <li><strong class="text-ink">Tax depends on the category</strong>, and it is not the simple equity treatment most people assume.</li>
+        <li><strong class="text-ink">Meant for investors</strong> who can afford the ticket and the illiquidity, not as a core holding.</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-2xl border-2 border-thisblue/20 p-6">
+      <div class="flex items-baseline justify-between gap-2">
+        <h3 class="font-display text-xl font-extrabold text-ink">SIF</h3>
+        <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" style="background:#E8EEF9;color:#0249B1">Min &#8377;10 L</span>
+      </div>
+      <div class="font-mono text-[11px] text-ink/50 mt-1">Specialised Investment Fund</div>
+      <p class="text-[14px] text-ink-3 mt-3 leading-relaxed">
+        The newest of the three, designed to sit in the gap between a mutual fund and PMS: more strategy freedom than
+        a mutual fund, a far smaller ticket than PMS, run by existing fund houses.
+      </p>
+      <ul class="text-[13px] text-ink-3 mt-3 space-y-1.5">
+        <li><strong class="text-ink">Still a pooled vehicle</strong>, so you hold units, not the shares themselves.</li>
+        <li><strong class="text-ink">Wider strategies</strong> than the categories above, including long-short approaches.</li>
+        <li><strong class="text-ink">Young.</strong> There is little track record to judge yet, so treat any pitch built on projections carefully.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="text-[12px] text-ink/50 mt-4 leading-relaxed max-w-3xl">
+    Minimum ticket sizes are the regulatory floors as we understand them and do change, so confirm the current number
+    and the product's own disclosure document before committing. Nothing here is a recommendation to buy any of them.
+  </p>
+</section>
+
+<!-- 5. VOLATILITY -->
+<section id="volatility" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Volatility, and the number that actually matters.</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+    <div class="bg-white rounded-2xl border border-navy/10 p-6">
+      <h3 class="font-display text-lg font-extrabold text-ink">The riskometer</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+        Every scheme publishes a risk label each month, from low to very high. It is a useful first glance and a poor
+        second one: it compresses a thirty year holding into one word, and most equity funds land on the same word.
+        The labels on this page are the category norm, and your scheme publishes its own.
+      </p>
+    </div>
+    <div class="bg-white rounded-2xl border-2 border-thisblue/25 p-6">
+      <h3 class="font-display text-lg font-extrabold text-ink">Worst 12 months</h3>
+      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+        The one we lead with. Not because it is likely, but because it is survivable only if you have seen it in
+        advance. Standard deviation describes a wobble. A drawdown describes the moment you open the app, see a number
+        that hurts, and decide whether to sell. That decision, not the wobble, sets your actual return.
+      </p>
+    </div>
+  </div>
+  <div class="bg-white rounded-2xl border border-navy/10 p-6 mt-4">
+    <h3 class="font-display text-lg font-extrabold text-ink">The ladder, worst first</h3>
+    <p class="text-[13px] text-ink-3 mt-1 mb-4">Every category with a published worst case, longest bar means hardest fall.</p>
+    <div id="ladder" class="space-y-1"></div>
+  </div>
+</section>
+
+<!-- 6. ALL CATEGORIES -->
+<section id="categories" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">All <span class="tab-num">42</span> categories.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    The rule each fund must follow, the yardstick it is judged against, its long run growth and its worst 12 months.
+    Search it, filter it, or sort the whole lot by how hard it falls.
+  </p>
+
+  <div class="bg-white rounded-2xl border border-navy/10 p-5 md:p-6 mt-5">
+    <label for="q" class="sr-only">Search categories</label>
+    <input id="q" type="search" placeholder="Search a category, a rule or a benchmark. Try &quot;small cap&quot; or &quot;duration&quot;"
+      class="w-full bg-warmpaper-2 border border-navy/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-thisblue/30 focus:border-thisblue/40" />
+    <div class="mt-4">
+      <div class="text-[10px] uppercase tracking-[0.2em] text-ink/45 font-bold mb-2">Family</div>
+      <div id="fam-chips" class="flex flex-wrap gap-2"></div>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-x-8 gap-y-4">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.2em] text-ink/45 font-bold mb-2">Risk band</div>
+        <div id="risk-chips" class="flex flex-wrap gap-2"></div>
+      </div>
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.2em] text-ink/45 font-bold mb-2">Order</div>
+        <div id="sort-chips" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+    <div class="mt-5 pt-4 border-t border-navy/10 flex items-center justify-between gap-4 flex-wrap">
+      <div id="count-note" class="text-sm text-ink/60"></div>
+      <button id="reset" class="text-sm font-semibold text-thisblue hover:underline hidden">Clear filters</button>
+    </div>
+  </div>
+
+  <div id="results" class="mt-8"></div>
+</section>
+
+<!-- FORK -->
+<section class="max-w-6xl mx-auto px-6 mt-14">
+  <div class="bg-marigold-50 border border-marigold-600 rounded-2xl p-6 md:p-8">
+    <h2 class="font-display text-xl md:text-2xl font-extrabold text-ink">So, return chaser <span class="font-script text-2xl text-ink/70">or</span> drawdown survivor?</h2>
+    <p class="mt-3 text-ink-3 leading-relaxed max-w-3xl">
+      Here is our side of the fork: pick your category by the <strong class="text-thisblue">worst 12 months</strong>
+      column, not the growth column. Growth is what the market gives everyone who stays. The drawdown decides whether
+      you stay. If a 60% fall would make you sell, that category's long run 18% was never yours to begin with.
+    </p>
+    <p class="mt-4 text-ink-3 leading-relaxed max-w-3xl">
+      This is not a no, it is a not-like-this. If a box scares you, that is useful information, not a failing. Move
+      down a band and stay invested, which beats picking the brave box and leaving at the bottom.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="asset-allocator.html" class="bg-thisblue text-warmpaper text-sm font-bold px-5 py-3 rounded-full hover:bg-thisblue-700 transition">Find my mix</a>
+      <a href="asset-classes.html" class="bg-white border border-navy/15 text-ink text-sm font-bold px-5 py-3 rounded-full hover:border-navy/40 transition">See all asset classes</a>
+      <a href="money-person.html" class="bg-white border border-navy/15 text-ink text-sm font-bold px-5 py-3 rounded-full hover:border-navy/40 transition">Talk to a human</a>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 mt-8">
+  <p class="text-[12px] text-ink/50 leading-relaxed">
+    *Long run growth is the approximate 10 year CAGR of the category's benchmark or category average as of July 2026.
+    Worst 12 months is that benchmark's worst historical one year return, mostly the 2008-09 crash. Figures are
+    indicative and rounded, and they will drift: treat them as shape, not gospel. Riskometer labels are category norms,
+    and every scheme publishes its own each month. Category rules are summarised here, so check the SEBI circular and
+    the scheme's own documents before you act on any of it.
+  </p>
+</section>
+
+<footer class="bg-navy-ink text-cream/80 py-14 mt-16">
+  <div class="max-w-4xl mx-auto px-6 text-center text-xs text-cream/50 leading-relaxed">
+    <strong class="text-cream/70">Disclaimer.</strong> This page is education, not investment advice and not a
+    recommendation to buy or sell any scheme. Returns shown are historical and indicative, <strong class="text-cream/70">not
+    guaranteed</strong>, and past performance does not indicate future results. Mutual fund investments are subject to
+    market risks; read all scheme related documents carefully. Before acting on any of this, consult a SEBI-registered
+    investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or AMFI's
+    own websites.
+    <div class="mt-4 text-cream/35">&copy; 2026 ThisOrThat with Bhartendra.</div>
+  </div>
+</footer>
+
+<script>
+const CATS = [{"name":"Multi cap","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 25% each in large, mid and small caps (min 75% equity overall)","bm":"Nifty 500 Multicap 50:25:25 TRI","bmDesc":"Nifty 500 reweighted 50% large, 25% mid, 25% small","growth":"~15–16%","worst":"−58% (2008–09)","dd":-58,"g":15.5,"best":null},{"name":"Large cap","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 80% in top-100 stocks by market cap","bm":"Nifty 100 TRI / BSE 100 TRI","bmDesc":"Top 100 companies by free-float market cap, dividends reinvested","growth":"~12–13%","worst":"−51% (2008–09)","dd":-51,"g":12.5,"best":null},{"name":"Large & mid cap","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 35% in large caps plus min 35% in mid caps","bm":"Nifty LargeMidcap 250 TRI","bmDesc":"Nifty 100 plus Midcap 150 combined, each segment capped at 50%","growth":"~14–16%","worst":"−56% (2008–09)","dd":-56,"g":15.0,"best":null},{"name":"Mid cap","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 65% in stocks ranked 101–250 by market cap","bm":"Nifty Midcap 150 TRI","bmDesc":"Companies ranked 101–250 by market cap","growth":"~18–19%","worst":"−61% (2008–09)","dd":-61,"g":18.5,"best":null},{"name":"Small cap","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 65% in stocks ranked 251 onwards","bm":"Nifty Smallcap 250 TRI","bmDesc":"Companies ranked 251–500 by market cap","growth":"~16–17%","worst":"−65% (2008–09)","dd":-65,"g":16.5,"best":null},{"name":"Flexi cap","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 65% equity; free market-cap allocation","bm":"Nifty 500 TRI","bmDesc":"Top 500 companies, over 90% of listed free-float market cap","growth":"~13–14%","worst":"−57% (2008–09)","dd":-57,"g":13.5,"best":null},{"name":"Dividend yield","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Min 80% in dividend-yielding stocks (raised from 65%)","bm":"Nifty 500 TRI","bmDesc":"Top 500 companies, broad-market yardstick","growth":"~13–14%","worst":"−57% (2008–09)","dd":-57,"g":13.5,"best":null},{"name":"Value","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Value strategy; min 80% equity (raised from 65%). AMCs may now run both value and contra with ≤50% overlap","bm":"Nifty 500 TRI","bmDesc":"Top 500 companies, broad-market yardstick","growth":"~13–14%","worst":"−57% (2008–09)","dd":-57,"g":13.5,"best":null},{"name":"Contra","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Contrarian strategy; min 80% equity (raised from 65%)","bm":"Nifty 500 TRI","bmDesc":"Top 500 companies, broad-market yardstick","growth":"~13–14%","worst":"−57% (2008–09)","dd":-57,"g":13.5,"best":null},{"name":"Focused","fam":"equity","risk":"high","riskLabel":"Very high","note":"","rule":"Max 30 stocks; min 80% equity (raised from 65%)","bm":"Nifty 500 TRI","bmDesc":"Top 500 companies, broad-market yardstick","growth":"~13–14%","worst":"−57% (2008–09)","dd":-57,"g":13.5,"best":null},{"name":"Sectoral","fam":"equity","risk":"high","riskLabel":"Very high","note":"Split from sectoral/thematic","rule":"Min 80% in one sector; ≤50% portfolio overlap with other schemes (quarterly test)","bm":"Respective sector index (TRI)","bmDesc":"Free-float index of that sector, e.g. Nifty Bank, Nifty IT","growth":"Varies by sector","worst":"Can exceed −70%","dd":-70,"g":null,"best":null},{"name":"Thematic","fam":"equity","risk":"high","riskLabel":"Very high","note":"Split from sectoral/thematic","rule":"Min 80% in a theme spanning 2+ sectors; ≤50% overlap rule applies","bm":"Respective theme index (TRI)","bmDesc":"Free-float index of the stated theme","growth":"Varies by theme","worst":"Can exceed −60%","dd":-60,"g":null,"best":null},{"name":"ELSS – tax saver","fam":"equity","risk":"high","riskLabel":"Very high","note":"Renamed from ELSS","rule":"Min 80% equity; 3-year lock-in; Section 80C benefit","bm":"Nifty 500 TRI","bmDesc":"Top 500 companies, broad-market yardstick","growth":"~13–14%","worst":"−57% (2008–09)","dd":-57,"g":13.5,"best":null},{"name":"Overnight","fam":"debt","risk":"low","riskLabel":"Low","note":"","rule":"1-day maturity securities; up to 5% in G-secs/T-bills ≤30 days for margin","bm":"Nifty 1D Rate Index","bmDesc":"Return of rolling overnight TREPS lending","growth":"~6–6.5%","worst":"No negative 12M on record","dd":0,"g":6.25,"best":null},{"name":"Liquid","fam":"debt","risk":"low","riskLabel":"Low to moderate","note":"","rule":"Debt and money market paper up to 91 days","bm":"Nifty Liquid Index A-I","bmDesc":"CDs, CPs, T-bills up to 91 days; lowest risk cell","growth":"~6.3–7%","worst":"No negative 12M on record","dd":0,"g":6.65,"best":null},{"name":"Ultra short term","fam":"debt","risk":"low","riskLabel":"Low to moderate","note":"Was: ultra short duration","rule":"Macaulay duration 3–6 months","bm":"Nifty / CRISIL Ultra Short Duration Debt A-I","bmDesc":"High-grade paper, duration 3–6 months","growth":"~6.5–7%","worst":"≈0% floor historically","dd":0,"g":6.75,"best":null},{"name":"Ultra short to short term","fam":"debt","risk":"low","riskLabel":"Low to moderate","note":"Was: low duration","rule":"Macaulay duration 6–12 months","bm":"Nifty / CRISIL Low Duration Debt A-I","bmDesc":"High-grade paper, duration 6–12 months","growth":"~6.5–7%","worst":"≈0% floor historically","dd":0,"g":6.75,"best":null},{"name":"Money market","fam":"debt","risk":"low","riskLabel":"Low to moderate","note":"","rule":"Money market instruments up to 1-year maturity","bm":"Nifty Money Market Index A-I","bmDesc":"High-grade money market paper up to 1 year","growth":"~6.5–7%","worst":"≈0% floor historically","dd":0,"g":6.75,"best":null},{"name":"Short term","fam":"debt","risk":"moderate","riskLabel":"Moderate","note":"Was: short duration","rule":"Macaulay duration 1–3 years","bm":"CRISIL Short Duration Debt A-II","bmDesc":"AAA-heavy bond basket, duration 1–3 years","growth":"~7%","worst":"−1 to −2% (rate spikes)","dd":-2,"g":7.0,"best":null},{"name":"Medium term","fam":"debt","risk":"moderate","riskLabel":"Moderately high","note":"Was: medium duration","rule":"Macaulay duration 3–4 years (adverse: 1–4)","bm":"CRISIL Medium Duration Debt A-III","bmDesc":"High-grade bonds, duration 3–4 years","growth":"~7%","worst":"−3 to −4% (rate spikes)","dd":-4,"g":7.0,"best":null},{"name":"Medium to long term","fam":"debt","risk":"moderate","riskLabel":"Moderately high","note":"Was: medium to long duration","rule":"Macaulay duration 4–7 years (adverse: 1–7)","bm":"CRISIL Medium to Long Duration Debt A-III","bmDesc":"High-grade bonds, duration 4–7 years","growth":"~7–8%","worst":"−4 to −6% (rate spikes)","dd":-6,"g":7.5,"best":null},{"name":"Long term","fam":"debt","risk":"moderate","riskLabel":"Moderately high","note":"Was: long duration","rule":"Macaulay duration above 7 years","bm":"CRISIL Long Duration Debt A-III","bmDesc":"Long corporate bonds and G-secs, duration above 7 years","growth":"~7.5–9%","worst":"−6 to −8% (rate spikes)","dd":-8,"g":8.25,"best":null},{"name":"Dynamic term","fam":"debt","risk":"moderate","riskLabel":"Moderately high","note":"Was: dynamic bond","rule":"Duration managed freely across the curve","bm":"CRISIL Dynamic Bond A-III","bmDesc":"G-sec plus corporate blend, duration unconstrained","growth":"~7–8%","worst":"−4 to −6% (rate spikes)","dd":-6,"g":7.5,"best":null},{"name":"Corporate bond","fam":"debt","risk":"moderate","riskLabel":"Moderate","note":"","rule":"Min 80% in AA+ and above corporate bonds","bm":"CRISIL Corporate Debt A-II","bmDesc":"AA+ and above corporate bonds only","growth":"~7–8%","worst":"−2 to −3% (rate spikes)","dd":-3,"g":7.5,"best":null},{"name":"Credit risk","fam":"debt","risk":"high","riskLabel":"High","note":"","rule":"Min 65% in AA and below corporate bonds (AA+ excluded)","bm":"CRISIL Credit Risk Debt B-II","bmDesc":"AA and below bonds; B marks moderate credit class","growth":"~7–9% accrual-led","worst":"Credit events: deep scheme-specific losses (2018–20)","dd":null,"g":8.0,"best":null},{"name":"Banking & PSU","fam":"debt","risk":"moderate","riskLabel":"Moderate","note":"","rule":"Min 80% in debt of banks, PSUs, PFIs and municipal bonds","bm":"Nifty Banking & PSU Debt A-II","bmDesc":"Bonds of banks, PSUs, public financial institutions","growth":"~7%","worst":"−2 to −3% (rate spikes)","dd":-3,"g":7.0,"best":null},{"name":"Gilt","fam":"debt","risk":"moderate","riskLabel":"Moderately high","note":"","rule":"Min 80% in G-secs across maturities","bm":"CRISIL Dynamic Gilt Index","bmDesc":"Sovereign bonds across the curve, market-driven duration","growth":"~7.5–9% (FY25 above 9%)","worst":"−5 to −7% (rate spikes)","dd":-7,"g":12.62,"best":null},{"name":"10-yr constant maturity gilt","fam":"debt","risk":"moderate","riskLabel":"Moderately high","note":"Was: gilt 10-yr constant duration","rule":"Min 80% G-secs; portfolio Macaulay duration ≈ 10 years","bm":"CRISIL 10 Year Gilt Index","bmDesc":"The on-the-run 10-year benchmark G-sec","growth":"~7.5–9%","worst":"−7 to −9% (rate spikes)","dd":-9,"g":8.25,"best":null},{"name":"Floating interest rate","fam":"debt","risk":"low","riskLabel":"Low to moderate","note":"Was: floater","rule":"Min 65% floating-rate instruments, incl. fixed swapped to floating","bm":"CRISIL Short / Low Duration Debt Index","bmDesc":"Short-tenor high-grade basket proxying floating-rate carry","growth":"~7%","worst":"≈0% floor historically","dd":0,"g":7.0,"best":null},{"name":"Sectoral debt","fam":"debt","risk":"moderate","riskLabel":"Moderate","note":"New category (2026)","rule":"Min 80% in AA+ and above bonds of one sector: financial services, energy, infrastructure, housing or real estate","bm":"Sector bond index (per AMFI assignment)","bmDesc":"Benchmark assignment pending under the new framework","growth":"New , no history","worst":"New , no history","dd":null,"g":null,"best":null},{"name":"Conservative hybrid","fam":"hybrid","risk":"moderate","riskLabel":"Moderately high","note":"","rule":"Equity 10–25%, debt 75–90%","bm":"CRISIL Hybrid 85+15 Conservative Index","bmDesc":"15% Nifty 50 TRI plus 85% composite bond index","growth":"~9%","worst":"−15 to −18% (2008–09)","dd":-18,"g":9.0,"best":null},{"name":"Balanced hybrid","fam":"hybrid","risk":"high","riskLabel":"High","note":"","rule":"Equity 40–60%; no arbitrage allowed","bm":"CRISIL Hybrid 50+50 Moderate Index","bmDesc":"Half equity, half composite bond blend","growth":"~10%","worst":"≈−30% (2008–09)","dd":-30,"g":10.0,"best":null},{"name":"Aggressive hybrid","fam":"hybrid","risk":"high","riskLabel":"Very high","note":"","rule":"Equity 65–80%, debt 20–35%","bm":"CRISIL Hybrid 35+65 Aggressive Index","bmDesc":"65% Nifty 50 TRI plus 35% composite bond index","growth":"~11–12%","worst":"−40 to −45% (2008–09)","dd":-45,"g":11.5,"best":null},{"name":"Balanced advantage / DAA","fam":"hybrid","risk":"high","riskLabel":"High","note":"","rule":"Equity–debt managed dynamically, unconstrained","bm":"Nifty 50 Hybrid Composite Debt 50:50 Index","bmDesc":"Half Nifty 50 TRI, half composite debt index","growth":"~10–11%","worst":"−25 to −30% (2008–09)","dd":-30,"g":10.5,"best":null},{"name":"Multi asset allocation","fam":"hybrid","risk":"high","riskLabel":"High","note":"","rule":"Min 10% each in 3+ asset classes","bm":"Blended 65:25:10 index","bmDesc":"Broad equity plus composite debt plus domestic gold","growth":"~11–12%","worst":"−25 to −30% (2008–09)","dd":-30,"g":11.5,"best":null},{"name":"Arbitrage","fam":"hybrid","risk":"low","riskLabel":"Low","note":"","rule":"Min 65% equity; fully hedged cash-futures spread","bm":"Nifty 50 Arbitrage Index","bmDesc":"Hedged Nifty cash-futures spread plus money market","growth":"~6–6.5%","worst":"No negative 12M on record","dd":0,"g":6.25,"best":null},{"name":"Equity savings","fam":"hybrid","risk":"moderate","riskLabel":"Moderately high","note":"","rule":"Min 65% equity incl. hedged; min 10% debt","bm":"Nifty Equity Savings Index","bmDesc":"Roughly 35% equity, 30% hedged arbitrage, rest short debt","growth":"~8–9%","worst":"−12 to −15% (2020)","dd":-15,"g":8.5,"best":null},{"name":"Life cycle funds","fam":"lifecycle","risk":"high","riskLabel":"High","note":"Replaces solution-oriented (retirement & children's)","rule":"Glide-path allocation shifting across equity, debt, InvITs, ETCDs, gold and silver ETFs as the goal date nears","bm":"Composite glide-path benchmark (scheme-specific)","bmDesc":"Blend matching the scheme's declared glide path","growth":"Depends on glide path","worst":"Depends on equity phase","dd":null,"g":null,"best":null},{"name":"Index funds / ETFs","fam":"passive","risk":"high","riskLabel":"Very high","note":"","rule":"Min 95% in securities of the tracked index","bm":"The underlying index (TRI)","bmDesc":"Same index the scheme is mandated to replicate","growth":"Mirrors the index","worst":"Mirrors the index","dd":null,"g":null,"best":null},{"name":"Fund of funds (overseas)","fam":"passive","risk":"high","riskLabel":"Very high","note":"","rule":"Min 95% in underlying overseas fund(s)","bm":"Relevant global index","bmDesc":"Large-cap index of the target geography, e.g. S&P 500 TRI","growth":"~13–15% in INR (US large cap)","worst":"−35 to −40% (2008, INR)","dd":-40,"g":14.0,"best":null},{"name":"Gold ETF / FoF","fam":"passive","risk":"high","riskLabel":"High","note":"","rule":"Min 95% in gold and gold-related instruments","bm":"Domestic price of gold","bmDesc":"LBMA gold price converted to INR, landed basis","growth":"~13–15%","worst":"−15 to −20% (2013)","dd":-20,"g":14.0,"best":null},{"name":"Silver ETF / FoF","fam":"passive","risk":"high","riskLabel":"High","note":"","rule":"Min 95% in silver and silver-related instruments","bm":"Domestic price of silver","bmDesc":"Landed domestic silver price in INR","growth":"Commodity-cyclical","worst":"−25 to −30%","dd":-30,"g":null,"best":null}];
+
+const FAMS = [
+  { k:'all',       label:'All' },
+  { k:'equity',    label:'Equity',     tag:'the growth engine',   col:'#0249B1' },
+  { k:'debt',      label:'Debt',       tag:'the stability engine', col:'#8A8275' },
+  { k:'hybrid',    label:'Hybrid',     tag:'a bit of both',       col:'#D99B00' },
+  { k:'lifecycle', label:'Life cycle', tag:'new for 2026',        col:'#1A1813' },
+  { k:'passive',   label:'Passives',   tag:'and commodities',     col:'#FF302D' }
+];
+const FCOL = Object.fromEntries(FAMS.filter(f => f.col).map(f => [f.k, f.col]));
+const RISKS = [
+  { k:'all', label:'Any' }, { k:'low', label:'Low' },
+  { k:'moderate', label:'Moderate' }, { k:'high', label:'High' }
+];
+const RISK_STYLE = {
+  low:'background:#F2F1EC;color:#57534A',
+  moderate:'background:#FBF1D6;color:#7A5600',
+  high:'background:#FDE4E3;color:#9E1512'
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- benchmark decoder ---------- */
+function decode(name) {
+  const tags = [];
+  if (/\bTRI\b/i.test(name)) tags.push({ t:'Total Return Index, dividends counted', c:'#0249B1' });
+  const prc = name.match(/\b([ABC])-(I{1,3})\b/);
+  if (prc) {
+    const credit = { A:'highest credit quality', B:'moderate credit risk', C:'higher credit risk' }[prc[1]];
+    const rate   = { I:'lowest rate risk', II:'moderate rate risk', III:'highest rate risk' }[prc[2]];
+    tags.push({ t:'Credit: ' + credit, c:'#D99B00' });
+    tags.push({ t:'Rates: ' + rate, c:'#57534A' });
+  }
+  if (/^Nifty/.test(name)) tags.push({ t:'NSE Indices', c:'#8A8275' });
+  else if (/^CRISIL/.test(name)) tags.push({ t:'CRISIL', c:'#8A8275' });
+  if (/Hybrid \d+\+\d+/.test(name)) tags.push({ t:'Debt first, then equity', c:'#FF302D' });
+  if (/scheme-specific|per AMFI|Respective|underlying|Relevant global/i.test(name))
+    tags.push({ t:'Varies by scheme', c:'#57534A' });
+  return tags;
+}
+
+const BMS = (() => {
+  const m = new Map();
+  CATS.forEach(c => {
+    if (!m.has(c.bm)) m.set(c.bm, { bm:c.bm, desc:c.bmDesc, cats:[], fams:new Set() });
+    m.get(c.bm).cats.push(c.name);
+    m.get(c.bm).fams.add(c.fam);
+  });
+  return [...m.values()].sort((a, b) => b.cats.length - a.cats.length || a.bm.localeCompare(b.bm));
+})();
+
+function renderBms() {
+  const q = $('bq').value.trim().toLowerCase();
+  const list = BMS.filter(b => !q || (b.bm + ' ' + b.desc + ' ' + b.cats.join(' ')).toLowerCase().includes(q));
+  $('bm-list').innerHTML = list.length ? list.map(b => `
+    <details class="bg-white rounded-xl border border-navy/10 overflow-hidden">
+      <summary class="p-4 flex items-start justify-between gap-3">
+        <div>
+          <div class="font-bold text-[15px] text-thisblue">${esc(b.bm)}</div>
+          <div class="text-[13px] text-ink-3 mt-0.5">${esc(b.desc)}</div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="font-mono text-[11px] text-ink/40 tab-num">${b.cats.length}</span>
+          <svg class="chev w-4 h-4 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </summary>
+      <div class="px-4 pb-4 -mt-1">
+        <div class="flex flex-wrap gap-1.5">
+          ${decode(b.bm).map(t => `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full" style="background:${t.c}14;color:${t.c}">${esc(t.t)}</span>`).join('')}
+        </div>
+        <div class="mt-3 text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Judged against it</div>
+        <div class="mt-1.5 flex flex-wrap gap-1.5">
+          ${b.cats.map(n => `<button data-goto="${esc(n)}" class="text-[12px] bg-warmpaper-2 hover:bg-marigold-50 border border-navy/10 rounded-full px-2.5 py-1 transition">${esc(n)}</button>`).join('')}
+        </div>
+      </div>
+    </details>`).join('')
+    : `<div class="bg-white rounded-xl border border-navy/10 p-6 text-center text-sm text-ink/60">No benchmark matches that. Try a shorter word.</div>`;
+}
+
+/* ---------- scatter ---------- */
+let famFilter = 'all';
+function renderScatter() {
+  const svg = $('scatter'), W = 820, H = 460, L = 62, R = 18, T = 18, B = 52;
+  const pts = CATS.filter(c => c.g !== null && c.dd !== null);
+  $('plotted').textContent = pts.length;
+  const xMax = 20, yMin = -70;
+  const x = v => L + (v / xMax) * (W - L - R);
+  const y = v => T + (v / yMin) * (H - T - B);
+  let s = '';
+  for (let g = 0; g <= xMax; g += 5) {
+    s += `<line x1="${x(g)}" y1="${T}" x2="${x(g)}" y2="${H - B}" stroke="#E9E5DB"/>`;
+    s += `<text x="${x(g)}" y="${H - B + 18}" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#8A8275">${g}%</text>`;
+  }
+  for (let d = 0; d >= yMin; d -= 10) {
+    s += `<line x1="${L}" y1="${y(d)}" x2="${W - R}" y2="${y(d)}" stroke="#E9E5DB"/>`;
+    s += `<text x="${L - 8}" y="${y(d) + 4}" text-anchor="end" font-family="IBM Plex Mono" font-size="11" fill="#8A8275">${d}%</text>`;
+  }
+  s += `<text x="${(L + W - R) / 2}" y="${H - 12}" text-anchor="middle" font-family="Hanken Grotesk" font-size="12" font-weight="700" fill="#57534A">Long run growth, per year</text>`;
+  s += `<text transform="translate(16,${(T + H - B) / 2}) rotate(-90)" text-anchor="middle" font-family="Hanken Grotesk" font-size="12" font-weight="700" fill="#57534A">Worst 12 months</text>`;
+  pts.forEach((c, i) => {
+    const on = famFilter === 'all' || c.fam === famFilter;
+    s += `<circle class="dot" data-i="${i}" cx="${x(c.g)}" cy="${y(c.dd)}" r="${on ? 7 : 4}"
+      fill="${FCOL[c.fam]}" opacity="${on ? 0.8 : 0.12}" stroke="#FCFBF8" stroke-width="1.5"/>`;
+  });
+  svg.innerHTML = s;
+  svg.querySelectorAll('.dot').forEach(el => {
+    const c = pts[+el.dataset.i];
+    el.addEventListener('mouseenter', e => {
+      const tip = $('tip'), box = svg.getBoundingClientRect(), r = el.getBoundingClientRect();
+      tip.innerHTML = `<strong>${esc(c.name)}</strong><br>Growth <span class="font-mono">${esc(c.growth)}</span><br>Worst <span class="font-mono">${esc(c.worst)}</span>`;
+      tip.classList.remove('hidden');
+      tip.style.left = Math.min(Math.max(r.left - box.left - 100, 0), box.width - 230) + 'px';
+      tip.style.top = (r.top - box.top - tip.offsetHeight - 10) + 'px';
+    });
+    el.addEventListener('mouseleave', () => $('tip').classList.add('hidden'));
+  });
+  const missing = CATS.filter(c => c.g === null || c.dd === null);
+  $('unplotted').innerHTML = missing.map(c =>
+    `<button data-goto="${esc(c.name)}" class="text-[11px] bg-warmpaper-2 border border-navy/10 rounded-full px-2.5 py-1 hover:bg-marigold-50 transition">${esc(c.name)}</button>`).join('');
+  $('legend').innerHTML = FAMS.filter(f => f.col).map(f =>
+    `<button data-scfam="${f.k}" class="fam-chip" style="${famFilter === f.k
+      ? 'background:' + f.col + ';color:#FCFBF8;border-color:' + f.col
+      : 'background:#fff;color:#1A1813;border-color:rgba(2,73,177,0.15)'}">
+      <span style="display:inline-block;width:8px;height:8px;border-radius:99px;background:${f.col};margin-right:6px"></span>${f.label}</button>`).join('')
+    + `<button data-scfam="all" class="fam-chip" style="${famFilter === 'all'
+      ? 'background:#1A1813;color:#FCFBF8;border-color:#1A1813'
+      : 'background:#fff;color:#1A1813;border-color:rgba(2,73,177,0.15)'}">Show all</button>`;
+}
+
+/* ---------- drawdown ladder ---------- */
+function renderLadder() {
+  const rows = CATS.filter(c => c.dd !== null && c.dd < 0).sort((a, b) => a.dd - b.dd);
+  const worst = Math.abs(rows[0].dd);
+  $('ladder').innerHTML = rows.map(c => `
+    <button data-goto="${esc(c.name)}" class="w-full flex items-center gap-3 py-1 group text-left">
+      <span class="text-[12px] text-ink-3 w-40 md:w-52 shrink-0 truncate group-hover:text-thisblue">${esc(c.name)}</span>
+      <span class="flex-1 bg-warmpaper-2 rounded-sm h-3 overflow-hidden">
+        <span class="block h-full rounded-sm" style="width:${Math.abs(c.dd) / worst * 100}%;background:${FCOL[c.fam]};opacity:.75"></span>
+      </span>
+      <span class="font-mono text-[11px] text-loss w-14 text-right tab-num shrink-0">${c.dd}%</span>
+    </button>`).join('');
+}
+
+/* ---------- category cards ---------- */
+let fam = 'all', risk = 'all', sort = 'family', q = '';
+function matches(c) {
+  if (fam !== 'all' && c.fam !== fam) return false;
+  if (risk !== 'all' && c.risk !== risk) return false;
+  if (!q) return true;
+  const hay = (c.name + ' ' + c.rule + ' ' + c.bm + ' ' + c.bmDesc + ' ' + c.note).toLowerCase();
+  return q.toLowerCase().split(/\s+/).filter(Boolean).every(t => hay.includes(t));
+}
+function hi(text) {
+  const s = esc(text);
+  if (!q) return s;
+  const terms = q.split(/\s+/).filter(t => t.length > 1).map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  if (!terms.length) return s;
+  return s.replace(new RegExp('(' + terms.join('|') + ')', 'gi'), '<mark>$1</mark>');
+}
+function card(c) {
+  return `<article id="cat-${esc(c.name).replace(/[^a-zA-Z0-9]/g, '-')}" class="cat-card bg-white rounded-2xl border border-navy/10 p-5">
+    <div class="flex justify-between items-start gap-3 flex-wrap">
+      <h3 class="font-display text-lg font-extrabold text-ink">${hi(c.name)}</h3>
+      <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap" style="${RISK_STYLE[c.risk]}">${esc(c.riskLabel)}</span>
+    </div>
+    ${c.note ? `<div class="font-mono text-[11px] text-ink/50 mt-1">${hi(c.note)}</div>` : ''}
+    <p class="text-[14px] text-ink mt-2 leading-snug">${hi(c.rule)}</p>
+    <div class="mt-3">
+      <div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Yardstick</div>
+      <button data-bm="${esc(c.bm)}" class="text-[13px] text-thisblue font-bold mt-0.5 text-left hover:underline">${hi(c.bm)}</button>
+      <div class="text-[12px] text-ink/55 leading-snug">${hi(c.bmDesc)}</div>
+    </div>
+    <div class="mt-3 pt-3 border-t border-dashed border-navy/15 grid grid-cols-2 gap-3">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Long run growth*</div>
+        <div class="font-mono text-[14px] text-ink mt-0.5 tab-num">${esc(c.growth)}</div>
+      </div>
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst 12 months*</div>
+        <div class="font-mono text-[14px] mt-0.5 tab-num ${c.dd !== null && c.dd < 0 ? 'text-loss' : 'text-ink'}">${esc(c.worst)}</div>
+      </div>
+    </div>
+  </article>`;
+}
+function render() {
+  const list = CATS.filter(matches);
+  const grid = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
+  if (!list.length) {
+    $('results').innerHTML = `<div class="bg-white rounded-2xl border border-navy/10 p-10 text-center">
+      <div class="font-display text-xl font-extrabold text-ink">Nothing in that box.</div>
+      <p class="text-ink/60 text-sm mt-2">No category matches those filters. Widen the search, or clear the filters and start again.</p></div>`;
+  } else if (sort === 'drawdown') {
+    const known = list.filter(c => c.dd !== null).sort((a, b) => a.dd - b.dd);
+    const rest = list.filter(c => c.dd === null);
+    $('results').innerHTML =
+      `<div class="text-[10px] uppercase tracking-[0.2em] text-ink/45 font-bold mb-3">Worst fall first</div>
+       <div class="${grid}">${known.map(card).join('')}</div>` +
+      (rest.length ? `<div class="text-[10px] uppercase tracking-[0.2em] text-ink/45 font-bold mt-8 mb-3">No published drawdown to rank</div>
+       <div class="${grid}">${rest.map(card).join('')}</div>` : '');
+  } else {
+    $('results').innerHTML = FAMS.filter(f => f.k !== 'all').map(f => {
+      const items = list.filter(c => c.fam === f.k);
+      if (!items.length) return '';
+      return `<section class="mb-10">
+        <h3 class="font-display text-2xl font-extrabold text-ink border-b-2 border-ink pb-2 flex items-baseline gap-2 flex-wrap">
+          ${f.label} <span class="text-sm font-semibold text-ink/50">${f.tag}</span>
+          <span class="font-mono text-xs text-ink/40 ml-auto tab-num">${items.length}</span>
+        </h3>
+        <div class="${grid} mt-4">${items.map(card).join('')}</div></section>`;
+    }).join('');
+  }
+  const filtered = fam !== 'all' || risk !== 'all' || q;
+  $('count-note').innerHTML = filtered
+    ? `Showing <strong class="text-ink tab-num">${list.length}</strong> of <span class="tab-num">${CATS.length}</span> boxes`
+    : `All <strong class="text-ink tab-num">${CATS.length}</strong> boxes, grouped by family`;
+  $('reset').classList.toggle('hidden', !filtered);
+  chips();
+}
+function chipHTML(active, label, count, key, kind) {
+  const on = active ? 'background:#0249B1;color:#FCFBF8;border-color:#0249B1'
+                    : 'background:#fff;color:#1A1813;border-color:rgba(2,73,177,0.15)';
+  return `<button class="fam-chip" style="${on}" data-${kind}="${key}" aria-pressed="${active}">${label}${
+    count === null ? '' : ` <span class="font-mono text-[11px] opacity-60 tab-num">${count}</span>`}</button>`;
+}
+function chips() {
+  $('fam-chips').innerHTML = FAMS.map(f => {
+    const n = CATS.filter(c => (f.k === 'all' || c.fam === f.k) && (risk === 'all' || c.risk === risk)).length;
+    return chipHTML(fam === f.k, f.label, n, f.k, 'fam');
+  }).join('');
+  $('risk-chips').innerHTML = RISKS.map(r => {
+    const n = CATS.filter(c => (r.k === 'all' || c.risk === r.k) && (fam === 'all' || c.fam === fam)).length;
+    return chipHTML(risk === r.k, r.label, n, r.k, 'risk');
+  }).join('');
+  $('sort-chips').innerHTML =
+    chipHTML(sort === 'family', 'By family', null, 'family', 'sort') +
+    chipHTML(sort === 'drawdown', 'By worst fall', null, 'drawdown', 'sort');
+}
+
+/* ---------- ways to own equity ---------- */
+const ROUTES = [{"g":"direct","n":"Secondary market","s":"Stock exchange","d":"Buying listed shares on NSE or BSE through a broker. The default meaning of \"buying a stock\".","min":"One share","liq":"Same day, T+1 settlement","catch":"You are the fund manager now. Every concentration and timing mistake is yours."},{"g":"direct","n":"IPO","s":"Primary market","d":"Applying for shares when a company first lists. Money goes to the company or the selling shareholders, not to another investor.","min":"One lot, usually around &#8377;15,000","liq":"Locked until listing day","catch":"Allotment is a lottery when oversubscribed, and listing pop is not a strategy."},{"g":"direct","n":"FPO and rights issue","s":"Follow-on offers","d":"A listed company raising more money. A rights issue offers new shares to existing holders, usually below market price.","min":"One lot or your entitlement","liq":"Tradable once credited","catch":"Ignoring a rights issue quietly dilutes your stake."},{"g":"direct","n":"Offer for sale","s":"OFS","d":"A promoter or large holder selling a block through a special exchange window, often with a retail discount.","min":"One share in the retail window","liq":"Normal once settled","catch":"Someone big is choosing to sell. That is information, not a discount."},{"g":"direct","n":"Buyback","s":"Tendering shares","d":"The company buys its own shares back from you, usually above market price.","min":"Whatever you hold","liq":"Proceeds after acceptance","catch":"Acceptance is proportionate, so you often sell far less than you tendered."},{"g":"direct","n":"Off-market transfer","s":"Demat to demat","d":"Shares moved directly between demat accounts without the exchange: gifts, inheritance, or a privately negotiated deal.","min":"One share","liq":"Depends entirely on finding a counterparty","catch":"No exchange price discovery and no guarantee. Price and tax treatment both need care."},{"g":"direct","n":"Unlisted and pre-IPO shares","s":"Private secondary","d":"Buying into a company before it lists, through brokers and platforms that match buyers with existing shareholders.","min":"Often &#8377;50,000 and up","liq":"Poor. You exit when someone will buy","catch":"Prices are quoted, not discovered. There is no daily market keeping anyone honest."},{"g":"direct","n":"ESOPs and share plans","s":"From your employer","d":"Equity you receive or buy as part of your pay. For a lot of people this is their first and largest stock holding.","min":"Set by your employer","liq":"Vesting schedules and lock-ins apply","catch":"Your salary and your portfolio then depend on the same company. That is one risk, taken twice."},{"g":"direct","n":"Startup and angel investing","s":"Very early stage","d":"Putting money directly into a private company at an early round, sometimes through a syndicate.","min":"Typically several lakh","liq":"Years, if ever","catch":"Most of them fail. This is a portfolio game played with money you can genuinely lose."},{"g":"managed","n":"PMS","s":"Portfolio Management Services","d":"A manager runs a portfolio in your own name. The shares sit in your demat account, not in a pool.","min":"&#8377;50 lakh","liq":"Notice period, then sold down","catch":"Every trade is a taxable event in your hands, and fees usually include a share of the gains."},{"g":"pooled","n":"Equity mutual funds","s":"Active schemes","d":"A pooled fund inside one of the SEBI categories on this page, run against a declared benchmark.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"Most active funds do not beat their benchmark over long periods, and you pay whether they do or not."},{"g":"pooled","n":"Index funds","s":"Passive schemes","d":"A fund that simply holds the index. No stock picking, much lower fee.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"You get the index, which means you also get every crash in full."},{"g":"pooled","n":"ETFs","s":"Listed passive units","d":"An index fund that trades on the exchange like a share. You need a demat account.","min":"One unit","liq":"Intraday on the exchange","catch":"Thinly traded ETFs can quote far from their true value. Check volumes before you buy."},{"g":"pooled","n":"Fund of funds","s":"Including overseas","d":"A fund that buys other funds, the usual route to international equity from within India.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"Two layers of cost, and overseas funds carry their own tax treatment."},{"g":"pooled","n":"SIF","s":"Specialised Investment Fund","d":"A newer vehicle from fund houses, sitting between a mutual fund and PMS with wider strategy freedom.","min":"&#8377;10 lakh","liq":"Per the scheme, often less frequent than a mutual fund","catch":"Very little track record so far. Judge the strategy, not the projection."},{"g":"pooled","n":"AIF","s":"Alternative Investment Fund","d":"Pooled funds for strategies mutual funds cannot run, across three SEBI categories.","min":"&#8377;1 crore","liq":"Usually locked for years","catch":"Tax treatment varies by category and is rarely the simple equity answer people assume."},{"g":"pooled","n":"Private equity and VC funds","s":"Institutional style","d":"Professionally run funds buying into private companies, usually structured as AIFs in India.","min":"&#8377;1 crore and up","liq":"Closed end, often ten years","catch":"Returns arrive late and unevenly. Early paper marks tell you very little."},{"g":"wrapper","n":"NPS equity","s":"Scheme E","d":"The equity portion of your National Pension System corpus, capped by the scheme you pick.","min":"&#8377;500","liq":"Locked till retirement, with narrow exceptions","catch":"Long lock-in is the price of the tax break. Treat it as retirement money, not savings."},{"g":"wrapper","n":"EPF equity exposure","s":"Through ETFs","d":"Your provident fund invests a portion in index ETFs, so most salaried Indians already own equity without choosing to.","min":"Automatic with EPF","liq":"Per EPF withdrawal rules","catch":"You do not control it and it is easy to forget, but it counts in your true allocation."},{"g":"wrapper","n":"ULIPs","s":"Insurance-linked","d":"An insurance policy with an equity fund attached, sold as one product.","min":"Per policy","liq":"Five year lock-in","catch":"Insurance and investing bundled together, where the costs of both are hard to see separately."},{"g":"wrapper","n":"REITs and InvITs","s":"Listed trusts","d":"Listed units backed by rent-yielding property or infrastructure. Not equity in a company, but bought and held the same way.","min":"One unit","liq":"On the exchange","catch":"Income depends on the underlying assets, and the units still swing with the market."},{"g":"synthetic","n":"Futures and options","s":"Derivatives","d":"Contracts whose value tracks a share or an index. You never own the share.","min":"One lot, often over a lakh in value","liq":"Intraday, with expiry dates","catch":"Leverage cuts both ways and the vast majority of retail traders lose money. This is not investing."},{"g":"synthetic","n":"Arbitrage and equity savings","s":"Hedged equity","d":"Funds that hold equity but hedge most of it away, keeping equity tax treatment with far less market risk.","min":"&#8377;100 to &#8377;500","liq":"Redeem any business day","catch":"Returns are closer to debt. Useful as a parking spot, not as a growth engine."},{"g":"global","n":"Direct international stocks","s":"Under LRS","d":"Buying US or other foreign shares through a broker, remitting money under the Liberalised Remittance Scheme.","min":"Often a fraction of a share","liq":"Same as the local market there","catch":"Currency moves, remittance tax collected at source, and foreign asset disclosure in your return."},{"g":"global","n":"International funds from India","s":"Rupee route","d":"Index funds or funds of funds that hold global equity, bought in rupees with no remittance paperwork.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"Industry-wide overseas investment limits have caused these to stop taking money before."},{"g":"global","n":"GIFT City route","s":"IFSC","d":"Investing through funds domiciled in India’s international financial centre, which can hold global assets.","min":"Varies widely by fund","liq":"Per the fund","catch":"Still a young ecosystem. Read the structure and its tax treatment carefully."}];
+const RGROUPS = [{"k":"direct","t":"You own the shares yourself","d":"Your name on the register. Total control, total responsibility."},{"k":"managed","t":"Someone manages, you still own them","d":"The shares stay in your demat account. A professional decides what goes in it."},{"k":"pooled","t":"You own units of a pool","d":"You hold a slice of a fund, and the fund holds the shares."},{"k":"wrapper","t":"Equity you own without noticing","d":"Bought through something else: a pension, a policy, a payroll deduction."},{"k":"synthetic","t":"Exposure without ownership","d":"You track the price, you never hold the asset."},{"k":"global","t":"Equity outside India","d":"Same asset class, different market, extra paperwork."}];
+let rg = 'all';
+function renderRoutes() {
+  const list = rg === 'all' ? ROUTES : ROUTES.filter(r => r.g === rg);
+  $('route-count').textContent = ROUTES.length;
+  $('route-groups').innerHTML =
+    `<button data-rg="all" class="fam-chip" style="${rg === 'all'
+      ? 'background:#1A1813;color:#FCFBF8;border-color:#1A1813'
+      : 'background:#fff;color:#1A1813;border-color:rgba(2,73,177,.15)'}">All ways <span class="font-mono text-[11px] opacity-60 tab-num">${ROUTES.length}</span></button>` +
+    RGROUPS.map(g => {
+      const n = ROUTES.filter(r => r.g === g.k).length;
+      return `<button data-rg="${g.k}" class="fam-chip" style="${rg === g.k
+        ? 'background:#0249B1;color:#FCFBF8;border-color:#0249B1'
+        : 'background:#fff;color:#1A1813;border-color:rgba(2,73,177,.15)'}">${g.t} <span class="font-mono text-[11px] opacity-60 tab-num">${n}</span></button>`;
+    }).join('');
+  $('routes-out').innerHTML = RGROUPS.map(g => {
+    const items = list.filter(r => r.g === g.k);
+    if (!items.length) return '';
+    return `<section class="mb-9">
+      <h3 class="font-display text-xl font-extrabold text-ink border-b-2 border-ink pb-2">${g.t}</h3>
+      <p class="text-[13px] text-ink/60 mt-2">${g.d}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        ${items.map(r => `
+        <article class="bg-white rounded-2xl border border-navy/10 p-5">
+          <h4 class="font-display text-lg font-extrabold text-ink">${esc(r.n)}</h4>
+          <div class="font-mono text-[11px] text-ink/50 mt-0.5">${esc(r.s)}</div>
+          <p class="text-[13.5px] text-ink-3 mt-2 leading-snug">${r.d}</p>
+          <div class="mt-3 pt-3 border-t border-dashed border-navy/15 space-y-1.5">
+            <div class="flex gap-2 text-[12px]"><span class="text-ink/45 w-20 shrink-0">Minimum</span><span class="text-ink font-semibold">${r.min}</span></div>
+            <div class="flex gap-2 text-[12px]"><span class="text-ink/45 w-20 shrink-0">Getting out</span><span class="text-ink">${esc(r.liq)}</span></div>
+          </div>
+          <div class="mt-3 bg-marigold-50 border border-marigold-600/40 rounded-lg px-3 py-2">
+            <div class="text-[9.5px] uppercase tracking-[0.15em] text-marigold-600 font-bold">The catch</div>
+            <div class="text-[12.5px] text-ink-3 mt-0.5 leading-snug">${esc(r.catch)}</div>
+          </div>
+        </article>`).join('')}
+      </div></section>`;
+  }).join('');
+}
+
+/* ---------- wiring ---------- */
+function goto(name) {
+  fam = 'all'; risk = 'all'; q = ''; $('q').value = ''; sort = 'family'; render();
+  const el = document.getElementById('cat-' + name.replace(/[^a-zA-Z0-9]/g, '-'));
+  if (el) {
+    el.scrollIntoView({ behavior:'smooth', block:'center' });
+    el.style.boxShadow = '0 0 0 3px rgba(255,194,31,.55)';
+    setTimeout(() => { el.style.boxShadow = ''; }, 1600);
+  }
+}
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-goto]'); if (g) return goto(g.dataset.goto);
+  const b = e.target.closest('[data-bm]');
+  if (b) {
+    $('bq').value = b.dataset.bm; renderBms();
+    const first = $('bm-list').querySelector('details');
+    if (first) first.open = true;
+    $('decoder').scrollIntoView({ behavior:'smooth', block:'start' });
+    return;
+  }
+  const rgb = e.target.closest('[data-rg]'); if (rgb) { rg = rgb.dataset.rg; return renderRoutes(); }
+  const sc = e.target.closest('[data-scfam]'); if (sc) { famFilter = sc.dataset.scfam; return renderScatter(); }
+  const f = e.target.closest('[data-fam]'); if (f) { fam = f.dataset.fam; return render(); }
+  const r = e.target.closest('[data-risk]'); if (r) { risk = r.dataset.risk; return render(); }
+  const s = e.target.closest('[data-sort]'); if (s) { sort = s.dataset.sort; return render(); }
+});
+$('q').addEventListener('input', e => { q = e.target.value.trim(); render(); });
+$('bq').addEventListener('input', renderBms);
+$('reset').addEventListener('click', () => { fam = 'all'; risk = 'all'; q = ''; $('q').value = ''; render(); });
+
+$('bm-count').textContent = BMS.length;
+renderScatter(); renderLadder(); renderBms(); renderRoutes(); render();
+window.addEventListener('resize', renderScatter);
+
+const mt = $('mobile-menu-toggle');
+if (mt) mt.addEventListener('click', () => {
+  $('mobile-menu').classList.toggle('hidden');
+  $('icon-open').classList.toggle('hidden');
+  $('icon-close').classList.toggle('hidden');
+});
+</script>
+</body>
+</html>

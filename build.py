@@ -217,7 +217,7 @@ def build_stats():
     c = ch.read_text(encoding='utf-8')
     c2 = _re.sub(r'allocator \+ \d+ calculators', f'allocator + {ncalc} calculators', c)
     # MF category count, read from the data array so the hub card can never go stale
-    mf = ROOT / 'mf-categories.html'
+    mf = ROOT / 'understanding-mutual-funds.html'
     nmf = 0
     if mf.exists():
         m = _re.search(r'const CATS = (\[.*?\]);\n', mf.read_text(encoding='utf-8'), _re.S)
