@@ -217,6 +217,11 @@
       "permanent": false
     },
     {
+      "source": "/ways-to-invest-in-equity",
+      "destination": "/ways-to-invest-in-equity.html",
+      "permanent": false
+    },
+    {
       "source": "/wealth-levers",
       "destination": "/wealth-levers.html",
       "permanent": false
