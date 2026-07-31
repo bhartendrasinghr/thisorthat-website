@@ -120,6 +120,7 @@
   <div class="max-w-6xl mx-auto px-6 py-3 flex gap-5 overflow-x-auto text-[13px] font-semibold text-ink/60 whitespace-nowrap">
     <a href="#three" class="hover:text-thisblue">Three questions</a>
     <a href="#together" class="hover:text-thisblue">The two numbers</a>
+    <a href="#bestworst" class="hover:text-thisblue">Best and worst year</a>
     <a href="#benchmarks" class="hover:text-thisblue">What a benchmark is</a>
     <a href="#decoder" class="hover:text-thisblue">Benchmark decoder</a>
     <a href="#routes" class="hover:text-thisblue">Ways to own equity</a>
@@ -178,6 +179,34 @@
     </p>
     <div id="unplotted" class="mt-2 flex flex-wrap gap-1.5"></div>
   </div>
+</section>
+
+<!-- 2b. BEST YEAR AND WORST YEAR -->
+<section id="bestworst" class="jump max-w-6xl mx-auto px-6 pt-14">
+  <div class="text-[10px] uppercase tracking-[0.3em] text-marigold-600 font-bold">The best year, and what it cost to be there</div>
+  <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-2">The best year and the worst year are neighbours.</h2>
+  <p class="text-ink-3 mt-3 max-w-3xl leading-relaxed">
+    Every calendar year of the Nifty 50 TRI, the yardstick most Indian equity is judged against. The single best year
+    on this chart, <strong class="text-gain">2009 at about +78%</strong>, arrives immediately after the single worst,
+    <strong class="text-loss">2008 at about &#8722;51%</strong>. That is the whole argument in two bars. The people who
+    collected 2009 are exactly the people who sat through 2008. Nobody got one without the other.
+  </p>
+  <div class="bg-white rounded-2xl border border-navy/10 p-4 md:p-6 mt-5">
+    <svg id="years" viewBox="0 0 820 300" class="w-full h-auto" role="img" aria-label="Nifty 50 TRI calendar year returns from 2005 to 2025"></svg>
+    <div class="mt-4 pt-4 border-t border-navy/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Best year</div><div class="font-mono text-lg font-bold text-gain tab-num">+77.6%</div><div class="text-[11px] text-ink/50">2009</div></div>
+      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst year</div><div class="font-mono text-lg font-bold text-loss tab-num">&#8722;51.3%</div><div class="text-[11px] text-ink/50">2008</div></div>
+      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Down years</div><div class="font-mono text-lg font-bold text-ink tab-num" id="downyears"></div><div class="text-[11px] text-ink/50">out of <span id="totyears" class="tab-num"></span></div></div>
+      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Gap, best to worst</div><div class="font-mono text-lg font-bold text-ink tab-num">129 pts</div><div class="text-[11px] text-ink/50">in twelve months</div></div>
+    </div>
+  </div>
+  <p class="text-[12px] text-ink/50 mt-3 leading-relaxed max-w-3xl">
+    Calendar year returns for the Nifty 50 Total Return Index, 2005 to 2025, rounded. Sources vary slightly on 2009,
+    reporting between about 75.8% and 77.6%, so treat the exact decimal as approximate and the shape as the point.
+    2026 is still running and is left off. We show this one index rather than a best case for every category because
+    the debt and hybrid benchmarks do not publish comparable best period figures, and we would rather show you one
+    number we can stand behind than forty we cannot.
+  </p>
 </section>
 
 <!-- 3. WHAT A BENCHMARK IS -->
@@ -722,6 +751,37 @@ function chips() {
     chipHTML(sort === 'drawdown', 'By worst fall', null, 'drawdown', 'sort');
 }
 
+/* ---------- calendar year bars, Nifty 50 TRI ---------- */
+const YEARS = [[2005,39.3],[2006,41.9],[2007,56.8],[2008,-51.3],[2009,77.6],[2010,19.2],[2011,-23.8],
+  [2012,29.4],[2013,8.1],[2014,32.9],[2015,-3.0],[2016,4.4],[2017,30.3],[2018,4.6],[2019,13.5],
+  [2020,16.1],[2021,25.6],[2022,5.7],[2023,21.3],[2024,10.1],[2025,11.9]];
+function renderYears() {
+  const svg = $('years'), W = 820, H = 300, L = 44, R = 10, T = 14, B = 40;
+  const hi = 85, lo = -60;
+  const y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  const bw = (W - L - R) / YEARS.length;
+  let s = '';
+  for (let v = 75; v >= -50; v -= 25) {
+    s += `<line x1="${L}" y1="${y(v)}" x2="${W - R}" y2="${y(v)}" stroke="#E9E5DB"/>`;
+    s += `<text x="${L - 7}" y="${y(v) + 4}" text-anchor="end" font-family="IBM Plex Mono" font-size="10" fill="#8A8275">${v}%</text>`;
+  }
+  s += `<line x1="${L}" y1="${y(0)}" x2="${W - R}" y2="${y(0)}" stroke="#1A1813" stroke-width="1.5"/>`;
+  YEARS.forEach(([yr, v], i) => {
+    const x = L + i * bw + bw * 0.16, w = bw * 0.68;
+    const top = v >= 0 ? y(v) : y(0), h = Math.abs(y(v) - y(0));
+    const best = v === 77.6, worst = v === -51.3;
+    const fill = best ? '#1F8A5B' : worst ? '#E0211E' : (v >= 0 ? '#0249B1' : '#FF302D');
+    s += `<rect x="${x}" y="${top}" width="${w}" height="${Math.max(h, 1)}" rx="2" fill="${fill}" opacity="${best || worst ? 1 : 0.45}"/>`;
+    if (best || worst)
+      s += `<text x="${x + w / 2}" y="${v >= 0 ? top - 5 : top + h + 12}" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" font-weight="600" fill="${fill}">${v > 0 ? '+' : ''}${v}%</text>`;
+    if (yr % 5 === 0 || best || worst)
+      s += `<text x="${x + w / 2}" y="${H - 14}" text-anchor="middle" font-family="IBM Plex Mono" font-size="9.5" fill="${best || worst ? '#1A1813' : '#8A8275'}" font-weight="${best || worst ? 700 : 400}">${yr}</text>`;
+  });
+  svg.innerHTML = s;
+  $('downyears').textContent = YEARS.filter(y => y[1] < 0).length;
+  $('totyears').textContent = YEARS.length;
+}
+
 /* ---------- ways to own equity ---------- */
 const ROUTES = [{"g":"direct","n":"Secondary market","s":"Stock exchange","d":"Buying listed shares on NSE or BSE through a broker. The default meaning of \"buying a stock\".","min":"One share","liq":"Same day, T+1 settlement","catch":"You are the fund manager now. Every concentration and timing mistake is yours."},{"g":"direct","n":"IPO","s":"Primary market","d":"Applying for shares when a company first lists. Money goes to the company or the selling shareholders, not to another investor.","min":"One lot, usually around &#8377;15,000","liq":"Locked until listing day","catch":"Allotment is a lottery when oversubscribed, and listing pop is not a strategy."},{"g":"direct","n":"FPO and rights issue","s":"Follow-on offers","d":"A listed company raising more money. A rights issue offers new shares to existing holders, usually below market price.","min":"One lot or your entitlement","liq":"Tradable once credited","catch":"Ignoring a rights issue quietly dilutes your stake."},{"g":"direct","n":"Offer for sale","s":"OFS","d":"A promoter or large holder selling a block through a special exchange window, often with a retail discount.","min":"One share in the retail window","liq":"Normal once settled","catch":"Someone big is choosing to sell. That is information, not a discount."},{"g":"direct","n":"Buyback","s":"Tendering shares","d":"The company buys its own shares back from you, usually above market price.","min":"Whatever you hold","liq":"Proceeds after acceptance","catch":"Acceptance is proportionate, so you often sell far less than you tendered."},{"g":"direct","n":"Off-market transfer","s":"Demat to demat","d":"Shares moved directly between demat accounts without the exchange: gifts, inheritance, or a privately negotiated deal.","min":"One share","liq":"Depends entirely on finding a counterparty","catch":"No exchange price discovery and no guarantee. Price and tax treatment both need care."},{"g":"direct","n":"Unlisted and pre-IPO shares","s":"Private secondary","d":"Buying into a company before it lists, through brokers and platforms that match buyers with existing shareholders.","min":"Often &#8377;50,000 and up","liq":"Poor. You exit when someone will buy","catch":"Prices are quoted, not discovered. There is no daily market keeping anyone honest."},{"g":"direct","n":"ESOPs and share plans","s":"From your employer","d":"Equity you receive or buy as part of your pay. For a lot of people this is their first and largest stock holding.","min":"Set by your employer","liq":"Vesting schedules and lock-ins apply","catch":"Your salary and your portfolio then depend on the same company. That is one risk, taken twice."},{"g":"direct","n":"Startup and angel investing","s":"Very early stage","d":"Putting money directly into a private company at an early round, sometimes through a syndicate.","min":"Typically several lakh","liq":"Years, if ever","catch":"Most of them fail. This is a portfolio game played with money you can genuinely lose."},{"g":"managed","n":"PMS","s":"Portfolio Management Services","d":"A manager runs a portfolio in your own name. The shares sit in your demat account, not in a pool.","min":"&#8377;50 lakh","liq":"Notice period, then sold down","catch":"Every trade is a taxable event in your hands, and fees usually include a share of the gains."},{"g":"pooled","n":"Equity mutual funds","s":"Active schemes","d":"A pooled fund inside one of the SEBI categories on this page, run against a declared benchmark.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"Most active funds do not beat their benchmark over long periods, and you pay whether they do or not."},{"g":"pooled","n":"Index funds","s":"Passive schemes","d":"A fund that simply holds the index. No stock picking, much lower fee.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"You get the index, which means you also get every crash in full."},{"g":"pooled","n":"ETFs","s":"Listed passive units","d":"An index fund that trades on the exchange like a share. You need a demat account.","min":"One unit","liq":"Intraday on the exchange","catch":"Thinly traded ETFs can quote far from their true value. Check volumes before you buy."},{"g":"pooled","n":"Fund of funds","s":"Including overseas","d":"A fund that buys other funds, the usual route to international equity from within India.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"Two layers of cost, and overseas funds carry their own tax treatment."},{"g":"pooled","n":"SIF","s":"Specialised Investment Fund","d":"A newer vehicle from fund houses, sitting between a mutual fund and PMS with wider strategy freedom.","min":"&#8377;10 lakh","liq":"Per the scheme, often less frequent than a mutual fund","catch":"Very little track record so far. Judge the strategy, not the projection."},{"g":"pooled","n":"AIF","s":"Alternative Investment Fund","d":"Pooled funds for strategies mutual funds cannot run, across three SEBI categories.","min":"&#8377;1 crore","liq":"Usually locked for years","catch":"Tax treatment varies by category and is rarely the simple equity answer people assume."},{"g":"pooled","n":"Private equity and VC funds","s":"Institutional style","d":"Professionally run funds buying into private companies, usually structured as AIFs in India.","min":"&#8377;1 crore and up","liq":"Closed end, often ten years","catch":"Returns arrive late and unevenly. Early paper marks tell you very little."},{"g":"wrapper","n":"NPS equity","s":"Scheme E","d":"The equity portion of your National Pension System corpus, capped by the scheme you pick.","min":"&#8377;500","liq":"Locked till retirement, with narrow exceptions","catch":"Long lock-in is the price of the tax break. Treat it as retirement money, not savings."},{"g":"wrapper","n":"EPF equity exposure","s":"Through ETFs","d":"Your provident fund invests a portion in index ETFs, so most salaried Indians already own equity without choosing to.","min":"Automatic with EPF","liq":"Per EPF withdrawal rules","catch":"You do not control it and it is easy to forget, but it counts in your true allocation."},{"g":"wrapper","n":"ULIPs","s":"Insurance-linked","d":"An insurance policy with an equity fund attached, sold as one product.","min":"Per policy","liq":"Five year lock-in","catch":"Insurance and investing bundled together, where the costs of both are hard to see separately."},{"g":"wrapper","n":"REITs and InvITs","s":"Listed trusts","d":"Listed units backed by rent-yielding property or infrastructure. Not equity in a company, but bought and held the same way.","min":"One unit","liq":"On the exchange","catch":"Income depends on the underlying assets, and the units still swing with the market."},{"g":"synthetic","n":"Futures and options","s":"Derivatives","d":"Contracts whose value tracks a share or an index. You never own the share.","min":"One lot, often over a lakh in value","liq":"Intraday, with expiry dates","catch":"Leverage cuts both ways and the vast majority of retail traders lose money. This is not investing."},{"g":"synthetic","n":"Arbitrage and equity savings","s":"Hedged equity","d":"Funds that hold equity but hedge most of it away, keeping equity tax treatment with far less market risk.","min":"&#8377;100 to &#8377;500","liq":"Redeem any business day","catch":"Returns are closer to debt. Useful as a parking spot, not as a growth engine."},{"g":"global","n":"Direct international stocks","s":"Under LRS","d":"Buying US or other foreign shares through a broker, remitting money under the Liberalised Remittance Scheme.","min":"Often a fraction of a share","liq":"Same as the local market there","catch":"Currency moves, remittance tax collected at source, and foreign asset disclosure in your return."},{"g":"global","n":"International funds from India","s":"Rupee route","d":"Index funds or funds of funds that hold global equity, bought in rupees with no remittance paperwork.","min":"&#8377;100 to &#8377;500 a month","liq":"Redeem any business day","catch":"Industry-wide overseas investment limits have caused these to stop taking money before."},{"g":"global","n":"GIFT City route","s":"IFSC","d":"Investing through funds domiciled in India’s international financial centre, which can hold global assets.","min":"Varies widely by fund","liq":"Per the fund","catch":"Still a young ecosystem. Read the structure and its tax treatment carefully."}];
 const RGROUPS = [{"k":"direct","t":"You own the shares yourself","d":"Your name on the register. Total control, total responsibility."},{"k":"managed","t":"Someone manages, you still own them","d":"The shares stay in your demat account. A professional decides what goes in it."},{"k":"pooled","t":"You own units of a pool","d":"You hold a slice of a fund, and the fund holds the shares."},{"k":"wrapper","t":"Equity you own without noticing","d":"Bought through something else: a pension, a policy, a payroll deduction."},{"k":"synthetic","t":"Exposure without ownership","d":"You track the price, you never hold the asset."},{"k":"global","t":"Equity outside India","d":"Same asset class, different market, extra paperwork."}];
@@ -795,7 +855,7 @@ $('bq').addEventListener('input', renderBms);
 $('reset').addEventListener('click', () => { fam = 'all'; risk = 'all'; q = ''; $('q').value = ''; render(); });
 
 $('bm-count').textContent = BMS.length;
-renderScatter(); renderLadder(); renderBms(); renderRoutes(); render();
+renderScatter(); renderYears(); renderLadder(); renderBms(); renderRoutes(); render();
 window.addEventListener('resize', renderScatter);
 
 const mt = $('mobile-menu-toggle');
