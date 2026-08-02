@@ -82,6 +82,32 @@ GUEST_OVERRIDES = {
     'ch96iqz4wj8': 'Bhartendra (solo)',     # Ep 17 — 10 crore SIP (guest name not in title)
 }
 
+# ─── CMS-editable overrides ──────────────────────────────────────────────
+# content/episode-overrides.json is edited through /admin (Episode Overrides).
+# Anything set there wins over the defaults above, so a guest or category can
+# be corrected without touching this file.
+def load_cms_overrides():
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', 'episode-overrides.json')
+    guests, cats, titles = {}, {}, {}
+    try:
+        with open(path, encoding='utf-8') as fh:
+            data = json.load(fh)
+    except (OSError, ValueError) as e:
+        print(f'  Could not read episode-overrides.json ({e}), using built-in defaults only')
+        return guests, cats, titles
+    for row in data.get('overrides') or []:
+        vid = (row.get('video_id') or '').strip()
+        if not vid:
+            continue
+        if (row.get('guest') or '').strip():    guests[vid] = row['guest'].strip()
+        if (row.get('category') or '').strip(): cats[vid]   = row['category'].strip()
+        if (row.get('title') or '').strip():    titles[vid] = row['title'].strip()
+    print(f'  Loaded {len(guests)} guest, {len(cats)} category, {len(titles)} title overrides from the CMS')
+    return guests, cats, titles
+
+CMS_GUESTS, CMS_CATS, CMS_TITLES = load_cms_overrides()
+GUEST_OVERRIDES.update(CMS_GUESTS)
+
 # Guest → role/title. Add to this as new guests come on the show.
 GUEST_ROLES = {
     'Vijai Mantri': 'Founder, VMFS',
@@ -247,9 +273,9 @@ def main():
         episodes.append({
             'n': ep_num,
             'id': v['id'],
-            'title': clean_title(v['title']),
+            'title': CMS_TITLES.get(v['id']) or clean_title(v['title']),
             'guest': parse_guest(v['id'], v['title'], v['stats']),
-            'cat': categorize(v['title']),
+            'cat': CMS_CATS.get(v['id']) or categorize(v['title']),
             'views': parse_views(v['stats']),
             'published': parse_published(v['stats']),
             'thumb': f'https://i.ytimg.com/vi/{v["id"]}/hqdefault.jpg',
