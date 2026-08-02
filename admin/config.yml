@@ -31,8 +31,7 @@ collections:
     summary: "{{title}} — {{category}} · {{date}}"
     sortable_fields: ['date', 'title', 'category']
     view_filters:
-      - name: "featured"
-        label: "Featured"
+      - label: "Featured"
         field: featured
         pattern: true
     fields:
@@ -305,8 +304,7 @@ collections:
     summary: "{{name}} — {{role}}"
     sortable_fields: ['name', 'featured']
     view_filters:
-      - name: "featured"
-        label: "Featured"
+      - label: "Featured"
         field: featured
         pattern: true
       - label: "Has photo"
