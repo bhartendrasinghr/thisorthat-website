@@ -59,6 +59,7 @@ GUEST_OVERRIDES = {
     'y467zmb9coo': 'Kirtan Shah',
     'qCMA_zCb-38': 'Aashish Sommaiya',
     'Ms_2WqYOIsY': 'Abhijit More',
+    'OlrHz1Og_kY': 'Nimesh Chandan',       # Ep 13 — name is after the pipe, which sync strips
     '7RURrUgKXig': 'Abhijit More',          # Ep 27 — hidden home-buying costs (title does not name him)
     'YH2ZegF1ewk': 'Mrin Agarwal',
     '2IFKptd2Qyw': 'Raghav Iyengar',
@@ -78,7 +79,6 @@ GUEST_OVERRIDES = {
     'jCRb7WpH6h4': 'Bhartendra (solo)',     # Ep 22 — Find your number
     'o1_3k5EkzZg': 'Bhartendra (solo)',     # Ep 21 — Rupee falling
     'ch96iqz4wj8': 'Bhartendra (solo)',     # Ep 17 — 10 crore SIP (guest name not in title)
-    'OlrHz1Og_kY': 'Bhartendra (solo)',     # Ep 13 — Behavioral edge / CIO (name not in title)
     '_pO65w9FnTo': 'Bhartendra (solo)',     # Ep 12 — Mutual funds truth
 }
 
