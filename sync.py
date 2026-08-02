@@ -22,6 +22,7 @@ UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
 # Anything listed here is dropped from episodes.js entirely.
 EXCLUDE_IDS = {
     'RqCy5D4f1Mg',  # "Active vs Passive Funds" - a clip, not a full podcast (per Bhartendra)
+    'dnriwRGaVJA',  # "What return should you really expect" - a Roopa Venkatkrishnan clip, description says "In this clip"
 }
 
 # ─── Manual guest overrides ──────────────────────────────────────────────
