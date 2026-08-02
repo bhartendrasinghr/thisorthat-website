@@ -59,6 +59,7 @@ GUEST_OVERRIDES = {
     'y467zmb9coo': 'Kirtan Shah',
     'qCMA_zCb-38': 'Aashish Sommaiya',
     'Ms_2WqYOIsY': 'Abhijit More',
+    '7RURrUgKXig': 'Abhijit More',          # Ep 27 — hidden home-buying costs (title does not name him)
     'YH2ZegF1ewk': 'Mrin Agarwal',
     '2IFKptd2Qyw': 'Raghav Iyengar',
     # Confirmed solo / compilation episodes:
@@ -71,7 +72,6 @@ GUEST_OVERRIDES = {
     '9SvVl5FALK4': 'Bhartendra (solo)',     # Ep 38 — Couple's portfolio (interviewees not named)
     'QApks7nfIYI': 'Bhartendra (solo)',     # Ep 34 — Ordinary investors
     '0zxhAUjt-38': 'Bhartendra (solo)',     # Ep 32 — PF stuck
-    '7RURrUgKXig': 'Bhartendra (solo)',     # Ep 27 — Home buying costs
     'ejC8nevgQb0': 'Bhartendra (solo)',     # Ep 25 — Where to invest 2025
     '7YdiFShGRRQ': 'Bhartendra (solo)',     # Ep 24 — Wealth with limited income
     'C966CXKS_tU': 'Bhartendra (solo)',     # Ep 23 — Retirement scares us

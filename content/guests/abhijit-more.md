@@ -10,4 +10,4 @@ featured: false
 quote: ""
 ---
 
-Real estate specialist. Guest on the Should You Buy a House conversation.
+Real estate specialist. Two conversations on the show, both on buying a home: whether to buy at all, and the costs nobody warns you about before you do.
