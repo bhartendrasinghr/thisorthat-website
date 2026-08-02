@@ -1,6 +1,6 @@
 ---
-name: "Swaroop Mohanty"
-slug: "swaroop-mohanty"
+name: "Swarup Mohanty"
+slug: "swarup-mohanty"
 role: "Vice Chairman & CEO, Mirae Asset Investment Managers"
 photo: ""
 linkedin: ""

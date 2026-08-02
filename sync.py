@@ -59,6 +59,7 @@ GUEST_OVERRIDES = {
     'y467zmb9coo': 'Kirtan Shah',
     'qCMA_zCb-38': 'Aashish Sommaiya',
     'Ms_2WqYOIsY': 'Abhijit More',
+    '_pO65w9FnTo': 'Swarup Mohanty',        # Ep 12 — name not in title
     'OlrHz1Og_kY': 'Nimesh Chandan',       # Ep 13 — name is after the pipe, which sync strips
     '7RURrUgKXig': 'Abhijit More',          # Ep 27 — hidden home-buying costs (title does not name him)
     'YH2ZegF1ewk': 'Mrin Agarwal',
@@ -79,7 +80,6 @@ GUEST_OVERRIDES = {
     'jCRb7WpH6h4': 'Bhartendra (solo)',     # Ep 22 — Find your number
     'o1_3k5EkzZg': 'Bhartendra (solo)',     # Ep 21 — Rupee falling
     'ch96iqz4wj8': 'Bhartendra (solo)',     # Ep 17 — 10 crore SIP (guest name not in title)
-    '_pO65w9FnTo': 'Bhartendra (solo)',     # Ep 12 — Mutual funds truth
 }
 
 # Guest → role/title. Add to this as new guests come on the show.
@@ -113,6 +113,7 @@ GUEST_ROLES = {
     'Shaymali Basu': 'Financial Planner',
     'Anupam Tiwari': 'Head of Equities, Groww Mutual Fund',
     'Bhalchandra Joshi': 'Mutual Fund Veteran, COO The Wealth Company',
+    'Swarup Mohanty': 'Vice Chairman & CEO, Mirae Asset Investment Managers',
 }
 
 # ─── Fetch from YouTube ──────────────────────────────────────────────────
