@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -101,7 +102,7 @@
 
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">From money to a real portfolio</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">From money to a real portfolio</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Equity MF Portfolio Builder.</h1>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">You've decided to invest in equity mutual funds. That's a good decision already made. The next question, which kinds and how much in each, is the one that trips most people up, so let's take it together. Tell us the money and a few honest answers, and we'll lay out a category split that fits your horizon and your nerves.</p>
   </div>
@@ -255,7 +256,7 @@
 <!-- How it works -->
 <section class="py-16 bg-warmpaper-2">
   <div class="max-w-4xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">How we build the mix</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">How we build the mix</div>
     <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-3">Three dials, one portfolio.</h2>
     <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5">
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
@@ -333,9 +334,9 @@ function parseNumericInput(text) {
 
 // ---- categories ----
 const CATS = {
-  esaver: { label: 'Equity Savings', color: '#1F8A5B', tclass: 'text-gain', ret: 8.5,
+  esaver: { label: 'Equity Savings', color: '#1F8A5B', tclass: 'text-gainink', ret: 8.5,
     what: 'The gentlest option. A little equity with a lot of arbitrage and debt, so it barely wobbles, and it is still taxed like equity. For shorter-horizon or nervous money.' },
-  baf: { label: 'Balanced Advantage', color: '#3E9B72', tclass: 'text-gain', ret: 10.0,
+  baf: { label: 'Balanced Advantage', color: '#3E9B72', tclass: 'text-gainink', ret: 10.0,
     what: 'Equity that dials itself down when markets look expensive and up when they look cheap. Smaller falls than pure equity, a smoother ride, usually equity taxation.' },
   index: { label: 'Index / Large Cap', color: '#013580', tclass: 'text-thisblue-700', ret: 11.0,
     what: 'The stable core. India\'s biggest, most-tracked companies through a low-cost index or large-cap fund.' },
@@ -343,13 +344,13 @@ const CATS = {
     what: 'One fund that must hold at least 35% large and 35% mid caps. A built-in growth tilt, without going all the way to pure mid-cap.' },
   core: { label: 'Flexi Cap', color: '#5B8BD4', tclass: 'text-thisblue', ret: 11.5,
     what: 'One fund, all sizes, at the manager\'s discretion. Your flexible all-cap core.' },
-  mid: { label: 'Mid Cap', color: '#FFC21F', tclass: 'text-mustard-deep', ret: 13.0,
+  mid: { label: 'Mid Cap', color: '#FFC21F', tclass: 'text-goldink', ret: 13.0,
     what: 'Tomorrow\'s large caps. More growth than large caps, and deeper falls when markets turn.' },
   small: { label: 'Small Cap', color: '#FF302D', tclass: 'text-thatred', ret: 14.0,
     what: 'The high-risk, high-reward engine. Can double, can halve. Needs a long horizon and a strong stomach.' },
   intl: { label: 'International', color: '#8A8275', tclass: 'text-ink-3', ret: 10.5,
     what: 'A slice outside India, mostly US and global names, for spread across countries and currencies.' },
-  elss: { label: 'ELSS (tax-saver)', color: '#D99B00', tclass: 'text-mustard-deep', ret: 11.5,
+  elss: { label: 'ELSS (tax-saver)', color: '#D99B00', tclass: 'text-goldink', ret: 11.5,
     what: 'A flexi-cap that also gives an 80C deduction up to ₹1.5L a year. Locks in for 3 years.' }
 };
 const ORDER = ['esaver', 'baf', 'index', 'largemid', 'core', 'mid', 'small', 'intl', 'elss'];

@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
         // Brand colors (per Brand Guidelines v1.0)
         marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
         thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
@@ -316,7 +317,7 @@ fetch('content/about.json', { cache: 'no-cache' })
     if (d.values_heading) document.getElementById('values-heading').textContent = d.values_heading;
     document.getElementById('values-grid').innerHTML = (d.values || []).map(v => `
       <div class="bg-white p-6 rounded-2xl border border-navy/10">
-        <div class="font-serif text-5xl font-bold text-mustard-deep">${escapeHtml(v.number || '')}</div>
+        <div class="font-serif text-5xl font-bold text-goldink">${escapeHtml(v.number || '')}</div>
         <h3 class="font-serif text-xl font-bold mt-3 text-navy-ink">${escapeHtml(v.title || '')}</h3>
         <p class="mt-2 text-sm text-navy-ink/70 leading-relaxed">${escapeHtml(v.body || '')}</p>
       </div>

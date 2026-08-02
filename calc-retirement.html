@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
         // Brand colors (per Brand Guidelines v1.0)
         marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
         thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
@@ -130,7 +131,7 @@
 <!-- HERO -->
 <section class="bg-cream pb-12">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-semibold">Inflation-adjusted, lifestyle-honest</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-semibold">Inflation-adjusted, lifestyle-honest</div>
     <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy-ink mt-3 leading-[1.05]">Real Retirement.</h1>
     <p class="mt-4 text-lg text-navy-ink/70 max-w-3xl">Most calculators hand you a comfortable number. We'd rather show you the real one, so you can plan around it with time to spare. ₹2 crore feels like a lot today, so let's see together what it actually buys in 25 years.</p>
   </div>
@@ -524,7 +525,7 @@ function calc() {
         <td class="py-1.5 pr-3 text-navy/70">₹${fmtINRFull(Math.round(row.monthlyExp))}</td>
         <td class="py-1.5 pr-3">₹${fmtINR(row.startCorpus)}</td>
         <td class="py-1.5 pr-3 text-alert">− ₹${fmtINR(row.withdraw)}</td>
-        <td class="py-1.5 pr-3 text-mustard-deep">+ ₹${fmtINR(row.growth)}</td>
+        <td class="py-1.5 pr-3 text-goldink">+ ₹${fmtINR(row.growth)}</td>
         <td class="py-1.5 font-semibold">₹${fmtINR(row.endCorpus)}</td>
       </tr>
     `).join('');

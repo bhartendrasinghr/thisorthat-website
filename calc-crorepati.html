@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
@@ -103,9 +104,9 @@
 
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Two roads to the same number</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">Two roads to the same number</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Become a crorepati.</h1>
-    <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Banna hai? Raasta yeh raha.</div>
+    <div class="font-script text-2xl md:text-3xl text-goldink mt-2 rotate-[-1deg] inline-block">Banna hai? Raasta yeh raha.</div>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">Everyone wants the crore. Few people look at the road. Set your monthly amount and see when you arrive, on the investing road versus the savings-account road, plus two honest things about that crore nobody puts on the poster.</p>
   </div>
 </section>
@@ -364,8 +365,8 @@ function calc() {
     const labels = ['First 25%', '25 to 50%', '50 to 75%', 'The last 25%'];
     const hot = idx === 3;
     cells += `<div class="rounded-xl p-3 text-center ${hot ? 'bg-marigold/20 border border-marigold' : 'bg-warmpaper-2'}">
-      <div class="text-[10px] uppercase tracking-widest font-bold ${hot ? 'text-mustard-deep' : 'text-ink/50'}">${labels[idx]}</div>
-      <div class="font-display text-xl font-extrabold tab-num ${hot ? 'text-mustard-deep' : 'text-ink'}">${isFinite(leg) && m <= 1200 ? yrsFmt(Math.max(0, leg)) : '-'}</div>
+      <div class="text-[10px] uppercase tracking-widest font-bold ${hot ? 'text-goldink' : 'text-ink/50'}">${labels[idx]}</div>
+      <div class="font-display text-xl font-extrabold tab-num ${hot ? 'text-goldink' : 'text-ink'}">${isFinite(leg) && m <= 1200 ? yrsFmt(Math.max(0, leg)) : '-'}</div>
     </div>`;
   });
   $('milestones').innerHTML = cells;

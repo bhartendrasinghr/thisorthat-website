@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
@@ -105,9 +106,9 @@
 
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Retirement, split by when you spend it</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">Retirement, split by when you spend it</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Three buckets. One question: does the money last?</h1>
-    <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Kitne saal chalega?</div>
+    <div class="font-script text-2xl md:text-3xl text-goldink mt-2 rotate-[-1deg] inline-block">Kitne saal chalega?</div>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">A thirty year retirement needs equity to survive inflation. It also needs you to never sell equity in a crash to buy next month's groceries. Splitting the corpus by <em>when</em> you will spend it solves both: near term money sits in cash, and market noise never touches the bills. Set your numbers and watch it run, year by year.</p>
   </div>
 </section>
@@ -195,7 +196,7 @@
       </div>
 
       <div id="income-panel" class="bg-white rounded-2xl border-2 border-marigold p-6 space-y-6 hidden">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Your bridge income</div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Your bridge income</div>
 
         <div>
           <div class="flex justify-between items-baseline">
@@ -496,7 +497,7 @@ function renderVerdict(p, s) {
   if (!s.depletedAt) {
     box.className = 'rounded-2xl border-2 border-gain bg-gain/5 p-6';
     box.innerHTML = `
-      <div class="text-[10px] uppercase tracking-[0.3em] text-gain font-bold">The plan holds</div>
+      <div class="text-[10px] uppercase tracking-[0.3em] text-gainink font-bold">The plan holds</div>
       <div class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1 leading-snug">The money lasts till ${p.planTill}, with <span class="tab-num">&#8377;${fmtINR(s.endBal)}</span> still there.</div>
       <p class="text-sm text-ink/75 mt-2 leading-relaxed">That leftover is not waste. It is the buffer for the year nobody plans for: a health event, a helping hand, a longer life than the table assumed.</p>`;
     return;
@@ -683,7 +684,7 @@ function renderLedger(p, s) {
   const body = s.rows.map(r => `<tr class="border-b border-navy/5 ${r.depleted ? 'text-thatred font-semibold' : 'text-ink/80'}">
     <td class="py-1.5 pr-3">${r.age}</td>
     <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.gross)}</td>
-    ${p.incomeMode ? `<td class="py-1.5 pr-3 text-right text-gain">${r.income ? '&#8377;' + fmtINR(r.income) : '-'}</td>` : ''}
+    ${p.incomeMode ? `<td class="py-1.5 pr-3 text-right text-gainink">${r.income ? '&#8377;' + fmtINR(r.income) : '-'}</td>` : ''}
     <td class="py-1.5 pr-3 text-right">${r.net ? '&#8377;' + fmtINR(r.net) : '-'}</td>
     <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.b1)}</td>
     <td class="py-1.5 pr-3 text-right">&#8377;${fmtINR(r.b2)}</td>

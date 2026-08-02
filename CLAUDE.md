@@ -20,6 +20,12 @@ Static website for the "This or That with Bhartendra" Indian personal-finance po
 - **Ink** #1A1813 — primary text. Class: `text-ink` or legacy `text-navy-ink`
 - **Gain/Loss** #1F8A5B / #E0211E — numbers only, always with +/− sign
 
+**Accessible text tokens (use these for TEXT, always):**
+- `text-goldink` #8F6600 — gold for eyebrows/labels. The brand gold #D99B00 measures **2.35:1** on warm paper and fails WCAG AA for small text; #8F6600 measures **4.99:1**. Never use `text-mustard-deep` or `text-marigold-600`.
+- `text-gainink` #1B7A50 — green for small text (5.14:1). Plain `gain` #1F8A5B is 4.19:1 and fails.
+- `text-loss` #E0211E passes at 4.61:1. `that-red` #FF302D is 3.55:1, so it is for graphics and large type only, never small text.
+- #D99B00 and #FFC21F remain correct for **borders, backgrounds and chart fills**. The restriction is text only.
+
 **Typography:**
 - Display: **Bricolage Grotesque** 700–800 (was Fraunces) — `font-serif` or `font-display`
 - UI / body: **Hanken Grotesk** 400–700 (was Inter) — `font-sans`

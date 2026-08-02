@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -103,7 +104,7 @@
 
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Let's find where the money goes</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">Let's find where the money goes</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Asset Allocator.</h1>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">The good news: picking the right fund matters far less than picking the right <em>mix</em>. Answer six honest questions and we'll draw you a starting split across equity, debt, gold and cash, one built for how long you have and how you actually feel when markets fall.</p>
   </div>
@@ -309,7 +310,7 @@
 <!-- How it works -->
 <section class="py-16 bg-warmpaper-2">
   <div class="max-w-4xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Why we ask two kinds of question</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">Why we ask two kinds of question</div>
     <h2 class="font-display text-3xl md:text-4xl font-extrabold text-ink mt-3">Capacity is the math. Temperament is you.</h2>
     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
@@ -523,11 +524,11 @@ const BUCKETS = {
     what: 'You lend, someone pays you a fixed-ish return. Low drama by design. This is the shock absorber that lets you hold equity through the falls without flinching.'
   },
   gold: {
-    label: 'Gold', color: '#D99B00', tclass: 'text-mustard-deep',
+    label: 'Gold', color: '#D99B00', tclass: 'text-goldink',
     what: 'The hedge, not the hero. It often holds up when equity and the rupee wobble together. Think of it as an insurance line, not a growth engine, and that is all it needs to be.'
   },
   cash: {
-    label: 'Cash', color: '#1F8A5B', tclass: 'text-gain',
+    label: 'Cash', color: '#1F8A5B', tclass: 'text-gainink',
     what: 'Money you can reach this week. It covers near-term needs and gives you dry powder to rebalance calmly when markets fall.'
   }
 };
@@ -644,7 +645,7 @@ function render(){
   // bucket cards (only buckets that actually hold something)
   const noEquityNote = r.equity === 0
     ? `<div class="bg-marigold/15 border border-marigold rounded-xl px-4 py-3 text-[13px] text-ink/80 leading-relaxed flex gap-2">
-         <span class="text-mustard-deep font-bold shrink-0">No equity, and that is fine.</span>
+         <span class="text-goldink font-bold shrink-0">No equity, and that is fine.</span>
          <span>At ${state.horizon} year${state.horizon>1?'s':''}, this money is needed too soon to risk a market fall. So this is a capital-preservation mix: safety and liquidity first, growth later, when you have the time for it.</span>
        </div>`
     : '';
@@ -684,7 +685,7 @@ function render(){
       </div>
       <p class="text-[13px] text-ink/70 leading-relaxed mt-2">${b.what}</p>
       <div class="mt-3 flex items-start gap-2 text-[12px]">
-        <span class="text-mustard-deep font-bold uppercase tracking-wider shrink-0">Why this</span>
+        <span class="text-goldink font-bold uppercase tracking-wider shrink-0">Why this</span>
         <span class="text-ink/70">${reasonFor(k, r, state)}</span>
       </div>
       ${inner}

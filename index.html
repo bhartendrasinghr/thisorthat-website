@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -111,7 +112,7 @@
 <!-- ============ BRAND + CREDIBILITY + PROOF ============ -->
 <section class="pt-8 pb-2">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-[11px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Do, don't just watch</div>
+    <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Do, don't just watch</div>
     <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold text-ink mt-2 leading-[1.03] max-w-5xl">
       Let's build your plan. Two minutes, on your side.
     </h1>
@@ -229,7 +230,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-end justify-between mb-4">
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Do, don't just watch</div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Do, don't just watch</div>
         <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Plan your money</h2>
       </div>
       <a href="calculators.html" class="text-sm text-thisblue font-semibold shrink-0">All tools &rarr;</a>
@@ -316,7 +317,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-end justify-between mb-4">
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold">Prefer to read</div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Prefer to read</div>
         <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Articles &amp; Slow Thought</h2>
       </div>
       <a href="articles.html" class="text-sm text-thisblue font-semibold shrink-0">All writing &rarr;</a>
@@ -462,7 +463,7 @@ fetch('content/articles.json').then(r => r.json()).then(arts => {
     <a href="article-detail.html?slug=${encodeURIComponent(a.slug)}" class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden block">
       <div class="${colorFor(a.hero_color)} h-28"></div>
       <div class="p-5">
-        <div class="text-[10px] uppercase tracking-widest text-mustard-deep font-bold">${esc(a.category || 'Essay')}</div>
+        <div class="text-[10px] uppercase tracking-widest text-goldink font-bold">${esc(a.category || 'Essay')}</div>
         <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">${esc(a.title)}</div>
         <div class="text-xs text-ink/55 mt-2">${esc(a.read_minutes || 5)} min read</div>
       </div>

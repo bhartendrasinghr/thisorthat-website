@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold: { DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue: { DEFAULT:'#0249B1', 700:'#013580' },
     thatred:  '#FF302D',
@@ -246,7 +247,7 @@ function renderRest() {
           <div class="font-semibold text-ink text-sm truncate">${g.name}</div>
           <div class="text-[10px] text-ink/55 truncate">${g.role || ''}</div>
         </div>
-        <div class="text-[10px] uppercase tracking-widest font-bold ${g.eps === 0 ? 'text-thatred' : 'text-mustard-deep'} shrink-0">${g.eps === 0 ? 'Soon' : g.eps + ' ep'}</div>
+        <div class="text-[10px] uppercase tracking-widest font-bold ${g.eps === 0 ? 'text-thatred' : 'text-goldink'} shrink-0">${g.eps === 0 ? 'Soon' : g.eps + ' ep'}</div>
       </div>
     </a>
   `).join('');

@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -101,7 +102,7 @@
 
 <section class="bg-cream pb-8">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">Take years off your loan, on your terms</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">Take years off your loan, on your terms</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Home Loan Prepayment.</h1>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">Over 20 years, a home loan quietly asks you to pay the bank almost as much in interest as you borrowed. The lovely part: every rupee you prepay goes straight to principal and deletes years of that interest. Tell us your prepayment and see how many years fall away, or set a target date and we'll show you three honest ways to get there.</p>
   </div>
@@ -273,7 +274,7 @@
         </div>
         <div class="bg-white rounded-2xl border-2 border-gain p-6">
           <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-ink/55">Interest saved</div>
-          <div class="mt-2 font-display text-3xl font-extrabold text-gain tab-num">&#8377;<span id="out-int-saved">-</span></div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-gainink tab-num">&#8377;<span id="out-int-saved">-</span></div>
           <div class="mt-1 text-xs text-ink/60">money that stays yours, not the bank's</div>
         </div>
       </div>
@@ -349,7 +350,7 @@
             </ul>
           </div>
           <div class="bg-warmpaper-2 rounded-xl p-4">
-            <div class="font-display text-base font-extrabold text-mustard-deep">Investing may fit better when</div>
+            <div class="font-display text-base font-extrabold text-goldink">Investing may fit better when</div>
             <ul class="mt-2 space-y-1.5 text-ink/75 text-[13px] leading-snug">
               <li>Your loan rate is low and you fully use the Sec 24(b) and 80C breaks.</li>
               <li>Your horizon is long and you can stay invested calmly through the dips.</li>
@@ -581,7 +582,7 @@ function renderStrategies(strat, results, base, emi, targetY) {
         </div>
         <div class="text-right shrink-0">
           <div class="text-[9px] uppercase tracking-wider text-ink/50 font-bold">Interest saved</div>
-          <div class="font-display text-base font-extrabold text-gain tab-num">&#8377;${fmtINR(saved)}</div>
+          <div class="font-display text-base font-extrabold text-gainink tab-num">&#8377;${fmtINR(saved)}</div>
         </div>
       </div>
     </button>`;

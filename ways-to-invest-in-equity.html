@@ -23,6 +23,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -185,7 +186,7 @@ function render() {
             <div class="flex gap-2 text-[12px]"><span class="text-ink/45 w-20 shrink-0">Getting out</span><span class="text-ink">${esc(r.liq)}</span></div>
           </div>
           <div class="mt-3 bg-marigold-50 border border-marigold-600/40 rounded-lg px-3 py-2">
-            <div class="text-[9.5px] uppercase tracking-[0.15em] text-marigold-600 font-bold">The catch</div>
+            <div class="text-[9.5px] uppercase tracking-[0.15em] text-goldink font-bold">The catch</div>
             <div class="text-[12.5px] text-ink-3 mt-0.5 leading-snug">${esc(r.catch)}</div>
           </div>
         </article>`).join('')}

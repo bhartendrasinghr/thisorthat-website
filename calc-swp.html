@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
         marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
         thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
         thatred:   { DEFAULT: '#FF302D' },
@@ -118,7 +119,7 @@
 <!-- HERO -->
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The spending years, done right</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">The spending years, done right</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">SWP, how much can the tank give?</h1>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">You spent 25 years filling the tank. Now the happier question: <strong>how much can you draw every month and still feel safe?</strong> Draw too much and it runs low, draw too little and you skimp while quietly wealthy. Let's find the line that lets you enjoy it.</p>
   </div>
@@ -437,10 +438,10 @@ function calc() {
   rateBar.style.width = widthPct + '%';
   if (ratePct <= 4) {
     rateBar.className = 'tank-fill bg-gain';
-    rateZone.innerHTML = '<strong class="text-gain">Comfortable.</strong> Under 4% is the global rule of thumb for a 30-year retirement. You can breathe here.';
+    rateZone.innerHTML = '<strong class="text-gainink">Comfortable.</strong> Under 4% is the global rule of thumb for a 30-year retirement. You can breathe here.';
   } else if (ratePct <= 6) {
     rateBar.className = 'tank-fill bg-marigold';
-    rateZone.innerHTML = '<strong class="text-marigold-600">A gentle stretch.</strong> 4 to 6% holds up as long as returns stay comfortably above inflation. Keep a cash cushion and you\'re fine.';
+    rateZone.innerHTML = '<strong class="text-goldink">A gentle stretch.</strong> 4 to 6% holds up as long as returns stay comfortably above inflation. Keep a cash cushion and you\'re fine.';
   } else {
     rateBar.className = 'tank-fill bg-thatred';
     rateZone.innerHTML = '<strong class="text-thatred">Worth easing back.</strong> Above 6%, the tank has to work hard to outlast you. A small trim now buys a lot of peace later.';
@@ -488,7 +489,7 @@ function calc() {
     <tr class="border-b border-navy/5 ${r.depleted ? 'bg-thatred/10' : ''}">
       <td class="py-1.5 pr-3 font-semibold">${r.year}</td>
       <td class="py-1.5 pr-3 text-thatred">−₹${fmtINR(r.withdrawn)}</td>
-      <td class="py-1.5 pr-3 text-gain">+₹${fmtINR(Math.max(0, r.growth))}</td>
+      <td class="py-1.5 pr-3 text-gainink">+₹${fmtINR(Math.max(0, r.growth))}</td>
       <td class="py-1.5 font-semibold">₹${fmtINR(r.corpus)}</td>
     </tr>
   `).join('');

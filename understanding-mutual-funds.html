@@ -23,6 +23,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -171,7 +172,7 @@
         <div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold mb-2">Letter, credit risk</div>
         <div class="space-y-1.5 text-[13px]">
           <div class="flex gap-3"><span class="font-mono font-bold text-thisblue w-5">A</span><span class="text-ink-3">Safest borrowers</span></div>
-          <div class="flex gap-3"><span class="font-mono font-bold text-marigold-600 w-5">B</span><span class="text-ink-3">Weaker borrowers, higher yield</span></div>
+          <div class="flex gap-3"><span class="font-mono font-bold text-goldink w-5">B</span><span class="text-ink-3">Weaker borrowers, higher yield</span></div>
           <div class="flex gap-3"><span class="font-mono font-bold text-loss w-5">C</span><span class="text-ink-3">Riskiest borrowers</span></div>
         </div>
       </div>
@@ -179,7 +180,7 @@
         <div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold mb-2">Numeral, interest rate risk</div>
         <div class="space-y-1.5 text-[13px]">
           <div class="flex gap-3"><span class="font-mono font-bold text-thisblue w-6">I</span><span class="text-ink-3">Very short maturities, small price moves</span></div>
-          <div class="flex gap-3"><span class="font-mono font-bold text-marigold-600 w-6">II</span><span class="text-ink-3">Medium maturities</span></div>
+          <div class="flex gap-3"><span class="font-mono font-bold text-goldink w-6">II</span><span class="text-ink-3">Medium maturities</span></div>
           <div class="flex gap-3"><span class="font-mono font-bold text-loss w-6">III</span><span class="text-ink-3">Long maturities, large price moves</span></div>
         </div>
       </div>
@@ -221,7 +222,7 @@
   <div class="bg-white rounded-2xl border border-navy/10 p-4 md:p-6 mt-5">
     <svg id="years" viewBox="0 0 820 300" class="w-full h-auto" role="img" aria-label="Nifty 50 TRI calendar year returns 2005 to 2025"></svg>
     <div class="mt-4 pt-4 border-t border-navy/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Best year</div><div class="font-mono text-lg font-bold text-gain tab-num">+77.6%</div><div class="text-[11px] text-ink/50">2009</div></div>
+      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Best year</div><div class="font-mono text-lg font-bold text-gainink tab-num">+77.6%</div><div class="text-[11px] text-ink/50">2009</div></div>
       <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst year</div><div class="font-mono text-lg font-bold text-loss tab-num">&#8722;51.3%</div><div class="text-[11px] text-ink/50">2008</div></div>
       <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Down years</div><div class="font-mono text-lg font-bold text-ink tab-num" id="dy"></div><div class="text-[11px] text-ink/50">out of <span id="ty" class="tab-num"></span></div></div>
       <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Gap between them</div><div class="font-mono text-lg font-bold text-ink tab-num">129 pts</div><div class="text-[11px] text-ink/50">one year apart</div></div>
@@ -315,7 +316,7 @@ function row(c) {
           <p class="text-[13.5px] text-ink-3 mt-1 leading-relaxed">${c.whyBm}</p>
         </div>
         <div>
-          <div class="text-[10px] uppercase tracking-[0.15em] text-marigold-600 font-bold">Why it falls that far</div>
+          <div class="text-[10px] uppercase tracking-[0.15em] text-goldink font-bold">Why it falls that far</div>
           <p class="text-[13.5px] text-ink-3 mt-1 leading-relaxed">${esc(c.whyVol)}</p>
         </div>
       </div>

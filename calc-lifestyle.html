@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:'#FF302D',
@@ -100,7 +101,7 @@
 
 <section class="bg-cream pb-10">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The quiet drift</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">The quiet drift</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">Where did the raises go?</h1>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">You earn more now than you did 5 years ago, so why does it feel like you save about the same, or less? You're not doing anything wrong; this just happens to almost everyone. This calculator lines up your savings rate <strong>then</strong> vs <strong>now</strong>, shows what share of each raise slipped into everyday life, and what your corpus could look like if you gently held the line from here.</p>
   </div>
@@ -124,7 +125,7 @@
       </div>
 
       <div class="pt-2 border-t border-navy/10">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-deep font-bold mb-3">Then · <span id="then-label">5 years ago</span></div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold mb-3">Then · <span id="then-label">5 years ago</span></div>
 
         <div>
           <div class="flex justify-between items-baseline">
@@ -229,7 +230,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
           <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Income up by</div>
-          <div class="mt-2 font-display text-3xl font-extrabold text-gain tab-num">+₹<span id="out-incdelta">-</span></div>
+          <div class="mt-2 font-display text-3xl font-extrabold text-gainink tab-num">+₹<span id="out-incdelta">-</span></div>
           <div class="mt-2 text-[11px] text-ink/65">A <span id="out-incpct">-</span>% jump in <span class="span-mirror">5</span> years.</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
@@ -241,7 +242,7 @@
 
       <div class="bg-warmpaper-2 rounded-2xl p-6 border-l-4 border-marigold">
         <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">What you'd have today, if</div>
-        <div class="mt-2 font-display text-2xl md:text-3xl font-extrabold text-ink leading-tight">…you'd kept your <span class="text-mustard-deep" id="rate-then-mirror">-</span>% savings rate.</div>
+        <div class="mt-2 font-display text-2xl md:text-3xl font-extrabold text-ink leading-tight">…you'd kept your <span class="text-goldink" id="rate-then-mirror">-</span>% savings rate.</div>
         <div class="mt-4 text-sm text-ink/80 leading-relaxed">Compounded at <span id="out-ret">11.0</span>%/yr, the extra <strong>₹<span id="out-extra-monthly">-</span>/month</strong> you could have set aside would have grown to <strong class="text-thisblue text-lg">₹<span id="out-counterfactual">-</span></strong> over <span class="span-mirror">5</span> years. Not a scolding, just a number worth seeing, because the same math still works forward from today.</div>
       </div>
     </div>

@@ -22,6 +22,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
     marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
     thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
     thatred:{ DEFAULT:'#FF302D', 700:'#B4231F' },
@@ -101,9 +102,9 @@
 
 <section class="bg-cream pb-6">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-xs uppercase tracking-[0.3em] text-mustard-deep font-bold">The 3 &middot; 20 &middot; 30 &middot; 40 rule</div>
+    <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">The 3 &middot; 20 &middot; 30 &middot; 40 rule</div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold text-ink mt-3 leading-[1.02]">A home you can afford, not just one you qualify for.</h1>
-    <div class="font-script text-2xl md:text-3xl text-mustard-deep mt-2 rotate-[-1deg] inline-block">Ghar lena hai, phasna nahi.</div>
+    <div class="font-script text-2xl md:text-3xl text-goldink mt-2 rotate-[-1deg] inline-block">Ghar lena hai, phasna nahi.</div>
     <p class="mt-4 text-lg text-ink/75 max-w-3xl">A bank will happily approve a loan that quietly eats your life, then leave you to live in whatever is left over. The old <strong>3/20/30/40</strong> rule draws a kinder line: a home up to <strong>3&times;</strong> your income, repaid over <strong>20</strong> years, with the EMI under <strong>30%</strong> of your monthly pay and <strong>40%</strong> down. Put in your income and see what that actually buys, whether the EMI leaves you room to breathe, and the down payment nobody warns you about.</p>
   </div>
 </section>
@@ -358,10 +359,10 @@ function calc() {
   let col, verdict;
   if (emiShare <= 30) {
     col = '#1F8A5B';
-    verdict = `<strong class="text-gain">Comfortable.</strong> At ${Math.round(emiShare)}% of your take-home, this sits under the 30% line with room to spare. That gap is the rule's quiet genius: it leaves you money to live, save and absorb a bad month.`;
+    verdict = `<strong class="text-gainink">Comfortable.</strong> At ${Math.round(emiShare)}% of your take-home, this sits under the 30% line with room to spare. That gap is the rule's quiet genius: it leaves you money to live, save and absorb a bad month.`;
   } else if (emiShare <= 40) {
     col = '#D99B00';
-    verdict = `<strong class="text-mustard-deep">A stretch.</strong> At ${Math.round(emiShare)}%, you're past the 30% comfort line. Doable, but it will be felt every single month for ${tenure} years. Trim the budget, grow the down payment, or stretch the tenure a little before you commit.`;
+    verdict = `<strong class="text-goldink">A stretch.</strong> At ${Math.round(emiShare)}%, you're past the 30% comfort line. Doable, but it will be felt every single month for ${tenure} years. Trim the budget, grow the down payment, or stretch the tenure a little before you commit.`;
   } else {
     col = '#FF302D';
     verdict = `<strong class="text-thatred">This is where the dream becomes a trap.</strong> ${Math.round(emiShare)}% of your take-home to one EMI leaves too little for everything else that makes a house a home. This isn't a no, it's a not-like-this: a smaller place, a bigger down payment, or a little more time brings it back to earth.`;
@@ -379,7 +380,7 @@ function calc() {
   ];
   $('scorecard').innerHTML = pills.map(p => {
     const state = p.good ? 'good' : p.warn ? 'warn' : 'bad';
-    const cls = state === 'good' ? 'bg-gain/10 border-gain/40 text-gain' : state === 'warn' ? 'bg-marigold/15 border-marigold/50 text-mustard-deep' : 'bg-thatred/8 border-thatred/40 text-thatred';
+    const cls = state === 'good' ? 'bg-gain/10 border-gain/40 text-gainink' : state === 'warn' ? 'bg-marigold/15 border-marigold/50 text-goldink' : 'bg-thatred/8 border-thatred/40 text-thatred';
     const mark = state === 'good' ? '&#10003;' : state === 'warn' ? '&#8776;' : '&#10007;';
     return `<div class="rounded-xl border p-3 text-center ${cls}">
       <div class="text-[10px] uppercase tracking-wider font-bold opacity-80">${p.k}</div>
