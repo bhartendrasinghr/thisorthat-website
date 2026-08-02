@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -74,7 +75,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -114,7 +115,7 @@
 
     <!-- INPUTS -->
     <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">Your numbers</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold">Your numbers</div>
 
       <!-- Income -->
       <div>
@@ -197,7 +198,7 @@
 
       <!-- Headline budget -->
       <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-7">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Your home budget</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Your home budget</div>
         <div class="flex items-end gap-3 mt-2 flex-wrap">
           <div class="font-display text-4xl md:text-5xl font-extrabold text-ink tab-num leading-none">&#8377;<span id="out-budget">-</span></div>
           <div class="text-sm text-ink/70 pb-1" id="out-budget-note">-</div>
@@ -207,22 +208,22 @@
       <!-- The four numbers -->
       <div class="grid grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Down payment (upfront)</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/55 font-bold">Down payment (upfront)</div>
           <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-down">-</span></div>
           <div class="text-[11px] text-ink/60 mt-1" id="out-down-pct">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Home loan</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/55 font-bold">Home loan</div>
           <div class="mt-2 font-display text-2xl font-extrabold text-thisblue tab-num">&#8377;<span id="out-loan">-</span></div>
           <div class="text-[11px] text-ink/60 mt-1" id="out-loan-pct">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Your actual EMI</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/55 font-bold">Your actual EMI</div>
           <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-emi">-</span></div>
           <div class="text-[11px] text-ink/60 mt-1" id="out-emi-note">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/55 font-bold">Total interest paid</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/55 font-bold">Total interest paid</div>
           <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-interest">-</span></div>
           <div class="text-[11px] text-ink/60 mt-1" id="out-interest-note">over the life of the loan</div>
         </div>
@@ -231,7 +232,7 @@
       <!-- EMI gauge: the honest bit -->
       <div id="emi-card" class="bg-white rounded-2xl border-2 border-navy/10 p-6">
         <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Does the EMI actually fit?</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Does the EMI actually fit?</div>
           <div class="text-xs font-mono text-ink/55">EMI is <strong id="emi-share" class="tab-num">-</strong> of your take-home</div>
         </div>
         <div class="mt-4 relative h-6 rounded-full bg-warmpaper-2 overflow-hidden">
@@ -240,7 +241,7 @@
             <div class="w-0.5 h-full bg-ink/70"></div>
           </div>
         </div>
-        <div class="flex justify-between text-[10px] text-ink/45 font-mono mt-1">
+        <div class="flex justify-between text-[11px] text-ink/45 font-mono mt-1">
           <span>0%</span><span style="margin-left:8%">the 30% comfort line &darr;</span><span>50% of income</span>
         </div>
         <div id="emi-verdict" class="mt-4 text-sm text-ink/80 leading-relaxed">-</div>
@@ -248,7 +249,7 @@
 
       <!-- Rule scorecard -->
       <div class="bg-warmpaper-2 rounded-2xl p-5">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-3">Still playing by the rule?</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-3">Still playing by the rule?</div>
         <div id="scorecard" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
       </div>
 
@@ -383,7 +384,7 @@ function calc() {
     const cls = state === 'good' ? 'bg-gain/10 border-gain/40 text-gainink' : state === 'warn' ? 'bg-marigold/15 border-marigold/50 text-goldink' : 'bg-thatred/8 border-thatred/40 text-thatred';
     const mark = state === 'good' ? '&#10003;' : state === 'warn' ? '&#8776;' : '&#10007;';
     return `<div class="rounded-xl border p-3 text-center ${cls}">
-      <div class="text-[10px] uppercase tracking-wider font-bold opacity-80">${p.k}</div>
+      <div class="text-[11px] uppercase tracking-wider font-bold opacity-80">${p.k}</div>
       <div class="font-display text-lg font-extrabold tab-num mt-0.5">${mark} ${p.val}</div>
     </div>`;
   }).join('');

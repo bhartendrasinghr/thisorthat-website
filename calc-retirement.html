@@ -36,7 +36,8 @@
         alert:   '#FF302D',
         cream:   '#FCFBF8',
         paper:   '#F6F4EE'
-      }, fontFamily: {
+      }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily: {
         sans:    ['Hanken Grotesk','system-ui','sans-serif'],
         serif:   ['Bricolage Grotesque','Georgia','serif'],
         display: ['Bricolage Grotesque','Georgia','serif'],
@@ -97,7 +98,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
       <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
       <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -258,24 +259,24 @@
       <!-- The math: 4 mini cards -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div class="bg-white rounded-xl p-4 border border-navy/10">
-          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">First month at retirement</div>
+          <div class="text-[11px] uppercase tracking-widest text-navy/60 font-semibold">First month at retirement</div>
           <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-exp">-</span></div>
-          <div class="text-[10px] text-navy/50 mt-1">vs ₹<span id="out-today-exp">50,000</span> today</div>
+          <div class="text-[11px] text-navy/50 mt-1">vs ₹<span id="out-today-exp">50,000</span> today</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
-          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Your existing corpus grows to</div>
+          <div class="text-[11px] uppercase tracking-widest text-navy/60 font-semibold">Your existing corpus grows to</div>
           <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-future-cur">-</span></div>
-          <div class="text-[10px] text-navy/50 mt-1">at <span id="out-pre-pct">12</span>% over <span id="out-yrs-grow">30</span> yrs</div>
+          <div class="text-[11px] text-navy/50 mt-1">at <span id="out-pre-pct">12</span>% over <span id="out-yrs-grow">30</span> yrs</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
-          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Years in retirement</div>
+          <div class="text-[11px] uppercase tracking-widest text-navy/60 font-semibold">Years in retirement</div>
           <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num"><span id="out-ret-yrs">25</span></div>
-          <div class="text-[10px] text-navy/50 mt-1">to fund every month</div>
+          <div class="text-[11px] text-navy/50 mt-1">to fund every month</div>
         </div>
         <div class="bg-white rounded-xl p-4 border border-navy/10">
-          <div class="text-[10px] uppercase tracking-widest text-navy/60 font-semibold">Total you'll contribute</div>
+          <div class="text-[11px] uppercase tracking-widest text-navy/60 font-semibold">Total you'll contribute</div>
           <div class="font-serif text-xl font-bold text-navy-ink mt-1 tab-num">₹<span id="out-total-cont">-</span></div>
-          <div class="text-[10px] text-navy/50 mt-1">the rest is compounding</div>
+          <div class="text-[11px] text-navy/50 mt-1">the rest is compounding</div>
         </div>
       </div>
 

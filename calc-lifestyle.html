@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -75,7 +76,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -125,7 +126,7 @@
       </div>
 
       <div class="pt-2 border-t border-navy/10">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold mb-3">Then · <span id="then-label">5 years ago</span></div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold mb-3">Then · <span id="then-label">5 years ago</span></div>
 
         <div>
           <div class="flex justify-between items-baseline">
@@ -151,7 +152,7 @@
       </div>
 
       <div class="pt-2 border-t border-navy/10">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold mb-3">Now · today</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold mb-3">Now · today</div>
 
         <div>
           <div class="flex justify-between items-baseline">
@@ -187,7 +188,7 @@
             </div>
           </div>
           <input id="in-ret" type="range" min="5" max="15" step="0.5" value="11" class="w-full mt-1" />
-          <div class="text-[10px] text-ink/55 mt-1">Used for the "what could have been" corpus.</div>
+          <div class="text-[11px] text-ink/55 mt-1">Used for the "what could have been" corpus.</div>
         </div>
       </details>
     </div>
@@ -204,7 +205,7 @@
       </div>
 
       <div class="bg-white rounded-2xl border-2 border-marigold p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Savings rate, then vs now</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Savings rate, then vs now</div>
 
         <div class="mt-5 space-y-4">
           <div>
@@ -229,19 +230,19 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Income up by</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Income up by</div>
           <div class="mt-2 font-display text-3xl font-extrabold text-gainink tab-num">+₹<span id="out-incdelta">-</span></div>
           <div class="mt-2 text-[11px] text-ink/65">A <span id="out-incpct">-</span>% jump in <span class="span-mirror">5</span> years.</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Expenses up by</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Expenses up by</div>
           <div class="mt-2 font-display text-3xl font-extrabold text-loss tab-num">+₹<span id="out-expdelta">-</span></div>
           <div class="mt-2 text-[11px] text-ink/65">A <span id="out-exppct">-</span>% jump in <span class="span-mirror">5</span> years.</div>
         </div>
       </div>
 
       <div class="bg-warmpaper-2 rounded-2xl p-6 border-l-4 border-marigold">
-        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">What you'd have today, if</div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold">What you'd have today, if</div>
         <div class="mt-2 font-display text-2xl md:text-3xl font-extrabold text-ink leading-tight">…you'd kept your <span class="text-goldink" id="rate-then-mirror">-</span>% savings rate.</div>
         <div class="mt-4 text-sm text-ink/80 leading-relaxed">Compounded at <span id="out-ret">11.0</span>%/yr, the extra <strong>₹<span id="out-extra-monthly">-</span>/month</strong> you could have set aside would have grown to <strong class="text-thisblue text-lg">₹<span id="out-counterfactual">-</span></strong> over <span class="span-mirror">5</span> years. Not a scolding, just a number worth seeing, because the same math still works forward from today.</div>
       </div>

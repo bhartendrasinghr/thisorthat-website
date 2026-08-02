@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -75,7 +76,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -118,7 +119,7 @@
     <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-7">
 
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">The target</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">The target</div>
         <div class="flex flex-wrap gap-2" id="target-chips">
           <button class="chip text-sm font-bold py-2 px-4 rounded-full border" data-t="5000000">&#8377;50 L</button>
           <button class="chip text-sm font-bold py-2 px-4 rounded-full border" data-t="10000000">&#8377;1 Cr</button>
@@ -162,7 +163,7 @@
         <input id="in-start" type="range" min="0" max="20000000" step="100000" value="0" class="w-full mt-2" />
       </div>
 
-      <div class="bg-warmpaper-2 rounded-xl p-4 text-[12px] text-ink/70 leading-relaxed">
+      <div class="bg-warmpaper-2 rounded-xl p-4 text-[13px] text-ink/70 leading-relaxed">
         <strong>The other road:</strong> the same money in a savings account at 3% a year. Not zero, we play fair, but not much of an engine either.
       </div>
     </div>
@@ -173,7 +174,7 @@
       <!-- ROAD SCENE -->
       <div class="bg-white rounded-2xl border-2 border-marigold overflow-hidden">
         <div class="px-6 pt-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The road to <span id="road-target">&#8377;1 Cr</span></div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">The road to <span id="road-target">&#8377;1 Cr</span></div>
         </div>
         <svg id="road" viewBox="0 0 600 300" class="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <!-- sky -->
@@ -214,12 +215,12 @@
       <!-- ARRIVAL CARDS -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
-          <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-marigold">Investing road</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] font-bold text-marigold">Investing road</div>
           <div class="mt-2 font-display text-3xl font-extrabold tab-num" id="out-invest-when">-</div>
           <div class="mt-1 text-xs text-warmpaper/75" id="out-invest-note">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-6">
-          <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-ink/55">Savings-account road</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] font-bold text-ink/55">Savings-account road</div>
           <div class="mt-2 font-display text-3xl font-extrabold text-ink tab-num" id="out-save-when">-</div>
           <div class="mt-1 text-xs text-ink/60" id="out-save-note">-</div>
         </div>
@@ -227,10 +228,10 @@
 
       <!-- MILESTONES -->
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The secret of the road</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">The secret of the road</div>
         <div class="font-display text-xl font-extrabold text-ink mt-1">The first quarter is the slowest. On purpose.</div>
         <div id="milestones" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
-        <p class="text-[12px] text-ink/60 mt-4 leading-relaxed">That's compounding warming up. Most people quit on the first stretch, exactly where the road is meant to feel long. The last quarter almost drives itself.</p>
+        <p class="text-[13px] text-ink/60 mt-4 leading-relaxed">That's compounding warming up. Most people quit on the first stretch, exactly where the road is meant to feel long. The last quarter almost drives itself.</p>
       </div>
 
       <!-- HONEST BOX -->
@@ -245,7 +246,7 @@
       <!-- CTA -->
       <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Like the blue road?</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Like the blue road?</div>
           <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Build the portfolio that drives it.</div>
         </div>
         <div class="flex flex-wrap gap-3">
@@ -365,7 +366,7 @@ function calc() {
     const labels = ['First 25%', '25 to 50%', '50 to 75%', 'The last 25%'];
     const hot = idx === 3;
     cells += `<div class="rounded-xl p-3 text-center ${hot ? 'bg-marigold/20 border border-marigold' : 'bg-warmpaper-2'}">
-      <div class="text-[10px] uppercase tracking-widest font-bold ${hot ? 'text-goldink' : 'text-ink/50'}">${labels[idx]}</div>
+      <div class="text-[11px] uppercase tracking-widest font-bold ${hot ? 'text-goldink' : 'text-ink/50'}">${labels[idx]}</div>
       <div class="font-display text-xl font-extrabold tab-num ${hot ? 'text-goldink' : 'text-ink'}">${isFinite(leg) && m <= 1200 ? yrsFmt(Math.max(0, leg)) : '-'}</div>
     </div>`;
   });

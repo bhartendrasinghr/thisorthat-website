@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -75,7 +76,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -129,11 +130,11 @@
       </div>
 
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">You stay invested for</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">You stay invested for</div>
         <div class="flex flex-wrap gap-2" id="year-chips"></div>
       </div>
 
-      <div class="bg-warmpaper-2 rounded-xl p-4 text-[12px] text-ink/70 leading-relaxed">
+      <div class="bg-warmpaper-2 rounded-xl p-4 text-[13px] text-ink/70 leading-relaxed">
         The numbers come from a &#8377;10,000 monthly SIP into the BSE Sensex, tested across every start month from June 1996 to June 2026, thirty years. Not a forecast: a record of what actually happened.
       </div>
     </div>
@@ -143,29 +144,29 @@
 
       <!-- HEADLINE STAT -->
       <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] font-bold text-marigold">The number the brochure skips</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] font-bold text-marigold">The number the brochure skips</div>
         <div class="mt-2 text-lg leading-relaxed">Over <strong id="s-years" class="text-marigold">10 years</strong>, a Sensex SIP finished in the red only <strong id="s-neg" class="font-display text-3xl align-middle text-marigold tab-num">6%</strong> of the time. <span id="s-neg-note" class="text-warmpaper/80">The other 94% of start dates, you were ahead.</span></div>
       </div>
 
       <!-- RANGE CARDS -->
       <div class="bg-white rounded-2xl border-2 border-marigold p-6">
         <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">What <span id="r-invested">&#8377;12 L</span> invested became, across every start date</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">What <span id="r-invested">&#8377;12 L</span> invested became, across every start date</div>
           <div class="text-[11px] text-ink/55" id="r-window">10-year windows</div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
           <div class="rounded-xl border border-loss/30 bg-loss/5 p-4">
-            <div class="text-[10px] uppercase tracking-widest font-bold text-loss">Worst you'd have seen</div>
+            <div class="text-[11px] uppercase tracking-widest font-bold text-loss">Worst you'd have seen</div>
             <div class="font-display text-2xl font-extrabold text-loss tab-num mt-1" id="o-worst">-</div>
             <div class="text-[11px] text-ink/55 mt-0.5" id="o-worst-note">-</div>
           </div>
           <div class="rounded-xl border border-navy/15 bg-warmpaper-2 p-4">
-            <div class="text-[10px] uppercase tracking-widest font-bold text-ink/60">A typical run</div>
+            <div class="text-[11px] uppercase tracking-widest font-bold text-ink/60">A typical run</div>
             <div class="font-display text-2xl font-extrabold text-ink tab-num mt-1" id="o-avg">-</div>
             <div class="text-[11px] text-ink/55 mt-0.5" id="o-avg-note">-</div>
           </div>
           <div class="rounded-xl border border-gain/30 bg-gain/5 p-4">
-            <div class="text-[10px] uppercase tracking-widest font-bold text-gainink">Best you'd have seen</div>
+            <div class="text-[11px] uppercase tracking-widest font-bold text-gainink">Best you'd have seen</div>
             <div class="font-display text-2xl font-extrabold text-gainink tab-num mt-1" id="o-best">-</div>
             <div class="text-[11px] text-ink/55 mt-0.5" id="o-best-note">-</div>
           </div>
@@ -176,25 +177,25 @@
             <div id="bar-zero" class="absolute top-0 bottom-0 w-px bg-ink/30"></div>
             <div id="bar-fill" class="absolute top-0 bottom-0 rounded-full bg-gradient-to-r from-loss via-marigold to-gain"></div>
           </div>
-          <div class="flex justify-between text-[10px] text-ink/45 font-mono mt-1.5 tab-num">
+          <div class="flex justify-between text-[11px] text-ink/45 font-mono mt-1.5 tab-num">
             <span id="bar-lo">-</span><span id="bar-hi">-</span>
           </div>
-          <div class="text-[10px] text-ink/35 mt-0.5">The thin line marks breakeven. Almost the entire spread sits to its right.</div>
+          <div class="text-[11px] text-ink/35 mt-0.5">The thin line marks breakeven. Almost the entire spread sits to its right.</div>
         </div>
       </div>
 
       <!-- RISK SHRINKS WITH TIME -->
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Why time is the risk-killer</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Why time is the risk-killer</div>
         <div class="font-display text-xl font-extrabold text-ink mt-1">The longer you hold, the rarer a loss.</div>
         <div id="neg-bars" class="mt-4 grid grid-cols-5 gap-3 items-end"></div>
-        <p class="text-[12px] text-ink/60 mt-4 leading-relaxed">Same market, same SIP. The only thing that changes is how long you sat still. The worst one-year run lost 36%; the worst ten-year run lost 17% and there were far fewer of them. Quitting early is the one move that locks the bad number in.</p>
+        <p class="text-[13px] text-ink/60 mt-4 leading-relaxed">Same market, same SIP. The only thing that changes is how long you sat still. The worst one-year run lost 36%; the worst ten-year run lost 17% and there were far fewer of them. Quitting early is the one move that locks the bad number in.</p>
       </div>
 
       <!-- CTA -->
       <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Seen the range? Now aim it.</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Seen the range? Now aim it.</div>
           <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Set a target and see the monthly price.</div>
         </div>
         <div class="flex flex-wrap gap-3">
@@ -295,7 +296,7 @@ function calc() {
     bars += `<button type="button" data-y="${y}" class="flex flex-col items-center justify-end gap-1 group">
       <span class="font-mono tab-num text-[11px] font-bold ${on ? 'text-thatred' : 'text-ink/50'}">${dd.neg}%</span>
       <span class="w-full rounded-t ${on ? 'bg-thatred' : 'bg-warmpaper-3 group-hover:bg-thatred/40'}" style="height:${h}px"></span>
-      <span class="text-[10px] font-bold ${on ? 'text-ink' : 'text-ink/45'} tab-num">${y}y</span>
+      <span class="text-[11px] font-bold ${on ? 'text-ink' : 'text-ink/45'} tab-num">${y}y</span>
     </button>`;
   });
   $('neg-bars').innerHTML = bars;

@@ -33,7 +33,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -103,7 +104,7 @@
 </div>
 <section class="bg-marigold">
   <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
-    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The SEBI rulebook, in plain language</div>
+    <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">The SEBI rulebook, in plain language</div>
     <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold text-thisblue mt-3 leading-[1.05] max-w-4xl">Understanding your mutual funds.</h1>
     <p class="mt-5 text-ink font-semibold text-base md:text-lg max-w-2xl leading-relaxed">
       Every fund has to sit in one of <span class="tab-num">42</span> categories. The category decides what the fund
@@ -123,8 +124,8 @@
     <div class="mt-3 flex items-center justify-between gap-3 flex-wrap">
       <div id="famnote" class="text-[13px] text-ink-3"></div>
       <div class="flex gap-2">
-        <button id="expand" class="text-[12px] font-semibold text-thisblue hover:underline">Open all</button>
-        <button id="collapse" class="text-[12px] font-semibold text-ink/50 hover:underline">Close all</button>
+        <button id="expand" class="text-[13px] font-semibold text-thisblue hover:underline">Open all</button>
+        <button id="collapse" class="text-[13px] font-semibold text-ink/50 hover:underline">Close all</button>
       </div>
     </div>
   </div>
@@ -142,7 +143,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
     <div class="bg-white rounded-2xl border-2 border-thisblue/20 p-6">
       <h3 class="font-display text-xl font-extrabold text-ink">TRI</h3>
-      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+      <p class="text-[15px] text-ink-3 mt-2 leading-relaxed">
         Total Return Index. It counts the dividends companies pay, treated as reinvested, on top of the share price.
         A price-only index shows a lower number, which would make any fund compared against it look better than it is.
         Since 2018, funds must use TRI.
@@ -150,7 +151,7 @@
     </div>
     <div class="bg-white rounded-2xl border-2 border-marigold-600/30 p-6">
       <h3 class="font-display text-xl font-extrabold text-ink">100, 150, 250, 500</h3>
-      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">Companies are ranked by market value twice a year, and the index names follow that ranking:</p>
+      <p class="text-[15px] text-ink-3 mt-2 leading-relaxed">Companies are ranked by market value twice a year, and the index names follow that ranking:</p>
       <ul class="text-[13px] text-ink-3 mt-3 space-y-1.5">
         <li><span class="font-mono text-thisblue">1 to 100</span> is large cap, so Nifty 100</li>
         <li><span class="font-mono text-thisblue">101 to 250</span> is mid cap, so Nifty Midcap 150, which is 150 companies</li>
@@ -163,7 +164,7 @@
 
   <div class="bg-white rounded-2xl border border-navy/10 p-6 mt-4">
     <h3 class="font-display text-xl font-extrabold text-ink">A-I, A-II, A-III, B-II on debt benchmarks</h3>
-    <p class="text-[14px] text-ink-3 mt-2 leading-relaxed max-w-3xl">
+    <p class="text-[15px] text-ink-3 mt-2 leading-relaxed max-w-3xl">
       Two separate risks, written as one code. The letter is credit risk, meaning the chance a borrower does not repay.
       The numeral is interest rate risk, meaning how much the price moves when rates change.
     </p>
@@ -194,7 +195,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
       <h3 class="font-display text-xl font-extrabold text-ink">Macaulay duration</h3>
-      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+      <p class="text-[15px] text-ink-3 mt-2 leading-relaxed">
         The average wait, in years, to get your money back from a bond portfolio, counting the interest paid along the
         way. Roughly: if rates rise 1%, a portfolio with duration 5 falls about 5%, and rises about that much if rates
         fall. Most debt categories are defined by duration bands, so the band tells you the risk.
@@ -202,7 +203,7 @@
     </div>
     <div class="bg-marigold-50 border border-marigold-600 rounded-2xl p-6">
       <h3 class="font-display text-xl font-extrabold text-ink">Hybrid names are written debt first</h3>
-      <p class="text-[14px] text-ink-3 mt-2 leading-relaxed">
+      <p class="text-[15px] text-ink-3 mt-2 leading-relaxed">
         <span class="font-mono text-ink">CRISIL Hybrid 85+15 Conservative</span> is 85% debt and 15% equity, not the
         other way round. <span class="font-mono text-ink">CRISIL Hybrid 35+65 Aggressive</span> is 35% debt and 65%
         equity. Read it the wrong way and you will misjudge how much risk you are taking.
@@ -222,13 +223,13 @@
   <div class="bg-white rounded-2xl border border-navy/10 p-4 md:p-6 mt-5">
     <svg id="years" viewBox="0 0 820 300" class="w-full h-auto" role="img" aria-label="Nifty 50 TRI calendar year returns 2005 to 2025"></svg>
     <div class="mt-4 pt-4 border-t border-navy/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Best year</div><div class="font-mono text-lg font-bold text-gainink tab-num">+77.6%</div><div class="text-[11px] text-ink/50">2009</div></div>
-      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst year</div><div class="font-mono text-lg font-bold text-loss tab-num">&#8722;51.3%</div><div class="text-[11px] text-ink/50">2008</div></div>
-      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Down years</div><div class="font-mono text-lg font-bold text-ink tab-num" id="dy"></div><div class="text-[11px] text-ink/50">out of <span id="ty" class="tab-num"></span></div></div>
-      <div><div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Gap between them</div><div class="font-mono text-lg font-bold text-ink tab-num">129 pts</div><div class="text-[11px] text-ink/50">one year apart</div></div>
+      <div><div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Best year</div><div class="font-mono text-lg font-bold text-gainink tab-num">+77.6%</div><div class="text-[11px] text-ink/50">2009</div></div>
+      <div><div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst year</div><div class="font-mono text-lg font-bold text-loss tab-num">&#8722;51.3%</div><div class="text-[11px] text-ink/50">2008</div></div>
+      <div><div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Down years</div><div class="font-mono text-lg font-bold text-ink tab-num" id="dy"></div><div class="text-[11px] text-ink/50">out of <span id="ty" class="tab-num"></span></div></div>
+      <div><div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Gap between them</div><div class="font-mono text-lg font-bold text-ink tab-num">129 pts</div><div class="text-[11px] text-ink/50">one year apart</div></div>
     </div>
   </div>
-  <p class="text-[12px] text-ink/50 mt-3 leading-relaxed max-w-3xl">
+  <p class="text-[13px] text-ink/50 mt-3 leading-relaxed max-w-3xl">
     Calendar year returns for the Nifty 50 Total Return Index, 2005 to 2025, rounded. Sources differ slightly on 2009,
     reporting between about 75.8% and 77.6%. 2026 is incomplete and left out. We show one index rather than a best
     case for all 42 categories because the debt and hybrid benchmarks do not publish comparable best period figures.
@@ -255,7 +256,7 @@
 </section>
 
 <section class="max-w-6xl mx-auto px-6 mt-8">
-  <p class="text-[12px] text-ink/50 leading-relaxed">
+  <p class="text-[13px] text-ink/50 leading-relaxed">
     *Long run growth is the approximate 10 year return per year of the category's benchmark or category average as of
     July 2026. Worst 12 months is that benchmark's worst one year period, mostly the 2008 to 2009 crash. Figures are
     indicative and rounded. Riskometer labels are the category norm, and each scheme publishes its own every month.
@@ -285,12 +286,12 @@ function row(c) {
   return `<details class="catrow bg-white rounded-xl border border-navy/10">
     <summary class="p-4 flex items-start justify-between gap-3">
       <div class="min-w-0">
-        <div class="font-display text-[17px] font-extrabold text-ink">${esc(c.name)}</div>
+        <div class="font-display text-lg font-extrabold text-ink">${esc(c.name)}</div>
         <div class="text-[13px] text-ink-3 mt-0.5 leading-snug">${esc(c.rule)}</div>
       </div>
       <div class="flex items-center gap-2 shrink-0">
-        <span class="hidden sm:inline font-mono text-[12px] tab-num ${c.dd !== null && c.dd < 0 ? 'text-loss' : 'text-ink/45'}">${esc(c.worst.split('(')[0].trim())}</span>
-        <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap" style="${RISK_STYLE[c.risk]}">${esc(c.riskLabel)}</span>
+        <span class="hidden sm:inline font-mono text-[13px] tab-num ${c.dd !== null && c.dd < 0 ? 'text-loss' : 'text-ink/45'}">${esc(c.worst.split('(')[0].trim())}</span>
+        <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap" style="${RISK_STYLE[c.risk]}">${esc(c.riskLabel)}</span>
         <svg class="chev w-4 h-4 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
       </div>
     </summary>
@@ -298,26 +299,26 @@ function row(c) {
       ${c.note ? `<div class="font-mono text-[11px] text-ink/50 mb-3">${esc(c.note)}</div>` : ''}
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="bg-warmpaper-2 rounded-lg p-3">
-          <div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Measured against</div>
+          <div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Measured against</div>
           <div class="text-[13px] font-bold text-thisblue mt-1 leading-snug">${esc(c.bm)}</div>
         </div>
         <div class="bg-warmpaper-2 rounded-lg p-3">
-          <div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Long run growth*</div>
+          <div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Long run growth*</div>
           <div class="font-mono text-[15px] text-ink mt-1 tab-num">${esc(c.growth)}</div>
         </div>
         <div class="bg-warmpaper-2 rounded-lg p-3">
-          <div class="text-[10px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst 12 months*</div>
+          <div class="text-[11px] uppercase tracking-[0.15em] text-ink/45 font-bold">Worst 12 months*</div>
           <div class="font-mono text-[15px] mt-1 tab-num ${c.dd !== null && c.dd < 0 ? 'text-loss' : 'text-ink'}">${esc(c.worst)}</div>
         </div>
       </div>
       <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.15em] text-thisblue font-bold">What that benchmark is</div>
-          <p class="text-[13.5px] text-ink-3 mt-1 leading-relaxed">${c.whyBm}</p>
+          <div class="text-[11px] uppercase tracking-[0.15em] text-thisblue font-bold">What that benchmark is</div>
+          <p class="text-[13px] text-ink-3 mt-1 leading-relaxed">${c.whyBm}</p>
         </div>
         <div>
-          <div class="text-[10px] uppercase tracking-[0.15em] text-goldink font-bold">Why it falls that far</div>
-          <p class="text-[13.5px] text-ink-3 mt-1 leading-relaxed">${esc(c.whyVol)}</p>
+          <div class="text-[11px] uppercase tracking-[0.15em] text-goldink font-bold">Why it falls that far</div>
+          <p class="text-[13px] text-ink-3 mt-1 leading-relaxed">${esc(c.whyVol)}</p>
         </div>
       </div>
     </div>

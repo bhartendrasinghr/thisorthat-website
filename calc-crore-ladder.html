@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -68,7 +69,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -109,7 +110,7 @@
 
     <!-- TARGET CHIPS -->
     <div class="bg-white rounded-2xl border border-navy/10 p-5">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">Your target</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">Your target</div>
       <div class="flex flex-wrap gap-2" id="target-chips"></div>
     </div>
 
@@ -117,10 +118,10 @@
     <div class="bg-white rounded-2xl border-2 border-marigold overflow-hidden">
       <div class="px-5 pt-5 pb-3 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">What <span id="grid-target">&#8377;1 Cr</span> needs, by vehicle</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">What <span id="grid-target">&#8377;1 Cr</span> needs, by vehicle</div>
           <div class="text-[11px] text-ink/55 mt-0.5">Tap any cell to see what that target is really worth when it arrives.</div>
         </div>
-        <div class="flex rounded-full border border-navy/15 overflow-hidden text-[12px] font-bold" id="mode-toggle">
+        <div class="flex rounded-full border border-navy/15 overflow-hidden text-[13px] font-bold" id="mode-toggle">
           <button type="button" data-m="sip" class="px-4 py-2">SIP every month</button>
           <button type="button" data-m="lump" class="px-4 py-2">One-time today</button>
         </div>
@@ -128,13 +129,13 @@
       <div class="overflow-x-auto">
         <div class="min-w-[700px]">
           <div class="grid grid-cols-[12.5rem_repeat(6,1fr)] px-5 pb-2 pt-1 items-end border-b border-navy/10">
-            <span class="text-[10px] uppercase tracking-widest font-bold text-ink/45">Where the money sits</span>
-            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">5 yrs</span>
-            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">10 yrs</span>
-            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">15 yrs</span>
-            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">20 yrs</span>
-            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45">25 yrs</span>
-            <span class="text-right text-[10px] uppercase tracking-widest font-bold text-ink/45 pr-1">30 yrs</span>
+            <span class="text-[11px] uppercase tracking-widest font-bold text-ink/45">Where the money sits</span>
+            <span class="text-right text-[11px] uppercase tracking-widest font-bold text-ink/45">5 yrs</span>
+            <span class="text-right text-[11px] uppercase tracking-widest font-bold text-ink/45">10 yrs</span>
+            <span class="text-right text-[11px] uppercase tracking-widest font-bold text-ink/45">15 yrs</span>
+            <span class="text-right text-[11px] uppercase tracking-widest font-bold text-ink/45">20 yrs</span>
+            <span class="text-right text-[11px] uppercase tracking-widest font-bold text-ink/45">25 yrs</span>
+            <span class="text-right text-[11px] uppercase tracking-widest font-bold text-ink/45 pr-1">30 yrs</span>
           </div>
           <div id="grid" class="divide-y divide-navy/5"></div>
         </div>
@@ -144,7 +145,7 @@
 
     <!-- TIME IS THE DISCOUNT -->
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The grid's secret</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">The grid's secret</div>
       <div class="font-display text-xl font-extrabold text-ink mt-1">Time is the discount.</div>
       <p id="discount-line" class="text-sm text-ink/75 mt-2 leading-relaxed">-</p>
     </div>
@@ -161,7 +162,7 @@
     <!-- CTA -->
     <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Found your cell?</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Found your cell?</div>
         <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Now see the road that gets you there.</div>
       </div>
       <div class="flex flex-wrap gap-3">
@@ -231,7 +232,7 @@ function calc() {
   OPTIONS.forEach(o => {
     let cells = `<span class="pl-5 pr-2 py-3">
       <span class="block text-[13px] font-semibold text-ink leading-tight">${o.name}</span>
-      <span class="mt-1 flex items-center gap-1.5"><span class="font-mono tab-num font-bold text-[10px] ${o.r === 12 ? 'text-thisblue' : 'text-ink/60'}">${o.r}%</span><span class="uppercase tracking-wider font-bold text-[9px] px-1.5 py-0.5 rounded ${volPill(o.v)}">${o.vol} volatility</span></span>
+      <span class="mt-1 flex items-center gap-1.5"><span class="font-mono tab-num font-bold text-[11px] ${o.r === 12 ? 'text-thisblue' : 'text-ink/60'}">${o.r}%</span><span class="uppercase tracking-wider font-bold text-[11px] px-1.5 py-0.5 rounded ${volPill(o.v)}">${o.vol} volatility</span></span>
     </span>`;
     YEARS.forEach(y => {
       const on = y === selY && o.r === selOpt.r;

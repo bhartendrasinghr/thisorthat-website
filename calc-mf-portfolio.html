@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -74,7 +75,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -123,7 +124,7 @@
     <!-- INPUTS -->
     <div class="lg:col-span-2 bg-white rounded-2xl border border-navy/10 p-6 space-y-8">
 
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">How much, and how</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold">How much, and how</div>
 
       <!-- SIP -->
       <div>
@@ -208,13 +209,13 @@
       <!-- Portfolio donut -->
       <div id="portfolio-block">
         <div class="bg-white rounded-2xl border-2 border-marigold p-6">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your equity mutual fund portfolio</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold mb-4">Your equity mutual fund portfolio</div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
             <div class="relative mx-auto" style="max-width:220px">
               <svg id="mf-donut" viewBox="0 0 42 42" class="w-full" aria-label="Portfolio allocation donut"></svg>
               <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <div class="font-display text-3xl font-extrabold text-ink tab-num"><span id="out-fundcount">4</span></div>
-                <div class="text-[10px] uppercase tracking-widest text-ink/55 font-bold">funds</div>
+                <div class="text-[11px] uppercase tracking-widest text-ink/55 font-bold">funds</div>
               </div>
             </div>
             <div class="space-y-2.5" id="mf-legend"></div>
@@ -236,15 +237,15 @@
         </div>
         <div class="mt-4 grid grid-cols-2 gap-4">
           <div>
-            <div class="text-[10px] uppercase tracking-widest text-warmpaper/60 font-bold">You invest</div>
+            <div class="text-[11px] uppercase tracking-widest text-warmpaper/60 font-bold">You invest</div>
             <div class="font-display text-xl font-extrabold tab-num">&#8377;<span id="out-invested">-</span></div>
           </div>
           <div>
-            <div class="text-[10px] uppercase tracking-widest text-warmpaper/60 font-bold">Potential growth</div>
+            <div class="text-[11px] uppercase tracking-widest text-warmpaper/60 font-bold">Potential growth</div>
             <div class="font-display text-xl font-extrabold text-marigold tab-num">&#8377;<span id="out-gain">-</span></div>
           </div>
         </div>
-        <div class="mt-4 text-[12px] text-warmpaper/70 leading-relaxed">Illustrative, at a blended <span id="out-blended">-</span>% a year across your mix. Equity never moves in a straight line, so expect sharp falls along the way, and know that any single year can be negative. Treat this as a possibility to aim at, not a promise.</div>
+        <div class="mt-4 text-[13px] text-warmpaper/70 leading-relaxed">Illustrative, at a blended <span id="out-blended">-</span>% a year across your mix. Equity never moves in a straight line, so expect sharp falls along the way, and know that any single year can be negative. Treat this as a possibility to aim at, not a promise.</div>
       </div>
 
       <!-- Rationale -->
@@ -509,8 +510,8 @@ function calc() {
     const sipAmt = state.sip * w[k] / 100;
     const lumpAmt = state.lump * w[k] / 100;
     const money = [];
-    if (state.sip > 0) money.push(`<div><span class="text-ink/45 font-bold uppercase text-[10px] tracking-wider">SIP</span> <span class="font-bold text-thisblue tab-num">&#8377;${fmtINR(sipAmt)}/mo</span></div>`);
-    if (state.lump > 0) money.push(`<div><span class="text-ink/45 font-bold uppercase text-[10px] tracking-wider">Lumpsum</span> <span class="font-bold text-thisblue tab-num">&#8377;${fmtINR(lumpAmt)}</span></div>`);
+    if (state.sip > 0) money.push(`<div><span class="text-ink/45 font-bold uppercase text-[11px] tracking-wider">SIP</span> <span class="font-bold text-thisblue tab-num">&#8377;${fmtINR(sipAmt)}/mo</span></div>`);
+    if (state.lump > 0) money.push(`<div><span class="text-ink/45 font-bold uppercase text-[11px] tracking-wider">Lumpsum</span> <span class="font-bold text-thisblue tab-num">&#8377;${fmtINR(lumpAmt)}</span></div>`);
     return `<div class="bg-white rounded-2xl border border-navy/10 p-5">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2.5">
@@ -520,13 +521,13 @@ function calc() {
         <div class="font-display text-2xl font-extrabold ${c.tclass} tab-num">${w[k]}%</div>
       </div>
       <p class="text-[13px] text-ink/70 leading-relaxed mt-2">${c.what}</p>
-      <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[12px]">${money.join('')}</div>
+      <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[13px]">${money.join('')}</div>
     </div>`;
   }).join('');
 
   // fund-count note
   const fc = active.length;
-  let note = `<div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">A ${fc}-fund portfolio</div>`;
+  let note = `<div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold mb-2">A ${fc}-fund portfolio</div>`;
   note += `<p><strong>${fc} fund${fc > 1 ? 's' : ''} is genuinely enough.</strong> One good scheme per category, not three. Buying five large-cap funds does not diversify you, it just hides the same stocks behind different names, so you can relax about owning more.`;
   if (state.tax === 'yes' && w.elss > 0) {
     note += ` Your ELSS puts about &#8377;${fmtINR(elssCoverage)} a year toward the &#8377;1.5L 80C limit, and the rest of that slice still works as a normal equity fund.`;

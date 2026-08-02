@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -92,7 +93,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -131,7 +132,7 @@
 
     <!-- CASH FLOW + EXISTING INVESTMENTS -->
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Step 1</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Step 1</div>
       <div class="font-display text-xl font-extrabold text-ink mb-4">Start with your money.</div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -148,7 +149,7 @@
             <span class="text-ink/60 text-lg">₹</span>
             <input id="in-pot" type="text" value="0" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
           </div>
-          <div class="text-[10px] text-ink/55 mt-1">FDs, mutual funds, EPF, money you could put toward these goals.</div>
+          <div class="text-[11px] text-ink/55 mt-1">FDs, mutual funds, EPF, money you could put toward these goals.</div>
         </div>
         <div>
           <label class="text-xs font-semibold text-ink/70 block mb-1">Your age today → retire at</label>
@@ -158,12 +159,12 @@
             <input id="in-retire" type="text" value="60" inputmode="numeric" class="editable-num tab-num text-xl font-bold text-thisblue w-12 text-right" />
             <span class="text-ink/60 text-sm">yrs</span>
           </div>
-          <div class="text-[10px] text-ink/55 mt-1">Sets the timeline for your retirement goal below.</div>
+          <div class="text-[11px] text-ink/55 mt-1">Sets the timeline for your retirement goal below.</div>
         </div>
       </div>
 
       <div class="mt-6 pt-5 border-t border-navy/10">
-        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">What goes out</div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold mb-3">What goes out</div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div>
             <label class="text-xs font-semibold text-ink/70 block mb-1">Household spending / month</label>
@@ -171,7 +172,7 @@
               <span class="text-ink/60 text-lg">₹</span>
               <input id="in-exp-house" type="text" value="60,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
             </div>
-            <div class="text-[10px] text-ink/55 mt-1">Rent, groceries, school fees, utilities, fuel.</div>
+            <div class="text-[11px] text-ink/55 mt-1">Rent, groceries, school fees, utilities, fuel.</div>
           </div>
           <div>
             <label class="text-xs font-semibold text-ink/70 block mb-1">Loan EMIs / month</label>
@@ -179,7 +180,7 @@
               <span class="text-ink/60 text-lg">₹</span>
               <input id="in-exp-emi" type="text" value="25,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
             </div>
-            <div class="text-[10px] text-ink/55 mt-1">Home loan, car loan, personal loans, all together.</div>
+            <div class="text-[11px] text-ink/55 mt-1">Home loan, car loan, personal loans, all together.</div>
             <div class="flex items-center gap-1.5 mt-2 text-[11px] text-ink/60">
               <span>Biggest EMI ends in</span>
               <input id="in-emi-end" type="text" value="0" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-8 text-right" />
@@ -192,7 +193,7 @@
               <span class="text-ink/60 text-lg">₹</span>
               <input id="in-exp-yearly" type="text" value="60,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
             </div>
-            <div class="text-[10px] text-ink/55 mt-1">Travel, festivals, annual school fees, memberships.</div>
+            <div class="text-[11px] text-ink/55 mt-1">Travel, festivals, annual school fees, memberships.</div>
           </div>
           <div>
             <label class="text-xs font-semibold text-ink/70 block mb-1">Insurance premiums / year</label>
@@ -200,7 +201,7 @@
               <span class="text-ink/60 text-lg">₹</span>
               <input id="in-exp-insurance" type="text" value="60,000" inputmode="text" class="editable-num tab-num text-xl font-bold text-thisblue flex-1" />
             </div>
-            <div class="text-[10px] text-ink/55 mt-1">Life + health + vehicle, added up for the year.</div>
+            <div class="text-[11px] text-ink/55 mt-1">Life + health + vehicle, added up for the year.</div>
           </div>
         </div>
       </div>
@@ -222,7 +223,7 @@
 
     <!-- PROTECTION CHECK -->
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Before you invest</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold mb-1">Before you invest</div>
       <div class="font-display text-xl font-extrabold text-ink mb-1">Are you protected first?</div>
       <div class="text-sm text-ink/65 mb-4">No plan survives a hospital bill or a missing income. Check these two before any SIP.</div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -249,7 +250,7 @@
     <div class="bg-white rounded-2xl border border-navy/10 p-6">
       <div class="flex items-end justify-between mb-4 flex-wrap gap-3">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Step 2</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Step 2</div>
           <div class="font-display text-xl font-extrabold text-ink">What are you saving for?</div>
           <div class="text-sm text-ink/65 mt-0.5">Tap any number to change it. Not sure what a goal costs? Tap <strong>"Help me pick a number"</strong>.</div>
         </div>
@@ -267,7 +268,7 @@
       <div id="pot-summary" class="mt-5 hidden rounded-xl p-4 text-sm">
         <div class="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <div class="text-[10px] uppercase tracking-widest font-bold opacity-70">Your existing savings, put to work</div>
+            <div class="text-[11px] uppercase tracking-widest font-bold opacity-70">Your existing savings, put to work</div>
             <div class="mt-1 tab-num"><strong id="pot-allocated">₹0</strong> of your <strong id="pot-total">₹0</strong> assigned to goals · <span id="pot-unalloc-label">Still idle:</span> <strong id="pot-unalloc">₹0</strong></div>
           </div>
           <div id="pot-warning" class="hidden text-[11px] font-semibold"></div>
@@ -297,16 +298,16 @@
         <span>Your goals need ₹<span id="out-total2">-</span>/mo</span>
         <span>You can invest ₹<span id="out-avail2">-</span>/mo</span>
       </div>
-      <div id="out-priority" class="mt-3 text-[12px] opacity-90 hidden"></div>
-      <div id="out-existing" class="mt-3 text-[12px] opacity-80 hidden"></div>
-      <div id="out-stepup" class="mt-2 text-[12px] opacity-80 hidden"></div>
-      <div id="out-eminote" class="mt-2 text-[12px] opacity-80 hidden"></div>
+      <div id="out-priority" class="mt-3 text-[13px] opacity-90 hidden"></div>
+      <div id="out-existing" class="mt-3 text-[13px] opacity-80 hidden"></div>
+      <div id="out-stepup" class="mt-2 text-[13px] opacity-80 hidden"></div>
+      <div id="out-eminote" class="mt-2 text-[13px] opacity-80 hidden"></div>
       <span id="out-pct" class="hidden">-</span>
     </div>
 
     <!-- TRADE-OFFS -->
     <div id="tradeoff-card" class="bg-white rounded-2xl border-2 border-marigold p-6 hidden">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Ways to make it fit</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Ways to make it fit</div>
       <h3 class="font-display text-xl font-extrabold text-ink mt-1">A few gentle moves, and what each one frees up.</h3>
       <div id="tradeoff-list" class="mt-4 space-y-3 text-sm text-ink/85"></div>
     </div>
@@ -315,7 +316,7 @@
     <div id="action-card" class="bg-white rounded-2xl border-2 border-thisblue p-6 hidden">
       <div class="flex items-start justify-between gap-3 flex-wrap">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Your action list</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Your action list</div>
           <h3 class="font-display text-xl font-extrabold text-ink mt-1">Start these SIPs this month.</h3>
           <div class="text-sm text-ink/65 mt-0.5">Each goal, where to park it, and how much. Short goals sit in safe funds, long goals ride equity.</div>
         </div>
@@ -329,11 +330,11 @@
 
     <!-- YEAR-BY-YEAR PROJECTION -->
     <div id="chart-card" class="bg-white rounded-2xl border border-navy/10 p-6 hidden">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Watch it build</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Watch it build</div>
       <h3 class="font-display text-xl font-extrabold text-ink mt-1">Your money, year by year.</h3>
       <div class="text-sm text-ink/65 mt-0.5">If you run the SIPs above. Each flag is a goal getting funded, the dip after it is the money being <em>used</em>, which is the whole point.</div>
       <div id="chart-bars" class="mt-5 flex items-end gap-[2px] h-36"></div>
-      <div id="chart-axis" class="mt-1 flex justify-between text-[10px] text-ink/45 tab-num"></div>
+      <div id="chart-axis" class="mt-1 flex justify-between text-[11px] text-ink/45 tab-num"></div>
       <div id="chart-flags" class="mt-3 flex flex-wrap gap-2"></div>
     </div>
 
@@ -367,7 +368,7 @@
     </details>
 
     <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How we calculate</div>
+      <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold mb-2">How we calculate</div>
       <p>Prices rise every year, so a goal that costs ₹30 lakh today will cost more by the time you get there. We account for that. We also count the growth on the savings you've assigned, and on every month's investment. Then simple honesty: add up what all goals need per month, compare it with what you have left after spending. <strong>Your numbers never leave this page</strong>, they're saved in your browser only.</p>
     </div>
 
@@ -748,7 +749,7 @@ function renderSizer(g) {
 
   return `
     <div class="sizer-panel">
-      <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-3">Let's work it out together</div>
+      <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold mb-3">Let's work it out together</div>
       ${rows}
       <div class="sz-row mt-3 pt-3 border-t border-ink/10">
         <div class="flex-1 text-ink/70 text-xs">
@@ -789,27 +790,27 @@ function renderGoals() {
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
               <input data-field="name" type="text" value="${escapeAttr(g.name)}" class="editable-num font-semibold text-ink text-base min-w-[140px] flex-1" />
-              <span class="text-[10px] uppercase tracking-widest text-ink/45 font-bold bg-warmpaper-2 px-2 py-0.5 rounded-full whitespace-nowrap">${typeLabel}</span>
-              <button data-toggle-must title="Tap to switch" class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full whitespace-nowrap transition ${g.must ? 'bg-thisblue text-warmpaper' : 'bg-warmpaper-2 text-ink/45 border border-navy/10'}">${g.must ? 'Must-have' : 'Flexible'}</button>
+              <span class="text-[11px] uppercase tracking-widest text-ink/45 font-bold bg-warmpaper-2 px-2 py-0.5 rounded-full whitespace-nowrap">${typeLabel}</span>
+              <button data-toggle-must title="Tap to switch" class="text-[11px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full whitespace-nowrap transition ${g.must ? 'bg-thisblue text-warmpaper' : 'bg-warmpaper-2 text-ink/45 border border-navy/10'}">${g.must ? 'Must-have' : 'Flexible'}</button>
             </div>
             ${hasHelper ? `<div class="mt-1.5"><span class="sizer-toggle" data-toggle-sizer>${isOpen ? 'Close ↓' : 'Help me pick a number →'}</span></div>` : ''}
           </div>
           <div class="mt-3 sm:mt-0 sm:text-right flex items-baseline gap-2 sm:block sm:shrink-0">
-            <div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Invest / month</div>
+            <div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold">Invest / month</div>
             <div class="font-display text-xl sm:text-2xl font-extrabold tab-num text-ink">₹${fmtINR(sip)}</div>
-            ${g.sip > 0 ? `<div class="text-[10px] text-gainink font-semibold">already doing ₹${fmtINR(Math.min(g.sip, sip))} → add ₹${fmtINR(newSip)}</div>` : ''}
+            ${g.sip > 0 ? `<div class="text-[11px] text-gainink font-semibold">already doing ₹${fmtINR(Math.min(g.sip, sip))} → add ₹${fmtINR(newSip)}</div>` : ''}
           </div>
         </div>
 
         <!-- Data rows: stacked label-value on mobile, grid on sm+ -->
         <div class="mt-4 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">${g.type === 'retirement' ? 'Corpus needed <span class="text-ink/40">(today\'s ₹)</span>' : 'Costs <span class="text-ink/40">(at today\'s prices)</span>'}</div>
+            <div class="text-[11px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">${g.type === 'retirement' ? 'Corpus needed <span class="text-ink/40">(today\'s ₹)</span>' : 'Costs <span class="text-ink/40">(at today\'s prices)</span>'}</div>
             ${g.type === 'retirement'
               ? `<div class="flex items-baseline gap-1 shrink-0">
                   <span class="text-ink/55 text-sm">₹</span>
                   <span class="tab-num font-bold text-ink">${fmtINR(g.target)}</span>
-                  <span class="text-[10px] text-ink/45 whitespace-nowrap">· auto from your spending</span>
+                  <span class="text-[11px] text-ink/45 whitespace-nowrap">· auto from your spending</span>
                 </div>`
               : `<div class="flex items-baseline gap-1 shrink-0">
                   <span class="text-ink/55 text-sm">₹</span>
@@ -817,12 +818,12 @@ function renderGoals() {
                 </div>`}
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">How far away</div>
+            <div class="text-[11px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">How far away</div>
             ${g.type === 'retirement'
               ? `<div class="flex items-baseline gap-1 shrink-0">
                   <span class="tab-num font-bold text-ink">${g.years}</span>
                   <span class="text-ink/55 text-sm">yrs</span>
-                  <span class="text-[10px] text-ink/45 whitespace-nowrap">· at age ${state.retireAge}</span>
+                  <span class="text-[11px] text-ink/45 whitespace-nowrap">· at age ${state.retireAge}</span>
                 </div>`
               : `<div class="flex items-baseline gap-1 shrink-0">
                   <input data-field="years" type="text" value="${g.years}" inputmode="numeric" class="editable-num tab-num font-bold text-thisblue w-10 text-right" />
@@ -830,18 +831,18 @@ function renderGoals() {
                 </div>`}
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Use from savings</div>
+            <div class="text-[11px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">Use from savings</div>
             <div class="flex items-baseline gap-1 shrink-0">
               <span class="text-ink/55 text-sm">₹</span>
               <input data-field="allocated" type="text" value="${fmtINR(g.allocated || 0)}" inputmode="text" class="editable-num tab-num text-ink/80 w-24 sm:w-full text-right sm:text-left" />
             </div>
           </div>
           <div class="flex items-center justify-between gap-2 sm:block">
-            <div class="text-[10px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">SIP you already run</div>
+            <div class="text-[11px] uppercase tracking-widest text-ink/55 font-semibold sm:mb-1">SIP you already run</div>
             <div class="flex items-baseline gap-1 shrink-0">
               <span class="text-ink/55 text-sm">₹</span>
               <input data-field="sip" type="text" value="${g.sip ? fmtINR(g.sip) : '0'}" inputmode="text" class="editable-num tab-num text-ink/80 w-24 sm:w-full text-right sm:text-left" />
-              <span class="text-ink/45 text-[10px]">/mo</span>
+              <span class="text-ink/45 text-[11px]">/mo</span>
             </div>
           </div>
         </div>

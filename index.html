@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -88,7 +89,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -137,14 +138,14 @@
 
     <!-- ============ THE PLANNER: two doors, one engine ============ -->
     <div class="mt-7 grid grid-cols-1 lg:grid-cols-3 gap-5">
-      <div class="lg:col-span-2 bg-white rounded-3xl border-2 border-marigold overflow-hidden self-start">
+      <div class="lg:col-span-2 bg-white rounded-3xl border-2 border-ink/15 overflow-hidden self-start">
         <div class="p-2 bg-warmpaper-2 border-b border-navy/10 grid grid-cols-2 gap-2">
           <button data-door="invest" class="door-tab rounded-2xl px-4 py-3 text-left">
-            <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-70">Start with</div>
+            <div class="text-[11px] uppercase tracking-[0.2em] font-bold opacity-70">Start with</div>
             <div class="font-display text-base md:text-lg font-extrabold leading-tight">How you want to invest</div>
           </button>
           <button data-door="goal" class="door-tab rounded-2xl px-4 py-3 text-left">
-            <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-70">Start with</div>
+            <div class="text-[11px] uppercase tracking-[0.2em] font-bold opacity-70">Start with</div>
             <div class="font-display text-base md:text-lg font-extrabold leading-tight">A goal in mind</div>
           </button>
         </div>
@@ -174,7 +175,7 @@
                 <button data-r="hold" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sit tight</button>
                 <button data-r="buy" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Buy more</button>
               </div>
-              <div id="risk-nudge" class="hidden text-[12px] text-thatred font-semibold mt-2">One more: the bad-year answer changes the mix. No wrong answers, only wrong-sized plans.</div>
+              <div id="risk-nudge" class="hidden text-[13px] text-thatred font-semibold mt-2">One more: the bad-year answer changes the mix. No wrong answers, only wrong-sized plans.</div>
             </div>
             <div class="mt-4 bg-warmpaper-2 rounded-xl px-4 py-3 text-sm flex flex-wrap items-baseline gap-x-2 gap-y-1">
               <span>I can invest about &#8377;</span>
@@ -207,13 +208,13 @@
       <div class="space-y-5">
         <div id="side-episode"></div>
         <div class="bg-marigold rounded-3xl border-2 border-navy-ink p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Slow Thought, weekly</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Slow Thought, weekly</div>
           <div class="font-display text-lg font-extrabold text-ink mt-1 leading-tight">One honest idea. Every week.</div>
-          <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 inline-flex bg-navy text-cream px-4 py-2 rounded-full font-semibold text-sm">Subscribe on YouTube &rarr;</a>
+          <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 inline-flex bg-ink text-cream px-4 py-2 rounded-full font-semibold text-sm hover:bg-ink/85 transition">Subscribe on YouTube &rarr;</a>
         </div>
         <a href="guests.html" class="lift block bg-ink rounded-3xl border-2 border-navy-ink overflow-hidden" aria-label="Meet all the guests">
           <div class="px-5 pt-4 flex items-baseline justify-between gap-3">
-            <div class="text-[10px] uppercase tracking-[0.3em] text-marigold font-bold">The voices, live</div>
+            <div class="text-[11px] uppercase tracking-[0.3em] text-marigold font-bold">The voices, live</div>
             <div class="text-[11px] text-warmpaper/50 font-semibold shrink-0">Meet them &rarr;</div>
           </div>
           <div class="ticker mt-3 pb-4" aria-hidden="true">
@@ -230,14 +231,14 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-end justify-between mb-4">
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Do, don't just watch</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Do, don't just watch</div>
         <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Plan your money</h2>
       </div>
       <a href="calculators.html" class="text-sm text-thisblue font-semibold shrink-0">All tools &rarr;</a>
     </div>
     <div class="rail">
       <a href="calc-plan.html" class="lift w-72 bg-marigold rounded-2xl p-6 border-2 border-navy-ink">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Flagship</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Flagship</div>
         <div class="font-display text-xl font-extrabold text-ink mt-1 leading-tight">Your full financial plan</div>
         <p class="text-ink/75 text-sm mt-2">Every goal in one honest picture. We'll show you what fits, and how to get there.</p>
         <div class="mt-6 text-sm font-bold text-ink">Build it &rarr;</div>
@@ -317,7 +318,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-end justify-between mb-4">
       <div>
-        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Prefer to read</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Prefer to read</div>
         <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Articles &amp; Slow Thought</h2>
       </div>
       <a href="articles.html" class="text-sm text-thisblue font-semibold shrink-0">All writing &rarr;</a>
@@ -425,7 +426,7 @@ function renderSideEpisode(L, pinned) {
     <a href="episode-detail.html?v=${esc(L.id)}" class="lift block bg-white rounded-3xl border-2 border-navy-ink overflow-hidden">
       <div class="relative bg-ink aspect-video">
         <img src="https://i.ytimg.com/vi/${esc(L.id)}/maxresdefault.jpg" onerror="this.onerror=null;this.src='${esc(L.thumb)}'" alt="${esc(L.title)}" class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute bottom-2 left-2 bg-marigold text-ink text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">${kicker} &middot; Ep ${esc(L.n)}</div>
+        <div class="absolute bottom-2 left-2 bg-marigold text-ink text-[11px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">${kicker} &middot; Ep ${esc(L.n)}</div>
       </div>
       <div class="p-4">
         <div class="font-display text-base font-extrabold text-ink leading-tight">${esc(L.title)}</div>
@@ -450,7 +451,7 @@ document.getElementById('rail-episodes').innerHTML = eps.slice(0, 12).map(e => `
     <div class="relative rounded-2xl h-40 overflow-hidden bg-warmpaper-3">
       <img src="${esc(e.thumb)}" alt="${esc(e.title)}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
-      <span class="absolute bottom-3 left-3 bg-black/40 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep ${esc(e.n)}${e.published ? ' &middot; ' + esc(e.published) : ''}</span>
+      <span class="absolute bottom-3 left-3 bg-black/70 text-white text-[11px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep ${esc(e.n)}${e.published ? ' &middot; ' + esc(e.published) : ''}</span>
     </div>
     <div class="mt-2 font-semibold text-ink leading-snug line-clamp-2">${esc(e.title)}</div>
     <div class="text-xs text-ink/55 mt-0.5">${isSolo(e.guest) ? 'Solo' : esc(e.guest)}${e.cat ? ' &middot; ' + esc(e.cat) : ''}</div>
@@ -463,7 +464,7 @@ fetch('content/articles.json').then(r => r.json()).then(arts => {
     <a href="article-detail.html?slug=${encodeURIComponent(a.slug)}" class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden block">
       <div class="${colorFor(a.hero_color)} h-28"></div>
       <div class="p-5">
-        <div class="text-[10px] uppercase tracking-widest text-goldink font-bold">${esc(a.category || 'Essay')}</div>
+        <div class="text-[11px] uppercase tracking-widest text-goldink font-bold">${esc(a.category || 'Essay')}</div>
         <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">${esc(a.title)}</div>
         <div class="text-xs text-ink/55 mt-2">${esc(a.read_minutes || 5)} min read</div>
       </div>
@@ -473,7 +474,7 @@ fetch('content/articles.json').then(r => r.json()).then(arts => {
     if (st) cards.splice(1, 0, `
       <a href="feed.html" class="lift w-72 bg-ink text-warmpaper rounded-2xl overflow-hidden border border-navy-ink block">
         <div class="p-6 h-full flex flex-col justify-between min-h-[196px]">
-          <div class="text-[10px] uppercase tracking-widest text-marigold font-bold">${esc(st.label)}</div>
+          <div class="text-[11px] uppercase tracking-widest text-marigold font-bold">${esc(st.label)}</div>
           <div class="font-script text-2xl text-warmpaper leading-snug">${esc(st.title)}</div>
           <div class="text-xs text-warmpaper/50 mt-2">From the feed</div>
         </div>
@@ -507,7 +508,7 @@ fetch('content/guests.json').then(r => r.json()).then(gs => {
     const names = gs.map(g => g.name).filter(n => onShow.has(n));
     if (names.length) {
       const half = names.map(n =>
-        `<span class="mx-3 text-[13px] font-semibold text-warmpaper/90">${esc(n)}</span><span class="text-marigold text-[10px]">&#9670;</span>`
+        `<span class="mx-3 text-[13px] font-semibold text-warmpaper/90">${esc(n)}</span><span class="text-marigold text-[11px]">&#9670;</span>`
       ).join('');
       tick.innerHTML = half + half; // duplicated for a seamless loop
     }
@@ -647,22 +648,22 @@ function renderResult(hKey, mfeq, opts) {
     </div>`;
   const eqCol = a.eq > 0 ? `
     <div>
-      <div class="text-[10px] uppercase tracking-widest font-bold text-thisblue mb-1">Equity &middot; ${a.eq}%</div>
+      <div class="text-[11px] uppercase tracking-widest font-bold text-thisblue mb-1">Equity &middot; ${a.eq}%</div>
       ${a.eqRows.map(row).join('')}
     </div>` : '';
   const debtCol = `
     <div>
-      <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 mb-1">Debt &middot; ${a.debt}%</div>
+      <div class="text-[11px] uppercase tracking-widest font-bold text-ink/50 mb-1">Debt &middot; ${a.debt}%</div>
       ${a.debtRows.map(row).join('')}
     </div>`;
   const names = [...a.eqRows, ...a.debtRows].map(r => r[0]);
   const explain = names.map(n => `<div class="flex gap-2 py-1"><span class="font-semibold text-ink/80 shrink-0">${n}:</span><span class="text-ink/60">${EXPLAIN[n] || ''}</span></div>`).join('');
   const directWarn = a.hasDirect ? `
-    <p class="text-[12px] text-thatred/90 mt-3 leading-relaxed"><strong>About that stocks slice:</strong> keep it to companies you can research and hold through a bad year. If a stock needs checking every morning, it is a worry, not an investment. When in doubt, the fund wins.</p>` : '';
+    <p class="text-[13px] text-thatred/90 mt-3 leading-relaxed"><strong>About that stocks slice:</strong> keep it to companies you can research and hold through a bad year. If a stock needs checking every morning, it is a worry, not an investment. When in doubt, the fund wins.</p>` : '';
   return `
     <div class="bg-warmpaper-2 rounded-2xl p-5">
       ${moneyHtml}
-      <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-2">Your starting mix</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-2">Your starting mix</div>
       <div class="flex h-9 rounded-lg overflow-hidden border border-navy/15 mb-4">
         ${a.eq > 0 ? `<div style="width:${a.eq}%" class="bg-thisblue text-warmpaper flex items-center justify-center text-[11px] font-bold">${a.eq}%</div>` : ''}
         <div style="width:${a.debt}%" class="bg-warmpaper-3 text-ink flex items-center justify-center text-[11px] font-bold">${a.debt}%</div>
@@ -671,12 +672,12 @@ function renderResult(hKey, mfeq, opts) {
         ${eqCol}${debtCol}
       </div>
       ${a.rnote ? `<p class="text-[13px] font-semibold text-ink mt-3 leading-relaxed bg-marigold/20 border border-marigold rounded-xl p-3">${a.rnote}</p>` : ''}
-      ${a.skippedDirect ? `<p class="text-[12px] text-thatred/90 mt-3 leading-relaxed">We also left out the direct-stocks slice: picking your own stocks and selling in bad years is an expensive combination. Funds first; stocks when the bad-year answer changes.</p>` : ''}
+      ${a.skippedDirect ? `<p class="text-[13px] text-thatred/90 mt-3 leading-relaxed">We also left out the direct-stocks slice: picking your own stocks and selling in bad years is an expensive combination. Funds first; stocks when the bad-year answer changes.</p>` : ''}
       ${directWarn}
-      <p class="text-[12px] text-ink/70 mt-3 leading-relaxed border-t border-navy/10 pt-3">${a.note}${glideNote ? ' ' + glideNote : ''}</p>
+      <p class="text-[13px] text-ink/70 mt-3 leading-relaxed border-t border-navy/10 pt-3">${a.note}${glideNote ? ' ' + glideNote : ''}</p>
       <details class="mt-3">
-        <summary class="text-[12px] font-semibold text-thisblue cursor-pointer select-none">What do these names mean?</summary>
-        <div class="mt-2 text-[12px] leading-relaxed">${explain}</div>
+        <summary class="text-[13px] font-semibold text-thisblue cursor-pointer select-none">What do these names mean?</summary>
+        <div class="mt-2 text-[13px] leading-relaxed">${explain}</div>
       </details>
       <div class="mt-4 flex flex-wrap items-center gap-3">
         <a href="money-person.html" class="inline-flex bg-navy text-cream px-4 py-2.5 rounded-full font-semibold text-sm">Make it real, find your money person &rarr;</a>
@@ -698,7 +699,7 @@ function paintInvest() {
   });
   document.querySelectorAll('#hold-buttons .mbtn').forEach(b => {
     const on = (b.dataset.m === 'mfeq') === mfeq;
-    b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-thisblue text-warmpaper border-thisblue' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+    b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
   });
   document.querySelectorAll('#risk-buttons .rbtn').forEach(b => {
     const on = b.dataset.r === risk;
@@ -841,7 +842,7 @@ p$('reveal-b').addEventListener('click', () => {
 function paintDoors(door) {
   document.querySelectorAll('.door-tab').forEach(b => {
     const on = b.dataset.door === door;
-    b.className = 'door-tab rounded-2xl px-4 py-3 text-left ' + (on ? 'bg-thisblue text-warmpaper' : 'bg-transparent text-ink/70 hover:bg-white');
+    b.className = 'door-tab rounded-2xl px-4 py-3 text-left ' + (on ? 'bg-ink text-warmpaper' : 'bg-transparent text-ink/70 hover:bg-white');
   });
   p$('door-invest').classList.toggle('hidden', door !== 'invest');
   p$('door-goal').classList.toggle('hidden', door !== 'goal');

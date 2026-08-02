@@ -34,7 +34,8 @@
         alert:   '#FF302D',
         cream:   '#FCFBF8',
         paper:   '#F6F4EE'
-      }, fontFamily: {
+      }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily: {
         sans:    ['Hanken Grotesk','system-ui','sans-serif'],
         serif:   ['Bricolage Grotesque','Georgia','serif'],
         display: ['Bricolage Grotesque','Georgia','serif'],
@@ -86,7 +87,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -190,7 +191,7 @@
               </div>
             </div>
             <input id="in-ret" type="range" min="5" max="15" step="0.5" value="10" class="w-full mt-1" />
-            <div class="text-[10px] text-ink/55 mt-1">A balanced 60/40 portfolio in India has historically delivered ~10%.</div>
+            <div class="text-[11px] text-ink/55 mt-1">A balanced 60/40 portfolio in India has historically delivered ~10%.</div>
           </div>
           <div>
             <div class="flex justify-between items-baseline">
@@ -223,7 +224,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
         <div class="bg-white rounded-2xl border-2 border-marigold p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Withdrawal rate</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Withdrawal rate</div>
           <div class="mt-2 flex items-baseline gap-1">
             <div class="font-display text-4xl font-extrabold text-ink tab-num"><span id="out-rate">-</span></div>
             <div class="text-ink/60 text-sm">% of corpus / yr</div>
@@ -235,7 +236,7 @@
         </div>
 
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Max safe withdrawal</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Max safe withdrawal</div>
           <div class="mt-2 flex items-baseline gap-1">
             <div class="font-display text-3xl font-extrabold text-thisblue tab-num">₹<span id="out-max">-</span></div>
             <div class="text-ink/60 text-sm">/mo</div>
@@ -247,7 +248,7 @@
 
       <!-- HOW IT WORKS -->
       <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How an SWP actually works</div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold mb-2">How an SWP actually works</div>
         <p>Each month, your portfolio pays you a fixed amount, like a self-issued salary. The rest stays invested and keeps growing. If returns out-pace withdrawals, the corpus survives. If they don't, the tank slowly drains. <strong>It's the same maths as your EMI, just running in reverse.</strong></p>
       </div>
 
@@ -255,7 +256,7 @@
       <details class="bg-white rounded-2xl border border-navy/10 p-5" open>
         <summary class="cursor-pointer flex items-center justify-between">
           <div>
-            <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold">Show the maths</div>
+            <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold">Show the maths</div>
             <div class="text-sm font-semibold text-ink mt-0.5">Year-by-year simulation</div>
           </div>
           <svg class="w-5 h-5 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>

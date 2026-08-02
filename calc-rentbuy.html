@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -74,7 +75,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -236,7 +237,7 @@
       </div>
 
       <div class="bg-white rounded-2xl border-2 border-marigold p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Net wealth, side by side</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Net wealth, side by side</div>
         <div class="compare-bar mt-4">
           <div id="bar-buy"  class="bg-thisblue" style="width:50%"></div>
           <div id="bar-rent" class="bg-marigold" style="width:50%"></div>
@@ -257,7 +258,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">If you buy</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">If you buy</div>
           <ul class="mt-3 text-sm text-ink/80 space-y-1.5">
             <li>EMI: <strong>₹<span id="out-emi">-</span>/mo</strong></li>
             <li>Stamp duty paid: <strong>₹<span id="out-stampamt">-</span></strong></li>
@@ -266,7 +267,7 @@
           </ul>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-mustard-600 font-bold">If you rent</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-mustard-600 font-bold">If you rent</div>
           <ul class="mt-3 text-sm text-ink/80 space-y-1.5">
             <li>Rent paid (inflated): <strong>₹<span id="out-rentpaid">-</span></strong></li>
             <li>Down payment, invested: <strong>₹<span id="out-downinv">-</span></strong></li>
@@ -277,7 +278,7 @@
       </div>
 
       <div class="bg-warmpaper-2 rounded-2xl p-5 text-sm text-ink/80 leading-relaxed">
-        <div class="text-[10px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/60 font-bold mb-2">How this maths works</div>
         <p>We give both paths the <strong>same monthly outflow</strong>, so it's a fair fight. If your EMI + maintenance is more than rent, the buyer is putting more cash out each month, so we let the renter invest that surplus into equity. We compound the down payment + the monthly surplus at your equity-return assumption. The buyer's wealth is the house value at year Y minus the loan still owed.</p>
       </div>
     </div>

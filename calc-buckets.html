@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -77,7 +78,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -120,7 +121,7 @@
     <div class="lg:col-span-2 space-y-5 self-start">
 
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">How you will fund it</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-3">How you will fund it</div>
         <div class="grid grid-cols-1 gap-2" id="mode-buttons">
           <button data-m="divide" class="mbtn text-sm font-bold py-3 px-4 rounded-xl border text-left">
             <span class="block">No income after I retire</span>
@@ -134,7 +135,7 @@
       </div>
 
       <div class="bg-white rounded-2xl border border-navy/10 p-6 space-y-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold">The basics</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold">The basics</div>
 
         <div>
           <div class="flex justify-between items-baseline">
@@ -196,7 +197,7 @@
       </div>
 
       <div id="income-panel" class="bg-white rounded-2xl border-2 border-marigold p-6 space-y-6 hidden">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Your bridge income</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Your bridge income</div>
 
         <div>
           <div class="flex justify-between items-baseline">
@@ -235,7 +236,7 @@
       </div>
 
       <details class="bg-white rounded-2xl border border-navy/10 p-6">
-        <summary class="text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold cursor-pointer select-none">The buckets, if you want to tune them</summary>
+        <summary class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold cursor-pointer select-none">The buckets, if you want to tune them</summary>
         <div class="mt-5 space-y-6">
           <div>
             <div class="flex justify-between items-baseline">
@@ -296,16 +297,16 @@
       <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
 
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
-        <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Day one, this is the split</div>
+        <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Day one, this is the split</div>
         <div class="font-display text-xl font-extrabold text-ink mt-1">Every rupee sorted by when you need it.</div>
         <div id="vessels" class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
-        <div id="split-note" class="mt-4 text-[12px] leading-relaxed text-ink/70 border-t border-navy/10 pt-4"></div>
+        <div id="split-note" class="mt-4 text-[13px] leading-relaxed text-ink/70 border-t border-navy/10 pt-4"></div>
       </div>
 
       <div class="bg-white rounded-2xl border border-navy/10 p-6">
         <div class="flex flex-wrap items-baseline justify-between gap-2">
           <div>
-            <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The money, year by year</div>
+            <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">The money, year by year</div>
             <div class="font-display text-xl font-extrabold text-ink mt-1">Watch the buckets drain and refill.</div>
           </div>
           <div class="flex items-center gap-3 text-[11px] font-semibold">
@@ -328,13 +329,13 @@
       <details class="bg-white rounded-2xl border border-navy/10 p-6">
         <summary class="text-sm font-semibold text-thisblue cursor-pointer select-none">Show the full year by year ledger</summary>
         <div class="mt-4 overflow-x-auto">
-          <table class="w-full text-[12px] tab-num" id="ledger"></table>
+          <table class="w-full text-[13px] tab-num" id="ledger"></table>
         </div>
       </details>
 
       <div class="bg-marigold rounded-2xl border-2 border-navy-ink p-6 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Still building the corpus?</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Still building the corpus?</div>
           <div class="font-display text-xl md:text-2xl font-extrabold text-ink mt-1">Find the number you are aiming for.</div>
         </div>
         <div class="flex flex-wrap gap-3">
@@ -497,7 +498,7 @@ function renderVerdict(p, s) {
   if (!s.depletedAt) {
     box.className = 'rounded-2xl border-2 border-gain bg-gain/5 p-6';
     box.innerHTML = `
-      <div class="text-[10px] uppercase tracking-[0.3em] text-gainink font-bold">The plan holds</div>
+      <div class="text-[11px] uppercase tracking-[0.3em] text-gainink font-bold">The plan holds</div>
       <div class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1 leading-snug">The money lasts till ${p.planTill}, with <span class="tab-num">&#8377;${fmtINR(s.endBal)}</span> still there.</div>
       <p class="text-sm text-ink/75 mt-2 leading-relaxed">That leftover is not waste. It is the buffer for the year nobody plans for: a health event, a helping hand, a longer life than the table assumed.</p>`;
     return;
@@ -508,19 +509,19 @@ function renderVerdict(p, s) {
   const incFix = p.incomeMode ? incomeNeeded(p) : null;
   box.className = 'rounded-2xl border-2 border-thatred bg-thatred/5 p-6';
   box.innerHTML = `
-    <div class="text-[10px] uppercase tracking-[0.3em] text-thatred font-bold">The plan runs short</div>
+    <div class="text-[11px] uppercase tracking-[0.3em] text-thatred font-bold">The plan runs short</div>
     <div class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1 leading-snug">The money runs out at ${s.depletedAt}, ${lasted} years in.</div>
     <p class="text-sm text-ink/75 mt-2 leading-relaxed">This is not a no, it is a not like this. Here is exactly what closes the gap:</p>
     <div class="mt-4 grid grid-cols-1 ${p.incomeMode && incFix !== null ? 'sm:grid-cols-2' : ''} gap-3">
       ${need === null ? '' : `<div class="bg-white rounded-xl border border-navy/10 p-4">
-        <div class="text-[10px] uppercase tracking-widest text-ink/50 font-bold">Corpus that would do it</div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/50 font-bold">Corpus that would do it</div>
         <div class="font-display text-2xl font-extrabold text-ink tab-num mt-1">&#8377;${fmtINR(need)}</div>
-        <div class="text-[12px] text-ink/60 mt-1">You are <strong class="text-thatred tab-num">&#8377;${fmtINR(short)}</strong> short of that.</div>
+        <div class="text-[13px] text-ink/60 mt-1">You are <strong class="text-thatred tab-num">&#8377;${fmtINR(short)}</strong> short of that.</div>
       </div>`}
       ${p.incomeMode && incFix !== null ? `<div class="bg-white rounded-xl border border-navy/10 p-4">
-        <div class="text-[10px] uppercase tracking-widest text-ink/50 font-bold">Or income till ${p.earnTill}, of</div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/50 font-bold">Or income till ${p.earnTill}, of</div>
         <div class="font-display text-2xl font-extrabold text-ink tab-num mt-1">&#8377;${fmtINR(incFix)}/mo</div>
-        <div class="text-[12px] text-ink/60 mt-1">Instead of the &#8377;${fmtINR(p.monthlyIncome)} you have now.</div>
+        <div class="text-[13px] text-ink/60 mt-1">Instead of the &#8377;${fmtINR(p.monthlyIncome)} you have now.</div>
       </div>` : ''}
     </div>`;
 }
@@ -540,7 +541,7 @@ function renderStats(p, s) {
   ];
   $('stats').innerHTML = items.map(i => `
     <div class="bg-white rounded-xl border border-navy/10 p-4">
-      <div class="text-[10px] uppercase tracking-widest text-ink/50 font-bold">${i.k}</div>
+      <div class="text-[11px] uppercase tracking-widest text-ink/50 font-bold">${i.k}</div>
       <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">${i.v}</div>
       <div class="text-[11px] text-ink/55 mt-0.5">${i.s}</div>
     </div>`).join('');
@@ -557,10 +558,10 @@ function renderVessels(p, s) {
     <div class="rounded-xl border border-navy/10 overflow-hidden">
       <div class="h-1.5" style="background:${b.col}"></div>
       <div class="p-4">
-        <div class="text-[10px] uppercase tracking-widest font-bold" style="color:${b.label}">Bucket ${b.n} &middot; ${b.name}</div>
+        <div class="text-[11px] uppercase tracking-widest font-bold" style="color:${b.label}">Bucket ${b.n} &middot; ${b.name}</div>
         <div class="font-display text-xl font-extrabold text-ink tab-num mt-1">&#8377;${fmtINR(b.amt)}</div>
         <div class="font-mono text-[11px] text-ink/50">${Math.round(b.amt / tot * 100)}% of the corpus</div>
-        <div class="text-[12px] text-ink/70 mt-2 leading-snug">${b.role}</div>
+        <div class="text-[13px] text-ink/70 mt-2 leading-snug">${b.role}</div>
         <div class="text-[11px] text-ink/45 mt-1.5 leading-snug">${b.how}</div>
       </div>
     </div>`).join('');
@@ -673,7 +674,7 @@ function renderInsights(p, s) {
 }
 
 function renderLedger(p, s) {
-  const head = `<thead><tr class="text-left text-[10px] uppercase tracking-widest text-ink/50 border-b border-navy/10">
+  const head = `<thead><tr class="text-left text-[11px] uppercase tracking-widest text-ink/50 border-b border-navy/10">
     <th class="py-2 pr-3">Age</th><th class="py-2 pr-3 text-right">Spend</th>
     ${p.incomeMode ? '<th class="py-2 pr-3 text-right">Income</th>' : ''}
     <th class="py-2 pr-3 text-right">Drawn</th>

@@ -36,7 +36,8 @@
         alert:   '#FF302D',
         cream:   '#FCFBF8',
         paper:   '#F6F4EE'
-      }, fontFamily: {
+      }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily: {
         sans:    ['Hanken Grotesk','system-ui','sans-serif'],
         serif:   ['Bricolage Grotesque','Georgia','serif'],
         display: ['Bricolage Grotesque','Georgia','serif'],
@@ -72,7 +73,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
       <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
       <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -116,7 +117,7 @@
     <a href="calc-plan.html" class="lift block bg-marigold rounded-2xl p-8 md:p-10 border-2 border-navy-ink hover:bg-marigold/90 transition group">
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
         <div class="md:col-span-3">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-thisblue font-bold">Featured · the new one</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Featured · the new one</div>
           <h2 class="font-serif text-3xl md:text-5xl font-extrabold text-navy-ink mt-2 leading-tight">Your full financial plan.</h2>
           <p class="text-navy-ink/80 mt-3 max-w-xl">Every goal you're saving for, retirement, the home, kid's college, emergency fund, brought into one honest picture. We'll show you whether it fits your life right now, and if it doesn't yet, how to get there.</p>
         </div>
@@ -135,7 +136,7 @@
       <a href="wealth-levers.html" class="lift block bg-navy-ink text-cream rounded-2xl p-7 border-2 border-navy-ink hover:border-mustard transition group overflow-hidden relative">
         <div class="absolute -right-10 -top-10 w-52 h-52 rounded-full bg-mustard/10 blur-2xl pointer-events-none"></div>
         <div class="relative">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-mustard font-bold">Interactive · learn</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-mustard font-bold">Interactive · learn</div>
           <h3 class="font-serif text-2xl md:text-3xl font-extrabold mt-2 leading-tight">Three things build wealth. Only one is a superpower.</h3>
           <p class="text-cream/75 mt-2 text-sm">Watch Adhiraj and Ananya race, same money, ten years apart. Then play with all three levers.</p>
           <div class="mt-5 inline-flex items-center gap-2 bg-mustard text-navy-ink px-4 py-2 rounded-full font-semibold text-sm group-hover:bg-mustard-soft transition">Run the race →</div>
@@ -145,7 +146,7 @@
       <a href="asset-classes.html" class="lift block bg-thisblue text-cream rounded-2xl p-7 border-2 border-thisblue hover:border-mustard transition group overflow-hidden relative">
         <div class="absolute -right-10 -top-10 w-52 h-52 rounded-full bg-mustard/10 blur-2xl pointer-events-none"></div>
         <div class="relative">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-mustard font-bold">Interactive · learn</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-mustard font-bold">Interactive · learn</div>
           <h3 class="font-serif text-2xl md:text-3xl font-extrabold mt-2 leading-tight">Every place your money can live.</h3>
           <p class="text-cream/75 mt-2 text-sm">Equity to crypto, all seven asset families mapped by risk and return, with an honest take on each.</p>
           <div class="mt-5 inline-flex items-center gap-2 bg-mustard text-navy-ink px-4 py-2 rounded-full font-semibold text-sm group-hover:bg-mustard-soft transition">Explore the map →</div>
@@ -157,15 +158,15 @@
     <a href="understanding-mutual-funds.html" class="lift block bg-white rounded-2xl p-7 md:p-8 border-2 border-navy-ink hover:border-mustard transition group mt-5">
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
         <div class="md:col-span-3">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Reference · learn</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Reference · learn</div>
           <h3 class="font-serif text-2xl md:text-4xl font-extrabold text-ink mt-2 leading-tight">Understanding your mutual funds.</h3>
           <p class="text-ink/75 mt-3 max-w-xl text-sm md:text-base">All <span class="font-mono tab-num">42</span> SEBI categories, grouped by family. Open any one to see the rule it follows, the benchmark it is measured against in plain language, and how far it has fallen.</p>
           <div class="mt-5 inline-flex items-center gap-2 bg-navy text-cream px-5 py-2.5 rounded-full font-semibold text-sm group-hover:bg-navy-ink transition">Open the guide →</div>
         </div>
         <div class="md:col-span-2 flex justify-center md:justify-end gap-2" aria-hidden="true">
-          <div class="w-16 rounded-lg bg-warmpaper-2 border border-navy/10 flex flex-col justify-end p-1.5" style="height:112px"><div class="rounded bg-marigold" style="height:26%"></div><div class="text-[9px] font-mono text-ink/45 mt-1 text-center">Low</div></div>
-          <div class="w-16 rounded-lg bg-warmpaper-2 border border-navy/10 flex flex-col justify-end p-1.5" style="height:112px"><div class="rounded bg-mustard-deep" style="height:55%"></div><div class="text-[9px] font-mono text-ink/45 mt-1 text-center">Mod</div></div>
-          <div class="w-16 rounded-lg bg-warmpaper-2 border border-navy/10 flex flex-col justify-end p-1.5" style="height:112px"><div class="rounded bg-thatred" style="height:88%"></div><div class="text-[9px] font-mono text-ink/45 mt-1 text-center">High</div></div>
+          <div class="w-16 rounded-lg bg-warmpaper-2 border border-navy/10 flex flex-col justify-end p-1.5" style="height:112px"><div class="rounded bg-marigold" style="height:26%"></div><div class="text-[11px] font-mono text-ink/45 mt-1 text-center">Low</div></div>
+          <div class="w-16 rounded-lg bg-warmpaper-2 border border-navy/10 flex flex-col justify-end p-1.5" style="height:112px"><div class="rounded bg-mustard-deep" style="height:55%"></div><div class="text-[11px] font-mono text-ink/45 mt-1 text-center">Mod</div></div>
+          <div class="w-16 rounded-lg bg-warmpaper-2 border border-navy/10 flex flex-col justify-end p-1.5" style="height:112px"><div class="rounded bg-thatred" style="height:88%"></div><div class="text-[11px] font-mono text-ink/45 mt-1 text-center">High</div></div>
         </div>
       </div>
     </a>
@@ -174,7 +175,7 @@
     <a href="ways-to-invest-in-equity.html" class="lift block bg-white rounded-2xl p-7 md:p-8 border-2 border-navy-ink hover:border-mustard transition group mt-5">
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
         <div class="md:col-span-3">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Reference · learn</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Reference · learn</div>
           <h3 class="font-serif text-2xl md:text-4xl font-extrabold text-ink mt-2 leading-tight">Ways to invest in equity.</h3>
           <p class="text-ink/75 mt-3 max-w-xl text-sm md:text-base">All <span class="font-mono tab-num">26</span> routes in India, from buying a share on the exchange to an IPO, unlisted shares, ESOPs, mutual funds, PMS, AIF and going global. Grouped by what you actually end up holding, with the minimum and the catch on each.</p>
           <div class="mt-5 inline-flex items-center gap-2 bg-navy text-cream px-5 py-2.5 rounded-full font-semibold text-sm group-hover:bg-navy-ink transition">See every route →</div>
@@ -192,7 +193,7 @@
     <a href="asset-allocator.html" class="lift block bg-white rounded-2xl p-7 md:p-8 border-2 border-navy-ink hover:border-mustard transition group mt-5 overflow-hidden">
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
         <div class="md:col-span-3">
-          <div class="text-[10px] uppercase tracking-[0.3em] text-goldink font-bold">Interactive · decide</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Interactive · decide</div>
           <h3 class="font-serif text-2xl md:text-4xl font-extrabold text-ink mt-2 leading-tight">Now, find your mix.</h3>
           <p class="text-ink/75 mt-3 max-w-xl text-sm md:text-base">You know the asset classes. Six honest questions turn them into a starting split across equity, debt, gold and cash, built for your horizon and how you behave when markets fall.</p>
           <div class="mt-5 inline-flex items-center gap-2 bg-navy text-cream px-5 py-2.5 rounded-full font-semibold text-sm group-hover:bg-navy-ink transition">Build my allocation →</div>
@@ -216,7 +217,7 @@
 <!-- TOOLBOX HEADING -->
 <section class="pt-8 bg-cream">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Or, go deep on one</div>
+    <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Or, go deep on one</div>
     <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-ink mt-1">Single-purpose calculators</h2>
   </div>
 </section>
@@ -230,7 +231,7 @@
       <a href="calc-retirement.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold">₹</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Real Retirement</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Inflation-adjusted, lifestyle-honest. See the corpus you actually need, not the marketing version.</p>
@@ -241,7 +242,7 @@
       <a href="calc-sip.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">SIP</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Honest SIP</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Shows your corpus, and the one you'd have had by starting 5 or 10 years sooner. The gap stings, but the best time to start is now.</p>
@@ -252,7 +253,7 @@
       <a href="calc-buckets.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-lg font-bold">3B</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Three Buckets Planner</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Split the corpus by when you will spend it, then see year by year whether the money lasts, and what closes the gap if it does not.</p>
@@ -263,7 +264,7 @@
       <a href="calc-swp.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">SWP</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Systematic Withdrawal</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">How much can you pull out of the tank each month, without emptying it? Finds your sustainable withdrawal rate.</p>
@@ -274,7 +275,7 @@
       <a href="calc-goal.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold">G</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Goal Planner</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Start with the dream, work back. The SIP you'll need, plus an honest look at whether it fits your life right now, and how to get there if it doesn't yet.</p>
@@ -285,7 +286,7 @@
       <a href="calc-rentbuy.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">R/B</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Rent vs Buy</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">The honest version. Stamp duty, society fees, opportunity cost on the down payment, and the gap between EMI and rent.</p>
@@ -296,7 +297,7 @@
       <a href="calc-rule72.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">72</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Rule of 72</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">The one piece of money math you should know cold. Pick a rate, see how fast your money doubles, and what each rate really means.</p>
@@ -307,7 +308,7 @@
       <a href="calc-lifestyle.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">LI</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Lifestyle Inflation Tracker</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Compare your savings rate now vs five years ago. The gap is usually where the wealth went.</p>
@@ -318,7 +319,7 @@
       <a href="calc-prepay.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">EMI</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Home Loan Prepayment</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">See when your loan clears if you prepay, and how many years and lakhs of interest it deletes.</p>
@@ -329,7 +330,7 @@
       <a href="calc-sip-reality.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-lg font-bold">&#8734;</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">The SIP Reality Check</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Not the one rosy number. The real range from 30 years of Sensex data: how often a SIP that length lost money, and the worst, typical and best you'd have lived through.</p>
@@ -340,7 +341,7 @@
       <a href="calc-crore-ladder.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-sm font-bold">10Cr</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">The Crore Ladder</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Pick a target from &#8377;1 to &#8377;10 crore and see its monthly price in every vehicle, from a bank FD to a small-cap fund, across 5 to 30 years.</p>
@@ -351,7 +352,7 @@
       <a href="calc-dreamhome.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-xl font-bold">&#127968;</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Dream Home Plan</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">The 3/20/30/40 rule, applied to your income and reality-checked. How much home you can actually afford, and where the dream turns into a trap.</p>
@@ -362,7 +363,7 @@
       <a href="calc-crorepati.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">1Cr</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">New</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Become a Crorepati</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">The road to your first crore, investing vs just saving, plus what that crore will actually buy when you arrive.</p>
@@ -373,7 +374,7 @@
       <a href="calc-mf-portfolio.html" class="lift block bg-white border-2 border-navy rounded-2xl p-7 hover:bg-navy hover:text-cream transition group">
         <div class="flex items-start justify-between">
           <div class="w-12 h-12 rounded-xl bg-mustard text-navy-ink flex items-center justify-center text-base font-bold">MF</div>
-          <span class="text-[10px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
+          <span class="text-[11px] uppercase tracking-widest text-goldink group-hover:text-mustard font-bold bg-mustard/15 group-hover:bg-mustard/25 px-2.5 py-1 rounded-full">Live</span>
         </div>
         <h3 class="font-serif text-2xl font-bold mt-5">Equity MF Portfolio</h3>
         <p class="text-navy-ink/70 group-hover:text-cream/80 text-sm mt-2 leading-relaxed">Turn your SIP or lumpsum into a ready fund-category split, built for your horizon and your nerve.</p>

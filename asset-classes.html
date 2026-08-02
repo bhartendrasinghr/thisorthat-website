@@ -32,7 +32,8 @@
     navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
     mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
     alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
+  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
     serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
@@ -72,7 +73,7 @@
       <a href="about.html" class="hover:text-navy-ink">About</a>
     </nav>
     <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex bg-thisblue text-warmpaper text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue-700 transition">Subscribe</a>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -125,7 +126,7 @@
     <div class="bg-white rounded-2xl border-2 border-marigold p-5 md:p-7">
       <div class="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">The map</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">The map</div>
           <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1">Risk vs potential return.</h2>
           <div class="text-sm text-ink/65 mt-1">Tap any dot to read its card below. Higher up = higher <em>potential</em> return (never guaranteed). Further right = more risk.</div>
           <!-- map risk/return axis wording kept precise -->
@@ -173,7 +174,7 @@
 <!-- SOURCES & METHODOLOGY -->
 <section class="py-14 bg-cream">
   <div class="max-w-4xl mx-auto px-6">
-    <div class="text-[10px] uppercase tracking-[0.3em] text-ink/60 font-bold">Where the numbers come from</div>
+    <div class="text-[11px] uppercase tracking-[0.3em] text-ink/60 font-bold">Where the numbers come from</div>
     <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mt-1">Sources & method.</h2>
     <p class="mt-3 text-sm text-ink/75 leading-relaxed">The potential-return ranges are indicative long-run figures (roughly 10-20 year windows), not forecasts. They will not match any single year. We've drawn on:</p>
     <ul class="mt-4 space-y-2 text-sm text-ink/80">
@@ -346,18 +347,18 @@ function renderCards() {
     return `<div id="${a.id}" class="asset-card bg-white rounded-2xl border border-navy/10 p-5 flex flex-col">
       <div class="flex items-start justify-between gap-2">
         <div class="font-display text-lg font-extrabold text-ink leading-tight">${a.name}</div>
-        <span class="text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full whitespace-nowrap" style="background:${c}1a;color:${c}">${FAMS[a.fam].label}</span>
+        <span class="text-[11px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full whitespace-nowrap" style="background:${c}1a;color:${c}">${FAMS[a.fam].label}</span>
       </div>
       <div class="text-sm text-ink/70 mt-1.5 leading-snug">${a.what}</div>
       <div class="mt-4">
-        <div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Potential return <span class="text-ink/30 normal-case tracking-normal">· not guaranteed</span></div>
+        <div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold">Potential return <span class="text-ink/30 normal-case tracking-normal">· not guaranteed</span></div>
         <div class="font-display font-extrabold text-ink tab-num mt-0.5 text-lg">${fmtRet(a.retLo,a.retHi)} <span class="text-[11px] font-sans font-semibold text-ink/45">a year, long-run</span></div>
       </div>
       <div class="mt-3 grid grid-cols-2 gap-y-2.5 gap-x-3 text-[13px]">
-        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Risk of loss</div><div class="mt-1.5">${pips(a.risk, '#FF302D')}</div></div>
-        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Volatility</div><div class="mt-1.5">${pips(a.vol, '#D99B00')}</div></div>
-        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Liquidity</div><div class="mt-1.5">${pips(a.liq, '#1F8A5B')}</div></div>
-        <div><div class="text-[10px] uppercase tracking-widest text-ink/45 font-bold">Min ticket</div><div class="font-semibold text-ink mt-0.5">${a.min}</div></div>
+        <div><div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold">Risk of loss</div><div class="mt-1.5">${pips(a.risk, '#FF302D')}</div></div>
+        <div><div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold">Volatility</div><div class="mt-1.5">${pips(a.vol, '#D99B00')}</div></div>
+        <div><div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold">Liquidity</div><div class="mt-1.5">${pips(a.liq, '#1F8A5B')}</div></div>
+        <div><div class="text-[11px] uppercase tracking-widest text-ink/45 font-bold">Min ticket</div><div class="font-semibold text-ink mt-0.5">${a.min}</div></div>
       </div>
       <div class="mt-3 text-[11px] text-ink/60 leading-snug"><span class="font-bold uppercase tracking-widest text-ink/45">Tax</span> · ${a.tax}</div>
       <div class="mt-3 pt-3 border-t border-navy/5 text-sm text-ink/85 leading-snug">
