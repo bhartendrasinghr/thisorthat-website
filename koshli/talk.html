@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>[MOCK] Talk to a human · Koshli</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="When a tool is not enough." />
+<link rel="icon" type="image/png" href="../logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    kblue:{ DEFAULT:'#2A00F6', deep:'#1F00B8' }, kyellow:'#FFDC4A',
+    kgrey:'#F4F2F2', kperi:'#E4E1FD', kblack:'#000000', kink:'#141414', kmute:'#5A5A5A'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'], mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#fff; color:#141414; }
+  .tab-num { font-variant-numeric:tabular-nums; font-feature-settings:'tnum'; }
+  .mockbar { background:#141414; color:#fff; font-size:12.5px; }
+  .mockbar a { color:#FFDC4A; font-weight:700; }
+  .kpanel { position:absolute; top:calc(100% + 10px); left:0; min-width:340px; background:#fff;
+    border:1px solid rgba(42,0,246,.14); border-radius:16px; box-shadow:0 20px 50px rgba(20,20,20,.14);
+    padding:14px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:all 160ms ease; z-index:60; }
+  .kitem:hover .kpanel, .kpanel.open { opacity:1; visibility:visible; transform:translateY(0); }
+  .kpanel a { display:block; padding:9px 11px; border-radius:10px; font-size:14px; font-weight:700; color:#141414; }
+  .kpanel a:hover { background:#E4E1FD; }
+  .kpanel a span { display:block; font-size:12px; font-weight:400; color:#5A5A5A; margin-top:1px; }
+  .klead { font-size:11px; color:#5A5A5A; padding:2px 11px 10px; border-bottom:1px solid rgba(42,0,246,.1); margin-bottom:6px; }
+  .rail { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; }
+  .rail > * { scroll-snap-align:start; flex:0 0 auto; }
+  .rail::-webkit-scrollbar { height:6px; }
+  .rail::-webkit-scrollbar-thumb { background:rgba(42,0,246,.2); border-radius:99px; }
+  .card { transition:border-color 180ms ease, transform 180ms ease; }
+  .card:hover { transform:translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } .card:hover { transform:none; } }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="mockbar">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+    <div>Structure mock. Koshli is the parent, This or That is the podcast inside it. The live site is untouched.</div>
+    <a href="../index.html">Live site &rarr;</a>
+  </div>
+</div>
+<header class="sticky top-0 z-50 backdrop-blur bg-white/90 border-b border-kblue/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <svg width="34" height="34" viewBox="0 0 100 100" role="img" aria-label="Koshli"><circle cx="46" cy="56" r="34" fill="#FFDC4A"/><rect x="26" y="8" width="15" height="70" fill="#000000"/><path d="M84 26 L52 56 L84 92 L62 92 L34 58 L60 26 Z" fill="#2A00F6"/></svg>
+      <div class="leading-tight">
+        <div class="font-extrabold text-[19px] tracking-tight text-kblack">KOSHLI</div>
+        <div class="text-[9.5px] text-kblue font-semibold tracking-wide">Clarity Before Capital</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1 text-sm font-semibold" id="knav">
+      <div class="kitem relative">
+        <button class="ktop px-3 py-2 rounded-lg hover:bg-kgrey flex items-center gap-1 text-kink/80">
+          Plan <svg class="w-3 h-3 opacity-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="kpanel">
+          <div class="klead">Work out your number, then what to do about it.</div>
+          <a href="plan.html" class="!bg-kperi">Open Plan<span>The whole section</span></a>
+          <a href="../calc-plan.html">The full plan<span>Income, goals and retirement in one place</span></a><a href="../asset-allocator.html">Find my mix<span>Six questions to a starting allocation</span></a><a href="../calculators.html">All 14 calculators<span>SIP, retirement, goal, rent vs buy, prepayment</span></a>
+        </div>
+      </div>
+      <div class="kitem relative">
+        <button class="ktop px-3 py-2 rounded-lg hover:bg-kgrey flex items-center gap-1 text-kink/80">
+          Learn <svg class="w-3 h-3 opacity-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="kpanel">
+          <div class="klead">Understand it before you buy it.</div>
+          <a href="learn.html" class="!bg-kperi">Open Learn<span>The whole section</span></a>
+          <a href="../understanding-mutual-funds.html">Understanding mutual funds<span>All 42 SEBI categories and their benchmarks</span></a><a href="../ways-to-invest-in-equity.html">Ways to invest in equity<span>26 routes, from an IPO to a PMS</span></a><a href="../asset-classes.html">Every asset class<span>Where money can live, and what it costs</span></a><a href="../articles.html">Articles<span>Longer reads</span></a>
+        </div>
+      </div>
+      <div class="kitem relative">
+        <button class="ktop px-3 py-2 rounded-lg hover:bg-kgrey flex items-center gap-1 text-kink/80">
+          Watch <svg class="w-3 h-3 opacity-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="kpanel">
+          <div class="klead">This or That, the Koshli podcast.</div>
+          <a href="watch.html" class="!bg-kperi">Open Watch<span>The whole section</span></a>
+          <a href="../episodes.html">All episodes<span>Every conversation, by topic</span></a><a href="../guests.html">Guests<span>The people who have been on</span></a><a href="../feed.html">Feed<span>Shorter notes between episodes</span></a>
+        </div>
+      </div>
+      <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-kgrey text-kink/80">About</a>
+    </nav>
+    <a href="talk.html" class="hidden md:inline-flex bg-kblue text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-kblue-deep transition">Talk to a human</a>
+    <button id="mtoggle" aria-label="Open menu" class="md:hidden text-kink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mmenu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-white border-b border-kblue/10 shadow-xl max-h-[78vh] overflow-y-auto">
+  <nav class="flex flex-col px-6 py-4 text-base font-semibold text-kink"><div class="text-[10px] uppercase tracking-[0.2em] text-kblue font-bold pt-4">Plan</div><a href="plan.html" class="py-2.5 border-b border-kblue/5">Open Plan</a><a href="../calc-plan.html" class="py-2.5 border-b border-kblue/5">The full plan</a><a href="../asset-allocator.html" class="py-2.5 border-b border-kblue/5">Find my mix</a><a href="../calculators.html" class="py-2.5 border-b border-kblue/5">All 14 calculators</a><div class="text-[10px] uppercase tracking-[0.2em] text-kblue font-bold pt-4">Learn</div><a href="learn.html" class="py-2.5 border-b border-kblue/5">Open Learn</a><a href="../understanding-mutual-funds.html" class="py-2.5 border-b border-kblue/5">Understanding mutual funds</a><a href="../ways-to-invest-in-equity.html" class="py-2.5 border-b border-kblue/5">Ways to invest in equity</a><a href="../asset-classes.html" class="py-2.5 border-b border-kblue/5">Every asset class</a><a href="../articles.html" class="py-2.5 border-b border-kblue/5">Articles</a><div class="text-[10px] uppercase tracking-[0.2em] text-kblue font-bold pt-4">Watch</div><a href="watch.html" class="py-2.5 border-b border-kblue/5">Open Watch</a><a href="../episodes.html" class="py-2.5 border-b border-kblue/5">All episodes</a><a href="../guests.html" class="py-2.5 border-b border-kblue/5">Guests</a><a href="../feed.html" class="py-2.5 border-b border-kblue/5">Feed</a>
+    <a href="about.html" class="py-3 mt-3 border-t border-kblue/10">About</a>
+    <a href="talk.html" class="mt-3 bg-kblue text-white text-center py-3 rounded-full font-bold">Talk to a human</a>
+  </nav>
+</div>
+<section class="border-b border-kblue/10 bg-kgrey">
+  <div class="max-w-7xl mx-auto px-6 py-14 md:py-16">
+    <div class="inline-flex items-center gap-2 bg-kperi text-kblue text-[11px] font-bold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full">Talk to a human</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05] mt-5 max-w-4xl">Some decisions need a person.</h1>
+    <p class="mt-4 text-lg text-kmute max-w-2xl leading-relaxed">Tools are good at arithmetic and bad at your circumstances. Tell us roughly what you are working through and we will introduce you to someone qualified.</p>
+    
+  </div>
+</section>
+<section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-5 gap-8">
+  <div class="lg:col-span-3">
+    <div class="border border-kblue/12 rounded-3xl p-7">
+      <h2 class="text-xl font-extrabold">What we will ask</h2>
+      <p class="text-kmute text-[14px] mt-2 leading-relaxed">Enough to make a sensible introduction, and nothing more.</p>
+      <div class="mt-6 space-y-4">
+        <div><div class="text-[11px] uppercase tracking-[0.15em] text-kblue font-bold">Your name and how to reach you</div>
+          <div class="h-11 bg-kgrey rounded-xl mt-2 border border-kblue/10"></div></div>
+        <div><div class="text-[11px] uppercase tracking-[0.15em] text-kblue font-bold">What you are trying to sort out</div>
+          <div class="h-24 bg-kgrey rounded-xl mt-2 border border-kblue/10"></div></div>
+        <div><div class="text-[11px] uppercase tracking-[0.15em] text-kblue font-bold">Who you would like to speak to</div>
+          <div class="h-11 bg-kgrey rounded-xl mt-2 border border-kblue/10"></div></div>
+      </div>
+      <button class="mt-7 bg-kblue text-white font-bold text-sm px-6 py-3 rounded-full">Send it</button>
+      <p class="text-[12px] text-kmute mt-4">Mock form. The live version at
+        <a href="../money-person.html" class="text-kblue font-semibold hover:underline">money-person.html</a> already works.</p>
+    </div>
+  </div>
+  <aside class="lg:col-span-2 space-y-4">
+    <div class="bg-kblue text-white rounded-3xl p-7">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-kyellow font-bold">How this works</div>
+      <ul class="mt-4 space-y-3 text-[14px] text-white/80">
+        <li><strong class="text-white">No commission.</strong> Koshli is not paid for the introduction.</li>
+        <li><strong class="text-white">No obligation.</strong> A conversation is a conversation.</li>
+        <li><strong class="text-white">Registered people only.</strong> SEBI-registered advisers and AMFI-registered distributors, and you can verify any of them yourself.</li>
+      </ul>
+    </div>
+    <div class="bg-kgrey rounded-3xl p-7 border border-kblue/10">
+      <h3 class="font-extrabold">Try the tools first</h3>
+      <p class="text-kmute text-[14px] mt-2 leading-relaxed">Most questions have a number behind them. Getting that number first makes the conversation shorter and better.</p>
+      <a href="plan.html" class="inline-flex mt-4 text-kblue font-bold text-sm hover:underline">Open the tools &rarr;</a>
+    </div>
+  </aside>
+</section>
+<footer class="border-t border-kblue/10 mt-20">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5"><svg width="30" height="30" viewBox="0 0 100 100" role="img" aria-label="Koshli"><circle cx="46" cy="56" r="34" fill="#FFDC4A"/><rect x="26" y="8" width="15" height="70" fill="#000000"/><path d="M84 26 L52 56 L84 92 L62 92 L34 58 L60 26 Z" fill="#2A00F6"/></svg>
+          <div class="leading-tight">
+            <div class="font-extrabold text-[17px] tracking-tight">KOSHLI</div>
+            <div class="text-[9.5px] text-kblue font-semibold tracking-wide">Clarity Before Capital</div>
+          </div>
+        </div>
+        <p class="text-[13px] text-kmute mt-4 max-w-xs leading-relaxed">
+          Understanding before investment. Long-term well-being before short-term gains.
+        </p>
+      </div>
+      <div><div class="font-bold text-[13px] mb-2">Plan</div><a href="../calc-plan.html" class="block text-[13px] text-kmute hover:text-kblue py-1">The full plan</a><a href="../asset-allocator.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Find my mix</a><a href="../calculators.html" class="block text-[13px] text-kmute hover:text-kblue py-1">All 14 calculators</a></div><div><div class="font-bold text-[13px] mb-2">Learn</div><a href="../understanding-mutual-funds.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Understanding mutual funds</a><a href="../ways-to-invest-in-equity.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Ways to invest in equity</a><a href="../asset-classes.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Every asset class</a><a href="../articles.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Articles</a></div><div><div class="font-bold text-[13px] mb-2">Watch</div><a href="../episodes.html" class="block text-[13px] text-kmute hover:text-kblue py-1">All episodes</a><a href="../guests.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Guests</a><a href="../feed.html" class="block text-[13px] text-kmute hover:text-kblue py-1">Feed</a></div>
+    </div>
+    <p class="text-[12px] text-kmute/80 leading-relaxed mt-10 pt-8 border-t border-kblue/10 max-w-4xl">
+      <strong class="text-kink/70">Disclaimer.</strong> This is a design mock and is not a live service. Everything
+      Koshli publishes is education, not investment advice and not a recommendation to buy or sell anything. Returns
+      shown anywhere on this site are historical and indicative, not guaranteed. Mutual fund investments are subject
+      to market risks; read all scheme related documents carefully. Before acting, consult a SEBI-registered
+      investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or
+      AMFI's own websites.
+    </p>
+  </div>
+</footer>
+
+<script src="../episodes.js"></script>
+<script>
+document.querySelectorAll('#knav .ktop').forEach(function (b) {
+  b.setAttribute('aria-expanded','false');
+  b.addEventListener('click', function (e) {
+    e.preventDefault();
+    var p = b.parentElement.querySelector('.kpanel'), open = p.classList.contains('open');
+    document.querySelectorAll('#knav .kpanel').forEach(function (x) { x.classList.remove('open'); });
+    if (!open) { p.classList.add('open'); b.setAttribute('aria-expanded','true'); }
+  });
+});
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('#knav')) document.querySelectorAll('#knav .kpanel').forEach(function (x) { x.classList.remove('open'); });
+});
+document.getElementById('mtoggle').addEventListener('click', function () {
+  document.getElementById('mmenu').classList.toggle('hidden');
+});
+var EPS = window.EPISODES || [];
+document.querySelectorAll('[data-epcount]').forEach(function (n) { if (EPS.length) n.textContent = EPS.length; });
+document.querySelectorAll('[data-guestcount]').forEach(function (n) {
+  if (EPS.length) n.textContent = new Set(EPS.filter(function (e) { return e.guest && e.guest !== 'Bhartendra (solo)'; })
+    .map(function (e) { return e.guest; })).size;
+});
+function epCard(e) {
+  return '<a href="../episode-detail.html?v=' + e.id + '" class="w-72 block group">' +
+    '<div class="relative rounded-2xl h-40 overflow-hidden bg-kperi">' +
+    '<img src="' + e.thumb + '" alt="" loading="lazy" class="w-full h-full object-cover" />' +
+    '<span class="absolute bottom-2.5 left-2.5 bg-black/65 text-white text-[10px] font-bold px-2 py-1 rounded-md">Ep ' + e.n + '</span></div>' +
+    '<div class="mt-2.5 font-bold text-[14.5px] leading-snug group-hover:text-kblue transition">' + e.title + '</div>' +
+    '<div class="text-[12px] text-kmute mt-0.5">' + (e.guest || '') + '</div></a>';
+}
+document.querySelectorAll('[data-rail]').forEach(function (el) {
+  var n = parseInt(el.getAttribute('data-rail'), 10) || 8;
+  if (EPS.length) el.innerHTML = EPS.slice(0, n).map(epCard).join('');
+});
+</script>
+</body>
+</html>
