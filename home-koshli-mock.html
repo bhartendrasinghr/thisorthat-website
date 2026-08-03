@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>[MOCK] Koshli, Clarity Before Capital</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Mock only. Koshli as the parent brand, with the This or That podcast as one part of it." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    kblue:   { DEFAULT:'#2A00F6', deep:'#1F00B8' },
+    kyellow: '#FFDC4A',
+    kgrey:   '#F4F2F2',
+    kperi:   '#E4E1FD',
+    kblack:  '#000000',
+    kink:    '#141414'
+  }, fontFamily: {
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#fff; color:#141414; }
+  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings:'tnum'; }
+  .mock-bar { background:#141414; color:#fff; font-size:12.5px; }
+  .mock-bar a { color:#FFDC4A; font-weight:700; }
+  .kpanel { position:absolute; top:calc(100% + 10px); left:0; min-width:330px; background:#fff;
+    border:1px solid rgba(42,0,246,.14); border-radius:16px; box-shadow:0 20px 50px rgba(20,20,20,.14);
+    padding:14px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:all 160ms ease; z-index:60; }
+  .kitem:hover .kpanel, .kpanel.open { opacity:1; visibility:visible; transform:translateY(0); }
+  .kpanel a { display:block; padding:9px 11px; border-radius:10px; font-size:14px; font-weight:700; color:#141414; }
+  .kpanel a:hover { background:#E4E1FD; }
+  .kpanel a span { display:block; font-size:12px; font-weight:400; color:#4A4A4A; margin-top:1px; }
+  .klead { font-size:11px; color:#4A4A4A; padding:2px 11px 10px; border-bottom:1px solid rgba(42,0,246,.1); margin-bottom:6px; }
+  .rail { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px; }
+  .rail > * { scroll-snap-align:start; flex:0 0 auto; }
+  .rail::-webkit-scrollbar { height:6px; }
+  .rail::-webkit-scrollbar-thumb { background:rgba(42,0,246,.2); border-radius:99px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="mock-bar">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+    <div>Mock only, nothing here is live. Koshli as the parent brand, built to the Koshli guidelines. The podcast sits inside <strong>Watch</strong>.</div>
+    <a href="index.html">See the current site &rarr;</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-white/90 border-b border-kblue/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <a href="#" class="flex items-center gap-2.5">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-label="Koshli" role="img">
+        <circle cx="46" cy="56" r="34" fill="#FFDC4A"/>
+        <rect x="26" y="8" width="15" height="70" fill="#000000"/>
+        <path d="M84 26 L52 56 L84 92 L62 92 L34 58 L60 26 Z" fill="#2A00F6"/>
+      </svg>
+      <div class="leading-tight">
+        <div class="font-extrabold text-[19px] tracking-tight text-kblack">KOSHLI</div>
+        <div class="text-[9.5px] text-kblue font-semibold tracking-wide">Clarity Before Capital</div>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1 text-sm font-semibold text-kink/80" id="knav">
+      <div class="kitem relative">
+        <button class="ktop px-3 py-2 rounded-lg hover:bg-kgrey flex items-center gap-1" data-m="plan">
+          Plan <svg class="w-3 h-3 opacity-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="kpanel">
+          <div class="klead">Work out your number, then what to do about it.</div>
+          <a href="calc-plan.html">The full plan<span>Everything in one place</span></a>
+          <a href="asset-allocator.html">Find my mix<span>Six questions to a starting allocation</span></a>
+          <a href="calculators.html">All 14 calculators<span>SIP, retirement, goal, rent vs buy</span></a>
+        </div>
+      </div>
+      <div class="kitem relative">
+        <button class="ktop px-3 py-2 rounded-lg hover:bg-kgrey flex items-center gap-1" data-m="learn">
+          Learn <svg class="w-3 h-3 opacity-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="kpanel">
+          <div class="klead">Understand it before you buy it.</div>
+          <a href="understanding-mutual-funds.html">Understanding mutual funds<span>All 42 SEBI categories and their benchmarks</span></a>
+          <a href="ways-to-invest-in-equity.html">Ways to invest in equity<span>26 routes, from an IPO to a PMS</span></a>
+          <a href="asset-classes.html">Every asset class<span>Where money can live, and what it costs</span></a>
+          <a href="articles.html">Articles<span>Longer reads</span></a>
+        </div>
+      </div>
+      <div class="kitem relative">
+        <button class="ktop px-3 py-2 rounded-lg hover:bg-kgrey flex items-center gap-1" data-m="watch">
+          Watch <svg class="w-3 h-3 opacity-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="kpanel">
+          <div class="klead">This or That, the Koshli podcast. <span class="font-mono tab-num" id="k-ep">60</span> conversations.</div>
+          <a href="episodes.html">All episodes<span>Every conversation, by topic</span></a>
+          <a href="guests.html">Guests<span>The people who have been on</span></a>
+          <a href="feed.html">Feed<span>Shorter notes between episodes</span></a>
+        </div>
+      </div>
+      <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-kgrey">About</a>
+    </nav>
+
+    <a href="money-person.html" class="hidden md:inline-flex bg-kblue text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-kblue-deep transition">Talk to a human</a>
+
+    <button id="mtoggle" aria-label="Open menu" class="md:hidden text-kink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mmenu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-white border-b border-kblue/10 shadow-xl max-h-[80vh] overflow-y-auto">
+  <nav class="flex flex-col px-6 py-4 text-base font-semibold text-kink">
+    <div class="text-[10px] uppercase tracking-[0.2em] text-kblue font-bold pt-1">Plan</div>
+    <a href="calc-plan.html" class="py-2.5 border-b border-kblue/5">The full plan</a>
+    <a href="asset-allocator.html" class="py-2.5 border-b border-kblue/5">Find my mix</a>
+    <a href="calculators.html" class="py-2.5 border-b border-kblue/5">All 14 calculators</a>
+    <div class="text-[10px] uppercase tracking-[0.2em] text-kblue font-bold pt-4">Learn</div>
+    <a href="understanding-mutual-funds.html" class="py-2.5 border-b border-kblue/5">Understanding mutual funds</a>
+    <a href="ways-to-invest-in-equity.html" class="py-2.5 border-b border-kblue/5">Ways to invest in equity</a>
+    <a href="asset-classes.html" class="py-2.5 border-b border-kblue/5">Every asset class</a>
+    <a href="articles.html" class="py-2.5 border-b border-kblue/5">Articles</a>
+    <div class="text-[10px] uppercase tracking-[0.2em] text-kblue font-bold pt-4">Watch</div>
+    <a href="episodes.html" class="py-2.5 border-b border-kblue/5">All episodes</a>
+    <a href="guests.html" class="py-2.5 border-b border-kblue/5">Guests</a>
+    <a href="feed.html" class="py-2.5 border-b border-kblue/5">Feed</a>
+    <a href="about.html" class="py-3 mt-3 border-t border-kblue/10">About</a>
+    <a href="money-person.html" class="mt-3 bg-kblue text-white text-center py-3 rounded-full font-bold">Talk to a human</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="border-b border-kblue/10">
+  <div class="max-w-7xl mx-auto px-6 pt-14 pb-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-7">
+      <div class="inline-flex items-center gap-2 bg-kperi text-kblue text-[11px] font-bold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full">
+        Understand before you invest
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.03] mt-5 max-w-4xl">
+        Money decisions do not have to be stressful.
+      </h1>
+      <p class="mt-5 text-lg text-kink/70 max-w-2xl leading-relaxed">
+        Koshli helps you work out what your money should do, in plain language, before anyone asks you to
+        commit a rupee. Free tools, honest explanations, and a podcast that asks the questions you would ask.
+      </p>
+
+      <!-- planner entry -->
+      <div class="mt-8 bg-kgrey rounded-3xl p-6 md:p-7 border border-kblue/10">
+        <div class="text-[11px] uppercase tracking-[0.2em] text-kblue font-bold">Start here</div>
+        <div class="text-xl font-bold mt-1">What are you trying to work out?</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5">
+          <a href="asset-allocator.html" class="bg-white rounded-2xl p-4 border border-kblue/10 hover:border-kblue/40 transition">
+            <div class="font-bold text-[15px]">Where should I put my money?</div>
+            <div class="text-[13px] text-kink/60 mt-1">Six questions, one starting mix</div>
+          </a>
+          <a href="calc-goal.html" class="bg-white rounded-2xl p-4 border border-kblue/10 hover:border-kblue/40 transition">
+            <div class="font-bold text-[15px]">How much do I need?</div>
+            <div class="text-[13px] text-kink/60 mt-1">For a goal, or for retirement</div>
+          </a>
+          <a href="understanding-mutual-funds.html" class="bg-white rounded-2xl p-4 border border-kblue/10 hover:border-kblue/40 transition">
+            <div class="font-bold text-[15px]">What am I actually buying?</div>
+            <div class="text-[13px] text-kink/60 mt-1">All 42 fund categories, explained</div>
+          </a>
+          <a href="money-person.html" class="bg-white rounded-2xl p-4 border border-kblue/10 hover:border-kblue/40 transition">
+            <div class="font-bold text-[15px]">I want to ask a person</div>
+            <div class="text-[13px] text-kink/60 mt-1">Talk to someone qualified</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- values -->
+    <aside class="lg:col-span-5 space-y-3">
+      <div class="bg-kblue text-white rounded-3xl p-7">
+        <div class="text-[11px] uppercase tracking-[0.2em] text-kyellow font-bold">What we believe</div>
+        <div class="text-2xl font-extrabold mt-2 leading-snug">Clarity before capital.</div>
+        <p class="text-white/75 text-[14.5px] mt-3 leading-relaxed">
+          Understanding comes before investment. Long-term well-being comes before short-term gains. Every
+          tool here is free, and nothing on this site is trying to sell you a product.
+        </p>
+        <div class="mt-6 grid grid-cols-3 gap-3 text-center">
+          <div><div class="text-[11px] text-kyellow font-bold uppercase tracking-widest">01</div><div class="font-bold text-sm mt-1">Clarity</div></div>
+          <div><div class="text-[11px] text-kyellow font-bold uppercase tracking-widest">02</div><div class="font-bold text-sm mt-1">Trust</div></div>
+          <div><div class="text-[11px] text-kyellow font-bold uppercase tracking-widest">03</div><div class="font-bold text-sm mt-1">Empowerment</div></div>
+        </div>
+      </div>
+      <div class="bg-kyellow rounded-3xl p-6">
+        <div class="text-[11px] uppercase tracking-[0.2em] text-kblack/60 font-bold">The numbers</div>
+        <div class="grid grid-cols-3 gap-3 mt-3 text-kblack">
+          <div><div class="font-mono text-2xl font-bold tab-num" id="k-n1">60</div><div class="text-[11px] font-semibold">conversations</div></div>
+          <div><div class="font-mono text-2xl font-bold tab-num">16</div><div class="text-[11px] font-semibold">free tools</div></div>
+          <div><div class="font-mono text-2xl font-bold tab-num">42</div><div class="text-[11px] font-semibold">fund categories</div></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- THREE PILLARS -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <a href="calculators.html" class="group border border-kblue/12 rounded-3xl p-7 hover:border-kblue/45 transition">
+      <div class="w-11 h-11 rounded-xl bg-kblue text-white flex items-center justify-center font-bold">1</div>
+      <h2 class="text-2xl font-extrabold mt-4">Plan</h2>
+      <p class="text-kink/65 text-[14.5px] mt-2 leading-relaxed">Work out the real number. Retirement, a goal, a house, a loan you are thinking of prepaying.</p>
+      <div class="mt-4 text-kblue font-bold text-sm group-hover:underline">Open the tools &rarr;</div>
+    </a>
+    <a href="understanding-mutual-funds.html" class="group border border-kblue/12 rounded-3xl p-7 hover:border-kblue/45 transition">
+      <div class="w-11 h-11 rounded-xl bg-kblue text-white flex items-center justify-center font-bold">2</div>
+      <h2 class="text-2xl font-extrabold mt-4">Learn</h2>
+      <p class="text-kink/65 text-[14.5px] mt-2 leading-relaxed">Understand what you are buying. Fund categories, benchmarks, asset classes, and every route into equity.</p>
+      <div class="mt-4 text-kblue font-bold text-sm group-hover:underline">Start understanding &rarr;</div>
+    </a>
+    <a href="episodes.html" class="group border border-kblue/12 rounded-3xl p-7 hover:border-kblue/45 transition">
+      <div class="w-11 h-11 rounded-xl bg-kblue text-white flex items-center justify-center font-bold">3</div>
+      <h2 class="text-2xl font-extrabold mt-4">Watch</h2>
+      <p class="text-kink/65 text-[14.5px] mt-2 leading-relaxed">This or That, the Koshli podcast. Fund managers, CEOs and advisers, asked the questions you would ask.</p>
+      <div class="mt-4 text-kblue font-bold text-sm group-hover:underline">See the episodes &rarr;</div>
+    </a>
+  </div>
+</section>
+
+<!-- PODCAST AS A COMPONENT -->
+<section class="bg-kgrey border-y border-kblue/10">
+  <div class="max-w-7xl mx-auto px-6 py-14">
+    <div class="flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <div class="text-[11px] uppercase tracking-[0.2em] text-kblue font-bold">From the podcast</div>
+        <h2 class="text-3xl font-extrabold mt-1">This or That, by Koshli.</h2>
+        <p class="text-kink/65 text-[14.5px] mt-2 max-w-2xl">One money decision, two sides, we pick one. Now one part of Koshli rather than the whole of it.</p>
+      </div>
+      <a href="episodes.html" class="text-kblue font-bold text-sm hover:underline whitespace-nowrap">All episodes &rarr;</a>
+    </div>
+    <div id="k-rail" class="rail mt-7"></div>
+  </div>
+</section>
+
+<!-- TALK TO A HUMAN -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <div class="bg-kblue rounded-3xl p-8 md:p-12 text-white grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+    <div class="md:col-span-3">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-kyellow font-bold">When a tool is not enough</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight">Some decisions need a person.</h2>
+      <p class="text-white/75 mt-4 max-w-xl leading-relaxed">
+        Calculators are good at arithmetic and bad at your circumstances. If you want to talk it through, we
+        will put you in front of someone qualified. No commission, no obligation.
+      </p>
+    </div>
+    <div class="md:col-span-2 md:justify-self-end">
+      <a href="money-person.html" class="inline-flex bg-kyellow text-kblack font-bold px-7 py-4 rounded-full hover:opacity-90 transition">Talk to a human</a>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-kblue/10">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="flex items-center gap-2.5">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="46" cy="56" r="34" fill="#FFDC4A"/>
+        <rect x="26" y="8" width="15" height="70" fill="#000000"/>
+        <path d="M84 26 L52 56 L84 92 L62 92 L34 58 L60 26 Z" fill="#2A00F6"/>
+      </svg>
+      <div class="leading-tight">
+        <div class="font-extrabold text-[17px] tracking-tight">KOSHLI</div>
+        <div class="text-[9.5px] text-kblue font-semibold tracking-wide">Clarity Before Capital</div>
+      </div>
+    </div>
+    <p class="text-[12px] text-kink/50 leading-relaxed mt-6 max-w-4xl">
+      <strong class="text-kink/70">Disclaimer.</strong> This page is a design mock and is not live. Everything on
+      Koshli is education, not investment advice and not a recommendation to buy or sell anything. Mutual fund
+      investments are subject to market risks; read all scheme related documents carefully. Before acting,
+      consult a SEBI-registered investment adviser or an AMFI-registered mutual fund distributor.
+    </p>
+  </div>
+</footer>
+
+<script src="episodes.js"></script>
+<script>
+document.querySelectorAll('#knav .ktop').forEach(function (b) {
+  b.setAttribute('aria-expanded', 'false');
+  b.addEventListener('click', function (e) {
+    e.preventDefault();
+    var panel = b.parentElement.querySelector('.kpanel');
+    var open = panel.classList.contains('open');
+    document.querySelectorAll('#knav .kpanel').forEach(function (p) { p.classList.remove('open'); });
+    document.querySelectorAll('#knav .ktop').forEach(function (t) { t.setAttribute('aria-expanded', 'false'); });
+    if (!open) { panel.classList.add('open'); b.setAttribute('aria-expanded', 'true'); }
+  });
+});
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('#knav')) {
+    document.querySelectorAll('#knav .kpanel').forEach(function (p) { p.classList.remove('open'); });
+  }
+});
+document.getElementById('mtoggle').addEventListener('click', function () {
+  document.getElementById('mmenu').classList.toggle('hidden');
+});
+
+var eps = window.EPISODES || [];
+if (eps.length) {
+  ['k-ep', 'k-n1'].forEach(function (id) { var n = document.getElementById(id); if (n) n.textContent = eps.length; });
+  document.getElementById('k-rail').innerHTML = eps.slice(0, 8).map(function (e) {
+    return '<a href="episode-detail.html?v=' + e.id + '" class="w-72 block group">' +
+      '<div class="relative rounded-2xl h-40 overflow-hidden bg-kperi">' +
+      '<img src="' + e.thumb + '" alt="" loading="lazy" class="w-full h-full object-cover" />' +
+      '<span class="absolute bottom-2.5 left-2.5 bg-black/65 text-white text-[10px] font-bold px-2 py-1 rounded-md">Ep ' + e.n + '</span>' +
+      '</div>' +
+      '<div class="mt-2.5 font-bold text-[14.5px] leading-snug group-hover:text-kblue transition">' + e.title + '</div>' +
+      '<div class="text-[12px] text-kink/55 mt-0.5">' + (e.guest || '') + '</div></a>';
+  }).join('');
+}
+</script>
+</body>
+</html>
