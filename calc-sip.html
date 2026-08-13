@@ -146,7 +146,7 @@
             <span class="text-navy/60 text-sm">yrs</span>
           </div>
         </div>
-        <input id="in-age" type="range" min="20" max="65" value="30" class="w-full mt-2" />
+        <input id="in-age" type="range" min="1" max="65" value="30" class="w-full mt-2" />
       </div>
 
       <div>
@@ -157,7 +157,7 @@
             <span class="text-navy/60 text-sm">yrs</span>
           </div>
         </div>
-        <input id="in-stop" type="range" min="30" max="80" value="60" class="w-full mt-2" />
+        <input id="in-stop" type="range" min="2" max="80" value="60" class="w-full mt-2" />
       </div>
 
       <div>
@@ -196,11 +196,11 @@
 
       <!-- The head-start comparison -->
       <div class="bg-white rounded-2xl border-2 border-alert p-7">
-        <div class="text-xs uppercase tracking-[0.3em] text-alert font-bold">What a head start adds</div>
+        <div class="text-xs uppercase tracking-[0.3em] text-alert font-bold" id="head-title">What a head start adds</div>
         <div class="mt-4 space-y-4">
           <div class="flex items-end justify-between gap-4 pb-4 border-b border-navy/10">
             <div>
-              <div class="text-sm text-navy/60">Starting <strong class="text-alert">5 years</strong> sooner</div>
+              <div class="text-sm text-navy/60" id="head-5">Starting <strong class="text-alert">5 years</strong> sooner</div>
               <div class="font-serif text-3xl md:text-4xl font-bold text-navy-ink tab-num mt-1">₹<span id="out-5yr">-</span></div>
             </div>
             <div class="text-right">
@@ -210,7 +210,7 @@
           </div>
           <div class="flex items-end justify-between gap-4">
             <div>
-              <div class="text-sm text-navy/60">Starting <strong class="text-alert">10 years</strong> sooner</div>
+              <div class="text-sm text-navy/60" id="head-10">Starting <strong class="text-alert">10 years</strong> sooner</div>
               <div class="font-serif text-3xl md:text-4xl font-bold text-navy-ink tab-num mt-1">₹<span id="out-10yr">-</span></div>
             </div>
             <div class="text-right">
@@ -340,6 +340,20 @@ function calc() {
   document.getElementById('diff-5').textContent = fmtINR(corpus5 - corpusNow);
   document.getElementById('diff-10').textContent = fmtINR(corpus10 - corpusNow);
 
+  // Extra years are worth the same wherever they come from, but they have to be
+  // years that could actually exist. Nobody starts investing before they are born,
+  // so below the starting age the same money is framed as running for longer.
+  const minAge = +document.getElementById('in-age').min;
+  const earlier5  = age - 5  >= minAge;
+  const earlier10 = age - 10 >= minAge;
+  const phrase = (n, earlier) => earlier
+    ? `Starting <strong class="text-alert">${n} years</strong> sooner`
+    : `Running <strong class="text-alert">${n} years</strong> longer`;
+  document.getElementById('head-5').innerHTML  = phrase(5,  earlier5);
+  document.getElementById('head-10').innerHTML = phrase(10, earlier10);
+  document.getElementById('head-title').textContent =
+    earlier5 ? 'What a head start adds' : 'What more years add';
+
   const growth = corpusNow - contribNow;
   const contribPct = corpusNow > 0 ? (contribNow / corpusNow) * 100 : 50;
   document.getElementById('bar-cont').style.width = contribPct + '%';
@@ -350,12 +364,15 @@ function calc() {
   // Reality message
   const gap10 = corpus10 - corpusNow;
   let reality;
-  if (years < 10) {
+  if (stop <= age) {
+    reality = `You have set the stop age to ${stop} and the starting age to ${age}, so there is no time in between for anything to be invested. Move the stop age above the age you are starting from.`;
+  } else if (years < 10) {
     reality = `With ${years} years to compound, your steadiness matters more than the market's mood. Time is shorter here, so the strongest lever in your hands is the SIP amount, and even a small bump makes a real difference.`;
   } else if (gap10 > corpusNow) {
-    reality = `Starting 10 years sooner would reach ${fmtINR(corpus10)}, more than double this. The ₹${fmtINR(gap10)} difference is simply what those extra years of compounding do, which is exactly why the years ahead of you are worth protecting. Begin now and let them work.`;
+    const lead = earlier10 ? 'Starting 10 years sooner' : 'Running this 10 years longer';
+    reality = `${lead} would reach ${fmtINR(corpus10)}, more than double this. The ₹${fmtINR(gap10)} difference is simply what those extra years of compounding do, which is exactly why the years ahead are worth protecting. Begin now and let them work.`;
   } else {
-    reality = `Those extra 10 years would add about ₹${fmtINR(gap10)}, roughly ${Math.round((gap10 / corpusNow) * 100)}% more, for the same monthly effort. That's not a regret, it's the case for guarding every year you still have ahead. Start today and let them count.`;
+    reality = `Those extra 10 years would add about ₹${fmtINR(gap10)}, roughly ${Math.round((gap10 / corpusNow) * 100)}% more, for the same monthly effort. That's not a regret, it's the case for guarding every year still ahead. Start today and let them count.`;
   }
   document.getElementById('reality').textContent = reality;
 }
