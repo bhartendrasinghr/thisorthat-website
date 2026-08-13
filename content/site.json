@@ -11,7 +11,27 @@
     "contact_email": "hello@thisorthat.in"
   },
   "home": {
-    "featured_video_id": ""
+    "featured_video_id": "",
+    "hero_kicker": "Start with your own numbers",
+    "hero_headline": "Let's build your plan.",
+    "hero_sub": "Four questions, two minutes. No sign-up, no email, and no sales call at the end unless you ask for one.",
+    "hero_points": [
+      "Sized to how long the money stays invested, not to your age",
+      "Adjusted for what you actually do in a bad year",
+      "Free, and there is no product at the end of it"
+    ],
+    "hero_cta": "Start with question one",
+    "episodes_heading": "Latest episodes",
+    "guests_kicker": "Who has been on",
+    "guests_heading": "people who actually manage money.",
+    "guests_sub": "Fund managers, advisers, founders and journalists. Nobody is here to promote anything.",
+    "writing_kicker": "Prefer to read",
+    "writing_heading": "Slow thought, in writing.",
+    "writing_sub": "The episodes go wide. These go deep on one idea at a time.",
+    "band_kicker": "New episode most weeks",
+    "band_heading": "One honest conversation. Most weeks.",
+    "band_body": "No hot takes, no tips, and nobody selling you a product at the end. Sixty conversations so far, and the archive is free.",
+    "band_cta": "Subscribe on YouTube"
   },
   "newsletter": {
     "name": "Slow Thought",

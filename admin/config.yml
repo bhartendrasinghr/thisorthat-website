@@ -73,8 +73,25 @@ collections:
           - label: "Homepage"
             name: "home"
             widget: "object"
+            hint: "Every word on the home page. Change it here, hit Publish, the page updates in about 30 seconds."
             fields:
               - { name: "featured_video_id", label: "Featured episode (YouTube video ID)", widget: "string", required: false, hint: "Pin an episode to the homepage billboard. Paste the ID from its YouTube URL (the part after v=). Leave blank to always show the newest upload." }
+              - { name: "hero_kicker", label: "Hero: small line above the headline", widget: "string" }
+              - { name: "hero_headline", label: "Hero: headline", widget: "string" }
+              - { name: "hero_sub", label: "Hero: paragraph under the headline", widget: "text" }
+              - { name: "hero_points", label: "Hero: the three bullet points", widget: "list", field: { name: "point", label: "Point", widget: "string" }, hint: "Three works best. Each one should say something a competitor could not say." }
+              - { name: "hero_cta", label: "Hero: button label", widget: "string" }
+              - { name: "episodes_heading", label: "Episodes section: heading", widget: "string" }
+              - { name: "guests_kicker", label: "Guests section: small line above", widget: "string" }
+              - { name: "guests_heading", label: "Guests section: heading after the count", widget: "string", hint: "The guest count is added automatically, so this reads like '31 people who actually manage money.'" }
+              - { name: "guests_sub", label: "Guests section: paragraph", widget: "text" }
+              - { name: "writing_kicker", label: "Writing section: small line above", widget: "string" }
+              - { name: "writing_heading", label: "Writing section: heading", widget: "string" }
+              - { name: "writing_sub", label: "Writing section: paragraph", widget: "text" }
+              - { name: "band_kicker", label: "Yellow band: small line above", widget: "string" }
+              - { name: "band_heading", label: "Yellow band: heading", widget: "string" }
+              - { name: "band_body", label: "Yellow band: paragraph", widget: "text" }
+              - { name: "band_cta", label: "Yellow band: button label", widget: "string" }
           - label: "Newsletter"
             name: "newsletter"
             widget: "object"

@@ -63,7 +63,7 @@
         <span class="block text-[9px] font-bold tracking-[0.22em] text-meta mt-[3px]">BEYOND THE NOISE</span>
       </span>
     </a>
-    <nav class="hidden lg:flex items-center gap-0.5 text-[14.5px] font-semibold">
+    <nav class="hidden xl:flex items-center gap-0.5 text-[14.5px] font-semibold">
       <a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a>
       <a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a>
       <a href="#plan" class="px-3 py-2 rounded-lg text-ink font-bold" aria-current="page">Plan</a>
@@ -71,20 +71,23 @@
       <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a>
     </nav>
     <div class="flex items-center gap-2">
+      <a href="money-person.html"
+         class="hidden md:inline-flex border-[1.5px] border-ink/25 text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:border-ink transition">Talk to a human</a>
       <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
          class="hidden sm:inline-flex bg-marigold text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Subscribe</a>
-      <button id="mt" aria-label="Menu" aria-expanded="false" class="lg:hidden p-2 -mr-2">
+      <button id="mt" aria-label="Menu" aria-expanded="false" class="xl:hidden p-2 -mr-2">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
-  <div id="mm" class="lg:hidden hidden border-t border-line bg-paper">
+  <div id="mm" class="xl:hidden hidden border-t border-line bg-paper">
     <nav class="flex flex-col px-6 py-1 text-[16px] font-semibold">
       <a href="episodes.html" class="py-3.5 border-b border-line">Episodes</a>
       <a href="guests.html" class="py-3.5 border-b border-line">Guests</a>
       <a href="#plan" class="py-3.5 border-b border-line">Plan</a>
       <a href="articles.html" class="py-3.5 border-b border-line">Writing</a>
-      <a href="about.html" class="py-3.5">About</a>
+      <a href="about.html" class="py-3.5 border-b border-line">About</a>
+      <a href="money-person.html" class="py-3.5 font-bold text-gold">Talk to a human &rarr;</a>
     </nav>
   </div>
 </header>
@@ -94,14 +97,14 @@
   <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
     <div class="lg:col-span-6">
-      <div class="kicker">Start with your own numbers</div>
+      <div class="kicker" data-cms="hero_kicker">Start with your own numbers</div>
       <h1 class="font-display font-extrabold mt-5 leading-[0.94] tracking-[-0.035em] text-[clamp(42px,6.6vw,70px)]">
-        Let's build your plan.
+        <span data-cms="hero_headline">Let's build your plan.</span>
       </h1>
       <p class="mt-6 text-[19px] leading-[1.5] text-body max-w-[46ch]">
-        Four questions, two minutes. No sign-up, no email, and no sales call at the end unless you ask for one.
+        <span data-cms="hero_sub">Four questions, two minutes. No sign-up, no email, and no sales call at the end unless you ask for one.</span>
       </p>
-      <ul class="mt-8 space-y-3.5">
+      <ul class="mt-8 space-y-3.5" id="heropoints">
         <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
           <span class="text-[15.5px] font-semibold">Sized to how long the money stays invested, not to your age</span></li>
         <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
@@ -110,7 +113,7 @@
           <span class="text-[15.5px] font-semibold">Free, and there is no product at the end of it</span></li>
       </ul>
       <a href="#tool" class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-7 py-3.5 rounded-full mt-9 hover:bg-black transition">
-        Start with question one &darr;
+        <span data-cms="hero_cta">Start with question one</span> &darr;
       </a>
     </div>
 
@@ -193,7 +196,7 @@
 <section class="border-t border-line bg-surf">
   <div class="max-w-6xl mx-auto px-6 py-24">
     <div class="flex items-end justify-between gap-6 mb-9">
-      <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none">Latest episodes</h2>
+      <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none" data-cms="episodes_heading">Latest episodes</h2>
       <a href="episodes.html" class="lnk text-[14px] shrink-0">All <span id="epcount">60</span> &rarr;</a>
     </div>
     <div id="ephero" class="grid md:grid-cols-2 gap-0 bg-dark rounded-[18px] overflow-hidden"></div>
@@ -208,15 +211,15 @@
 <section class="max-w-6xl mx-auto px-6 py-24">
   <div class="flex items-end justify-between gap-6 mb-8">
     <div>
-      <div class="kicker">Who has been on</div>
+      <div class="kicker" data-cms="guests_kicker">Who has been on</div>
       <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none mt-4">
-        <span id="gcount">31</span> people who actually manage money.
+        <span id="gcount">31</span> <span data-cms="guests_heading">people who actually manage money.</span>
       </h2>
     </div>
     <a href="guests.html" class="lnk text-[14px] shrink-0 hidden sm:inline">All guests &rarr;</a>
   </div>
   <p class="text-[16px] text-body leading-relaxed max-w-[54ch]">
-    Fund managers, advisers, founders and journalists. Nobody is here to promote anything.
+    <span data-cms="guests_sub">Fund managers, advisers, founders and journalists. Nobody is here to promote anything.</span>
   </p>
   <div id="guestwall" class="mt-9 flex flex-wrap gap-x-7 gap-y-3.5"></div>
   <a href="guests.html" class="lnk text-[14px] inline-block mt-8 sm:hidden">All guests &rarr;</a>
@@ -227,9 +230,9 @@
   <div class="grid lg:grid-cols-12 gap-12">
     <div class="lg:col-span-4">
       <div class="lg:sticky lg:top-28">
-        <div class="kicker">Prefer to read</div>
-        <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-[1.02] mt-4">Slow thought,<br />in writing.</h2>
-        <p class="text-[16px] text-body leading-relaxed mt-5 max-w-[38ch]">The episodes go wide. These go deep on one idea at a time.</p>
+        <div class="kicker" data-cms="writing_kicker">Prefer to read</div>
+        <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-[1.02] mt-4" data-cms="writing_heading">Slow thought, in writing.</h2>
+        <p class="text-[16px] text-body leading-relaxed mt-5 max-w-[38ch]" data-cms="writing_sub">The episodes go wide. These go deep on one idea at a time.</p>
         <a href="articles.html" class="lnk text-[14px] inline-block mt-6">All writing &rarr;</a>
       </div>
     </div>
@@ -248,17 +251,16 @@
 <!-- ============================ 5. THE ONE ASK, full bleed ============================ -->
 <section style="background:#FFC21F">
   <div class="max-w-3xl mx-auto px-6 py-24 text-center">
-    <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-ink/65">New episode most weeks</div>
-    <h2 class="font-display font-extrabold text-[clamp(32px,5.4vw,52px)] leading-[1.02] tracking-[-0.03em] mt-5">
-      One honest conversation.<br />Most weeks.
+    <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-ink/65" data-cms="band_kicker">New episode most weeks</div>
+    <h2 class="font-display font-extrabold text-[clamp(32px,5.4vw,52px)] leading-[1.02] tracking-[-0.03em] mt-5" data-cms="band_heading">
+      One honest conversation. Most weeks.
     </h2>
     <p class="text-[17px] leading-relaxed text-ink/80 mt-6 max-w-[48ch] mx-auto">
-      No hot takes, no tips, and nobody selling you a product at the end. Sixty conversations so far, and the archive
-      is free.
+      <span data-cms="band_body">No hot takes, no tips, and nobody selling you a product at the end. Sixty conversations so far, and the archive is free.</span>
     </p>
     <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
        class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-8 py-4 rounded-full mt-9 hover:bg-black transition">
-      Subscribe on YouTube &rarr;
+      <span data-cms="band_cta">Subscribe on YouTube</span> &rarr;
     </a>
   </div>
 </section>
@@ -308,6 +310,28 @@
 var $=function(i){return document.getElementById(i);};
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
 function inr(n){return Math.round(n).toLocaleString('en-IN');}
+
+/* ---- copy comes from content/site.json, which is what the CMS edits.
+        If the fetch fails the words already in the HTML stand. ---- */
+fetch('content/site.json',{cache:'no-cache'})
+  .then(function(r){ return r.ok?r.json():null; })
+  .catch(function(){ return null; })
+  .then(function(cfg){
+    var H=cfg&&cfg.home; if(!H) return;
+    [].forEach.call(document.querySelectorAll('[data-cms]'),function(el){
+      var v=H[el.getAttribute('data-cms')];
+      if(typeof v==='string'&&v.trim()) el.textContent=v;
+    });
+    if(Array.isArray(H.hero_points)&&H.hero_points.length){
+      $('heropoints').innerHTML=H.hero_points.map(function(t){
+        return '<li class="flex gap-3 items-start">'+
+          '<span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>'+
+          '<span class="text-[15.5px] font-semibold">'+esc(t)+'</span></li>';
+      }).join('');
+    }
+    var pin=String(H.featured_video_id||'').trim();
+    if(pin) drawEpisodes(pin);
+  });
 
 var mt=$('mt');
 if(mt) mt.addEventListener('click',function(){
@@ -540,10 +564,14 @@ $('go').addEventListener('click',function(){
 drawQs();
 
 /* ---- episodes: the real thumbnails, because they exist ---- */
-var E=window.EPISODES||[];
-$('epcount').textContent=E.length;
-if(E.length){
-  var h=E[0];
+var ALL=window.EPISODES||[];
+$('epcount').textContent=ALL.length;
+function drawEpisodes(pinId){
+  if(!ALL.length) return;
+  // "Featured episode" in the CMS pins the billboard; blank means newest
+  var pinned=pinId&&ALL.filter(function(x){return x.id===pinId;})[0];
+  var h=pinned||ALL[0];
+  var E=[h].concat(ALL.filter(function(x){return x.id!==h.id;}));
   $('ephero').innerHTML=
     '<a href="episode-detail.html?v='+esc(h.id)+'" class="block relative aspect-[16/9] md:aspect-auto md:min-h-[300px] overflow-hidden">'+
       '<img src="'+esc(h.thumb)+'" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />'+
@@ -560,19 +588,33 @@ if(E.length){
       '<div class="text-[12.5px] text-meta mt-2.5">'+esc(e.guest)+' · '+esc(e.published)+'</div></div></a>';
   }).join('');
 }
+drawEpisodes('');   // render now; redrawn only if the CMS has pinned one
 
-/* ---- guests: names as type. Size tracks how often they have been on,
-        which is real information rather than decoration. ---- */
-var G=(window.GUESTS||[]).filter(function(g){return g.name && !/solo/i.test(g.name);});
-$('gcount').textContent=G.length;
-$('guestwall').innerHTML=G.map(function(g){
-  var big=g.eps>1;
-  return '<a href="guests.html" class="group inline-flex items-baseline gap-1.5 hover:text-gold transition">'+
-    '<span class="'+(big?'text-[21px] md:text-[24px] font-extrabold':'text-[17px] md:text-[19px] font-semibold text-body')+
-    ' tracking-[-0.02em] leading-none">'+esc(g.name)+'</span>'+
-    (big?'<span class="text-[11px] font-bold text-meta tab-num">'+g.eps+'</span>':'')+
-    '</a>';
-}).join('');
+/* ---- guests: everyone the same size, alphabetical, no counts.
+        Merged from the CMS list and the YouTube sync so a guest added in the
+        CMS appears here without touching code. ---- */
+function drawGuests(cms){
+  var seen={}, all=[];
+  (cms||[]).concat(window.GUESTS||[]).forEach(function(g){
+    var name=(g&&g.name||'').trim();
+    if(!name||/solo/i.test(name)) return;
+    var key=name.toLowerCase();
+    if(seen[key]) { if(!seen[key].slug&&g.slug) seen[key].slug=g.slug; return; }
+    seen[key]={name:name, slug:g.slug||''};
+    all.push(seen[key]);
+  });
+  all.sort(function(a,b){ return a.name.localeCompare(b.name,'en'); });
+  $('gcount').textContent=all.length;
+  $('guestwall').innerHTML=all.map(function(g){
+    var href=g.slug?('guest-detail.html?slug='+encodeURIComponent(g.slug)):'guests.html';
+    return '<a href="'+href+'" class="text-[18px] md:text-[20px] font-semibold tracking-[-0.015em] leading-none hover:text-gold transition">'+
+      esc(g.name)+'</a>';
+  }).join('');
+}
+fetch('content/guests.json',{cache:'no-cache'})
+  .then(function(r){ return r.ok?r.json():[]; })
+  .catch(function(){ return []; })
+  .then(drawGuests);
 
 /* ---- writing: two pieces, because two exist ---- */
 var ARTS=[
