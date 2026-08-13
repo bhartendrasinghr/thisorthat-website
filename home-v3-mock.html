@@ -605,7 +605,7 @@ $('go').addEventListener('click',function(){
           fmtAmt(Number(ans.cost))+' for '+esc(WHAT)+' today becomes <strong>'+fmtAmt(g.future)+'</strong> in '+years+
           ' years at 6% inflation. That is the number to aim at, not the one on the price tag now.</p>'+
         '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(g.mix,false)+
-          '<p class="text-[12px] text-meta mt-1">A '+g.mix.equity+'/'+g.mix.debt+' mix is assumed to return about '+
+          '<p class="text-[12px] text-meta mt-1">'+(/^[8]/.test(String(g.mix.equity))?'An ':'A ')+g.mix.equity+'/'+g.mix.debt+' mix is assumed to return about '+
           g.ret.toFixed(2)+'% a year. That assumption is doing a lot of work here.</p>'+
         '</div>'+
         (g.mix.equity===0?'<p class="text-[13px] text-paper/70 mt-5">Because you need this within three years it sits '+
