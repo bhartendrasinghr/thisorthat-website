@@ -1,7 +1,7 @@
 ---
 name: "Vijai Mantri"
 slug: "vijai-mantri"
-role: "Founder, VMFS"
+role: "Founder, Vijai Mantri Financial Services"
 photo: ""
 linkedin: ""
 twitter: ""

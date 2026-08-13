@@ -123,7 +123,7 @@ def load_cms_roles():
 GUEST_ROLES = {
     'Vijai Mantri': 'Founder, VMFS',
     'Debashish Bose': 'Founder & Managing Partner, Infinite Circle Asset Manager',
-    'Krishna Sharma': 'Financial Coach',
+    'Krishnan Sharma': 'Financial Coach',
     'Mahmood Basha Shaik': 'Head International Business, Baroda BNP Paribas',
     'Kalpen Parekh': 'CEO, DSP Mutual Fund',
     'Kirtan Shah': 'Founder, Credence Wealth, Mutual Fund Distributor',
@@ -234,7 +234,7 @@ def parse_guest(vid, title, stats):
     for s in stats:
         m = re.match(r'ThisOrThat with Bhartendra and (.+?)(?:\s*-.*)?$', s)
         if m:
-            return m.group(1).strip().replace('Krishan Sharma','Krishna Sharma').replace('Mahamood','Mahmood')
+            return m.group(1).strip().replace('Krishan Sharma','Krishnan Sharma').replace('Mahamood','Mahmood')
     return 'Bhartendra (solo)'  # default if unclear
 
 def clean_title(title):

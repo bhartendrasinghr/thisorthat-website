@@ -1,7 +1,7 @@
 ---
 name: "Neil Borate"
 slug: "neil-borate"
-role: "Founder, thefynprint"
+role: "Founder, fynprint"
 photo: ""
 linkedin: ""
 twitter: ""

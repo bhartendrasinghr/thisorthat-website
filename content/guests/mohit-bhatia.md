@@ -1,7 +1,7 @@
 ---
 name: "Mohit Bhatia"
 slug: "mohit-bhatia"
-role: "CEO, Bank of India MF"
+role: "CEO, Bank of India Mutual Fund"
 photo: ""
 linkedin: ""
 twitter: ""

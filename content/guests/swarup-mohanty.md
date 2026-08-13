@@ -1,7 +1,7 @@
 ---
 name: "Swarup Mohanty"
 slug: "swarup-mohanty"
-role: "Vice Chairman & CEO, Mirae Asset Investment Managers"
+role: "CEO, Mirae Asset Management"
 photo: ""
 linkedin: ""
 twitter: ""

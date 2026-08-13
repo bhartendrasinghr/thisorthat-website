@@ -1,5 +1,5 @@
 ---
-name: "Krishna Sharma"
+name: "Krishnan Sharma"
 slug: "krishna-sharma"
 role: "Financial Coach"
 photo: ""
