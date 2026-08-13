@@ -108,7 +108,18 @@ def load_cms_overrides():
 CMS_GUESTS, CMS_CATS, CMS_TITLES = load_cms_overrides()
 GUEST_OVERRIDES.update(CMS_GUESTS)
 
-# Guest → role/title. Add to this as new guests come on the show.
+def load_cms_roles():
+    """Roles come from the guest profiles the CMS edits, so adding a profile is
+    enough. The dict below is only a fallback for guests with no profile yet."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', 'guests.json')
+    try:
+        with open(path, encoding='utf-8') as fh:
+            return {g['name']: g['role'] for g in json.load(fh) if g.get('name') and g.get('role')}
+    except Exception:
+        return {}
+
+
+# Guest → role/title. Fallback only; the CMS profile wins.
 GUEST_ROLES = {
     'Vijai Mantri': 'Founder, VMFS',
     'Debashish Bose': 'Founder & Managing Partner, Infinite Circle Asset Manager',
@@ -254,6 +265,9 @@ def categorize(title):
     if hit(['market','markets','crash','crisis','correction','bond','yield']): return 'Markets'
     if hit(['hidden','mistake','mistakes','mindset','panic','simple','emotion','emotions','women','behavior','behavioral','behaviour']): return 'Behaviour'
     return 'Investing'
+
+GUEST_ROLES.update(load_cms_roles())
+
 
 def initials_of(name):
     if not name or 'solo' in name.lower(): return 'BS'
