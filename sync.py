@@ -284,8 +284,12 @@ def main():
     # Build guests aggregate
     from collections import defaultdict
     guest_eps = defaultdict(list)
+    # Attributions that are not a person. A cut from several past episodes is
+    # neither solo nor a guest, and must not turn into a guest profile.
+    NOT_A_PERSON = ('solo', 'compilation')
     for e in episodes:
-        if e['guest'] and 'solo' not in e['guest'].lower():
+        g = (e['guest'] or '').lower()
+        if e['guest'] and not any(t in g for t in NOT_A_PERSON):
             guest_eps[e['guest']].append(e['n'])
 
     bgs = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard']
