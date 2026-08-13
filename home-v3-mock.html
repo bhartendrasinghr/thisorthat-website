@@ -60,8 +60,9 @@
         <span class="block text-[9px] font-bold tracking-[0.22em] text-meta mt-[3px]">BEYOND THE NOISE</span>
       </span>
     </a>
-    <nav class="hidden md:flex items-center gap-1 text-[14.5px] font-semibold">
+    <nav class="hidden lg:flex items-center gap-0.5 text-[14.5px] font-semibold">
       <a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a>
+      <a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a>
       <a href="#plan" class="px-3 py-2 rounded-lg text-ink font-bold" aria-current="page">Plan</a>
       <a href="articles.html" class="px-3 py-2 rounded-lg hover:bg-surf">Writing</a>
       <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a>
@@ -69,14 +70,15 @@
     <div class="flex items-center gap-2">
       <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
          class="hidden sm:inline-flex bg-marigold text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Subscribe</a>
-      <button id="mt" aria-label="Menu" aria-expanded="false" class="md:hidden p-2 -mr-2">
+      <button id="mt" aria-label="Menu" aria-expanded="false" class="lg:hidden p-2 -mr-2">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
-  <div id="mm" class="md:hidden hidden border-t border-line bg-paper">
+  <div id="mm" class="lg:hidden hidden border-t border-line bg-paper">
     <nav class="flex flex-col px-6 py-1 text-[16px] font-semibold">
       <a href="episodes.html" class="py-3.5 border-b border-line">Episodes</a>
+      <a href="guests.html" class="py-3.5 border-b border-line">Guests</a>
       <a href="#plan" class="py-3.5 border-b border-line">Plan</a>
       <a href="articles.html" class="py-3.5 border-b border-line">Writing</a>
       <a href="about.html" class="py-3.5">About</a>
@@ -85,17 +87,70 @@
 </header>
 
 <!-- ============================ 1. THE JOB: build the plan ============================ -->
-<section id="plan" class="max-w-6xl mx-auto px-6 pt-16 md:pt-24 pb-6">
-  <div class="kicker">Start with your own numbers</div>
-  <h1 class="font-display font-extrabold mt-5 leading-[0.94] tracking-[-0.035em] text-[clamp(44px,8vw,78px)] max-w-[13ch]">
-    Let's build your plan.
-  </h1>
-  <p class="mt-6 text-[19px] leading-[1.5] text-body max-w-[52ch]">
-    Four questions, two minutes. No sign-up, no email, and no sales call at the end unless you ask for one.
-  </p>
+<section id="plan" class="max-w-6xl mx-auto px-6 pt-14 md:pt-20 pb-8">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+    <div class="lg:col-span-6">
+      <div class="kicker">Start with your own numbers</div>
+      <h1 class="font-display font-extrabold mt-5 leading-[0.94] tracking-[-0.035em] text-[clamp(42px,6.6vw,70px)]">
+        Let's build your plan.
+      </h1>
+      <p class="mt-6 text-[19px] leading-[1.5] text-body max-w-[46ch]">
+        Four questions, two minutes. No sign-up, no email, and no sales call at the end unless you ask for one.
+      </p>
+      <ul class="mt-8 space-y-3.5">
+        <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
+          <span class="text-[15.5px] font-semibold">Sized to how long the money stays invested, not to your age</span></li>
+        <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
+          <span class="text-[15.5px] font-semibold">Adjusted for what you actually do in a bad year</span></li>
+        <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
+          <span class="text-[15.5px] font-semibold">Free, and there is no product at the end of it</span></li>
+      </ul>
+      <a href="#tool" class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-7 py-3.5 rounded-full mt-9 hover:bg-black transition">
+        Start with question one &darr;
+      </a>
+    </div>
+
+    <!-- The product shot. For a tool, the product is the answer, so this is the
+         real result card, filled with an example and labelled as one. -->
+    <div class="lg:col-span-6 relative min-h-[320px] md:min-h-[400px]" aria-hidden="true">
+      <div class="absolute inset-0 rounded-[40px]" style="background:radial-gradient(60% 55% at 62% 42%,#FFE9A8 0%,rgba(252,251,248,0) 70%)"></div>
+
+      <!-- the question behind it, suggesting the input -->
+      <div class="absolute left-2 sm:left-6 top-3 w-[240px] bg-white border border-line rounded-2xl p-5 shadow-[0_10px_28px_rgba(26,24,19,0.09)]"
+           style="transform:rotate(-6deg)">
+        <div class="text-[10.5px] font-extrabold tracking-[0.18em] uppercase text-meta">03</div>
+        <div class="text-[14px] font-bold leading-snug mt-2">A bad year hits. What do you actually do?</div>
+        <div class="flex flex-wrap gap-1.5 mt-3.5">
+          <span class="text-[11.5px] font-semibold border border-line rounded-full px-2.5 py-1">Sell</span>
+          <span class="text-[11.5px] font-semibold bg-ink text-paper rounded-full px-2.5 py-1">Sit tight</span>
+          <span class="text-[11.5px] font-semibold border border-line rounded-full px-2.5 py-1">Buy more</span>
+        </div>
+      </div>
+
+      <!-- the answer in front -->
+      <div class="absolute right-0 sm:right-4 bottom-0 w-[290px] sm:w-[330px] bg-dark text-paper rounded-[22px] p-7 shadow-[0_24px_60px_rgba(26,24,19,0.28)]"
+           style="transform:rotate(3deg)">
+        <div class="text-[10.5px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>
+        <div class="font-display font-extrabold text-[30px] leading-none tracking-[-0.03em] mt-3">85% equity<br />15% debt</div>
+        <div class="bg-paper text-ink rounded-xl p-4 mt-5">
+          <div class="mb-3">
+            <div class="flex justify-between text-[12.5px] font-bold mb-1"><span>Equity funds</span><span class="tab-num">&#8377;21,250</span></div>
+            <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:85%;background:#FFC21F;border-radius:99px"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[12.5px] font-bold mb-1"><span>Debt and cash</span><span class="tab-num">&#8377;3,750</span></div>
+            <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:15%;background:#1A1813;border-radius:99px"></div></div>
+          </div>
+        </div>
+        <div class="text-[11px] text-paper/50 mt-4">An example. Yours depends on your four answers.</div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section class="max-w-6xl mx-auto px-6 pb-24">
+<section id="tool" class="max-w-6xl mx-auto px-6 pb-24 scroll-mt-24">
   <div class="bg-white rounded-[22px] border border-line shadow-[0_1px_3px_rgba(26,24,19,0.04)] overflow-hidden">
 
     <!-- mode -->
@@ -143,7 +198,28 @@
   </div>
 </section>
 
-<!-- ============================ 4. WRITING: sticky left, list right ============================ -->
+<!-- ============================ 4. GUESTS: type, not avatars ============================
+     Only 3 of 34 guests have a photo. A wall of coloured initial tiles would be
+     louder than the 3 real faces, so the names carry it. For a podcast the names
+     are the credential anyway. -->
+<section class="max-w-6xl mx-auto px-6 py-24">
+  <div class="flex items-end justify-between gap-6 mb-8">
+    <div>
+      <div class="kicker">Who has been on</div>
+      <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none mt-4">
+        <span id="gcount">31</span> people who actually manage money.
+      </h2>
+    </div>
+    <a href="guests.html" class="lnk text-[14px] shrink-0 hidden sm:inline">All guests &rarr;</a>
+  </div>
+  <p class="text-[16px] text-body leading-relaxed max-w-[54ch]">
+    Fund managers, advisers, founders and journalists. Nobody is here to promote anything.
+  </p>
+  <div id="guestwall" class="mt-9 flex flex-wrap gap-x-7 gap-y-3.5"></div>
+  <a href="guests.html" class="lnk text-[14px] inline-block mt-8 sm:hidden">All guests &rarr;</a>
+</section>
+
+<!-- ============================ 5. WRITING: sticky left, list right ============================ -->
 <section class="max-w-6xl mx-auto px-6 py-24">
   <div class="grid lg:grid-cols-12 gap-12">
     <div class="lg:col-span-4">
@@ -202,6 +278,8 @@
         <a href="episodes.html" class="text-paper/85 hover:text-marigold">Episodes</a>
         <a href="calculators.html" class="text-paper/85 hover:text-marigold">Calculators</a>
         <a href="articles.html" class="text-paper/85 hover:text-marigold">Writing</a>
+        <a href="feed.html" class="text-paper/85 hover:text-marigold">The feed</a>
+        <a href="guests.html" class="text-paper/85 hover:text-marigold">Guests</a>
         <a href="about.html" class="text-paper/85 hover:text-marigold">About</a>
       </div>
     </div>
@@ -479,6 +557,19 @@ if(E.length){
       '<div class="text-[12.5px] text-meta mt-2.5">'+esc(e.guest)+' · '+esc(e.published)+'</div></div></a>';
   }).join('');
 }
+
+/* ---- guests: names as type. Size tracks how often they have been on,
+        which is real information rather than decoration. ---- */
+var G=(window.GUESTS||[]).filter(function(g){return g.name && !/solo/i.test(g.name);});
+$('gcount').textContent=G.length;
+$('guestwall').innerHTML=G.map(function(g){
+  var big=g.eps>1;
+  return '<a href="guests.html" class="group inline-flex items-baseline gap-1.5 hover:text-gold transition">'+
+    '<span class="'+(big?'text-[21px] md:text-[24px] font-extrabold':'text-[17px] md:text-[19px] font-semibold text-body')+
+    ' tracking-[-0.02em] leading-none">'+esc(g.name)+'</span>'+
+    (big?'<span class="text-[11px] font-bold text-meta tab-num">'+g.eps+'</span>':'')+
+    '</a>';
+}).join('');
 
 /* ---- writing: two pieces, because two exist ---- */
 var ARTS=[
