@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
@@ -18,14 +18,16 @@
     dark:'#16150F', gold:'#8F6600'
   }, fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
-    display:['Bricolage Grotesque','Georgia','serif']
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
   } } } };
 </script>
 <style>
   body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
   h1,h2,.display { font-family:'Bricolage Grotesque',Georgia,serif; }
   h1 { text-wrap:balance; } h2,h3 { text-wrap:balance; } p,li { text-wrap:pretty; }
-  .tab-num { font-variant-numeric:tabular-nums; font-feature-settings:'tnum'; }
+  /* CLAUDE.md: numbers are always mono, always with Indian separators */
+  .tab-num { font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; font-feature-settings:'tnum'; }
   .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
   /* one selection treatment everywhere: black fill */
   .chip { border:1.5px solid #C9C2B2; background:#fff; color:#1A1813; font-weight:600; font-size:14px;
@@ -37,8 +39,9 @@
           padding:15px 0; border-top:1px solid #E1DDD1; }
   .num { font-size:12px; font-weight:800; color:#9A9284; letter-spacing:.08em; }
   .num.done { color:#1A1813; }
-  .amt { border:0; border-bottom:2px solid #8E8574; background:transparent; font-weight:700; font-size:20px;
-         width:130px; padding:2px 4px; color:#1A1813; font-variant-numeric:tabular-nums; }
+  .amt { border:0; border-bottom:2px solid #8E8574; background:transparent; font-weight:600; font-size:20px;
+         width:130px; padding:2px 4px; color:#1A1813; font-family:'IBM Plex Mono',ui-monospace,monospace;
+         font-variant-numeric:tabular-nums; }
   .amt:focus { outline:none; border-bottom-color:#1A1813; background:#F6F4EE; }
   a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
   .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
@@ -114,10 +117,10 @@
     <!-- The product shot. For a tool, the product is the answer, so this is the
          real result card, filled with an example and labelled as one. -->
     <div class="lg:col-span-6 relative min-h-[320px] md:min-h-[400px]" aria-hidden="true">
-      <div class="absolute inset-0 rounded-[40px]" style="background:radial-gradient(60% 55% at 62% 42%,#FFE9A8 0%,rgba(252,251,248,0) 70%)"></div>
+      <div class="absolute inset-0 rounded-[36px]" style="background:radial-gradient(60% 55% at 62% 42%,#FFE9A8 0%,rgba(252,251,248,0) 70%)"></div>
 
       <!-- the question behind it, suggesting the input -->
-      <div class="absolute left-2 sm:left-6 top-3 w-[240px] bg-white border border-line rounded-2xl p-5 shadow-[0_10px_28px_rgba(26,24,19,0.09)]"
+      <div class="absolute left-2 sm:left-6 top-3 w-[240px] bg-white border border-line rounded-[18px] p-5 shadow-[0_10px_28px_rgba(26,24,19,0.09)]"
            style="transform:rotate(-6deg)">
         <div class="text-[10.5px] font-extrabold tracking-[0.18em] uppercase text-meta">03</div>
         <div class="text-[14px] font-bold leading-snug mt-2">A bad year hits. What do you actually do?</div>
@@ -129,11 +132,11 @@
       </div>
 
       <!-- the answer in front -->
-      <div class="absolute right-0 sm:right-4 bottom-0 w-[290px] sm:w-[330px] bg-dark text-paper rounded-[22px] p-7 shadow-[0_24px_60px_rgba(26,24,19,0.28)]"
+      <div class="absolute right-0 sm:right-4 bottom-0 w-[290px] sm:w-[330px] bg-dark text-paper rounded-[18px] p-7 shadow-[0_24px_60px_rgba(26,24,19,0.28)]"
            style="transform:rotate(3deg)">
         <div class="text-[10.5px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>
         <div class="font-display font-extrabold text-[30px] leading-none tracking-[-0.03em] mt-3">85% equity<br />15% debt</div>
-        <div class="bg-paper text-ink rounded-xl p-4 mt-5">
+        <div class="bg-paper text-ink rounded-[12px] p-4 mt-5">
           <div class="mb-3">
             <div class="flex justify-between text-[12.5px] font-bold mb-1"><span>Equity funds</span><span class="tab-num">&#8377;21,250</span></div>
             <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:85%;background:#FFC21F;border-radius:99px"></div></div>
@@ -151,7 +154,7 @@
 </section>
 
 <section id="tool" class="max-w-6xl mx-auto px-6 pb-24 scroll-mt-24">
-  <div class="bg-white rounded-[22px] border border-line shadow-[0_1px_3px_rgba(26,24,19,0.04)] overflow-hidden">
+  <div class="bg-white rounded-[18px] border border-line shadow-[0_1px_3px_rgba(26,24,19,0.04)] overflow-hidden">
 
     <!-- mode -->
     <div class="px-7 md:px-11 pt-8 pb-6 border-b border-line flex flex-wrap items-center justify-between gap-4">
@@ -193,7 +196,7 @@
       <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none">Latest episodes</h2>
       <a href="episodes.html" class="lnk text-[14px] shrink-0">All <span id="epcount">60</span> &rarr;</a>
     </div>
-    <div id="ephero" class="grid md:grid-cols-2 gap-0 bg-dark rounded-[20px] overflow-hidden"></div>
+    <div id="ephero" class="grid md:grid-cols-2 gap-0 bg-dark rounded-[18px] overflow-hidden"></div>
     <div id="epgrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5"></div>
   </div>
 </section>
@@ -231,7 +234,7 @@
       </div>
     </div>
     <div class="lg:col-span-8">
-      <div class="bg-dark rounded-[20px] p-9 md:p-11">
+      <div class="bg-dark rounded-[18px] p-9 md:p-11">
         <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Slow thought</div>
         <blockquote class="font-display font-extrabold text-[clamp(24px,3.4vw,33px)] leading-[1.18] tracking-[-0.02em] text-paper mt-5">
           The market doesn't reward intelligence. It rewards patience that looks like stupidity.
@@ -497,17 +500,17 @@ $('go').addEventListener('click',function(){
 
   $('result').innerHTML=
     '<div class="grid lg:grid-cols-12 gap-6">'+
-      '<div class="lg:col-span-7 bg-dark text-paper rounded-[22px] p-9 md:p-11">'+
+      '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
         '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>'+
         '<div class="font-display font-extrabold text-[clamp(30px,4.6vw,42px)] leading-none tracking-[-0.03em] mt-4">'+
           m.equity+'% equity, '+m.debt+'% debt</div>'+
         '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+why+'</p>'+
-        '<div class="bg-paper text-ink rounded-2xl p-6 mt-7">'+bars+
+        '<div class="bg-paper text-ink rounded-[18px] p-6 mt-7">'+bars+
           '<p class="text-[12px] text-meta mt-1">Of the ₹'+inr(A.monthly)+' you said you can invest each month.</p>'+
         '</div>'+
       '</div>'+
       '<div class="lg:col-span-5 space-y-5">'+
-        '<div class="bg-white border border-line rounded-[22px] p-7">'+
+        '<div class="bg-white border border-line rounded-[18px] p-7">'+
           '<div class="kicker">What to do next</div>'+
           '<ol class="mt-4 space-y-3.5 text-[14.5px] leading-relaxed text-body list-decimal pl-5">'+
             '<li>Check this against every goal, not just this one. Each has its own date.</li>'+
@@ -516,14 +519,14 @@ $('go').addEventListener('click',function(){
           '</ol>'+
           '<a href="calculators.html" class="lnk text-[14px] inline-block mt-6">All 15 calculators &rarr;</a>'+
         '</div>'+
-        (picks.length?'<div class="bg-white border border-line rounded-[22px] p-7">'+
+        (picks.length?'<div class="bg-white border border-line rounded-[18px] p-7">'+
           '<div class="kicker">Two episodes on this</div>'+
           '<div class="mt-4 grid gap-4">'+picks.map(function(e){
             return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group block">'+
               '<div class="text-[15px] font-bold leading-snug group-hover:text-gold">'+esc(e.title)+'</div>'+
               '<div class="text-[12.5px] text-meta mt-1">'+esc(e.guest)+' · '+esc(e.published)+'</div></a>';
           }).join('')+'</div></div>':'')+
-        '<div class="bg-surf border border-line rounded-[22px] p-7">'+
+        '<div class="bg-surf border border-line rounded-[18px] p-7">'+
           '<p class="text-[13.5px] leading-relaxed text-body">This is arithmetic on four answers, not advice. It does '+
           'not know your income, your loans, your tax position or what else you already own.</p>'+
           '<a href="money-person.html" class="lnk text-[14px] inline-block mt-4">Talk it through &rarr;</a>'+
