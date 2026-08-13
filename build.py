@@ -272,6 +272,62 @@ def check_redirects():
     else:
         print(f'  All {len(have)} page redirects present')
 
+
+# ─── One menu, everywhere ────────────────────────────────────────────────
+# The site had drifted into three different menus: 21 pages with Feed,
+# 11 without it, and the home page with its own. Each page kept its own
+# copy, so every new page inherited whichever version was copied. The nav
+# is now generated here and written into every page on each build, so it
+# cannot drift again. Page styling is left alone; only the links change.
+NAV_ITEMS = [
+    ('episodes.html',    'Episodes'),
+    ('guests.html',      'Guests'),
+    ('calculators.html', 'Plan'),
+    ('articles.html',    'Writing'),
+    ('about.html',       'About'),
+]
+
+def sync_nav():
+    import re
+    skip = {'404.html'}   # brand.html and 404 have no nav; detail pages do and need it too
+    changed = 0
+    for path in sorted(ROOT.glob('*.html')):
+        if path.name in skip or path.name.endswith('-mock.html'):
+            continue
+        s = path.read_text(encoding='utf-8')
+        head = re.search(r'<header[^>]*>.*?</header>', s, re.S)
+        if not head:
+            continue
+        block = head.group(0)
+
+        # desktop nav: keep the page's own classes, replace only the links
+        nav = re.search(r'(<nav\b[^>]*>)(.*?)(</nav>)', block, re.S)
+        if not nav:
+            continue
+        link_cls = re.search(r'<a\b[^>]*class="([^"]*)"', nav.group(2))
+        link_cls = link_cls.group(1) if link_cls else ''
+        active_cls = link_cls
+        parts = []
+        for h, t in NAV_ITEMS:
+            here = ' aria-current="page"' if h == path.name else ''
+            parts.append('<a href="%s" class="%s"%s>%s</a>' % (h, link_cls, here, t))
+        links = ''.join(parts)
+        new_block = block.replace(nav.group(0), nav.group(1) + links + nav.group(3))
+
+        # mobile menu, whichever id this page uses
+        mob = re.search(r'(<div id="(?:mobile-menu|mm)"[^>]*>\s*<nav\b[^>]*>)(.*?)(</nav>)', s, re.S)
+        new_s = s.replace(block, new_block)
+        if mob:
+            mcls = re.search(r'<a\b[^>]*class="([^"]*)"', mob.group(2))
+            mcls = mcls.group(1) if mcls else ''
+            mlinks = ''.join(f'<a href="{h}" class="{mcls}">{t}</a>' for h, t in NAV_ITEMS)
+            new_s = new_s.replace(mob.group(0), mob.group(1) + mlinks + mob.group(3))
+
+        if new_s != s:
+            path.write_text(new_s, encoding='utf-8')
+            changed += 1
+    print(f'  Synced the menu into {changed} pages: ' + ' · '.join(t for _, t in NAV_ITEMS))
+
 # ─── Main ────────────────────────────────────────────────────────────────
 def main():
     print('=== ThisOrThat build ===')
@@ -289,6 +345,9 @@ def main():
     print('→ Updating tool counts...')
     build_stats()
     print()
+    print('\n→ Syncing the menu across pages...')
+    sync_nav()
+
     print('→ Generating sitemap + robots...')
     build_sitemap()
     print()
