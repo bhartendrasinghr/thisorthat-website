@@ -83,7 +83,7 @@ collections:
               - { name: "hero_cta", label: "Hero: button label", widget: "string" }
               - { name: "episodes_heading", label: "Episodes section: heading", widget: "string" }
               - { name: "guests_kicker", label: "Guests section: small line above", widget: "string" }
-              - { name: "guests_heading", label: "Guests section: heading after the count", widget: "string", hint: "The guest count is added automatically, so this reads like '31 people who actually manage money.'" }
+              - { name: "guests_heading", label: "Guests section: heading", widget: "string" }
               - { name: "guests_sub", label: "Guests section: paragraph", widget: "text" }
               - { name: "writing_kicker", label: "Writing section: small line above", widget: "string" }
               - { name: "writing_heading", label: "Writing section: heading", widget: "string" }

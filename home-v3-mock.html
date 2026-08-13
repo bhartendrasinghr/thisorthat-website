@@ -213,7 +213,7 @@
     <div>
       <div class="kicker" data-cms="guests_kicker">Who has been on</div>
       <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none mt-4">
-        <span id="gcount">31</span> <span data-cms="guests_heading">people who actually manage money.</span>
+        <span data-cms="guests_heading">The people who actually manage money.</span>
       </h2>
     </div>
     <a href="guests.html" class="lnk text-[14px] shrink-0 hidden sm:inline">All guests &rarr;</a>
@@ -687,7 +687,6 @@ function drawGuests(cms){
     all.push(seen[key]);
   });
   all.sort(function(a,b){ return a.name.localeCompare(b.name,'en'); });
-  $('gcount').textContent=all.length;
   $('guestwall').innerHTML=all.map(function(g){
     var href=g.slug?('guest-detail.html?slug='+encodeURIComponent(g.slug)):'guests.html';
     return '<a href="'+href+'" class="text-[18px] md:text-[20px] font-semibold tracking-[-0.015em] leading-none hover:text-gold transition">'+
