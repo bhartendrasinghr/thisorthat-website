@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ThisOrThat with Bhartendra, Personal Finance, On Your Side</title>
+<meta name="description" content="Money conversations India isn't having loudly enough. Episodes, honest calculators, and plain-English guides, all on your side, nothing being sold." />
+<link rel="canonical" href="https://thisorthatshow.in/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ThisOrThat with Bhartendra" />
 <meta property="og:title" content="ThisOrThat with Bhartendra, Personal Finance, On Your Side" />
@@ -14,844 +16,708 @@
 <meta name="twitter:title" content="ThisOrThat with Bhartendra, Personal Finance, On Your Side" />
 <meta name="twitter:description" content="Money conversations India isn't having loudly enough. Episodes, honest calculators, and plain-English guides, all on your side, nothing being sold." />
 <meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
-<meta name="description" content="Money conversations India isn't having loudly enough. Episodes, honest calculators, and plain-English guides, all on your side, nothing being sold." />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
-        goldink: '#8F6600', gainink: '#1B7A50',
-    marigold:{ DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
-    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
-    thatred:'#FF302D',
-    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
-    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
-    gain:'#1F8A5B', loss:'#E0211E',
-    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
-    mustard:{ DEFAULT:'#FFC21F', soft:'#FFD15C', deep:'#D99B00' },
-    alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
-    fontFamily:{
+    ink:'#1A1813', body:'#57534A', meta:'#7A7368',
+    marigold:'#FFC21F',
+    paper:'#FCFBF8', surf:'#F6F4EE', line:'#E1DDD1', edge:'#8E8574',
+    dark:'#16150F', gold:'#8F6600'
+  }, fontFamily:{
     sans:['Hanken Grotesk','system-ui','sans-serif'],
-    serif:['Bricolage Grotesque','Georgia','serif'],
     display:['Bricolage Grotesque','Georgia','serif'],
-    mono:['IBM Plex Mono','ui-monospace','monospace'],
-    script:['Caveat','cursive']
+    mono:['IBM Plex Mono','ui-monospace','monospace']
   } } } };
 </script>
 <style>
-  body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
-  .font-display { font-family:'Bricolage Grotesque',Georgia,serif; }
-  .rail { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
-  .rail > * { scroll-snap-align:start; flex:0 0 auto; }
-  .rail::-webkit-scrollbar { height:8px; }
-  .rail::-webkit-scrollbar-thumb { background:#E1DDD1; border-radius:999px; }
-  .lift { transition: transform 180ms ease, box-shadow 180ms ease; }
-  .lift:hover { transform: translateY(-3px); box-shadow:0 12px 28px rgba(26,24,19,0.10); }
-  .tile-play { opacity:0; transition:opacity 160ms ease; }
-  .ep:hover .tile-play { opacity:1; }
-  .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .tab-num { font-variant-numeric: tabular-nums; font-feature-settings:'tnum'; }
-  .editable-num { background:transparent; border:none; border-bottom:1.5px dashed rgba(2,73,177,0.3); padding:1px 2px; border-radius:2px; }
-  .editable-num:focus { outline:none; border-bottom:1.5px solid #FFC21F; background:rgba(255,194,31,0.12); }
-  .ticker { overflow:hidden; }
-  .ticker-track { display:inline-flex; align-items:baseline; white-space:nowrap; will-change:transform; animation: ticker-scroll 45s linear infinite; }
-  .ticker:hover .ticker-track { animation-play-state: paused; }
-  @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
-  .g1{ background:linear-gradient(135deg,#0249B1,#013580); }
-  .g2{ background:linear-gradient(135deg,#1A1813,#2C2A23); }
-  .g3{ background:linear-gradient(135deg,#FFC21F,#D99B00); }
-  .g4{ background:linear-gradient(135deg,#FF302D,#B4231F); }
-  .g5{ background:linear-gradient(135deg,#1F8A5B,#14603E); }
-  .g6{ background:linear-gradient(135deg,#0249B1,#1F8A5B); }
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,.display { font-family:'Bricolage Grotesque',Georgia,serif; }
+  h1 { text-wrap:balance; } h2,h3 { text-wrap:balance; } p,li { text-wrap:pretty; }
+  /* CLAUDE.md: numbers are always mono, always with Indian separators */
+  .tab-num { font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; font-feature-settings:'tnum'; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  /* one selection treatment everywhere: black fill */
+  .chip { border:1.5px solid #C9C2B2; background:#fff; color:#1A1813; font-weight:600; font-size:14px;
+          padding:10px 18px; border-radius:999px; transition:border-color 140ms ease, background 140ms ease; }
+  .chip:hover { border-color:#1A1813; }
+  .chip[aria-pressed="true"] { background:#1A1813; border-color:#1A1813; color:#FCFBF8; }
+  .chip:focus-visible { outline:3px solid #8F6600; outline-offset:2px; }
+  .stub { display:grid; grid-template-columns:28px 1fr auto; align-items:baseline; gap:14px;
+          padding:15px 0; border-top:1px solid #E1DDD1; }
+  .num { font-size:12px; font-weight:800; color:#9A9284; letter-spacing:.08em; }
+  .num.done { color:#1A1813; }
+  .amt { border:0; border-bottom:2px solid #8E8574; background:transparent; font-weight:600; font-size:20px;
+         width:130px; padding:2px 4px; color:#1A1813; font-family:'IBM Plex Mono',ui-monospace,monospace;
+         font-variant-numeric:tabular-nums; }
+  .amt:focus { outline:none; border-bottom-color:#1A1813; background:#F6F4EE; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
 </head>
 <body class="antialiased">
 
-<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3">
-      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
-      <div class="leading-tight">
-        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
-        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
-      </div>
+<!-- ============================ NAV: four items, one ask ============================ -->
+<header class="sticky top-0 z-50 backdrop-blur bg-paper/90 border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between gap-6">
+    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+      <img src="logo.png" alt="" width="34" height="34" class="rounded-full" />
+      <span class="leading-none">
+        <span class="block font-display font-extrabold text-[17px] tracking-[-0.03em]">ThisOrThat</span>
+        <span class="block text-[9px] font-bold tracking-[0.22em] text-meta mt-[3px]">BEYOND THE NOISE</span>
+      </span>
     </a>
-    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80">
-      <a href="episodes.html" class="hover:text-navy-ink">Episodes</a>
-      <a href="guests.html" class="hover:text-navy-ink">Guests</a>
-      <a href="articles.html" class="hover:text-navy-ink">Articles</a>
-      <a href="feed.html" class="hover:text-navy-ink">Feed</a>
-      <a href="calculators.html" class="hover:text-navy-ink">Plan</a>
-      <a href="about.html" class="hover:text-navy-ink">About</a>
+    <nav class="hidden xl:flex items-center gap-0.5 text-[14.5px] font-semibold">
+      <a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a>
+      <a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a>
+      <a href="#plan" class="px-3 py-2 rounded-lg text-ink font-bold" aria-current="page">Plan</a>
+      <a href="articles.html" class="px-3 py-2 rounded-lg hover:bg-surf">Writing</a>
+      <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a>
     </nav>
-    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
-    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
-      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
+    <div class="flex items-center gap-2">
+      <a href="money-person.html"
+         class="hidden md:inline-flex border-[1.5px] border-ink/25 text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:border-ink transition">Talk to a human</a>
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
+         class="hidden sm:inline-flex bg-marigold text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Subscribe</a>
+      <button id="mt" aria-label="Menu" aria-expanded="false" class="xl:hidden p-2 -mr-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mm" class="xl:hidden hidden border-t border-line bg-paper">
+    <nav class="flex flex-col px-6 py-1 text-[16px] font-semibold">
+      <a href="episodes.html" class="py-3.5 border-b border-line">Episodes</a>
+      <a href="guests.html" class="py-3.5 border-b border-line">Guests</a>
+      <a href="#plan" class="py-3.5 border-b border-line">Plan</a>
+      <a href="articles.html" class="py-3.5 border-b border-line">Writing</a>
+      <a href="about.html" class="py-3.5 border-b border-line">About</a>
+      <a href="money-person.html" class="py-3.5 font-bold text-gold">Talk to a human &rarr;</a>
+    </nav>
   </div>
 </header>
 
-<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
-  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink">
-    <a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a>
-    <a href="guests.html" class="py-3 border-b border-navy/5">Guests</a>
-    <a href="articles.html" class="py-3 border-b border-navy/5">Articles</a>
-    <a href="feed.html" class="py-3 border-b border-navy/5">Feed</a>
-    <a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a>
-    <a href="about.html" class="py-3">About</a>
-    <a href="money-person.html" class="mt-3 bg-marigold text-ink text-center py-3 rounded-full font-bold">Talk to a human &rarr;</a>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 bg-navy text-cream text-center py-3 rounded-full font-semibold">Subscribe on YouTube</a>
-  </nav>
-</div>
+<!-- ============================ 1. THE JOB: build the plan ============================ -->
+<section id="plan" class="max-w-6xl mx-auto px-6 pt-14 md:pt-20 pb-8">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
-<!-- ============ BRAND + CREDIBILITY + PROOF ============ -->
-<section class="pt-8 pb-2">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Do, don't just watch</div>
-    <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold text-ink mt-2 leading-[1.03] max-w-5xl">
-      Let's build your plan. Two minutes, on your side.
-    </h1>
-
-    <div class="mt-6 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7">
-      <div class="flex items-center gap-3">
-        <img src="media/bhartendra-sm.jpg" alt="Bhartendra, host of ThisOrThat" class="w-12 h-12 rounded-full object-cover border-2 border-navy-ink shrink-0" />
-        <div class="text-sm leading-snug">
-          <div class="font-bold text-ink">Hosted by Bhartendra</div>
-          <div class="text-ink/60"><span id="conv-count">60</span> conversations with fund managers, CXOs, business leaders and financial experts.</div>
-        </div>
-      </div>
-      <div class="hidden sm:block w-px h-10 bg-ink/10"></div>
-      <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-semibold text-ink/60">
-        <span><strong class="text-ink font-mono mr-1" id="ep-count">60</strong>episodes</span>
-        <span class="text-ink/25 hidden sm:inline">&middot;</span>
-        <span>CEOs, Fund managers from AMC, Founders, MF distributors, Financial Coaches</span>
-        <span class="text-ink/25 hidden sm:inline">&middot;</span>
-        <span>On YouTube &amp; Instagram</span>
-      </div>
+    <div class="lg:col-span-6">
+      <div class="kicker" data-cms="hero_kicker">Start with your own numbers</div>
+      <h1 class="font-display font-extrabold mt-5 leading-[0.94] tracking-[-0.035em] text-[clamp(42px,6.6vw,70px)]">
+        <span data-cms="hero_headline">Let's build your plan.</span>
+      </h1>
+      <p class="mt-6 text-[19px] leading-[1.5] text-body max-w-[46ch]">
+        <span data-cms="hero_sub">Four questions, two minutes. No sign-up, no email, and no sales call at the end unless you ask for one.</span>
+      </p>
+      <ul class="mt-8 space-y-3.5" id="heropoints">
+        <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
+          <span class="text-[15.5px] font-semibold">Sized to how long the money stays invested, not to your age</span></li>
+        <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
+          <span class="text-[15.5px] font-semibold">Adjusted for what you actually do in a bad year</span></li>
+        <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
+          <span class="text-[15.5px] font-semibold">Free, and there is no product at the end of it</span></li>
+      </ul>
+      <a href="#tool" class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-7 py-3.5 rounded-full mt-9 hover:bg-black transition">
+        <span data-cms="hero_cta">Start with question one</span> &darr;
+      </a>
     </div>
 
-    <!-- ============ THE PLANNER: two doors, one engine ============ -->
-    <div class="mt-7 grid grid-cols-1 lg:grid-cols-3 gap-5">
-      <div class="lg:col-span-2 bg-white rounded-3xl border-2 border-ink/15 overflow-hidden self-start">
-        <div class="p-2 bg-warmpaper-2 border-b border-navy/10 grid grid-cols-2 gap-2">
-          <button data-door="invest" class="door-tab rounded-2xl px-4 py-3 text-left">
-            <div class="text-[11px] uppercase tracking-[0.2em] font-bold opacity-70">Start with</div>
-            <div class="font-display text-base md:text-lg font-extrabold leading-tight">How you want to invest</div>
-          </button>
-          <button data-door="goal" class="door-tab rounded-2xl px-4 py-3 text-left">
-            <div class="text-[11px] uppercase tracking-[0.2em] font-bold opacity-70">Start with</div>
-            <div class="font-display text-base md:text-lg font-extrabold leading-tight">A goal in mind</div>
-          </button>
-        </div>
+    <!-- The product shot. For a tool, the product is the answer, so this is the
+         real result card, filled with an example and labelled as one. -->
+    <div class="lg:col-span-6 relative min-h-[320px] md:min-h-[400px]" aria-hidden="true">
+      <div class="absolute inset-0 rounded-[36px]" style="background:radial-gradient(60% 55% at 62% 42%,#FFE9A8 0%,rgba(252,251,248,0) 70%)"></div>
 
-        <div class="p-6 md:p-7">
-          <div id="door-invest">
-            <div>
-              <div class="text-sm font-semibold text-ink mb-2">How long will this money stay invested?</div>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="horizon-buttons">
-                <button data-h="1-3" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">1 to 3 yrs</button>
-                <button data-h="3-5" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">3 to 5 yrs</button>
-                <button data-h="5-10" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">5 to 10 yrs</button>
-                <button data-h="10+" class="hbtn text-sm font-bold py-3 px-2 rounded-xl border">10 yrs +</button>
-              </div>
-            </div>
-            <div class="mt-5">
-              <div class="text-sm font-semibold text-ink mb-2">And how do you want to hold it?</div>
-              <div class="flex flex-col sm:flex-row gap-2" id="hold-buttons">
-                <button data-m="mf" class="mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border">Only mutual funds</button>
-                <button data-m="mfeq" class="mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border">Mutual funds + my own stocks</button>
-              </div>
-            </div>
-            <div class="mt-5" id="risk-block">
-              <div class="text-sm font-semibold text-ink mb-2">A bad year hits and your &#8377;10 lakh shows &#8377;8 lakh. What do you actually do?</div>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="risk-buttons">
-                <button data-r="sell" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sell, stop the pain</button>
-                <button data-r="hold" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Sit tight</button>
-                <button data-r="buy" class="rbtn text-sm font-bold py-3 px-3 rounded-xl border">Buy more</button>
-              </div>
-              <div id="risk-nudge" class="hidden text-[13px] text-thatred font-semibold mt-2">One more: the bad-year answer changes the mix. No wrong answers, only wrong-sized plans.</div>
-            </div>
-            <div class="mt-4 bg-warmpaper-2 rounded-xl px-4 py-3 text-sm flex flex-wrap items-baseline gap-x-2 gap-y-1">
-              <span>I can invest about &#8377;</span>
-              <input id="inv-amt" value="25,000" inputmode="text" class="editable-num tab-num font-bold text-thisblue w-20 text-right" />
-              <span>a month.</span>
-              <span class="text-[11px] text-ink/45">Type "25k" or "1L". Rough is fine.</span>
-            </div>
-            <button id="reveal-a" type="button" class="mt-4 w-full bg-thisblue text-warmpaper py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition">Tell me my mix &rarr;</button>
-          </div>
-
-          <div id="door-goal" class="hidden">
-            <div class="text-sm font-semibold text-ink mb-2">What are you saving for?</div>
-            <div class="grid grid-cols-2 gap-2" id="goal-buttons">
-              <button data-g="retire" class="gbtn text-sm font-bold py-3 px-3 rounded-xl border text-left">Retirement</button>
-              <button data-g="edu" class="gbtn text-sm font-bold py-3 px-3 rounded-xl border text-left">Child's education</button>
-              <button data-g="house" class="gbtn text-sm font-bold py-3 px-3 rounded-xl border text-left">House down payment</button>
-              <button data-g="wealth" class="gbtn text-sm font-bold py-3 px-3 rounded-xl border text-left">Wealth creation</button>
-            </div>
-            <div id="goal-input" class="mt-4 bg-warmpaper-2 rounded-xl p-4 text-sm hidden">
-              <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1" id="goal-input-inner"></div>
-              <button id="reveal-b" type="button" class="mt-4 w-full bg-thisblue text-warmpaper py-3 rounded-full font-semibold text-sm hover:bg-thisblue-700 transition">Tell me the number &rarr;</button>
-            </div>
-          </div>
-
-          <div id="planner-result" class="mt-6"></div>
+      <!-- the question behind it, suggesting the input -->
+      <div class="absolute left-2 sm:left-6 top-3 w-[240px] bg-white border border-line rounded-[18px] p-5 shadow-[0_10px_28px_rgba(26,24,19,0.09)]"
+           style="transform:rotate(-6deg)">
+        <div class="text-[10.5px] font-extrabold tracking-[0.18em] uppercase text-meta">03</div>
+        <div class="text-[14px] font-bold leading-snug mt-2">A bad year hits. What do you actually do?</div>
+        <div class="flex flex-wrap gap-1.5 mt-3.5">
+          <span class="text-[11.5px] font-semibold border border-line rounded-full px-2.5 py-1">Sell</span>
+          <span class="text-[11.5px] font-semibold bg-ink text-paper rounded-full px-2.5 py-1">Sit tight</span>
+          <span class="text-[11.5px] font-semibold border border-line rounded-full px-2.5 py-1">Buy more</span>
         </div>
       </div>
 
-      <!-- side column: latest episode, weekly note -->
-      <div class="space-y-5">
-        <div id="side-episode"></div>
-        <div class="bg-marigold rounded-3xl border-2 border-navy-ink p-5">
-          <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Slow Thought, weekly</div>
-          <div class="font-display text-lg font-extrabold text-ink mt-1 leading-tight">One honest idea. Every week.</div>
-          <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-3 inline-flex bg-ink text-cream px-4 py-2 rounded-full font-semibold text-sm hover:bg-ink/85 transition">Subscribe on YouTube &rarr;</a>
-        </div>
-        <a href="guests.html" class="lift block bg-ink rounded-3xl border-2 border-navy-ink overflow-hidden" aria-label="Meet all the guests">
-          <div class="px-5 pt-4 flex items-baseline justify-between gap-3">
-            <div class="text-[11px] uppercase tracking-[0.3em] text-marigold font-bold">The voices, live</div>
-            <div class="text-[11px] text-warmpaper/50 font-semibold shrink-0">Meet them &rarr;</div>
+      <!-- the answer in front -->
+      <div class="absolute right-0 sm:right-4 bottom-0 w-[290px] sm:w-[330px] bg-dark text-paper rounded-[18px] p-7 shadow-[0_24px_60px_rgba(26,24,19,0.28)]"
+           style="transform:rotate(3deg)">
+        <div class="text-[10.5px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>
+        <div class="font-display font-extrabold text-[30px] leading-none tracking-[-0.03em] mt-3">85% equity<br />15% debt</div>
+        <div class="bg-paper text-ink rounded-[12px] p-4 mt-5">
+          <div class="mb-3">
+            <div class="flex justify-between text-[12.5px] font-bold mb-1"><span>Equity funds</span><span class="tab-num">&#8377;21,250</span></div>
+            <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:85%;background:#FFC21F;border-radius:99px"></div></div>
           </div>
-          <div class="ticker mt-3 pb-4" aria-hidden="true">
-            <div class="ticker-track" id="guest-ticker"></div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ RAIL: PLAN YOUR MONEY ============ -->
-<section class="py-6">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-end justify-between mb-4">
-      <div>
-        <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Do, don't just watch</div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Plan your money</h2>
-      </div>
-      <a href="calculators.html" class="text-sm text-thisblue font-semibold shrink-0">All tools &rarr;</a>
-    </div>
-    <div class="rail">
-      <a href="calc-plan.html" class="lift w-72 bg-marigold rounded-2xl p-6 border-2 border-navy-ink">
-        <div class="text-[11px] uppercase tracking-[0.3em] text-thisblue font-bold">Flagship</div>
-        <div class="font-display text-xl font-extrabold text-ink mt-1 leading-tight">Your full financial plan</div>
-        <p class="text-ink/75 text-sm mt-2">Every goal in one honest picture. We'll show you what fits, and how to get there.</p>
-        <div class="mt-6 text-sm font-bold text-ink">Build it &rarr;</div>
-      </a>
-      <a href="calc-crorepati.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-sm font-bold">1Cr</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Become a Crorepati</div>
-        <p class="text-ink/65 text-sm mt-1">Two roads to the crore. One is faster.</p>
-      </a>
-      <a href="calc-crore-ladder.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-xs font-bold">10Cr</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">The Crore Ladder</div>
-        <p class="text-ink/65 text-sm mt-1">Every crore's monthly price, 1 to 10.</p>
-      </a>
-      <a href="calc-sip-reality.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#8734;</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">SIP Reality Check</div>
-        <p class="text-ink/65 text-sm mt-1">Worst, typical, best. 30 years of it.</p>
-      </a>
-      <a href="asset-allocator.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#9684;</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Asset Allocator</div>
-        <p class="text-ink/65 text-sm mt-1">Equity, debt, gold, cash, in your mix.</p>
-      </a>
-      <a href="calc-mf-portfolio.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-sm font-bold">MF</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">MF Portfolio</div>
-        <p class="text-ink/65 text-sm mt-1">Which fund categories, how much in each.</p>
-      </a>
-      <a href="calc-dreamhome.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#127968;</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Dream Home Plan</div>
-        <p class="text-ink/65 text-sm mt-1">How much home you can truly afford.</p>
-      </a>
-      <a href="calc-prepay.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-xs font-bold">EMI</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Loan Prepayment</div>
-        <p class="text-ink/65 text-sm mt-1">Clear the home loan years early.</p>
-      </a>
-      <a href="calc-retirement.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold">&#8377;</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Real Retirement</div>
-        <p class="text-ink/65 text-sm mt-1">The corpus you actually need.</p>
-      </a>
-      <a href="calc-goal.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-lg font-bold">G</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Goal Planner</div>
-        <p class="text-ink/65 text-sm mt-1">Start with the dream, work back.</p>
-      </a>
-      <a href="calc-sip.html" class="lift w-60 bg-white rounded-2xl p-6 border border-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-thisblue text-warmpaper flex items-center justify-center text-sm font-bold">SIP</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-4">Honest SIP</div>
-        <p class="text-ink/65 text-sm mt-1">What time in the market really adds.</p>
-      </a>
-      <a href="wealth-levers.html" class="lift w-60 bg-navy-ink text-warmpaper rounded-2xl p-6 border border-navy-ink">
-        <div class="w-11 h-11 rounded-xl bg-marigold text-ink flex items-center justify-center text-lg font-bold">&#9654;</div>
-        <div class="font-display text-lg font-extrabold mt-4">The 3 levers</div>
-        <p class="text-warmpaper/65 text-sm mt-1">Watch Adhiraj and Ananya race.</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ RAIL: LATEST EPISODES ============ -->
-<section class="py-6">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-end justify-between mb-4">
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Latest episodes</h2>
-      <a href="episodes.html" class="text-sm text-thisblue font-semibold shrink-0">All episodes &rarr;</a>
-    </div>
-    <div id="rail-episodes" class="rail"></div>
-  </div>
-</section>
-
-<!-- ============ RAIL: READ ============ -->
-<section class="py-6">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-end justify-between mb-4">
-      <div>
-        <div class="text-[11px] uppercase tracking-[0.3em] text-goldink font-bold">Prefer to read</div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">Articles &amp; Slow Thought</h2>
-      </div>
-      <a href="articles.html" class="text-sm text-thisblue font-semibold shrink-0">All writing &rarr;</a>
-    </div>
-    <div id="rail-read" class="rail"></div>
-  </div>
-</section>
-
-<!-- ============ RAIL: BY TOPIC ============ -->
-<section class="py-6">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink mb-4">Browse by topic</h2>
-    <div id="rail-topics" class="rail"></div>
-  </div>
-</section>
-
-<!-- ============ RAIL: THE GUESTS ============ -->
-<section class="py-6">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-end justify-between mb-4">
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-ink">The guests</h2>
-      <a href="guests.html" class="text-sm text-thisblue font-semibold shrink-0">Meet everyone &rarr;</a>
-    </div>
-    <div id="rail-guests" class="rail"></div>
-  </div>
-</section>
-
-<!-- ============ NEWSLETTER ============ -->
-<section id="newsletter" class="py-16 bg-mustard text-navy-ink mt-8">
-  <div class="max-w-3xl mx-auto px-6 text-center">
-    <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
-    <h2 class="font-display text-3xl md:text-4xl font-bold mt-3">One honest idea. Every week.</h2>
-    <p class="mt-3 opacity-80">A short note on money and behaviour, written for you, not at you. Plus first dibs on new tools.</p>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-6 inline-flex bg-navy text-cream px-7 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe on YouTube &rarr;</a>
-  </div>
-</section>
-
-<footer class="bg-navy-ink text-cream/80 py-14">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-3">
-          <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
           <div>
-            <div class="font-bold text-cream">ThisOrThat</div>
-            <div class="text-[11px] uppercase tracking-widest text-cream/50">beyond the noise</div>
+            <div class="flex justify-between text-[12.5px] font-bold mb-1"><span>Debt and cash</span><span class="tab-num">&#8377;3,750</span></div>
+            <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:15%;background:#1A1813;border-radius:99px"></div></div>
           </div>
         </div>
-        <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, on your side. A media brand built on conversations India isn't having loudly enough.</p>
-      </div>
-      <div>
-        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Explore</div>
-        <ul class="space-y-2 text-sm">
-          <li><a href="episodes.html" class="hover:text-cream">Episodes</a></li>
-          <li><a href="guests.html" class="hover:text-cream">Guests</a></li>
-          <li><a href="articles.html" class="hover:text-cream">Articles</a></li>
-          <li><a href="feed.html" class="hover:text-cream">Feed</a></li>
-          <li><a href="calculators.html" class="hover:text-cream">Plan</a></li>
-          <li><a href="money-person.html" class="hover:text-cream">Find your money person</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Listen / Watch</div>
-        <ul class="space-y-2 text-sm">
-          <li><a href="https://www.youtube.com/@ThisOrThatPodcastIndia" target="_blank" class="hover:text-cream">YouTube</a></li>
-          <li><a href="https://instagram.com/officialthisorthat" target="_blank" class="hover:text-cream">Instagram</a></li>
-        </ul>
+        <div class="text-[11px] text-paper/50 mt-4">An example. Yours depends on your four answers.</div>
       </div>
     </div>
-    <div class="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-cream/40">
-      <div>&copy; 2026 ThisOrThat with Bhartendra. All rights reserved. <span id="sync-info" class="ml-3 opacity-70"></span></div>
-      <div class="flex gap-4">
-        <a href="brand.html" class="hover:text-cream">Brand</a>
-        <a href="#" class="hover:text-cream">Privacy</a>
-        <a href="#" class="hover:text-cream">Terms</a>
-        <a href="#" class="hover:text-cream">Contact</a>
+
+  </div>
+</section>
+
+<section id="tool" class="max-w-6xl mx-auto px-6 pb-24 scroll-mt-24">
+  <div class="bg-white rounded-[18px] border border-line shadow-[0_1px_3px_rgba(26,24,19,0.04)] overflow-hidden">
+
+    <!-- mode -->
+    <div class="px-7 md:px-11 pt-8 pb-6 border-b border-line flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="kicker mb-2.5">Where do you want to start</div>
+        <div class="inline-flex bg-surf rounded-full p-1" role="tablist" aria-label="Where to start">
+          <button role="tab" data-mode="invest" aria-selected="true"
+            class="mode text-[13.5px] font-bold px-4 py-2 rounded-full transition">How you want to invest</button>
+          <button role="tab" data-mode="goal" aria-selected="false"
+            class="mode text-[13.5px] font-bold px-4 py-2 rounded-full transition">A goal in mind</button>
+        </div>
       </div>
+      <div class="flex items-center gap-2.5" aria-hidden="true">
+        <span id="dots" class="flex gap-1.5"></span>
+        <span id="prog" class="text-[12.5px] font-bold text-meta tab-num"></span>
+      </div>
+    </div>
+
+    <!-- the four questions, one open at a time -->
+    <div class="px-7 md:px-11 py-2" id="qs"></div>
+
+    <!-- the ask -->
+    <div class="px-7 md:px-11 pb-9 pt-4">
+      <button id="go" class="w-full rounded-full font-bold text-[15px] py-4 transition" disabled></button>
+      <p class="text-center text-[13px] text-meta mt-3.5">
+        Rather talk it through? <a href="money-person.html" class="lnk">Speak to a human</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2. THE PAYOFF, hidden until earned ============================ -->
+<section id="result" class="hidden max-w-6xl mx-auto px-6 pb-24"></section>
+
+<!-- ============================ 3. EPISODES: asymmetric split + grid ============================ -->
+<section class="border-t border-line bg-surf">
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <div class="flex items-end justify-between gap-6 mb-9">
+      <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none" data-cms="episodes_heading">Latest episodes</h2>
+      <a href="episodes.html" class="lnk text-[14px] shrink-0">All <span id="epcount">60</span> &rarr;</a>
+    </div>
+    <div id="ephero" class="grid md:grid-cols-2 gap-0 bg-dark rounded-[18px] overflow-hidden"></div>
+    <div id="epgrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5"></div>
+  </div>
+</section>
+
+<!-- ============================ 4. GUESTS: type, not avatars ============================
+     Only 3 of 34 guests have a photo. A wall of coloured initial tiles would be
+     louder than the 3 real faces, so the names carry it. For a podcast the names
+     are the credential anyway. -->
+<section class="max-w-6xl mx-auto px-6 py-24">
+  <div class="flex items-end justify-between gap-6 mb-8">
+    <div>
+      <div class="kicker" data-cms="guests_kicker">Who has been on</div>
+      <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-none mt-4">
+        <span data-cms="guests_heading">The people who actually manage money.</span>
+      </h2>
+    </div>
+    <a href="guests.html" class="lnk text-[14px] shrink-0 hidden sm:inline">All guests &rarr;</a>
+  </div>
+  <p class="text-[16px] text-body leading-relaxed max-w-[54ch]">
+    <span data-cms="guests_sub">CEOs and CXOs of fund houses, fund managers, advisers, founders and journalists. Nobody comes on to sell you a product.</span>
+  </p>
+  <div id="guestwall" class="mt-9 flex flex-wrap gap-x-7 gap-y-3.5"></div>
+  <a href="guests.html" class="lnk text-[14px] inline-block mt-8 sm:hidden">All guests &rarr;</a>
+</section>
+
+<!-- ============================ 5. WRITING: sticky left, list right ============================ -->
+<section class="max-w-6xl mx-auto px-6 py-24">
+  <div class="grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28">
+        <div class="kicker" data-cms="writing_kicker">Prefer to read</div>
+        <h2 class="font-display font-extrabold text-[clamp(30px,4.4vw,40px)] tracking-[-0.03em] leading-[1.02] mt-4" data-cms="writing_heading">Slow thought, in writing.</h2>
+        <p class="text-[16px] text-body leading-relaxed mt-5 max-w-[38ch]" data-cms="writing_sub">The episodes go wide. These go deep on one idea at a time.</p>
+        <a href="articles.html" class="lnk text-[14px] inline-block mt-6">All writing &rarr;</a>
+      </div>
+    </div>
+    <div class="lg:col-span-8">
+      <div class="bg-dark rounded-[18px] p-9 md:p-11">
+        <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Slow thought</div>
+        <blockquote class="font-display font-extrabold text-[clamp(24px,3.4vw,33px)] leading-[1.18] tracking-[-0.02em] text-paper mt-5">
+          The market doesn't reward intelligence. It rewards patience that looks like stupidity.
+        </blockquote>
+      </div>
+      <div id="arts" class="mt-3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 5. THE ONE ASK, full bleed ============================ -->
+<section style="background:#FFC21F">
+  <div class="max-w-3xl mx-auto px-6 py-24 text-center">
+    <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-ink/65" data-cms="band_kicker">New episode most weeks</div>
+    <h2 class="font-display font-extrabold text-[clamp(32px,5.4vw,52px)] leading-[1.02] tracking-[-0.03em] mt-5" data-cms="band_heading">
+      One honest conversation. Most weeks.
+    </h2>
+    <p class="text-[17px] leading-relaxed text-ink/80 mt-6 max-w-[48ch] mx-auto">
+      <span data-cms="band_body">No hot takes, no tips, and nobody selling you a product at the end. Sixty conversations so far, and the archive is free.</span>
+    </p>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
+       class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-8 py-4 rounded-full mt-9 hover:bg-black transition">
+      <span data-cms="band_cta">Subscribe on YouTube</span> &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="bg-dark text-paper">
+  <div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5">
+        <img src="logo.png" alt="" width="30" height="30" class="rounded-full" />
+        <span class="font-display font-extrabold text-[16px]">ThisOrThat</span>
+      </div>
+      <p class="text-[13.5px] leading-relaxed text-paper/60 mt-4 max-w-[34ch]">
+        Personal finance, on your side. A media brand built on conversations India isn't having loudly enough.
+      </p>
+    </div>
+    <div>
+      <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-paper/45">Explore</div>
+      <div class="mt-4 grid gap-2.5 text-[14px]">
+        <a href="episodes.html" class="text-paper/85 hover:text-marigold">Episodes</a>
+        <a href="calculators.html" class="text-paper/85 hover:text-marigold">Calculators</a>
+        <a href="articles.html" class="text-paper/85 hover:text-marigold">Writing</a>
+        <a href="feed.html" class="text-paper/85 hover:text-marigold">The feed</a>
+        <a href="guests.html" class="text-paper/85 hover:text-marigold">Guests</a>
+        <a href="about.html" class="text-paper/85 hover:text-marigold">About</a>
+      </div>
+    </div>
+    <div>
+      <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-paper/45">Learn</div>
+      <div class="mt-4 grid gap-2.5 text-[14px]">
+        <a href="understanding-mutual-funds.html" class="text-paper/85 hover:text-marigold">Understanding your mutual funds</a>
+        <a href="ways-to-invest-in-equity.html" class="text-paper/85 hover:text-marigold">Ways to invest in equity</a>
+        <a href="asset-classes.html" class="text-paper/85 hover:text-marigold">Asset classes</a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-paper/10">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-[12.5px] text-paper/50">
+      &copy; 2026 ThisOrThat. Educational only. Nothing here is investment advice.
     </div>
   </div>
 </footer>
 
-<!-- Real data from YouTube channel -->
 <script src="episodes.js"></script>
 <script>
-const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const initialsOf = (n) => {
-  if (!n || n.toLowerCase().includes('solo')) return 'BS';
-  const parts = n.replace(/^CA\s+|^Mr\.?\s+/i, '').split(/\s+/).filter(p => p[0] && p[0] === p[0].toUpperCase());
-  return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
-};
-const isSolo = (g) => !g || g.toLowerCase().includes('solo');
-const GRADS = ['g1','g3','g2','g5','g6','g4'];
+(function(){
+var $=function(i){return document.getElementById(i);};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+function inr(n){return Math.round(n).toLocaleString('en-IN');}
 
-// ---- side episode card: latest episode, or the CMS-featured one if set ----
-const eps = window.EPISODES || [];
-// Live counts: the hero's episode and conversation numbers always match the data.
-if (eps.length) {
-  const ec = document.getElementById('ep-count'), cc = document.getElementById('conv-count');
-  if (ec) ec.textContent = eps.length;
-  if (cc) cc.textContent = eps.length;
-}
-function renderSideEpisode(L, pinned) {
-  const kicker = pinned ? 'Featured' : 'Latest';
-  document.getElementById('side-episode').innerHTML = `
-    <a href="episode-detail.html?v=${esc(L.id)}" class="lift block bg-white rounded-3xl border-2 border-navy-ink overflow-hidden">
-      <div class="relative bg-ink aspect-video">
-        <img src="https://i.ytimg.com/vi/${esc(L.id)}/maxresdefault.jpg" onerror="this.onerror=null;this.src='${esc(L.thumb)}'" alt="${esc(L.title)}" class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute bottom-2 left-2 bg-marigold text-ink text-[11px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">${kicker} &middot; Ep ${esc(L.n)}</div>
-      </div>
-      <div class="p-4">
-        <div class="font-display text-base font-extrabold text-ink leading-tight">${esc(L.title)}</div>
-        <div class="mt-2 text-xs text-thisblue font-semibold">Watch the episode &rarr;</div>
-      </div>
-    </a>`;
-}
-if (eps.length) {
-  renderSideEpisode(eps[0]);
-  // CMS override: Site Settings -> Homepage -> featured episode video ID
-  fetch('content/site.json').then(r => r.json()).then(s => {
-    const fid = s && s.home && s.home.featured_video_id;
-    if (!fid) return;
-    const featured = eps.find(e => e.id === fid.trim());
-    if (featured && featured.id !== eps[0].id) renderSideEpisode(featured, true);
-  }).catch(() => {});
-}
-
-// ---- episodes rail ----
-document.getElementById('rail-episodes').innerHTML = eps.slice(0, 12).map(e => `
-  <a href="episode-detail.html?v=${esc(e.id)}" class="ep lift w-72 group block">
-    <div class="relative rounded-2xl h-40 overflow-hidden bg-warmpaper-3">
-      <img src="${esc(e.thumb)}" alt="${esc(e.title)}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-ink">&#9654;</span></div>
-      <span class="absolute bottom-3 left-3 bg-black/70 text-white text-[11px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">Ep ${esc(e.n)}${e.published ? ' &middot; ' + esc(e.published) : ''}</span>
-    </div>
-    <div class="mt-2 font-semibold text-ink leading-snug line-clamp-2">${esc(e.title)}</div>
-    <div class="text-xs text-ink/55 mt-0.5">${isSolo(e.guest) ? 'Solo' : esc(e.guest)}${e.cat ? ' &middot; ' + esc(e.cat) : ''}</div>
-  </a>`).join('');
-
-// ---- read rail: articles + slow thought ----
-fetch('content/articles.json').then(r => r.json()).then(arts => {
-  const colorFor = (hc) => { const n = parseInt(String(hc || '').replace('thumb-','')) || 1; return GRADS[(n - 1) % GRADS.length]; };
-  const cards = arts.map(a => `
-    <a href="article-detail.html?slug=${encodeURIComponent(a.slug)}" class="lift w-72 bg-white rounded-2xl border border-navy/10 overflow-hidden block">
-      <div class="${colorFor(a.hero_color)} h-28"></div>
-      <div class="p-5">
-        <div class="text-[11px] uppercase tracking-widest text-goldink font-bold">${esc(a.category || 'Essay')}</div>
-        <div class="font-display text-lg font-extrabold text-ink mt-1 leading-snug">${esc(a.title)}</div>
-        <div class="text-xs text-ink/55 mt-2">${esc(a.read_minutes || 5)} min read</div>
-      </div>
-    </a>`);
-  fetch('content/feed.json').then(r => r.json()).then(f => {
-    const st = (f.items || []).find(i => (i.label || '').toLowerCase().includes('slow thought'));
-    if (st) cards.splice(1, 0, `
-      <a href="feed.html" class="lift w-72 bg-ink text-warmpaper rounded-2xl overflow-hidden border border-navy-ink block">
-        <div class="p-6 h-full flex flex-col justify-between min-h-[196px]">
-          <div class="text-[11px] uppercase tracking-widest text-marigold font-bold">${esc(st.label)}</div>
-          <div class="font-script text-2xl text-warmpaper leading-snug">${esc(st.title)}</div>
-          <div class="text-xs text-warmpaper/50 mt-2">From the feed</div>
-        </div>
-      </a>`);
-    document.getElementById('rail-read').innerHTML = cards.join('');
-  }).catch(() => { document.getElementById('rail-read').innerHTML = cards.join(''); });
-}).catch(() => {});
-
-// ---- topics rail (real counts, deep-links into the episodes filter) ----
-(() => {
-  const counts = {};
-  eps.forEach(e => { if (e.cat) counts[e.cat] = (counts[e.cat] || 0) + 1; });
-  const order = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  const EMOJI = { Investing:'&#128200;', Wealth:'&#127942;', Retirement:'&#127958;', Markets:'&#128201;', Global:'&#127758;', Commodities:'&#129689;', Behaviour:'&#129504;', 'Real Estate':'&#127968;', Tax:'&#129534;' };
-  document.getElementById('rail-topics').innerHTML = order.map(([cat, n], i) => {
-    const g = GRADS[i % GRADS.length];
-    const txt = g === 'g3' ? 'text-ink' : 'text-white';
-    return `<a href="episodes.html?cat=${encodeURIComponent(cat)}" class="lift w-52 h-28 rounded-2xl ${g} ${txt} p-5 flex flex-col justify-between">
-      <div class="flex items-center justify-between"><span class="text-2xl">${EMOJI[cat] || '&#128181;'}</span><span class="text-[11px] font-mono opacity-80">${n} ep${n > 1 ? 's' : ''}</span></div>
-      <span class="font-display text-lg font-extrabold">${esc(cat)}</span>
-    </a>`;
-  }).join('');
-})();
-
-// ---- guests rail ----
-fetch('content/guests.json').then(r => r.json()).then(gs => {
-  // Guest-name ticker: only people who have actually been on the show.
-  const tick = document.getElementById('guest-ticker');
-  if (tick) {
-    const onShow = new Set(eps.map(e => (e.guest || '').replace(' (solo)', '')).filter(n => n && !n.toLowerCase().includes('solo')));
-    const names = gs.map(g => g.name).filter(n => onShow.has(n));
-    if (names.length) {
-      const half = names.map(n =>
-        `<span class="mx-3 text-[13px] font-semibold text-warmpaper/90">${esc(n)}</span><span class="text-marigold text-[11px]">&#9670;</span>`
-      ).join('');
-      tick.innerHTML = half + half; // duplicated for a seamless loop
+/* ---- copy comes from content/site.json, which is what the CMS edits.
+        If the fetch fails the words already in the HTML stand. ---- */
+fetch('content/site.json',{cache:'no-cache'})
+  .then(function(r){ return r.ok?r.json():null; })
+  .catch(function(){ return null; })
+  .then(function(cfg){
+    var H=cfg&&cfg.home; if(!H) return;
+    [].forEach.call(document.querySelectorAll('[data-cms]'),function(el){
+      var v=H[el.getAttribute('data-cms')];
+      if(typeof v==='string'&&v.trim()) el.textContent=v;
+    });
+    if(Array.isArray(H.hero_points)&&H.hero_points.length){
+      $('heropoints').innerHTML=H.hero_points.map(function(t){
+        return '<li class="flex gap-3 items-start">'+
+          '<span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>'+
+          '<span class="text-[15.5px] font-semibold">'+esc(t)+'</span></li>';
+      }).join('');
     }
-  }
-  const pick = gs.filter(g => g.photo).concat(gs.filter(g => !g.photo)).slice(0, 14);
-  document.getElementById('rail-guests').innerHTML = pick.map((g, i) => {
-    const bg = GRADS[i % GRADS.length];
-    const txt = bg === 'g3' ? 'text-ink/70' : 'text-white/80';
-    const media = g.photo
-      ? `<img src="${esc(g.photo)}" alt="${esc(g.name)}" class="w-40 h-40 rounded-2xl object-cover bg-warmpaper-3 mx-auto" loading="lazy" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${bg} w-40 h-40 rounded-2xl flex items-center justify-center ${txt} font-display text-3xl font-extrabold mx-auto',textContent:'${initialsOf(g.name)}'}))" />`
-      : `<div class="${bg} w-40 h-40 rounded-2xl flex items-center justify-center ${txt} font-display text-3xl font-extrabold mx-auto">${initialsOf(g.name)}</div>`;
-    const role = (g.role || '').split(/[;,]/)[0].trim();
-    return `<a href="guest-detail.html?g=${encodeURIComponent(g.name)}" class="lift w-40 text-center block">
-      ${media}
-      <div class="mt-2 font-semibold text-ink text-sm leading-tight">${esc(g.name)}</div>
-      <div class="text-xs text-ink/50 leading-tight mt-0.5">${esc(role)}</div>
-    </a>`;
-  }).join('');
-}).catch(() => {});
+    var pin=String(H.featured_video_id||'').trim();
+    if(pin) drawEpisodes(pin);
+  });
 
-// ---- sync info ----
-if (window.SYNCED_AT) {
-  try { document.getElementById('sync-info').textContent = 'Episodes synced ' + new Date(window.SYNCED_AT).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); } catch (e) {}
+var mt=$('mt');
+if(mt) mt.addEventListener('click',function(){
+  var open=$('mm').classList.toggle('hidden')===false;
+  mt.setAttribute('aria-expanded',String(open));
+});
+
+/* ---------------------------------------------------------------
+   The allocation. Ported from verify_mix.py, which checks that the
+   mix always sums to 100, that equity never passes the horizon's
+   ceiling, that money needed inside three years never touches
+   equity, and that the rupee column adds back to the monthly amount.
+   --------------------------------------------------------------- */
+var HORIZON={'1-3':0,'3-5':30,'5-10':65,'10+':85};
+var BEHAVIOUR={sell:0.70, sit:1.00, buy:1.00};
+var DIRECT_CAP=0.25;
+
+function mix(h,b,hold,monthly){
+  var ceiling=HORIZON[h];
+  var equity=Math.max(0,Math.min(Math.round(ceiling*BEHAVIOUR[b]),ceiling));
+  var debt=100-equity, direct=0, funds=equity;
+  if(hold==='mf+stocks'&&equity>0){ direct=Math.round(equity*DIRECT_CAP); funds=equity-direct; }
+  var rows=[['Equity funds',funds],['Your own stocks',direct],['Debt and cash',debt]]
+            .filter(function(r){return r[1]>0;});
+  var rupees={}, sum=0;
+  rows.forEach(function(r){ rupees[r[0]]=Math.round(monthly*r[1]/100); sum+=rupees[r[0]]; });
+  if(rows.length){
+    var big=rows.reduce(function(a,c){return c[1]>a[1]?c:a;})[0];
+    rupees[big]+=monthly-sum;                       // give the rounding drift to the largest slice
+  }
+  return {ceiling:ceiling, equity:equity, debt:debt, funds:funds, direct:direct, rows:rows, rupees:rupees};
 }
 
-// ---- mobile menu ----
-(function () {
-  var btn = document.getElementById('mobile-menu-toggle');
-  var menu = document.getElementById('mobile-menu');
-  var iconOpen = document.getElementById('icon-open');
-  var iconClose = document.getElementById('icon-close');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', function () {
-    menu.classList.toggle('hidden');
-    iconOpen.classList.toggle('hidden');
-    iconClose.classList.toggle('hidden');
+/* ---------------------------------------------------------------
+   One question open at a time. All four stay visible as numbered
+   stubs so the form still reads as finite, but only the one being
+   answered is full size.
+   --------------------------------------------------------------- */
+/* ---------------------------------------------------------------
+   Two real modes. "How you want to invest" starts from a monthly
+   amount and returns a mix. "A goal in mind" starts from a target
+   and a date and returns the mix plus the monthly amount needed to
+   actually reach it. Both use the same horizon and behaviour rules,
+   so they can never disagree. Goal maths ported from verify_goal.py.
+   --------------------------------------------------------------- */
+var EQ_RETURN=12.0, DEBT_RETURN=7.0, INFLATION=6.0;
+function bandFor(y){ return y<=3?'1-3':(y<=5?'3-5':(y<=10?'5-10':'10+')); }
+function blended(eq){ return (eq*EQ_RETURN+(100-eq)*DEBT_RETURN)/100; }
+function sipFor(target,years,ret){
+  var months=Math.round(years*12), rm=ret/100/12;
+  if(months<=0) return target;
+  if(rm===0) return target/months;
+  return target*rm/(Math.pow(1+rm,months)-1);
+}
+function goalPlan(years,todayCost,behaviour,holding,have){
+  var band=bandFor(years), m=mix(band,behaviour,holding,0), r=blended(m.equity);
+  var future=todayCost*Math.pow(1+INFLATION/100,years);
+  var haveFV=(have||0)*Math.pow(1+r/100,years);
+  var gap=Math.max(0,future-haveFV);
+  return {band:band,mix:m,ret:Math.round(r*100)/100,future:future,haveFV:haveFV,
+          gap:gap,monthly:sipFor(gap,years,r)};
+}
+
+var BAD_YEAR={k:'behaviour', short:'In a bad year',
+  q:'A bad year hits and your ₹10 lakh shows ₹8 lakh. What do you actually do?',
+  opts:[['sell','Sell, stop the pain'],['sit','Sit tight'],['buy','Buy more']]};
+
+var QSETS={
+  invest:[
+    {k:'horizon', short:'How long invested',
+     q:'How long will this money stay invested?',
+     opts:[['1-3','1 to 3 yrs'],['3-5','3 to 5 yrs'],['5-10','5 to 10 yrs'],['10+','10 yrs +']]},
+    {k:'hold', short:'How you hold it',
+     q:'And how do you want to hold it?',
+     opts:[['mf','Only mutual funds'],['mf+stocks','Mutual funds + my own stocks']]},
+    BAD_YEAR,
+    {k:'monthly', short:'Every month', q:'How much can you put in each month?',
+     amount:true, chips:[10000,25000,50000,100000]}
+  ],
+  goal:[
+    {k:'what', short:'The goal',
+     q:'What are you saving for?',
+     opts:[['education',"A child's education"],['home','A home'],['retirement','Retirement'],['other','Something else']]},
+    {k:'years', short:'When you need it',
+     q:'When will you need the money?',
+     opts:[['3','In 3 years'],['5','In 5 years'],['10','In 10 years'],['15','In 15 years'],['25','In 25 years or more']]},
+    {k:'cost', short:'What it costs today', q:"What would it cost today, in today's money?",
+     amount:true, chips:[500000,2000000,5000000,10000000],
+     hint:"Today's price. We add inflation to work out what it will cost by then."},
+    BAD_YEAR
+  ]
+};
+var MODE='invest';
+var ANS={invest:{}, goal:{}};
+var open=0, done=false;
+function QS(){ return QSETS[MODE]; }
+function A(){ return ANS[MODE]; }
+
+function fmtAmt(n){
+  n=Number(n)||0;
+  if(n>=10000000) return '₹'+(n/10000000).toFixed(2).replace(/\.?0+$/,'')+' Cr';
+  if(n>=100000)   return '₹'+(n/100000).toFixed(2).replace(/\.?0+$/,'')+' L';
+  return '₹'+inr(n);
+}
+function chipLabel(n){ return n>=10000000?(n/10000000)+'Cr':(n>=100000?(n/100000)+'L':(n/1000)+'k'); }
+function label(q,v){
+  if(q.amount) return v?fmtAmt(v):'';
+  var o=q.opts.filter(function(x){return x[0]===v;})[0];
+  return o?o[1]:'';
+}
+function answered(){ return QS().filter(function(q){return A()[q.k];}).length; }
+function firstUnanswered(){ var s=QS(); for(var i=0;i<s.length;i++) if(!A()[s[i].k]) return i; return -1; }
+
+function drawQs(){
+  var set=QS(), ans=A();
+  $('qs').innerHTML=set.map(function(q,i){
+    var v=ans[q.k], isOpen=(i===open&&!done);
+    if(!isOpen){
+      return '<div class="stub'+(i===0?' border-t-0':'')+'">'+
+        '<span class="num'+(v?' done':'')+'">'+(v?'✓':('0'+(i+1)))+'</span>'+
+        '<span class="text-[15px] '+(v?'text-body':'text-meta')+'">'+esc(q.short)+'</span>'+
+        '<span class="text-right">'+
+          (v?'<span class="text-[14.5px] font-bold text-ink">'+esc(label(q,v))+'</span>':'')+
+          ' <button data-open="'+i+'" class="text-[12.5px] font-bold text-gold underline ml-2">'+(v?'change':'answer')+'</button>'+
+        '</span></div>';
+    }
+    var inner = q.amount
+      ? '<div class="flex flex-wrap items-center gap-3 mt-4">'+
+          '<span class="text-[20px] font-bold text-meta">₹</span>'+
+          '<input id="amt" class="amt" inputmode="numeric" value="'+(v?inr(v):'')+'" placeholder="25,000" aria-label="Amount" />'+
+          q.chips.map(function(n){
+            return '<button class="chip" data-amt="'+n+'" aria-pressed="'+(Number(v)===n)+'">'+chipLabel(n)+'</button>';
+          }).join('')+
+        '</div>'+(q.hint?'<p class="text-[12.5px] text-meta mt-3">'+esc(q.hint)+'</p>':'')
+      : '<div class="flex flex-wrap gap-2.5 mt-4">'+q.opts.map(function(o){
+          return '<button class="chip" data-set="'+q.k+'" data-val="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';
+        }).join('')+'</div>';
+    return '<div class="py-6'+(i===0?'':' border-t border-line')+'">'+
+      '<div class="flex gap-3.5"><span class="num done pt-1">'+('0'+(i+1))+'</span>'+
+      '<div class="flex-1"><div class="text-[19px] md:text-[21px] font-bold leading-snug tracking-[-0.015em] max-w-[46ch]">'+esc(q.q)+'</div>'+
+      inner+'</div></div></div>';
+  }).join('');
+
+  var n=answered(), total=set.length;
+  $('dots').innerHTML=set.map(function(q){
+    return '<span style="width:7px;height:7px;border-radius:99px;display:inline-block;background:'+
+      (ans[q.k]?'#1A1813':'#D8D2C4')+'"></span>';}).join('');
+  $('prog').textContent=n+' of '+total;
+
+  var go=$('go'), missing=total-n;
+  if(missing===0){
+    go.disabled=false;
+    go.className='w-full rounded-full font-bold text-[15px] py-4 transition bg-marigold text-ink hover:brightness-95';
+    go.textContent = MODE==='goal' ? 'See what it takes →' : 'See my mix →';
+  } else {
+    go.disabled=true;
+    go.className='w-full rounded-full font-bold text-[15px] py-4 transition bg-surf text-meta cursor-not-allowed';
+    go.textContent = n===0 ? 'Answer all four to see your '+(MODE==='goal'?'number':'mix')
+                           : 'Answer '+missing+' more to see your '+(MODE==='goal'?'number':'mix');
+  }
+  wireQs();
+}
+
+function wireQs(){
+  [].forEach.call(document.querySelectorAll('[data-open]'),function(b){
+    b.addEventListener('click',function(){ done=false; open=+b.getAttribute('data-open'); drawQs(); });
   });
-  menu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      menu.classList.add('hidden');
-      iconOpen.classList.remove('hidden');
-      iconClose.classList.add('hidden');
+  [].forEach.call(document.querySelectorAll('[data-set]'),function(b){
+    b.addEventListener('click',function(){
+      A()[b.getAttribute('data-set')]=b.getAttribute('data-val');
+      var nxt=firstUnanswered(); open = nxt===-1 ? open : nxt;
+      drawQs();
     });
   });
-})();
-</script>
-
-<!-- ============ PLANNER ENGINE: two doors, one allocation ============ -->
-<script>
-(function () {
-const p$ = id => document.getElementById(id);
-if (!p$('door-invest')) return;
-const fmt = (n) => { n = Math.round(n); if (n>=1e7) return (n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr'; if (n>=1e5) return (n/1e5).toFixed(2).replace(/\.?0+$/,'')+' L'; return n.toLocaleString('en-IN'); };
-const parseNum = (text) => {
-  let s = String(text).replace(/[₹\s,]/g,'').trim().toLowerCase();
-  if (!s) return 0; let m = 1;
-  if (s.endsWith('cr')) { m=1e7; s=s.slice(0,-2); }
-  else if (s.endsWith('l')) { m=1e5; s=s.slice(0,-1); }
-  else if (s.endsWith('k')) { m=1e3; s=s.slice(0,-1); }
-  const n = parseFloat(s); return isNaN(n) ? 0 : n*m;
-};
-const sipFor = (target, years, ratePct) => { const i=ratePct/1200, n=years*12; return target / ((Math.pow(1+i,n)-1)/i); };
-
-// assumptions, aligned with the site's deep calculators
-const INF = 0.06, EDU_INF = 0.08, PROP_INF = 0.07, POST_RET = 0.08, YEARS_IN_RET = 30;
-
-const H = {
-  '1-3': { eq:0, note:"Under three years, equity is a coin flip and we will not pretend otherwise. Keep this money safe and liquid; boring is the strategy.",
-    eqMix:[], debtMix:[['Liquid / ultra-short debt',100]] },
-  '3-5': { eq:30, note:"Mostly stability, with a little growth riding on top. Enough equity to beat an FD over the stretch, not enough to lose sleep over.",
-    eqMix:[['Large cap fund',70],['Flexi cap fund',30]], debtMix:[['Short duration debt',60],['Corporate bond fund',40]] },
-  '5-10': { eq:65, note:"Now equity earns its place. A real cushion of debt keeps one bad year from derailing the whole plan.",
-    eqMix:[['Large cap fund',50],['Flexi cap fund',30],['Mid cap fund',20]], debtMix:[['Short duration debt',50],['Dynamic bond fund',50]] },
-  '10+': { eq:85, note:"Time is the one edge money cannot buy, and you have it. Let equity do the heavy lifting; a little debt just steadies the ride.",
-    eqMix:[['Large cap fund',40],['Flexi cap fund',30],['Mid cap fund',20],['Small cap fund',10]], debtMix:[['Dynamic bond fund',60],['Corporate bond fund',40]] }
-};
-const DIRECT = { '5-10':10, '10+':15 };
-// Temperament only lowers equity, never raises it past what the years allow.
-const SELL_EQ = { '1-3':0, '3-5':20, '5-10':45, '10+':60 };
-const SELL_EQMIX = [['Large cap fund',60],['Flexi cap fund',40]]; // steadier sleeve, no mid or small
-function riskAdjust(hKey, risk) {
-  const base = H[hKey];
-  if (risk !== 'sell' || base.eq === 0) return { eq: base.eq, eqMix: base.eqMix, baseEq: base.eq, lowered: false };
-  return { eq: SELL_EQ[hKey], eqMix: hKey === '3-5' ? base.eqMix : SELL_EQMIX, baseEq: base.eq, lowered: true };
-}
-function riskNote(risk, adj) {
-  if (adj.lowered)
-    return `Your years said ${adj.baseEq}% equity. Your bad-year answer said you would sell, so we sized it to ${adj.eq}% and kept the funds steadier. The plan you can hold through a bad year beats the plan that looks best on paper.`;
-  if (risk === 'buy' && adj.eq > 0)
-    return `Bad years read as discounts to you. Even so, the mix stays at ${adj.eq}%, exactly what your years allow and not a point more. Temperament cannot stretch time.`;
-  if (risk === 'hold' && adj.eq > 0)
-    return `You said you would sit tight in a bad year. That is the whole job. This mix assumes you mean it.`;
-  return '';
-}
-const blended = eq => (eq*12 + (100-eq)*6) / 100;
-const horizonForYears = y => y<=3 ? '1-3' : y<=5 ? '3-5' : y<=10 ? '5-10' : '10+';
-
-const EXPLAIN = {
-  'Liquid / ultra-short debt': 'a parking spot for money you will need soon; withdraw any time',
-  'Short duration debt': 'steady, low-drama bonds for two-to-three-year money',
-  'Corporate bond fund': 'lends to strong companies for a bit more than an FD',
-  'Dynamic bond fund': 'a manager adjusts the bonds as interest rates move',
-  'Large cap fund': "India's biggest 100 companies; the steadiest equity there is",
-  'Flexi cap fund': 'one fund, one manager, roaming across large, mid and small',
-  'Mid cap fund': 'the next rung down; bumpier ride, more room to grow',
-  'Small cap fund': 'the wild end of the market; highest hope, hardest ride',
-  'Direct stocks you pick': 'companies you research and own directly, no fund in between'
-};
-
-function allocRows(hKey, mfeq, risk) {
-  const h = H[hKey];
-  const adj = riskAdjust(hKey, risk);
-  const eq = adj.eq, debt = 100 - eq;
-  const eqRows = [], debtRows = [];
-  if (eq > 0) {
-    const dPct = (mfeq && DIRECT[hKey] && !adj.lowered) ? DIRECT[hKey] : 0; // sell-types skip direct stocks
-    if (dPct > 0) eqRows.push(['Direct stocks you pick', eq*dPct/100, true]);
-    const fundShare = eq*(100-dPct)/100;
-    adj.eqMix.forEach(([k,w]) => eqRows.push([k, fundShare*w/100, false]));
+  var amt=$('amt');
+  if(amt){
+    var key=QS()[open].k;
+    amt.addEventListener('input',function(){
+      var n=parseInt(String(amt.value).replace(/[^\d]/g,''),10);
+      A()[key] = n>0 ? n : '';
+      var caret=amt.selectionStart, before=amt.value.length;
+      drawQs();
+      var el=$('amt');
+      if(el){ el.focus(); var shift=el.value.length-before;
+        try{ el.setSelectionRange(caret+shift,caret+shift); }catch(e){} }
+    });
+    [].forEach.call(document.querySelectorAll('[data-amt]'),function(b){
+      b.addEventListener('click',function(){
+        A()[key]=+b.getAttribute('data-amt');
+        var nxt=firstUnanswered(); open = nxt===-1 ? open : nxt;
+        drawQs();
+      });
+    });
   }
-  h.debtMix.forEach(([k,w]) => debtRows.push([k, debt*w/100]));
-  return { eq, debt, eqRows, debtRows, note: h.note, rnote: riskNote(risk, adj),
-           hasDirect: !!(mfeq && DIRECT[hKey] && eq>0 && !adj.lowered),
-           skippedDirect: !!(mfeq && DIRECT[hKey] && adj.lowered) };
 }
 
-function renderResult(hKey, mfeq, opts) {
-  const { moneyHtml = '', monthly = 0, deepLink = null, glideNote = '', risk = null } = opts || {};
-  const a = allocRows(hKey, mfeq, risk);
-  const row = ([k,v,dir]) => `
-    <div class="flex items-center justify-between gap-3 py-1.5">
-      <span class="text-[13px] ${dir ? 'text-thatred font-semibold' : 'text-ink/80'}">${k}</span>
-      <span class="text-right shrink-0">
-        <span class="font-mono text-[13px] font-semibold text-ink tab-num">${Math.round(v)}%</span>
-        ${monthly > 0 ? `<span class="block font-mono text-[11px] text-ink/50 tab-num">&#8377;${fmt(monthly*v/100)}/mo</span>` : ''}
-      </span>
-    </div>`;
-  const eqCol = a.eq > 0 ? `
-    <div>
-      <div class="text-[11px] uppercase tracking-widest font-bold text-thisblue mb-1">Equity &middot; ${a.eq}%</div>
-      ${a.eqRows.map(row).join('')}
-    </div>` : '';
-  const debtCol = `
-    <div>
-      <div class="text-[11px] uppercase tracking-widest font-bold text-ink/50 mb-1">Debt &middot; ${a.debt}%</div>
-      ${a.debtRows.map(row).join('')}
-    </div>`;
-  const names = [...a.eqRows, ...a.debtRows].map(r => r[0]);
-  const explain = names.map(n => `<div class="flex gap-2 py-1"><span class="font-semibold text-ink/80 shrink-0">${n}:</span><span class="text-ink/60">${EXPLAIN[n] || ''}</span></div>`).join('');
-  const directWarn = a.hasDirect ? `
-    <p class="text-[13px] text-thatred/90 mt-3 leading-relaxed"><strong>About that stocks slice:</strong> keep it to companies you can research and hold through a bad year. If a stock needs checking every morning, it is a worry, not an investment. When in doubt, the fund wins.</p>` : '';
-  return `
-    <div class="bg-warmpaper-2 rounded-2xl p-5">
-      ${moneyHtml}
-      <div class="text-[11px] uppercase tracking-[0.3em] text-ink/50 font-bold mb-2">Your starting mix</div>
-      <div class="flex h-9 rounded-lg overflow-hidden border border-navy/15 mb-4">
-        ${a.eq > 0 ? `<div style="width:${a.eq}%" class="bg-thisblue text-warmpaper flex items-center justify-center text-[11px] font-bold">${a.eq}%</div>` : ''}
-        <div style="width:${a.debt}%" class="bg-warmpaper-3 text-ink flex items-center justify-center text-[11px] font-bold">${a.debt}%</div>
-      </div>
-      <div class="grid ${a.eq > 0 ? 'sm:grid-cols-2' : 'grid-cols-1'} gap-x-6 gap-y-2">
-        ${eqCol}${debtCol}
-      </div>
-      ${a.rnote ? `<p class="text-[13px] font-semibold text-ink mt-3 leading-relaxed bg-marigold/20 border border-marigold rounded-xl p-3">${a.rnote}</p>` : ''}
-      ${a.skippedDirect ? `<p class="text-[13px] text-thatred/90 mt-3 leading-relaxed">We also left out the direct-stocks slice: picking your own stocks and selling in bad years is an expensive combination. Funds first; stocks when the bad-year answer changes.</p>` : ''}
-      ${directWarn}
-      <p class="text-[13px] text-ink/70 mt-3 leading-relaxed border-t border-navy/10 pt-3">${a.note}${glideNote ? ' ' + glideNote : ''}</p>
-      <details class="mt-3">
-        <summary class="text-[13px] font-semibold text-thisblue cursor-pointer select-none">What do these names mean?</summary>
-        <div class="mt-2 text-[13px] leading-relaxed">${explain}</div>
-      </details>
-      <div class="mt-4 flex flex-wrap items-center gap-3">
-        <a href="money-person.html" class="inline-flex bg-navy text-cream px-4 py-2.5 rounded-full font-semibold text-sm">Make it real, find your money person &rarr;</a>
-        ${deepLink ? `<a href="${deepLink.href}" class="inline-flex bg-white border border-navy/20 text-ink px-4 py-2.5 rounded-full font-semibold text-sm">${deepLink.label} &rarr;</a>` : `<a href="calc-mf-portfolio.html" class="inline-flex bg-white border border-navy/20 text-ink px-4 py-2.5 rounded-full font-semibold text-sm">Build the fund mix &rarr;</a>`}
-      </div>
-      <p class="text-[11px] text-ink/60 mt-3 leading-relaxed border-t border-navy/10 pt-3"><strong class="text-ink/80">Disclaimer:</strong> this is a high-level example for education, not investment advice and not a recommendation. Returns are assumptions, not promises. Before investing, consult a SEBI-registered investment adviser or an AMFI-registered mutual fund distributor, and verify their registration on SEBI or AMFI's own websites.</p>
-    </div>`;
-}
-
-// ---- Door A ----
-// The mix stays hidden until the visitor asks for it; after the first
-// reveal, changes update it live.
-let hKey = '10+', mfeq = false, invMonthly = 25000, risk = null;
-let revealedA = false, revealedB = false;
-function paintInvest() {
-  document.querySelectorAll('#horizon-buttons .hbtn').forEach(b => {
-    const on = b.dataset.h === hKey;
-    b.className = 'hbtn text-sm font-bold py-3 px-2 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
+[].forEach.call(document.querySelectorAll('.mode'),function(b){
+  b.addEventListener('click',function(){
+    var next=b.getAttribute('data-mode');
+    if(next!==MODE){
+      // the crash question is the same question in both modes, so carry the answer over
+      if(ANS[MODE].behaviour && !ANS[next].behaviour) ANS[next].behaviour=ANS[MODE].behaviour;
+      MODE=next; done=false;
+      var nxt=firstUnanswered(); open = nxt===-1 ? 0 : nxt;
+      $('result').classList.add('hidden');
+    }
+    [].forEach.call(document.querySelectorAll('.mode'),function(x){
+      var on=x.getAttribute('data-mode')===MODE;
+      x.setAttribute('aria-selected',String(on));
+      x.className='mode text-[13.5px] font-bold px-4 py-2 rounded-full transition '+
+        (on?'bg-white text-ink shadow-[0_1px_3px_rgba(26,24,19,0.14)]':'text-meta');
+    });
+    drawQs();
   });
-  document.querySelectorAll('#hold-buttons .mbtn').forEach(b => {
-    const on = (b.dataset.m === 'mfeq') === mfeq;
-    b.className = 'mbtn flex-1 text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
-  });
-  document.querySelectorAll('#risk-buttons .rbtn').forEach(b => {
-    const on = b.dataset.r === risk;
-    b.className = 'rbtn text-sm font-bold py-3 px-3 rounded-xl border ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
-  });
-  p$('planner-result').innerHTML = revealedA && risk ? renderResult(hKey, mfeq, { monthly: invMonthly, risk }) : '';
-}
-p$('horizon-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-h]'); if(!b) return; hKey=b.dataset.h; paintInvest(); });
-p$('hold-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-m]'); if(!b) return; mfeq=(b.dataset.m==='mfeq'); paintInvest(); });
-p$('inv-amt').addEventListener('input', () => { invMonthly = parseNum(p$('inv-amt').value); paintInvest(); });
-p$('risk-buttons').addEventListener('click', e => {
-  const b = e.target.closest('button[data-r]');
-  if (!b) return;
-  risk = b.dataset.r;
-  p$('risk-nudge').classList.add('hidden');
-  paintInvest();
-});
-p$('reveal-a').addEventListener('click', () => {
-  if (!risk) {
-    p$('risk-nudge').classList.remove('hidden');
-    p$('risk-block').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
-  revealedA = true;
-  p$('reveal-a').classList.add('hidden');
-  paintInvest();
-  p$('planner-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
 
-// ---- Door B ----
-// Retirement: expenses inflated to retirement, then a monthly-withdrawal
-// annuity at POST_RET depleting to zero over YEARS_IN_RET. Same method and
-// defaults as the Real Retirement calculator.
-function retirementCorpus(expToday, yearsToRet) {
-  const expAtRet = expToday * Math.pow(1 + INF, yearsToRet);
-  const mR = Math.pow(1 + POST_RET, 1/12) - 1;
-  const monthlyDue = (1 - Math.pow(1 + mR, -12)) * (1 + mR) / mR;
-  const ratio = (1 + INF) / (1 + POST_RET);
-  const ratioYearSum = (1 - Math.pow(ratio, YEARS_IN_RET)) / (1 - ratio);
-  return { corpus: expAtRet * monthlyDue * ratioYearSum, expAtRet };
+/* ---- the result ---- */
+var CAT_FOR={high:'Investing', mid:'Wealth', low:'Retirement'};
+function bars(m,monthly){
+  return m.rows.map(function(r){
+    return '<div class="mb-4"><div class="flex justify-between items-baseline mb-1.5">'+
+      '<span class="text-[14.5px] font-bold">'+esc(r[0])+'</span>'+
+      '<span class="text-[14.5px] tab-num"><strong>'+r[1]+'%</strong>'+
+      (monthly?'<span class="text-meta"> · ₹'+inr(m.rupees[r[0]])+'</span>':'')+'</span></div>'+
+      '<div style="height:10px;background:#EDE9DF;border-radius:99px;overflow:hidden">'+
+      '<div style="height:100%;width:'+r[1]+'%;background:'+(r[0]==='Debt and cash'?'#1A1813':'#FFC21F')+'"></div>'+
+      '</div></div>';
+  }).join('');
+}
+function sidePanels(equity){
+  var band = equity>=60?'high':(equity>0?'mid':'low');
+  var picks=(window.EPISODES||[]).filter(function(e){return e.cat===CAT_FOR[band];}).slice(0,2);
+  return '<div class="lg:col-span-5 space-y-5">'+
+    '<div class="bg-white border border-line rounded-[18px] p-7">'+
+      '<div class="kicker">What to do next</div>'+
+      '<ol class="mt-4 space-y-3.5 text-[14.5px] leading-relaxed text-body list-decimal pl-5">'+
+        '<li>Check this against every goal, not just this one. Each has its own date.</li>'+
+        '<li>Set the SIP to a date just after your salary lands, so it never bounces.</li>'+
+        '<li>Write down what you will do in the next bad year, now, while nothing is falling.</li>'+
+      '</ol>'+
+      '<a href="calculators.html" class="lnk text-[14px] inline-block mt-6">All 15 calculators &rarr;</a>'+
+    '</div>'+
+    (picks.length?'<div class="bg-white border border-line rounded-[18px] p-7">'+
+      '<div class="kicker">Two episodes on this</div>'+
+      '<div class="mt-4 grid gap-4">'+picks.map(function(e){
+        return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group block">'+
+          '<div class="text-[15px] font-bold leading-snug group-hover:text-gold">'+esc(e.title)+'</div>'+
+          '<div class="text-[12.5px] text-meta mt-1">'+esc(e.guest)+' · '+esc(e.published)+'</div></a>';
+      }).join('')+'</div></div>':'')+
+    '<div class="bg-surf border border-line rounded-[18px] p-7">'+
+      '<p class="text-[13.5px] leading-relaxed text-body">This is arithmetic on four answers, not advice. It does '+
+      'not know your income, your loans, your tax position or what else you already own.</p>'+
+      '<a href="money-person.html" class="lnk text-[14px] inline-block mt-4">Talk it through &rarr;</a>'+
+    '</div>'+
+  '</div>';
 }
 
-const GOALS = {
-  retire: { kind:'retire', dfltAmt:50000, dfltYrs:25 },
-  edu:    { kind:'edu', dfltAmt:2500000, dfltYrs:12 },
-  house:  { kind:'house', dfltAmt:8000000, dfltYrs:4 },
-  wealth: { kind:'wealth', dfltAmt:10000000, dfltYrs:15 }
-};
-let goalKey = null, goalAmt = 0, goalYears = 0;
+$('go').addEventListener('click',function(){
+  var ans=A(), html;
+  done=true; drawQs();
 
-function paintGoal() {
-  document.querySelectorAll('#goal-buttons .gbtn').forEach(b => {
-    const on = b.dataset.g === goalKey;
-    b.className = 'gbtn text-sm font-bold py-3 px-3 rounded-xl border text-left ' + (on ? 'bg-ink text-warmpaper border-ink' : 'bg-white text-ink/70 border-navy/15 hover:border-thisblue/50');
-  });
-}
-
-function computeGoal() {
-  if (!revealedB) return;
-  const g = GOALS[goalKey];
-  const years = Math.max(1, goalYears || g.dfltYrs);
-  const hk = horizonForYears(years);
-  const rate = blended(H[hk].eq);
-  let target, money = '', deepLink = null, glideNote = '';
-
-  if (g.kind === 'retire') {
-    const { corpus, expAtRet } = retirementCorpus(goalAmt, years);
-    target = corpus;
-    const sip = sipFor(target, years, rate);
-    money = `
-      <div class="mb-4">
-        <div class="text-[13px] text-ink/70">At 6% inflation, today's <strong class="tab-num">&#8377;${fmt(goalAmt)}</strong>/month of expenses becomes <strong class="tab-num">&#8377;${fmt(expAtRet)}</strong>/month by the time you retire. To fund 30 years of that, you are aiming for</div>
-        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmt(target)}</div>
-        <div class="text-[13px] text-ink/70 mt-1">Roughly <strong class="text-thisblue tab-num">&#8377;${fmt(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below. Already saved something? The full calculator counts it.</div>
-      </div>`;
-    deepLink = { href:'calc-retirement.html', label:'Refine it in Real Retirement' };
-    glideNote = 'As retirement gets close, this mix should glide toward debt. That is by design, not cold feet.';
-  } else if (g.kind === 'house') {
-    const priceAtBuy = goalAmt * Math.pow(1 + PROP_INF, years);
-    target = priceAtBuy * 0.2;
-    const sip = sipFor(target, years, rate);
-    money = `
-      <div class="mb-4">
-        <div class="text-[13px] text-ink/70">At 7% property inflation, today's <strong class="tab-num">&#8377;${fmt(goalAmt)}</strong> home costs about <strong class="tab-num">&#8377;${fmt(priceAtBuy)}</strong> in ${years} year${years>1?'s':''}. A 20% down payment is</div>
-        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmt(target)}</div>
-        <div class="text-[13px] text-ink/70 mt-1">Roughly <strong class="text-thisblue tab-num">&#8377;${fmt(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below.</div>
-      </div>`;
-    deepLink = { href:'calc-dreamhome.html', label:'Check the full Dream Home Plan' };
-  } else if (g.kind === 'edu') {
-    target = goalAmt * Math.pow(1 + EDU_INF, years);
-    const sip = sipFor(target, years, rate);
-    money = `
-      <div class="mb-4">
-        <div class="text-[13px] text-ink/70">Education inflation runs hot, near 8%. Today's <strong class="tab-num">&#8377;${fmt(goalAmt)}</strong> course becomes</div>
-        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmt(target)}</div>
-        <div class="text-[13px] text-ink/70 mt-1">in ${years} years. Roughly <strong class="text-thisblue tab-num">&#8377;${fmt(sip)}/month</strong>, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below.</div>
-      </div>`;
-    deepLink = { href:'calc-goal.html', label:'Plan it properly in Goal Planner' };
+  if(MODE==='goal'){
+    var years=Number(ans.years), g=goalPlan(years,Number(ans.cost),ans.behaviour,'mf',0);
+    var WHAT={education:"your child's education",home:'a home',retirement:'retirement',other:'this'}[ans.what]||'this';
+    html='<div class="grid lg:grid-cols-12 gap-6">'+
+      '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
+        '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">What it takes</div>'+
+        '<div class="font-display font-extrabold text-[clamp(32px,5vw,46px)] leading-none tracking-[-0.03em] mt-4 tab-num">'+
+          '₹'+inr(g.monthly)+'<span class="text-[22px] font-sans font-bold text-paper/60"> a month</span></div>'+
+        '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+
+          fmtAmt(Number(ans.cost))+' for '+esc(WHAT)+' today becomes <strong>'+fmtAmt(g.future)+'</strong> in '+years+
+          ' years at 6% inflation. That is the number to aim at, not the one on the price tag now.</p>'+
+        '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(g.mix,false)+
+          '<p class="text-[12px] text-meta mt-1">'+(/^[8]/.test(String(g.mix.equity))?'An ':'A ')+g.mix.equity+'/'+g.mix.debt+' mix is assumed to return about '+
+          g.ret.toFixed(2)+'% a year. That assumption is doing a lot of work here.</p>'+
+        '</div>'+
+        (g.mix.equity===0?'<p class="text-[13px] text-paper/70 mt-5">Because you need this within three years it sits '+
+          'in debt, which returns less, which is why the monthly figure is large. Short deadlines are expensive.</p>':'')+
+      '</div>'+ sidePanels(g.mix.equity) +'</div>';
   } else {
-    target = goalAmt;
-    const todayWorth = goalAmt / Math.pow(1 + INF, years);
-    const sip = sipFor(target, years, rate);
-    money = `
-      <div class="mb-4">
-        <div class="text-[13px] text-ink/70">Your target:</div>
-        <div class="font-display text-3xl font-extrabold text-ink tab-num mt-0.5">&#8377;${fmt(target)}</div>
-        <div class="text-[13px] text-ink/70 mt-1">Roughly <strong class="text-thisblue tab-num">&#8377;${fmt(sip)}/month</strong> for ${years} years, at a blended ${rate.toFixed(1).replace(/\.0$/,'')}% from the mix below. One thing to know: in ${years} years that buys what <strong class="tab-num">&#8377;${fmt(todayWorth)}</strong> buys today.</div>
-      </div>`;
-    deepLink = { href:'calc-crore-ladder.html', label:'See every target on the Crore Ladder' };
+    var m=mix(ans.horizon,ans.behaviour,ans.hold,ans.monthly), why;
+    if(m.ceiling===0){
+      why='Money you need inside three years should not ride the market. That is true whatever your temperament, '+
+          'so the crash question did not change this one.';
+    } else if(m.equity<m.ceiling){
+      why='Your horizon would carry up to <strong>'+m.ceiling+'%</strong> in equity. You said you would sell in a bad '+
+          'year, so this is set at <strong>'+m.equity+'%</strong>. An allocation you abandon halfway is worth less than '+
+          'a smaller one you keep.';
+    } else if(ans.behaviour==='buy'){
+      why='Your horizon carries up to <strong>'+m.ceiling+'%</strong> and you said you would buy more in a fall, so you '+
+          'get the full amount. Since you will want cash to deploy when it drops, hold your debt slice somewhere you can '+
+          'reach in a day rather than locking it away.';
+    } else {
+      why='Your horizon carries up to <strong>'+m.ceiling+'%</strong> in equity and you said you would sit tight, so you '+
+          'get the full amount. Sitting tight is the whole reason this number can be this high.';
+    }
+    html='<div class="grid lg:grid-cols-12 gap-6">'+
+      '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
+        '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>'+
+        '<div class="font-display font-extrabold text-[clamp(30px,4.6vw,42px)] leading-none tracking-[-0.03em] mt-4">'+
+          m.equity+'% equity, '+m.debt+'% debt</div>'+
+        '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+why+'</p>'+
+        '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(m,true)+
+          '<p class="text-[12px] text-meta mt-1">Of the ₹'+inr(ans.monthly)+' you said you can invest each month.</p>'+
+        '</div>'+
+      '</div>'+ sidePanels(m.equity) +'</div>';
   }
-  p$('planner-result').innerHTML = renderResult(hk, false, { moneyHtml: money, deepLink, glideNote });
-}
-
-function renderGoalInput() {
-  const g = GOALS[goalKey];
-  goalAmt = g.dfltAmt; goalYears = g.dfltYrs;
-  const box = p$('goal-input'); box.classList.remove('hidden');
-  const amtStr = g.dfltAmt.toLocaleString('en-IN');
-  let inner;
-  if (g.kind === 'retire') inner = `<span>My expenses are about &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-20 text-right" /><span>a month, and I have</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years to go.</span>`;
-  else if (g.kind === 'house') inner = `<span>The home costs about &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-28 text-right" /><span>today, and I want it in</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years.</span>`;
-  else if (g.kind === 'edu') inner = `<span>College costs about &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-28 text-right" /><span>today, and it is</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years away.</span>`;
-  else inner = `<span>I want &#8377;</span><input id="gi-amt" value="${amtStr}" class="editable-num tab-num font-bold text-thisblue w-32 text-right" /><span>in</span><input id="gi-yrs" value="${g.dfltYrs}" class="editable-num tab-num font-bold text-thisblue w-10 text-right" /><span>years.</span>`;
-  p$('goal-input-inner').innerHTML = inner;
-  const amtEl = p$('gi-amt'), yrsEl = p$('gi-yrs');
-  const upd = () => { goalAmt = parseNum(amtEl.value) || g.dfltAmt; goalYears = Math.min(60, parseNum(yrsEl.value) || g.dfltYrs); computeGoal(); };
-  amtEl.addEventListener('input', upd); yrsEl.addEventListener('input', upd);
-  if (revealedB) computeGoal();
-  else p$('planner-result').innerHTML = '';
-}
-p$('goal-buttons').addEventListener('click', e => { const b=e.target.closest('button[data-g]'); if(!b) return; goalKey=b.dataset.g; paintGoal(); renderGoalInput(); });
-p$('reveal-b').addEventListener('click', () => {
-  revealedB = true;
-  p$('reveal-b').classList.add('hidden');
-  computeGoal();
-  p$('planner-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  $('result').innerHTML=html;
+  $('result').classList.remove('hidden');
+  $('result').scrollIntoView({behavior:'smooth',block:'start'});
 });
 
-// ---- door tabs ----
-function paintDoors(door) {
-  document.querySelectorAll('.door-tab').forEach(b => {
-    const on = b.dataset.door === door;
-    b.className = 'door-tab rounded-2xl px-4 py-3 text-left ' + (on ? 'bg-ink text-warmpaper' : 'bg-transparent text-ink/70 hover:bg-white');
-  });
-  p$('door-invest').classList.toggle('hidden', door !== 'invest');
-  p$('door-goal').classList.toggle('hidden', door !== 'goal');
-  if (door === 'invest') paintInvest();
-  else { if (goalKey) { paintGoal(); renderGoalInput(); } else p$('planner-result').innerHTML = '<div class="text-sm text-ink/50 bg-warmpaper-2 rounded-2xl p-6 text-center">Pick a goal above to see the amount you need and a starting mix.</div>'; }
-}
-document.querySelectorAll('.door-tab').forEach(b => b.addEventListener('click', () => paintDoors(b.dataset.door)));
+document.querySelector('.mode[data-mode="invest"]').click();   // sets the mode and draws
 
-paintDoors('invest');
+/* ---- episodes: the real thumbnails, because they exist ---- */
+var ALL=window.EPISODES||[];
+$('epcount').textContent=ALL.length;
+function drawEpisodes(pinId){
+  if(!ALL.length) return;
+  // "Featured episode" in the CMS pins the billboard; blank means newest
+  var pinned=pinId&&ALL.filter(function(x){return x.id===pinId;})[0];
+  var h=pinned||ALL[0];
+  var E=[h].concat(ALL.filter(function(x){return x.id!==h.id;}));
+  $('ephero').innerHTML=
+    '<a href="episode-detail.html?v='+esc(h.id)+'" class="block relative aspect-[16/9] md:aspect-auto md:min-h-[300px] overflow-hidden">'+
+      '<img src="'+esc(h.thumb)+'" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />'+
+    '</a>'+
+    '<div class="p-9 md:p-11 flex flex-col justify-center">'+
+      '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Latest · Episode '+esc(h.n)+'</div>'+
+      '<a href="episode-detail.html?v='+esc(h.id)+'" class="font-display font-extrabold text-[clamp(22px,2.9vw,30px)] leading-[1.14] tracking-[-0.02em] text-paper mt-4 hover:text-marigold transition">'+esc(h.title)+'</a>'+
+      '<div class="text-[13px] text-paper/55 mt-5">'+esc(h.guest)+' · '+esc(h.published)+'</div>'+
+    '</div>';
+  $('epgrid').innerHTML=E.slice(1,4).map(function(e){
+    return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group bg-white border border-line rounded-[18px] overflow-hidden hover:border-ink transition">'+
+      '<div class="aspect-[16/9] overflow-hidden bg-surf"><img src="'+esc(e.thumb)+'" alt="" loading="lazy" class="w-full h-full object-cover" /></div>'+
+      '<div class="p-6"><div class="text-[16px] font-bold leading-snug tracking-[-0.01em] group-hover:text-gold">'+esc(e.title)+'</div>'+
+      '<div class="text-[12.5px] text-meta mt-2.5">'+esc(e.guest)+' · '+esc(e.published)+'</div></div></a>';
+  }).join('');
+}
+drawEpisodes('');   // render now; redrawn only if the CMS has pinned one
+
+/* ---- guests: everyone the same size, alphabetical, no counts.
+        Merged from the CMS list and the YouTube sync so a guest added in the
+        CMS appears here without touching code. ---- */
+function drawGuests(cms){
+  var seen={}, all=[];
+  (cms||[]).concat(window.GUESTS||[]).forEach(function(g){
+    var name=(g&&g.name||'').trim();
+    if(!name||/solo/i.test(name)) return;
+    var key=name.toLowerCase();
+    if(seen[key]) { if(!seen[key].slug&&g.slug) seen[key].slug=g.slug; return; }
+    seen[key]={name:name, slug:g.slug||''};
+    all.push(seen[key]);
+  });
+  all.sort(function(a,b){ return a.name.localeCompare(b.name,'en'); });
+  $('guestwall').innerHTML=all.map(function(g){
+    var href=g.slug?('guest-detail.html?slug='+encodeURIComponent(g.slug)):'guests.html';
+    return '<a href="'+href+'" class="text-[18px] md:text-[20px] font-semibold tracking-[-0.015em] leading-none hover:text-gold transition">'+
+      esc(g.name)+'</a>';
+  }).join('');
+}
+fetch('content/guests.json',{cache:'no-cache'})
+  .then(function(r){ return r.ok?r.json():[]; })
+  .catch(function(){ return []; })
+  .then(drawGuests);
+
+/* ---- writing: two pieces, because two exist ---- */
+var ARTS=[
+  {t:'Your Return Expectation Is Older Than You Think', c:'Behaviour', m:5, s:'your-return-expectation-is-older-than-you-think'},
+  {t:"Why Your SIP Feels Like It's Doing Nothing", c:'Investing', m:5, s:'why-your-sip-feels-like-its-doing-nothing'}
+];
+$('arts').innerHTML=ARTS.map(function(a){
+  return '<a href="article-detail.html?slug='+encodeURIComponent(a.s)+'" class="group flex items-baseline justify-between gap-6 py-6 border-b border-line hover:border-ink transition">'+
+    '<div><div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-gold">'+esc(a.c)+'</div>'+
+    '<div class="text-[18px] md:text-[20px] font-bold leading-snug tracking-[-0.015em] mt-1.5 max-w-[40ch] group-hover:text-gold">'+esc(a.t)+'</div></div>'+
+    '<div class="text-[13px] text-meta shrink-0 tab-num">'+a.m+' min</div></a>';
+}).join('');
 })();
 </script>
 </body>

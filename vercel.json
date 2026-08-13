@@ -225,6 +225,16 @@
       "source": "/wealth-levers",
       "destination": "/wealth-levers.html",
       "permanent": false
+    },
+    {
+      "source": "/home-v3-mock",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/home-v3-mock.html",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
