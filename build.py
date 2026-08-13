@@ -263,7 +263,8 @@ def check_redirects():
         return
     cfg = _json.loads(cfg_path.read_text(encoding='utf-8'))
     have = {r['source'].lstrip('/') for r in cfg.get('redirects', [])}
-    skip = {'404', 'home-v2-mock', 'home-ia-mock', 'home-koshli-mock'}
+    # mocks are noindex drafts and are deliberately not given a pretty URL
+    skip = {'404'} | {p.stem for p in ROOT.glob('*-mock.html')}
     missing = sorted(p.stem for p in ROOT.glob('*.html') if p.stem not in skip and p.stem not in have)
     if missing:
         print('  ⚠ No extensionless redirect for: ' + ', '.join(missing))
