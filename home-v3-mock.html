@@ -370,31 +370,85 @@ function mix(h,b,hold,monthly){
    stubs so the form still reads as finite, but only the one being
    answered is full size.
    --------------------------------------------------------------- */
-var QS=[
-  {k:'horizon', short:'How long invested',
-   q:'How long will this money stay invested?',
-   opts:[['1-3','1 to 3 yrs'],['3-5','3 to 5 yrs'],['5-10','5 to 10 yrs'],['10+','10 yrs +']]},
-  {k:'hold', short:'How you hold it',
-   q:'And how do you want to hold it?',
-   opts:[['mf','Only mutual funds'],['mf+stocks','Mutual funds + my own stocks']]},
-  {k:'behaviour', short:'In a bad year',
-   q:'A bad year hits and your ₹10 lakh shows ₹8 lakh. What do you actually do?',
-   opts:[['sell','Sell, stop the pain'],['sit','Sit tight'],['buy','Buy more']]},
-  {k:'monthly', short:'Every month', q:'How much can you put in each month?', amount:true}
-];
-var A={}, open=0, done=false;
+/* ---------------------------------------------------------------
+   Two real modes. "How you want to invest" starts from a monthly
+   amount and returns a mix. "A goal in mind" starts from a target
+   and a date and returns the mix plus the monthly amount needed to
+   actually reach it. Both use the same horizon and behaviour rules,
+   so they can never disagree. Goal maths ported from verify_goal.py.
+   --------------------------------------------------------------- */
+var EQ_RETURN=12.0, DEBT_RETURN=7.0, INFLATION=6.0;
+function bandFor(y){ return y<=3?'1-3':(y<=5?'3-5':(y<=10?'5-10':'10+')); }
+function blended(eq){ return (eq*EQ_RETURN+(100-eq)*DEBT_RETURN)/100; }
+function sipFor(target,years,ret){
+  var months=Math.round(years*12), rm=ret/100/12;
+  if(months<=0) return target;
+  if(rm===0) return target/months;
+  return target*rm/(Math.pow(1+rm,months)-1);
+}
+function goalPlan(years,todayCost,behaviour,holding,have){
+  var band=bandFor(years), m=mix(band,behaviour,holding,0), r=blended(m.equity);
+  var future=todayCost*Math.pow(1+INFLATION/100,years);
+  var haveFV=(have||0)*Math.pow(1+r/100,years);
+  var gap=Math.max(0,future-haveFV);
+  return {band:band,mix:m,ret:Math.round(r*100)/100,future:future,haveFV:haveFV,
+          gap:gap,monthly:sipFor(gap,years,r)};
+}
 
+var BAD_YEAR={k:'behaviour', short:'In a bad year',
+  q:'A bad year hits and your ₹10 lakh shows ₹8 lakh. What do you actually do?',
+  opts:[['sell','Sell, stop the pain'],['sit','Sit tight'],['buy','Buy more']]};
+
+var QSETS={
+  invest:[
+    {k:'horizon', short:'How long invested',
+     q:'How long will this money stay invested?',
+     opts:[['1-3','1 to 3 yrs'],['3-5','3 to 5 yrs'],['5-10','5 to 10 yrs'],['10+','10 yrs +']]},
+    {k:'hold', short:'How you hold it',
+     q:'And how do you want to hold it?',
+     opts:[['mf','Only mutual funds'],['mf+stocks','Mutual funds + my own stocks']]},
+    BAD_YEAR,
+    {k:'monthly', short:'Every month', q:'How much can you put in each month?',
+     amount:true, chips:[10000,25000,50000,100000]}
+  ],
+  goal:[
+    {k:'what', short:'The goal',
+     q:'What are you saving for?',
+     opts:[['education',"A child's education"],['home','A home'],['retirement','Retirement'],['other','Something else']]},
+    {k:'years', short:'When you need it',
+     q:'When will you need the money?',
+     opts:[['3','In 3 years'],['5','In 5 years'],['10','In 10 years'],['15','In 15 years'],['25','In 25 years or more']]},
+    {k:'cost', short:'What it costs today', q:"What would it cost today, in today's money?",
+     amount:true, chips:[500000,2000000,5000000,10000000],
+     hint:"Today's price. We add inflation to work out what it will cost by then."},
+    BAD_YEAR
+  ]
+};
+var MODE='invest';
+var ANS={invest:{}, goal:{}};
+var open=0, done=false;
+function QS(){ return QSETS[MODE]; }
+function A(){ return ANS[MODE]; }
+
+function fmtAmt(n){
+  n=Number(n)||0;
+  if(n>=10000000) return '₹'+(n/10000000).toFixed(2).replace(/\.?0+$/,'')+' Cr';
+  if(n>=100000)   return '₹'+(n/100000).toFixed(2).replace(/\.?0+$/,'')+' L';
+  return '₹'+inr(n);
+}
+function chipLabel(n){ return n>=10000000?(n/10000000)+'Cr':(n>=100000?(n/100000)+'L':(n/1000)+'k'); }
 function label(q,v){
-  if(q.amount) return v?('₹'+inr(v)+' a month'):'';
+  if(q.amount) return v?fmtAmt(v):'';
   var o=q.opts.filter(function(x){return x[0]===v;})[0];
   return o?o[1]:'';
 }
-function answered(){ return QS.filter(function(q){return A[q.k];}).length; }
-function firstUnanswered(){ for(var i=0;i<QS.length;i++) if(!A[QS[i].k]) return i; return -1; }
+function answered(){ return QS().filter(function(q){return A()[q.k];}).length; }
+function firstUnanswered(){ var s=QS(); for(var i=0;i<s.length;i++) if(!A()[s[i].k]) return i; return -1; }
 
 function drawQs(){
-  $('qs').innerHTML=QS.map(function(q,i){
-    var v=A[q.k], isOpen=(i===open&&!done);
+  var set=QS(), ans=A();
+  $('qs').innerHTML=set.map(function(q,i){
+    var v=ans[q.k], isOpen=(i===open&&!done);
     if(!isOpen){
       return '<div class="stub'+(i===0?' border-t-0':'')+'">'+
         '<span class="num'+(v?' done':'')+'">'+(v?'✓':('0'+(i+1)))+'</span>'+
@@ -407,12 +461,11 @@ function drawQs(){
     var inner = q.amount
       ? '<div class="flex flex-wrap items-center gap-3 mt-4">'+
           '<span class="text-[20px] font-bold text-meta">₹</span>'+
-          '<input id="amt" class="amt" inputmode="numeric" value="'+(v?inr(v):'')+'" placeholder="25,000" aria-label="Monthly amount" />'+
-          '<span class="text-[14px] text-meta mr-2">a month</span>'+
-          [10000,25000,50000,100000].map(function(n){
-            return '<button class="chip" data-amt="'+n+'" aria-pressed="'+(Number(v)===n)+'">'+
-              (n>=100000?(n/100000)+'L':(n/1000)+'k')+'</button>';}).join('')+
-        '</div>'
+          '<input id="amt" class="amt" inputmode="numeric" value="'+(v?inr(v):'')+'" placeholder="25,000" aria-label="Amount" />'+
+          q.chips.map(function(n){
+            return '<button class="chip" data-amt="'+n+'" aria-pressed="'+(Number(v)===n)+'">'+chipLabel(n)+'</button>';
+          }).join('')+
+        '</div>'+(q.hint?'<p class="text-[12.5px] text-meta mt-3">'+esc(q.hint)+'</p>':'')
       : '<div class="flex flex-wrap gap-2.5 mt-4">'+q.opts.map(function(o){
           return '<button class="chip" data-set="'+q.k+'" data-val="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';
         }).join('')+'</div>';
@@ -422,22 +475,22 @@ function drawQs(){
       inner+'</div></div></div>';
   }).join('');
 
-  var n=answered();
-  $('dots').innerHTML=QS.map(function(q,i){
+  var n=answered(), total=set.length;
+  $('dots').innerHTML=set.map(function(q){
     return '<span style="width:7px;height:7px;border-radius:99px;display:inline-block;background:'+
-      (A[q.k]?'#1A1813':'#D8D2C4')+'"></span>';}).join('');
-  $('prog').textContent=n+' of 4';
+      (ans[q.k]?'#1A1813':'#D8D2C4')+'"></span>';}).join('');
+  $('prog').textContent=n+' of '+total;
 
-  var go=$('go'), missing=4-n;
+  var go=$('go'), missing=total-n;
   if(missing===0){
     go.disabled=false;
     go.className='w-full rounded-full font-bold text-[15px] py-4 transition bg-marigold text-ink hover:brightness-95';
-    go.textContent='See my mix →';
+    go.textContent = MODE==='goal' ? 'See what it takes →' : 'See my mix →';
   } else {
     go.disabled=true;
     go.className='w-full rounded-full font-bold text-[15px] py-4 transition bg-surf text-meta cursor-not-allowed';
-    go.textContent = n===0 ? 'Answer all four to see your mix'
-                           : 'Answer '+missing+' more to see your mix';
+    go.textContent = n===0 ? 'Answer all four to see your '+(MODE==='goal'?'number':'mix')
+                           : 'Answer '+missing+' more to see your '+(MODE==='goal'?'number':'mix');
   }
   wireQs();
 }
@@ -448,16 +501,17 @@ function wireQs(){
   });
   [].forEach.call(document.querySelectorAll('[data-set]'),function(b){
     b.addEventListener('click',function(){
-      A[b.getAttribute('data-set')]=b.getAttribute('data-val');
+      A()[b.getAttribute('data-set')]=b.getAttribute('data-val');
       var nxt=firstUnanswered(); open = nxt===-1 ? open : nxt;
       drawQs();
     });
   });
   var amt=$('amt');
   if(amt){
+    var key=QS()[open].k;
     amt.addEventListener('input',function(){
       var n=parseInt(String(amt.value).replace(/[^\d]/g,''),10);
-      A.monthly = n>0 ? n : '';
+      A()[key] = n>0 ? n : '';
       var caret=amt.selectionStart, before=amt.value.length;
       drawQs();
       var el=$('amt');
@@ -466,7 +520,7 @@ function wireQs(){
     });
     [].forEach.call(document.querySelectorAll('[data-amt]'),function(b){
       b.addEventListener('click',function(){
-        A.monthly=+b.getAttribute('data-amt');
+        A()[key]=+b.getAttribute('data-amt');
         var nxt=firstUnanswered(); open = nxt===-1 ? open : nxt;
         drawQs();
       });
@@ -476,92 +530,121 @@ function wireQs(){
 
 [].forEach.call(document.querySelectorAll('.mode'),function(b){
   b.addEventListener('click',function(){
+    var next=b.getAttribute('data-mode');
+    if(next!==MODE){
+      // the crash question is the same question in both modes, so carry the answer over
+      if(ANS[MODE].behaviour && !ANS[next].behaviour) ANS[next].behaviour=ANS[MODE].behaviour;
+      MODE=next; done=false;
+      var nxt=firstUnanswered(); open = nxt===-1 ? 0 : nxt;
+      $('result').classList.add('hidden');
+    }
     [].forEach.call(document.querySelectorAll('.mode'),function(x){
-      var on=x===b;
+      var on=x.getAttribute('data-mode')===MODE;
       x.setAttribute('aria-selected',String(on));
       x.className='mode text-[13.5px] font-bold px-4 py-2 rounded-full transition '+
         (on?'bg-white text-ink shadow-[0_1px_3px_rgba(26,24,19,0.14)]':'text-meta');
     });
+    drawQs();
   });
 });
-document.querySelector('.mode').click();
 
-/* ---- the result: replaces the card in place, then the page reorders ---- */
+/* ---- the result ---- */
 var CAT_FOR={high:'Investing', mid:'Wealth', low:'Retirement'};
-$('go').addEventListener('click',function(){
-  var m=mix(A.horizon,A.behaviour,A.hold,A.monthly);
-  done=true; drawQs();
-
-  var why;
-  if(m.ceiling===0){
-    why='Money you need inside three years should not ride the market. That is true whatever your temperament, '+
-        'so the crash question did not change this one.';
-  } else if(m.equity<m.ceiling){
-    why='Your horizon would carry up to <strong>'+m.ceiling+'%</strong> in equity. You said you would sell in a bad '+
-        'year, so this is set at <strong>'+m.equity+'%</strong>. An allocation you abandon halfway is worth less than '+
-        'a smaller one you keep.';
-  } else if(A.behaviour==='buy'){
-    why='Your horizon carries up to <strong>'+m.ceiling+'%</strong> and you said you would buy more in a fall, so you '+
-        'get the full amount. Since you will want cash to deploy when it drops, hold your debt slice somewhere you can '+
-        'reach in a day rather than locking it away.';
-  } else {
-    why='Your horizon carries up to <strong>'+m.ceiling+'%</strong> in equity and you said you would sit tight, so you '+
-        'get the full amount. Sitting tight is the whole reason this number can be this high.';
-  }
-
-  var bars=m.rows.map(function(r){
+function bars(m,monthly){
+  return m.rows.map(function(r){
     return '<div class="mb-4"><div class="flex justify-between items-baseline mb-1.5">'+
       '<span class="text-[14.5px] font-bold">'+esc(r[0])+'</span>'+
       '<span class="text-[14.5px] tab-num"><strong>'+r[1]+'%</strong>'+
-      '<span class="text-meta"> · ₹'+inr(m.rupees[r[0]])+'</span></span></div>'+
+      (monthly?'<span class="text-meta"> · ₹'+inr(m.rupees[r[0]])+'</span>':'')+'</span></div>'+
       '<div style="height:10px;background:#EDE9DF;border-radius:99px;overflow:hidden">'+
       '<div style="height:100%;width:'+r[1]+'%;background:'+(r[0]==='Debt and cash'?'#1A1813':'#FFC21F')+'"></div>'+
       '</div></div>';
   }).join('');
-
-  var band = m.equity>=60?'high':(m.equity>0?'mid':'low');
+}
+function sidePanels(equity){
+  var band = equity>=60?'high':(equity>0?'mid':'low');
   var picks=(window.EPISODES||[]).filter(function(e){return e.cat===CAT_FOR[band];}).slice(0,2);
+  return '<div class="lg:col-span-5 space-y-5">'+
+    '<div class="bg-white border border-line rounded-[18px] p-7">'+
+      '<div class="kicker">What to do next</div>'+
+      '<ol class="mt-4 space-y-3.5 text-[14.5px] leading-relaxed text-body list-decimal pl-5">'+
+        '<li>Check this against every goal, not just this one. Each has its own date.</li>'+
+        '<li>Set the SIP to a date just after your salary lands, so it never bounces.</li>'+
+        '<li>Write down what you will do in the next bad year, now, while nothing is falling.</li>'+
+      '</ol>'+
+      '<a href="calculators.html" class="lnk text-[14px] inline-block mt-6">All 15 calculators &rarr;</a>'+
+    '</div>'+
+    (picks.length?'<div class="bg-white border border-line rounded-[18px] p-7">'+
+      '<div class="kicker">Two episodes on this</div>'+
+      '<div class="mt-4 grid gap-4">'+picks.map(function(e){
+        return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group block">'+
+          '<div class="text-[15px] font-bold leading-snug group-hover:text-gold">'+esc(e.title)+'</div>'+
+          '<div class="text-[12.5px] text-meta mt-1">'+esc(e.guest)+' · '+esc(e.published)+'</div></a>';
+      }).join('')+'</div></div>':'')+
+    '<div class="bg-surf border border-line rounded-[18px] p-7">'+
+      '<p class="text-[13.5px] leading-relaxed text-body">This is arithmetic on four answers, not advice. It does '+
+      'not know your income, your loans, your tax position or what else you already own.</p>'+
+      '<a href="money-person.html" class="lnk text-[14px] inline-block mt-4">Talk it through &rarr;</a>'+
+    '</div>'+
+  '</div>';
+}
 
-  $('result').innerHTML=
-    '<div class="grid lg:grid-cols-12 gap-6">'+
+$('go').addEventListener('click',function(){
+  var ans=A(), html;
+  done=true; drawQs();
+
+  if(MODE==='goal'){
+    var years=Number(ans.years), g=goalPlan(years,Number(ans.cost),ans.behaviour,'mf',0);
+    var WHAT={education:"your child's education",home:'a home',retirement:'retirement',other:'this'}[ans.what]||'this';
+    html='<div class="grid lg:grid-cols-12 gap-6">'+
+      '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
+        '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">What it takes</div>'+
+        '<div class="font-display font-extrabold text-[clamp(32px,5vw,46px)] leading-none tracking-[-0.03em] mt-4 tab-num">'+
+          '₹'+inr(g.monthly)+'<span class="text-[22px] font-sans font-bold text-paper/60"> a month</span></div>'+
+        '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+
+          fmtAmt(Number(ans.cost))+' for '+esc(WHAT)+' today becomes <strong>'+fmtAmt(g.future)+'</strong> in '+years+
+          ' years at 6% inflation. That is the number to aim at, not the one on the price tag now.</p>'+
+        '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(g.mix,false)+
+          '<p class="text-[12px] text-meta mt-1">A '+g.mix.equity+'/'+g.mix.debt+' mix is assumed to return about '+
+          g.ret.toFixed(2)+'% a year. That assumption is doing a lot of work here.</p>'+
+        '</div>'+
+        (g.mix.equity===0?'<p class="text-[13px] text-paper/70 mt-5">Because you need this within three years it sits '+
+          'in debt, which returns less, which is why the monthly figure is large. Short deadlines are expensive.</p>':'')+
+      '</div>'+ sidePanels(g.mix.equity) +'</div>';
+  } else {
+    var m=mix(ans.horizon,ans.behaviour,ans.hold,ans.monthly), why;
+    if(m.ceiling===0){
+      why='Money you need inside three years should not ride the market. That is true whatever your temperament, '+
+          'so the crash question did not change this one.';
+    } else if(m.equity<m.ceiling){
+      why='Your horizon would carry up to <strong>'+m.ceiling+'%</strong> in equity. You said you would sell in a bad '+
+          'year, so this is set at <strong>'+m.equity+'%</strong>. An allocation you abandon halfway is worth less than '+
+          'a smaller one you keep.';
+    } else if(ans.behaviour==='buy'){
+      why='Your horizon carries up to <strong>'+m.ceiling+'%</strong> and you said you would buy more in a fall, so you '+
+          'get the full amount. Since you will want cash to deploy when it drops, hold your debt slice somewhere you can '+
+          'reach in a day rather than locking it away.';
+    } else {
+      why='Your horizon carries up to <strong>'+m.ceiling+'%</strong> in equity and you said you would sit tight, so you '+
+          'get the full amount. Sitting tight is the whole reason this number can be this high.';
+    }
+    html='<div class="grid lg:grid-cols-12 gap-6">'+
       '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
         '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>'+
         '<div class="font-display font-extrabold text-[clamp(30px,4.6vw,42px)] leading-none tracking-[-0.03em] mt-4">'+
           m.equity+'% equity, '+m.debt+'% debt</div>'+
         '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+why+'</p>'+
-        '<div class="bg-paper text-ink rounded-[18px] p-6 mt-7">'+bars+
-          '<p class="text-[12px] text-meta mt-1">Of the ₹'+inr(A.monthly)+' you said you can invest each month.</p>'+
+        '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(m,true)+
+          '<p class="text-[12px] text-meta mt-1">Of the ₹'+inr(ans.monthly)+' you said you can invest each month.</p>'+
         '</div>'+
-      '</div>'+
-      '<div class="lg:col-span-5 space-y-5">'+
-        '<div class="bg-white border border-line rounded-[18px] p-7">'+
-          '<div class="kicker">What to do next</div>'+
-          '<ol class="mt-4 space-y-3.5 text-[14.5px] leading-relaxed text-body list-decimal pl-5">'+
-            '<li>Check this against every goal, not just this one. Each has its own date.</li>'+
-            '<li>Set the SIP to a date just after your salary lands, so it never bounces.</li>'+
-            '<li>Write down what you will do in the next bad year, now, while nothing is falling.</li>'+
-          '</ol>'+
-          '<a href="calculators.html" class="lnk text-[14px] inline-block mt-6">All 15 calculators &rarr;</a>'+
-        '</div>'+
-        (picks.length?'<div class="bg-white border border-line rounded-[18px] p-7">'+
-          '<div class="kicker">Two episodes on this</div>'+
-          '<div class="mt-4 grid gap-4">'+picks.map(function(e){
-            return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group block">'+
-              '<div class="text-[15px] font-bold leading-snug group-hover:text-gold">'+esc(e.title)+'</div>'+
-              '<div class="text-[12.5px] text-meta mt-1">'+esc(e.guest)+' · '+esc(e.published)+'</div></a>';
-          }).join('')+'</div></div>':'')+
-        '<div class="bg-surf border border-line rounded-[18px] p-7">'+
-          '<p class="text-[13.5px] leading-relaxed text-body">This is arithmetic on four answers, not advice. It does '+
-          'not know your income, your loans, your tax position or what else you already own.</p>'+
-          '<a href="money-person.html" class="lnk text-[14px] inline-block mt-4">Talk it through &rarr;</a>'+
-        '</div>'+
-      '</div>'+
-    '</div>';
+      '</div>'+ sidePanels(m.equity) +'</div>';
+  }
+  $('result').innerHTML=html;
   $('result').classList.remove('hidden');
   $('result').scrollIntoView({behavior:'smooth',block:'start'});
 });
 
-drawQs();
+document.querySelector('.mode[data-mode="invest"]').click();   // sets the mode and draws
 
 /* ---- episodes: the real thumbnails, because they exist ---- */
 var ALL=window.EPISODES||[];
