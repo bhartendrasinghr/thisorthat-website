@@ -251,20 +251,45 @@ def clean_title(title):
     return t
 
 def categorize(title):
-    # Word-boundary matching: "Different" must not match "rent", "expensive" not "pens", etc.
+    """Guess a category from the title. First rule that matches wins, so the order
+    is the design: a specific subject sits above a general one, and Investing is
+    last because almost every title on this channel mentions investing. Anything
+    here can be overridden per episode from the CMS, which always wins.
+    """
     t = title.lower()
     def hit(words):
         return any(re.search(r'\b' + re.escape(w) + r'\b', t) for w in words)
-    if hit(['retire','retirement','pension','pf','epf','insurance','health']): return 'Retirement'
-    if hit(['gold','silver','metal','metals']): return 'Commodities'
-    if hit(['global','us','nasdaq','dollar','magnificent','abroad']) or 'india is not' in t: return 'Global'
-    if hit(['real estate','house','home','rent','property','घर']): return 'Real Estate'
-    if hit(['budget','tax','ltcg']): return 'Tax'
-    if hit(['sip','mutual fund','fund','funds','equity','stock','stocks']): return 'Investing'
-    if hit(['family','couple','wealth','financial freedom','crore','rich','crorepati']): return 'Wealth'
-    if hit(['market','markets','crash','crisis','correction','bond','yield']): return 'Markets'
-    if hit(['hidden','mistake','mistakes','mindset','panic','simple','emotion','emotions','women','behavior','behavioral','behaviour']): return 'Behaviour'
+
+    # a named subject
+    if hit(['crypto', 'bitcoin', 'ethereum', 'stablecoin', 'stablecoins', 'blockchain', 'web3']): return 'Crypto'
+    if hit(['insurance', 'mediclaim', 'term plan']):                                              return 'Insurance'
+    if hit(['fitness', 'gym', 'workout', 'exercise']):                                            return 'Fitness'
+    if hit(['health', 'unhealthy', 'wellness', 'medical']):                                       return 'Health'
+    if hit(['aif', 'pms', 'reit', 'invit', 'unlisted', 'alternate', 'alternates',
+            'private equity', 'startup', 'angel']):                                               return 'Alternates'
+    if hit(['retire', 'retirement', 'pension', 'pf', 'epf', 'nps']):                              return 'Retirement'
+    if hit(['gold', 'silver', 'metal', 'metals']):                                                return 'Commodities'
+    if hit(['global', 'us', 'nasdaq', 'dollar', 'magnificent', 'abroad',
+            'international']) or 'india is not' in t:                                             return 'Global'
+    if hit(['real estate', 'house', 'home', 'rent', 'property', 'घर']):                           return 'Real Estate'
+    if hit(['budget', 'tax', 'ltcg']):                                                            return 'Tax'
+    if hit(['career', 'job', 'salary', 'appraisal', 'promotion', 'freelance', 'side hustle']):    return 'Career'
+
+    # how a person behaves sits above what they hold, because the angle is the point
+    if hit(['mistake', 'mistakes', 'mindset', 'panic', 'emotion', 'emotions', 'women',
+            'behavior', 'behavioral', 'behaviour', 'patience', 'discipline', 'hidden',
+            'simple', 'scares', 'fear', 'greed', 'fomo']):                                        return 'Behaviour'
+
+    # what they hold
+    if hit(['sip', 'sips', 'step-up', 'stp', 'swp']):                                             return 'SIP'
+    if hit(['mutual fund', 'mutual funds', 'nfo', 'amc', 'expense ratio',
+            'fund manager', 'index fund', 'elss']):                                               return 'Mutual Fund'
+    if hit(['market', 'markets', 'crash', 'crisis', 'correction', 'bond', 'yield']):              return 'Markets'
+    if hit(['family', 'couple', 'wealth', 'financial freedom', 'crore', 'rich', 'crorepati']):    return 'Wealth'
+    if hit(['equity', 'stock', 'stocks', 'portfolio', 'invest', 'investing',
+            'investor', 'investors', 'fund', 'funds']):                                           return 'Investing'
     return 'Investing'
+
 
 GUEST_ROLES.update(load_cms_roles())
 

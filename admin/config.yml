@@ -38,7 +38,7 @@ collections:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "subtitle", label: "Subtitle / dek", widget: "string", required: false }
       - { name: "slug", label: "URL slug", widget: "string", pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Lowercase letters, numbers and single hyphens only. No spaces or capitals, e.g. your-return-expectation"], hint: "Lowercase letters, numbers and hyphens only, no spaces. Used in the URL: /article-detail.html?slug=YOUR-SLUG" }
-      - { name: "category", label: "Category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities", "Slow Thought"] }
+      - { name: "category", label: "Category", widget: "select", options: ["Behaviour", "Markets", "Investing", "SIP", "Mutual Fund", "Alternates", "Crypto", "Insurance", "Health", "Fitness", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities", "Slow Thought"] }
       - { name: "date", label: "Publish date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { name: "author", label: "Author", widget: "string", default: "Bhartendra Singh" }
       - { name: "read_minutes", label: "Read time (minutes)", widget: "number", value_type: "int", min: 1, max: 60, default: 5 }
@@ -201,7 +201,7 @@ collections:
             fields:
               - { name: "video_id", label: "YouTube video ID", widget: "string", hint: "The 11-character ID from the YouTube URL (after v=)" }
               - { name: "guest", label: "Override guest name", widget: "string", required: false }
-              - { name: "category", label: "Override category", widget: "select", options: ["Behaviour", "Markets", "Investing", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities"], required: false }
+              - { name: "category", label: "Override category", widget: "select", required: false, default: "", options: [{label: "Work it out from the title", value: ""}, "Behaviour", "Markets", "Investing", "SIP", "Mutual Fund", "Alternates", "Crypto", "Insurance", "Health", "Fitness", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities"], hint: "Leave on the first option and the category is worked out from the title. Pick anything else and it wins." }
               - { name: "title", label: "Override title (rarely needed)", widget: "string", required: false }
 
   # ───────── EPISODE NOTES (the fork, takeaways, chapters) ─────────
