@@ -2,7 +2,7 @@
 name: Ajit Menon
 slug: ajit-menon
 role: Former CEO, PGIM Mutual Fund
-photo: /media/chatgpt-image-aug-14-2026-09_33_00-pm.png
+photo: /media/chatgpt-image-aug-14-2026-10_30_15-pm.png
 linkedin: ""
 twitter: ""
 website: ""
