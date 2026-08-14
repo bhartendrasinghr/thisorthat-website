@@ -21,28 +21,52 @@ GUESTS_OUT = ROOT / 'content' / 'guests.json'
 
 # ─── Frontmatter + markdown parsing (no external deps) ───────────────────
 def parse_frontmatter(text):
-    """Extract YAML-like frontmatter between leading --- markers. Returns (meta_dict, body)."""
+    """Extract YAML frontmatter between leading --- markers. Returns (meta_dict, body).
+
+    Uses PyYAML when it is available. The hand rolled fallback below reads line by
+    line, which silently truncated any value the CMS wrapped across lines: a long
+    quote came out as its first line plus a stray quote character. The fallback now
+    joins continuation lines before parsing.
+    """
     m = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', text, re.DOTALL)
     if not m:
         return {}, text
     meta_block, body = m.group(1), m.group(2)
-    meta = {}
+
+    try:
+        import yaml
+        meta = yaml.safe_load(meta_block) or {}
+        if isinstance(meta, dict):
+            return meta, body
+    except Exception:
+        pass
+
+    # Fallback: join wrapped lines onto the key they belong to, then parse.
+    joined, buf = [], None
     for line in meta_block.splitlines():
-        line = line.rstrip()
-        if not line or line.startswith('#'): continue
-        if ':' not in line: continue
+        if re.match(r'^[A-Za-z_][\w-]*\s*:', line):
+            if buf is not None: joined.append(buf)
+            buf = line.rstrip()
+        elif buf is not None and line.strip():
+            buf += ' ' + line.strip()          # a wrapped continuation of the value
+    if buf is not None: joined.append(buf)
+
+    meta = {}
+    for line in joined:
+        if line.startswith('#'): continue
         k, _, v = line.partition(':')
-        k = k.strip()
-        v = v.strip()
-        # Strip quotes
-        if (v.startswith('"') and v.endswith('"')) or (v.startswith("'") and v.endswith("'")):
-            v = v[1:-1].replace('\\"', '"').replace("\\'", "'")
-        # Type coerce
-        if v.lower() == 'true': v = True
-        elif v.lower() == 'false': v = False
-        elif re.match(r'^-?\d+$', v): v = int(v)
+        k, v = k.strip(), v.strip()
+        if len(v) >= 2 and v[0] == v[-1] and v[0] in '"\'':
+            quote = v[0]
+            v = v[1:-1]
+            v = v.replace('\\' + quote, quote) if quote == '"' else v.replace(quote * 2, quote)
+        if isinstance(v, str):
+            if v.lower() == 'true': v = True
+            elif v.lower() == 'false': v = False
+            elif re.match(r'^-?\d+$', v): v = int(v)
         meta[k] = v
     return meta, body
+
 
 def markdown_to_html(md):
     """Minimal markdown → HTML for the essay format we use (h2, paragraphs, blockquotes, em, bold)."""
@@ -180,6 +204,11 @@ def build_guests():
         # Normalise empty photo
         if not meta.get('photo'):
             meta['photo'] = ''
+        # The pages add their own quote marks, so strip any the author typed.
+        q = str(meta.get('quote') or '').strip()
+        if len(q) >= 2 and q[0] in '"\u201c\u2018\'' and q[-1] in '"\u201d\u2019\'':
+            q = q[1:-1].strip()
+        meta['quote'] = q
         guests.append(meta)
 
     with GUESTS_OUT.open('w') as f:

@@ -2,7 +2,7 @@
   {
     "name": "Aashish Sommaiya",
     "slug": "aashish-sommaiya",
-    "role": "Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset",
+    "role": "Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset Management Ltd",
     "photo": "/media/chatgpt-image-jul-18-2026-11_21_00-pm.png",
     "linkedin": "https://www.linkedin.com/in/aashishpsomaiyaa/",
     "twitter": "",
@@ -15,13 +15,13 @@
   {
     "name": "Abhijit More",
     "slug": "abhijit-more",
-    "role": "Real Estate",
-    "photo": "",
+    "role": "Real Estate Expert ",
+    "photo": "/media/chatgpt-image-aug-14-2026-09_16_18-pm.png",
     "linkedin": "",
     "twitter": "",
     "website": "",
     "featured": false,
-    "quote": "",
+    "quote": "Agar aap 60 mein ho aur aap ye kehte ho ki mera 10 crore ka equity portfolio ban gaya lekin mera ghar nahi hai khud ka, so there is seriously a question mark I would raise over there.",
     "bio_html": "<p>Real estate specialist. Two conversations on the show, both on buying a home: whether to buy at all, and the costs nobody warns you about before you do.</p>",
     "excerpt": "Real estate specialist. Two conversations on the show, both on buying a home: whether to buy at all, and the costs nobody warns you about before you do."
   },
@@ -100,7 +100,8 @@
     "website": "",
     "featured": false,
     "bio_html": "<p>Founder of PFC (Personal Finance Coach). Pushes the inconvenient idea that wealth without health is meaningless.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
-    "excerpt": "Founder of PFC (Personal Finance Coach). Pushes the inconvenient idea that wealth without health is meaningless."
+    "excerpt": "Founder of PFC (Personal Finance Coach). Pushes the inconvenient idea that wealth without health is meaningless.",
+    "quote": ""
   },
   {
     "name": "Debashish Bose",
@@ -164,7 +165,8 @@
     "website": "",
     "featured": false,
     "bio_html": "<p>Chief Business Officer at Axis Mutual Fund. Guest on This or That on silver, time vs money, and wealth psychology.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
-    "excerpt": "Chief Business Officer at Axis Mutual Fund. Guest on This or That on silver, time vs money, and wealth psychology."
+    "excerpt": "Chief Business Officer at Axis Mutual Fund. Guest on This or That on silver, time vs money, and wealth psychology.",
+    "quote": ""
   },
   {
     "name": "Ketan Das",
@@ -202,7 +204,8 @@
     "website": "",
     "featured": false,
     "bio_html": "<p>Founder of Gateway to Financial Freedom. Frequent ThisOrThat guest on gold, investor behaviour, and fund selection.</p>\n<h2>In their own words</h2>\n<blockquote>Add a memorable quote from this guest's episode here. Use the > markdown to render it as a pull quote.</blockquote>\n<h2>What they care about</h2>\n<p>Write a few paragraphs about this guest's core ideas, recurring themes across their appearances, and what listeners take away. Markdown supported, use ## for headings, <strong>bold</strong>, <em>italic</em>, > for quotes.</p>",
-    "excerpt": "Founder of Gateway to Financial Freedom. Frequent ThisOrThat guest on gold, investor behaviour, and fund selection."
+    "excerpt": "Founder of Gateway to Financial Freedom. Frequent ThisOrThat guest on gold, investor behaviour, and fund selection.",
+    "quote": ""
   },
   {
     "name": "Lakshmi Iyer",

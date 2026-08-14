@@ -248,6 +248,17 @@ Promise.all([
   if (guest.website)   socials.push(`<a href="${guest.website}" target="_blank" class="border border-navy/20 text-navy-ink px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy hover:text-cream transition">Website</a>`);
   document.getElementById('g-social').innerHTML = socials.join('');
 
+  // Their line, in their own words. The CMS has had a quote field all along and
+  // this page never rendered it, so every quote Bhartendra typed was invisible here.
+  const q = (guest.quote || '').trim();
+  if (q) {
+    const slot = document.getElementById('g-social');
+    slot.insertAdjacentHTML('afterend',
+      `<blockquote class="mt-8 max-w-2xl border-l-4 border-mustard pl-6 text-[19px] md:text-[21px] leading-relaxed text-navy-ink italic">
+         ${q.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+       </blockquote>`);
+  }
+
   // Bio (only show section if there's real content; strip unfilled CMS placeholders)
   let bioHtml = (guest.bio_html || '').trim();
   const isPlaceholder = /Add a memorable quote from this guest|Write a few paragraphs about this guest/i.test(bioHtml);
