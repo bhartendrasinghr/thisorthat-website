@@ -1,13 +1,14 @@
 ---
 name: Ajit Menon
 slug: ajit-menon
-role: "Former CEO, PGIM Mutual Fund"
-photo: ""
+role: Former CEO, PGIM Mutual Fund
+photo: /media/chatgpt-image-aug-14-2026-09_33_00-pm.png
 linkedin: ""
 twitter: ""
 website: ""
 featured: false
-quote: "Everyone can be happy; it is the constant chase to be happier where the trouble usually starts."
+quote: Everyone can be happy; it is the constant chase to be happier where the
+  trouble usually starts.
 ---
 
 Investment strategist focused on long-term wealth building strategies for Indian investors.
