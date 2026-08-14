@@ -119,7 +119,7 @@ collections:
               - { name: "kicker", label: "Eyebrow above name", widget: "string", default: "The host", hint: "Tiny uppercase line above the host name" }
               - { name: "name", label: "Host name", widget: "string" }
               - { name: "tagline", label: "Host one-liner", widget: "text", hint: "Short sentence under the name" }
-              - { name: "photo", label: "Host photo", widget: "image", required: false, hint: "Square image works best. If blank, falls back to the BS initials block." }
+              - { name: "photo", label: "Host photo", widget: "image", required: false, hint: "JPG or PNG only. iPhone HEIC files will not upload, so share the photo as JPEG first. Square is best, 800x800 is plenty, and keep it under 2MB. If blank, falls back to the initials block." }
               - { name: "contact_email", label: "Contact email", widget: "string", hint: "Powers the 'hello@…' button" }
               - { name: "linkedin_url", label: "LinkedIn URL", widget: "string", required: false }
               - { name: "twitter_url", label: "Twitter / X URL", widget: "string", required: false }
@@ -297,7 +297,7 @@ collections:
               - { name: "reg", label: "Registration number (ARN / SEBI RIA)", widget: "string", required: false, hint: "Shown so visitors can verify on AMFI or SEBI. Leave blank to hide." }
               - { name: "firm", label: "Firm / role", widget: "string", required: false }
               - { name: "guest_slug", label: "Link to guest profile (slug)", widget: "string", required: false, hint: "e.g. vijai-mantri. Reuses their photo and shows an 'On the show' badge." }
-              - { name: "photo", label: "Photo", widget: "image", required: false, hint: "If blank and a guest is linked, the guest photo is used, else initials." }
+              - { name: "photo", label: "Photo", widget: "image", required: false, hint: "JPG or PNG only. iPhone HEIC files will not upload, so share the photo as JPEG first. Square is best, 800x800 is plenty, and keep it under 2MB. If blank and a guest is linked, the guest photo is used, else initials." }
               - { name: "blurb", label: "Good for (one line)", widget: "string", required: false }
               - { name: "specialties", label: "Specialties", widget: "list", required: false }
               - { name: "consent_confirmed", label: "Consent confirmed?", widget: "boolean", default: false, hint: "Tick only once this person has agreed to be listed and to receive introductions." }
@@ -331,7 +331,7 @@ collections:
       - { name: "name", label: "Name (must match episode credits exactly)", widget: "string", hint: "Case-sensitive. E.g. 'Vijai Mantri' not 'vijai mantri'." }
       - { name: "slug", label: "URL slug", widget: "string", hint: "Lowercase, hyphens only. E.g. 'vijai-mantri'." }
       - { name: "role", label: "Role / title", widget: "string", hint: "Short one-liner. E.g. 'Founder, VMFS' or 'CEO, DSP Mutual Fund'" }
-      - { name: "photo", label: "Photo", widget: "image", required: false, hint: "Square works best. JPG or PNG. Will be cropped to a circle in lists." }
+      - { name: "photo", label: "Photo", widget: "image", required: false, hint: "JPG or PNG only. iPhone HEIC files will not upload, so share the photo as JPEG first. Square is best, 800x800 is plenty, and keep it under 2MB. Cropped to a circle in lists." }
       - { name: "linkedin", label: "LinkedIn URL", widget: "string", required: false }
       - { name: "twitter", label: "Twitter / X URL", widget: "string", required: false }
       - { name: "website", label: "Website / company URL", widget: "string", required: false }
