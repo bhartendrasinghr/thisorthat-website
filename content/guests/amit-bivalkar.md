@@ -2,7 +2,7 @@
 name: Amit Bivalkar
 slug: amit-bivalkar
 role: Founder, Sapient Wealth
-photo: ""
+photo: /media/chatgpt-image-aug-14-2026-10_30_15-pm.png
 linkedin: ""
 twitter: ""
 website: ""
