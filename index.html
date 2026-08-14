@@ -544,6 +544,95 @@ function wireQs(){
   });
 });
 
+/* ---------------------------------------------------------------
+   Which kind of equity, which kind of debt. Ported from
+   verify_deep.py, which checks that every split adds back to its
+   own slice, that small cap never appears under ten years or for
+   someone who would sell, that mid cap needs five, that PPF never
+   appears inside its own fifteen year lock, and that money needed
+   within three years stays in liquid.
+
+   Categories only. Naming a scheme would be a recommendation, and
+   that is a conversation with a registered adviser, not a web page.
+   --------------------------------------------------------------- */
+var EQUITY_SPLIT={
+  '3-5':  [['Flexi cap or multi cap',40],['Large cap',60]],
+  '5-10': [['Flexi cap or multi cap',45],['Large cap',30],['Mid cap',15],['International',10]],
+  '10+':  [['Flexi cap or multi cap',40],['Large cap',20],['Mid cap',20],['Small cap',10],['International',10]]
+};
+var DEBT_SPLIT={
+  '1-3':  [['Liquid or ultra short duration',100]],
+  '3-5':  [['Short duration',70],['Corporate bond',30]],
+  '5-10': [['Short duration',35],['Corporate bond',40],['Gilt',25]],
+  '10+':  [['Corporate bond',30],['Gilt',20],['PPF or EPF',50]]
+};
+var VOLATILE={'Mid cap':1,'Small cap':1};
+var WHY={
+  'Flexi cap or multi cap':'The manager moves between large, mid and small. One fund, the whole market.',
+  'Large cap':'The biggest hundred companies. Falls less, rises less.',
+  'Mid cap':'More room to grow and a much rougher ride. Needs five years at least.',
+  'Small cap':'The most volatile thing here. Ten years or do not bother.',
+  'International':'So your whole future is not riding on one country.',
+  'Liquid or ultra short duration':'Money you need soon. Available in a day, and it barely moves.',
+  'Short duration':'Two to three years. Less sensitive to rate changes than long bonds.',
+  'Corporate bond':'Lends to companies rather than the government. A little more yield, a little more risk.',
+  'Gilt':'Government paper. No credit risk, but the price swings when rates move.',
+  'PPF or EPF':'Tax free and government backed, and locked for fifteen years. That lock is the point and the catch.'
+};
+function spread(split, parent){
+  if(!parent||!split.length) return [];
+  var r=split.map(function(x){ return [x[0], Math.round(parent*x[1]/100)]; });
+  var drift=parent-r.reduce(function(a,x){return a+x[1];},0);
+  var big=0; r.forEach(function(x,i){ if(x[1]>r[big][1]) big=i; });
+  r[big][1]+=drift;
+  return r.filter(function(x){ return x[1]>0; });
+}
+function deepMix(band, behaviour, m, monthly){
+  var eq=(EQUITY_SPLIT[band]||[]).slice();
+  if(behaviour==='sell'){
+    var moved=eq.reduce(function(a,x){ return a+(VOLATILE[x[0]]?x[1]:0); },0);
+    eq=eq.filter(function(x){ return !VOLATILE[x[0]]; })
+         .map(function(x){ return x[0]==='Flexi cap or multi cap'?[x[0],x[1]+moved]:x; });
+  }
+  var rows=spread(eq, m.funds).map(function(x){ return ['Equity',x[0],x[1]]; });
+  if(m.direct>0) rows.push(['Equity','Your own stocks',m.direct]);
+  rows=rows.concat(spread(DEBT_SPLIT[band]||[], m.debt).map(function(x){ return ['Debt',x[0],x[1]]; }));
+  var rupees={}, sum=0;
+  rows.forEach(function(r){ rupees[r[1]]=Math.round(monthly*r[2]/100); sum+=rupees[r[1]]; });
+  if(rows.length){
+    var big=rows.reduce(function(a,c){ return c[2]>a[2]?c:a; })[1];
+    rupees[big]+=monthly-sum;
+  }
+  return {rows:rows, rupees:rupees};
+}
+function deepPanel(band, behaviour, m, monthly){
+  var d=deepMix(band, behaviour, m, monthly);
+  var html='<div class="bg-paper text-ink rounded-[12px] p-6 mt-5">'+
+    '<div class="kicker">What kind, and how much</div>';
+  [['Equity','The equity side'],['Debt','The debt side']].forEach(function(g){
+    var rows=d.rows.filter(function(r){ return r[0]===g[0]; });
+    if(!rows.length) return;
+    html+='<div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-meta mt-5 mb-2">'+g[1]+'</div>';
+    html+=rows.map(function(r){
+      var own=r[1]==='Your own stocks';
+      var label=own?esc(r[1])
+        :'<a href="understanding-mutual-funds.html?q='+encodeURIComponent(r[1].split(' or ')[0])+'#categories" class="lnk">'+esc(r[1])+'</a>';
+      return '<div class="flex items-baseline justify-between gap-4 py-2.5 border-b border-line/70">'+
+        '<div class="max-w-[30ch]"><div class="text-[14px] font-bold leading-snug">'+label+'</div>'+
+        (WHY[r[1]]?'<div class="text-[11.5px] text-meta leading-snug mt-0.5">'+esc(WHY[r[1]])+'</div>':'')+'</div>'+
+        '<div class="text-right shrink-0"><div class="text-[14px] font-bold tab-num">'+r[2]+'%</div>'+
+        (monthly?'<div class="text-[12px] text-meta tab-num">₹'+inr(d.rupees[r[1]])+'</div>':'')+'</div></div>';
+    }).join('');
+  });
+  html+='<p class="text-[11.5px] text-meta leading-relaxed mt-4">These are categories, not funds. Which scheme '+
+        'inside a category suits you depends on your tax position, what you already hold and how much you are '+
+        'paying in fees, and that is a decision to make with someone who can see all of it.</p>';
+  html+='<a href="money-person.html" class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[14px] '+
+        'px-6 py-3 rounded-full mt-4 hover:bg-black transition">Talk to a human about which funds &rarr;</a>';
+  html+='</div>';
+  return html;
+}
+
 /* ---- the result ---- */
 var CAT_FOR={high:'Investing', mid:'Wealth', low:'Retirement'};
 function bars(m,monthly){
@@ -604,6 +693,7 @@ $('go').addEventListener('click',function(){
           '<p class="text-[12px] text-meta mt-1">'+(/^[8]/.test(String(g.mix.equity))?'An ':'A ')+g.mix.equity+'/'+g.mix.debt+' mix is assumed to return about '+
           g.ret.toFixed(2)+'% a year. That assumption is doing a lot of work here.</p>'+
         '</div>'+
+        deepPanel(g.band, ans.behaviour, g.mix, Math.round(g.monthly))+
         (g.mix.equity===0?'<p class="text-[13px] text-paper/70 mt-5">Because you need this within three years it sits '+
           'in debt, which returns less, which is why the monthly figure is large. Short deadlines are expensive.</p>':'')+
       '</div>'+ sidePanels(g.mix.equity) +'</div>';
@@ -633,6 +723,7 @@ $('go').addEventListener('click',function(){
         '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(m,true)+
           '<p class="text-[12px] text-meta mt-1">Of the ₹'+inr(ans.monthly)+' you said you can invest each month.</p>'+
         '</div>'+
+        deepPanel(ans.horizon, ans.behaviour, m, Number(ans.monthly))+
       '</div>'+ sidePanels(m.equity) +'</div>';
   }
   $('result').innerHTML=html;

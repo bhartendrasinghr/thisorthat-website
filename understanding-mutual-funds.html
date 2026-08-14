@@ -339,6 +339,13 @@ $('tabs').addEventListener('click', e => {
   if (b) { fam = b.dataset.fam; q = ''; $('q').value = ''; render(); }
 });
 $('q').addEventListener('input', e => { q = e.target.value.trim(); render(); });
+// arriving from the home page planner with a category in the URL
+(function(){
+  var m = new URLSearchParams(location.search).get('q');
+  if (m) { q = m.trim(); $('q').value = q; render();
+    var t = document.getElementById('categories');
+    if (t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth',block:'start'}); }, 60); }
+})();
 $('expand').addEventListener('click', () => document.querySelectorAll('#list details').forEach(d => d.open = true));
 $('collapse').addEventListener('click', () => document.querySelectorAll('#list details').forEach(d => d.open = false));
 
