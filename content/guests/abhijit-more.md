@@ -2,19 +2,14 @@
 name: Abhijit More
 slug: abhijit-more
 role: "Real Estate Expert "
-photo: ""
+photo: /media/chatgpt-image-aug-14-2026-09_16_18-pm.png
 linkedin: ""
 twitter: ""
 website: ""
 featured: false
-quote: If I own a house worth ₹1 crore and I need to sell it desperately, will I
-  be willing to sell the house at 70 lakhs today just to raise funds quickly?
-  The answer is no. So the answer also lies in how people view real estate. When
-  it comes to equity they are willing to take the hit. Lekin agar mujhe real
-  estate quickly turn around karna hai to log kehte hain nahi, ye to 1 crore ki
-  cheez hai, main kam se kam 90 lakh to leke hi jaunga. Have the same mindset of
-  real estate, you will still be able to exit. Liquidity and urgency is the
-  question.
+quote: Agar aap 60 mein ho aur aap ye kehte ho ki mera 10 crore ka equity
+  portfolio ban gaya lekin mera ghar nahi hai khud ka, so there is seriously a
+  question mark I would raise over there.
 ---
 
 Real estate specialist. Two conversations on the show, both on buying a home: whether to buy at all, and the costs nobody warns you about before you do.
