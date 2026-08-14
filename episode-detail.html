@@ -305,7 +305,7 @@ const renderGuestCard = (rich) => {
 
 renderGuestCard(null); // immediate paint
 if (!isSolo) {
-  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => [])
+  fetch('content/guests.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => [])
     .then(rich => {
       const found = rich.find(g => g.name === guestName);
       if (found) renderGuestCard(found);

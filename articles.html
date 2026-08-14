@@ -180,7 +180,7 @@ const formatDate = (iso) => {
 };
 const thumbClass = (article) => article.hero_color || 'thumb-1';
 
-fetch('content/articles.json')
+fetch('content/articles.json', { cache: 'no-cache' })
   .then(r => r.json())
   .then(articles => {
     if (!articles.length) {

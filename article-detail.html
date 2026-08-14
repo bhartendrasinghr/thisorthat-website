@@ -195,7 +195,7 @@
 const formatDate = (iso) => iso ? new Date(iso).toLocaleDateString('en-IN',{month:'short',day:'numeric',year:'numeric'}) : '';
 const slug = new URLSearchParams(location.search).get('slug');
 
-fetch('content/articles.json')
+fetch('content/articles.json', { cache: 'no-cache' })
   .then(r => r.json())
   .then(articles => {
     const article = slug ? articles.find(a => a.slug === slug) : articles[0];

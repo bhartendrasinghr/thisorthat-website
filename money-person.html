@@ -229,7 +229,7 @@ function paintAdv() {
       (on ? 'border-thisblue bg-thisblue/5 ring-1 ring-thisblue' : 'border-navy/15 bg-white hover:border-thisblue/40');
   });
 }
-fetch('content/advisors.json').then(r => r.ok ? r.json() : null).catch(() => null).then(data => {
+fetch('content/advisors.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null).then(data => {
   const wrap = $('advisor-select');
   const section = $('advisor-section');
   if (!wrap || !data) return;

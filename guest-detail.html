@@ -189,7 +189,7 @@ const params = new URLSearchParams(window.location.search);
 
 Promise.all([
   Promise.resolve(window.GUESTS || []),
-  fetch('content/guests.json').then(r => r.ok ? r.json() : []).catch(() => []),
+  fetch('content/guests.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
 ])
 .then(([autoGuests, richGuests]) => {
   // Merge: guests with episodes + CMS-only upcoming guests
