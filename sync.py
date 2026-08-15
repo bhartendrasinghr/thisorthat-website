@@ -228,14 +228,60 @@ def parse_published(stats):
         if 'ago' in s: return s
     return None
 
-def parse_guest(vid, title, stats):
+NEW_GUESTS_SEEN = []
+
+_NOT_A_NAME = re.compile(
+    r'\b(part|mutual|fund|funds|investing|investment|explained|india|indian|money|wealth|sip|'
+    r'guide|truth|lessons|strategy|plan|tips|smart|hindi|english|podcast|episode|full|ft|feat|'
+    r'ceo|cio|founder|director|head)\b', re.I)
+
+
+def _looks_like_a_person(s):
+    words = s.split()
+    if not (2 <= len(words) <= 4):        return False
+    if _NOT_A_NAME.search(s):             return False
+    if re.search(r'\d', s):               return False
+    return all(w[:1].isupper() for w in words)
+
+
+def guest_from_title(title, known):
+    """These titles almost always end with the guest: '... | Gajendra Kothari'.
+    The parser never read them, which is why a new guest defaulted to solo and
+    stayed that way until somebody noticed and added an override by hand.
+    """
+    parts = re.split(r'\s*[|\u2013\u2014]\s*|\s+I\s+', title)
+    if len(parts) < 2:
+        return None
+    tail = parts[-1].strip(' .!?-').split(',')[0].strip()   # drop a trailing ", CEO WealthTrust"
+    if not tail:
+        return None
+    if tail in known:
+        return tail
+    if not _looks_like_a_person(tail):
+        return None
+    # Spelling drifts between titles, so Somaiyaa and Sommaiya must not become
+    # two people. Snap to an existing guest when it is clearly the same person.
+    import difflib
+    close = difflib.get_close_matches(tail, list(known), n=1, cutoff=0.85)
+    if close:
+        return close[0]
+    if tail not in NEW_GUESTS_SEEN:
+        NEW_GUESTS_SEEN.append(tail)
+    return tail
+
+
+def parse_guest(vid, title, stats, known=()):
     if vid in GUEST_OVERRIDES:
         return GUEST_OVERRIDES[vid]
     for s in stats:
         m = re.match(r'ThisOrThat with Bhartendra and (.+?)(?:\s*-.*)?$', s)
         if m:
-            return m.group(1).strip().replace('Krishan Sharma','Krishnan Sharma').replace('Mahamood','Mahmood')
+            return m.group(1).strip().replace('Krishan Sharma', 'Krishnan Sharma').replace('Mahamood', 'Mahmood')
+    from_title = guest_from_title(title, known)
+    if from_title:
+        return from_title
     return 'Bhartendra (solo)'  # default if unclear
+
 
 def clean_title(title):
     t = title
@@ -292,6 +338,8 @@ def categorize(title):
 
 
 GUEST_ROLES.update(load_cms_roles())
+# the names the CMS already knows, so a title can be matched against them
+KNOWN_GUESTS = set(GUEST_ROLES.keys()) | set(CMS_GUESTS.values())
 
 
 def initials_of(name):
@@ -313,7 +361,7 @@ def main():
             'n': ep_num,
             'id': v['id'],
             'title': CMS_TITLES.get(v['id']) or clean_title(v['title']),
-            'guest': parse_guest(v['id'], v['title'], v['stats']),
+            'guest': parse_guest(v['id'], v['title'], v['stats'], KNOWN_GUESTS),
             'cat': CMS_CATS.get(v['id']) or categorize(v['title']),
             'views': parse_views(v['stats']),
             'published': parse_published(v['stats']),
@@ -353,6 +401,10 @@ def main():
         f.write(f'window.GUESTS = {json.dumps(guests, indent=2, ensure_ascii=False)};\n')
 
     print(f'  Wrote {len(episodes)} episodes, {len(guests)} guests → {os.path.basename(OUT_FILE)}')
+    if NEW_GUESTS_SEEN:
+        print('  New name(s) read from a title, with no guest profile yet:')
+        for n in NEW_GUESTS_SEEN:
+            print(f'      {n}   <- add a profile in the CMS, or override the episode if this is wrong')
     print(f'  Synced at {synced_at}')
     print()
     print('  Top guests:')

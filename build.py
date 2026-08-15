@@ -302,6 +302,43 @@ def check_redirects():
         print(f'  All {len(have)} page redirects present')
 
 
+
+# ─── Make the Episode Overrides screen readable ──────────────────────────
+# It listed rows as bare 11-character video IDs, which nobody can recognise.
+# Every episode now gets a row, labelled and ordered newest first, so the
+# screen is something you can scan instead of decode. The label is written
+# here on every build, so it is never something to maintain by hand.
+def label_episode_overrides():
+    import json as _json
+    epf = ROOT / 'episodes.js'
+    ovf = ROOT / 'content' / 'episode-overrides.json'
+    if not (epf.exists() and ovf.exists()):
+        return
+    raw = epf.read_text(encoding='utf-8')
+    m = re.search(r'window\.EPISODES\s*=\s*(\[.*?\]);', raw, re.S)
+    if not m:
+        return
+    eps = _json.loads(m.group(1))
+    by_id = {e['id']: e for e in eps}
+
+    cfg = _json.loads(ovf.read_text(encoding='utf-8'))
+    rows = {o['video_id']: o for o in cfg.get('overrides', [])}
+
+    out = []
+    for e in sorted(eps, key=lambda x: -x['n']):
+        row = rows.pop(e['id'], {'video_id': e['id'], 'guest': '', 'category': '', 'title': ''})
+        row['episode'] = f"EP {e['n']:03d}  ·  {e['title'][:70]}"
+        row.setdefault('guest', ''); row.setdefault('category', ''); row.setdefault('title', '')
+        out.append({k: row.get(k, '') for k in ('episode', 'video_id', 'guest', 'category', 'title')})
+    # anything overridden for a video the sync no longer returns, kept not dropped
+    for vid, row in rows.items():
+        row['episode'] = f"(not in the current feed)  ·  {vid}"
+        out.append({k: row.get(k, '') for k in ('episode', 'video_id', 'guest', 'category', 'title')})
+
+    cfg['overrides'] = out
+    ovf.write_text(_json.dumps(cfg, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    print(f'  Labelled {len(out)} override rows, newest first')
+
 # ─── One menu, everywhere ────────────────────────────────────────────────
 # The site had drifted into three different menus: 21 pages with Feed,
 # 11 without it, and the home page with its own. Each page kept its own
@@ -374,6 +411,9 @@ def main():
     print('→ Updating tool counts...')
     build_stats()
     print()
+    print('\n→ Labelling episode overrides for the CMS...')
+    label_episode_overrides()
+
     print('\n→ Syncing the menu across pages...')
     sync_nav()
 

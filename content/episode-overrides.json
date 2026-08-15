@@ -1,314 +1,450 @@
 {
   "overrides": [
     {
-      "video_id": "tbQBKyeGydU",
-      "guest": "Aashish Sommaiya",
-      "category": "Investing",
-      "title": ""
-    },
-    {
-      "video_id": "GFtYcvEftNQ",
-      "guest": "Roopa Venkatkrishnan",
-      "category": "Investing",
-      "title": ""
-    },
-    {
-      "video_id": "qR1CZ2dWr5Q",
-      "guest": "Anupam Tiwari",
-      "category": "Markets",
-      "title": ""
-    },
-    {
-      "video_id": "Bnv2OOb5irs",
-      "guest": "Bhalchandra Joshi",
-      "category": "Behaviour",
-      "title": ""
-    },
-    {
-      "video_id": "vIL33wnD5lk",
-      "guest": "Debashish Bose",
-      "category": "Markets",
-      "title": ""
-    },
-    {
-      "video_id": "ax-QZl75dbA",
-      "guest": "Kalpen Parekh",
-      "category": "Behaviour",
-      "title": ""
-    },
-    {
-      "video_id": "ldoFnNk6Z2g",
-      "guest": "Kirtan Shah",
-      "category": "Global",
-      "title": ""
-    },
-    {
-      "video_id": "8jqbn8N1zeY",
-      "guest": "Neil Borate",
-      "category": "Global",
-      "title": ""
-    },
-    {
-      "video_id": "LULE5jPzlo0",
-      "guest": "Thomas Priju",
-      "category": "Markets",
-      "title": ""
-    },
-    {
-      "video_id": "nT_TwhuIEPo",
-      "guest": "Mohit Bhatia",
-      "category": "Investing",
-      "title": ""
-    },
-    {
-      "video_id": "pGdux5kFP3U",
-      "guest": "CA Anuj Jain",
-      "category": "Wealth",
-      "title": ""
-    },
-    {
-      "video_id": "YOwd-k4VGPM",
-      "guest": "Neil Borate",
-      "category": "Investing",
-      "title": ""
-    },
-    {
-      "video_id": "07c7HDPBUBE",
-      "guest": "Sneha Jain",
-      "category": "Retirement",
-      "title": ""
-    },
-    {
-      "video_id": "3KvDSkQu-IY",
-      "guest": "Niranjan Avasthi",
-      "category": "Investing",
-      "title": ""
-    },
-    {
-      "video_id": "WhrfDxA1d7A",
-      "guest": "Mahavir Chopra",
+      "episode": "EP 064  ·  Why Most Investors Stop SIPs at the Worst Time | Gajendra Kothari",
+      "video_id": "oaiRSZnKaM0",
+      "guest": "",
       "category": "",
       "title": ""
     },
     {
-      "video_id": "U9ZrWEL-Jqo",
-      "guest": "Shaymali Basu",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "seqzo4v-mlE",
-      "guest": "Vinayak Sapre",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "6H6GsUjCWfE",
-      "guest": "Sneha Jain",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "baM9f9oeNEc",
-      "guest": "Devina Mehra",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "HX4Ln_yjQBc",
-      "guest": "Pooja Bhinde",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "ukI6xDsrjyI",
-      "guest": "Ajit Menon",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "Fy5Wzb40QhQ",
-      "guest": "Dhirendra Kumar",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "oJ0kHSqJaqc",
-      "guest": "Vijai Mantri",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "jg9yRvRDqW0",
-      "guest": "Lisa Pallavi Barbora",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "LJBgwAlx_MM",
-      "guest": "Mahavir Chopra",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "y467zmb9coo",
-      "guest": "Kirtan Shah",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "qCMA_zCb-38",
-      "guest": "Aashish Sommaiya",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "Ms_2WqYOIsY",
-      "guest": "Abhijit More",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "_pO65w9FnTo",
-      "guest": "Swarup Mohanty",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "OlrHz1Og_kY",
-      "guest": "Nimesh Chandan",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "7RURrUgKXig",
-      "guest": "Abhijit More",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "YH2ZegF1ewk",
-      "guest": "Mrin Agarwal",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "2IFKptd2Qyw",
-      "guest": "Raghav Iyengar",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "IbD02i7Xvys",
-      "guest": "Amit Bivalkar",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "63j2xg2IGUU",
-      "guest": "Bhartendra (solo)",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "p-fDdN8Tm6w",
-      "guest": "CA Abhishek Mehta",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "an4dvf0llMM",
-      "guest": "Sneha Jain",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "dkQ9JW-Py9A",
-      "guest": "Compilation",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "0YwE4R-qPqA",
-      "guest": "Compilation",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "9SvVl5FALK4",
-      "guest": "Vishesh Gandhi",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "QApks7nfIYI",
-      "guest": "Viral Bhatt",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "0zxhAUjt-38",
-      "guest": "Ketan Das",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "ejC8nevgQb0",
-      "guest": "Lakshmi Iyer",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "7YdiFShGRRQ",
-      "guest": "Ajit Menon",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "C966CXKS_tU",
-      "guest": "Ajit Menon",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "jCRb7WpH6h4",
-      "guest": "Sneha Jain",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "o1_3k5EkzZg",
-      "guest": "Devina Mehra",
-      "category": "",
-      "title": ""
-    },
-    {
-      "video_id": "ch96iqz4wj8",
-      "guest": "Vishesh Gandhi",
-      "category": "",
-      "title": ""
-    },
-    {
+      "episode": "EP 063  ·  Can India Really Ban Crypto? Regulation, Stablecoins & What Investors ",
       "video_id": "XVdqTLff-YY",
       "guest": "Manhar Garegrat",
       "category": "Crypto",
       "title": ""
     },
     {
+      "episode": "EP 062  ·  Crypto Simplified: Bitcoin, Ethereum, Stablecoins & the Risks You Must",
       "video_id": "IelwvNJNG3c",
       "guest": "Manhar Garegrat",
       "category": "Crypto",
       "title": ""
     },
     {
+      "episode": "EP 061  ·  Nominee vs Legal Heir vs Will — The Truth Every Indian Should Know",
       "video_id": "L0lmOWVPGTE",
       "guest": "Bhartendra (solo)",
       "category": "",
       "title": ""
     },
     {
+      "episode": "EP 060  ·  India's 6th Market Crisis in 27 Years | Aashish Somaiyaa",
+      "video_id": "tbQBKyeGydU",
+      "guest": "Aashish Sommaiya",
+      "category": "Investing",
+      "title": ""
+    },
+    {
+      "episode": "EP 059  ·  Don’t Exit Equity Too Early: Retirement, SIP & Mutual Fund Lessons",
       "video_id": "Npd0E9rGmmg",
       "guest": "Roopa Venkatkrishnan",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 058  ·  ₹10,000 SIP for 30 Years: Can Mutual Funds Create ₹22 Crore? | Roopa V",
+      "video_id": "GFtYcvEftNQ",
+      "guest": "Roopa Venkatkrishnan",
+      "category": "Investing",
+      "title": ""
+    },
+    {
+      "episode": "EP 057  ·  Brazil, Taiwan, Korea: The International Investing Trap | Vijai Mantri",
+      "video_id": "sjjwPzGaF0I",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 056  ·  SIP Works. I Have Seen It. | 30 Years of Mutual Fund Lessons | Bhalcha",
+      "video_id": "Bnv2OOb5irs",
+      "guest": "Bhalchandra Joshi",
+      "category": "Behaviour",
+      "title": ""
+    },
+    {
+      "episode": "EP 055  ·  Is The India Story Over? - Groww MF's Equity Head Answers",
+      "video_id": "qR1CZ2dWr5Q",
+      "guest": "Anupam Tiwari",
+      "category": "Markets",
+      "title": ""
+    },
+    {
+      "episode": "EP 054  ·  The Truth About This Market (No One Is Telling You This)",
+      "video_id": "C8lNnLi2Ppk",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 053  ·  Indian Markets Are Stuck. Here's What Nobody Is Telling You. | Debashi",
+      "video_id": "vIL33wnD5lk",
+      "guest": "Debashish Bose",
+      "category": "Markets",
+      "title": ""
+    },
+    {
+      "episode": "EP 052  ·  Your SIP Isn’t the Problem, You Are.",
+      "video_id": "IbD02i7Xvys",
+      "guest": "Amit Bivalkar",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 051  ·  Gold इतना महंगा है — फिर भी खरीदना सही है?",
+      "video_id": "6t5iaVbTb6U",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 050  ·  NASDAQ vs Nifty: Should Indians Invest Globally? | Mahmood Basha, Baro",
+      "video_id": "3-nQQHiUBdo",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 049  ·  Buy Good, Buy Cheap, Stay Long — Kalpen Parekh, DSP Mutual Fund",
+      "video_id": "ax-QZl75dbA",
+      "guest": "Kalpen Parekh",
+      "category": "Behaviour",
+      "title": ""
+    },
+    {
+      "episode": "EP 048  ·  5 Money Lessons from 40 Financial Experts",
+      "video_id": "63j2xg2IGUU",
+      "guest": "Bhartendra (solo)",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 047  ·  Global Investing: Hype Hai Ya Opportunity?",
+      "video_id": "ldoFnNk6Z2g",
+      "guest": "Kirtan Shah",
+      "category": "Global",
+      "title": ""
+    },
+    {
+      "episode": "EP 046  ·  Why & How of Global Investing | Neil Borate",
+      "video_id": "8jqbn8N1zeY",
+      "guest": "Neil Borate",
+      "category": "Global",
+      "title": ""
+    },
+    {
+      "episode": "EP 045  ·  Budget 2026: Tax Changes & Investing Playbook (Old vs New, HUF, LTCG, ",
+      "video_id": "p-fDdN8Tm6w",
+      "guest": "CA Abhishek Mehta",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 044  ·  Markets Are Flat. Don’t Panic.The Real Wealth Game Is Patience.",
+      "video_id": "an4dvf0llMM",
+      "guest": "Sneha Jain",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 043  ·  Is Your Portfolio Ready for 2026? Metal, Global Investing & Market Rea",
+      "video_id": "nJkul5ypLTo",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 042  ·  The biggest retirement risk is having only one income",
+      "video_id": "dkQ9JW-Py9A",
+      "guest": "Compilation",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 041  ·  Money Infinite Hai. Time Finite. | How Much Is Enough? | Karan Datta",
+      "video_id": "bah0QU9rHH8",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 040  ·  Why Silver Is Suddenly Expensive | War, Chips & Global Supply Explaine",
+      "video_id": "rO_wCmULjyM",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 039  ·  Should You Buy a House or Keep Renting? 3 Expert Views, No Noise",
+      "video_id": "0YwE4R-qPqA",
+      "guest": "Compilation",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 038  ·  How This Couple Built a ₹10 Crore Portfolio (Without Chasing Returns)",
+      "video_id": "9SvVl5FALK4",
+      "guest": "Vishesh Gandhi",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 037  ·  How to Become a Good Investor | Why the “Best Fund” Does Not Exist",
+      "video_id": "zw_R7UEBvIQ",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 036  ·  How Fund Managers Really Think: Stock Picking, Sector Cycles & Alpha E",
+      "video_id": "LULE5jPzlo0",
+      "guest": "Thomas Priju",
+      "category": "Markets",
+      "title": ""
+    },
+    {
+      "episode": "EP 035  ·  Why Investing Feels Hard (Even When It’s Simple)",
+      "video_id": "nT_TwhuIEPo",
+      "guest": "Mohit Bhatia",
+      "category": "Investing",
+      "title": ""
+    },
+    {
+      "episode": "EP 034  ·  How Ordinary Investors Build Extraordinary Wealth",
+      "video_id": "QApks7nfIYI",
+      "guest": "Viral Bhatt",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 033  ·  The Mindset That Built Financial Freedom at 40 (How He Did It) | Vinay",
+      "video_id": "seqzo4v-mlE",
+      "guest": "Vinayak Sapre",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 032  ·  How Your PF Actually Gets Stuck (And What To Do About It)",
+      "video_id": "0zxhAUjt-38",
+      "guest": "Ketan Das",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 031  ·  What’s the Point of Wealth If You’re Unhealthy?",
+      "video_id": "eQIdaQ9ml58",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 030  ·  Why My Family Has Stayed 100% in Equity | CA Anuj Jain",
+      "video_id": "pGdux5kFP3U",
+      "guest": "CA Anuj Jain",
+      "category": "Wealth",
+      "title": ""
+    },
+    {
+      "episode": "EP 029  ·  Why Mutual Funds Are Enough For Most Investors?",
+      "video_id": "YOwd-k4VGPM",
+      "guest": "Neil Borate",
+      "category": "Investing",
+      "title": ""
+    },
+    {
+      "episode": "EP 028  ·  Bad Returns Are the BEST Returns | Vijai Mantri on Advisors, Mutual Fu",
+      "video_id": "djx43Km1TSo",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 027  ·  Hidden Home-Buying Costs & Smart Buying Guide (India) | घर खरीदने से प",
+      "video_id": "7RURrUgKXig",
+      "guest": "Abhijit More",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 026  ·  Stocks vs Mutual Funds: The Truth About SIP & Equity Investing | Sneha",
+      "video_id": "6H6GsUjCWfE",
+      "guest": "Sneha Jain",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 025  ·  Where to Really Invest in 2025: Equity, Debt, Gold or Real Estate?",
+      "video_id": "ejC8nevgQb0",
+      "guest": "Lakshmi Iyer",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 024  ·  How to Create Wealth with Limited Income | Smart Investing Explained",
+      "video_id": "7YdiFShGRRQ",
+      "guest": "Ajit Menon",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 023  ·  Why Retirement Scares Us (And How To Fix It)",
+      "video_id": "C966CXKS_tU",
+      "guest": "Ajit Menon",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 022  ·  1 Crore, 2 Crore, or 5 Crore? Find YOUR Number Today",
+      "video_id": "jCRb7WpH6h4",
+      "guest": "Sneha Jain",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 021  ·  The Rupee Keeps Falling… Should You Invest Abroad Too?",
+      "video_id": "o1_3k5EkzZg",
+      "guest": "Devina Mehra",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 020  ·  Why Smart Investors Don’t Bet Only on India | Devina Mehra on Global I",
+      "video_id": "baM9f9oeNEc",
+      "guest": "Devina Mehra",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 019  ·  Step-Up SIP to ₹10 Crore – Pooja Bhinde on Money Psychology",
+      "video_id": "HX4Ln_yjQBc",
+      "guest": "Pooja Bhinde",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 018  ·  Ajit Menon Investment Strategy: 7 Ways to Build Wealth & Financial Fre",
+      "video_id": "ukI6xDsrjyI",
+      "guest": "Ajit Menon",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 017  ·  How He Built ₹10 Crore with Just Mutual Funds SIP",
+      "video_id": "ch96iqz4wj8",
+      "guest": "Vishesh Gandhi",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 016  ·  How to Become Rich in India Using Mutual Funds I Dhirendra Kumar I CEO",
+      "video_id": "Fy5Wzb40QhQ",
+      "guest": "Dhirendra Kumar",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 015  ·  How to Build a Wealth-Ready Portfolio | Vijai Mantri Part 2 |EP 15",
+      "video_id": "oJ0kHSqJaqc",
+      "guest": "Vijai Mantri",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 014  ·  Why Investors Earn Just 7% from Funds That Deliver 19% |Vijai Mantri",
+      "video_id": "Q7UlCPypYlo",
+      "guest": "",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 013  ·  Ways to Win In Investing – Behavioral Edge Explained by a CIO",
+      "video_id": "OlrHz1Og_kY",
+      "guest": "Nimesh Chandan",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 012  ·  The Truth About Making Money With Mutual Funds",
+      "video_id": "_pO65w9FnTo",
+      "guest": "Swarup Mohanty",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 011  ·  Everything You Need to Know About Mutual Fund Investing – With Niranja",
+      "video_id": "3KvDSkQu-IY",
+      "guest": "Niranjan Avasthi",
+      "category": "Investing",
+      "title": ""
+    },
+    {
+      "episode": "EP 010  ·  Retirement Planning in India: What You Need to Know Today | Sneha Jain",
+      "video_id": "07c7HDPBUBE",
+      "guest": "Sneha Jain",
+      "category": "Retirement",
+      "title": ""
+    },
+    {
+      "episode": "EP 009  ·  Women, Money & Mindset: Lisa Pallavi Barbora on Taking Charge of Your ",
+      "video_id": "jg9yRvRDqW0",
+      "guest": "Lisa Pallavi Barbora",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 008  ·  Don’t Buy Health Insurance Before Watching ThisI Mahavir Chopra",
+      "video_id": "LJBgwAlx_MM",
+      "guest": "Mahavir Chopra",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 007  ·  How to Choose The Right Insurance ? |Mahavir Chopra",
+      "video_id": "WhrfDxA1d7A",
+      "guest": "Mahavir Chopra",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 006  ·  Wealth & Freedom : You can Have Both I Kirtan Shah",
+      "video_id": "y467zmb9coo",
+      "guest": "Kirtan Shah",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 005  ·  Many Paths to Financial Heaven I Aashish Sommaiya",
+      "video_id": "qCMA_zCb-38",
+      "guest": "Aashish Sommaiya",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 004  ·  Should You Buy House? I घर की बात, दिल से",
+      "video_id": "Ms_2WqYOIsY",
+      "guest": "Abhijit More",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 003  ·  Master Your Emotions & Build Wealth: Expert Wisdom to Smart Investing ",
+      "video_id": "U9ZrWEL-Jqo",
+      "guest": "Shaymali Basu",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 002  ·  Mutual Fund Investing Insights I Raghav Iyengar",
+      "video_id": "2IFKptd2Qyw",
+      "guest": "Raghav Iyengar",
+      "category": "",
+      "title": ""
+    },
+    {
+      "episode": "EP 001  ·  Essentials of Financial Planning with Mrin Agarwal",
+      "video_id": "YH2ZegF1ewk",
+      "guest": "Mrin Agarwal",
       "category": "",
       "title": ""
     }

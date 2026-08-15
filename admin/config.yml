@@ -195,10 +195,14 @@ collections:
         label: "Episode metadata overrides"
         file: "content/episode-overrides.json"
         fields:
-          - label: "Overrides (keyed by YouTube video ID)"
+          - label: "Every episode, newest first"
             name: "overrides"
             widget: "list"
+            summary: "{{fields.episode}}"
+            label_singular: "episode"
+            hint: "One row per episode. Open the one you want and change only what is wrong. Anything you set here beats what the sync works out on its own."
             fields:
+              - { name: "episode", label: "Episode", widget: "string", required: false, hint: "Filled in automatically on every build. Editing it here changes nothing." }
               - { name: "video_id", label: "YouTube video ID", widget: "string", hint: "The 11-character ID from the YouTube URL (after v=)" }
               - { name: "guest", label: "Override guest name", widget: "string", required: false }
               - { name: "category", label: "Override category", widget: "select", required: false, default: "", options: [{label: "Work it out from the title", value: ""}, "Behaviour", "Markets", "Investing", "SIP", "Mutual Fund", "Alternates", "Crypto", "Insurance", "Health", "Fitness", "Retirement", "Real Estate", "Tax", "Career", "Wealth", "Global", "Commodities"], hint: "Leave on the first option and the category is worked out from the title. Pick anything else and it wins." }
