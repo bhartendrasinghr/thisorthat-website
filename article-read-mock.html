@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why Your SIP Feels Like It&#x27;s Doing Nothing, ThisOrThat (mock)</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    ink:'#1A1813', body:'#57534A', meta:'#7A7368', marigold:'#FFC21F',
+    paper:'#FCFBF8', surf:'#F6F4EE', line:'#E1DDD1', dark:'#16150F', gold:'#8F6600'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  /* the reading column: one idea wide, nothing else competing */
+  .prose p { font-size:19px; line-height:1.75; color:#2C2A23; margin:0 0 1.45em; max-width:62ch; }
+  .prose p:first-of-type::first-letter { font-family:'Bricolage Grotesque',serif; font-weight:800;
+    font-size:58px; line-height:.82; float:left; margin:6px 10px 0 0; color:#1A1813; }
+  .prose h2 { font-size:26px; font-weight:800; letter-spacing:-.02em; margin:2em 0 .6em; }
+  .prose blockquote { border-left:4px solid #FFC21F; padding-left:1.3em; margin:1.8em 0;
+    font-size:22px; line-height:1.45; font-weight:600; color:#1A1813; max-width:52ch; }
+  .rail a { display:grid; place-items:center; width:38px; height:38px; border-radius:99px;
+    border:1.5px solid #E1DDD1; color:#57534A; }
+  .rail a:hover { border-color:#1A1813; color:#1A1813; }
+  .pick { display:block; padding:15px 0; border-bottom:1px dashed #E1DDD1; }
+  .pick:last-child { border-bottom:0; }
+  #bar { position:fixed; top:0; left:0; height:3px; background:#FFC21F; width:0; z-index:60; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body class="antialiased">
+<div id="bar"></div>
+<div style="background:#8F6600;color:#FCFBF8;font-size:12.5px">
+  <div class="max-w-6xl mx-auto px-6 py-2.5"><strong>Layout mock.</strong> The article and the episode are real. The five links under "Keep reading" are placeholders.</div>
+</div>
+
+<header class="sticky top-0 z-50 backdrop-blur bg-paper/90 border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 h-[64px] flex items-center justify-between gap-6">
+    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+      <img src="logo.png" alt="" width="32" height="32" class="rounded-full" />
+      <span class="leading-none">
+        <span class="block font-display font-extrabold text-[16px] tracking-[-0.03em]">ThisOrThat</span>
+        <span class="block text-[9px] font-bold tracking-[0.22em] text-meta mt-[3px]">BEYOND THE NOISE</span>
+      </span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-0.5 text-[14px] font-semibold">
+      <a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a>
+      <a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a>
+      <a href="calculators.html" class="px-3 py-2 rounded-lg hover:bg-surf">Plan</a>
+      <a href="articles-mock.html" class="px-3 py-2 rounded-lg text-ink font-bold" aria-current="page">Writing</a>
+      <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a>
+    </nav>
+    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
+       class="hidden sm:inline-flex bg-marigold text-ink text-[13px] font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Subscribe</a>
+  </div>
+</header>
+
+<div class="max-w-6xl mx-auto px-6 pt-7">
+  <nav class="text-[12.5px] text-meta" aria-label="Breadcrumb">
+    <a href="index.html" class="hover:text-ink">Home</a> <span class="mx-1.5">/</span>
+    <a href="articles-mock.html" class="hover:text-ink">Writing</a> <span class="mx-1.5">/</span>
+    <a href="articles-mock.html" class="hover:text-ink">Investing</a> <span class="mx-1.5">/</span>
+    <span class="text-ink">Why Your SIP Feels Like It&#x27;s Doing Not...</span>
+  </nav>
+</div>
+
+<div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-12 gap-10 pt-6 pb-20">
+
+  <!-- share rail -->
+  <aside class="hidden lg:block lg:col-span-1">
+    <div class="sticky top-[92px] rail flex flex-col items-center gap-2.5">
+      <div class="text-[10px] font-extrabold tracking-[0.16em] uppercase text-meta mb-1">Share</div>
+      <a href="#" aria-label="Share on X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12H17l-5-7.3L6.2 22H3l7.5-8.6L2.6 2H9l4.6 6.7z"/></svg></a>
+      <a href="#" aria-label="Share on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 112.5 6 2.5 2.5 0 014.98 3.5zM3 8.98h4V21H3zM9 8.98h3.8v1.64h.05a4.2 4.2 0 013.78-2.08c4 0 4.75 2.64 4.75 6.06V21h-4v-5.5c0-1.31 0-3-1.83-3s-2.1 1.43-2.1 2.9V21H9z"/></svg></a>
+      <a href="#" aria-label="Share on WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2a.4.4 0 000-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A3 3 0 006 9.5c0 1.7 1.3 3.4 1.4 3.6s2.4 3.8 5.9 5.2c2.2.8 2.6.7 3.1.6a2.6 2.6 0 001.7-1.2 2.1 2.1 0 00.2-1.2c-.1-.2-.3-.2-.5-.3z"/></svg></a>
+      <a href="#" aria-label="Save"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v18l-7-5-7 5z"/></svg></a>
+    </div>
+  </aside>
+
+  <!-- the article -->
+  <article class="lg:col-span-7">
+    <div class="kicker">Investing</div>
+    <h1 class="font-display font-extrabold text-[clamp(32px,4.6vw,48px)] leading-[1.06] tracking-[-0.03em] mt-4">
+      Why Your SIP Feels Like It&#x27;s Doing Nothing
+    </h1>
+    <p class="text-[19.5px] leading-[1.45] text-body mt-4 max-w-[46ch]">
+      Half the people who start one stop within two years, usually at the exact moment it was starting to work.
+    </p>
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-meta mt-6 pb-6 border-b border-line">
+      <span>2026-07-07</span><span>&middot;</span>
+      <span class="font-semibold text-ink">Bhartendra Singh</span><span>&middot;</span>
+      <span class="tab-num">5</span><span class="-ml-2">min read</span>
+    </div>
+
+    <div class="bg-surf border-l-4 border-marigold rounded-r-[12px] p-6 my-8">
+      <div class="text-[11px] font-extrabold uppercase tracking-[0.16em] text-gold mb-2">The short version</div>
+      <p class="text-[16px] leading-relaxed text-ink">Every time the market goes sideways for a while, the same doubts come back. That SIPs don&#x27;t make money. That you should keep your money moving instead of parking it. That India&#x27;s story is finally cracking, the foreign money is.</p>
+    </div>
+
+    <div class="prose">
+      <p>Every time the market goes sideways for a while, the same doubts come back. That SIPs don't make money. That you should keep your money moving instead of parking it. That India's story is finally cracking, the foreign money is leaving, and the smart returns are somewhere else. It always sounds reasonable, and it always spreads just as people begin cancelling their SIPs, close to half of them within thirty months of starting.</p><p>Thirty years of data disagrees with the entire list. A ₹10,000 monthly SIP held across three decades turned about ₹36 lakh of contributions into ₹18 to ₹22 crore. Six or seven funds did it, through every crisis and every correction, including the stretches when the news said to get out. The real question underneath the noise is simple: can you sit still long enough to let one of them work?</p><p>The people who lose money are rarely in bad funds. They are in good funds and cannot stay put. Investing gets sold as an information problem: pick the right fund, read the right returns, time the right entry. The bigger variable is how long you hold.</p><p>### Volatility is the bill</p><p>Markets consolidate and correct. After a long run-up, a flat or falling stretch is normal, the shape every equity market has held for fifty years. Each time, we assemble a fresh reason why this fall is the dangerous one: the war, the oil spike, the weak rupee, the FIIs leaving. Underneath all of it, the rupee has lost about 3.5% a year on average since 1947, through every one of those stories. Volatility is the price you are paid to accept. A market that never fell would be a market that never rewarded you for staying.</p>
+      <blockquote>Half of them stop within two years, which is roughly the point at which the arithmetic starts to help rather than hurt.</blockquote>
+      <p>### The one sale you run from</p><p>Put 30% off on shirts and the whole city runs to the store. A correction is 30% off on equity, and the same people cancel their SIP. A fall is a discount on units. Rupee cost averaging works because you buy more when the price drops, so the fall is the engine, and quitting during it is how you stall the engine. The maths rewards whoever keeps going, and we mistake the quitting for caution.</p><p>### The silent decade</p><p>Compounding does its early work in the dark. For eight or nine years an equity SIP looks unremarkable, and the portfolio gives you nothing to boast about. Then the curve turns and the number jumps. Almost nobody waits for it. Close to half of all SIPs are cancelled within two and a half years, and the average holding period in India sits near three and a half. The wealth sits on the far side of a decade most people quit, and most of the damage happens inside that same decade. A flat stretch that makes people panic is just this decade doing its ordinary quiet work.</p><p>### You already know how to do this</p><p>Indian households already hold assets for twenty years without blinking. We do it with gold and with property. Nobody sells the family flat over two weak quarters, and nobody dumps gold in a soft year; they wait, or they buy more, because they believe the price comes back. Equity is the only one of the three we bail on, and it is the only one of the three that clears inflation. The patience already exists in the house. It just never reaches the equity folder.</p><p>### The mistake is usually yours</p><p>The fund manager is rarely the problem. When a fund disappoints, the buyer usually entered at the wrong time and judged it against the wrong benchmark. The top fund this year will not be the top fund next year, and that turnover is how the game works. The costlier habit is chasing returns, which is exactly what the noise always encourages: move your money, jump to whatever just ran up, keep circulating. Hopping between funds and hunting whoever topped the one-year chart has cost ordinary portfolios the plain market return they would have earned by sitting still. Chase the extra and you tend to lose the ordinary.</p><p>The real variable is the expectation you carry in. Expect 12% and 12% keeps you invested, with the money still doubling roughly every six years. Expect 25% and the first 12% year sends you looking elsewhere, usually right before the decade pays.</p><p>### What to actually do</p><p>Audit your own behaviour before you audit the fund. Set the expectation at 12% and let compounding stay boring. Treat a crash like a festival sale and keep the SIP running through it. Fund retirement before every other goal, because a house, a wedding, and a degree all come with a loan, and old age does not. And because money turns everyone emotional, keep one steady person beside you for twenty years whose only task is to stop you selling at the wrong moment. That role earns more than any fund they could pick.</p><p>The doubt comes back in a different costume every few years, and the data has answered it every time. The returns belong to whoever can sit through the boredom of the silent decade and let it finish.</p>
+    </div>
+
+    <!-- the thing Value Research cannot do as naturally: this came out of an episode -->
+    <div class="bg-dark text-paper rounded-[18px] overflow-hidden mt-12 grid sm:grid-cols-5">
+      <a href="episode-detail.html?v=oaiRSZnKaM0" class="sm:col-span-2 block relative aspect-video sm:aspect-auto sm:min-h-[150px]">
+        <img src="https://i.ytimg.com/vi/oaiRSZnKaM0/hqdefault.jpg" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+      </a>
+      <div class="sm:col-span-3 p-6">
+        <div class="text-[10.5px] font-extrabold uppercase tracking-[0.18em] text-marigold">The episode this came from</div>
+        <a href="episode-detail.html?v=oaiRSZnKaM0" class="block font-display font-extrabold text-[19px] leading-[1.2] tracking-[-0.02em] mt-2.5 hover:text-marigold transition">Why Most Investors Stop SIPs at the Worst Time | Gajendra Kothari</a>
+        <div class="text-[12.5px] text-paper/55 mt-2.5">Gajendra Kothari &middot; 1 day ago</div>
+      </div>
+    </div>
+
+    <p class="text-[15px] mt-8"><strong>Also read:</strong>
+      <a href="articles-mock.html" class="lnk">Stopping a SIP in a fall is the only real mistake</a></p>
+
+    <div class="bg-white border border-line rounded-[18px] p-7 mt-10">
+      <h2 class="text-[21px] font-extrabold tracking-[-0.02em]">Still not sure what to do with yours?</h2>
+      <p class="text-[15px] text-body leading-relaxed mt-2 max-w-[52ch]">
+        Four questions and two minutes gives you a mix that fits your own horizon. If you would rather just ask
+        someone, that is there too.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-5">
+        <a href="index.html#tool" class="bg-marigold text-ink font-bold text-[14px] px-6 py-3 rounded-full hover:brightness-95 transition">Build your plan</a>
+        <a href="money-person.html" class="border-[1.5px] border-ink/25 text-ink font-bold text-[14px] px-6 py-3 rounded-full hover:border-ink transition">Talk to a human</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- sidebar -->
+  <aside class="lg:col-span-4">
+    <div class="lg:sticky lg:top-[92px] space-y-6">
+      <div>
+        <h2 class="font-display font-extrabold text-[22px] tracking-[-0.02em] pb-2 border-b-2 border-ink">Keep reading</h2>
+        <div class="mt-1">
+          <a href="articles-mock.html" class="pick group">
+            <span class="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-gold">Behaviour</span>
+            <span class="block text-[16px] font-bold leading-[1.25] tracking-[-0.01em] mt-1 group-hover:text-gold transition">Your return expectation is older than you think</span>
+            <span class="block text-[12px] text-meta mt-1"><span class="tab-num">5</span> min read</span></a><a href="articles-mock.html" class="pick group">
+            <span class="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-gold">Behaviour</span>
+            <span class="block text-[16px] font-bold leading-[1.25] tracking-[-0.01em] mt-1 group-hover:text-gold transition">The market does not reward intelligence</span>
+            <span class="block text-[12px] text-meta mt-1"><span class="tab-num">4</span> min read</span></a><a href="articles-mock.html" class="pick group">
+            <span class="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-gold">SIP</span>
+            <span class="block text-[16px] font-bold leading-[1.25] tracking-[-0.01em] mt-1 group-hover:text-gold transition">Stopping a SIP in a fall is the only real mistake</span>
+            <span class="block text-[12px] text-meta mt-1"><span class="tab-num">4</span> min read</span></a><a href="articles-mock.html" class="pick group">
+            <span class="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-gold">Investing</span>
+            <span class="block text-[16px] font-bold leading-[1.25] tracking-[-0.01em] mt-1 group-hover:text-gold transition">Diversification looks like regret, most years</span>
+            <span class="block text-[12px] text-meta mt-1"><span class="tab-num">5</span> min read</span></a><a href="articles-mock.html" class="pick group">
+            <span class="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-gold">Retirement</span>
+            <span class="block text-[16px] font-bold leading-[1.25] tracking-[-0.01em] mt-1 group-hover:text-gold transition">The number you retire on is not the number you need</span>
+            <span class="block text-[12px] text-meta mt-1"><span class="tab-num">7</span> min read</span></a>
+        </div>
+      </div>
+
+      <div class="bg-surf border border-line rounded-[18px] p-6">
+        <div class="flex items-baseline justify-between gap-3">
+          <h2 class="font-display font-extrabold text-[19px] tracking-[-0.02em]">More on SIPs</h2>
+          <a href="episodes.html" class="lnk text-[12.5px]">All &rarr;</a>
+        </div>
+        <p class="text-[12.5px] text-meta mt-1">Every episode on this, newest first.</p>
+        <div class="mt-4 grid gap-3.5">
+          <a href="episode-detail.html?v=IbD02i7Xvys" class="group flex gap-3 items-start">
+            <span class="shrink-0 w-[76px] aspect-video rounded-[6px] overflow-hidden bg-line block">
+              <img src="https://i.ytimg.com/vi/IbD02i7Xvys/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" /></span>
+            <span><span class="block text-[13.5px] font-bold leading-[1.22] group-hover:text-gold transition">Your SIP Isn’t the Problem, You Are.</span>
+            <span class="block text-[11.5px] text-meta mt-1">Amit Bivalkar</span></span></a><a href="episode-detail.html?v=6H6GsUjCWfE" class="group flex gap-3 items-start">
+            <span class="shrink-0 w-[76px] aspect-video rounded-[6px] overflow-hidden bg-line block">
+              <img src="https://i.ytimg.com/vi/6H6GsUjCWfE/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" /></span>
+            <span><span class="block text-[13.5px] font-bold leading-[1.22] group-hover:text-gold transition">Stocks vs Mutual Funds: The Truth About SIP &amp; Equity Inves</span>
+            <span class="block text-[11.5px] text-meta mt-1">Sneha Jain</span></span></a><a href="episode-detail.html?v=HX4Ln_yjQBc" class="group flex gap-3 items-start">
+            <span class="shrink-0 w-[76px] aspect-video rounded-[6px] overflow-hidden bg-line block">
+              <img src="https://i.ytimg.com/vi/HX4Ln_yjQBc/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" /></span>
+            <span><span class="block text-[13.5px] font-bold leading-[1.22] group-hover:text-gold transition">Step-Up SIP to ₹10 Crore – Pooja Bhinde on Money Psycholog</span>
+            <span class="block text-[11.5px] text-meta mt-1">Pooja Bhinde</span></span></a>
+        </div>
+      </div>
+
+      <div class="bg-dark text-paper rounded-[18px] p-6">
+        <div class="text-[10.5px] font-extrabold uppercase tracking-[0.18em] text-marigold">New episode most weeks</div>
+        <p class="text-[15px] leading-relaxed mt-2.5 text-paper/85">Sixty four conversations so far, and the archive is free.</p>
+        <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
+           class="inline-flex bg-marigold text-ink font-bold text-[13.5px] px-5 py-2.5 rounded-full mt-4 hover:brightness-95 transition">Subscribe on YouTube &rarr;</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+// how far through the piece you are
+var bar=document.getElementById('bar');
+addEventListener('scroll',function(){
+  var h=document.documentElement, d=h.scrollHeight-h.clientHeight;
+  bar.style.width=(d>0?(h.scrollTop/d)*100:0)+'%';
+},{passive:true});
+</script>
+</body></html>
