@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>All Episodes, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Every episode of This or That with Bhartendra: fund managers, CXOs and financial experts on the money decisions India actually faces." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="All Episodes, ThisOrThat with Bhartendra" />
+<meta property="og:description" content="Every episode of This or That with Bhartendra: fund managers, CXOs and financial experts on the money decisions India actually faces." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/episodes.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="All Episodes, ThisOrThat with Bhartendra" />
+<meta name="twitter:description" content="Every episode of This or That with Bhartendra: fund managers, CXOs and financial experts on the money decisions India actually faces." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+        goldink: '#8F6600', gainink: '#1B7A50',
+        // Brand colors (per Brand Guidelines v1.0)
+        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
+        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
+        thatred:   { DEFAULT: '#FF302D' },
+        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
+        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
+        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
+        // Legacy aliases, keep old class names working, mapped to new values
+        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
+        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
+        alert:   '#FF302D',
+        cream:   '#FCFBF8',
+        paper:   '#F6F4EE'
+      }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
+    fontFamily: {
+        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
+        serif:   ['Bricolage Grotesque','Georgia','serif'],
+        display: ['Bricolage Grotesque','Georgia','serif'],
+        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
+        script:  ['Caveat','cursive']
+      } } } };
+</script>
+<style>
+  body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
+  .font-serif { font-family: 'Bricolage Grotesque', serif; }
+  .thumb { position: relative; overflow: hidden; }
+  .thumb::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 20% 80%, rgba(255,194,31,0.35), transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,48,45,0.25), transparent 50%); }
+  .thumb-1 { background: linear-gradient(135deg, #0249B1, #4A148C); }
+  .thumb-2 { background: linear-gradient(135deg, #013580, #0249B1); }
+  .thumb-3 { background: linear-gradient(135deg, #D99B00, #FFC21F); }
+  .thumb-4 { background: linear-gradient(135deg, #1A1813, #0249B1); }
+  .thumb-5 { background: linear-gradient(135deg, #FF302D, #A6201E); }
+  .thumb-6 { background: linear-gradient(135deg, #0249B1, #1A1813); }
+  .lift { transition: transform 200ms ease; }
+  .lift:hover { transform: translateY(-2px); }
+  .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
+  .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; letter-spacing: -0.02em; }
+  /* compact row: enough thumbnail to recognise the episode, nothing more */
+  .eprow { display:grid; grid-template-columns:112px 1fr; gap:14px; align-items:start;
+           padding:14px 0; border-bottom:1px solid #E1DDD1; }
+  .eprow:hover { background:rgba(255,194,31,0.05); }
+  .epthumb { position:relative; display:block; width:112px; aspect-ratio:16/9; border-radius:7px;
+             overflow:hidden; background:#1A1813; }
+  .epnum { position:absolute; left:5px; bottom:4px; font-family:'IBM Plex Mono',monospace; font-size:9.5px;
+           font-weight:600; letter-spacing:.06em; color:#FCFBF8; background:rgba(26,24,19,.8);
+           padding:1px 4px; border-radius:3px; }
+</style>
+</head>
+<body class="antialiased">
+<div style="background:#8F6600;color:#FCFBF8;font-size:12.5px"><div class="max-w-7xl mx-auto px-6 py-2.5"><strong>Layout draft.</strong> Same 64 episodes, same filters, compact rows instead of large cards. The live archive is unchanged.</div></div>
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="text-navy-ink border-b-2 border-mustard pb-1" aria-current="page">Episodes</a><a href="guests.html" class="text-navy-ink border-b-2 border-mustard pb-1">Guests</a><a href="calculators.html" class="text-navy-ink border-b-2 border-mustard pb-1">Plan</a><a href="articles.html" class="text-navy-ink border-b-2 border-mustard pb-1">Writing</a><a href="about.html" class="text-navy-ink border-b-2 border-mustard pb-1">About</a></nav>
+    <a href="episode-detail.html" class="inline-flex items-center gap-2 bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">
+      <span>▶</span> Watch latest
+    </a>
+      <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:bg-mustard-soft transition">Talk to a human</a>
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="hidden lg:inline-flex border border-thisblue/35 text-thisblue text-sm font-semibold px-4 py-2 rounded-full hover:bg-thisblue hover:text-warmpaper transition">Subscribe</a>
+      <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<!-- MOBILE MENU PANEL -->
+<div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-[73px] z-40 bg-cream border-b border-navy/10 shadow-lg">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="py-3 border-b border-navy/5">Episodes</a><a href="guests.html" class="py-3 border-b border-navy/5">Guests</a><a href="calculators.html" class="py-3 border-b border-navy/5">Plan</a><a href="articles.html" class="py-3 border-b border-navy/5">Writing</a><a href="about.html" class="py-3 border-b border-navy/5">About</a></nav>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="bg-navy text-cream py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">The archive</div>
+    <h1 class="font-serif text-5xl md:text-6xl font-bold mt-3">All episodes.</h1>
+    <p class="mt-4 text-cream/70 text-lg max-w-2xl">Every conversation since 2023. Searchable by guest, topic and tag. Latest first.</p>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl">
+      <div class="relative md:col-span-2">
+        <input id="search-input" type="text" placeholder="Search by title, guest, or topic…" class="w-full bg-cream/10 border border-cream/20 rounded-full pl-12 pr-4 py-3 text-sm text-cream placeholder-cream/40 focus:outline-none focus:ring-2 focus:ring-mustard" />
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-cream/40">🔍</span>
+      </div>
+      <select id="sort-select" class="bg-cream/10 border border-cream/20 rounded-full px-5 py-3 text-sm text-cream focus:outline-none focus:ring-2 focus:ring-mustard">
+        <option value="latest" class="text-navy-ink">Latest first</option>
+        <option value="oldest" class="text-navy-ink">Oldest first</option>
+        <option value="watched" class="text-navy-ink">Most watched</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="bg-cream py-8 border-b border-navy/10 sticky top-[73px] z-40 backdrop-blur bg-cream/95">
+  <div id="chip-row" class="max-w-7xl mx-auto px-6 flex flex-wrap gap-2"></div>
+</section>
+
+<!-- EPISODES GRID -->
+<section class="py-12 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-sm text-navy/60 mb-6" id="result-meta">Showing all <span data-ep-count>54</span> episodes, latest first</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="ep-grid"></div>
+    <div id="empty-state" class="hidden text-center py-20">
+      <div class="font-serif text-3xl font-bold text-navy-ink">No episodes match.</div>
+      <p class="text-navy-ink/60 mt-2 text-sm">Try a different search term or clear the filter.</p>
+      <button id="clear-filters" class="mt-6 inline-flex bg-navy text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-navy-ink transition">Clear filters</button>
+    </div>
+
+    <div class="mt-12 text-center text-sm text-navy/60">All episodes from your YouTube channel · <a href="https://www.youtube.com/@ThisOrThatPodcastIndia" target="_blank" class="text-navy font-semibold border-b-2 border-mustard">Subscribe for new ones</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-navy-ink text-cream/80 py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+          <div>
+            <div class="font-bold text-cream">ThisOrThat</div>
+            <div class="text-[11px] uppercase tracking-widest text-cream/50">beyond the noise</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-cream/60 max-w-sm">Personal finance, on your side.</p>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Explore</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="episodes.html" class="hover:text-cream">Episodes</a></li>
+          <li><a href="guests.html" class="hover:text-cream">Guests</a></li>
+          <li><a href="articles.html" class="hover:text-cream">Articles</a></li>
+          <li><a href="feed.html" class="hover:text-cream">Feed</a></li>
+          <li><a href="calculators.html" class="hover:text-cream">Plan</a></li>
+          <li><a href="money-person.html" class="hover:text-cream">Find your money person</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest text-cream/40 font-semibold mb-4">Listen / Watch</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.youtube.com/@ThisOrThatPodcastIndia" target="_blank" class="hover:text-cream">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-cream/10 text-xs text-cream/40">© 2026 ThisOrThat with Bhartendra.</div>
+  </div>
+</footer>
+
+<script src="episodes.js"></script>
+<script>
+const initialsOf = (n) => {
+  if (!n || n.toLowerCase().includes('solo')) return 'BS';
+  const parts = n.replace(/^CA\s+|^Mr\.?\s+/i, '').split(/\s+/).filter(p => p[0] && p[0] === p[0].toUpperCase());
+  return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
+};
+const bgs = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
+
+// State
+let activeCategory = 'All';
+let activeQuery = '';
+let activeSort = 'latest';
+
+// Parse view count to number for sorting
+const viewsToNumber = (v) => {
+  if (!v) return 0;
+  const num = parseFloat(v);
+  if (/M/i.test(v)) return num * 1_000_000;
+  if (/K/i.test(v)) return num * 1_000;
+  return num;
+};
+
+// Build category counts from real data
+const catCounts = window.EPISODES.reduce((acc, e) => { acc[e.cat] = (acc[e.cat]||0)+1; return acc; }, {});
+const categoriesSorted = Object.entries(catCounts).sort((a,b) => b[1] - a[1]);
+
+// Render chips
+const chipRow = document.getElementById('chip-row');
+const renderChips = () => {
+  const chips = [['All', window.EPISODES.length], ...categoriesSorted];
+  chipRow.innerHTML = chips.map(([cat, count]) => {
+    const isActive = cat === activeCategory;
+    return `<button data-cat="${cat}" class="chip ${isActive ? 'bg-navy text-cream' : 'bg-paper text-navy-ink hover:bg-navy/10'}">${cat} <span class="opacity-60">(${count})</span></button>`;
+  }).join('');
+  chipRow.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    activeCategory = b.dataset.cat;
+    render();
+  }));
+};
+
+const grid = document.getElementById('ep-grid');
+const emptyState = document.getElementById('empty-state');
+const resultMeta = document.getElementById('result-meta');
+
+const render = () => {
+  let list = [...window.EPISODES];
+  // Filter by category
+  if (activeCategory !== 'All') list = list.filter(e => e.cat === activeCategory);
+  // Filter by query
+  const q = activeQuery.trim().toLowerCase();
+  if (q) list = list.filter(e =>
+    e.title.toLowerCase().includes(q) ||
+    (e.guest || '').toLowerCase().includes(q) ||
+    e.cat.toLowerCase().includes(q)
+  );
+  // Sort
+  if (activeSort === 'oldest') list.sort((a,b) => a.n - b.n);
+  else if (activeSort === 'watched') list.sort((a,b) => viewsToNumber(b.views) - viewsToNumber(a.views));
+  else list.sort((a,b) => b.n - a.n);
+
+  // Render
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    emptyState.classList.remove('hidden');
+    resultMeta.innerHTML = `No matches in <strong>${window.EPISODES.length}</strong> episodes`;
+  } else {
+    emptyState.classList.add('hidden');
+    const sortLabel = activeSort === 'oldest' ? 'oldest first' : activeSort === 'watched' ? 'most watched first' : 'latest first';
+    const filterLabel = activeCategory !== 'All' ? ` in <strong>${activeCategory}</strong>` : '';
+    const queryLabel = q ? ` matching <strong>"${activeQuery}"</strong>` : '';
+    resultMeta.innerHTML = `Showing <strong>${list.length}</strong> of ${window.EPISODES.length} episodes${filterLabel}${queryLabel}, ${sortLabel}`;
+    grid.innerHTML = list.map((ep, i) => {
+      const guestLabel = (ep.guest || '').toLowerCase().includes('solo') ? 'Solo' : ep.guest;
+      return `
+      <a href="episode-detail.html?v=${ep.id}" class="eprow group">
+        <span class="epthumb">
+          <img src="${ep.thumb}" alt="" class="w-full h-full object-cover" loading="lazy" />
+          <span class="epnum">${String(ep.n).padStart(3,'0')}</span>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-goldink">${ep.cat}</span>
+          <span class="block text-[15px] font-bold leading-[1.24] tracking-[-0.01em] text-navy-ink mt-1 group-hover:text-goldink transition">${ep.title}</span>
+          <span class="block text-[11.5px] text-navy/50 mt-1.5 truncate">${guestLabel} &middot; ${ep.published || ''}</span>
+        </span>
+      </a>`;
+    }).join('');
+  }
+  renderChips();
+};
+
+// Wire inputs
+document.getElementById('search-input').addEventListener('input', (e) => { activeQuery = e.target.value; render(); });
+document.getElementById('sort-select').addEventListener('change', (e) => { activeSort = e.target.value; render(); });
+document.getElementById('clear-filters').addEventListener('click', () => {
+  activeCategory = 'All'; activeQuery = ''; activeSort = 'latest';
+  document.getElementById('search-input').value = '';
+  document.getElementById('sort-select').value = 'latest';
+  render();
+});
+
+// Honour ?cat= or ?q= URL params for deep linking
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('cat')) activeCategory = urlParams.get('cat');
+if (urlParams.get('q')) { activeQuery = urlParams.get('q'); document.getElementById('search-input').value = activeQuery; }
+
+document.querySelectorAll('[data-ep-count]').forEach(el => el.textContent = window.EPISODES.length);
+render();
+</script>
+
+
+<script>
+// Mobile menu toggle
+(function() {
+  var btn = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', !isOpen ? false : true);
+    iconClose.classList.toggle('hidden', !isOpen ? true : false);
+    if (!isOpen) {
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    } else {
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+  // Close on link tap inside menu
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+})();
+</script>
+</body>
+</html>
