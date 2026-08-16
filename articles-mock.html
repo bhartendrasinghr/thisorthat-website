@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Writing, ThisOrThat (mock)</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    ink:'#1A1813', body:'#57534A', meta:'#7A7368', marigold:'#FFC21F',
+    paper:'#FCFBF8', surf:'#F6F4EE', line:'#E1DDD1', dark:'#16150F', gold:'#8F6600'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; }
+  h1,h2 { text-wrap:balance; } p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  .chip { border:1.5px solid #E1DDD1; background:#fff; font-weight:600; font-size:13px;
+           padding:7px 15px; border-radius:999px; white-space:nowrap; }
+  .chip:hover { border-color:#1A1813; }
+  .chip[aria-pressed="true"] { background:#1A1813; border-color:#1A1813; color:#FCFBF8; }
+  /* the compact row: a small typographic tile, the title, one line of metadata */
+  .row { display:grid; grid-template-columns:64px 1fr; gap:16px; align-items:start;
+          padding:18px 0; border-bottom:1px solid #E1DDD1; }
+  .tile { width:64px; height:64px; border-radius:10px; display:grid; place-items:center;
+           font-family:'Bricolage Grotesque',serif; font-weight:800; font-size:19px; line-height:1; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body class="antialiased">
+<div style="background:#8F6600;color:#FCFBF8;font-size:12.5px">
+  <div class="max-w-6xl mx-auto px-6 py-2.5">
+    <strong>Layout mock.</strong> The 40 headlines below are placeholders written to fill the page. None of them are real articles.
+  </div>
+</div>
+
+<header class="sticky top-0 z-50 backdrop-blur bg-paper/90 border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between gap-6">
+    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+      <img src="logo.png" alt="" width="34" height="34" class="rounded-full" />
+      <span class="leading-none">
+        <span class="block font-display font-extrabold text-[17px] tracking-[-0.03em]">ThisOrThat</span>
+        <span class="block text-[9px] font-bold tracking-[0.22em] text-meta mt-[3px]">BEYOND THE NOISE</span>
+      </span>
+    </a>
+    <nav class="hidden xl:flex items-center gap-0.5 text-[14.5px] font-semibold">
+      <a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a>
+      <a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a>
+      <a href="calculators.html" class="px-3 py-2 rounded-lg hover:bg-surf">Plan</a>
+      <a href="#" class="px-3 py-2 rounded-lg text-ink font-bold" aria-current="page">Writing</a>
+      <a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="money-person.html" class="hidden md:inline-flex border-[1.5px] border-ink/25 text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:border-ink transition">Talk to a human</a>
+      <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
+         class="hidden sm:inline-flex bg-marigold text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Subscribe</a>
+    </div>
+  </div>
+</header>
+
+<section class="max-w-6xl mx-auto px-6 pt-14 pb-8">
+  <div class="kicker">Slow thought</div>
+  <h1 class="font-display font-extrabold mt-4 leading-[0.96] tracking-[-0.035em] text-[clamp(40px,6.4vw,64px)]">
+    Writing.
+  </h1>
+  <p class="mt-5 text-[18px] leading-[1.5] text-body max-w-[54ch]">
+    The episodes go wide. These go deep on one idea at a time. <span class="tab-num">40</span> pieces so far,
+    newest first.
+  </p>
+</section>
+
+<section class="border-y border-line bg-surf sticky top-[68px] z-40">
+  <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center gap-3">
+    <div id="chips" class="flex gap-2 overflow-x-auto"></div>
+    <input id="q" type="search" placeholder="Search" aria-label="Search writing"
+           class="ml-auto shrink-0 w-36 md:w-56 bg-white border border-line rounded-full px-4 py-2 text-[13.5px] focus:outline-none focus:border-ink" />
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-10">
+  <div id="count" class="text-[13px] text-meta mb-2"></div>
+  <div id="list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10"></div>
+  <div id="empty" class="hidden py-16 text-center text-meta text-[15px]">Nothing matches that.</div>
+</section>
+
+<script>
+var A=[{"cat": "Behaviour", "title": "Your return expectation is older than you think", "mins": 5, "date": "16 Aug 2026"}, {"cat": "SIP", "title": "Why your SIP feels like it is doing nothing", "mins": 5, "date": "15 Aug 2026"}, {"cat": "Behaviour", "title": "The market does not reward intelligence", "mins": 4, "date": "14 Aug 2026"}, {"cat": "Investing", "title": "You do not need a better fund. You need a longer horizon", "mins": 6, "date": "13 Aug 2026"}, {"cat": "Mutual Fund", "title": "What the expense ratio actually costs you over thirty years", "mins": 7, "date": "12 Aug 2026"}, {"cat": "Retirement", "title": "The number you retire on is not the number you need", "mins": 7, "date": "11 Aug 2026"}, {"cat": "Tax", "title": "Your tax saving is costing you more than the tax", "mins": 5, "date": "10 Aug 2026"}, {"cat": "Markets", "title": "Every crash felt like the last one at the time", "mins": 6, "date": "9 Aug 2026"}, {"cat": "Wealth", "title": "Lifestyle creep is not a moral failing, it is arithmetic", "mins": 5, "date": "8 Aug 2026"}, {"cat": "Real Estate", "title": "The rent versus buy question has a wrong answer", "mins": 8, "date": "7 Aug 2026"}, {"cat": "Insurance", "title": "A policy that invests is doing neither job well", "mins": 6, "date": "6 Aug 2026"}, {"cat": "Global", "title": "India is four percent of the world by market value", "mins": 5, "date": "5 Aug 2026"}, {"cat": "SIP", "title": "Stopping a SIP in a fall is the only real mistake", "mins": 4, "date": "4 Aug 2026"}, {"cat": "Behaviour", "title": "You are not investing, you are coping", "mins": 4, "date": "3 Aug 2026"}, {"cat": "Investing", "title": "Diversification looks like regret, most years", "mins": 5, "date": "2 Aug 2026"}, {"cat": "Mutual Fund", "title": "Direct or regular, and what the difference really buys", "mins": 6, "date": "1 Aug 2026"}, {"cat": "Crypto", "title": "What a ban would and would not actually touch", "mins": 7, "date": "31 Jul 2026"}, {"cat": "Retirement", "title": "Retiring at sixty with a thirty year retirement", "mins": 8, "date": "30 Jul 2026"}, {"cat": "Health", "title": "The cost nobody puts in the retirement spreadsheet", "mins": 6, "date": "29 Jul 2026"}, {"cat": "Markets", "title": "Nobody rings a bell, and nobody ever did", "mins": 4, "date": "28 Jul 2026"}, {"cat": "Wealth", "title": "The first crore is slow because it is supposed to be", "mins": 5, "date": "27 Jul 2026"}, {"cat": "Tax", "title": "New regime, old regime, and the question underneath", "mins": 7, "date": "26 Jul 2026"}, {"cat": "Behaviour", "title": "Checking your portfolio daily is a cost, not a habit", "mins": 3, "date": "25 Jul 2026"}, {"cat": "Investing", "title": "Small cap is not a strategy, it is a temperament test", "mins": 6, "date": "24 Jul 2026"}, {"cat": "SIP", "title": "Step up your SIP or extend it, but pick one", "mins": 5, "date": "23 Jul 2026"}, {"cat": "Real Estate", "title": "Your house is not an asset until you sell it", "mins": 6, "date": "22 Jul 2026"}, {"cat": "Global", "title": "Currency does half the work in a global fund", "mins": 5, "date": "21 Jul 2026"}, {"cat": "Mutual Fund", "title": "Thirty funds is not diversification, it is an index", "mins": 5, "date": "20 Jul 2026"}, {"cat": "Insurance", "title": "Term cover is boring, which is the point", "mins": 4, "date": "19 Jul 2026"}, {"cat": "Markets", "title": "Valuation is not a timing signal, however it feels", "mins": 6, "date": "18 Jul 2026"}, {"cat": "Behaviour", "title": "The bad year is where the return actually comes from", "mins": 5, "date": "17 Jul 2026"}, {"cat": "Retirement", "title": "What your parents' retirement will cost you", "mins": 7, "date": "16 Jul 2026"}, {"cat": "Investing", "title": "Rebalancing is selling what worked, which is why nobody does it", "mins": 5, "date": "15 Jul 2026"}, {"cat": "Wealth", "title": "Money buys options, and most people buy things instead", "mins": 4, "date": "14 Jul 2026"}, {"cat": "Tax", "title": "Capital gains, and the year you should have booked them", "mins": 6, "date": "13 Jul 2026"}, {"cat": "SIP", "title": "The date of your SIP matters more than you think", "mins": 3, "date": "12 Jul 2026"}, {"cat": "Crypto", "title": "Custody is the question nobody asks first", "mins": 6, "date": "11 Jul 2026"}, {"cat": "Health", "title": "What is the point of wealth if you are unhealthy", "mins": 5, "date": "10 Jul 2026"}, {"cat": "Global", "title": "One country, one currency, one career, one portfolio", "mins": 6, "date": "9 Jul 2026"}, {"cat": "Behaviour", "title": "Advice you can follow beats advice that is correct", "mins": 5, "date": "8 Jul 2026"}];
+var TINT={Behaviour:['#FFC21F','#1A1813'],Investing:['#1A1813','#FCFBF8'],SIP:['#F6F4EE','#1A1813'],
+ 'Mutual Fund':['#1A1813','#FFC21F'],Retirement:['#FFC21F','#1A1813'],Tax:['#F6F4EE','#1A1813'],
+ Markets:['#1A1813','#FCFBF8'],Wealth:['#FFC21F','#1A1813'],'Real Estate':['#F6F4EE','#1A1813'],
+ Insurance:['#1A1813','#FFC21F'],Global:['#FFC21F','#1A1813'],Crypto:['#1A1813','#FCFBF8'],
+ Health:['#F6F4EE','#1A1813']};
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+function initials(c){ var w=c.split(' '); return (w.length>1?w[0][0]+w[1][0]:c.slice(0,2)).toUpperCase(); }
+var cat='All', q='';
+var counts=A.reduce(function(a,x){a[x.cat]=(a[x.cat]||0)+1;return a;},{});
+function drawChips(){
+  var all=[['All',A.length]].concat(Object.entries(counts).sort(function(a,b){return b[1]-a[1];}));
+  document.getElementById('chips').innerHTML=all.map(function(c){
+    return '<button class="chip" data-c="'+esc(c[0])+'" aria-pressed="'+(cat===c[0])+'">'+esc(c[0])+
+      ' <span class="tab-num text-[11px] opacity-60">'+c[1]+'</span></button>';}).join('');
+  [].forEach.call(document.querySelectorAll('[data-c]'),function(b){
+    b.addEventListener('click',function(){ cat=b.getAttribute('data-c'); draw(); });});
+}
+function draw(){
+  var list=A.filter(function(x){
+    return (cat==='All'||x.cat===cat) &&
+      (!q || (x.title+' '+x.cat).toLowerCase().indexOf(q)>-1); });
+  document.getElementById('count').textContent=list.length+(list.length===1?' piece':' pieces')+
+    (cat==='All'?'':' in '+cat)+(q?', matching "'+q+'"':'');
+  document.getElementById('empty').classList.toggle('hidden',list.length>0);
+  document.getElementById('list').innerHTML=list.map(function(x){
+    var t=TINT[x.cat]||['#F6F4EE','#1A1813'];
+    return '<a href="#" class="row group">'+
+      '<span class="tile" style="background:'+t[0]+';color:'+t[1]+'">'+initials(x.cat)+'</span>'+
+      '<span>'+
+        '<span class="block text-[10.5px] font-extrabold uppercase tracking-[0.16em] text-gold">'+esc(x.cat)+'</span>'+
+        '<span class="block text-[16.5px] font-bold leading-[1.25] tracking-[-0.01em] mt-1 group-hover:text-gold transition">'+esc(x.title)+'</span>'+
+        '<span class="block text-[12px] text-meta mt-1.5"><span class="tab-num">'+x.mins+'</span> min read · '+esc(x.date)+'</span>'+
+      '</span></a>';
+  }).join('');
+  drawChips();
+}
+document.getElementById('q').addEventListener('input',function(e){ q=e.target.value.trim().toLowerCase(); draw(); });
+draw();
+</script>
+</body></html>
