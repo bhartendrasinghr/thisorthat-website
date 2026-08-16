@@ -763,6 +763,8 @@ drawEpisodes('');   // render now; redrawn only if the CMS has pinned one
 /* ---- guests: everyone the same size, alphabetical, no counts.
         Merged from the CMS list and the YouTube sync so a guest added in the
         CMS appears here without touching code. ---- */
+function slugify(n){ return String(n||'').toLowerCase().normalize('NFD')
+  .replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
 function drawGuests(cms){
   var seen={}, all=[];
   (cms||[]).concat(window.GUESTS||[]).forEach(function(g){
@@ -775,7 +777,7 @@ function drawGuests(cms){
   });
   all.sort(function(a,b){ return a.name.localeCompare(b.name,'en'); });
   $('guestwall').innerHTML=all.map(function(g){
-    var href=g.slug?('guest-detail.html?slug='+encodeURIComponent(g.slug)):'guests.html';
+    var href='guest-detail.html?slug='+encodeURIComponent(g.slug||slugify(g.name));
     return '<a href="'+href+'" class="text-[18px] md:text-[20px] font-semibold tracking-[-0.015em] leading-none hover:text-gold transition">'+
       esc(g.name)+'</a>';
   }).join('');

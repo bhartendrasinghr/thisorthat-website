@@ -184,6 +184,9 @@
 
 <script src="episodes.js"></script>
 <script>
+function slugify(n){ return String(n||'').toLowerCase().normalize('NFD')
+  .replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+
 // Merge auto-derived guest list (from episodes.js) with rich profiles (from content/guests.json)
 const params = new URLSearchParams(window.location.search);
 
@@ -206,13 +209,20 @@ Promise.all([
   // Pick which guest to show: ?g=Name (preferred) or ?slug=slug
   const wantName = params.get('g');
   const wantSlug = params.get('slug');
+  // A guest exists if they have been on an episode, profile or not. Match the CMS
+  // slug first, then the slug their name would make, so someone the sync found in
+  // a title still has a page. Never fall back to another guest: showing the wrong
+  // person is worse than saying we could not find them.
   const guest = merged.find(g =>
     (wantName && g.name === wantName) ||
-    (wantSlug && g.slug === wantSlug)
-  ) || merged[0]; // default = top guest by eps count
+    (wantSlug && (g.slug === wantSlug || slugify(g.name) === wantSlug))
+  ) || ((!wantName && !wantSlug) ? merged[0] : null);
 
   if (!guest) {
-    document.body.innerHTML = '<div style="padding:60px;text-align:center;font-family:Inter,sans-serif"><h1 style="font-family:Fraunces,serif;font-size:42px">No guests yet</h1><p><a href="guests.html" style="color:#0249B1">← Back</a></p></div>';
+    document.body.innerHTML = '<div style="padding:80px 24px;text-align:center;font-family:\'Hanken Grotesk\',sans-serif">'
+      + '<h1 style="font-family:\'Bricolage Grotesque\',serif;font-size:38px;margin:0 0 12px">We could not find that guest</h1>'
+      + '<p style="color:#57534A;margin:0 0 24px">The link may be old, or the name may be spelled differently on their profile.</p>'
+      + '<a href="guests.html" style="font-weight:700;color:#1A1813;border-bottom:2px solid #FFC21F;text-decoration:none">See everyone who has been on</a></div>';
     return;
   }
 
