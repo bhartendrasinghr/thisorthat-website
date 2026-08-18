@@ -50,6 +50,15 @@
   .field { width:100%; background:#fff; border:1.5px solid rgba(2,73,177,0.15); border-radius:14px; padding:12px 16px; font-size:15px; transition: border-color 150ms, box-shadow 150ms; }
   .field:focus { outline:none; border-color:#0249B1; box-shadow:0 0 0 3px rgba(255,194,31,0.25); }
   .field::placeholder { color:#8A8275; }
+  .adv-card { display:flex; align-items:center; gap:12px; text-align:left; cursor:pointer;
+    border:1px solid rgba(2,73,177,.15); background:#fff; border-radius:12px; padding:12px;
+    transition:border-color 140ms ease, background 140ms ease; }
+  .adv-card:hover { border-color:rgba(2,73,177,.4); }
+  .adv-card:focus-within { outline:3px solid #8F6600; outline-offset:2px; }
+  .adv-card.is-on { border-color:#0249B1; background:rgba(2,73,177,.05); box-shadow:inset 0 0 0 1px #0249B1; }
+  .adv-card .tick { width:18px; height:18px; border-radius:99px; border:1.5px solid rgba(2,73,177,.3); flex:0 0 auto; }
+  .adv-card.is-on .tick { border-color:#0249B1; background:#0249B1;
+    box-shadow:inset 0 0 0 3px #fff; }
 </style>
 </head>
 <body class="antialiased">
@@ -92,8 +101,11 @@
 
       <div id="advisor-section" class="hidden">
         <label class="text-sm font-semibold text-ink block mb-2">Anyone in particular you'd like to be introduced to? <span class="text-ink/45 font-normal">(optional)</span></label>
-        <div id="advisor-select" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
-        <p class="text-[11px] text-ink/45 mt-2 leading-relaxed">These are people who have been on the show. An introduction is not a recommendation or an endorsement. Always check a professional's SEBI or AMFI registration yourself before you engage.</p>
+        <div id="advisor-select" role="radiogroup" aria-label="Who would you like to be introduced to" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+        <p class="text-[12px] text-ink/60 mt-3 leading-relaxed">
+          Not sure who is who? <a href="guests.html" class="font-bold text-ink underline decoration-marigold decoration-2 underline-offset-2">Hear them on the show first</a>, then come back. Nothing here is saved until you send it.
+        </p>
+        <p class="text-[11px] text-ink/45 mt-2 leading-relaxed">An introduction is not a recommendation or an endorsement, and we are not paid for it. Check any professional's SEBI or AMFI registration yourself before you engage.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -211,22 +223,23 @@ paintChips();
 // ---- Advisor / distributor selector (optional, single-select) ----
 let selectedAdvisor = '';
 const initialsOf = n => n.replace(/^CA\s+/i, '').split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
-const advCard = (val, title, sub, badge, photo) => `
-  <button type="button" data-adv="${val.replace(/"/g,'&quot;')}" class="adv-card text-left rounded-xl border p-3 flex items-center gap-3 transition">
+const advCard = (val, title, sub, reg, photo, wide) => `
+  <label class="adv-card ${wide ? 'sm:col-span-2' : ''}">
+    <input type="radio" name="advisor-pick" value="${val.replace(/"/g,'&quot;')}" class="sr-only" ${val === '' ? 'checked' : ''} />
     ${photo
       ? `<img src="${photo}" alt="" class="w-11 h-11 rounded-lg object-cover shrink-0" />`
       : `<span class="w-11 h-11 rounded-lg ${val ? 'bg-navy text-mustard' : 'bg-marigold text-ink'} flex items-center justify-center font-bold text-sm shrink-0">${val ? initialsOf(title) : '?'}</span>`}
-    <span class="min-w-0">
-      <span class="block font-semibold text-ink text-sm truncate">${title}</span>
-      ${sub ? `<span class="block text-[11px] text-ink/55 truncate">${sub}</span>` : ''}
-      ${badge ? `<span class="inline-block mt-0.5 text-[11px] uppercase tracking-wider font-bold text-thisblue">${badge}</span>` : ''}
+    <span class="min-w-0 flex-1">
+      <span class="block font-semibold text-ink text-sm leading-snug">${title}</span>
+      ${sub ? `<span class="block text-[11.5px] text-ink/55 leading-snug mt-0.5">${sub}</span>` : ''}
+      ${reg ? `<span class="block text-[10.5px] text-goldink font-semibold tracking-wide mt-1">${reg}</span>` : ''}
     </span>
-  </button>`;
+    <span class="tick" aria-hidden="true"></span>
+  </label>`;
 function paintAdv() {
-  document.querySelectorAll('#advisor-select .adv-card').forEach(b => {
-    const on = b.dataset.adv === selectedAdvisor;
-    b.className = 'adv-card text-left rounded-xl border p-3 flex items-center gap-3 transition ' +
-      (on ? 'border-thisblue bg-thisblue/5 ring-1 ring-thisblue' : 'border-navy/15 bg-white hover:border-thisblue/40');
+  document.querySelectorAll('#advisor-select .adv-card').forEach(l => {
+    const input = l.querySelector('input');
+    l.classList.toggle('is-on', input && input.value === selectedAdvisor);
   });
 }
 fetch('content/advisors.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null).then(data => {
@@ -237,13 +250,16 @@ fetch('content/advisors.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() 
   const active = list.filter(a => a.active !== false);
   if (!active.length) return;              // keep the section hidden until someone is activated in the CMS
   if (section) section.classList.remove('hidden');
-  let html = advCard('', 'Not sure, help me choose', 'We match you from your goals below', '', '');
-  html += active.map(a => advCard(a.name, a.name, a.firm || a.type || '', a.guest_slug ? 'On the show' : '', a.photo || '')).join('');
+  let html = advCard('', 'Not sure, help me choose', 'Tell us your goals below and we suggest someone. Most people pick this.', '', '', true);
+  html += active.map(a => advCard(
+    a.name, a.name,
+    a.firm || a.type || 'Has been on the show',
+    a.reg || '',
+    a.photo || '')).join('');
   wrap.innerHTML = html;
-  wrap.addEventListener('click', e => {
-    const b = e.target.closest('.adv-card');
-    if (!b) return;
-    selectedAdvisor = b.dataset.adv;
+  wrap.addEventListener('change', e => {
+    if (e.target.name !== 'advisor-pick') return;
+    selectedAdvisor = e.target.value;
     paintAdv();
   });
   paintAdv();

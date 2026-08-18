@@ -14,7 +14,7 @@
       "firm": "Director, Sapient Wealth Advisors and Brokers Pvt Ltd"
     },
     {
-      "active": false,
+      "active": true,
       "name": "Vijai Mantri",
       "featured": false,
       "guest_slug": "vijai-mantri",
@@ -27,20 +27,33 @@
       "firm": "Founder, VMFS"
     },
     {
-      "active": false,
-      "name": "Kirtan Shah",
+      "active": true,
+      "name": "CA Abhishek Mehta",
       "featured": false,
-      "guest_slug": "kirtan-shah",
+      "guest_slug": "",
       "photo": "",
       "reg": "",
       "consent_confirmed": false,
       "type": "",
       "blurb": "",
       "specialties": [],
-      "firm": "Founder, Credence Wealth, Mutual Fund Distributor"
+      "firm": ""
     },
     {
-      "active": false,
+      "active": true,
+      "name": "Pooja Bhinde",
+      "featured": false,
+      "guest_slug": "pooja-bhinde",
+      "photo": "",
+      "reg": "",
+      "consent_confirmed": false,
+      "type": "",
+      "blurb": "",
+      "specialties": [],
+      "firm": "Certified Financial Planner"
+    },
+    {
+      "active": true,
       "name": "Sneha Jain",
       "featured": false,
       "guest_slug": "sneha-jain",
@@ -53,7 +66,7 @@
       "firm": "Fund Manager"
     },
     {
-      "active": false,
+      "active": true,
       "name": "Vishesh Gandhi",
       "featured": false,
       "guest_slug": "vishesh-gandhi",
@@ -73,7 +86,8 @@
       "guest_slug": "viral-bhatt",
       "photo": "",
       "blurb": "",
-      "specialties": []
+      "specialties": [],
+      "active": true
     },
     {
       "name": "Gajendra Kothari",
@@ -83,20 +97,8 @@
       "guest_slug": "gajendra-kothari",
       "photo": "",
       "blurb": "",
-      "specialties": []
-    },
-    {
-      "active": false,
-      "name": "CA Abhishek Mehta",
-      "featured": false,
-      "guest_slug": "",
-      "photo": "",
-      "reg": "",
-      "consent_confirmed": false,
-      "type": "",
-      "blurb": "",
       "specialties": [],
-      "firm": ""
+      "active": true
     },
     {
       "active": false,
@@ -113,6 +115,19 @@
     },
     {
       "active": false,
+      "name": "Kirtan Shah",
+      "featured": false,
+      "guest_slug": "kirtan-shah",
+      "photo": "",
+      "reg": "",
+      "consent_confirmed": false,
+      "type": "",
+      "blurb": "",
+      "specialties": [],
+      "firm": "Founder, Credence Wealth, Mutual Fund Distributor"
+    },
+    {
+      "active": false,
       "name": "Neil Borate",
       "featured": false,
       "guest_slug": "neil-borate",
@@ -123,19 +138,6 @@
       "blurb": "",
       "specialties": [],
       "firm": "Founder, thefynprint"
-    },
-    {
-      "active": false,
-      "name": "Pooja Bhinde",
-      "featured": false,
-      "guest_slug": "pooja-bhinde",
-      "photo": "",
-      "reg": "",
-      "consent_confirmed": false,
-      "type": "",
-      "blurb": "",
-      "specialties": [],
-      "firm": "Certified Financial Planner"
     }
   ]
 }
