@@ -1,19 +1,6 @@
 {
   "advisors": [
     {
-      "active": false,
-      "name": "Vijai Mantri",
-      "featured": false,
-      "guest_slug": "vijai-mantri",
-      "photo": "",
-      "reg": "",
-      "consent_confirmed": false,
-      "type": "",
-      "blurb": "",
-      "specialties": [],
-      "firm": "Founder, VMFS"
-    },
-    {
       "active": true,
       "name": "Roopa Venkatkrishnan",
       "featured": true,
@@ -25,6 +12,19 @@
       "blurb": "",
       "specialties": [],
       "firm": "Director, Sapient Wealth Advisors and Brokers Pvt Ltd"
+    },
+    {
+      "active": false,
+      "name": "Vijai Mantri",
+      "featured": false,
+      "guest_slug": "vijai-mantri",
+      "photo": "",
+      "reg": "",
+      "consent_confirmed": false,
+      "type": "",
+      "blurb": "",
+      "specialties": [],
+      "firm": "Founder, VMFS"
     },
     {
       "active": false,
@@ -54,32 +54,6 @@
     },
     {
       "active": false,
-      "name": "Neil Borate",
-      "featured": false,
-      "guest_slug": "neil-borate",
-      "photo": "",
-      "reg": "",
-      "consent_confirmed": false,
-      "type": "",
-      "blurb": "",
-      "specialties": [],
-      "firm": "Founder, thefynprint"
-    },
-    {
-      "active": false,
-      "name": "Pooja Bhinde",
-      "featured": false,
-      "guest_slug": "pooja-bhinde",
-      "photo": "",
-      "reg": "",
-      "consent_confirmed": false,
-      "type": "",
-      "blurb": "",
-      "specialties": [],
-      "firm": "Certified Financial Planner"
-    },
-    {
-      "active": false,
       "name": "Vishesh Gandhi",
       "featured": false,
       "guest_slug": "vishesh-gandhi",
@@ -90,6 +64,26 @@
       "blurb": "",
       "specialties": [],
       "firm": "Mutual Fund Distributor"
+    },
+    {
+      "name": "Viral Bhatt",
+      "type": "",
+      "reg": "",
+      "firm": "",
+      "guest_slug": "viral-bhatt",
+      "photo": "",
+      "blurb": "",
+      "specialties": []
+    },
+    {
+      "name": "Gajendra Kothari",
+      "type": "",
+      "reg": "",
+      "firm": "",
+      "guest_slug": "gajendra-kothari",
+      "photo": "",
+      "blurb": "",
+      "specialties": []
     },
     {
       "active": false,
@@ -116,6 +110,32 @@
       "blurb": "",
       "specialties": [],
       "firm": "Founder, First Global"
+    },
+    {
+      "active": false,
+      "name": "Neil Borate",
+      "featured": false,
+      "guest_slug": "neil-borate",
+      "photo": "",
+      "reg": "",
+      "consent_confirmed": false,
+      "type": "",
+      "blurb": "",
+      "specialties": [],
+      "firm": "Founder, thefynprint"
+    },
+    {
+      "active": false,
+      "name": "Pooja Bhinde",
+      "featured": false,
+      "guest_slug": "pooja-bhinde",
+      "photo": "",
+      "reg": "",
+      "consent_confirmed": false,
+      "type": "",
+      "blurb": "",
+      "specialties": [],
+      "firm": "Certified Financial Planner"
     }
   ]
 }
