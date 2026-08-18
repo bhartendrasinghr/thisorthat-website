@@ -334,6 +334,7 @@ collections:
     fields:
       - { name: "name", label: "Name (must match episode credits exactly)", widget: "string", hint: "Case-sensitive. E.g. 'Vijai Mantri' not 'vijai mantri'." }
       - { name: "slug", label: "URL slug", widget: "string", hint: "Lowercase, hyphens only. E.g. 'vijai-mantri'." }
+      - { name: "category", label: "Category", widget: "select", required: false, options: ["AMC CEO", "CBO", "Fund Manager", "Mutual Fund Distributor", "Financial Educator", "Insurance Expert", "Real Estate Expert", "Crypto Expert", "Author", "Fitness Coach"], hint: "Drives the filter chips on the guests page. Pick the closest existing one rather than adding a near duplicate." }
       - { name: "role", label: "Role / title", widget: "string", hint: "Short one-liner. E.g. 'Founder, VMFS' or 'CEO, DSP Mutual Fund'" }
       - { name: "photo", label: "Photo", widget: "image", required: false, hint: "JPG or PNG only. iPhone HEIC files will not upload, so share the photo as JPEG first. Square is best, 800x800 is plenty, and keep it under 2MB. Cropped to a circle in lists." }
       - { name: "linkedin", label: "LinkedIn URL", widget: "string", required: false }
