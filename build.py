@@ -204,6 +204,10 @@ def build_guests():
         # Normalise empty photo
         if not meta.get('photo'):
             meta['photo'] = ''
+        # Trailing spaces get typed into the CMS and then render as gaps.
+        for k in ('name', 'role', 'slug'):
+            if isinstance(meta.get(k), str):
+                meta[k] = meta[k].strip()
         # The pages add their own quote marks, so strip any the author typed.
         q = str(meta.get('quote') or '').strip()
         if len(q) >= 2 and q[0] in '"\u201c\u2018\'' and q[-1] in '"\u201d\u2019\'':

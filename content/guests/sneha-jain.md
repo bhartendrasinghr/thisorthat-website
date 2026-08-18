@@ -1,7 +1,7 @@
 ---
 name: "Sneha Jain"
 slug: "sneha-jain"
-role: "Fund Manager"
+role: "CEO, Wealth Trust"
 photo: ""
 linkedin: ""
 twitter: ""
