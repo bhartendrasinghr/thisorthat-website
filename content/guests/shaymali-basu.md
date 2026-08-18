@@ -1,6 +1,7 @@
 ---
 name: "Shaymali Basu"
 slug: "shaymali-basu"
+category: "Mutual Fund Distributor"
 role: "Financial Planner"
 photo: ""
 linkedin: ""

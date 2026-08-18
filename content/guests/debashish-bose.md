@@ -1,6 +1,7 @@
 ---
 name: "Debashish Bose"
 slug: "debashish-bose"
+category: "Fund Manager"
 role: "Founder & Managing Partner, Infinite Circle Asset Manager"
 photo: ""
 linkedin: ""

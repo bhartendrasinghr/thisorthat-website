@@ -1,6 +1,7 @@
 ---
 name: "Mahavir Chopra"
 slug: "mahavir-chopra"
+category: "Insurance Expert"
 role: "Founder, Beshak.org"
 photo: ""
 linkedin: ""

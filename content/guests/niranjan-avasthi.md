@@ -1,6 +1,7 @@
 ---
 name: "Niranjan Avasthi"
 slug: "niranjan-avasthi"
+category: "CBO"
 role: "Head of Product & Marketing, Edelweiss MF"
 photo: ""
 linkedin: ""

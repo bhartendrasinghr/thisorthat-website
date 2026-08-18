@@ -1,6 +1,7 @@
 ---
 name: "Pooja Bhinde"
 slug: "pooja-bhinde"
+category: "Mutual Fund Distributor"
 role: "Certified Financial Planner"
 photo: ""
 linkedin: ""

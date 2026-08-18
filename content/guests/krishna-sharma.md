@@ -1,6 +1,7 @@
 ---
 name: "Krishnan Sharma"
 slug: "krishna-sharma"
+category: "Financial Educator"
 role: "Financial Coach"
 photo: ""
 linkedin: ""

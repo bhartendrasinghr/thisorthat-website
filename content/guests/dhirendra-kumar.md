@@ -1,6 +1,7 @@
 ---
 name: Dhirendra Kumar
 slug: dhirendra-kumar
+category: "Financial Educator"
 role: CEO, Value Research
 photo: ""
 linkedin: ""

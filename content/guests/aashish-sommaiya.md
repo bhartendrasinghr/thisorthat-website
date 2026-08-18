@@ -1,6 +1,7 @@
 ---
 name: Aashish Sommaiya
 slug: aashish-sommaiya
+category: "AMC CEO"
 role: Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset
   Management Ltd
 photo: /media/chatgpt-image-jul-18-2026-11_21_00-pm.png

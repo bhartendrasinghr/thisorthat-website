@@ -1,6 +1,7 @@
 ---
 name: "Mohit Bhatia"
 slug: "mohit-bhatia"
+category: "AMC CEO"
 role: "CEO, Bank of India Mutual Fund"
 photo: ""
 linkedin: ""

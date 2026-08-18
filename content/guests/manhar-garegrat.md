@@ -1,6 +1,7 @@
 ---
 name: "Manhar Garegrat"
 slug: "manhar-garegrat"
+category: "Crypto Expert"
 role: "Country Head India & Global Partnerships, Liminal Custody"
 photo: ""
 linkedin: ""

@@ -1,6 +1,7 @@
 ---
 name: "Raghav Iyengar"
 slug: "raghav-iyengar"
+category: "AMC CEO"
 role: "CEO, 360 One AMC"
 photo: ""
 linkedin: ""

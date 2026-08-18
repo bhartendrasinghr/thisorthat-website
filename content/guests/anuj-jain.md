@@ -1,6 +1,7 @@
 ---
 name: "CA Anuj Jain"
 slug: "anuj-jain"
+category: "Fund Manager"
 role: "Fund Manager & Founder, Green Portfolio"
 photo: ""
 linkedin: ""

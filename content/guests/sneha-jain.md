@@ -1,6 +1,7 @@
 ---
 name: "Sneha Jain"
 slug: "sneha-jain"
+category: "Mutual Fund Distributor"
 role: "CEO, Wealth Trust"
 photo: ""
 linkedin: ""

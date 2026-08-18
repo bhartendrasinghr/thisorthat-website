@@ -1,6 +1,7 @@
 ---
 name: "Anupam Tiwari"
 slug: "anupam-tiwari"
+category: "Fund Manager"
 role: "Head of Equities, Groww Mutual Fund"
 photo: ""
 linkedin: ""

@@ -2,6 +2,7 @@
   {
     "name": "Aashish Sommaiya",
     "slug": "aashish-sommaiya",
+    "category": "AMC CEO",
     "role": "Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset Management Ltd",
     "photo": "/media/chatgpt-image-jul-18-2026-11_21_00-pm.png",
     "linkedin": "https://www.linkedin.com/in/aashishpsomaiyaa/",
@@ -15,6 +16,7 @@
   {
     "name": "Abhijit More",
     "slug": "abhijit-more",
+    "category": "Real Estate Expert",
     "role": "Real Estate Expert",
     "photo": "/media/chatgpt-image-aug-14-2026-09_16_18-pm.png",
     "linkedin": "",
@@ -28,6 +30,7 @@
   {
     "name": "Ajit Menon",
     "slug": "ajit-menon",
+    "category": "AMC CEO",
     "role": "Former CEO, PGIM Mutual Fund",
     "photo": "/media/chatgpt-image-aug-14-2026-09_33_00-pm.png",
     "linkedin": "",
@@ -41,6 +44,7 @@
   {
     "name": "Amit Bivalkar",
     "slug": "amit-bivalkar",
+    "category": "Mutual Fund Distributor",
     "role": "Founder, Sapient Wealth",
     "photo": "/media/chatgpt-image-aug-14-2026-10_30_15-pm.png",
     "linkedin": "",
@@ -54,6 +58,7 @@
   {
     "name": "CA Anuj Jain",
     "slug": "anuj-jain",
+    "category": "Fund Manager",
     "role": "Fund Manager & Founder, Green Portfolio",
     "photo": "",
     "linkedin": "",
@@ -67,6 +72,7 @@
   {
     "name": "Anupam Tiwari",
     "slug": "anupam-tiwari",
+    "category": "Fund Manager",
     "role": "Head of Equities, Groww Mutual Fund",
     "photo": "",
     "linkedin": "",
@@ -80,6 +86,7 @@
   {
     "name": "Bhalchandra Joshi",
     "slug": "bhalchandra-joshi",
+    "category": "CBO",
     "role": "Mutual Fund Veteran, COO The Wealth Company",
     "photo": "",
     "linkedin": "",
@@ -91,8 +98,23 @@
     "excerpt": "Three decades of mutual fund experience. On the show with the unsexy lesson nobody wants to hear: SIP works. He's seen it. The data backs it. The only thing tha…"
   },
   {
+    "name": "CA Abhishek Mehta",
+    "slug": "ca-abhishek-mehta",
+    "category": "Mutual Fund Distributor",
+    "role": "Mutual Fund Distributor",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "quote": "",
+    "bio_html": "<p>Bio to be written.</p>",
+    "excerpt": "Bio to be written."
+  },
+  {
     "name": "Chirag Barjatya",
     "slug": "chirag-barjatya",
+    "category": "Fitness Coach",
     "role": "Founder, PFC, Fitness Coach",
     "photo": "",
     "linkedin": "",
@@ -106,6 +128,7 @@
   {
     "name": "Debashish Bose",
     "slug": "debashish-bose",
+    "category": "Fund Manager",
     "role": "Founder & Managing Partner, Infinite Circle Asset Manager",
     "photo": "",
     "linkedin": "",
@@ -119,6 +142,7 @@
   {
     "name": "Devina Mehra",
     "slug": "devina-mehra",
+    "category": "Fund Manager",
     "role": "Founder, First Global",
     "photo": "/media/chatgpt-image-jun-23-2026-08_45_11-pm.png",
     "linkedin": "",
@@ -132,6 +156,7 @@
   {
     "name": "Dhirendra Kumar",
     "slug": "dhirendra-kumar",
+    "category": "Financial Educator",
     "role": "CEO, Value Research",
     "photo": "",
     "linkedin": "",
@@ -143,8 +168,23 @@
     "excerpt": "CEO of Value Research. India's most-read mutual fund analyst, and a 7-figure-view ThisOrThat episode."
   },
   {
+    "name": "Gajendra Kothari",
+    "slug": "gajendra-kothari",
+    "category": "Mutual Fund Distributor",
+    "role": "Mutual Fund Distributor",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "quote": "",
+    "bio_html": "<p>Bio to be written.</p>",
+    "excerpt": "Bio to be written."
+  },
+  {
     "name": "Kalpen Parekh",
     "slug": "kalpen-parekh",
+    "category": "AMC CEO",
     "role": "CEO, DSP Mutual Fund",
     "photo": "",
     "linkedin": "",
@@ -158,6 +198,7 @@
   {
     "name": "Karan Datta",
     "slug": "karan-datta",
+    "category": "CBO",
     "role": "Content Creator, Ex CBO of Axis Mutual Fund",
     "photo": "",
     "linkedin": "",
@@ -171,6 +212,7 @@
   {
     "name": "Ketan Das",
     "slug": "ketan-das",
+    "category": "Financial Educator",
     "role": "Founding Team Member, FinRight",
     "photo": "",
     "linkedin": "",
@@ -184,6 +226,7 @@
   {
     "name": "Kirtan Shah",
     "slug": "kirtan-shah",
+    "category": "Mutual Fund Distributor",
     "role": "Founder, Credence Wealth, Mutual Fund Distributor",
     "photo": "",
     "linkedin": "",
@@ -197,6 +240,7 @@
   {
     "name": "Krishnan Sharma",
     "slug": "krishna-sharma",
+    "category": "Financial Educator",
     "role": "Financial Coach",
     "photo": "",
     "linkedin": "",
@@ -210,6 +254,7 @@
   {
     "name": "Lakshmi Iyer",
     "slug": "lakshmi-iyer",
+    "category": "Fund Manager",
     "role": "Group President - Investments & CEO- Bajaj Alternates",
     "photo": "/media/chatgpt-image-aug-17-2026-07_32_17-am.png",
     "linkedin": "https://www.linkedin.com/in/lakshmi-iyer-296b93/",
@@ -223,6 +268,7 @@
   {
     "name": "Lisa Pallavi Barbora",
     "slug": "lisa-pallavi-barbora",
+    "category": "Author",
     "role": "Content Creator, Author",
     "photo": "",
     "linkedin": "",
@@ -236,6 +282,7 @@
   {
     "name": "Mahavir Chopra",
     "slug": "mahavir-chopra",
+    "category": "Insurance Expert",
     "role": "Founder, Beshak.org",
     "photo": "",
     "linkedin": "",
@@ -249,6 +296,7 @@
   {
     "name": "Mahmood Basha Shaik",
     "slug": "mahmood-basha-shaik",
+    "category": "CBO",
     "role": "Head International Business, Baroda BNP Paribas",
     "photo": "",
     "linkedin": "",
@@ -262,6 +310,7 @@
   {
     "name": "Manhar Garegrat",
     "slug": "manhar-garegrat",
+    "category": "Crypto Expert",
     "role": "Country Head India & Global Partnerships, Liminal Custody",
     "photo": "",
     "linkedin": "",
@@ -275,6 +324,7 @@
   {
     "name": "Mohit Bhatia",
     "slug": "mohit-bhatia",
+    "category": "AMC CEO",
     "role": "CEO, Bank of India Mutual Fund",
     "photo": "",
     "linkedin": "",
@@ -288,6 +338,7 @@
   {
     "name": "Mrin Agarwal",
     "slug": "mrin-agarwal",
+    "category": "Financial Educator",
     "role": "Founder, Finsafe",
     "photo": "/media/chatgpt-image-jun-25-2026-01_01_10-pm.png",
     "linkedin": "https://www.linkedin.com/in/mrin-agarwal-9445425/",
@@ -301,6 +352,7 @@
   {
     "name": "Neil Borate",
     "slug": "neil-borate",
+    "category": "Financial Educator",
     "role": "Founder, fynprint",
     "photo": "",
     "linkedin": "",
@@ -314,6 +366,7 @@
   {
     "name": "Nimesh Chandan",
     "slug": "nimesh-chandan",
+    "category": "Fund Manager",
     "role": "CIO, Bajaj Finserv AMC",
     "photo": "",
     "linkedin": "",
@@ -327,6 +380,7 @@
   {
     "name": "Niranjan Avasthi",
     "slug": "niranjan-avasthi",
+    "category": "CBO",
     "role": "Head of Product & Marketing, Edelweiss MF",
     "photo": "",
     "linkedin": "",
@@ -340,6 +394,7 @@
   {
     "name": "Pooja Bhinde",
     "slug": "pooja-bhinde",
+    "category": "Mutual Fund Distributor",
     "role": "Certified Financial Planner",
     "photo": "",
     "linkedin": "",
@@ -353,6 +408,7 @@
   {
     "name": "Raghav Iyengar",
     "slug": "raghav-iyengar",
+    "category": "AMC CEO",
     "role": "CEO, 360 One AMC",
     "photo": "",
     "linkedin": "",
@@ -366,6 +422,7 @@
   {
     "name": "Roopa Venkatkrishnan",
     "slug": "roopa-venkatkrishnan",
+    "category": "Mutual Fund Distributor",
     "role": "Director, Sapient Wealth Advisors and Brokers Pvt Ltd",
     "photo": "",
     "linkedin": "",
@@ -379,6 +436,7 @@
   {
     "name": "Shaymali Basu",
     "slug": "shaymali-basu",
+    "category": "Mutual Fund Distributor",
     "role": "Financial Planner",
     "photo": "",
     "linkedin": "",
@@ -392,6 +450,7 @@
   {
     "name": "Sneha Jain",
     "slug": "sneha-jain",
+    "category": "Mutual Fund Distributor",
     "role": "CEO, Wealth Trust",
     "photo": "",
     "linkedin": "",
@@ -405,6 +464,7 @@
   {
     "name": "Swarup Mohanty",
     "slug": "swarup-mohanty",
+    "category": "AMC CEO",
     "role": "CEO, Mirae Asset Management",
     "photo": "",
     "linkedin": "",
@@ -418,6 +478,7 @@
   {
     "name": "Thomas Priju",
     "slug": "thomas-priju",
+    "category": "Fund Manager",
     "role": "Fund Manager",
     "photo": "",
     "linkedin": "",
@@ -431,6 +492,7 @@
   {
     "name": "Vijai Mantri",
     "slug": "vijai-mantri",
+    "category": "Mutual Fund Distributor",
     "role": "Founder, Vijai Mantri Financial Services",
     "photo": "",
     "linkedin": "",
@@ -444,6 +506,7 @@
   {
     "name": "Vinayak Sapre",
     "slug": "vinayak-sapre",
+    "category": "Mutual Fund Distributor",
     "role": "Financial Coach",
     "photo": "",
     "linkedin": "",
@@ -455,8 +518,23 @@
     "excerpt": "Financial coach with a quiet, disciplined approach to wealth-building. Built financial freedom at 40."
   },
   {
+    "name": "Viral Bhatt",
+    "slug": "viral-bhatt",
+    "category": "Mutual Fund Distributor",
+    "role": "Mutual Fund Distributor",
+    "photo": "",
+    "linkedin": "",
+    "twitter": "",
+    "website": "",
+    "featured": false,
+    "quote": "",
+    "bio_html": "<p>Bio to be written.</p>",
+    "excerpt": "Bio to be written."
+  },
+  {
     "name": "Vishesh Gandhi",
     "slug": "vishesh-gandhi",
+    "category": "Mutual Fund Distributor",
     "role": "Mutual Fund Distributor",
     "photo": "",
     "linkedin": "",

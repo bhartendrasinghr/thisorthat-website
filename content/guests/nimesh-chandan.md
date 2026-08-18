@@ -1,6 +1,7 @@
 ---
 name: "Nimesh Chandan"
 slug: "nimesh-chandan"
+category: "Fund Manager"
 role: "CIO, Bajaj Finserv AMC"
 photo: ""
 linkedin: ""

@@ -1,6 +1,7 @@
 ---
 name: "Neil Borate"
 slug: "neil-borate"
+category: "Financial Educator"
 role: "Founder, fynprint"
 photo: ""
 linkedin: ""

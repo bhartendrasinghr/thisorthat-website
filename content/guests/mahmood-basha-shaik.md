@@ -1,6 +1,7 @@
 ---
 name: "Mahmood Basha Shaik"
 slug: "mahmood-basha-shaik"
+category: "CBO"
 role: "Head International Business, Baroda BNP Paribas"
 photo: ""
 linkedin: ""

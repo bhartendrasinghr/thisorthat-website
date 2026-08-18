@@ -1,6 +1,7 @@
 ---
 name: "Roopa Venkatkrishnan"
 slug: "roopa-venkatkrishnan"
+category: "Mutual Fund Distributor"
 role: "Director, Sapient Wealth Advisors and Brokers Pvt Ltd"
 photo: ""
 linkedin: ""

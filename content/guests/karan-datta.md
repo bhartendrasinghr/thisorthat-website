@@ -1,6 +1,7 @@
 ---
 name: "Karan Datta"
 slug: "karan-datta"
+category: "CBO"
 role: "Content Creator, Ex CBO of Axis Mutual Fund"
 photo: ""
 linkedin: ""

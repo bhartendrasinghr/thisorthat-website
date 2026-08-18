@@ -1,6 +1,6 @@
 ---
-name: "Vishesh Gandhi"
-slug: "vishesh-gandhi"
+name: Viral Bhatt
+slug: viral-bhatt
 category: "Mutual Fund Distributor"
 role: "Mutual Fund Distributor"
 photo: ""
@@ -11,4 +11,4 @@ featured: false
 quote: ""
 ---
 
-Mutual fund distributor.
+Bio to be written.

@@ -1,6 +1,7 @@
 ---
 name: "Thomas Priju"
 slug: "thomas-priju"
+category: "Fund Manager"
 role: "Fund Manager"
 photo: ""
 linkedin: ""

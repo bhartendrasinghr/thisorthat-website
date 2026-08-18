@@ -1,6 +1,7 @@
 ---
 name: "Lisa Pallavi Barbora"
 slug: "lisa-pallavi-barbora"
+category: "Author"
 role: "Content Creator, Author"
 photo: ""
 linkedin: ""

@@ -158,15 +158,22 @@ const realQuoteOf = (g) => (g.quote && g.quote.trim()) ? g.quote.trim() : '';
 const trunc = (s, n) => { s = (s || '').trim(); if (s.length <= n) return s; const cut = s.lastIndexOf(' ', n); return s.slice(0, cut > 0 ? cut : n).trim() + '…'; };
 const cardLineOf = (g) => realQuoteOf(g) || trunc(g.excerpt || '', 130);
 
-const roleBuckets = [
-  { key:'all',     label:'All',          match: () => true },
-  { key:'fund',    label:'Fund manager', match: r => /fund|portfolio|cio|equit|amc|asset/i.test(r) },
-  { key:'founder', label:'Founder',      match: r => /founder|ceo|director|partner|co-?founder/i.test(r) },
-  { key:'advisor', label:'Advisor / RIA',match: r => /advisor|wealth|cfp|planner|ria/i.test(r) },
-  { key:'writer',  label:'Author · CA',  match: r => /author|journal|writer|chartered|ca\b|tax/i.test(r) }
-];
+// Categories come from the guest profiles, so the chips are whatever Bhartendra
+// has actually used. Nothing here to keep in sync when a new one appears.
+let roleBuckets = [{ key:'all', label:'All' }];
+const buildBuckets = (guests) => {
+  const counts = {};
+  guests.forEach(g => { const c = (g.category || '').trim(); if (c) counts[c] = (counts[c] || 0) + 1; });
+  roleBuckets = [{ key:'all', label:'All' }].concat(
+    Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))
+      .map(c => ({ key: c, label: c })));
+};
 
 const guestBg = ['bg-navy text-mustard','bg-mustard text-navy-ink','bg-alert text-cream','bg-navy-ink text-mustard'];
+
+const catPill = (g) => (g.category || '').trim()
+  ? `<span class="inline-block text-[10px] font-extrabold uppercase tracking-[0.14em] text-goldink">${g.category}</span>`
+  : '';
 
 const photoBadge = (g, size='w-12 h-12', textSize='text-base') =>
   g.photo
@@ -174,14 +181,15 @@ const photoBadge = (g, size='w-12 h-12', textSize='text-base') =>
     : `<div class="avatar ${size} rounded-full ${g.bg || guestBg[0]} ${textSize} ring-2 ring-cream shrink-0">${g.initials || g.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>`;
 
 let allGuests = [];
-let activeRole = 'all';
+let activeRole = decodeURIComponent((location.hash || '').slice(1)) || 'all';
 let activeQuery = '';
 
-const matchesRole = (g) => roleBuckets.find(b => b.key === activeRole).match(g.role || '');
+const matchesRole = (g) => activeRole === 'all' || (g.category || '') === activeRole;
 const matchesQuery = (g) => {
   const q = activeQuery.trim().toLowerCase();
   if (!q) return true;
-  return g.name.toLowerCase().includes(q) || (g.role||'').toLowerCase().includes(q) || cardLineOf(g).toLowerCase().includes(q);
+  return g.name.toLowerCase().includes(q) || (g.role||'').toLowerCase().includes(q)
+      || (g.category||'').toLowerCase().includes(q) || cardLineOf(g).toLowerCase().includes(q);
 };
 
 function renderFeatured() {
@@ -198,6 +206,7 @@ function renderFeatured() {
       <div class="flex items-center gap-3 mt-6 pt-4 border-t border-navy/5">
         ${photoBadge(g, 'w-14 h-14', 'text-lg')}
         <div class="flex-1 min-w-0">
+          ${catPill(g)}
           <div class="font-semibold text-ink text-base truncate">${g.name}</div>
           <div class="text-[11px] text-ink/55 truncate">${g.role || ''}</div>
         </div>
@@ -228,6 +237,7 @@ function renderRest() {
       <div class="flex items-center gap-3 mt-5 pt-3 border-t border-navy/5">
         ${photoBadge(g, 'w-10 h-10', 'text-sm')}
         <div class="flex-1 min-w-0">
+          ${catPill(g)}
           <div class="font-semibold text-ink text-sm truncate">${g.name}</div>
           <div class="text-[11px] text-ink/55 truncate">${g.role || ''}</div>
         </div>
@@ -238,8 +248,9 @@ function renderRest() {
 }
 
 function renderPills() {
+  buildBuckets(allGuests);
   document.getElementById('role-pills').innerHTML = roleBuckets.map(b => {
-    const count = b.key === 'all' ? allGuests.length : allGuests.filter(g => b.match(g.role || '')).length;
+    const count = b.key === 'all' ? allGuests.length : allGuests.filter(g => (g.category || '') === b.key).length;
     return `<button data-key="${b.key}" class="chip ${activeRole === b.key ? 'chip-active' : 'chip-idle'}">${b.label} <span class="opacity-60 font-mono text-[11px] ml-1">${count}</span></button>`;
   }).join('');
   document.querySelectorAll('#role-pills button').forEach(btn => {

@@ -1,6 +1,7 @@
 ---
 name: "Vijai Mantri"
 slug: "vijai-mantri"
+category: "Mutual Fund Distributor"
 role: "Founder, Vijai Mantri Financial Services"
 photo: ""
 linkedin: ""

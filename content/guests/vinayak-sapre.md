@@ -1,6 +1,7 @@
 ---
 name: "Vinayak Sapre"
 slug: "vinayak-sapre"
+category: "Mutual Fund Distributor"
 role: "Financial Coach"
 photo: ""
 linkedin: ""

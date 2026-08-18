@@ -1,6 +1,7 @@
 ---
 name: "Swarup Mohanty"
 slug: "swarup-mohanty"
+category: "AMC CEO"
 role: "CEO, Mirae Asset Management"
 photo: ""
 linkedin: ""

@@ -1,6 +1,7 @@
 ---
 name: "Kalpen Parekh"
 slug: "kalpen-parekh"
+category: "AMC CEO"
 role: "CEO, DSP Mutual Fund"
 photo: ""
 linkedin: ""

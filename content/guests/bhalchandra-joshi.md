@@ -1,6 +1,7 @@
 ---
 name: "Bhalchandra Joshi"
 slug: "bhalchandra-joshi"
+category: "CBO"
 role: "Mutual Fund Veteran, COO The Wealth Company"
 photo: ""
 linkedin: ""

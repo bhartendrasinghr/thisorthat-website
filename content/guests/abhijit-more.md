@@ -1,6 +1,7 @@
 ---
 name: Abhijit More
 slug: abhijit-more
+category: "Real Estate Expert"
 role: "Real Estate Expert "
 photo: /media/chatgpt-image-aug-14-2026-09_16_18-pm.png
 linkedin: ""

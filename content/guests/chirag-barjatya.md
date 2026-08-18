@@ -1,6 +1,7 @@
 ---
 name: "Chirag Barjatya"
 slug: "chirag-barjatya"
+category: "Fitness Coach"
 role: "Founder, PFC, Fitness Coach"
 photo: ""
 linkedin: ""
