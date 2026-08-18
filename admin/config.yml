@@ -297,7 +297,7 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - { name: "name", label: "Name", widget: "string" }
-              - { name: "type", label: "Type", widget: "select", options: ["Mutual Fund Distributor", "Financial Advisor (RIA)"], required: false, hint: "Only list registered MFDs or RIAs who take retail clients." }
+              - { name: "type", label: "Type", widget: "select", options: ["Mutual Fund Distributor", "Mutual Fund and SIF Distributor", "Financial Advisor (RIA)"], required: false, hint: "Only list registered MFDs or RIAs who take retail clients." }
               - { name: "reg", label: "Registration number (ARN / SEBI RIA)", widget: "string", required: false, hint: "Shown so visitors can verify on AMFI or SEBI. Leave blank to hide." }
               - { name: "firm", label: "Firm / role", widget: "string", required: false }
               - { name: "guest_slug", label: "Link to guest profile (slug)", widget: "string", required: false, hint: "e.g. vijai-mantri. Reuses their photo and shows an 'On the show' badge." }

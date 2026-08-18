@@ -255,7 +255,9 @@ fetch('content/advisors.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() 
   html += active.map(a => advCard(
     a.name, a.name,
     a.firm || '',
-    a.type ? (a.type === 'Mutual Fund Distributor' ? 'AMFI registered MFD' : a.type) + (a.reg ? ' &middot; ' + a.reg : '') : (a.reg || ''),
+    a.type ? ({'Mutual Fund Distributor':'AMFI registered MFD',
+            'Mutual Fund and SIF Distributor':'AMFI registered MFD &amp; SIF distributor'}[a.type] || a.type)
+           + (a.reg ? ' &middot; ' + a.reg : '') : (a.reg || ''),
     a.photo || '')).join('');
   wrap.innerHTML = html;
   wrap.addEventListener('change', e => {
