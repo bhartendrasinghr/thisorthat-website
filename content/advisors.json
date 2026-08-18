@@ -101,6 +101,19 @@
       "active": true
     },
     {
+      "active": true,
+      "name": "Kirtan Shah",
+      "featured": false,
+      "guest_slug": "kirtan-shah",
+      "photo": "",
+      "reg": "ARN-306070",
+      "consent_confirmed": false,
+      "type": "Mutual Fund Distributor",
+      "blurb": "",
+      "specialties": [],
+      "firm": "Founder, Credence Wealth, Mutual Fund Distributor"
+    },
+    {
       "active": false,
       "name": "Devina Mehra",
       "featured": false,
@@ -112,19 +125,6 @@
       "blurb": "",
       "specialties": [],
       "firm": "Founder, First Global"
-    },
-    {
-      "active": false,
-      "name": "Kirtan Shah",
-      "featured": false,
-      "guest_slug": "kirtan-shah",
-      "photo": "",
-      "reg": "",
-      "consent_confirmed": false,
-      "type": "",
-      "blurb": "",
-      "specialties": [],
-      "firm": "Founder, Credence Wealth, Mutual Fund Distributor"
     },
     {
       "active": false,
