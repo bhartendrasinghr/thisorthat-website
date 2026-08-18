@@ -233,6 +233,7 @@ const advCard = (val, title, sub, reg, photo, wide) => `
       <span class="block font-semibold text-ink text-sm leading-snug">${title}</span>
       ${sub ? `<span class="block text-[11.5px] text-ink/55 leading-snug mt-0.5">${sub}</span>` : ''}
       ${reg ? `<span class="block text-[10.5px] text-goldink font-semibold tracking-wide mt-1">${reg}</span>` : ''}
+      ${!reg && val ? `<span class="block text-[10.5px] text-ink/35 mt-1">Registration not listed yet</span>` : ''}
     </span>
     <span class="tick" aria-hidden="true"></span>
   </label>`;
@@ -253,8 +254,8 @@ fetch('content/advisors.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() 
   let html = advCard('', 'Not sure, help me choose', 'Tell us your goals below and we suggest someone. Most people pick this.', '', '', true);
   html += active.map(a => advCard(
     a.name, a.name,
-    a.firm || a.type || 'Has been on the show',
-    a.reg || '',
+    a.firm || '',
+    a.type ? (a.type === 'Mutual Fund Distributor' ? 'AMFI registered MFD' : a.type) + (a.reg ? ' &middot; ' + a.reg : '') : (a.reg || ''),
     a.photo || '')).join('');
   wrap.innerHTML = html;
   wrap.addEventListener('change', e => {

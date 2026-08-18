@@ -21,7 +21,7 @@
       "photo": "",
       "reg": "",
       "consent_confirmed": false,
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "blurb": "",
       "specialties": [],
       "firm": "Founder, VMFS"
@@ -34,7 +34,7 @@
       "photo": "",
       "reg": "",
       "consent_confirmed": false,
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "blurb": "",
       "specialties": [],
       "firm": ""
@@ -47,7 +47,7 @@
       "photo": "",
       "reg": "",
       "consent_confirmed": false,
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "blurb": "",
       "specialties": [],
       "firm": "Certified Financial Planner"
@@ -60,7 +60,7 @@
       "photo": "",
       "reg": "",
       "consent_confirmed": false,
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "blurb": "",
       "specialties": [],
       "firm": "Fund Manager"
@@ -73,14 +73,14 @@
       "photo": "",
       "reg": "",
       "consent_confirmed": false,
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "blurb": "",
       "specialties": [],
       "firm": "Mutual Fund Distributor"
     },
     {
       "name": "Viral Bhatt",
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "reg": "",
       "firm": "",
       "guest_slug": "viral-bhatt",
@@ -91,7 +91,7 @@
     },
     {
       "name": "Gajendra Kothari",
-      "type": "",
+      "type": "Mutual Fund Distributor",
       "reg": "",
       "firm": "",
       "guest_slug": "gajendra-kothari",
