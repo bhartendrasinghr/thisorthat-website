@@ -3,6 +3,49 @@
 // GET ?key=<LEADS_KEY>: renders all captured leads (newest first) for Bhartendra.
 import { put, list } from '@vercel/blob';
 
+// Email the lead the moment it lands. Storing it is not enough: a lead nobody
+// sees is somebody's money question going unanswered. Sending must never be able
+// to lose a lead, so it happens after the blob is written and every failure is
+// swallowed and logged.
+async function emailLead(lead) {
+  const keyR = process.env.RESEND_API_KEY;
+  const to = process.env.LEAD_EMAIL_TO;
+  if (!keyR || !to) return { sent: false, why: 'not configured' };
+
+  const row = (k, v) => v ? `<tr><td style="padding:6px 14px 6px 0;color:#7A7368;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:6px 0;color:#1A1813"><strong>${esc(v)}</strong></td></tr>` : '';
+  const html = `<div style="font-family:-apple-system,system-ui,sans-serif;max-width:560px">
+    <p style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8F6600;font-weight:800;margin:0 0 6px">New lead, talk to a human</p>
+    <h2 style="font-size:22px;margin:0 0 14px;color:#1A1813">${esc(lead.name)}${lead.age ? ', ' + esc(lead.age) : ''}</h2>
+    <table style="font-size:14px;border-collapse:collapse">
+      ${row('Email', lead.email)}${row('Phone', lead.phone)}
+      ${row('Wants intro to', lead.advisor || 'No preference, wants a suggestion')}
+      ${row('Looking for', (lead.types || []).join(', '))}
+    </table>
+    ${lead.goals ? `<p style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7368;font-weight:800;margin:20px 0 6px">In their words</p>
+      <div style="background:#F6F4EE;border-left:4px solid #FFC21F;padding:14px 16px;font-size:15px;line-height:1.6;color:#2C2A23;white-space:pre-wrap">${esc(lead.goals)}</div>` : ''}
+    <p style="font-size:12px;color:#9A9284;margin-top:22px">${esc(lead.at)} UTC &middot; from /${esc(lead.page)}</p>
+  </div>`;
+
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${keyR}` },
+      body: JSON.stringify({
+        from: process.env.LEAD_EMAIL_FROM || 'ThisOrThat <onboarding@resend.dev>',
+        to: to.split(',').map(x => x.trim()).filter(Boolean),
+        reply_to: lead.email || undefined,
+        subject: `New lead: ${lead.name}${lead.advisor ? ' wants ' + lead.advisor : ''}`,
+        html
+      })
+    });
+    if (!r.ok) { console.error('lead email failed', r.status, (await r.text()).slice(0, 300)); return { sent: false, why: 'upstream' }; }
+    return { sent: true };
+  } catch (e) {
+    console.error('lead email threw', e);
+    return { sent: false, why: 'threw' };
+  }
+}
+
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const clip = (v, n) => (typeof v === 'string' ? v.trim().slice(0, n) : '');
 
@@ -34,7 +77,9 @@ export default async function handler(req, res) {
         access: 'private',
         contentType: 'application/json'
       });
-      return res.status(200).json({ ok: true });
+      // stored, so the lead is safe whatever the mail server does next
+      const mail = await emailLead(lead);
+      return res.status(200).json({ ok: true, emailed: mail.sent });
     } catch (err) {
       console.error('lead store failed:', err);
       return res.status(500).json({ ok: false, error: 'store' });
