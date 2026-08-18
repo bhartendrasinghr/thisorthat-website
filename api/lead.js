@@ -58,6 +58,25 @@ export default async function handler(req, res) {
         } catch (e) { /* skip unreadable blob */ }
       }
       if (req.query.format === 'json') return res.status(200).json({ count: leads.length, leads });
+
+      // Download. Excel and Numbers both want a BOM or they mangle rupee signs
+      // and Devanagari, and goals are free text so every field gets quoted.
+      if (req.query.format === 'csv') {
+        const cell = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+        const head = ['When (UTC)', 'Name', 'Age', 'Email', 'Phone', 'Wants intro to', 'Looking for', 'Goals', 'Page'];
+        const body = leads.map(l => [
+          (l.at || '').replace('T', ' ').slice(0, 19),
+          l.name, l.age, l.email, l.phone,
+          l.advisor || 'no preference',
+          (l.types || []).join('; '),
+          l.goals, l.page
+        ].map(cell).join(','));
+        const stamp = new Date().toISOString().slice(0, 10);
+        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+        res.setHeader('Content-Disposition', `attachment; filename="thisorthat-leads-${stamp}.csv"`);
+        res.setHeader('X-Robots-Tag', 'noindex');
+        return res.status(200).send('\uFEFF' + [head.map(cell).join(','), ...body].join('\r\n'));
+      }
       const rows = leads.map(l => `
         <tr>
           <td>${esc((l.at || '').replace('T', ' ').slice(0, 16))}</td>
@@ -76,6 +95,10 @@ export default async function handler(req, res) {
         th,td{border-bottom:1px solid #E1DDD1;padding:8px 10px;text-align:left;vertical-align:top}
         th{background:#F6F4EE;position:sticky;top:0}</style></head>
         <body><h1>Talk-to-a-human leads &middot; ${leads.length}</h1>
+        <p style="margin:-6px 0 18px">
+          <a href="?key=${encodeURIComponent(key)}&amp;format=csv" style="display:inline-block;background:#1A1813;color:#FCFBF8;font-weight:700;font-size:13px;padding:9px 16px;border-radius:99px;text-decoration:none">Download CSV</a>
+          <a href="?key=${encodeURIComponent(key)}&amp;format=json" style="margin-left:10px;font-size:13px;color:#57534A">or JSON</a>
+        </p>
         <table><tr><th>When (UTC)</th><th>Who</th><th>Contact</th><th>Wants intro to</th><th>Looking for</th><th>Goals</th></tr>${rows}</table>
         </body></html>`);
     } catch (err) {
