@@ -361,10 +361,14 @@ function render(){
         pts.length+' days of NAV.</p>'; return; }
       var since=pts[0][0], w=worst12(pts), dd=maxDrawdown(pts);
       var rows='';
+      // "1 year, a year" reads as nonsense, and over one year the annualised
+      // figure and the plain change are the same number. Only label the rows
+      // where annualising is actually doing something.
       [[1,'1 year'],[3,'3 years'],[5,'5 years'],[10,'10 years']].forEach(function(p){
         var r=ret(pts,p[0]);
+        var sub = !r ? '' : (p[0]===1 ? '' : (r.annualised ? 'a year, compounded' : 'total change'));
         rows += statRow(p[1], r? r.pct.toFixed(1)+'%' : '<span class="text-meta font-normal text-[13px]">not that old</span>',
-          r? (r.annualised?'a year':'total change') : '', r? (r.pct<0?'text-loss':'') : '');
+          sub, r? (r.pct<0?'text-loss':'') : '');
       });
       var plans=(f[3]&&f[4])?'Direct and Regular':(f[3]?'Direct only':'Regular only');
       $('p'+i).innerHTML =
