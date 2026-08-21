@@ -236,6 +236,57 @@ function maxDrawdown(pts){
   info.months=rec?Math.round((rec-info.trough)/DAY/30.44):null;
   return info;
 }
+function addMonth(ts){
+  // A SIP dated the 31st runs on the 30th in April and the 28th in February.
+  // It does not skip those months.
+  var d=new Date(ts), y=d.getUTCFullYear(), m=d.getUTCMonth(), day=d.getUTCDate();
+  m+=1; if(m>11){ m=0; y+=1; }
+  var last=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+  return Date.UTC(y,m,Math.min(day,last));
+}
+function xirr(flows){
+  var d0=flows[0][0];
+  function npv(r){ var t=0;
+    for(var i=0;i<flows.length;i++) t+=flows[i][1]/Math.pow(1+r,(flows[i][0]-d0)/DAY/365.25);
+    return t; }
+  var lo=-0.9999, hi=10;
+  if(npv(lo)<0||npv(hi)>0) return null;
+  for(var i=0;i<200;i++){ var mid=(lo+hi)/2; if(npv(mid)>0) lo=mid; else hi=mid; }
+  return (lo+hi)/2*100;
+}
+function sipReturn(pts, years, monthly){
+  monthly=monthly||10000;
+  if(!pts.length) return null;
+  var end=pts[pts.length-1];
+  var start=navOnOrBefore(pts, end[0]-Math.round(365.25*years)*DAY);
+  if(!start) return null;
+  var flows=[], units=0, d=start[0];
+  while(d<end[0]){
+    var p=navOnOrBefore(pts,d);
+    if(p&&p[1]>0){ units+=monthly/p[1]; flows.push([d,-monthly]); }
+    d=addMonth(d);
+  }
+  if(flows.length<6) return null;
+  var value=units*end[1];
+  var rate=xirr(flows.concat([[end[0],value]]));
+  if(rate===null) return null;
+  return {pct:rate, months:flows.length, invested:monthly*flows.length, value:value};
+}
+function rollingWindows(pts, years){
+  var span=Math.round(365.25*years), out=[];
+  for(var i=0;i<pts.length;i++){
+    var f=navOnOrBefore(pts, pts[i][0]+span*DAY);
+    if(!f||f[0]<=pts[i][0]) continue;
+    var days=Math.round((f[0]-pts[i][0])/DAY);
+    if(Math.abs(days-span)>40) continue;
+    out.push((Math.pow(f[1]/pts[i][1],365.25/days)-1)*100);
+  }
+  if(out.length<30) return null;
+  out.sort(function(a,b){return a-b;});
+  var neg=0; for(var j=0;j<out.length;j++) if(out[j]<0) neg++;
+  return {n:out.length, lo:out[0], hi:out[out.length-1],
+          median:out[out.length>>1], negPct:neg/out.length*100};
+}
 function mon(ts){ var d=new Date(ts);
   return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getUTCMonth()]+' '+d.getUTCFullYear(); }
 
@@ -360,6 +411,48 @@ function render(){
         '<p class="text-[13.5px] text-meta mt-2">Too little history to say anything useful yet. '+
         pts.length+' days of NAV.</p>'; return; }
       var since=pts[0][0], w=worst12(pts), dd=maxDrawdown(pts);
+
+      // What a monthly SIP actually returned, next to the headline lumpsum.
+      // These differ in both directions depending on when the fund rose, which
+      // is the opposite of what "SIP always wins" would have you believe.
+      var sp=sipReturn(pts,5), lump5=ret(pts,5), sipBlock='';
+      if(sp&&lump5){
+        var gap=sp.pct-lump5.pct;
+        sipBlock='<div class="bg-warmpaper-2 rounded-[12px] p-5 mt-4">'+
+          '<div class="text-[11px] uppercase tracking-[0.16em] font-extrabold text-goldink">If you had put in monthly instead</div>'+
+          '<div class="grid grid-cols-2 gap-4 mt-3">'+
+            '<div><div class="text-[11.5px] text-meta">Lumpsum, 5 years</div>'+
+             '<div class="tab-num text-[19px] font-bold '+(lump5.pct<0?'text-loss':'')+'">'+lump5.pct.toFixed(1)+'%</div>'+
+             '<div class="text-[11px] text-meta">a year</div></div>'+
+            '<div><div class="text-[11.5px] text-meta">₹10,000 a month</div>'+
+             '<div class="tab-num text-[19px] font-bold '+(sp.pct<0?'text-loss':'')+'">'+sp.pct.toFixed(1)+'%</div>'+
+             '<div class="text-[11px] text-meta">a year</div></div>'+
+          '</div>'+
+          '<p class="text-[12.5px] text-ink-3 leading-relaxed mt-3">₹'+inr(sp.invested)+' paid in over '+
+          sp.months+' months would be worth <strong>₹'+inr(Math.round(sp.value))+'</strong> today. '+
+          (Math.abs(gap)<0.3
+            ? 'Investing monthly or all at once made almost no difference here.'
+            : (gap>0
+              ? 'Monthly did <strong>better</strong> than a lump sum, because the fund fell early in this window and the SIP kept buying.'
+              : 'A lump sum did <strong>better</strong>, because the fund rose early and monthly instalments missed that stretch.'))+
+          '</p></div>';
+      }
+
+      // The spread across every window, because one number reads as a promise.
+      var rw=rollingWindows(pts,3), rollBlock='';
+      if(rw){
+        rollBlock='<div class="bg-warmpaper-2 rounded-[12px] p-5 mt-4">'+
+          '<div class="text-[11px] uppercase tracking-[0.16em] font-extrabold text-goldink">Every three year stretch, not just this one</div>'+
+          '<p class="text-[13px] text-ink-3 leading-relaxed mt-2.5">Across <span class="tab-num">'+
+          rw.n.toLocaleString('en-IN')+'</span> three year windows since '+mon(since)+', this returned between '+
+          '<strong class="tab-num'+(rw.lo<0?' text-loss':'')+'">'+rw.lo.toFixed(1)+'%</strong> and '+
+          '<strong class="tab-num">'+rw.hi.toFixed(1)+'%</strong> a year. '+
+          'The middle one was <strong class="tab-num">'+rw.median.toFixed(1)+'%</strong>. '+
+          (rw.negPct===0
+            ? 'None of them lost money.'
+            : '<strong class="tab-num">'+rw.negPct.toFixed(0)+'%</strong> of them lost money.')+
+          '</p></div>';
+      }
       var rows='';
       // "1 year, a year" reads as nonsense, and over one year the annualised
       // figure and the plain change are the same number. Only label the rows
@@ -395,6 +488,7 @@ function render(){
               (dd.recovered?', back up '+(dd.months<1?'within a month':'after '+dd.months+' months'):', not back to that level yet')+
               '</div></div>')+
         '</div>'+
+        sipBlock+rollBlock+
         '<p class="text-[11.5px] text-meta mt-4">Computed from '+pts.length.toLocaleString('en-IN')+
         ' daily NAVs since '+mon(since)+'. Past returns, not a forecast.</p>';
     }).catch(function(){

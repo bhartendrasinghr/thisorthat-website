@@ -81,6 +81,81 @@ def max_drawdown(pts):
     info['recovery_months'] = round((rec - info['trough']).days / 30.44) if rec else None
     return info
 
+
+def add_month(d):
+    """Same day next month, clamped. A SIP dated the 31st runs on the 30th in
+    April and the 28th in February; it does not skip those months."""
+    y, m = (d.year + 1, 1) if d.month == 12 else (d.year, d.month + 1)
+    day = d.day
+    while day > 0:
+        try: return d.replace(year=y, month=m, day=day)
+        except ValueError: day -= 1
+
+
+def xirr(flows):
+    """Annual rate that discounts the flows to zero. Bisection, because it
+    always converges on a normal SIP pattern where Newton can run away."""
+    d0 = flows[0][0]
+    def npv(r):
+        return sum(a / (1 + r) ** ((d - d0).days / 365.25) for d, a in flows)
+    lo, hi = -0.9999, 10.0
+    if npv(lo) < 0 or npv(hi) > 0:
+        return None
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        if npv(mid) > 0: lo = mid
+        else: hi = mid
+    return (lo + hi) / 2 * 100
+
+
+def sip(pts, years, monthly=10000):
+    """What a monthly SIP over the same window actually returned.
+
+    The headline number on every fund page is lumpsum, point to point. Almost
+    nobody invests that way, and the two can differ by a lot in either
+    direction depending on when the fund rose.
+    """
+    if not pts: return None
+    end_d, end_v = pts[-1]
+    start = nav_on_or_before(pts, end_d - timedelta(days=round(365.25 * years)))
+    if not start: return None
+    flows, units, d = [], 0.0, start[0]
+    while d < end_d:
+        p = nav_on_or_before(pts, d)
+        if p and p[1] > 0:
+            units += monthly / p[1]
+            flows.append((d, -float(monthly)))
+        d = add_month(d)
+    if len(flows) < 6: return None
+    value = units * end_v
+    rate = xirr(flows + [(end_d, value)])
+    if rate is None: return None
+    invested = monthly * len(flows)
+    return dict(pct=rate, months=len(flows), invested=invested, value=value,
+                gain=value - invested)
+
+
+def rolling(pts, years):
+    """Every N-year window in the series, not just the one ending today.
+
+    A single "5 years: 13.2%" reads as a promise. The spread across every
+    start date is what actually happened to people who bought on other days.
+    """
+    span = round(365.25 * years)
+    out = []
+    for d, v in pts:
+        f = nav_on_or_before(pts, d + timedelta(days=span))
+        if not f or f[0] <= d: continue
+        days = (f[0] - d).days
+        if abs(days - span) > 40: continue
+        out.append(((f[1] / v) ** (365.25 / days) - 1) * 100 if years >= 1 else (f[1] / v - 1) * 100)
+    if len(out) < 30: return None
+    out.sort()
+    neg = sum(1 for x in out if x < 0)
+    return dict(n=len(out), lo=out[0], hi=out[-1],
+                median=out[len(out) // 2], neg_pct=neg / len(out) * 100)
+
+
 if __name__ == '__main__':
     import json, urllib.request
     def fetch(code):
@@ -132,4 +207,45 @@ if __name__ == '__main__':
                    ('03-01-2020', '110'), ('04-01-2020', '120')])
     c = len(dirty) == 3 and abs(max_drawdown(dirty)['pct']) < 0.001; ok &= c
     print(f'  a zero NAV in the source is dropped, not a -100%: {c}')
+    print('\nSIP AND ROLLING')
+    s5 = sip(pts, 5)
+    print(f'  a Rs 10,000 monthly SIP over 5 years: {s5["pct"]:.1f}% a year, '
+          f'Rs {s5["invested"]:,} in over {s5["months"]} months became Rs {s5["value"]:,.0f}')
+    print(f'  lumpsum over the same 5 years:        {ret(pts,5)["pct"]:.1f}% a year')
+    r3 = rolling(pts, 3)
+    print(f'  every 3 year window ({r3["n"]} of them): {r3["lo"]:.1f}% to {r3["hi"]:.1f}% a year, '
+          f'median {r3["median"]:.1f}%, negative in {r3["neg_pct"]:.0f}%')
+
+    print('\nMORE CHECKS')
+    # 9. a SIP into a flat fund returns nothing, not a rounding artefact
+    flat = [(base + timedelta(days=i), 100.0) for i in range(0, 2200, 7)]
+    c = abs(sip(flat, 5)['pct']) < 0.01; ok &= c
+    print(f'  a SIP into a flat fund returns 0%:               {c}')
+    # 10. a SIP into a fund compounding at 12% returns about 12%
+    twelve = [(base + timedelta(days=i), 100 * (1.12 ** (i / 365.25))) for i in range(0, 2200, 7)]
+    r = sip(twelve, 5)['pct']; c = abs(r - 12) < 0.3; ok &= c
+    print(f'  a SIP into a 12% fund returns about 12%:         {c}  ({r:.2f}%)')
+    # 11. the rate really does discount the flows to zero
+    end_d, end_v = twelve[-1]
+    st = nav_on_or_before(twelve, end_d - timedelta(days=1826))
+    fl, u, d = [], 0.0, st[0]
+    while d < end_d:
+        p = nav_on_or_before(twelve, d); u += 10000 / p[1]; fl.append((d, -10000.0)); d = add_month(d)
+    fl.append((end_d, u * end_v))
+    rr = xirr(fl) / 100
+    npv = sum(a / (1 + rr) ** ((dd - fl[0][0]).days / 365.25) for dd, a in fl)
+    c = abs(npv) < 1.0; ok &= c
+    print(f'  the SIP rate discounts its own flows to zero:    {c}  (npv {npv:.4f})')
+    # 12. a SIP dated the 31st still runs in February
+    from datetime import date
+    c = add_month(datetime(2024, 1, 31)).day == 29 and add_month(datetime(2023, 1, 31)).day == 28; ok &= c
+    print(f'  a SIP on the 31st still runs in February:        {c}')
+    # 13. a fund that only rose never has a negative window
+    c = rolling(twelve, 3)['neg_pct'] == 0; ok &= c
+    print(f'  a fund that only rose has no negative window:    {c}')
+    # 14. the spread brackets the median
+    r3t = rolling(pts, 3)
+    c = r3t['lo'] <= r3t['median'] <= r3t['hi']; ok &= c
+    print(f'  the window spread brackets its own median:       {c}')
+
     print(f'\n  all checks pass: {ok}')
