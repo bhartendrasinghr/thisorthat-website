@@ -16,8 +16,18 @@ Rules encoded:
 from datetime import datetime, timedelta
 
 def parse(series):
-    """mfapi gives newest first as dd-mm-yyyy strings. Return oldest first."""
-    out = [(datetime.strptime(d, '%d-%m-%Y'), float(v)) for d, v in series]
+    """mfapi gives newest first as dd-mm-yyyy strings. Return oldest first.
+
+    Some funds carry a bad NAV in the published history. Axis ELSS Tax Saver has
+    a single 0.00000 on 7 April 2013, which would read as a 100% drawdown and
+    divide by zero on the way out. Drop anything that is not a positive number.
+    """
+    out = []
+    for d, v in series:
+        try: v = float(v)
+        except (TypeError, ValueError): continue
+        if not (v > 0): continue
+        out.append((datetime.strptime(d, '%d-%m-%Y'), v))
     return sorted(out, key=lambda x: x[0])
 
 def nav_on_or_before(pts, when):
@@ -117,4 +127,9 @@ if __name__ == '__main__':
     sparse = [(base + timedelta(days=i * 40), 100 + i) for i in range(30)]
     c = ret(sparse, 1) is not None and worst_rolling_12m(sparse) is not None; ok &= c
     print(f'  weekend and holiday gaps are handled:          {c}')
+    # 8. a published NAV of zero must not become a 100% drawdown
+    dirty = parse([('01-01-2020', '100'), ('02-01-2020', '0.00000'),
+                   ('03-01-2020', '110'), ('04-01-2020', '120')])
+    c = len(dirty) == 3 and abs(max_drawdown(dirty)['pct']) < 0.001; ok &= c
+    print(f'  a zero NAV in the source is dropped, not a -100%: {c}')
     print(f'\n  all checks pass: {ok}')
