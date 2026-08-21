@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Look up a fund, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Look up any Indian mutual fund and see what it actually did: returns, its worst twelve months, its deepest fall and how long it took to recover. Facts only, no recommendations." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="Look up a fund, ThisOrThat with Bhartendra" />
+<meta property="og:description" content="What a fund actually did, including the parts most tools bury: its worst twelve months and its deepest fall." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/funds.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Look up a fund, ThisOrThat with Bhartendra" />
+<meta name="twitter:description" content="What a fund actually did, including the parts most tools bury." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/funds.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.mfapi.in" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  .chip { border:1.5px solid #E1DDD1; background:#fff; font-weight:600; font-size:13px;
+          padding:7px 14px; border-radius:999px; white-space:nowrap; cursor:pointer; }
+  .chip:hover { border-color:#1A1813; }
+  .chip[aria-pressed="true"] { background:#1A1813; border-color:#1A1813; color:#FCFBF8; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  .stat { padding:14px 0; border-bottom:1px solid #E1DDD1; }
+  .stat:last-child { border-bottom:0; }
+  mark { background:#FFF0B8; color:inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="" aria-current="page">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<section class="max-w-7xl mx-auto px-6 pt-12 pb-6">
+  <div class="kicker">Look it up</div>
+  <h1 class="font-display font-extrabold mt-4 leading-[0.98] tracking-[-0.035em] text-[clamp(38px,6vw,60px)] max-w-[16ch]">
+    What did this fund actually do?
+  </h1>
+  <p class="mt-5 text-[18px] leading-[1.55] text-ink-3 max-w-[58ch]">
+    Every open ended fund in India, with the numbers most tools show and the two they usually bury:
+    the worst twelve months anyone holding it lived through, and the deepest fall it has ever taken.
+  </p>
+  <p class="mt-3 text-[13.5px] text-meta max-w-[58ch]">
+    We do not rank funds and we will not tell you which to buy. That is advice, and it takes a
+    registration we do not hold. What this does is show you the same facts a professional would start from.
+  </p>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 pb-4">
+  <div class="card p-5 md:p-6">
+    <label for="q" class="text-sm font-semibold block mb-2">Search any fund by name</label>
+    <div class="relative">
+      <input id="q" type="search" autocomplete="off" placeholder="Parag Parikh, HDFC Balanced, Nifty 50 index..."
+             class="w-full bg-warmpaper-2 border border-warmpaper-3 rounded-xl px-4 py-3.5 text-[15px] focus:outline-none focus:border-ink" />
+      <div id="sug" class="hidden absolute left-0 right-0 top-full mt-1 bg-white border border-warmpaper-3 rounded-xl shadow-lg max-h-80 overflow-y-auto z-40"></div>
+    </div>
+    <div class="mt-4">
+      <div class="text-[11px] uppercase tracking-wider text-meta font-bold mb-2">Or start from a category</div>
+      <div id="cats" class="flex flex-wrap gap-2"></div>
+    </div>
+    <p id="asof" class="text-[11.5px] text-meta mt-4"></p>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 pb-6">
+  <div id="picked" class="flex flex-wrap items-center gap-2"></div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 pb-20">
+  <div id="panels" class="grid lg:grid-cols-2 gap-6"></div>
+  <div id="hint" class="card p-10 text-center">
+    <p class="text-[16px] text-ink-3">Search for a fund, or pick a category, to see what it did.</p>
+    <p class="text-[13.5px] text-meta mt-2">You can put two side by side.</p>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 pb-24">
+  <div class="card p-7 md:p-9">
+    <div class="kicker">Reading these numbers</div>
+    <div class="grid md:grid-cols-3 gap-7 mt-5">
+      <div>
+        <h3 class="text-[16px] font-extrabold">Returns are past, not promise</h3>
+        <p class="text-[14px] text-ink-3 leading-relaxed mt-2">Anything under a year is shown as a plain change,
+        never annualised. Turning three months into a yearly figure is the commonest way these tools flatter a fund.</p>
+      </div>
+      <div>
+        <h3 class="text-[16px] font-extrabold">The worst twelve months is the honest one</h3>
+        <p class="text-[14px] text-ink-3 leading-relaxed mt-2">Not the worst calendar year, the worst stretch from any
+        starting day. It is what someone who bought at the wrong moment actually lived through.</p>
+      </div>
+      <div>
+        <h3 class="text-[16px] font-extrabold">Recovery time matters more than the fall</h3>
+        <p class="text-[14px] text-ink-3 leading-relaxed mt-2">A 30% fall you sat through for eleven months is a
+        different experience from the same fall that took four years to come back. Both are shown.</p>
+      </div>
+    </div>
+    <div class="border-t border-warmpaper-3 mt-7 pt-6 flex flex-wrap gap-3 items-center">
+      <a href="understanding-mutual-funds.html" class="lnk text-[14px]">What each category actually is &rarr;</a>
+      <span class="text-warmpaper-3">|</span>
+      <a href="index.html#tool" class="lnk text-[14px]">Work out your own mix &rarr;</a>
+      <span class="text-warmpaper-3">|</span>
+      <a href="money-person.html" class="lnk text-[14px]">Ask someone registered &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[70ch]">
+      Every figure on this page is arithmetic on NAVs published by AMFI and the fund houses. It is provided for
+      education only. It is not investment advice, not a recommendation, and not a ranking. Past returns tell you
+      what happened, not what will. Mutual fund investments are subject to market risk; read all scheme related
+      documents carefully. Before you act on any of it, speak to a SEBI registered investment adviser or an
+      AMFI registered mutual fund distributor.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat. NAV data from AMFI.</p>
+  </div>
+</footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+function inr(n){return Number(n).toLocaleString('en-IN',{maximumFractionDigits:2});}
+
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+
+/* ---------------------------------------------------------------
+   Ported from build/verify_fund.py, which checks that a doubling
+   over five years reads 14.87% a year, that periods under a year
+   are never annualised, that a fund which only rose reports no
+   drawdown rather than nothing, that a fall from 120 to 60 reads
+   as 50%, that recovery counts only once the old peak is regained,
+   and that gaps for weekends and holidays do not break it.
+   --------------------------------------------------------------- */
+var DAY=86400000;
+function parseSeries(data){
+  var out=data.map(function(x){
+    var p=x.date.split('-');
+    return [Date.UTC(+p[2],+p[1]-1,+p[0]), parseFloat(x.nav)];
+  }).filter(function(x){ return isFinite(x[1]) && x[1]>0; });
+  out.sort(function(a,b){return a[0]-b[0];});
+  return out;
+}
+function navOnOrBefore(pts,when){
+  var lo=0,hi=pts.length-1,best=null;
+  while(lo<=hi){ var m=(lo+hi)>>1;
+    if(pts[m][0]<=when){ best=pts[m]; lo=m+1; } else hi=m-1; }
+  return best;
+}
+function ret(pts,years){
+  if(!pts.length) return null;
+  var end=pts[pts.length-1];
+  var start=navOnOrBefore(pts, end[0]-Math.round(365.25*years)*DAY);
+  if(!start||start[0]>=end[0]) return null;
+  var days=Math.round((end[0]-start[0])/DAY);
+  if(days<300) return null;
+  var total=end[1]/start[1];
+  if(years<1) return {pct:(total-1)*100, annualised:false, days:days};
+  return {pct:(Math.pow(total,365.25/days)-1)*100, annualised:true, days:days};
+}
+function worst12(pts){
+  var worst=null,frm=null,to=null;
+  for(var i=0;i<pts.length;i++){
+    var f=navOnOrBefore(pts, pts[i][0]+365*DAY);
+    if(!f||f[0]<=pts[i][0]) continue;
+    if((f[0]-pts[i][0])/DAY>400) continue;
+    var r=(f[1]/pts[i][1]-1)*100;
+    if(worst===null||r<worst){ worst=r; frm=pts[i][0]; to=f[0]; }
+  }
+  return worst===null?null:{pct:worst,frm:frm,to:to};
+}
+function maxDrawdown(pts){
+  var peak=pts[0][1], peakD=pts[0][0], worst=0, info=null;
+  for(var i=0;i<pts.length;i++){
+    var d=pts[i][0], v=pts[i][1];
+    if(v>peak){ peak=v; peakD=d; }
+    var dd=(v/peak-1)*100;
+    if(dd<worst){ worst=dd; info={pct:dd,peak:peakD,trough:d,peakNav:peak}; }
+  }
+  if(!info) return {pct:0,peak:peakD,trough:pts[pts.length-1][0],neverFell:true,recovered:null,months:null};
+  var rec=null;
+  for(var j=0;j<pts.length;j++){ if(pts[j][0]>info.trough && pts[j][1]>=info.peakNav){ rec=pts[j][0]; break; } }
+  info.recovered=rec;
+  info.months=rec?Math.round((rec-info.trough)/DAY/30.44):null;
+  return info;
+}
+function mon(ts){ var d=new Date(ts);
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getUTCMonth()]+' '+d.getUTCFullYear(); }
+
+/* ---- the index ---- */
+var IDX=null, PICKED=[], activeCat=null;
+fetch('fund-index.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){
+  IDX=d;
+  $('asof').textContent='NAVs published by AMFI, as of '+d.asOf+'. '+d.funds.length.toLocaleString('en-IN')+' open ended funds.';
+  var counts={};
+  d.funds.forEach(function(f){ counts[f[2]]=(counts[f[2]]||0)+1; });
+  var order=Object.keys(counts).map(Number).sort(function(a,b){return counts[b]-counts[a];});
+  var PROMOTE=['Flexi Cap Fund','Large Cap Fund','Mid Cap Fund','Small Cap Fund','ELSS','Index Funds','Liquid Fund','Corporate Bond Fund'];
+  order.sort(function(a,b){
+    var ia=PROMOTE.indexOf(d.cats[a]), ib=PROMOTE.indexOf(d.cats[b]);
+    if(ia>-1||ib>-1) return (ia<0?99:ia)-(ib<0?99:ib);
+    return counts[b]-counts[a];
+  });
+  $('cats').innerHTML=order.slice(0,14).map(function(i){
+    return '<button class="chip" data-cat="'+i+'" aria-pressed="false">'+esc(d.cats[i])+
+      ' <span class="tab-num text-[11px] opacity-55">'+counts[i]+'</span></button>';
+  }).join('');
+  [].forEach.call(document.querySelectorAll('[data-cat]'),function(b){
+    b.addEventListener('click',function(){
+      var c=+b.getAttribute('data-cat');
+      activeCat = activeCat===c ? null : c;
+      [].forEach.call(document.querySelectorAll('[data-cat]'),function(x){
+        x.setAttribute('aria-pressed', String(+x.getAttribute('data-cat')===activeCat)); });
+      $('q').value=''; showSuggestions('');
+    });
+  });
+  // arriving from the planner with a category in the URL
+  var want=decodeURIComponent((location.hash||'').slice(1));
+  if(want){ var hit=d.cats.findIndex(function(c){return c.toLowerCase()===want.toLowerCase();});
+    if(hit>-1){ activeCat=hit;
+      var btn=document.querySelector('[data-cat="'+hit+'"]');
+      if(btn) btn.setAttribute('aria-pressed','true');
+      showSuggestions(''); } }
+}).catch(function(){
+  $('asof').textContent='Could not load the fund list just now. Try again in a moment.';
+});
+
+function matches(q){
+  if(!IDX) return [];
+  var terms=q.toLowerCase().split(/\s+/).filter(Boolean);
+  return IDX.funds.filter(function(f){
+    if(activeCat!==null && f[2]!==activeCat) return false;
+    if(!terms.length) return activeCat!==null;
+    var hay=(f[0]+' '+IDX.houses[f[1]]).toLowerCase();
+    return terms.every(function(t){ return hay.indexOf(t)>-1; });
+  }).slice(0,60);
+}
+function showSuggestions(q){
+  var list=matches(q), box=$('sug');
+  if(!list.length){ box.classList.add('hidden'); box.innerHTML=''; return; }
+  box.classList.remove('hidden');
+  box.innerHTML=list.map(function(f){
+    var i=IDX.funds.indexOf(f);
+    return '<button data-pick="'+i+'" class="w-full text-left px-4 py-2.5 hover:bg-warmpaper-2 border-b border-warmpaper-3 last:border-0">'+
+      '<span class="block text-[14px] font-semibold">'+esc(f[0])+'</span>'+
+      '<span class="block text-[11.5px] text-meta">'+esc(IDX.cats[f[2]])+' &middot; NAV '+inr(f[5])+'</span></button>';
+  }).join('');
+  [].forEach.call(box.querySelectorAll('[data-pick]'),function(b){
+    b.addEventListener('click',function(){ pick(+b.getAttribute('data-pick')); });
+  });
+}
+$('q').addEventListener('input',function(e){ showSuggestions(e.target.value.trim()); });
+$('q').addEventListener('focus',function(e){ showSuggestions(e.target.value.trim()); });
+document.addEventListener('click',function(e){
+  if(!e.target.closest('#q') && !e.target.closest('#sug')) $('sug').classList.add('hidden');
+});
+
+function pick(i){
+  if(PICKED.indexOf(i)>-1) return;
+  if(PICKED.length>=2) PICKED.shift();      // two at a time; three columns is unreadable on a phone
+  PICKED.push(i);
+  $('q').value=''; $('sug').classList.add('hidden');
+  render();
+}
+function drop(i){ PICKED=PICKED.filter(function(x){return x!==i;}); render(); }
+
+var CACHE={};
+function history(code){
+  if(CACHE[code]) return Promise.resolve(CACHE[code]);
+  return fetch('https://api.mfapi.in/mf/'+code).then(function(r){
+    if(!r.ok) throw new Error('no data');
+    return r.json();
+  }).then(function(d){
+    var pts=parseSeries(d.data||[]);
+    CACHE[code]={pts:pts, meta:d.meta||{}};
+    return CACHE[code];
+  });
+}
+
+function statRow(label, value, sub, tone){
+  return '<div class="stat flex items-baseline justify-between gap-4">'+
+    '<div><div class="text-[13.5px] font-semibold">'+label+'</div>'+
+    (sub?'<div class="text-[11.5px] text-meta mt-0.5">'+sub+'</div>':'')+'</div>'+
+    '<div class="text-right shrink-0 tab-num text-[15px] font-bold '+(tone||'')+'">'+value+'</div></div>';
+}
+
+function render(){
+  $('hint').style.display = PICKED.length ? 'none' : '';
+  $('picked').innerHTML = PICKED.map(function(i){
+    return '<button data-drop="'+i+'" class="chip" aria-pressed="true">'+esc(IDX.funds[i][0])+
+      ' <span class="opacity-60 ml-1">&times;</span></button>';
+  }).join('') + (PICKED.length===1
+    ? '<span class="text-[12.5px] text-meta ml-2">Search another to compare the two.</span>' : '');
+  [].forEach.call(document.querySelectorAll('[data-drop]'),function(b){
+    b.addEventListener('click',function(){ drop(+b.getAttribute('data-drop')); });
+  });
+
+  $('panels').innerHTML = PICKED.map(function(i){
+    return '<div class="card p-6 md:p-7" id="p'+i+'"><div class="text-[14px] text-meta">Loading '+esc(IDX.funds[i][0])+'...</div></div>';
+  }).join('');
+
+  PICKED.forEach(function(i){
+    var f=IDX.funds[i], code=f[3]||f[4];
+    if(!code){ $('p'+i).innerHTML='<p class="text-[14px] text-loss">No scheme code for this fund.</p>'; return; }
+    history(code).then(function(h){
+      var pts=h.pts;
+      if(pts.length<60){ $('p'+i).innerHTML='<div class="text-[15px] font-bold">'+esc(f[0])+'</div>'+
+        '<p class="text-[13.5px] text-meta mt-2">Too little history to say anything useful yet. '+
+        pts.length+' days of NAV.</p>'; return; }
+      var since=pts[0][0], w=worst12(pts), dd=maxDrawdown(pts);
+      var rows='';
+      [[1,'1 year'],[3,'3 years'],[5,'5 years'],[10,'10 years']].forEach(function(p){
+        var r=ret(pts,p[0]);
+        rows += statRow(p[1], r? r.pct.toFixed(1)+'%' : '<span class="text-meta font-normal text-[13px]">not that old</span>',
+          r? (r.annualised?'a year':'total change') : '', r? (r.pct<0?'text-loss':'') : '');
+      });
+      var plans=(f[3]&&f[4])?'Direct and Regular':(f[3]?'Direct only':'Regular only');
+      $('p'+i).innerHTML =
+        '<div class="flex items-start justify-between gap-3">'+
+          '<div><div class="kicker">'+esc(IDX.cats[f[2]])+'</div>'+
+          '<h2 class="font-display font-extrabold text-[21px] leading-tight tracking-[-0.02em] mt-1.5">'+esc(f[0])+'</h2>'+
+          '<div class="text-[12px] text-meta mt-1">'+esc(IDX.houses[f[1]])+' &middot; '+plans+'</div></div>'+
+          '<div class="text-right shrink-0"><div class="text-[11px] text-meta">NAV</div>'+
+          '<div class="tab-num text-[17px] font-bold">'+inr(f[5])+'</div></div>'+
+        '</div>'+
+        '<div class="mt-5 pt-1 border-t border-warmpaper-3">'+rows+'</div>'+
+        '<div class="bg-warmpaper-2 rounded-[12px] p-5 mt-5">'+
+          '<div class="text-[11px] uppercase tracking-[0.16em] font-extrabold text-goldink">The parts most tools bury</div>'+
+          (w?'<div class="mt-3"><div class="flex items-baseline justify-between gap-4">'+
+            '<span class="text-[13.5px] font-semibold">Worst twelve months</span>'+
+            '<span class="tab-num text-[16px] font-bold '+(w.pct<0?'text-loss':'')+'">'+w.pct.toFixed(1)+'%</span></div>'+
+            '<div class="text-[11.5px] text-meta mt-0.5">'+mon(w.frm)+' to '+mon(w.to)+'</div></div>':'')+
+          (dd.neverFell
+            ? '<div class="mt-4 text-[13px] text-meta">No meaningful fall on record, which usually means it has not been through a bad market yet.</div>'
+            : '<div class="mt-4"><div class="flex items-baseline justify-between gap-4">'+
+              '<span class="text-[13.5px] font-semibold">Deepest fall</span>'+
+              '<span class="tab-num text-[16px] font-bold text-loss">'+dd.pct.toFixed(1)+'%</span></div>'+
+              '<div class="text-[11.5px] text-meta mt-0.5">'+mon(dd.peak)+' to '+mon(dd.trough)+
+              (dd.recovered?', back up '+(dd.months<1?'within a month':'after '+dd.months+' months'):', not back to that level yet')+
+              '</div></div>')+
+        '</div>'+
+        '<p class="text-[11.5px] text-meta mt-4">Computed from '+pts.length.toLocaleString('en-IN')+
+        ' daily NAVs since '+mon(since)+'. Past returns, not a forecast.</p>';
+    }).catch(function(){
+      $('p'+i).innerHTML='<div class="text-[15px] font-bold">'+esc(f[0])+'</div>'+
+        '<p class="text-[13.5px] text-loss mt-2">Could not load the NAV history for this one. Try again in a moment.</p>';
+    });
+  });
+}
+
+/* Someone will type it. Answer honestly rather than pretending not to hear. */
+$('q').addEventListener('keyup',function(e){
+  var v=e.target.value.toLowerCase();
+  if(!/\b(best|top|should i|which fund|recommend|buy)\b/.test(v)) return;
+  var box=$('sug');
+  box.classList.remove('hidden');
+  box.innerHTML='<div class="p-5"><div class="text-[14px] font-bold">We will not answer that one.</div>'+
+    '<p class="text-[13px] text-ink-3 leading-relaxed mt-1.5">Picking a fund for you is advice, and that needs a '+
+    'registration we do not hold. What we can do is show you what any fund actually did, side by side.</p>'+
+    '<a href="money-person.html" class="lnk text-[13px] inline-block mt-3">Ask someone who is registered &rarr;</a></div>';
+});
+})();
+</script>
+</body>
+</html>

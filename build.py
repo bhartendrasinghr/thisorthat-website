@@ -353,6 +353,7 @@ NAV_ITEMS = [
     ('episodes.html',    'Episodes'),
     ('guests.html',      'Guests'),
     ('calculators.html', 'Plan'),
+    ('funds.html',       'Funds'),
     ('articles.html',    'Writing'),
     ('about.html',       'About'),
 ]
@@ -415,6 +416,14 @@ def main():
     print('→ Updating tool counts...')
     build_stats()
     print()
+    print('\n→ Refreshing the fund index from AMFI...')
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location('fund_index', ROOT / 'build' / 'fund_index.py')
+        _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.build()
+    except Exception as _e:
+        print(f'  Fund index step skipped: {_e}')
+
     print('\n→ Labelling episode overrides for the CMS...')
     label_episode_overrides()
 
