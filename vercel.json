@@ -22,6 +22,15 @@
       ]
     },
     {
+      "source": "/cap-mix.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/logo.png",
       "headers": [
         {
@@ -223,6 +232,11 @@
     {
       "source": "/understanding-mutual-funds",
       "destination": "/understanding-mutual-funds.html",
+      "permanent": false
+    },
+    {
+      "source": "/multicap-vs-flexicap",
+      "destination": "/multicap-vs-flexicap.html",
       "permanent": false
     },
     {
