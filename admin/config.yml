@@ -120,7 +120,8 @@ collections:
               - { name: "name", label: "Host name", widget: "string" }
               - { name: "tagline", label: "Host one-liner", widget: "text", hint: "Short sentence under the name" }
               - { name: "photo", label: "Host photo", widget: "image", required: false, hint: "JPG or PNG only. iPhone HEIC files will not upload, so share the photo as JPEG first. Square is best, 800x800 is plenty, and keep it under 2MB. If blank, falls back to the initials block." }
-              - { name: "contact_email", label: "Contact email", widget: "string", hint: "Powers the 'hello@…' button" }
+              - { name: "contact_email", label: "Contact email", widget: "string", hint: "Where the write-to-me button sends mail. Not shown on the page." }
+              - { name: "contact_cta", label: "Contact button text", widget: "string", required: false, default: "Write to me", hint: "Wording on the button. Leave blank for 'Write to me'." }
               - { name: "linkedin_url", label: "LinkedIn URL", widget: "string", required: false }
               - { name: "twitter_url", label: "Twitter / X URL", widget: "string", required: false }
               - { name: "instagram_url", label: "Instagram URL", widget: "string", required: false }

@@ -278,7 +278,7 @@ fetch('content/about.json', { cache: 'no-cache' })
     if (host.linkedin_url)  links.push({ label: 'LinkedIn',    href: host.linkedin_url,  primary: false });
     if (host.twitter_url)   links.push({ label: 'Twitter / X', href: host.twitter_url,   primary: false });
     if (host.instagram_url) links.push({ label: 'Instagram',   href: host.instagram_url, primary: false });
-    if (host.contact_email) links.push({ label: host.contact_email, href: `mailto:${host.contact_email}`, primary: true });
+    if (host.contact_email) links.push({ label: host.contact_cta || 'Write to me', href: `mailto:${host.contact_email}`, primary: true });
     document.getElementById('host-links').innerHTML = links.map(l =>
       l.primary
         ? `<a href="${escapeHtml(l.href)}" class="bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">${escapeHtml(l.label)}</a>`
@@ -313,7 +313,7 @@ fetch('content/about.json', { cache: 'no-cache' })
     if (d.contact_body)    document.getElementById('contact-body').textContent    = d.contact_body;
 
     const ctas = [];
-    if (host.contact_email) ctas.push(`<a href="mailto:${escapeHtml(host.contact_email)}" class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">${escapeHtml(host.contact_email)}</a>`);
+    if (host.contact_email) ctas.push(`<a href="mailto:${escapeHtml(host.contact_email)}" class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">${escapeHtml(host.contact_cta || 'Write to me')}</a>`);
     if (d.press_kit_url)    ctas.push(`<a href="${escapeHtml(d.press_kit_url)}" target="_blank" rel="noopener" class="border-2 border-navy text-navy-ink px-6 py-3 rounded-full font-semibold hover:bg-navy hover:text-cream transition">Press kit</a>`);
     document.getElementById('contact-ctas').innerHTML = ctas.join('');
   })
