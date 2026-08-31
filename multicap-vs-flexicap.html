@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Multi cap or flexi cap? ThisOrThat with Bhartendra</title>
+<meta name="description" content="Multi cap funds must hold at least 25% each in large, mid and small cap. Flexi cap funds have no such floor. Here is what the rulebook says, why both exist, and what the funds in each category actually hold." />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="Multi cap or flexi cap?" />
+<meta property="og:description" content="One hands the market cap decision to a rulebook. The other hands it to a fund manager. What that changes, measured from real NAVs." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/multicap-vs-flexicap.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Multi cap or flexi cap?" />
+<meta name="twitter:description" content="One hands the market cap decision to a rulebook. The other hands it to a fund manager." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/multicap-vs-flexicap.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  .seg { display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+         font-size:12px; font-weight:600; height:100%; overflow:hidden; }
+  .rowlab { font-size:13.5px; font-weight:700; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+  table.cmp td, table.cmp th { padding:11px 14px; border-bottom:1px solid #E1DDD1; vertical-align:top; }
+  table.cmp tr:last-child td { border-bottom:0; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 pt-12 pb-8">
+  <div class="kicker">One fork, two rulebooks</div>
+  <h1 class="font-display font-extrabold mt-4 leading-[0.98] tracking-[-0.035em] text-[clamp(38px,6vw,62px)] max-w-[15ch]">
+    Multi cap or flexi cap?
+  </h1>
+  <p class="mt-5 text-[19px] leading-[1.55] text-ink-3 max-w-[60ch]">
+    They sound like the same fund wearing a different name. They are not.
+    One of them hands the market cap decision to a rulebook. The other hands it to a person.
+    That single difference decides what you actually end up owning.
+  </p>
+</section>
+
+<!-- ─── The short answer ─────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 pb-14">
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="card p-6 md:p-7 border-t-4" style="border-top-color:#0249B1">
+      <div class="kicker" style="color:#0249B1">This</div>
+      <h2 class="font-display font-extrabold text-[26px] mt-2">Multi cap</h2>
+      <p class="mt-1 text-[14px] font-bold text-ink-3">The rulebook decides the mix.</p>
+      <p class="mt-4 text-[15.5px] leading-[1.6] text-ink-3">
+        At least 25% in large cap, 25% in mid cap and 25% in small cap. Always. The manager gets
+        the last 25% to move around and nothing more. You know roughly what is inside before you buy,
+        and it will still be roughly that in three years.
+      </p>
+    </div>
+    <div class="card p-6 md:p-7 border-t-4" style="border-top-color:#C41A17">
+      <div class="kicker" style="color:#C41A17">That</div>
+      <h2 class="font-display font-extrabold text-[26px] mt-2">Flexi cap</h2>
+      <p class="mt-1 text-[14px] font-bold text-ink-3">A person decides the mix.</p>
+      <p class="mt-4 text-[15.5px] leading-[1.6] text-ink-3">
+        No floor on large, mid or small cap at all. The manager can hold 90% large cap this year and
+        50% small cap the next, and break no rule doing it. You are not buying a mix. You are buying
+        someone's judgment about the mix.
+      </p>
+    </div>
+  </div>
+  <p class="mt-6 text-[17px] leading-[1.6] max-w-[62ch] font-semibold">
+    That is the honest one line answer. Everything below is the evidence, including the part
+    where we checked whether flexi cap managers actually use the freedom they fought for.
+  </p>
+</section>
+
+<!-- ─── The rulebook ─────────────────────────────────────────────────── -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker">What SEBI actually requires</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[22ch]">The rulebook, side by side</h2>
+
+  <div class="card mt-7 overflow-x-auto">
+    <table class="cmp w-full text-[14.5px] min-w-[560px]">
+      <thead>
+        <tr class="bg-warmpaper-2">
+          <th class="text-left font-bold w-[38%]">&nbsp;</th>
+          <th class="text-left font-bold" style="color:#0249B1">Multi cap</th>
+          <th class="text-left font-bold" style="color:#C41A17">Flexi cap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="rowlab">Minimum in equity</td><td class="tab-num font-semibold">75%</td><td class="tab-num font-semibold">65%</td></tr>
+        <tr><td class="rowlab">Minimum in large cap</td><td class="tab-num font-semibold">25%</td><td class="font-semibold text-ink-3">none</td></tr>
+        <tr><td class="rowlab">Minimum in mid cap</td><td class="tab-num font-semibold">25%</td><td class="font-semibold text-ink-3">none</td></tr>
+        <tr><td class="rowlab">Minimum in small cap</td><td class="tab-num font-semibold">25%</td><td class="font-semibold text-ink-3">none</td></tr>
+        <tr><td class="rowlab">Left to the manager</td>
+            <td class="text-ink-3">The last 25%, and stock picking inside each bucket</td>
+            <td class="text-ink-3">The entire market cap mix, plus 35% that need not be equity at all</td></tr>
+        <tr><td class="rowlab">Where the rule comes from</td>
+            <td class="text-ink-3">SEBI circular, 11 September 2020. Funds had to comply by January 2021.</td>
+            <td class="text-ink-3">SEBI circular, 6 November 2020. Created as a new category.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card mt-5 p-6">
+    <div class="kicker">And who counts as large, mid or small?</div>
+    <p class="mt-3 text-[15.5px] leading-[1.6] text-ink-3 max-w-[70ch]">
+      Not a matter of opinion. AMFI ranks every listed Indian company by full market capitalisation
+      and publishes the list twice a year. Companies ranked
+      <strong class="text-ink">1 to 100 are large cap</strong>,
+      <strong class="text-ink">101 to 250 are mid cap</strong>, and
+      <strong class="text-ink">251 onwards are small cap</strong>.
+      Every equity fund in India works off that same list, which is why a fund cannot quietly redefine
+      what small cap means when the label gets uncomfortable.
+    </p>
+  </div>
+</div>
+</section>
+
+<!-- ─── Why two exist ────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">The bit nobody explains</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[26ch]">Why India has two categories that do almost the same job</h2>
+  <p class="mt-5 text-[16.5px] leading-[1.6] text-ink-3 max-w-[64ch]">
+    Flexi cap did not exist before November 2020. It was created in a hurry, as an answer to a
+    problem SEBI had made eight weeks earlier. The sequence is worth knowing, because it explains
+    why the older, bigger funds sit in one category and the newer ones sit in the other.
+  </p>
+
+  <ol class="mt-9 space-y-0 max-w-[70ch]">
+    <li class="relative pl-8 pb-9 border-l-2 border-warmpaper-3">
+      <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-ink"></span>
+      <div class="tab-num text-[12.5px] font-semibold text-goldink -mt-1">October 2017</div>
+      <h3 class="font-display font-extrabold text-[19px] mt-1">SEBI invents the category system</h3>
+      <p class="mt-2 text-[15.5px] leading-[1.6] text-ink-3">
+        Every scheme gets a defined box so that two funds with the same label hold broadly the same
+        kind of thing. Multi cap is defined as go anywhere, minimum 65% in equity. In practice, most
+        multi cap funds quietly ran large cap heavy portfolios, because that is where the comfort was.
+      </p>
+    </li>
+    <li class="relative pl-8 pb-9 border-l-2 border-warmpaper-3">
+      <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full" style="background:#0249B1"></span>
+      <div class="tab-num text-[12.5px] font-semibold text-goldink -mt-1">11 September 2020</div>
+      <h3 class="font-display font-extrabold text-[19px] mt-1">SEBI says be true to your label</h3>
+      <p class="mt-2 text-[15.5px] leading-[1.6] text-ink-3">
+        If a fund calls itself multi cap, it should hold multiple caps. The new rule: 75% in equity,
+        and at least 25% each in large, mid and small. Comply by January 2021.
+        The industry pushed back hard, arguing that funds of that size would be forced to buy small cap
+        companies whether or not they wanted to own them.
+      </p>
+    </li>
+    <li class="relative pl-8 pb-9 border-l-2 border-warmpaper-3">
+      <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full" style="background:#C41A17"></span>
+      <div class="tab-num text-[12.5px] font-semibold text-goldink -mt-1">6 November 2020</div>
+      <h3 class="font-display font-extrabold text-[19px] mt-1">SEBI creates flexi cap</h3>
+      <p class="mt-2 text-[15.5px] leading-[1.6] text-ink-3">
+        A new category with the exact freedom the old multi cap had: minimum 65% in equity, no market
+        cap floors. Fund houses that wanted the old life could move their scheme across, subject to
+        telling unitholders and giving them an exit window.
+      </p>
+    </li>
+    <li class="relative pl-8">
+      <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-marigold"></span>
+      <div class="tab-num text-[12.5px] font-semibold text-goldink -mt-1">What happened next</div>
+      <h3 class="font-display font-extrabold text-[19px] mt-1">The old funds left, and multi cap was rebuilt</h3>
+      <p class="mt-2 text-[15.5px] leading-[1.6] text-ink-3">
+        You can still see it in the data today. Of the multi cap funds with a usable track record,
+        <strong class="text-ink" id="mc-born">most</strong> only started
+        <em>after</em> the January 2021 deadline. The typical multi cap in our data is from
+        <strong class="text-ink" id="mc-start">late 2022</strong>. The typical flexi cap goes back to
+        <strong class="text-ink" id="fc-start">2018</strong>.
+        The big incumbents became flexi caps. Multi cap was largely repopulated with new launches.
+      </p>
+    </li>
+  </ol>
+</section>
+
+<!-- ─── What they actually hold ──────────────────────────────────────── -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker">The part the rulebook cannot tell you</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">So what do these funds actually hold?</h2>
+  <p class="mt-5 text-[16.5px] leading-[1.6] text-ink-3 max-w-[66ch]">
+    A minimum is a floor, not a description. Multi cap must hold at least 25% small cap, but it could
+    hold 40%. Flexi cap has no floor at all, so it could be anything. The real answer sits in monthly
+    portfolio disclosures scattered across roughly 45 fund house websites, which is why almost nobody
+    checks. But a fund's NAV moves with whatever it owns, and NAVs are public and daily. So we worked
+    backwards from the NAV.
+  </p>
+
+  <div id="mix-wrap" class="mt-9">
+    <p class="text-[15px] text-meta">Loading the numbers.</p>
+  </div>
+
+  <div class="card mt-7 p-6 md:p-7 border-l-4" style="border-left-color:#FFC21F">
+    <h3 class="font-display font-extrabold text-[22px]">The finding, in one line</h3>
+    <p class="mt-3 text-[17px] leading-[1.6]">
+      Multi cap funds sit close to the thirds the rule asks for, because they must.
+      Flexi cap funds are free to go anywhere, and
+      <strong>most of them stay in large cap.</strong>
+    </p>
+    <p class="mt-3 text-[15.5px] leading-[1.6] text-ink-3" id="mix-note"></p>
+  </div>
+</div>
+</section>
+
+<!-- ─── The spread inside flexi cap ──────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Why the label is not enough</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[26ch]">Two flexi caps can own almost nothing in common</h2>
+  <p class="mt-5 text-[16.5px] leading-[1.6] text-ink-3 max-w-[64ch]">
+    Here is every fund in both categories, placed by how much it holds outside large cap.
+    Multi caps cluster, because the rule makes them. Flexi caps are scattered from one end to the other.
+  </p>
+  <div id="spread-wrap" class="mt-9"></div>
+  <p class="mt-7 text-[16.5px] leading-[1.6] max-w-[64ch] font-semibold" id="spread-note"></p>
+</section>
+
+<!-- ─── Returns ──────────────────────────────────────────────────────── -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker">What that mix did to the numbers</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[26ch]">The same window, for every fund</h2>
+  <p class="mt-5 text-[16.5px] leading-[1.6] text-ink-3 max-w-[66ch]">
+    Comparing categories on returns is where most articles go wrong, because they quietly compare
+    different funds over different periods. This table uses one fixed window and includes only funds
+    that lived through all of it. It is not a scoreboard. It is the mix showing up in the number.
+  </p>
+  <div id="ret-wrap" class="mt-9"></div>
+</div>
+</section>
+
+<!-- ─── The trap ─────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Before you go looking at returns elsewhere</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">Two traps in every comparison you will read</h2>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-8">
+    <div class="card p-6 md:p-7">
+      <div class="tab-num text-[13px] font-bold text-goldink">Trap 1</div>
+      <h3 class="font-display font-extrabold text-[21px] mt-2">The five year comparison is not real</h3>
+      <p class="mt-3 text-[15.5px] leading-[1.6] text-ink-3">
+        Most multi cap funds as they exist today are younger than the rule that defines them. A site
+        showing you five year multi cap returns is showing you a handful of survivors, or worse, the
+        record of a fund that spent part of that period as something else entirely. It is not that the
+        number is wrong. It is that it is not answering the question you asked.
+      </p>
+    </div>
+    <div class="card p-6 md:p-7">
+      <div class="tab-num text-[13px] font-bold text-goldink">Trap 2</div>
+      <h3 class="font-display font-extrabold text-[21px] mt-2">This window flattered mid and small caps</h3>
+      <p class="mt-3 text-[15.5px] leading-[1.6] text-ink-3">
+        Multi cap looks stronger above mostly because it is forced to hold more mid and small cap, and
+        mid and small caps had a good run. You can watch this happen in the table itself: move the
+        start date from February 2021 to August 2023 and small cap drops from the top of the table to
+        below mid cap, on the same funds. Nothing about those funds changed. Only the dates did.
+        The 25% floors are not a performance edge. They are an exposure choice, and exposure cuts
+        both ways.
+      </p>
+    </div>
+  </div>
+
+  <div class="card mt-5 p-6 md:p-7 border-l-4" style="border-left-color:#C41A17">
+    <p class="text-[16.5px] leading-[1.6]">
+      The floors also work in the other direction, and this is the part worth sitting with.
+      A multi cap fund <em>cannot</em> get out of the way. When mid and small caps fall, it has to keep
+      holding at least a quarter of each, all the way down. A flexi cap manager is allowed to step
+      aside. Whether they will, and whether they will step back in at the right time, is exactly the
+      judgment you are paying them for.
+    </p>
+  </div>
+</section>
+
+<!-- ─── The fork ─────────────────────────────────────────────────────── -->
+<section class="bg-ink text-cream py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker" style="color:#FFC21F">So which one</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">We are not going to pick for you</h2>
+  <p class="mt-5 text-[16.5px] leading-[1.6] text-cream/75 max-w-[64ch]">
+    Choosing a scheme for you is advice, and that needs a registration we do not hold. What we can do
+    is hand you the four questions that actually decide this one. None of them is about past returns.
+  </p>
+  <div class="grid md:grid-cols-2 gap-4 mt-8 max-w-[76ch]">
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <div class="tab-num text-[12.5px] font-bold text-marigold">01</div>
+      <p class="mt-2 text-[15.5px] leading-[1.55]">Do you want the mix set by a rule you can read, or by a person whose mind can change?</p>
+    </div>
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <div class="tab-num text-[12.5px] font-bold text-marigold">02</div>
+      <p class="mt-2 text-[15.5px] leading-[1.55]">If it is a person, do you know who, and will you actually check what they are holding once a year?</p>
+    </div>
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <div class="tab-num text-[12.5px] font-bold text-marigold">03</div>
+      <p class="mt-2 text-[15.5px] leading-[1.55]">Can you hold through a hard mid and small cap fall without selling? A multi cap guarantees you own that fall.</p>
+    </div>
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <div class="tab-num text-[12.5px] font-bold text-marigold">04</div>
+      <p class="mt-2 text-[15.5px] leading-[1.55]">Do you already hold separate mid cap and small cap funds? Then a multi cap is more of what you own, not diversification.</p>
+    </div>
+  </div>
+  <div class="mt-9 flex flex-wrap gap-3">
+    <a href="funds.html" class="inline-flex bg-thisblue text-white text-[15px] font-bold px-6 py-3 rounded-full hover:brightness-110 transition">Look up any fund</a>
+    <a href="money-person.html" class="inline-flex border border-cream/30 text-cream text-[15px] font-bold px-6 py-3 rounded-full hover:bg-cream/10 transition">Ask someone who is registered</a>
+  </div>
+</div>
+</section>
+
+<!-- ─── Method ───────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">How we worked it out</div>
+  <h2 class="font-display font-extrabold text-[clamp(24px,3vw,30px)] mt-3">Method, and what it cannot tell you</h2>
+  <div class="grid md:grid-cols-2 gap-x-10 gap-y-6 mt-7 text-[15px] leading-[1.6] text-ink-3 max-w-[92ch]">
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">Where the mix numbers come from</h3>
+      <p class="mt-2">
+        We take each fund's weekly returns and find the blend of large, mid and small cap that best
+        tracks them, with the weights held at or above zero and summing to 100. This is a standard
+        technique called returns based style analysis. It estimates what a fund behaves as though it
+        holds, using only the NAV.
+      </p>
+    </div>
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">Why you can trust the estimate</h3>
+      <p class="mt-2">
+        Before running it on the two categories in question, we ran it on large cap, mid cap and small
+        cap funds, which have known mandates of 80%, 65% and 65% in their own segment. The method
+        recovered all three, and explains about
+        <span class="tab-num font-semibold text-ink" id="m-r2">95%</span>
+        of week to week movement. If it had failed that test, none of this would be on the page.
+      </p>
+    </div>
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">What it is not</h3>
+      <p class="mt-2">
+        It is an estimate of behaviour, not a holdings statement. A fund whose managers pick unusual
+        stocks inside a bucket will read a little off. Treat every mix figure here as carrying a few
+        percentage points of error, and as a picture of the category rather than a verdict on any one
+        fund. We deliberately do not name individual funds in these charts.
+      </p>
+    </div>
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">The data</h3>
+      <p class="mt-2">
+        Direct plan, growth option, from AMFI published NAVs. Style mix measured over
+        <span class="font-semibold text-ink" id="m-window">the last three years</span>.
+        Funds without enough history are left out, which is stated in every count.
+        Figures as of <span class="font-semibold text-ink" id="m-asof"></span>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[70ch]">
+      Every figure on this page is arithmetic on NAVs published by AMFI and the fund houses, and every
+      rule described is quoted from SEBI circulars. It is provided for education only. It is not
+      investment advice, not a recommendation, and not a ranking of any scheme or category. Past
+      returns tell you what happened, not what will. Mutual fund investments are subject to market
+      risk; read all scheme related documents carefully. Before you act on any of it, speak to a SEBI
+      registered investment adviser or an AMFI registered mutual fund distributor.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat. NAV data from AMFI. Category rules from SEBI circulars dated 6 October 2017, 11 September 2020 and 6 November 2020.</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the difference between a multi cap and a flexi cap mutual fund?","acceptedAnswer":{"@type":"Answer","text":"A multi cap fund must hold at least 75% in equity, with a minimum of 25% each in large cap, mid cap and small cap companies. A flexi cap fund must hold at least 65% in equity but has no market capitalisation requirement at all, so the fund manager decides the entire mix. In short, a multi cap fund's mix is set by the rulebook and a flexi cap fund's mix is set by the manager."}},
+{"@type":"Question","name":"Why did SEBI create the flexi cap category?","acceptedAnswer":{"@type":"Answer","text":"In a circular dated 11 September 2020, SEBI required multi cap funds to hold at least 25% each in large, mid and small cap stocks. Fund houses said this removed the flexibility their schemes were built on. On 6 November 2020 SEBI introduced flexi cap as a new equity category with a 65% equity minimum and no market cap restrictions, allowing schemes that wanted the earlier freedom to move across."}},
+{"@type":"Question","name":"How does SEBI define large cap, mid cap and small cap?","acceptedAnswer":{"@type":"Answer","text":"AMFI ranks every listed Indian company by full market capitalisation and publishes the list twice a year. Companies ranked 1 to 100 are large cap, 101 to 250 are mid cap, and 251 onwards are small cap. All equity mutual funds use the same list."}},
+{"@type":"Question","name":"Is a flexi cap fund the same as the old multi cap fund?","acceptedAnswer":{"@type":"Answer","text":"Broadly yes. Flexi cap was created in November 2020 with the same go anywhere freedom that multi cap funds had before September 2020, and many established multi cap schemes reclassified into it. That is why most large, long running funds of this type now sit in the flexi cap category while the multi cap category contains a high proportion of newer schemes."}},
+{"@type":"Question","name":"Do flexi cap funds actually use their flexibility?","acceptedAnswer":{"@type":"Answer","text":"Not as much as the name suggests. Estimating the market cap mix of each fund from its NAV history, the typical flexi cap fund behaves as though it holds around two thirds large cap, while the typical multi cap fund sits close to the equal thirds its rules require. Individual flexi cap funds vary enormously, from almost entirely large cap to mostly mid and small cap, so the category label alone tells you very little about what a particular fund holds."}}]}
+</script>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+
+var FILL={large:'#0249B1',mid:'#FFC21F',small:'#C41A17'};
+var TEXT={large:'#FFFFFF',mid:'#1A1813',small:'#FFFFFF'};
+var ORDER=['Large Cap','Flexi Cap','Multi Cap','Mid Cap','Small Cap'];
+var FOCUS={'Multi Cap':1,'Flexi Cap':1};
+
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+function pc(n){return (Math.round(n*10)/10).toFixed(n%1===0?0:1)+'%';}
+
+/* Stacked bar of the implied large / mid / small mix for one category. */
+function mixRow(name,c){
+  var segs=[['large',c.large],['mid',c.mid],['small',c.small]];
+  var html='';
+  segs.forEach(function(s){
+    if(s[1]<0.5) return;
+    html+='<div class="seg" style="width:'+s[1]+'%;background:'+FILL[s[0]]+';color:'+TEXT[s[0]]+'">'+
+          (s[1]>=9?Math.round(s[1]):'')+'</div>';
+  });
+  var strong=FOCUS[name];
+  return '<div class="'+(strong?'':'opacity-60')+'">'+
+    '<div class="flex items-baseline justify-between gap-3 mb-1.5">'+
+      '<div class="rowlab '+(strong?'':'font-semibold')+'">'+esc(name)+
+        (strong?'':' <span class="font-normal text-meta text-[12.5px]">reference</span>')+'</div>'+
+      '<div class="tab-num text-[12.5px] text-meta">'+c.n+' funds</div>'+
+    '</div>'+
+    '<div class="flex h-9 rounded-[7px] overflow-hidden border border-warmpaper-3" role="img" aria-label="'+
+      esc(name)+': about '+Math.round(c.large)+' percent large cap, '+Math.round(c.mid)+
+      ' percent mid cap, '+Math.round(c.small)+' percent small cap">'+html+'</div>'+
+  '</div>';
+}
+
+/* Dot strip: one dot per fund, placed by how much it holds outside large cap. */
+function spreadRow(name,c,colour){
+  var dots=c.midSmall.map(function(v){
+    return '<span style="position:absolute;left:'+Math.max(0,Math.min(100,v))+'%;top:50%;'+
+      'transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:'+colour+
+      ';opacity:.62;border:1px solid #FCFBF8"></span>';
+  }).join('');
+  var med=c.midSmallMed;
+  return '<div class="mb-7">'+
+    '<div class="flex items-baseline justify-between gap-3 mb-2">'+
+      '<div class="rowlab" style="color:'+colour+'">'+esc(name)+' <span class="text-meta font-normal text-[12.5px]">'+c.n+' funds</span></div>'+
+      '<div class="tab-num text-[12.5px] text-ink-3">typical <strong class="text-ink">'+pc(med)+'</strong> outside large cap</div>'+
+    '</div>'+
+    '<div style="position:relative;height:34px;background:#F6F4EE;border:1px solid #E1DDD1;border-radius:8px">'+
+      '<span style="position:absolute;left:40%;top:0;bottom:0;width:1px;background:#E1DDD1"></span>'+
+      '<span style="position:absolute;left:'+med+'%;top:-4px;bottom:-4px;width:2px;background:'+colour+'"></span>'+
+      dots+
+    '</div>'+
+  '</div>';
+}
+
+/* Two windows side by side, deliberately. One window on its own reads as a
+   scoreboard. Two windows show the reader that the answer moves when the dates
+   move, which is the actual lesson. */
+function retTable(cats){
+  var asOf=esc(document.getElementById('m-asof').textContent||'today');
+  function cell(r,strong){
+    if(!r) return '<td colspan="2" class="text-meta text-[13px]">not enough history</td>';
+    var thin=r.n<10;
+    return '<td class="tab-num '+(strong?'font-bold':'')+'">'+r.med.toFixed(1)+'%'+
+        (thin?'<span class="text-meta font-normal"> *</span>':'')+'</td>'+
+      '<td class="tab-num text-[12.5px] text-meta">'+r.n+' funds</td>';
+  }
+  var rows=ORDER.map(function(n){
+    var c=cats[n], strong=FOCUS[n];
+    return '<tr class="'+(strong?'':'text-ink-3')+'">'+
+      '<td class="rowlab '+(strong?'':'font-medium')+'">'+esc(n)+
+        (strong?'':' <span class="text-meta font-normal text-[12px]">reference</span>')+'</td>'+
+      cell(c.ruleWindow,strong)+cell(c.w3y,strong)+
+      '<td class="tab-num" style="color:#E0211E">'+
+        (c.ruleWindow?c.ruleWindow.worstMed.toFixed(1)+'%':'')+'</td>'+
+    '</tr>';
+  }).join('');
+  return '<div class="card overflow-x-auto"><table class="cmp w-full text-[14.5px] min-w-[680px]">'+
+    '<thead>'+
+      '<tr class="bg-warmpaper-2">'+
+        '<th class="text-left font-bold w-[24%]" rowspan="2">Category</th>'+
+        '<th class="text-left font-bold" colspan="2">Since the rule took effect<br>'+
+          '<span class="font-normal text-[12.5px] text-meta">Feb 2021 to '+asOf+'</span></th>'+
+        '<th class="text-left font-bold" colspan="2">The last three years<br>'+
+          '<span class="font-normal text-[12.5px] text-meta">Aug 2023 to '+asOf+'</span></th>'+
+        '<th class="text-left font-bold" rowspan="2">Typical worst<br>12 months</th>'+
+      '</tr>'+
+      '<tr class="bg-warmpaper-2"><td colspan="4" style="padding:0;border:0"></td></tr>'+
+    '</thead><tbody>'+rows+'</tbody></table></div>'+
+    '<p class="mt-4 text-[13.5px] text-meta max-w-[74ch]">'+
+    'Return a year, for funds that existed through the whole of each window. '+
+    '&ldquo;Typical&rdquo; is the median fund, so one outlier cannot move it. '+
+    '<strong class="text-ink-3">*</strong> marks a figure drawn from fewer than ten funds, which is '+
+    'thin enough that it should be read as a hint rather than a fact. '+
+    'Notice how much the ordering shifts between the two windows: that movement is the point of the '+
+    'table, not the ranking in either column.</p>';
+}
+
+fetch('cap-mix.json?v='+Date.now()).then(function(r){
+  if(!r.ok) throw new Error('no data');
+  return r.json();
+}).then(function(d){
+  var c=d.cats, mc=c['Multi Cap'], fc=c['Flexi Cap'];
+
+  $('m-asof').textContent=d.asOf;
+  $('m-window').textContent=d.window.from+' to '+d.window.to;
+  $('m-r2').textContent=Math.round((mc.r2+fc.r2)/2)+'%';
+
+  /* the timeline paragraph */
+  $('mc-born').textContent=mc.bornAfterRule+' of '+mc.schemes;
+  $('mc-start').textContent=mc.medianStart;
+  $('fc-start').textContent=fc.medianStart;
+
+  /* mix chart */
+  $('mix-wrap').innerHTML=
+    '<div class="flex flex-wrap gap-x-5 gap-y-2 mb-5 text-[13px] font-semibold">'+
+      ['large','mid','small'].map(function(k){
+        return '<span class="inline-flex items-center gap-2"><span style="width:13px;height:13px;'+
+          'border-radius:3px;background:'+FILL[k]+';display:inline-block"></span>'+k+' cap</span>';
+      }).join('')+
+    '</div>'+
+    '<div class="space-y-5">'+ORDER.map(function(n){return mixRow(n,c[n]);}).join('')+'</div>'+
+    '<p class="mt-5 text-[13px] text-meta">Average implied mix across the funds in each category, '+
+      'estimated from weekly NAV movement over '+esc(d.window.from)+' to '+esc(d.window.to)+'. '+
+      'Large, mid and small cap funds are shown as reference points, because their mandates are '+
+      'already known, which is what makes them a fair test of the method.</p>';
+
+  $('mix-note').innerHTML=
+    'The average multi cap fund behaves as though it holds <strong class="text-ink tab-num">'+
+    Math.round(mc.large)+' / '+Math.round(mc.mid)+' / '+Math.round(mc.small)+
+    '</strong> across large, mid and small, which is close to the equal thirds its rules demand. '+
+    'The average flexi cap sits at <strong class="text-ink tab-num">'+
+    Math.round(fc.large)+' / '+Math.round(fc.mid)+' / '+Math.round(fc.small)+
+    '</strong>. So the average flexi cap fund sits closer to a plain large cap fund than it does to '+
+    'a multi cap fund, despite being free to sit anywhere it likes.';
+
+  /* spread chart */
+  $('spread-wrap').innerHTML=
+    spreadRow('Multi cap',mc,'#0249B1')+
+    spreadRow('Flexi cap',fc,'#C41A17')+
+    '<div style="position:relative;height:18px" class="text-[12px] text-meta tab-num mt-1">'+
+      '<span style="position:absolute;left:0">0% outside large cap</span>'+
+      '<span style="position:absolute;left:40%;transform:translateX(-50%)">40%</span>'+
+      '<span style="position:absolute;right:0">100%</span></div>'+
+    '<p class="mt-4 text-[13px] text-meta max-w-[70ch]">Each dot is one fund, placed by its implied '+
+      'mid plus small cap holding. The vertical line is the category median.</p>';
+
+  $('spread-note').innerHTML=
+    '<strong class="tab-num">'+fc.under40+' of '+fc.n+'</strong> flexi cap funds hold less than 40% '+
+    'outside large cap. Among multi caps it is <strong class="tab-num">'+mc.under40+' of '+mc.n+
+    '</strong>, and only because the estimate has an error bar. Flexi cap funds run all the way from '+
+    '<span class="tab-num">'+pc(Math.min.apply(null,fc.midSmall))+'</span> to '+
+    '<span class="tab-num">'+pc(Math.max.apply(null,fc.midSmall))+'</span>. '+
+    'So &ldquo;flexi cap&rdquo; on its own tells you who is deciding, not what you are holding. '+
+    'If you own one, the only way to know is to open its factsheet.';
+
+  /* returns */
+  $('ret-wrap').innerHTML=retTable(c);
+}).catch(function(){
+  $('mix-wrap').innerHTML='<div class="card p-6"><p class="text-[15px] text-ink-3">'+
+    'The fund numbers could not be loaded just now. The rules above are unaffected. '+
+    '<a href="funds.html" class="lnk">Look up a fund directly</a></p></div>';
+  ['spread-wrap','ret-wrap'].forEach(function(i){ var e=$(i); if(e) e.innerHTML=''; });
+});
+})();
+</script>
+</body>
+</html>
