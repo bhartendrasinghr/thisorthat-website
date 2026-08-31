@@ -61,6 +61,21 @@
                 radial-gradient(circle at 75% 80%, rgba(0,0,0,0.12), transparent 55%);
   }
   .avatar > * { position: relative; z-index: 1; }
+
+  /* Write-to-me dialog */
+  #write-dlg { border: 0; padding: 0; background: transparent; max-width: 560px; width: calc(100% - 32px); }
+  #write-dlg::backdrop { background: rgba(26,24,19,0.55); backdrop-filter: blur(2px); }
+  #write-dlg .fld {
+    width: 100%; border: 1.5px solid #E1DDD1; border-radius: 10px; padding: 11px 13px;
+    font-size: 15px; font-family: inherit; background: #fff; color: #1A1813;
+  }
+  #write-dlg .fld:focus { outline: 3px solid #8F6600; outline-offset: 1px; border-color: #1A1813; }
+  #write-dlg label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+  #write-dlg textarea.fld { resize: vertical; min-height: 130px; line-height: 1.55; }
+  @media (prefers-reduced-motion: no-preference) {
+    #write-dlg[open] { animation: dlgIn .18s ease-out; }
+    @keyframes dlgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -278,12 +293,11 @@ fetch('content/about.json', { cache: 'no-cache' })
     if (host.linkedin_url)  links.push({ label: 'LinkedIn',    href: host.linkedin_url,  primary: false });
     if (host.twitter_url)   links.push({ label: 'Twitter / X', href: host.twitter_url,   primary: false });
     if (host.instagram_url) links.push({ label: 'Instagram',   href: host.instagram_url, primary: false });
-    if (host.contact_email) links.push({ label: host.contact_cta || 'Write to me', href: `mailto:${host.contact_email}`, primary: true });
+    const writeLabel = host.contact_cta || 'Write to me';
     document.getElementById('host-links').innerHTML = links.map(l =>
-      l.primary
-        ? `<a href="${escapeHtml(l.href)}" class="bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">${escapeHtml(l.label)}</a>`
-        : `<a href="${escapeHtml(l.href)}" target="_blank" rel="noopener" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">${escapeHtml(l.label)}</a>`
-    ).join('');
+      `<a href="${escapeHtml(l.href)}" target="_blank" rel="noopener" class="border border-navy/20 px-4 py-2 rounded-full text-sm font-semibold text-navy-ink hover:bg-navy hover:text-cream transition">${escapeHtml(l.label)}</a>`
+    ).join('') +
+      `<button type="button" data-write class="bg-navy text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-navy-ink transition">${escapeHtml(writeLabel)}</button>`;
 
     // STORY
     if (d.story_heading) document.getElementById('story-heading').textContent = d.story_heading;
@@ -313,11 +327,143 @@ fetch('content/about.json', { cache: 'no-cache' })
     if (d.contact_body)    document.getElementById('contact-body').textContent    = d.contact_body;
 
     const ctas = [];
-    if (host.contact_email) ctas.push(`<a href="mailto:${escapeHtml(host.contact_email)}" class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">${escapeHtml(host.contact_cta || 'Write to me')}</a>`);
+    ctas.push(`<button type="button" data-write class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">${escapeHtml(host.contact_cta || 'Write to me')}</button>`);
     if (d.press_kit_url)    ctas.push(`<a href="${escapeHtml(d.press_kit_url)}" target="_blank" rel="noopener" class="border-2 border-navy text-navy-ink px-6 py-3 rounded-full font-semibold hover:bg-navy hover:text-cream transition">Press kit</a>`);
     document.getElementById('contact-ctas').innerHTML = ctas.join('');
   })
   .catch(() => {});
+</script>
+<dialog id="write-dlg" aria-labelledby="write-title">
+  <form id="write-form" method="dialog" class="bg-white rounded-2xl border border-navy/10 p-6 md:p-7 text-left">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <div class="text-[11px] uppercase tracking-[0.2em] text-goldink font-extrabold">Write to Bhartendra</div>
+        <h2 id="write-title" class="font-serif text-2xl font-bold mt-1.5">What is on your mind?</h2>
+      </div>
+      <button type="button" id="write-close" aria-label="Close" class="shrink-0 -mt-1 -mr-1 p-2 rounded-full hover:bg-warmpaper-2 text-navy-ink/60 hover:text-navy-ink">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="mt-5 space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="w-name">Your name</label>
+          <input id="w-name" class="fld" autocomplete="name" maxlength="120" />
+        </div>
+        <div>
+          <label for="w-email">Your email</label>
+          <input id="w-email" type="email" class="fld" autocomplete="email" maxlength="160" placeholder="so a reply can reach you" />
+        </div>
+      </div>
+      <div>
+        <label for="w-subject">Subject</label>
+        <input id="w-subject" class="fld" maxlength="200" placeholder="Guest pitch, a question, something I got wrong" />
+      </div>
+      <div>
+        <label for="w-message">Message</label>
+        <textarea id="w-message" class="fld" maxlength="5000"></textarea>
+      </div>
+      <input type="text" id="w-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+    </div>
+
+    <p id="write-error" class="hidden mt-4 text-[14px] text-loss font-semibold"></p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <button type="submit" id="write-send" class="bg-navy text-cream px-6 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Send message &rarr;</button>
+      <p class="text-[12px] text-navy-ink/50 leading-snug flex-1 min-w-[180px]">Goes to Bhartendra's inbox and nowhere else. No list, no newsletter.</p>
+    </div>
+  </form>
+
+  <div id="write-sent" class="hidden bg-white rounded-2xl border border-navy/10 p-8 text-center">
+    <div class="text-4xl" aria-hidden="true">&#9993;</div>
+    <h2 class="font-serif text-2xl font-bold mt-3">That is on its way.</h2>
+    <p class="mt-2 text-navy-ink/75 text-[15px]">Bhartendra reads these himself, so a reply may take a few days rather than a few minutes.</p>
+    <button type="button" id="write-done" class="mt-6 border-2 border-navy text-navy-ink px-6 py-2.5 rounded-full font-semibold hover:bg-navy hover:text-cream transition">Close</button>
+  </div>
+</dialog>
+<script>
+/* Write to me. Posts to /api/message, which emails Bhartendra and stores a copy.
+   The buttons are rendered from CMS content after fetch, so the click handler is
+   delegated off document rather than bound to elements that do not exist yet. */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const dlg = $('write-dlg');
+  if (!dlg) return;
+
+  function open() {
+    $('write-form').classList.remove('hidden');
+    $('write-sent').classList.add('hidden');
+    $('write-error').classList.add('hidden');
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else dlg.setAttribute('open', '');
+    setTimeout(() => $('w-name').focus(), 40);
+  }
+  function close() {
+    if (typeof dlg.close === 'function') dlg.close();
+    else dlg.removeAttribute('open');
+  }
+
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-write]');
+    if (t) { e.preventDefault(); open(); }
+  });
+  $('write-close').addEventListener('click', close);
+  $('write-done').addEventListener('click', close);
+  // clicking the backdrop, which lands on the dialog element itself
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+
+  function payload() {
+    return {
+      name: $('w-name').value.trim(),
+      email: $('w-email').value.trim(),
+      subject: $('w-subject').value.trim(),
+      message: $('w-message').value.trim(),
+      website: $('w-website').value, // honeypot, humans leave it empty
+      page: 'about'
+    };
+  }
+
+  function validate() {
+    const d = payload();
+    const err = $('write-error');
+    let msg = '';
+    if (!d.name) msg = 'A name would help, even just your first.';
+    else if (!d.email) msg = 'Leave an email, or a reply has nowhere to go.';
+    else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) msg = 'That email does not look quite right.';
+    else if (!d.subject) msg = 'A subject line, so this does not land as another untitled email.';
+    else if (d.message.length < 2) msg = 'The message is empty.';
+    if (msg) { err.textContent = msg; err.classList.remove('hidden'); return null; }
+    err.classList.add('hidden');
+    return d;
+  }
+
+  $('write-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const d = validate();
+    if (!d) return;
+    const btn = $('write-send');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const r = await fetch('/api/message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(d)
+      });
+      if (!r.ok) throw new Error('send failed');
+      $('write-form').classList.add('hidden');
+      $('write-sent').classList.remove('hidden');
+    } catch (err2) {
+      const err = $('write-error');
+      err.textContent = 'Could not send just now. Give it a minute and try again, what you wrote is still here.';
+      err.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Send message &rarr;';
+    }
+  });
+})();
 </script>
 </body>
 </html>
