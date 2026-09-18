@@ -230,6 +230,12 @@ def parse_published(stats):
 
 NEW_GUESTS_SEEN = []
 
+# Suffixes that mark an organisation rather than a person.
+_IS_A_COMPANY = re.compile(
+    r'\b(pvt|private|ltd|limited|llp|inc|corp|corporation|company|advisors?|advisers?|'
+    r'capital|wealth|securities|financial|finserv|associates|partners|technologies|'
+    r'solutions|services|amc|holdings)\b', re.I)
+
 _NOT_A_NAME = re.compile(
     r'\b(part|mutual|fund|funds|investing|investment|explained|india|indian|money|wealth|sip|'
     r'guide|truth|lessons|strategy|plan|tips|smart|hindi|english|podcast|episode|full|ft|feat|'
@@ -276,7 +282,13 @@ def parse_guest(vid, title, stats, known=()):
     for s in stats:
         m = re.match(r'ThisOrThat with Bhartendra and (.+?)(?:\s*-.*)?$', s)
         if m:
-            return m.group(1).strip().replace('Krishan Sharma', 'Krishnan Sharma').replace('Mahamood', 'Mahmood')
+            who = m.group(1).strip().replace('Krishan Sharma', 'Krishnan Sharma').replace('Mahamood', 'Mahmood')
+            # YouTube's own podcast metadata sometimes carries the guest's firm
+            # instead of the guest, which is how "Finideas Investment Advisor
+            # Pvt Ltd" once became a guest on the site. A company is not a
+            # person, so fall through and let a CMS override name the human.
+            if not _IS_A_COMPANY.search(who):
+                return who
     from_title = guest_from_title(title, known)
     if from_title:
         return from_title
