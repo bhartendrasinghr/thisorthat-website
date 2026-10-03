@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>What happened to the IPOs you remember? ThisOrThat with Bhartendra</title>
-<meta name="description" content="Sixteen Indian IPOs from 2021 and 2024, from their listing day close to today, every figure corporate action checked. Eleven of the sixteen are below where they listed." />
+<title>Every mainboard IPO since 2021, and what it did ThisOrThat with Bhartendra</title>
+<meta name="description" content="All 600 mainboard IPOs listed on the NSE since October 2021, year by year. What one lakh rupees put in on listing day is worth today, every figure checked against splits and bonuses." />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="ThisOrThat with Bhartendra" />
-<meta property="og:title" content="What happened to the IPOs you remember?" />
-<meta property="og:description" content="Sixteen listings, checked against corporate actions. Eleven are below where they listed." />
+<meta property="og:title" content="Every mainboard IPO since 2021, and what it did" />
+<meta property="og:description" content="600 listings, year by year. What a lakh put in on listing day is worth now." />
 <meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
 <meta property="og:url" content="https://thisorthatshow.in/ipo-tracker.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="What happened to the IPOs you remember?" />
-<meta name="twitter:description" content="Sixteen listings, checked against corporate actions." />
+<meta name="twitter:title" content="Every mainboard IPO since 2021, and what it did" />
+<meta name="twitter:description" content="600 listings, year by year, checked against corporate actions." />
 <meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
 <link rel="canonical" href="https://thisorthatshow.in/ipo-tracker.html" />
 <link rel="icon" type="image/png" href="logo.png" />
@@ -56,6 +56,16 @@
   .zero { position:absolute; top:0; bottom:0; width:1.5px; background:#C9C3B4; }
   .bar  { position:absolute; top:4px; bottom:4px; border-radius:3px; }
   .nm   { font-size:14px; font-weight:700; line-height:1.2; }
+  .yb   { border:1.5px solid #E1DDD1; background:#fff; font-weight:700; font-size:14px;
+          padding:8px 16px; border-radius:999px; cursor:pointer; white-space:nowrap; }
+  .yb:hover { border-color:#1A1813; }
+  .yb[aria-pressed="true"] { background:#0249B1; border-color:#0249B1; color:#fff; }
+  .sortb { border:1.5px solid #E1DDD1; background:#fff; font-weight:600;
+           padding:7px 13px; border-radius:999px; cursor:pointer; }
+  .sortb:hover { border-color:#1A1813; }
+  .sortb[aria-pressed="true"] { background:#1A1813; border-color:#1A1813; color:#FCFBF8; }
+  #list { max-height:min(72vh,900px); overflow-y:auto; }
+  #q:focus { outline:3px solid #8F6600; outline-offset:1px; }
   .sub  { font-size:11.5px; color:#7A7368; }
 </style>
 </head>
@@ -84,12 +94,13 @@
 <section class="max-w-7xl mx-auto px-6 pt-12 pb-8">
   <div class="kicker">The listings you remember</div>
   <h1 class="font-display font-extrabold mt-4 leading-[0.98] tracking-[-0.035em] text-[clamp(36px,5.6vw,58px)] max-w-[17ch]">
-    What happened to the IPOs you remember?
+    What happened to every IPO since 2021?
   </h1>
   <p class="mt-5 text-[18.5px] leading-[1.55] text-ink-3 max-w-[60ch]">
-    Every one of these arrived with a queue, a grey market premium and somebody on television
-    explaining why this one was different. Here is the boring part nobody runs afterwards:
-    what they are worth now, measured from the day you could first buy them.
+    Every mainboard company that listed on the NSE since October 2021, all
+    <span class="tab-num font-semibold text-ink">600</span> of them. Each arrived with a queue, a grey
+    market premium and somebody explaining why this one was different. Here is the boring part nobody
+    runs afterwards: what they are worth now, measured from the day you could first buy them.
   </p>
   <div id="headline" class="mt-9"></div>
 </section>
@@ -97,13 +108,24 @@
 <section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
 <div class="max-w-7xl mx-auto px-6">
   <div class="kicker">Listing day to today</div>
-  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3 max-w-[24ch]">The scoreboard</h2>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3 max-w-[24ch]">Pick a year</h2>
   <p class="mt-4 text-[15.5px] leading-[1.6] text-ink-3 max-w-[62ch]">
     Each figure is what <strong class="text-ink tab-num">&#8377;1,00,000</strong> would be worth today,
     had you put it in at the closing price on that company's first day of trading. That close is the
     first price an ordinary buyer could actually get. Not the IPO issue price, which only allottees paid.
   </p>
-  <div id="cohorts" class="mt-9 grid lg:grid-cols-2 gap-6"><p class="text-[15px] text-meta">Loading.</p></div>
+  <div id="yearbar" class="mt-8 flex flex-wrap gap-2"></div>
+  <div id="yearstat" class="mt-6"></div>
+  <div class="mt-6 flex flex-wrap gap-3 items-center">
+    <input id="q" type="search" placeholder="Find a company" autocomplete="off"
+      class="flex-1 min-w-[220px] max-w-[340px] border-[1.5px] border-warmpaper-3 rounded-[10px] px-4 py-2.5 text-[15px] bg-white" />
+    <div class="flex gap-1.5 text-[13px]">
+      <button data-sort="r" class="sortb">Best first</button>
+      <button data-sort="-r" class="sortb">Worst first</button>
+      <button data-sort="d" class="sortb">By date</button>
+    </div>
+  </div>
+  <div id="list" class="card mt-5 p-5 md:p-6"><p class="text-[15px] text-meta">Loading.</p></div>
 </div>
 </section>
 
@@ -114,13 +136,13 @@
     When a company issues bonus shares or splits its stock, the price per share drops mechanically
     and your holding multiplies to match. You have lost nothing. But the raw price history does not
     know that, so a stock that did nothing wrong can look like it collapsed, and a quiet winner can
-    look ordinary. Two of the sixteen below are badly misreported if you skip this check.
+    look ordinary. Fifteen of the 600 below would be badly misreported if you skipped this check.
   </p>
   <div id="ca-lesson" class="mt-8 grid md:grid-cols-2 gap-5"></div>
   <p class="mt-6 text-[15.5px] leading-[1.6] text-ink-3 max-w-[64ch]">
     It cuts both ways, which is the part worth remembering. The same oversight that invents a
-    collapse at one company hides a fivefold understatement at another. Every figure on this page
-    has been checked against the exchange's own record of splits, bonuses and dividends.
+    collapse at one company hides a fivefold understatement at another. Every one of the 600 figures
+    on this page is checked against the exchange's own record of splits and bonuses.
   </p>
 </section>
 
@@ -131,11 +153,11 @@
   <div class="grid md:grid-cols-2 gap-4 mt-8 max-w-[82ch]">
     <div class="border border-cream/15 rounded-[14px] p-5">
       <h3 class="font-display font-extrabold text-[17px]">It does not say IPOs are bad</h3>
-      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">Two of these turned one rupee into several. It says the odds of picking which one are not what the queue outside the application window implies.</p>
+      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">Seventy three of the 600 at least doubled. It says the odds of picking which one are not what the queue outside the application window implies.</p>
     </div>
     <div class="border border-cream/15 rounded-[14px] p-5">
-      <h3 class="font-display font-extrabold text-[17px]">These are not all the IPOs</h3>
-      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">It is a named list of listings people remember, not a complete cohort. Treat it as sixteen specific companies, never as "IPOs returned X".</p>
+      <h3 class="font-display font-extrabold text-[17px]">Mainboard only, new companies only</h3>
+      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">SME listings are excluded, and so is anything already trading elsewhere before it joined the main board. A few demergers may still slip in.</p>
     </div>
     <div class="border border-cream/15 rounded-[14px] p-5">
       <h3 class="font-display font-extrabold text-[17px]">Dividends are not counted</h3>
@@ -245,80 +267,160 @@ function barRow(r){
   '</div>';
 }
 
-function cohortCard(year, label, list, sum){
-  list = list.slice().sort(function(a,b){ return b.return_pct-a.return_pct; });
-  return '<div class="card p-6 md:p-7">'+
-    '<div class="flex items-baseline justify-between gap-4 flex-wrap">'+
-      '<div>'+
-        '<h3 class="font-display font-extrabold text-[23px]">'+esc(label)+'</h3>'+
-        '<p class="text-[13.5px] text-meta mt-0.5">'+sum.n+' listings &middot; about '+sum.avg_years+' years held</p>'+
+var CA_LESSON=[
+  {name:'Nykaa', unadjusted_pct:-85.3, adjusted_pct:-11.6},
+  {name:'Anand Rathi Wealth', unadjusted_pct:262.9, adjusted_pct:1351.5}
+];
+var DATA=null, YEAR='all', SORT='r', Q='';
+
+function rowHtml(r){
+  var v=r.r, mid=50, CAP=100;
+  var w=Math.min(Math.abs(v),CAP)/CAP*mid, over=Math.abs(v)>CAP, left=v>=0?mid:mid-w;
+  return '<div class="row">'+
+    '<div>'+
+      '<div class="flex items-baseline justify-between gap-3 mb-1.5">'+
+        '<div class="nm">'+esc(r.n)+(r.ca?' <span class="text-goldink" title="restated for a split or bonus">*</span>':'')+
+          ' <span class="sub font-normal">'+esc(r.s)+'</span></div>'+
+        '<div class="sub tab-num">'+esc(monthYear(r.d))+'</div>'+
       '</div>'+
-      '<div class="text-right">'+
-        '<div class="tab-num text-[22px] font-extrabold" style="color:'+col(sum.median_return_pct)+'">'+
-          rupee(moneyFrom(sum.median_return_pct))+'</div>'+
-        '<div class="text-[11.5px] text-meta font-semibold uppercase tracking-wider">typical, from \u20b91 lakh</div>'+
+      '<div class="bars">'+
+        '<div class="zero" style="left:'+mid+'%"></div>'+
+        '<div class="bar" style="left:'+left+'%;width:'+w+'%;background:'+col(v)+'"></div>'+
+        (over?'<div style="position:absolute;top:50%;transform:translateY(-50%);'+(v>0?'right:3px':'left:3px')+
+          ';font-size:12px;color:'+col(v)+';font-weight:800">'+(v>0?'&rarr;':'&larr;')+'</div>':'')+
       '</div>'+
     '</div>'+
-    '<p class="mt-3 text-[14px] font-bold">'+sum.up+' of '+sum.n+' are above their listing price.</p>'+
-    '<div class="mt-4">'+list.map(barRow).join('')+'</div>'+
+    '<div class="text-right">'+
+      '<div class="tab-num text-[15px] font-bold" style="color:'+col(v)+'">'+rupee(r.v)+'</div>'+
+      '<div class="tab-num sub">'+sign(v)+'</div>'+
+    '</div>'+
   '</div>';
+}
+
+function rowsFor(y){
+  if(y==='all'){ var a=[]; Object.keys(DATA.years).forEach(function(k){ a=a.concat(DATA.years[k]); }); return a; }
+  return DATA.years[y].slice();
+}
+
+function draw(){
+  var rows=rowsFor(YEAR);
+  if(Q){ var q=Q.toLowerCase(); rows=rows.filter(function(r){
+    return r.n.toLowerCase().indexOf(q)>=0 || r.s.toLowerCase().indexOf(q)>=0; }); }
+  rows.sort(function(a,b){
+    if(SORT==='r') return b.r-a.r;
+    if(SORT==='-r') return a.r-b.r;
+    return a.d<b.d?1:(a.d>b.d?-1:0);
+  });
+  var el=$('list');
+  if(!rows.length){ el.innerHTML='<p class="text-[15px] text-ink-3 py-6 text-center">Nothing matches &ldquo;'+esc(Q)+'&rdquo;.</p>'; return; }
+  el.innerHTML='<div class="flex items-baseline justify-between mb-3 text-[12.5px] text-meta">'+
+      '<span>'+rows.length+' listing'+(rows.length===1?'':'s')+'</span>'+
+      '<span class="tab-num">&#8377;1,00,000 becomes</span></div>'+
+    rows.map(rowHtml).join('');
+  el.scrollTop=0;
+}
+
+function drawStat(){
+  var s = YEAR==='all' ? DATA.summary.all : DATA.summary[YEAR];
+  var label = YEAR==='all' ? 'every mainboard listing since October 2021' : 'companies that listed in '+YEAR;
+  $('yearstat').innerHTML=
+    '<div class="card p-6 md:p-7">'+
+      '<div class="flex flex-wrap items-end gap-x-10 gap-y-5">'+
+        '<div>'+
+          '<div class="text-[13.5px] font-bold text-ink-3">Typical outcome, '+esc(label)+'</div>'+
+          '<div class="tab-num font-extrabold leading-none mt-2 text-[clamp(34px,5.5vw,52px)]" style="color:'+col(s.median_return_pct)+'">'+
+            rupee(s.median_value)+'</div>'+
+          '<div class="text-[12.5px] text-meta mt-1.5 tab-num">from &#8377;1,00,000 &middot; '+sign(s.median_return_pct)+'</div>'+
+        '</div>'+
+        '<div class="flex gap-7 flex-wrap">'+
+          stat(s.up+' of '+s.n, 'went up', '#1B7A50')+
+          stat(String(s.doubled), 'doubled or better', '#1B7A50')+
+          stat(String(s.halved), 'lost half or more', '#E0211E')+
+        '</div>'+
+      '</div>'+
+      (s.best? '<p class="mt-5 pt-5 border-t border-warmpaper-3 text-[14px] text-ink-3">'+
+        'Best: <strong class="text-ink">'+esc(s.best)+'</strong> <span class="tab-num" style="color:#1B7A50">'+sign(s.best_pct)+'</span>'+
+        ' &middot; Worst: <strong class="text-ink">'+esc(s.worst)+'</strong> <span class="tab-num" style="color:#E0211E">'+sign(s.worst_pct)+'</span></p>':'')+
+    '</div>';
+}
+function stat(big,small,c){
+  return '<div><div class="tab-num text-[22px] font-extrabold" style="color:'+c+'">'+big+'</div>'+
+         '<div class="text-[12.5px] text-meta font-semibold">'+small+'</div></div>';
+}
+
+function drawBar(){
+  var ys=Object.keys(DATA.years).sort();
+  $('yearbar').innerHTML=['all'].concat(ys).map(function(y){
+    return '<button class="yb" data-y="'+y+'" aria-pressed="'+(y===YEAR)+'">'+
+      (y==='all'?'All years':y)+' <span class="text-[12px] font-normal opacity-60">'+
+      (y==='all'?DATA.summary.all.n:DATA.summary[y].n)+'</span></button>';
+  }).join('');
 }
 
 fetch('ipo-cohorts.json?v='+Date.now()).then(function(r){
   if(!r.ok) throw new Error('no data');
   return r.json();
 }).then(function(d){
+  DATA=d;
   var all=d.summary.all;
-
   $('m-asof').textContent = new Date(d.priced_at+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
   $('m-pulled').textContent = new Date(d.pulled+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
 
-  var medMoney = moneyFrom(all.median_return_pct);
   $('headline').innerHTML =
-    '<div class="card p-7 md:p-8 border-l-4" style="border-left-color:#E0211E">'+
-      '<div class="text-[14.5px] font-bold text-ink-3">Put <span class="tab-num text-ink">\u20b91,00,000</span> into the typical one on the day it listed, and today you have</div>'+
-      '<div class="tab-num font-extrabold leading-none mt-3 text-[clamp(52px,9vw,86px)]" style="color:#E0211E">'+
-        rupee(medMoney)+'</div>'+
-      '<div class="flex flex-wrap items-baseline gap-x-8 gap-y-3 mt-6 pt-6 border-t border-warmpaper-3">'+
-        '<div><span class="tab-num text-[22px] font-extrabold" style="color:#E0211E">'+(all.n-all.up)+' of '+all.n+'</span>'+
-          '<span class="text-[14px] text-ink-3 ml-2">are below their listing price</span></div>'+
-        '<div><span class="tab-num text-[22px] font-extrabold" style="color:#1B7A50">'+all.up+'</span>'+
-          '<span class="text-[14px] text-ink-3 ml-2">are above it</span></div>'+
+    '<div class="card p-7 md:p-8 border-l-4" style="border-left-color:#FFC21F">'+
+      '<div class="text-[14.5px] font-bold text-ink-3">Put <span class="tab-num text-ink">&#8377;1,00,000</span> into the typical mainboard IPO on the day it listed, and today you have</div>'+
+      '<div class="tab-num font-extrabold leading-none mt-3 text-[clamp(52px,9vw,86px)]" style="color:'+col(all.median_return_pct)+'">'+
+        rupee(all.median_value)+'</div>'+
+      '<div class="flex flex-wrap items-baseline gap-x-8 gap-y-3 mt-6 pt-6 border-t border-warmpaper-3 text-[14px]">'+
+        '<div><span class="tab-num text-[20px] font-extrabold">'+all.n+'</span><span class="text-ink-3 ml-2">listings since Oct 2021</span></div>'+
+        '<div><span class="tab-num text-[20px] font-extrabold" style="color:#1B7A50">'+all.up+'</span><span class="text-ink-3 ml-2">above their listing price</span></div>'+
+        '<div><span class="tab-num text-[20px] font-extrabold" style="color:#E0211E">'+(all.n-all.up)+'</span><span class="text-ink-3 ml-2">below it</span></div>'+
       '</div>'+
     '</div>';
 
-  var order=[['2021','Listed in 2021'],['2024','Listed in 2024']];
-  $('cohorts').innerHTML = order.map(function(o){
-    return cohortCard(o[0], o[1], d.cohorts[o[0]], d.summary[o[0]]);
-  }).join('') +
-  '<p class="lg:col-span-2 text-[13px] text-meta"><span class="text-goldink font-bold">*</span> '+
-  'listing price restated for a later bonus or split, so the comparison is like for like. '+
-  'Sorted best to worst. &ldquo;Typical&rdquo; is the median, so one runaway winner cannot flatter the group.</p>';
+  drawBar(); drawStat(); draw();
 
-  $('ca-lesson').innerHTML = d.ca_check_mattered.map(function(c){
-    var worse = Math.abs(c.unadjusted_pct - c.adjusted_pct);
+  $('yearbar').addEventListener('click', function(e){
+    var b=e.target.closest('[data-y]'); if(!b) return;
+    YEAR=b.getAttribute('data-y');
+    [].forEach.call($('yearbar').querySelectorAll('.yb'), function(x){
+      x.setAttribute('aria-pressed', x.getAttribute('data-y')===YEAR);
+    });
+    drawStat(); draw();
+  });
+  document.querySelectorAll('[data-sort]').forEach(function(b){
+    b.setAttribute('aria-pressed', b.getAttribute('data-sort')===SORT);
+    b.addEventListener('click', function(){
+      SORT=b.getAttribute('data-sort');
+      document.querySelectorAll('[data-sort]').forEach(function(x){
+        x.setAttribute('aria-pressed', x.getAttribute('data-sort')===SORT); });
+      draw();
+    });
+  });
+  var t; $('q').addEventListener('input', function(e){
+    clearTimeout(t); var v=e.target.value;
+    t=setTimeout(function(){ Q=v.trim(); draw(); }, 120);
+  });
+
+  $('ca-lesson').innerHTML = CA_LESSON.map(function(c){
+    var a=100000*(1+c.unadjusted_pct/100), b=100000*(1+c.adjusted_pct/100);
     return '<div class="card p-6">'+
       '<h3 class="font-display font-extrabold text-[20px]">'+esc(c.name)+'</h3>'+
       '<div class="mt-4 flex items-center gap-4 flex-wrap">'+
-        '<div>'+
-          '<div class="text-[11px] uppercase tracking-wider text-meta font-bold">Reported raw</div>'+
-          '<div class="tab-num text-[26px] font-extrabold line-through" style="color:#7A7368">'+rupee(moneyFrom(c.unadjusted_pct))+'</div>'+
-        '</div>'+
+        '<div><div class="text-[11px] uppercase tracking-wider text-meta font-bold">Reported raw</div>'+
+          '<div class="tab-num text-[26px] font-extrabold line-through" style="color:#7A7368">'+rupee(a)+'</div></div>'+
         '<div class="text-[20px] text-meta">&rarr;</div>'+
-        '<div>'+
-          '<div class="text-[11px] uppercase tracking-wider text-goldink font-bold">Actually</div>'+
-          '<div class="tab-num text-[26px] font-extrabold" style="color:'+col(c.adjusted_pct)+'">'+rupee(moneyFrom(c.adjusted_pct))+'</div>'+
-        '</div>'+
+        '<div><div class="text-[11px] uppercase tracking-wider text-goldink font-bold">Actually</div>'+
+          '<div class="tab-num text-[26px] font-extrabold" style="color:'+col(c.adjusted_pct)+'">'+rupee(b)+'</div></div>'+
       '</div>'+
-      '<p class="mt-4 text-[14px] text-ink-3 leading-[1.55]">On <span class="tab-num">\u20b91 lakh</span>, that is a '+
-        '<strong class="text-ink tab-num">'+rupee(Math.abs(moneyFrom(c.adjusted_pct)-moneyFrom(c.unadjusted_pct)))+
-        '</strong> difference, from one unchecked number.</p>'+
+      '<p class="mt-4 text-[14px] text-ink-3 leading-[1.55]">On <span class="tab-num">&#8377;1 lakh</span>, that is a '+
+        '<strong class="text-ink tab-num">'+rupee(Math.abs(b-a))+'</strong> difference, from one unchecked number.</p>'+
     '</div>';
   }).join('');
 }).catch(function(){
   $('headline').innerHTML='<div class="card p-6"><p class="text-[15px] text-ink-3">'+
     'The numbers could not be loaded just now. <a href="funds.html" class="lnk">Look up a fund instead</a></p></div>';
-  ['cohorts','ca-lesson'].forEach(function(i){ var e=$(i); if(e) e.innerHTML=''; });
+  ['yearbar','yearstat','list','ca-lesson'].forEach(function(i){ var e=$(i); if(e) e.innerHTML=''; });
 });
 })();
 </script>
