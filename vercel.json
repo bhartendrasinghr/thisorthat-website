@@ -31,6 +31,15 @@
       ]
     },
     {
+      "source": "/ipo-cohorts.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/logo.png",
       "headers": [
         {
@@ -237,6 +246,11 @@
     {
       "source": "/multicap-vs-flexicap",
       "destination": "/multicap-vs-flexicap.html",
+      "permanent": false
+    },
+    {
+      "source": "/ipo-tracker",
+      "destination": "/ipo-tracker.html",
       "permanent": false
     },
     {

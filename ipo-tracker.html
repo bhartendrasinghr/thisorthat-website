@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What happened to the IPOs you remember? ThisOrThat with Bhartendra</title>
+<meta name="description" content="Sixteen Indian IPOs from 2021 and 2024, from their listing day close to today, every figure corporate action checked. Eleven of the sixteen are below where they listed." />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="What happened to the IPOs you remember?" />
+<meta property="og:description" content="Sixteen listings, checked against corporate actions. Eleven are below where they listed." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/ipo-tracker.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What happened to the IPOs you remember?" />
+<meta name="twitter:description" content="Sixteen listings, checked against corporate actions." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/ipo-tracker.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+  .row { display:grid; grid-template-columns: 1fr 86px; gap:10px; align-items:center;
+         padding:11px 0; border-bottom:1px solid #E1DDD1; }
+  .row:last-child { border-bottom:0; }
+  .bars { position:relative; height:26px; background:#F6F4EE; border-radius:5px; overflow:hidden; }
+  .zero { position:absolute; top:0; bottom:0; width:1.5px; background:#C9C3B4; }
+  .bar  { position:absolute; top:4px; bottom:4px; border-radius:3px; }
+  .nm   { font-size:14px; font-weight:700; line-height:1.2; }
+  .sub  { font-size:11.5px; color:#7A7368; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<section class="max-w-7xl mx-auto px-6 pt-12 pb-8">
+  <div class="kicker">The listings you remember</div>
+  <h1 class="font-display font-extrabold mt-4 leading-[0.98] tracking-[-0.035em] text-[clamp(36px,5.6vw,58px)] max-w-[17ch]">
+    What happened to the IPOs you remember?
+  </h1>
+  <p class="mt-5 text-[18.5px] leading-[1.55] text-ink-3 max-w-[60ch]">
+    Every one of these arrived with a queue, a grey market premium and somebody on television
+    explaining why this one was different. Here is the boring part nobody runs afterwards:
+    what they are worth now, measured from the day you could first buy them.
+  </p>
+  <div id="headline" class="mt-9"></div>
+</section>
+
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker">Listing day to today</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3 max-w-[24ch]">The scoreboard</h2>
+  <p class="mt-4 text-[15.5px] leading-[1.6] text-ink-3 max-w-[62ch]">
+    Measured from each company's closing price on its first day of trading, which is the first
+    price an ordinary buyer could actually get. Not the IPO issue price, which only allottees paid.
+  </p>
+  <div id="cohorts" class="mt-9 grid lg:grid-cols-2 gap-6"><p class="text-[15px] text-meta">Loading.</p></div>
+</div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Why most of these numbers are reported wrong</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3 max-w-[26ch]">A bonus issue is not a crash</h2>
+  <p class="mt-5 text-[16.5px] leading-[1.6] text-ink-3 max-w-[64ch]">
+    When a company issues bonus shares or splits its stock, the price per share drops mechanically
+    and your holding multiplies to match. You have lost nothing. But the raw price history does not
+    know that, so a stock that did nothing wrong can look like it collapsed, and a quiet winner can
+    look ordinary. Two of the sixteen below are badly misreported if you skip this check.
+  </p>
+  <div id="ca-lesson" class="mt-8 grid md:grid-cols-2 gap-5"></div>
+  <p class="mt-6 text-[15.5px] leading-[1.6] text-ink-3 max-w-[64ch]">
+    It cuts both ways, which is the part worth remembering. The same oversight that invents a
+    collapse at one company hides a fivefold understatement at another. Every figure on this page
+    has been checked against the exchange's own record of splits, bonuses and dividends.
+  </p>
+</section>
+
+<section class="bg-ink text-cream py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker" style="color:#FFC21F">What this does and does not say</div>
+  <h2 class="font-display font-extrabold text-[clamp(24px,3.2vw,32px)] mt-3 max-w-[26ch]">Read this before you draw a conclusion</h2>
+  <div class="grid md:grid-cols-2 gap-4 mt-8 max-w-[82ch]">
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <h3 class="font-display font-extrabold text-[17px]">It does not say IPOs are bad</h3>
+      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">Two of these turned one rupee into several. It says the odds of picking which one are not what the queue outside the application window implies.</p>
+    </div>
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <h3 class="font-display font-extrabold text-[17px]">These are not all the IPOs</h3>
+      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">It is a named list of listings people remember, not a complete cohort. Treat it as sixteen specific companies, never as "IPOs returned X".</p>
+    </div>
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <h3 class="font-display font-extrabold text-[17px]">Dividends are not counted</h3>
+      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">These are price returns only. The companies that paid dividends did better than shown. Most of the ones that fell paid nothing.</p>
+    </div>
+    <div class="border border-cream/15 rounded-[14px] p-5">
+      <h3 class="font-display font-extrabold text-[17px]">We are not telling you what to buy</h3>
+      <p class="mt-2 text-[14.5px] leading-[1.55] text-cream/75">This is arithmetic on published prices, not a view on any company. Picking one for you is advice, and that takes a registration we do not hold.</p>
+    </div>
+  </div>
+  <div class="mt-9 flex flex-wrap gap-3">
+    <a href="funds.html" class="inline-flex bg-thisblue text-white text-[15px] font-bold px-6 py-3 rounded-full hover:brightness-110 transition">Look up any fund</a>
+    <a href="money-person.html" class="inline-flex border border-cream/30 text-cream text-[15px] font-bold px-6 py-3 rounded-full hover:bg-cream/10 transition">Ask someone who is registered</a>
+  </div>
+</div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">How this was worked out</div>
+  <h2 class="font-display font-extrabold text-[clamp(24px,3vw,30px)] mt-3">Method</h2>
+  <div class="grid md:grid-cols-2 gap-x-10 gap-y-6 mt-7 text-[15px] leading-[1.6] text-ink-3 max-w-[92ch]">
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">The two prices</h3>
+      <p class="mt-2">Entry is the closing price on the company's first day of trading on the NSE, taken from the exchange's daily record. Exit is the closing price on <span id="m-asof" class="font-semibold text-ink"></span>.</p>
+    </div>
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">The adjustment</h3>
+      <p class="mt-2">Every company was checked against the exchange's corporate action record. Where a split or bonus happened, the listing price is restated into today's share terms before any return is calculated. Dividends are recorded but not added back.</p>
+    </div>
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">The returns</h3>
+      <p class="mt-2">The headline figure is the total change from entry to exit, not annual. The second figure is that same return expressed as a yearly rate, so a five year holding and a two year holding can be compared honestly.</p>
+    </div>
+    <div>
+      <h3 class="font-display font-extrabold text-[17px] text-ink">Source and date</h3>
+      <p class="mt-2">Prices from the NSE's published daily data, pulled <span id="m-pulled" class="font-semibold text-ink"></span>. Nothing here is live. If you are reading this much later, the prices have moved and the lesson has not.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[70ch]">
+      Every figure on this page is arithmetic on closing prices and corporate action records published
+      by the NSE. It is provided for education only. It is not investment advice, not a recommendation,
+      and not a ranking of any company. Past returns tell you what happened, not what will. Investments
+      in securities are subject to market risk; read all related documents carefully. Before you act on
+      any of it, speak to a SEBI registered investment adviser.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat. Price and corporate action data from the NSE.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+function sign(n){ return (n>0?'+':'') + n.toFixed(1) + '%'; }
+function inr(n){ return Number(n).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function col(n){ return n>=0 ? '#1B7A50' : '#E0211E'; }
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function monthYear(iso){ var p=iso.split('-'); return MON[+p[1]-1]+' '+p[0]; }
+
+/* Returns run from -59% to +1351%, so a linear bar would make everything below
+   +100% invisible. Bars are clipped at 100% either side and carry an arrow when
+   they run past it. The number beside the bar is always the real one. */
+var CAP=100;
+function barRow(r){
+  var v=r.return_pct, mid=50;
+  var w=Math.min(Math.abs(v),CAP)/CAP*mid;
+  var over=Math.abs(v)>CAP;
+  var left = v>=0 ? mid : mid-w;
+  return '<div class="row">'+
+    '<div>'+
+      '<div class="flex items-baseline justify-between gap-3 mb-1.5">'+
+        '<div class="nm">'+esc(r.name)+(r.ca_factor!==1?' <span class="text-goldink">*</span>':'')+'</div>'+
+        '<div class="sub tab-num">'+esc(monthYear(r.listed))+'</div>'+
+      '</div>'+
+      '<div class="bars">'+
+        '<div class="zero" style="left:'+mid+'%"></div>'+
+        '<div class="bar" style="left:'+left+'%;width:'+w+'%;background:'+col(v)+';'+
+          (over?(v>0?'border-top-right-radius:0;border-bottom-right-radius:0;':'border-top-left-radius:0;border-bottom-left-radius:0;'):'')+'"></div>'+
+        (over?'<div style="position:absolute;top:50%;transform:translateY(-50%);'+(v>0?'right:3px':'left:3px')+';font-size:12px;color:'+col(v)+';font-weight:800">'+(v>0?'&rarr;':'&larr;')+'</div>':'')+
+      '</div>'+
+    '</div>'+
+    '<div class="text-right">'+
+      '<div class="tab-num text-[15px] font-bold" style="color:'+col(v)+'">'+sign(v)+'</div>'+
+      '<div class="tab-num sub">'+sign(r.cagr_pct)+' a yr</div>'+
+    '</div>'+
+  '</div>';
+}
+
+function cohortCard(year, label, list, sum){
+  list = list.slice().sort(function(a,b){ return b.return_pct-a.return_pct; });
+  return '<div class="card p-6 md:p-7">'+
+    '<div class="flex items-baseline justify-between gap-4 flex-wrap">'+
+      '<div>'+
+        '<h3 class="font-display font-extrabold text-[23px]">'+esc(label)+'</h3>'+
+        '<p class="text-[13.5px] text-meta mt-0.5">'+sum.n+' listings &middot; about '+sum.avg_years+' years held</p>'+
+      '</div>'+
+      '<div class="text-right">'+
+        '<div class="tab-num text-[22px] font-extrabold" style="color:'+col(sum.median_return_pct)+'">'+sign(sum.median_return_pct)+'</div>'+
+        '<div class="text-[11.5px] text-meta font-semibold uppercase tracking-wider">typical</div>'+
+      '</div>'+
+    '</div>'+
+    '<p class="mt-3 text-[14px] font-bold">'+sum.up+' of '+sum.n+' are above their listing price.</p>'+
+    '<div class="mt-4">'+list.map(barRow).join('')+'</div>'+
+  '</div>';
+}
+
+fetch('ipo-cohorts.json?v='+Date.now()).then(function(r){
+  if(!r.ok) throw new Error('no data');
+  return r.json();
+}).then(function(d){
+  var all=d.summary.all;
+
+  $('m-asof').textContent = new Date(d.priced_at+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  $('m-pulled').textContent = new Date(d.pulled+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+
+  $('headline').innerHTML =
+    '<div class="card p-7 md:p-8 border-l-4" style="border-left-color:#E0211E">'+
+      '<div class="flex flex-wrap items-baseline gap-x-10 gap-y-5">'+
+        '<div>'+
+          '<div class="tab-num font-extrabold leading-none text-[clamp(44px,7vw,68px)]" style="color:#E0211E">'+
+            (all.n-all.up)+' of '+all.n+'</div>'+
+          '<div class="text-[14.5px] font-bold mt-2">are worth less than on the day they listed</div>'+
+        '</div>'+
+        '<div class="md:border-l md:border-warmpaper-3 md:pl-10">'+
+          '<div class="tab-num font-extrabold leading-none text-[clamp(30px,4vw,42px)]" style="color:#E0211E">'+
+            sign(all.median_return_pct)+'</div>'+
+          '<div class="text-[13.5px] text-ink-3 mt-2 max-w-[22ch]">the typical one, after years of holding</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+
+  var order=[['2021','Listed in 2021'],['2024','Listed in 2024']];
+  $('cohorts').innerHTML = order.map(function(o){
+    return cohortCard(o[0], o[1], d.cohorts[o[0]], d.summary[o[0]]);
+  }).join('') +
+  '<p class="lg:col-span-2 text-[13px] text-meta"><span class="text-goldink font-bold">*</span> '+
+  'listing price restated for a later bonus or split, so the comparison is like for like. '+
+  'Sorted best to worst. &ldquo;Typical&rdquo; is the median, so one runaway winner cannot flatter the group.</p>';
+
+  $('ca-lesson').innerHTML = d.ca_check_mattered.map(function(c){
+    var worse = Math.abs(c.unadjusted_pct - c.adjusted_pct);
+    return '<div class="card p-6">'+
+      '<h3 class="font-display font-extrabold text-[20px]">'+esc(c.name)+'</h3>'+
+      '<div class="mt-4 flex items-center gap-4 flex-wrap">'+
+        '<div>'+
+          '<div class="text-[11px] uppercase tracking-wider text-meta font-bold">Reported raw</div>'+
+          '<div class="tab-num text-[26px] font-extrabold line-through" style="color:#7A7368">'+sign(c.unadjusted_pct)+'</div>'+
+        '</div>'+
+        '<div class="text-[20px] text-meta">&rarr;</div>'+
+        '<div>'+
+          '<div class="text-[11px] uppercase tracking-wider text-goldink font-bold">Actually</div>'+
+          '<div class="tab-num text-[26px] font-extrabold" style="color:'+col(c.adjusted_pct)+'">'+sign(c.adjusted_pct)+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<p class="mt-4 text-[14px] text-ink-3 leading-[1.55]">Out by <strong class="text-ink tab-num">'+
+        worse.toFixed(0)+' percentage points</strong> if you compare the two prices and nothing else.</p>'+
+    '</div>';
+  }).join('');
+}).catch(function(){
+  $('headline').innerHTML='<div class="card p-6"><p class="text-[15px] text-ink-3">'+
+    'The numbers could not be loaded just now. <a href="funds.html" class="lnk">Look up a fund instead</a></p></div>';
+  ['cohorts','ca-lesson'].forEach(function(i){ var e=$(i); if(e) e.innerHTML=''; });
+});
+})();
+</script>
+</body>
+</html>
