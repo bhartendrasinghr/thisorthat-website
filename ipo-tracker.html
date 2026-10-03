@@ -49,7 +49,7 @@
   .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
   a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
   @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
-  .row { display:grid; grid-template-columns: 1fr 86px; gap:10px; align-items:center;
+  .row { display:grid; grid-template-columns: 1fr 104px; gap:10px; align-items:center;
          padding:11px 0; border-bottom:1px solid #E1DDD1; }
   .row:last-child { border-bottom:0; }
   .bars { position:relative; height:26px; background:#F6F4EE; border-radius:5px; overflow:hidden; }
@@ -99,8 +99,9 @@
   <div class="kicker">Listing day to today</div>
   <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3 max-w-[24ch]">The scoreboard</h2>
   <p class="mt-4 text-[15.5px] leading-[1.6] text-ink-3 max-w-[62ch]">
-    Measured from each company's closing price on its first day of trading, which is the first
-    price an ordinary buyer could actually get. Not the IPO issue price, which only allottees paid.
+    Each figure is what <strong class="text-ink tab-num">&#8377;1,00,000</strong> would be worth today,
+    had you put it in at the closing price on that company's first day of trading. That close is the
+    first price an ordinary buyer could actually get. Not the IPO issue price, which only allottees paid.
   </p>
   <div id="cohorts" class="mt-9 grid lg:grid-cols-2 gap-6"><p class="text-[15px] text-meta">Loading.</p></div>
 </div>
@@ -203,6 +204,18 @@ function col(n){ return n>=0 ? '#1B7A50' : '#E0211E'; }
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function monthYear(iso){ var p=iso.split('-'); return MON[+p[1]-1]+' '+p[0]; }
 
+/* A percentage is a fact about a stock. A rupee figure is a fact about you.
+   Everything leads with what one lakh turned into; the percentage rides along
+   for anyone who wants it. */
+var LAKH = 100000;
+function moneyFrom(pct){ return LAKH * (1 + pct/100); }
+function rupee(n){
+  n = Math.round(n);
+  if (n >= 10000000) return '\u20b9' + (n/10000000).toFixed(n >= 100000000 ? 1 : 2) + ' cr';
+  if (n >= 100000)   return '\u20b9' + (n/100000).toFixed(n >= 1000000 ? 1 : 2) + ' lakh';
+  return '\u20b9' + n.toLocaleString('en-IN');
+}
+
 /* Returns run from -59% to +1351%, so a linear bar would make everything below
    +100% invisible. Bars are clipped at 100% either side and carry an arrow when
    they run past it. The number beside the bar is always the real one. */
@@ -226,8 +239,8 @@ function barRow(r){
       '</div>'+
     '</div>'+
     '<div class="text-right">'+
-      '<div class="tab-num text-[15px] font-bold" style="color:'+col(v)+'">'+sign(v)+'</div>'+
-      '<div class="tab-num sub">'+sign(r.cagr_pct)+' a yr</div>'+
+      '<div class="tab-num text-[15px] font-bold" style="color:'+col(v)+'">'+rupee(moneyFrom(v))+'</div>'+
+      '<div class="tab-num sub">'+sign(v)+'</div>'+
     '</div>'+
   '</div>';
 }
@@ -241,8 +254,9 @@ function cohortCard(year, label, list, sum){
         '<p class="text-[13.5px] text-meta mt-0.5">'+sum.n+' listings &middot; about '+sum.avg_years+' years held</p>'+
       '</div>'+
       '<div class="text-right">'+
-        '<div class="tab-num text-[22px] font-extrabold" style="color:'+col(sum.median_return_pct)+'">'+sign(sum.median_return_pct)+'</div>'+
-        '<div class="text-[11.5px] text-meta font-semibold uppercase tracking-wider">typical</div>'+
+        '<div class="tab-num text-[22px] font-extrabold" style="color:'+col(sum.median_return_pct)+'">'+
+          rupee(moneyFrom(sum.median_return_pct))+'</div>'+
+        '<div class="text-[11.5px] text-meta font-semibold uppercase tracking-wider">typical, from \u20b91 lakh</div>'+
       '</div>'+
     '</div>'+
     '<p class="mt-3 text-[14px] font-bold">'+sum.up+' of '+sum.n+' are above their listing price.</p>'+
@@ -259,19 +273,17 @@ fetch('ipo-cohorts.json?v='+Date.now()).then(function(r){
   $('m-asof').textContent = new Date(d.priced_at+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
   $('m-pulled').textContent = new Date(d.pulled+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
 
+  var medMoney = moneyFrom(all.median_return_pct);
   $('headline').innerHTML =
     '<div class="card p-7 md:p-8 border-l-4" style="border-left-color:#E0211E">'+
-      '<div class="flex flex-wrap items-baseline gap-x-10 gap-y-5">'+
-        '<div>'+
-          '<div class="tab-num font-extrabold leading-none text-[clamp(44px,7vw,68px)]" style="color:#E0211E">'+
-            (all.n-all.up)+' of '+all.n+'</div>'+
-          '<div class="text-[14.5px] font-bold mt-2">are worth less than on the day they listed</div>'+
-        '</div>'+
-        '<div class="md:border-l md:border-warmpaper-3 md:pl-10">'+
-          '<div class="tab-num font-extrabold leading-none text-[clamp(30px,4vw,42px)]" style="color:#E0211E">'+
-            sign(all.median_return_pct)+'</div>'+
-          '<div class="text-[13.5px] text-ink-3 mt-2 max-w-[22ch]">the typical one, after years of holding</div>'+
-        '</div>'+
+      '<div class="text-[14.5px] font-bold text-ink-3">Put <span class="tab-num text-ink">\u20b91,00,000</span> into the typical one on the day it listed, and today you have</div>'+
+      '<div class="tab-num font-extrabold leading-none mt-3 text-[clamp(52px,9vw,86px)]" style="color:#E0211E">'+
+        rupee(medMoney)+'</div>'+
+      '<div class="flex flex-wrap items-baseline gap-x-8 gap-y-3 mt-6 pt-6 border-t border-warmpaper-3">'+
+        '<div><span class="tab-num text-[22px] font-extrabold" style="color:#E0211E">'+(all.n-all.up)+' of '+all.n+'</span>'+
+          '<span class="text-[14px] text-ink-3 ml-2">are below their listing price</span></div>'+
+        '<div><span class="tab-num text-[22px] font-extrabold" style="color:#1B7A50">'+all.up+'</span>'+
+          '<span class="text-[14px] text-ink-3 ml-2">are above it</span></div>'+
       '</div>'+
     '</div>';
 
@@ -290,16 +302,17 @@ fetch('ipo-cohorts.json?v='+Date.now()).then(function(r){
       '<div class="mt-4 flex items-center gap-4 flex-wrap">'+
         '<div>'+
           '<div class="text-[11px] uppercase tracking-wider text-meta font-bold">Reported raw</div>'+
-          '<div class="tab-num text-[26px] font-extrabold line-through" style="color:#7A7368">'+sign(c.unadjusted_pct)+'</div>'+
+          '<div class="tab-num text-[26px] font-extrabold line-through" style="color:#7A7368">'+rupee(moneyFrom(c.unadjusted_pct))+'</div>'+
         '</div>'+
         '<div class="text-[20px] text-meta">&rarr;</div>'+
         '<div>'+
           '<div class="text-[11px] uppercase tracking-wider text-goldink font-bold">Actually</div>'+
-          '<div class="tab-num text-[26px] font-extrabold" style="color:'+col(c.adjusted_pct)+'">'+sign(c.adjusted_pct)+'</div>'+
+          '<div class="tab-num text-[26px] font-extrabold" style="color:'+col(c.adjusted_pct)+'">'+rupee(moneyFrom(c.adjusted_pct))+'</div>'+
         '</div>'+
       '</div>'+
-      '<p class="mt-4 text-[14px] text-ink-3 leading-[1.55]">Out by <strong class="text-ink tab-num">'+
-        worse.toFixed(0)+' percentage points</strong> if you compare the two prices and nothing else.</p>'+
+      '<p class="mt-4 text-[14px] text-ink-3 leading-[1.55]">On <span class="tab-num">\u20b91 lakh</span>, that is a '+
+        '<strong class="text-ink tab-num">'+rupee(Math.abs(moneyFrom(c.adjusted_pct)-moneyFrom(c.unadjusted_pct)))+
+        '</strong> difference, from one unchecked number.</p>'+
     '</div>';
   }).join('');
 }).catch(function(){
