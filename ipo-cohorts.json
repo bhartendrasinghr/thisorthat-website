@@ -1,0 +1,38 @@
+{
+  "_note": "IPO cohort tracker. Every figure pulled live from the NSE bhavcopy connector on 2-3 Oct 2026 and corporate-action checked. SNAPSHOT ON PURPOSE: the connector serves a rolling 5-year window, so the 2021 listing-day prices below stop being retrievable from around Nov 2026. This file is the only record after that.",
+  "pulled": "2026-10-03",
+  "priced_at": "2026-10-01",
+  "basis": "listing-day CLOSE to 1 Oct 2026 close, price return only, dividends excluded",
+  "caveat": "A named selection of recognisable listings, not a complete cohort. Not a ranking, not a recommendation.",
+  "cohorts": {
+    "2021": [
+      {"name": "Anand Rathi Wealth", "symbol": "ANANDRATHI", "listed": "2021-12-14", "listing_close": 583.55, "ca_factor": 0.25,   "ca_note": "Bonus 1:1 ex 2025-03-05 and ex 2026-06-03", "adjusted_listing": 145.89, "price_2026_10_01": 2117.50, "return_pct": 1351.5, "cagr_pct": 74.7},
+      {"name": "Data Patterns",      "symbol": "DATAPATTNS", "listed": "2021-12-24", "listing_close": 755.00,  "ca_factor": 1.0,    "ca_note": "5 dividends, no price adjustment", "adjusted_listing": 755.00,  "price_2026_10_01": 4251.30, "return_pct": 463.1,  "cagr_pct": 43.7},
+      {"name": "Metro Brands",       "symbol": "METROBRAND", "listed": "2021-12-22", "listing_close": 493.35,  "ca_factor": 1.0,    "ca_note": "11 dividends, no price adjustment", "adjusted_listing": 493.35, "price_2026_10_01": 833.50,  "return_pct": 68.9,   "cagr_pct": 11.6},
+      {"name": "Paytm (One97)",      "symbol": "PAYTM",      "listed": "2021-11-18", "listing_close": 1560.80, "ca_factor": 1.0,    "ca_note": "none", "adjusted_listing": 1560.80, "price_2026_10_01": 1656.00, "return_pct": 6.1,    "cagr_pct": 1.2},
+      {"name": "Nykaa",              "symbol": "NYKAA",      "listed": "2021-11-10", "listing_close": 2205.80, "ca_factor": 0.1667, "ca_note": "Bonus 5:1 ex 2022-11-10", "adjusted_listing": 367.71, "price_2026_10_01": 324.95,  "return_pct": -11.6,  "cagr_pct": -2.5},
+      {"name": "PB Fintech",         "symbol": "POLICYBZR",  "listed": "2021-11-15", "listing_close": 1202.30, "ca_factor": 1.0,    "ca_note": "none", "adjusted_listing": 1202.30, "price_2026_10_01": 980.00,  "return_pct": -18.5,  "cagr_pct": -4.1},
+      {"name": "MapmyIndia",         "symbol": "MAPMYINDIA", "listed": "2021-12-21", "listing_close": 1393.65, "ca_factor": 1.0,    "ca_note": "dividends only", "adjusted_listing": 1393.65, "price_2026_10_01": 845.75, "return_pct": -39.3, "cagr_pct": -9.9},
+      {"name": "Star Health",        "symbol": "STARHEALTH", "listed": "2021-12-10", "listing_close": 906.85,  "ca_factor": 1.0,    "ca_note": "none", "adjusted_listing": 906.85,  "price_2026_10_01": 537.70,  "return_pct": -40.7,  "cagr_pct": -10.3},
+      {"name": "MedPlus Health",     "symbol": "MEDPLUS",    "listed": "2021-12-23", "listing_close": 1121.15, "ca_factor": 1.0,    "ca_note": "none", "adjusted_listing": 1121.15, "price_2026_10_01": 654.30,  "return_pct": -41.6,  "cagr_pct": -10.7},
+      {"name": "Latent View",        "symbol": "LATENTVIEW", "listed": "2021-11-23", "listing_close": 488.75,  "ca_factor": 1.0,    "ca_note": "3 AGM entries, factor 1.0, no adjustment", "adjusted_listing": 488.75, "price_2026_10_01": 234.48, "return_pct": -52.0, "cagr_pct": -14.0}
+    ],
+    "2024": [
+      {"name": "Hyundai Motor India","symbol": "HYUNDAI",    "listed": "2024-10-22", "listing_close": 1819.60, "ca_factor": 1.0, "ca_note": "2 dividends of Rs 21", "adjusted_listing": 1819.60, "price_2026_10_01": 2024.00, "return_pct": 11.2,  "cagr_pct": 5.6},
+      {"name": "NTPC Green",         "symbol": "NTPCGREEN",  "listed": "2024-11-27", "listing_close": 121.65,  "ca_factor": 1.0, "ca_note": "none", "adjusted_listing": 121.65,  "price_2026_10_01": 91.09,  "return_pct": -25.1, "cagr_pct": -14.5},
+      {"name": "Awfis Space",        "symbol": "AWFIS",      "listed": "2024-05-30", "listing_close": 421.75,  "ca_factor": 1.0, "ca_note": "none", "adjusted_listing": 421.75,  "price_2026_10_01": 235.26, "return_pct": -44.2, "cagr_pct": -22.1},
+      {"name": "Swiggy",             "symbol": "SWIGGY",     "listed": "2024-11-13", "listing_close": 456.00,  "ca_factor": 1.0, "ca_note": "none", "adjusted_listing": 456.00,  "price_2026_10_01": 238.00, "return_pct": -47.8, "cagr_pct": -29.2},
+      {"name": "Bajaj Housing Fin",  "symbol": "BAJAJHFL",   "listed": "2024-09-16", "listing_close": 165.00,  "ca_factor": 1.0, "ca_note": "none, checked: the -50% is real, not a split", "adjusted_listing": 165.00, "price_2026_10_01": 82.91, "return_pct": -49.8, "cagr_pct": -28.6},
+      {"name": "Ola Electric",       "symbol": "OLAELEC",    "listed": "2024-08-09", "listing_close": 91.20,   "ca_factor": 1.0, "ca_note": "none", "adjusted_listing": 91.20,   "price_2026_10_01": 37.08,  "return_pct": -59.3, "cagr_pct": -34.3}
+    ]
+  },
+  "summary": {
+    "2021": {"n": 10, "up": 4, "median_return_pct": -15.1, "avg_years": 4.8},
+    "2024": {"n": 6,  "up": 1, "median_return_pct": -46.0, "avg_years": 2.0},
+    "all":  {"n": 16, "up": 5, "median_return_pct": -32.2}
+  },
+  "ca_check_mattered": [
+    {"name": "Nykaa", "unadjusted_pct": -85.3, "adjusted_pct": -11.6},
+    {"name": "Anand Rathi Wealth", "unadjusted_pct": 262.9, "adjusted_pct": 1351.5}
+  ]
+}
