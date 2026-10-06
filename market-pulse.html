@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Market Pulse, ThisOrThat with Bhartendra</title>
+<meta name="description" content="What moved your money this month, for an Indian investor. Oil, the rupee, rates and what they did to your portfolio, in one page." />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="Market Pulse" />
+<meta property="og:description" content="What moved your money this month, measured in rupees, for an Indian investor." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/market-pulse.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Market Pulse" />
+<meta name="twitter:description" content="What moved your money this month, in rupees." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/market-pulse.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+  .tag { font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+         padding:3px 9px; border-radius:999px; white-space:nowrap; }
+  .tabb { border:1.5px solid rgba(252,251,248,.25); background:transparent; color:#FCFBF8;
+          font-weight:700; font-size:13.5px; padding:7px 15px; border-radius:999px; cursor:pointer; }
+  .tabb[aria-pressed="true"] { background:#FCFBF8; color:#1A1813; border-color:#FCFBF8; }
+  .barrow { display:grid; grid-template-columns:132px 1fr 62px; gap:10px; align-items:center;
+            padding:7px 0; font-size:13.5px; }
+  @media (max-width:640px){ .barrow { grid-template-columns:96px 1fr 54px; font-size:12.5px; } }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<!-- hero, on the brand navy -->
+<section class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12 md:py-14">
+    <div class="flex flex-wrap items-center justify-between gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em]">
+      <span class="text-marigold">ThisOrThat &middot; Market Pulse</span>
+      <span class="text-cream/55" id="edition">&nbsp;</span>
+    </div>
+    <h1 class="font-display font-extrabold mt-5 leading-[0.98] tracking-[-0.03em] text-[clamp(34px,5.4vw,56px)] max-w-[18ch]" id="title">&nbsp;</h1>
+    <p class="mt-5 text-[17px] leading-[1.55] text-cream/75 max-w-[64ch]" id="intro">&nbsp;</p>
+    <div class="kicker mt-10" style="color:#FFC21F">The rupee scoreboard &middot; year to date</div>
+    <p class="text-[12.5px] text-cream/50 mt-1" id="sbnote">&nbsp;</p>
+    <div id="scoreboard" class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+  </div>
+</section>
+
+<!-- the chain -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">The chain this month</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[22ch]">From a ship of oil to your statement</h2>
+  <p class="mt-4 text-[16px] leading-[1.6] text-ink-3 max-w-[62ch]" id="chainintro">&nbsp;</p>
+  <div id="chain" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  <div id="control" class="mt-6"></div>
+</section>
+
+<!-- tracker -->
+<section class="bg-navy-ink text-cream py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="kicker" style="color:#FFC21F">The tracker</div>
+    <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3">Everything worth watching, in one place</h2>
+    <div class="mt-6 flex flex-wrap gap-4 text-[12px] font-semibold" id="legend"></div>
+    <div id="tabs" class="mt-6 flex flex-wrap gap-2"></div>
+    <p class="mt-6 text-[15px] text-cream/70 max-w-[64ch]" id="tabblurb">&nbsp;</p>
+    <div id="cards" class="mt-6 grid md:grid-cols-2 gap-4"></div>
+  </div>
+</section>
+
+<!-- charts -->
+<section class="max-w-7xl mx-auto px-6 py-14 grid lg:grid-cols-2 gap-10">
+  <div>
+    <div class="kicker">Asset classes</div>
+    <h2 class="font-display font-extrabold text-[clamp(22px,2.6vw,28px)] mt-2" id="assets-title">&nbsp;</h2>
+    <p class="text-[13px] text-meta mt-1" id="assets-unit">&nbsp;</p>
+    <div id="assets" class="mt-5"></div>
+    <p class="mt-4 text-[12px] text-meta" id="assets-src">&nbsp;</p>
+  </div>
+  <div>
+    <div class="kicker">India against the world</div>
+    <h2 class="font-display font-extrabold text-[clamp(22px,2.6vw,28px)] mt-2" id="world-title">&nbsp;</h2>
+    <p class="text-[13px] text-meta mt-1" id="world-unit">&nbsp;</p>
+    <div id="world" class="mt-5"></div>
+    <p class="mt-4 text-[13.5px] leading-[1.55] text-ink-3" id="world-note">&nbsp;</p>
+  </div>
+</section>
+
+<!-- behaviour gap -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="kicker">The behaviour gap</div>
+    <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3" id="gap-title">&nbsp;</h2>
+    <p class="mt-4 text-[16px] leading-[1.6] text-ink-3 max-w-[62ch]" id="gap-blurb">&nbsp;</p>
+    <div id="gap" class="mt-8 card p-6 md:p-7"></div>
+    <p class="mt-4 text-[12px] text-meta" id="gap-src">&nbsp;</p>
+  </div>
+</section>
+
+<!-- watching + the ten -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">What we are watching</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3">Three things, no predictions</h2>
+  <div id="watching" class="mt-8 grid md:grid-cols-3 gap-5"></div>
+
+  <div class="kicker mt-16">If you track only ten</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3 max-w-[26ch]">The ones that matter most are personal, and change slowly</h2>
+  <div id="ten" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[76ch]" id="sources">&nbsp;</p>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-3 max-w-[76ch]">
+      Nothing here is investment advice, a recommendation, or a forecast. It describes what has already
+      happened. Past returns tell you what happened, not what will. Before acting on any of it, speak to
+      a SEBI registered investment adviser.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+
+var TONE={up:'#1B7A50',down:'#E0211E',flat:'#FCFBF8'};
+var TAG={headwind:['#E0211E','#fff'],tailwind:['#1B7A50','#fff'],mixed:['#FFC21F','#1A1813'],watch:['#57534A','#fff']};
+var ARROW={up:'&uarr;',down:'&darr;'};
+
+function pct(v){ return (v>0?'+':'') + v.toFixed(1) + '%'; }
+function col(v){ return v>=0 ? '#1B7A50' : '#E0211E'; }
+
+/* One scale for a set of bars, so lengths are comparable across the chart and
+   a negative bar runs left from a shared zero. */
+function barChart(rows, el, opt){
+  opt = opt || {};
+  var max = Math.max.apply(null, rows.map(function(r){ return Math.abs(r.v); }));
+  var anyNeg = rows.some(function(r){ return r.v < 0; });
+  var zero = anyNeg ? 42 : 0, span = anyNeg ? 56 : 98;
+  el.innerHTML = rows.map(function(r){
+    var w = Math.abs(r.v)/max*span, left = r.v>=0 ? zero : zero-w;
+    var c = opt.mono ? (r.me ? '#E0211E' : '#0249B1') : col(r.v);
+    if (opt.mono && r.v < 0 && !r.me) c = '#E8B4B1';
+    return '<div class="barrow">'+
+      '<div class="'+(r.me?'font-extrabold':'font-semibold')+'" style="'+(r.me?'color:#E0211E':'')+'">'+esc(r.k)+'</div>'+
+      '<div style="position:relative;height:17px;background:#F6F4EE;border-radius:4px">'+
+        (anyNeg?'<span style="position:absolute;left:'+zero+'%;top:-2px;bottom:-2px;width:1px;background:#C9C3B4"></span>':'')+
+        '<div style="position:absolute;top:2px;bottom:2px;left:'+left+'%;width:'+w+'%;background:'+c+';border-radius:3px"></div>'+
+      '</div>'+
+      '<div class="tab-num text-right font-semibold" style="color:'+col(r.v)+'">'+pct(r.v)+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
+  if(!r.ok) throw new Error('no data'); return r.json();
+}).then(function(d){
+  var up = new Date(d.updated+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+  $('edition').textContent = d.edition + '  ·  updated ' + up;
+  $('title').textContent = d.title;
+  $('intro').textContent = d.intro;
+  $('sbnote').textContent = d.scoreboard_note;
+
+  $('scoreboard').innerHTML = d.scoreboard.map(function(s){
+    return '<div class="rounded-[14px] p-4" style="background:rgba(252,251,248,.07);border:1px solid rgba(252,251,248,.12)">'+
+      '<div class="text-[11.5px] font-bold text-cream/60 uppercase tracking-wider">'+esc(s.k)+'</div>'+
+      '<div class="tab-num font-extrabold text-[clamp(22px,3vw,30px)] mt-1.5" style="color:'+(TONE[s.tone]||'#FCFBF8')+'">'+esc(s.v)+'</div>'+
+      '<div class="text-[11.5px] text-cream/50 mt-1 leading-snug">'+esc(s.sub)+'</div>'+
+    '</div>';
+  }).join('');
+
+  $('chainintro').textContent = d.chain_intro;
+  $('chain').innerHTML = d.chain.map(function(c){
+    return '<div class="card p-5">'+
+      '<div class="flex items-start justify-between gap-3">'+
+        '<div><div class="tab-num text-[11.5px] font-bold text-meta">'+esc(c.n)+'</div>'+
+        '<div class="font-display font-extrabold text-[18px] mt-1">'+esc(c.k)+'</div></div>'+
+        '<div class="text-[18px]" style="color:'+(c.dir==='up'?'#E0211E':'#1B7A50')+'">'+(ARROW[c.dir]||'')+'</div>'+
+      '</div>'+
+      '<div class="tab-num font-extrabold text-[24px] mt-2">'+esc(c.v)+'</div>'+
+      '<p class="text-[13.5px] text-ink-3 mt-2 leading-[1.5]">'+esc(c.why)+'</p>'+
+    '</div>';
+  }).join('');
+
+  $('control').innerHTML =
+    '<div class="rounded-[18px] p-6 md:p-7" style="background:#FFC21F">'+
+      '<div class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-ink/65">You control</div>'+
+      '<h3 class="font-display font-extrabold text-[24px] mt-1.5">'+esc(d.control.title)+'</h3>'+
+      '<div class="mt-5 grid sm:grid-cols-3 gap-3">'+
+        d.control.items.map(function(i){
+          return '<div class="bg-white/55 rounded-[12px] p-4">'+
+            '<div class="font-extrabold text-[15px]">'+esc(i.k)+'</div>'+
+            '<p class="text-[13.5px] text-ink/75 mt-1 leading-[1.45]">'+esc(i.v)+'</p></div>';
+        }).join('')+
+      '</div>'+
+    '</div>';
+
+  $('legend').innerHTML = ['headwind','tailwind','mixed','watch'].map(function(t){
+    return '<span class="inline-flex items-center gap-2"><span style="width:11px;height:11px;border-radius:3px;'+
+      'background:'+TAG[t][0]+';display:inline-block"></span><span class="text-cream/70 capitalize">'+t+'</span></span>';
+  }).join('');
+
+  var gi = 0;
+  function drawGroup(){
+    var g = d.tracker_groups[gi];
+    $('tabblurb').textContent = g.blurb || '';
+    $('cards').innerHTML = g.cards.map(function(c){
+      var t = TAG[c.tag] || TAG.watch;
+      return '<div class="rounded-[16px] p-5" style="background:rgba(252,251,248,.06);border:1px solid rgba(252,251,248,.13)">'+
+        '<div class="flex items-start justify-between gap-3">'+
+          '<div class="font-extrabold text-[15.5px]">'+esc(c.k)+'</div>'+
+          '<span class="tag" style="background:'+t[0]+';color:'+t[1]+'">'+esc(c.tag)+'</span>'+
+        '</div>'+
+        '<div class="tab-num font-extrabold text-[26px] mt-2">'+esc(c.v)+'</div>'+
+        '<div class="tab-num text-[12px] text-cream/50">'+esc(c.sub)+'</div>'+
+        '<p class="text-[13.5px] text-cream/70 mt-3 leading-[1.5]">'+esc(c.why)+'</p>'+
+        '<div class="text-[11.5px] text-cream/40 mt-3 pt-3 border-t border-cream/10">'+esc(c.freq)+'  ·  '+esc(c.src)+'</div>'+
+      '</div>';
+    }).join('');
+  }
+  $('tabs').innerHTML = d.tracker_groups.map(function(g,i){
+    return '<button class="tabb" data-g="'+i+'" aria-pressed="'+(i===0)+'">'+esc(g.name)+'</button>';
+  }).join('');
+  $('tabs').addEventListener('click', function(e){
+    var b=e.target.closest('[data-g]'); if(!b) return;
+    gi = +b.getAttribute('data-g');
+    [].forEach.call($('tabs').children, function(x,i){ x.setAttribute('aria-pressed', i===gi); });
+    drawGroup();
+  });
+  drawGroup();
+
+  $('assets-title').textContent = d.assets.title;
+  $('assets-unit').textContent = d.assets.unit;
+  $('assets-src').textContent = 'Source: ' + d.assets.src;
+  barChart(d.assets.rows, $('assets'));
+
+  $('world-title').textContent = d.world.title;
+  $('world-unit').textContent = d.world.unit;
+  $('world-note').textContent = d.world.note;
+  barChart(d.world.rows, $('world'), {mono:true});
+
+  $('gap-title').textContent = d.gap.title;
+  $('gap-blurb').textContent = d.gap.blurb;
+  $('gap-src').textContent = 'Source: ' + d.gap.src;
+  var g = d.gap.rows, gmax = Math.max.apply(null, g.map(function(r){return Math.max(r.fund,r.investor);}));
+  var gmin = Math.min(0, Math.min.apply(null, g.map(function(r){return r.investor;})));
+  $('gap').innerHTML =
+    '<div class="flex gap-5 text-[12.5px] font-semibold mb-5">'+
+      '<span class="inline-flex items-center gap-2"><span style="width:11px;height:11px;border-radius:50%;background:#0249B1;display:inline-block"></span>What the fund earned</span>'+
+      '<span class="inline-flex items-center gap-2"><span style="width:11px;height:11px;border-radius:50%;background:#FFC21F;display:inline-block"></span>What the average investor earned</span>'+
+    '</div>'+
+    g.map(function(r){
+      var span = gmax - gmin;
+      var f = (r.fund-gmin)/span*100, i = (r.investor-gmin)/span*100;
+      var lo = Math.min(f,i), hi = Math.max(f,i);
+      return '<div class="py-3 border-b border-warmpaper-3 last:border-0">'+
+        '<div class="flex items-baseline justify-between gap-3 mb-2">'+
+          '<div class="font-bold text-[14.5px]">'+esc(r.k)+'</div>'+
+          '<div class="tab-num text-[13px]"><span class="font-semibold">'+r.fund.toFixed(1)+'%</span>'+
+            ' vs <span class="font-semibold" style="color:'+col(r.investor)+'">'+r.investor.toFixed(1)+'%</span>'+
+            ' <span class="text-meta">gap '+(r.fund-r.investor).toFixed(1)+' pts</span></div>'+
+        '</div>'+
+        '<div style="position:relative;height:16px">'+
+          '<div style="position:absolute;top:7px;height:2px;left:'+lo+'%;width:'+(hi-lo)+'%;background:#E1DDD1"></div>'+
+          '<span style="position:absolute;top:3px;left:'+i+'%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#FFC21F"></span>'+
+          '<span style="position:absolute;top:3px;left:'+f+'%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#0249B1"></span>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+
+  $('watching').innerHTML = d.watching.map(function(w){
+    return '<div class="card p-6">'+
+      '<div class="tab-num text-[12.5px] font-bold text-goldink">'+esc(w.n)+'</div>'+
+      '<h3 class="font-display font-extrabold text-[19px] mt-1.5">'+esc(w.k)+'</h3>'+
+      '<p class="text-[14.5px] text-ink-3 mt-2 leading-[1.5]">'+esc(w.v)+'</p></div>';
+  }).join('');
+
+  $('ten').innerHTML = d.ten.map(function(t){
+    return '<div class="card p-4 flex items-start gap-3">'+
+      '<div class="tab-num text-[12.5px] font-bold text-goldink mt-0.5">'+esc(t.n)+'</div>'+
+      '<div><div class="font-semibold text-[14px] leading-snug">'+esc(t.k)+'</div>'+
+      '<div class="text-[11.5px] text-meta mt-1">'+esc(t.f)+'</div></div></div>';
+  }).join('');
+
+  $('sources').textContent = d.sources;
+}).catch(function(){
+  $('title').textContent = 'Market Pulse';
+  $('intro').textContent = 'The numbers could not be loaded just now. Try again in a moment.';
+});
+})();
+</script>
+</body>
+</html>

@@ -254,6 +254,11 @@
       "permanent": false
     },
     {
+      "source": "/market-pulse",
+      "destination": "/market-pulse.html",
+      "permanent": false
+    },
+    {
       "source": "/ways-to-invest-in-equity",
       "destination": "/ways-to-invest-in-equity.html",
       "permanent": false

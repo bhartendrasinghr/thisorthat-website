@@ -282,6 +282,122 @@ collections:
   # Drives the selector on money-person.html. Add only registered MFDs or RIAs who have
   # agreed to receive introductions. Link to a guest profile via "guest_slug" to reuse their
   # photo and show an "On the show" badge. Registration is displayed for transparency.
+  - name: "market_pulse"
+    label: "Market Pulse"
+    files:
+      - name: "pulse"
+        label: "This month's edition"
+        file: "content/market-pulse.json"
+        description: "The monthly dashboard at /market-pulse. Edit the numbers here each month; the page redraws itself."
+        fields:
+          - { name: "edition", label: "Edition", widget: "string", hint: "e.g. September 2026" }
+          - { name: "updated", label: "Updated on", widget: "date", format: "YYYY-MM-DD" }
+          - { name: "title", label: "Headline", widget: "string" }
+          - { name: "intro", label: "Opening paragraph", widget: "text" }
+          - { name: "scoreboard_note", label: "Scoreboard caption", widget: "string" }
+          - name: "scoreboard"
+            label: "The rupee scoreboard"
+            widget: "list"
+            fields:
+              - { name: "k", label: "Label", widget: "string" }
+              - { name: "v", label: "Big number", widget: "string" }
+              - { name: "sub", label: "Small print", widget: "string" }
+              - { name: "tone", label: "Colour", widget: "select", options: ["up", "down", "flat"] }
+          - { name: "chain_intro", label: "Chain, opening line", widget: "text" }
+          - name: "chain"
+            label: "The chain"
+            widget: "list"
+            fields:
+              - { name: "n", label: "Number", widget: "string" }
+              - { name: "k", label: "Link", widget: "string" }
+              - { name: "v", label: "Value", widget: "string" }
+              - { name: "dir", label: "Arrow", widget: "select", options: ["up", "down"] }
+              - { name: "why", label: "Why", widget: "text" }
+          - name: "control"
+            label: "What you control"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Heading", widget: "string" }
+              - name: "items"
+                label: "The three"
+                widget: "list"
+                fields:
+                  - { name: "k", label: "Name", widget: "string" }
+                  - { name: "v", label: "Line", widget: "text" }
+          - name: "tracker_groups"
+            label: "The tracker"
+            widget: "list"
+            fields:
+              - { name: "name", label: "Tab name", widget: "string" }
+              - { name: "blurb", label: "Tab intro", widget: "text", required: false }
+              - name: "cards"
+                label: "Cards"
+                widget: "list"
+                fields:
+                  - { name: "k", label: "Indicator", widget: "string" }
+                  - { name: "v", label: "Value", widget: "string" }
+                  - { name: "sub", label: "Under the value", widget: "string", required: false }
+                  - { name: "tag", label: "Signal", widget: "select", options: ["headwind", "tailwind", "mixed", "watch"] }
+                  - { name: "why", label: "Why it matters", widget: "text" }
+                  - { name: "freq", label: "How often it changes", widget: "string" }
+                  - { name: "src", label: "Source", widget: "string" }
+          - name: "assets"
+            label: "Asset classes chart"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Heading", widget: "string" }
+              - { name: "unit", label: "Caption", widget: "string" }
+              - { name: "src", label: "Source", widget: "string" }
+              - name: "rows"
+                label: "Bars"
+                widget: "list"
+                fields:
+                  - { name: "k", label: "Name", widget: "string" }
+                  - { name: "v", label: "Percent", widget: "number", value_type: "float" }
+          - name: "world"
+            label: "India against the world chart"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Heading", widget: "string" }
+              - { name: "unit", label: "Caption", widget: "string" }
+              - { name: "note", label: "Note under the chart", widget: "text" }
+              - name: "rows"
+                label: "Markets"
+                widget: "list"
+                fields:
+                  - { name: "k", label: "Market", widget: "string" }
+                  - { name: "v", label: "Percent", widget: "number", value_type: "float" }
+                  - { name: "me", label: "Highlight this one (India)", widget: "boolean", required: false, default: false }
+          - name: "gap"
+            label: "Behaviour gap chart"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Heading", widget: "string" }
+              - { name: "blurb", label: "Intro", widget: "text" }
+              - { name: "src", label: "Source", widget: "string" }
+              - name: "rows"
+                label: "Categories"
+                widget: "list"
+                fields:
+                  - { name: "k", label: "Category", widget: "string" }
+                  - { name: "fund", label: "Fund return %", widget: "number", value_type: "float" }
+                  - { name: "investor", label: "Investor return %", widget: "number", value_type: "float" }
+          - name: "watching"
+            label: "What we are watching"
+            widget: "list"
+            fields:
+              - { name: "n", label: "Number", widget: "string" }
+              - { name: "k", label: "Heading", widget: "string" }
+              - { name: "v", label: "Line", widget: "text" }
+          - name: "ten"
+            label: "If you track only ten"
+            widget: "list"
+            fields:
+              - { name: "n", label: "Number", widget: "string" }
+              - { name: "k", label: "What to track", widget: "string" }
+              - { name: "f", label: "How often", widget: "string" }
+          - { name: "sources", label: "Sources line", widget: "text" }
+
   - name: "money_people"
     label: "Money People"
     delete: false
