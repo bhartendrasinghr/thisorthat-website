@@ -91,6 +91,11 @@
     <div class="kicker mt-10" style="color:#FFC21F">The rupee scoreboard &middot; year to date</div>
     <p class="text-[12.5px] text-cream/50 mt-1" id="sbnote">&nbsp;</p>
     <div id="scoreboard" class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+    <p class="mt-4 text-[12px] text-cream/45 max-w-[70ch]">
+      A green dot means the figure refreshes itself nightly from the exchange. Everything else is
+      written by hand each month and carries the date it was written, so you can always tell which
+      is which.
+    </p>
   </div>
 </section>
 
@@ -180,6 +185,23 @@ var TONE={up:'#1B7A50',down:'#E0211E',flat:'#FCFBF8'};
 var TAG={headwind:['#E0211E','#fff'],tailwind:['#1B7A50','#fff'],mixed:['#FFC21F','#1A1813'],watch:['#57534A','#fff']};
 var ARROW={up:'&uarr;',down:'&darr;'};
 
+/* Half this page refreshes itself and half is written by a person. A single
+   date at the top would therefore be a lie about one half or the other, so
+   every number carries its own stamp and says which kind it is. */
+function shortDate(iso){
+  if(!iso) return '';
+  var d=new Date(iso+'T00:00:00');
+  return isNaN(d) ? '' : d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+}
+function stampHtml(o, dark){
+  var live=!!o.auto, when=shortDate(o.asof);
+  if(!when) return '';
+  var c = dark ? (live?'#9FD9BC':'rgba(252,251,248,.4)') : (live?'#1B7A50':'#7A7368');
+  return '<div class="mt-2 text-[10.5px] font-semibold tab-num flex items-center gap-1.5" style="color:'+c+'">'+
+    (live?'<span style="width:6px;height:6px;border-radius:50%;background:#1B7A50;display:inline-block"></span>':'')+
+    (live?'live &middot; ':'as of ')+when+'</div>';
+}
+
 function pct(v){ return (v>0?'+':'') + v.toFixed(1) + '%'; }
 function col(v){ return v>=0 ? '#1B7A50' : '#E0211E'; }
 
@@ -208,8 +230,10 @@ function barChart(rows, el, opt){
 fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
   if(!r.ok) throw new Error('no data'); return r.json();
 }).then(function(d){
-  var up = new Date(d.updated+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'});
-  $('edition').textContent = d.edition + '  ·  updated ' + up;
+  var nAuto = (d.scoreboard||[]).filter(function(x){return x.auto;}).length;
+  $('edition').innerHTML = esc(d.edition) + '  &middot;  written ' + esc(shortDate(d.updated)) +
+    (d.auto_refreshed ? '  &middot;  <span style="color:#9FD9BC">' + nAuto +
+      ' figures refreshed ' + esc(shortDate(d.auto_refreshed)) + '</span>' : '');
   $('title').textContent = d.title;
   $('intro').textContent = d.intro;
   $('sbnote').textContent = d.scoreboard_note;
@@ -219,6 +243,7 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
       '<div class="text-[11.5px] font-bold text-cream/60 uppercase tracking-wider">'+esc(s.k)+'</div>'+
       '<div class="tab-num font-extrabold text-[clamp(22px,3vw,30px)] mt-1.5" style="color:'+(TONE[s.tone]||'#FCFBF8')+'">'+esc(s.v)+'</div>'+
       '<div class="text-[11.5px] text-cream/50 mt-1 leading-snug">'+esc(s.sub)+'</div>'+
+      stampHtml(s, true)+
     '</div>';
   }).join('');
 
@@ -267,7 +292,8 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
         '<div class="tab-num font-extrabold text-[26px] mt-2">'+esc(c.v)+'</div>'+
         '<div class="tab-num text-[12px] text-cream/50">'+esc(c.sub)+'</div>'+
         '<p class="text-[13.5px] text-cream/70 mt-3 leading-[1.5]">'+esc(c.why)+'</p>'+
-        '<div class="text-[11.5px] text-cream/40 mt-3 pt-3 border-t border-cream/10">'+esc(c.freq)+'  ·  '+esc(c.src)+'</div>'+
+        '<div class="text-[11.5px] text-cream/40 mt-3 pt-3 border-t border-cream/10">'+esc(c.freq)+'  ·  '+esc(c.src)+
+          (c.auto?'  ·  <span style="color:#9FD9BC">refreshes itself</span>':'')+'</div>'+
       '</div>';
     }).join('');
   }

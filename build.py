@@ -424,6 +424,18 @@ def main():
     except Exception as _e:
         print(f'  Fund index step skipped: {_e}')
 
+    # Market Pulse: only the computed tiles. Wrapped, because a page that is a
+    # month stale is a smaller problem than a build that will not run.
+    print('\n→ Refreshing the computable half of Market Pulse...')
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location('mp', ROOT / 'build' / 'market_pulse_refresh.py')
+        _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.main()
+    except SystemExit as _e:
+        print(f'  Market Pulse step stopped: {_e}')
+    except Exception as _e:
+        print(f'  Market Pulse step skipped: {_e}')
+
     print('\n→ Labelling episode overrides for the CMS...')
     label_episode_overrides()
 

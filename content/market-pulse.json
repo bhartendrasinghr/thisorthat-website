@@ -5,30 +5,139 @@
   "intro": "2026 has been driven by an energy shock and an AI chip boom. India benefits from neither: it imports oil and has little chip exposure. September was a broad risk-off month, and only 16% of Indian sectors went up.",
   "scoreboard_note": "in rupees, for an Indian investor",
   "scoreboard": [
-    {"k": "Sensex", "v": "≈ −8%", "sub": "−14.2% in USD", "tone": "down"},
-    {"k": "S&P 500 in ₹", "v": "≈ +20%", "sub": "+12.9% USD plus the rupee fall", "tone": "up"},
-    {"k": "Gold in ₹", "v": "≈ +1%", "sub": "Global −5.1%, rupee offset", "tone": "up"},
-    {"k": "Rupee vs USD", "v": "−6.4%", "sub": "Third straight losing year", "tone": "down"},
-    {"k": "10-yr G-sec", "v": "7.2%", "sub": "+60 bps this year", "tone": "flat"},
-    {"k": "Crude (energy)", "v": "+86%", "sub": "Strait of Hormuz disruption", "tone": "down"},
-    {"k": "Stocks up YTD", "v": "38%", "sub": "of 1,896 NSE companies, split adjusted", "tone": "down"},
-    {"k": "Sectors up in Sep", "v": "16%", "sub": "after about 60% each month, May to Aug", "tone": "down"}
+    {
+      "k": "Nifty 50",
+      "v": "−13.6%",
+      "sub": "Nifty 50, 1 Jan to 7 Oct",
+      "tone": "down",
+      "auto": true,
+      "asof": "2026-10-07"
+    },
+    {
+      "k": "S&P 500 in ₹",
+      "v": "≈ +20%",
+      "sub": "+12.9% USD plus the rupee fall",
+      "tone": "up",
+      "auto": false,
+      "asof": "2026-10-03"
+    },
+    {
+      "k": "Gold in ₹",
+      "v": "≈ +1%",
+      "sub": "Global −5.1%, rupee offset",
+      "tone": "up",
+      "auto": false,
+      "asof": "2026-10-03"
+    },
+    {
+      "k": "Rupee per dollar",
+      "v": "−6.4%",
+      "sub": "₹96.83 per dollar, from ₹90.63 on 1 Jan",
+      "tone": "down",
+      "auto": true,
+      "asof": "2026-10-07"
+    },
+    {
+      "k": "10-yr G-sec",
+      "v": "7.2%",
+      "sub": "+60 bps this year",
+      "tone": "flat",
+      "auto": false,
+      "asof": "2026-10-03"
+    },
+    {
+      "k": "Crude (energy)",
+      "v": "+86%",
+      "sub": "Strait of Hormuz disruption",
+      "tone": "down",
+      "auto": false,
+      "asof": "2026-10-03"
+    },
+    {
+      "k": "Stocks up YTD",
+      "v": "39%",
+      "sub": "of 1,902 NSE companies, split adjusted",
+      "tone": "down",
+      "auto": true,
+      "asof": "2026-10-07"
+    },
+    {
+      "k": "Indices up on the day",
+      "v": "15%",
+      "sub": "of 149 NSE indices, on 7 Oct",
+      "tone": "down",
+      "auto": true,
+      "asof": "2026-10-07"
+    },
+    {
+      "k": "Nifty 50 P/E",
+      "v": "19.3",
+      "sub": "P/B 2.78 · yield 1.22%",
+      "tone": "flat",
+      "auto": true,
+      "asof": "2026-10-07"
+    }
   ],
   "chain_intro": "Each link pulls the next. The world owns most of the chain. You own the last three, and those decide how much of the market's return reaches you.",
   "chain": [
-    {"n": "01", "k": "Crude oil", "v": "+86%", "dir": "up", "why": "US-Iran conflict, Hormuz disruption"},
-    {"n": "02", "k": "Rupee", "v": "−6.4%", "dir": "down", "why": "A higher oil bill means more demand for dollars"},
-    {"n": "03", "k": "Inflation", "v": "Rising", "dir": "up", "why": "Costlier fuel, transport and imports"},
-    {"n": "04", "k": "Bond yields", "v": "7.2%", "dir": "up", "why": "Rates stay higher for longer"},
-    {"n": "05", "k": "Valuation", "v": "Lower", "dir": "down", "why": "Buyers pay less per rupee of profit"},
-    {"n": "06", "k": "Market returns", "v": "≈ −8%", "dir": "down", "why": "Sensex year to date, in rupees"}
+    {
+      "n": "01",
+      "k": "Crude oil",
+      "v": "+86%",
+      "dir": "up",
+      "why": "US-Iran conflict, Hormuz disruption"
+    },
+    {
+      "n": "02",
+      "k": "Rupee",
+      "v": "−6.4%",
+      "dir": "down",
+      "why": "A higher oil bill means more demand for dollars"
+    },
+    {
+      "n": "03",
+      "k": "Inflation",
+      "v": "Rising",
+      "dir": "up",
+      "why": "Costlier fuel, transport and imports"
+    },
+    {
+      "n": "04",
+      "k": "Bond yields",
+      "v": "7.2%",
+      "dir": "up",
+      "why": "Rates stay higher for longer"
+    },
+    {
+      "n": "05",
+      "k": "Valuation",
+      "v": "Lower",
+      "dir": "down",
+      "why": "Buyers pay less per rupee of profit"
+    },
+    {
+      "n": "06",
+      "k": "Market returns",
+      "v": "≈ −8%",
+      "dir": "down",
+      "why": "Sensex year to date, in rupees"
+    }
   ],
   "control": {
     "title": "The last three links",
     "items": [
-      {"k": "Behaviour", "v": "How you react when the market falls."},
-      {"k": "Mix", "v": "How your money is split across equity, debt and gold."},
-      {"k": "Cushion", "v": "Cash and insurance, so you never have to sell in a crash."}
+      {
+        "k": "Behaviour",
+        "v": "How you react when the market falls."
+      },
+      {
+        "k": "Mix",
+        "v": "How your money is split across equity, debt and gold."
+      },
+      {
+        "k": "Cushion",
+        "v": "Cash and insurance, so you never have to sell in a crash."
+      }
     ]
   },
   "tracker_groups": [
@@ -36,14 +145,94 @@
       "name": "Economy and money",
       "blurb": "Oil, rates and the rupee are where most shocks start. They explain what happened, and to what.",
       "cards": [
-        {"k": "Crude oil (energy)", "v": "+86.3%", "sub": "YTD, USD", "tag": "headwind", "why": "India imports over 80% of its oil. Higher oil means higher inflation, a weaker rupee and pressure on margins.", "freq": "Monthly", "src": "First Global"},
-        {"k": "USD/INR", "v": "−6.4%", "sub": "Rupee YTD, third losing year", "tag": "mixed", "why": "Imports get costlier, but dollar assets gain in rupee terms. A slow grind, not a shock: volatility is about 5%.", "freq": "Monthly", "src": "First Global"},
-        {"k": "India 10-year G-sec", "v": "7.2%", "sub": "+60 bps YTD", "tag": "headwind", "why": "The risk-free benchmark. Rising yields hurt long-duration debt funds and make stocks less attractive.", "freq": "After each RBI meeting", "src": "First Global"},
-        {"k": "US 10-year yield", "v": "5.3%", "sub": "+114 bps YTD", "tag": "headwind", "why": "High US rates pull money out of emerging markets, including India.", "freq": "Monthly", "src": "First Global"},
-        {"k": "Dollar index", "v": "+5.2%", "sub": "YTD, after −9.4% in 2025", "tag": "headwind", "why": "A strong dollar usually means a weaker rupee and foreign selling.", "freq": "Monthly", "src": "First Global"},
-        {"k": "RBI repo rate", "v": "5.50%", "sub": "Stance: neutral", "tag": "watch", "why": "The base price of money. Moves FD rates, EMIs, bond prices and stock valuations.", "freq": "Each RBI meeting", "src": "Data feed"},
-        {"k": "CPI inflation", "v": "4.8%", "sub": "Core 4.2%", "tag": "watch", "why": "Drives RBI decisions. Core shows whether price rises are spreading or temporary.", "freq": "Monthly", "src": "Data feed"},
-        {"k": "Real interest rate", "v": "0.7%", "sub": "Repo minus CPI", "tag": "watch", "why": "Negative real rates push money into stocks, gold and property.", "freq": "Monthly", "src": "Data feed"}
+        {
+          "k": "Crude oil (energy)",
+          "v": "+86.3%",
+          "sub": "YTD, USD",
+          "tag": "headwind",
+          "why": "India imports over 80% of its oil. Higher oil means higher inflation, a weaker rupee and pressure on margins.",
+          "freq": "Monthly",
+          "src": "First Global",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "USD/INR",
+          "v": "−6.4%",
+          "sub": "Rupee YTD, third losing year",
+          "tag": "mixed",
+          "why": "Imports get costlier, but dollar assets gain in rupee terms. A slow grind, not a shock: volatility is about 5%.",
+          "freq": "Monthly",
+          "src": "First Global",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "India 10-year G-sec",
+          "v": "7.2%",
+          "sub": "+60 bps YTD",
+          "tag": "headwind",
+          "why": "The risk-free benchmark. Rising yields hurt long-duration debt funds and make stocks less attractive.",
+          "freq": "After each RBI meeting",
+          "src": "First Global",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "US 10-year yield",
+          "v": "5.3%",
+          "sub": "+114 bps YTD",
+          "tag": "headwind",
+          "why": "High US rates pull money out of emerging markets, including India.",
+          "freq": "Monthly",
+          "src": "First Global",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "Dollar index",
+          "v": "+5.2%",
+          "sub": "YTD, after −9.4% in 2025",
+          "tag": "headwind",
+          "why": "A strong dollar usually means a weaker rupee and foreign selling.",
+          "freq": "Monthly",
+          "src": "First Global",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "RBI repo rate",
+          "v": "5.50%",
+          "sub": "Stance: neutral",
+          "tag": "watch",
+          "why": "The base price of money. Moves FD rates, EMIs, bond prices and stock valuations.",
+          "freq": "Each RBI meeting",
+          "src": "Data feed",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "CPI inflation",
+          "v": "4.8%",
+          "sub": "Core 4.2%",
+          "tag": "watch",
+          "why": "Drives RBI decisions. Core shows whether price rises are spreading or temporary.",
+          "freq": "Monthly",
+          "src": "Data feed",
+          "auto": false,
+          "asof": "2026-10-03"
+        },
+        {
+          "k": "Real interest rate",
+          "v": "0.7%",
+          "sub": "Repo minus CPI",
+          "tag": "watch",
+          "why": "Negative real rates push money into stocks, gold and property.",
+          "freq": "Monthly",
+          "src": "Data feed",
+          "auto": false,
+          "asof": "2026-10-03"
+        }
       ]
     }
   ],
@@ -51,9 +240,38 @@
     "title": "Real assets lead, rate-sensitive assets lag",
     "unit": "Global, in USD, year to date",
     "rows": [
-      {"k": "Commodities", "v": 32.9}, {"k": "MSCI EM", "v": 23.7}, {"k": "Value", "v": 15.3},
-      {"k": "Small cap", "v": 12.7}, {"k": "DM equities", "v": 12.3}, {"k": "Growth", "v": 9.0},
-      {"k": "Global REITs", "v": 5.8}, {"k": "Global bonds", "v": -2.7}
+      {
+        "k": "Commodities",
+        "v": 32.9
+      },
+      {
+        "k": "MSCI EM",
+        "v": 23.7
+      },
+      {
+        "k": "Value",
+        "v": 15.3
+      },
+      {
+        "k": "Small cap",
+        "v": 12.7
+      },
+      {
+        "k": "DM equities",
+        "v": 12.3
+      },
+      {
+        "k": "Growth",
+        "v": 9.0
+      },
+      {
+        "k": "Global REITs",
+        "v": 5.8
+      },
+      {
+        "k": "Global bonds",
+        "v": -2.7
+      }
     ],
     "src": "JP Morgan via First Global Monthly Action Report, Sep 2026"
   },
@@ -61,10 +279,47 @@
     "title": "India ranks 41st of 42 markets",
     "unit": "Year to date, in USD",
     "rows": [
-      {"k": "Korea", "v": 91.4}, {"k": "Hungary", "v": 30.8}, {"k": "Taiwan", "v": 17.5},
-      {"k": "US (S&P 500)", "v": 12.9}, {"k": "Germany", "v": 2.9}, {"k": "France", "v": -4.2},
-      {"k": "Vietnam", "v": -11.6}, {"k": "China", "v": -12.5},
-      {"k": "India (Sensex)", "v": -14.2, "me": true}, {"k": "Indonesia", "v": -36.8}
+      {
+        "k": "Korea",
+        "v": 91.4
+      },
+      {
+        "k": "Hungary",
+        "v": 30.8
+      },
+      {
+        "k": "Taiwan",
+        "v": 17.5
+      },
+      {
+        "k": "US (S&P 500)",
+        "v": 12.9
+      },
+      {
+        "k": "Germany",
+        "v": 2.9
+      },
+      {
+        "k": "France",
+        "v": -4.2
+      },
+      {
+        "k": "Vietnam",
+        "v": -11.6
+      },
+      {
+        "k": "China",
+        "v": -12.5
+      },
+      {
+        "k": "India (Sensex)",
+        "v": -14.2,
+        "me": true
+      },
+      {
+        "k": "Indonesia",
+        "v": -36.8
+      }
     ],
     "note": "In rupees the Sensex is down about 8%. The rest is the rupee's 6.4% fall, which is our calculation. India's correlation with the US is 0.17, so US equity does genuinely diversify an Indian portfolio."
   },
@@ -72,29 +327,99 @@
     "title": "Same funds, very different returns",
     "blurb": "Money arrives after the good years and leaves after the bad ones. The fund earns one number; the average rupee in it earns another.",
     "rows": [
-      {"k": "Infrastructure", "fund": 33.8, "investor": 6.2},
-      {"k": "Small cap", "fund": 14.8, "investor": -1.6},
-      {"k": "Technology", "fund": 17.0, "investor": 7.6},
-      {"k": "Momentum", "fund": 15.1, "investor": 3.2}
+      {
+        "k": "Infrastructure",
+        "fund": 33.8,
+        "investor": 6.2
+      },
+      {
+        "k": "Small cap",
+        "fund": 14.8,
+        "investor": -1.6
+      },
+      {
+        "k": "Technology",
+        "fund": 17.0,
+        "investor": 7.6
+      },
+      {
+        "k": "Momentum",
+        "fund": 15.1,
+        "investor": 3.2
+      }
     ],
     "src": "DSP Netra, Sep 2026. Five-year numbers."
   },
   "watching": [
-    {"n": "01", "k": "Energy prices", "v": "Cheap oil is one of India's biggest tailwinds. When it falls, most of the chain runs in reverse."},
-    {"n": "02", "k": "A stable rupee", "v": "Three losing years so far. Stability would ease imported inflation and foreign selling."},
-    {"n": "03", "k": "Indian yields peaking", "v": "Up 60 bps this year. A peak would help long-duration debt and equity valuations."}
+    {
+      "n": "01",
+      "k": "Energy prices",
+      "v": "Cheap oil is one of India's biggest tailwinds. When it falls, most of the chain runs in reverse."
+    },
+    {
+      "n": "02",
+      "k": "A stable rupee",
+      "v": "Three losing years so far. Stability would ease imported inflation and foreign selling."
+    },
+    {
+      "n": "03",
+      "k": "Indian yields peaking",
+      "v": "Up 60 bps this year. A peak would help long-duration debt and equity valuations."
+    }
   ],
   "ten": [
-    {"n": "01", "k": "Your asset allocation against target", "f": "Quarterly"},
-    {"n": "02", "k": "Emergency fund and insurance cover", "f": "Yearly"},
-    {"n": "03", "k": "Nifty P/E against its own history", "f": "Monthly"},
-    {"n": "04", "k": "Nifty earnings growth", "f": "Quarterly"},
-    {"n": "05", "k": "RBI repo rate and the 10-year yield", "f": "Each RBI meeting"},
-    {"n": "06", "k": "CPI inflation", "f": "Monthly"},
-    {"n": "07", "k": "USD/INR and crude oil", "f": "Monthly"},
-    {"n": "08", "k": "Market breadth", "f": "Monthly"},
-    {"n": "09", "k": "SIP flows and IPO activity", "f": "Monthly"},
-    {"n": "10", "k": "Your funds' cost, overlap and manager changes", "f": "Yearly"}
+    {
+      "n": "01",
+      "k": "Your asset allocation against target",
+      "f": "Quarterly"
+    },
+    {
+      "n": "02",
+      "k": "Emergency fund and insurance cover",
+      "f": "Yearly"
+    },
+    {
+      "n": "03",
+      "k": "Nifty P/E against its own history",
+      "f": "Monthly"
+    },
+    {
+      "n": "04",
+      "k": "Nifty earnings growth",
+      "f": "Quarterly"
+    },
+    {
+      "n": "05",
+      "k": "RBI repo rate and the 10-year yield",
+      "f": "Each RBI meeting"
+    },
+    {
+      "n": "06",
+      "k": "CPI inflation",
+      "f": "Monthly"
+    },
+    {
+      "n": "07",
+      "k": "USD/INR and crude oil",
+      "f": "Monthly"
+    },
+    {
+      "n": "08",
+      "k": "Market breadth",
+      "f": "Monthly"
+    },
+    {
+      "n": "09",
+      "k": "SIP flows and IPO activity",
+      "f": "Monthly"
+    },
+    {
+      "n": "10",
+      "k": "Your funds' cost, overlap and manager changes",
+      "f": "Yearly"
+    }
   ],
-  "sources": "First Global Monthly Action Report (Sep 2026), DSP Netra (Sep 2026), NSE, BSE, AMFI and the RBI. Rupee conversions are our calculation. Figures marked ≈ are approximate. Breadth is computed from NSE daily data. For education only, not investment advice."
+  "sources": "First Global Monthly Action Report (Sep 2026), DSP Netra (Sep 2026), NSE, BSE, AMFI and the RBI. Rupee conversions are our calculation. Figures marked ≈ are approximate. Breadth is computed from NSE daily data. For education only, not investment advice.",
+  "auto_refreshed": "2026-10-07",
+  "fx_year_open": 90.63
 }
