@@ -72,7 +72,7 @@
         <span class="block text-[9px] font-bold tracking-[0.22em] text-meta mt-[3px]">BEYOND THE NOISE</span>
       </span>
     </a>
-    <nav class="hidden xl:flex items-center gap-0.5 text-[14.5px] font-semibold"><a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a><a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a><a href="calculators.html" class="px-3 py-2 rounded-lg hover:bg-surf">Plan</a><a href="funds.html" class="px-3 py-2 rounded-lg hover:bg-surf">Funds</a><a href="articles.html" class="px-3 py-2 rounded-lg hover:bg-surf">Writing</a><a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a></nav>
+    <nav class="hidden xl:flex items-center gap-0.5 text-[14.5px] font-semibold"><a href="episodes.html" class="px-3 py-2 rounded-lg hover:bg-surf">Episodes</a><a href="guests.html" class="px-3 py-2 rounded-lg hover:bg-surf">Guests</a><a href="market-pulse.html" class="px-3 py-2 rounded-lg hover:bg-surf">Pulse</a><a href="calculators.html" class="px-3 py-2 rounded-lg hover:bg-surf">Plan</a><a href="funds.html" class="px-3 py-2 rounded-lg hover:bg-surf">Funds</a><a href="articles.html" class="px-3 py-2 rounded-lg hover:bg-surf">Writing</a><a href="about.html" class="px-3 py-2 rounded-lg hover:bg-surf">About</a></nav>
     <div class="flex items-center gap-2">
       <a href="money-person.html"
          class="hidden md:inline-flex border-[1.5px] border-ink/25 text-ink text-[13.5px] font-bold px-4 py-2 rounded-full hover:border-ink transition">Talk to a human</a>
@@ -84,7 +84,7 @@
     </div>
   </div>
   <div id="mm" class="xl:hidden hidden border-t border-line bg-paper">
-    <nav class="flex flex-col px-6 py-1 text-[16px] font-semibold"><a href="episodes.html" class="py-3.5 border-b border-line">Episodes</a><a href="guests.html" class="py-3.5 border-b border-line">Guests</a><a href="calculators.html" class="py-3.5 border-b border-line">Plan</a><a href="funds.html" class="py-3.5 border-b border-line">Funds</a><a href="articles.html" class="py-3.5 border-b border-line">Writing</a><a href="about.html" class="py-3.5 border-b border-line">About</a></nav>
+    <nav class="flex flex-col px-6 py-1 text-[16px] font-semibold"><a href="episodes.html" class="py-3.5 border-b border-line">Episodes</a><a href="guests.html" class="py-3.5 border-b border-line">Guests</a><a href="market-pulse.html" class="py-3.5 border-b border-line">Pulse</a><a href="calculators.html" class="py-3.5 border-b border-line">Plan</a><a href="funds.html" class="py-3.5 border-b border-line">Funds</a><a href="articles.html" class="py-3.5 border-b border-line">Writing</a><a href="about.html" class="py-3.5 border-b border-line">About</a></nav>
   </div>
 </header>
 
@@ -199,6 +199,44 @@
     <div id="epgrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5"></div>
   </div>
 </section>
+
+<!-- ============================ 3b. MARKET PULSE ============================
+     The only thing on the site that changes without anybody touching it. That is
+     the reason to put it on the homepage: it is the one page worth coming back to
+     in a week. Numbers are fetched so this never goes stale behind the live page. -->
+<section class="max-w-6xl mx-auto px-6 pt-4 pb-20">
+  <a href="market-pulse.html" class="block rounded-[18px] overflow-hidden bg-dark text-paper hover:brightness-110 transition group">
+    <div class="grid md:grid-cols-5 gap-0 items-stretch">
+      <div class="md:col-span-3 p-8 md:p-10">
+        <div class="text-[11px] uppercase tracking-[0.22em] font-extrabold" style="color:#FFC21F">Market Pulse &middot; <span id="mp-ed">monthly</span></div>
+        <h2 class="font-display font-extrabold text-[clamp(26px,3.6vw,38px)] tracking-[-0.03em] leading-[1.05] mt-3">What moved your money this month</h2>
+        <p class="text-paper/70 mt-3 text-[15px] leading-[1.55] max-w-[46ch]">Oil, the rupee, rates, and the chain that runs from a ship of crude all the way to your statement. In rupees, for an Indian investor.</p>
+        <div class="mt-6 inline-flex items-center gap-2 bg-marigold text-ink px-5 py-2.5 rounded-full font-bold text-sm">Read this month &rarr;</div>
+      </div>
+      <div class="md:col-span-2 p-8 md:p-10 md:border-l border-paper/10 flex items-center">
+        <div id="mp-tiles" class="grid grid-cols-2 gap-3 w-full"></div>
+      </div>
+    </div>
+  </a>
+</section>
+
+<script>
+/* Pull the four live figures so the homepage cannot drift from the page it links to. */
+fetch('content/market-pulse.json?v='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+  if(!d) return;
+  var ed=document.getElementById('mp-ed'); if(ed) ed.textContent=d.edition||'monthly';
+  var pick=['Nifty 50','Stocks up YTD','Rupee per dollar','Nifty 50 P/E'];
+  var tiles=pick.map(function(k){
+    var t=(d.scoreboard||[]).filter(function(x){return x.k===k;})[0];
+    if(!t) return '';
+    var neg=/^[\u2212-]/.test(String(t.v));
+    return '<div class="rounded-[12px] p-3" style="background:rgba(252,251,248,.08)">'+
+      '<div class="text-[10px] uppercase tracking-wider text-paper/45 font-bold">'+k.replace('Nifty 50 P/E','Nifty P/E').replace('Rupee per dollar','Rupee')+'</div>'+
+      '<div class="font-mono tab-num font-extrabold text-[20px] mt-0.5" style="color:'+(neg?'#FF6B66':'#7FD4A8')+'">'+t.v+'</div></div>';
+  }).join('');
+  var el=document.getElementById('mp-tiles'); if(el) el.innerHTML=tiles;
+}).catch(function(){});
+</script>
 
 <!-- ============================ 4. GUESTS: type, not avatars ============================
      Only 3 of 34 guests have a photo. A wall of coloured initial tiles would be

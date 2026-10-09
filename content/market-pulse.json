@@ -7,11 +7,11 @@
   "scoreboard": [
     {
       "k": "Nifty 50",
-      "v": "−13.6%",
-      "sub": "Nifty 50, 1 Jan to 7 Oct",
+      "v": "−15.0%",
+      "sub": "Nifty 50, 1 Jan to 8 Oct",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-07"
+      "asof": "2026-10-08"
     },
     {
       "k": "S&P 500 in ₹",
@@ -31,11 +31,11 @@
     },
     {
       "k": "Rupee per dollar",
-      "v": "−6.4%",
-      "sub": "₹96.83 per dollar, from ₹90.63 on 1 Jan",
+      "v": "−6.5%",
+      "sub": "₹96.88 per dollar, from ₹90.63 on 1 Jan",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-07"
+      "asof": "2026-10-08"
     },
     {
       "k": "10-yr G-sec",
@@ -55,27 +55,27 @@
     },
     {
       "k": "Stocks up YTD",
-      "v": "39%",
-      "sub": "of 1,902 NSE companies, split adjusted",
+      "v": "37%",
+      "sub": "of 1,903 NSE companies, split adjusted",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-07"
+      "asof": "2026-10-08"
     },
     {
       "k": "Indices up on the day",
-      "v": "15%",
-      "sub": "of 149 NSE indices, on 7 Oct",
+      "v": "2%",
+      "sub": "of 149 NSE indices, on 8 Oct",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-07"
+      "asof": "2026-10-08"
     },
     {
       "k": "Nifty 50 P/E",
-      "v": "19.3",
-      "sub": "P/B 2.78 · yield 1.22%",
+      "v": "19.0",
+      "sub": "P/B 2.73 · yield 1.24%",
       "tone": "flat",
       "auto": true,
-      "asof": "2026-10-07"
+      "asof": "2026-10-08"
     }
   ],
   "chain_intro": "Each link pulls the next. The world owns most of the chain. You own the last three, and those decide how much of the market's return reaches you.",
@@ -420,6 +420,6 @@
     }
   ],
   "sources": "First Global Monthly Action Report (Sep 2026), DSP Netra (Sep 2026), NSE, BSE, AMFI and the RBI. Rupee conversions are our calculation. Figures marked ≈ are approximate. Breadth is computed from NSE daily data. For education only, not investment advice.",
-  "auto_refreshed": "2026-10-07",
+  "auto_refreshed": "2026-10-08",
   "fx_year_open": 90.63
 }

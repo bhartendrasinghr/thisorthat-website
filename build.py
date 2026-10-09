@@ -350,12 +350,13 @@ def label_episode_overrides():
 # is now generated here and written into every page on each build, so it
 # cannot drift again. Page styling is left alone; only the links change.
 NAV_ITEMS = [
-    ('episodes.html',    'Episodes'),
-    ('guests.html',      'Guests'),
-    ('calculators.html', 'Plan'),
-    ('funds.html',       'Funds'),
-    ('articles.html',    'Writing'),
-    ('about.html',       'About'),
+    ('episodes.html',     'Episodes'),
+    ('guests.html',       'Guests'),
+    ('market-pulse.html', 'Pulse'),
+    ('calculators.html',  'Plan'),
+    ('funds.html',        'Funds'),
+    ('articles.html',     'Writing'),
+    ('about.html',        'About'),
 ]
 
 def sync_nav():
