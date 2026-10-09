@@ -88,7 +88,8 @@
     </div>
     <h1 class="font-display font-extrabold mt-5 leading-[0.98] tracking-[-0.03em] text-[clamp(34px,5.4vw,56px)] max-w-[18ch]" id="title">&nbsp;</h1>
     <p class="mt-5 text-[17px] leading-[1.55] text-cream/75 max-w-[64ch]" id="intro">&nbsp;</p>
-    <div class="kicker mt-10" style="color:#FFC21F">The rupee scoreboard &middot; year to date</div>
+    <div id="short" class="mt-9"></div>
+    <div class="kicker mt-12" style="color:#FFC21F">The rupee scoreboard &middot; year to date</div>
     <p class="text-[12.5px] text-cream/50 mt-1" id="sbnote">&nbsp;</p>
     <div id="scoreboard" class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
     <p class="mt-4 text-[12px] text-cream/45 max-w-[70ch]">
@@ -108,10 +109,17 @@
   <div id="control" class="mt-6"></div>
 </section>
 
+<!-- the line between the story and the workings -->
+<section class="max-w-7xl mx-auto px-6 pb-4">
+  <div class="border-t border-warmpaper-3 pt-8">
+    <p class="text-[15.5px] leading-[1.6] text-ink-3 max-w-[62ch]" id="detailnote">&nbsp;</p>
+  </div>
+</section>
+
 <!-- tracker -->
 <section class="bg-navy-ink text-cream py-14">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="kicker" style="color:#FFC21F">The tracker</div>
+    <div class="kicker" style="color:#FFC21F">The tracker &middot; detail</div>
     <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3">Everything worth watching, in one place</h2>
     <div class="mt-6 flex flex-wrap gap-4 text-[12px] font-semibold" id="legend"></div>
     <div id="tabs" class="mt-6 flex flex-wrap gap-2"></div>
@@ -239,14 +247,30 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
   $('sbnote').textContent = d.scoreboard_note;
 
   $('scoreboard').innerHTML = d.scoreboard.map(function(s){
-    return '<div class="rounded-[14px] p-4" style="background:rgba(252,251,248,.07);border:1px solid rgba(252,251,248,.12)">'+
-      '<div class="text-[11.5px] font-bold text-cream/60 uppercase tracking-wider">'+esc(s.k)+'</div>'+
-      '<div class="tab-num font-extrabold text-[clamp(22px,3vw,30px)] mt-1.5" style="color:'+(TONE[s.tone]||'#FCFBF8')+'">'+esc(s.v)+'</div>'+
-      '<div class="text-[11.5px] text-cream/50 mt-1 leading-snug">'+esc(s.sub)+'</div>'+
+    return '<div class="rounded-[14px] p-4 flex flex-col" style="background:rgba(252,251,248,.07);border:1px solid rgba(252,251,248,.12)">'+
+      '<div class="text-[13px] font-bold leading-tight">'+esc(s.plain||s.k)+'</div>'+
+      (s.plain?'<div class="text-[10.5px] text-cream/40 uppercase tracking-wider mt-0.5">'+esc(s.k)+'</div>':'')+
+      '<div class="tab-num font-extrabold text-[clamp(22px,3vw,30px)] mt-2" style="color:'+(TONE[s.tone]||'#FCFBF8')+'">'+esc(s.v)+'</div>'+
+      (s.means?'<p class="text-[12.5px] text-cream/65 mt-2 leading-[1.45] flex-1">'+esc(s.means)+'</p>':'')+
+      '<div class="text-[11px] text-cream/40 mt-2 leading-snug">'+esc(s.sub)+'</div>'+
       stampHtml(s, true)+
     '</div>';
   }).join('');
 
+  if(d.short){
+    $('short').innerHTML =
+      '<div class="rounded-[18px] p-6 md:p-7" style="background:rgba(255,194,31,.1);border:1px solid rgba(255,194,31,.3)">'+
+        '<div class="text-[11px] font-extrabold uppercase tracking-[0.18em]" style="color:#FFC21F">'+esc(d.short.heading)+'</div>'+
+        '<div class="mt-4 space-y-4">'+
+          d.short.points.map(function(pt,i){
+            return '<div class="flex gap-3">'+
+              '<div class="tab-num text-[13px] font-extrabold shrink-0 mt-0.5" style="color:#FFC21F">'+(i+1)+'</div>'+
+              '<div><div class="font-bold text-[16.5px] leading-snug">'+esc(pt.t)+'</div>'+
+              '<p class="text-[14.5px] text-cream/70 mt-1 leading-[1.5]">'+esc(pt.b)+'</p></div></div>';
+          }).join('')+
+        '</div>'+
+      '</div>';
+  }
   $('chainintro').textContent = d.chain_intro;
   $('chain').innerHTML = d.chain.map(function(c){
     return '<div class="card p-5">'+
@@ -286,12 +310,14 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
       var t = TAG[c.tag] || TAG.watch;
       return '<div class="rounded-[16px] p-5" style="background:rgba(252,251,248,.06);border:1px solid rgba(252,251,248,.13)">'+
         '<div class="flex items-start justify-between gap-3">'+
-          '<div class="font-extrabold text-[15.5px]">'+esc(c.k)+'</div>'+
+          '<div><div class="font-extrabold text-[15.5px] leading-tight">'+esc(c.plain||c.k)+'</div>'+
+            (c.plain?'<div class="text-[10.5px] text-cream/40 uppercase tracking-wider mt-0.5">'+esc(c.k)+'</div>':'')+'</div>'+
           '<span class="tag" style="background:'+t[0]+';color:'+t[1]+'">'+esc(c.tag)+'</span>'+
         '</div>'+
         '<div class="tab-num font-extrabold text-[26px] mt-2">'+esc(c.v)+'</div>'+
         '<div class="tab-num text-[12px] text-cream/50">'+esc(c.sub)+'</div>'+
-        '<p class="text-[13.5px] text-cream/70 mt-3 leading-[1.5]">'+esc(c.why)+'</p>'+
+        (c.means?'<p class="text-[14px] text-cream/80 mt-3 leading-[1.5]">'+esc(c.means)+'</p>':'')+
+        '<p class="text-[13px] text-cream/55 mt-2 leading-[1.5]">'+esc(c.why)+'</p>'+
         '<div class="text-[11.5px] text-cream/40 mt-3 pt-3 border-t border-cream/10">'+esc(c.freq)+'  ·  '+esc(c.src)+
           (c.auto?'  ·  <span style="color:#9FD9BC">refreshes itself</span>':'')+'</div>'+
       '</div>';
@@ -361,6 +387,7 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
       '<div class="text-[11.5px] text-meta mt-1">'+esc(t.f)+'</div></div></div>';
   }).join('');
 
+  if(d.detail_note && $('detailnote')) $('detailnote').textContent = d.detail_note;
   $('sources').textContent = d.sources;
 }).catch(function(){
   $('title').textContent = 'Market Pulse';

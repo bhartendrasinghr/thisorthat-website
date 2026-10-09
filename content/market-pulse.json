@@ -11,7 +11,9 @@
       "sub": "Nifty 50, 1 Jan to 8 Oct",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-08"
+      "asof": "2026-10-08",
+      "plain": "India's 50 biggest companies",
+      "means": "If you hold an index fund or most equity mutual funds, this is roughly what your year looks like."
     },
     {
       "k": "S&P 500 in ₹",
@@ -19,7 +21,9 @@
       "sub": "+12.9% USD plus the rupee fall",
       "tone": "up",
       "auto": false,
-      "asof": "2026-10-03"
+      "asof": "2026-10-03",
+      "plain": "The same money, put in America instead",
+      "means": "American shares did well, and a weaker rupee made them worth even more back home. This is the cost of having everything in one country."
     },
     {
       "k": "Gold in ₹",
@@ -27,7 +31,9 @@
       "sub": "Global −5.1%, rupee offset",
       "tone": "up",
       "auto": false,
-      "asof": "2026-10-03"
+      "asof": "2026-10-03",
+      "plain": "Gold, in your currency",
+      "means": "Gold went nowhere globally. For an Indian it still held its value, because the rupee fell and gold is priced in dollars."
     },
     {
       "k": "Rupee per dollar",
@@ -35,7 +41,9 @@
       "sub": "₹96.88 per dollar, from ₹90.63 on 1 Jan",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-08"
+      "asof": "2026-10-08",
+      "plain": "What your rupee is worth abroad",
+      "means": "Your money buys this much less outside India than in January. Imported goods, foreign travel and overseas education all cost more."
     },
     {
       "k": "10-yr G-sec",
@@ -43,7 +51,9 @@
       "sub": "+60 bps this year",
       "tone": "flat",
       "auto": false,
-      "asof": "2026-10-03"
+      "asof": "2026-10-03",
+      "plain": "What the government pays to borrow",
+      "means": "This sets the floor under everything else: your FD rate, your home loan, what a safe investment should return."
     },
     {
       "k": "Crude (energy)",
@@ -51,7 +61,9 @@
       "sub": "Strait of Hormuz disruption",
       "tone": "down",
       "auto": false,
-      "asof": "2026-10-03"
+      "asof": "2026-10-03",
+      "plain": "The price of oil",
+      "means": "India buys over 80% of its oil from abroad. When oil rises, transport, packaging and food all follow, and the rupee weakens paying for it."
     },
     {
       "k": "Stocks up YTD",
@@ -59,7 +71,9 @@
       "sub": "of 1,903 NSE companies, split adjusted",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-08"
+      "asof": "2026-10-08",
+      "plain": "How many shares are actually up",
+      "means": "Out of every 100 listed companies, this many are higher than in January. When this is low, most portfolios are doing worse than the headline index suggests."
     },
     {
       "k": "Indices up on the day",
@@ -67,7 +81,9 @@
       "sub": "of 149 NSE indices, on 8 Oct",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-08"
+      "asof": "2026-10-08",
+      "plain": "How broad the last day was",
+      "means": "On the most recent trading day, this share of market sectors rose. A low number means the fall was everywhere, not in one corner."
     },
     {
       "k": "Nifty 50 P/E",
@@ -75,7 +91,9 @@
       "sub": "P/B 2.73 · yield 1.24%",
       "tone": "flat",
       "auto": true,
-      "asof": "2026-10-08"
+      "asof": "2026-10-08",
+      "plain": "What you pay for ₹1 of profit",
+      "means": "Buy the index today and you pay this many rupees for each rupee of annual profit those companies make. Higher means you are paying more for the same earnings."
     }
   ],
   "chain_intro": "Each link pulls the next. The world owns most of the chain. You own the last three, and those decide how much of the market's return reaches you.",
@@ -165,7 +183,9 @@
           "freq": "Monthly",
           "src": "First Global",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "What your rupee is worth abroad",
+          "means": "Imported things cost more. Money already invested abroad is worth more in rupees."
         },
         {
           "k": "India 10-year G-sec",
@@ -176,7 +196,9 @@
           "freq": "After each RBI meeting",
           "src": "First Global",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "What the Indian government pays to borrow",
+          "means": "The safest return available in India. When it rises, shares have to work harder to look worth the risk."
         },
         {
           "k": "US 10-year yield",
@@ -187,7 +209,9 @@
           "freq": "Monthly",
           "src": "First Global",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "What the American government pays to borrow",
+          "means": "When America pays more for safe money, global investors move money out of India to get it."
         },
         {
           "k": "Dollar index",
@@ -198,7 +222,9 @@
           "freq": "Monthly",
           "src": "First Global",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "How strong the dollar is worldwide",
+          "means": "A strong dollar usually means a weaker rupee and foreign investors pulling money out of India."
         },
         {
           "k": "RBI repo rate",
@@ -209,7 +235,9 @@
           "freq": "Each RBI meeting",
           "src": "Data feed",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "The RBI's main interest rate",
+          "means": "The price of money in India. It moves your EMI, your FD rate and, eventually, share prices."
         },
         {
           "k": "CPI inflation",
@@ -220,7 +248,9 @@
           "freq": "Monthly",
           "src": "Data feed",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "How fast prices are rising",
+          "means": "If this is higher than what your savings earn, your money is quietly shrinking even while the number in the account grows."
         },
         {
           "k": "Real interest rate",
@@ -231,7 +261,9 @@
           "freq": "Monthly",
           "src": "Data feed",
           "auto": false,
-          "asof": "2026-10-03"
+          "asof": "2026-10-03",
+          "plain": "Your return after inflation",
+          "means": "Interest earned minus prices rising. If this is near zero, a fixed deposit is barely keeping you level."
         }
       ]
     }
@@ -421,5 +453,23 @@
   ],
   "sources": "First Global Monthly Action Report (Sep 2026), DSP Netra (Sep 2026), NSE, BSE, AMFI and the RBI. Rupee conversions are our calculation. Figures marked ≈ are approximate. Breadth is computed from NSE daily data. For education only, not investment advice.",
   "auto_refreshed": "2026-10-08",
-  "fx_year_open": 90.63
+  "fx_year_open": 90.63,
+  "short": {
+    "heading": "The short version",
+    "points": [
+      {
+        "t": "Your equity funds are probably down this year.",
+        "b": "India's 50 biggest companies are about 15% lower than in January. Most diversified equity funds will look similar."
+      },
+      {
+        "t": "It started with oil, not with shares.",
+        "b": "Oil nearly doubled. India imports most of its oil, so the rupee fell paying for it, prices rose, interest rates stayed high, and shares got cheaper as a result. One thing pulled the next."
+      },
+      {
+        "t": "Nothing here says sell.",
+        "b": "This describes a year that has already happened. The part you control is not the oil price. It is whether you keep investing through a bad stretch, and that is the whole of section three."
+      }
+    ]
+  },
+  "detail_note": "Everything below is detail. The three sections above are the whole story. Read on only if you want the workings."
 }
