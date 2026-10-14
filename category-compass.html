@@ -119,6 +119,35 @@
   </p>
   <p id="verdict" class="mt-6 text-[17.5px] leading-[1.6] max-w-[62ch] font-semibold"></p>
   <p class="mt-4 text-[13px] text-meta"><span class="live" aria-hidden="true"></span>Live from NSE. Data as of <span id="asof" class="tab-num font-semibold text-ink"></span>, updated with every site build.</p>
+
+  <!-- The method, before the numbers. A reader should know what was done to a
+       figure before being asked to trust it, not three sections later. -->
+  <div class="card mt-8 p-6 md:p-7">
+    <div class="kicker">What we actually did</div>
+    <div class="mt-4 grid md:grid-cols-2 gap-x-10 gap-y-5 text-[15px] leading-[1.6] text-ink-3">
+      <div>
+        <div class="font-bold text-ink text-[15.5px]">1. Took ten years of real index data</div>
+        <p class="mt-1">Weekly closing price, price to book and price to earnings for seven equity categories, from the NSE's own archive. Roughly <span class="tab-num">550</span> weeks per category, back to 2016 where it exists.</p>
+      </div>
+      <div>
+        <div class="font-bold text-ink text-[15.5px]">2. Asked three questions of each</div>
+        <p class="mt-1">Is it cheap against its own past? Is it rising? Is it calm? Each answer becomes a number out of 100, by ranking today against every week that came before.</p>
+      </div>
+      <div>
+        <div class="font-bold text-ink text-[15.5px]">3. Mixed them into one score</div>
+        <p class="mt-1">Cheap counts <span class="tab-num">40%</span>, rising <span class="tab-num">35%</span>, calm <span class="tab-num">25%</span>. Those are a starting point, not a truth. Change them below and every number on this page moves.</p>
+      </div>
+      <div>
+        <div class="font-bold text-ink text-[15.5px]">4. Then checked whether it ever worked</div>
+        <p class="mt-1">We replayed the score every week since 2018 using only what was knowable at the time. It helped over the following year. Over three years it made no difference at all. Both results are below, unedited.</p>
+      </div>
+    </div>
+    <p class="mt-5 pt-5 border-t border-warmpaper-3 text-[15px] leading-[1.6]">
+      <strong>What the score is not:</strong> it is not a forecast, and it is not about any particular fund.
+      It ranks seven market indices against their own history. A high score means a category looks cheap,
+      or strong, or calm compared with how it has usually looked, and nothing more than that.
+    </p>
+  </div>
 </section>
 
 <!-- ─── Weights ──────────────────────────────────────────────────────── -->
