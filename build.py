@@ -437,6 +437,16 @@ def main():
     except Exception as _e:
         print(f'  Market Pulse step skipped: {_e}')
 
+    # Category Compass: same NSE archive, same rule. If NSE is down, the last
+    # category-compass.json stays, carrying its own as-of date.
+    print('\n→ Scoring equity categories for Category Compass...')
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location('cc', ROOT / 'build' / 'category_compass.py')
+        _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.main()
+    except Exception as _e:
+        print(f'  Category Compass step skipped: {_e}')
+
     print('\n→ Labelling episode overrides for the CMS...')
     label_episode_overrides()
 

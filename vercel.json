@@ -22,6 +22,15 @@
       ]
     },
     {
+      "source": "/category-compass.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/cap-mix.json",
       "headers": [
         {
@@ -241,6 +250,11 @@
     {
       "source": "/understanding-mutual-funds",
       "destination": "/understanding-mutual-funds.html",
+      "permanent": false
+    },
+    {
+      "source": "/category-compass",
+      "destination": "/category-compass.html",
       "permanent": false
     },
     {
