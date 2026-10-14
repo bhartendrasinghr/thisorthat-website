@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Category Compass: which equity fund category, right now? ThisOrThat with Bhartendra</title>
+<meta name="description" content="A simple, open model that scores seven equity mutual fund categories on valuation, momentum and risk using NSE index data since 2016, and shows whether the score worked in the past." />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="Which equity fund category, right now?" />
+<meta property="og:description" content="Seven categories, three tests, ten years of NSE data. What the numbers lean towards today, and how often they were right before." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/category-compass.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Which equity fund category, right now?" />
+<meta name="twitter:description" content="Seven categories, three tests, ten years of NSE data." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/category-compass.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    thatred:'#FF302D',
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .lnk { color:#1A1813; text-decoration:none; border-bottom:2px solid #FFC21F; padding-bottom:1px; font-weight:700; }
+  .lnk:hover { border-bottom-color:#1A1813; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+
+  .live { display:inline-block; width:8px; height:8px; border-radius:50%; background:#1F8A5B; margin-right:6px; vertical-align:middle; }
+  .preset { font-size:13.5px; font-weight:700; padding:8px 14px; border-radius:999px; border:1.5px solid #E1DDD1; background:#fff; color:#1A1813; cursor:pointer; }
+  .preset[aria-pressed="true"] { background:#1A1813; border-color:#1A1813; color:#FCFBF8; }
+  input[type=range] { width:100%; accent-color:#0249B1; }
+
+  .row { display:grid; grid-template-columns:28px minmax(0,1.25fr) minmax(0,1fr) minmax(0,1.15fr); gap:18px; align-items:center;
+         width:100%; text-align:left; padding:16px 18px; cursor:pointer; transition:border-color .15s; }
+  .row:hover { border-color:#1A1813; }
+  .row[aria-current="true"] { border-color:#0249B1; box-shadow:0 0 0 1.5px #0249B1; }
+  .bar { height:8px; border-radius:4px; background:#F6F4EE; position:relative; overflow:hidden; }
+  .bar i { position:absolute; inset:0 auto 0 0; border-radius:4px; background:#0249B1; transition:width .35s ease; }
+  .mini { display:grid; grid-template-columns:76px 1fr 26px; gap:8px; align-items:center; font-size:12px; color:#57534A; }
+  .mini .bar { height:5px; }
+  .mini .bar i { background:#57534A; }
+  .sig { font-size:12px; font-weight:800; padding:3px 10px; border-radius:999px; white-space:nowrap; }
+  .sig.towards { background:#E3F3EA; color:#1B7A50; }
+  .sig.neutral { background:#FFF3D1; color:#8F6600; }
+  .sig.away { background:#FCE4E3; color:#C41A17; }
+  @media (max-width: 760px) {
+    .row { grid-template-columns:22px minmax(0,1fr) auto; gap:12px; }
+    .row .minis { grid-column:2 / -1; }
+  }
+
+  .fact { background:#F6F4EE; border-radius:12px; padding:12px 14px; }
+  .chart { width:100%; height:auto; display:block; }
+  .chart text { fill:#7A7368; font-family:'IBM Plex Mono',monospace; font-size:11px; }
+  table.cmp td, table.cmp th { padding:10px 12px; border-bottom:1px solid #E1DDD1; vertical-align:top; }
+  table.cmp tr:last-child td { border-bottom:0; }
+  table.cmp td.n { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  table.cmp th.n { text-align:right; }
+  .key i { display:inline-block; width:14px; height:3px; border-radius:2px; vertical-align:middle; margin-right:6px; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="market-pulse.html" class="">Pulse</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="market-pulse.html" class="">Pulse</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 pt-12 pb-6">
+  <div class="kicker">Category Compass &middot; a model, not a tip</div>
+  <h1 class="font-display font-extrabold mt-4 leading-[0.98] tracking-[-0.035em] text-[clamp(36px,6vw,60px)] max-w-[17ch]">
+    Which equity fund category, right now?
+  </h1>
+  <p class="mt-5 text-[19px] leading-[1.55] text-ink-3 max-w-[62ch]">
+    Nobody can tell you which category will win next year. What the numbers can tell you is
+    which ones look cheap or expensive against their own past, which are rising or falling, and
+    which are calm or jumpy. Put together, that tells you which way to lean.
+  </p>
+  <p id="verdict" class="mt-6 text-[17.5px] leading-[1.6] max-w-[62ch] font-semibold"></p>
+  <p class="mt-4 text-[13px] text-meta"><span class="live" aria-hidden="true"></span>Live from NSE. Data as of <span id="asof" class="tab-num font-semibold text-ink"></span>, updated with every site build.</p>
+</section>
+
+<!-- ─── Weights ──────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 pb-6">
+  <div class="card p-5 md:p-6 min-w-0">
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="text-[14px] font-bold mr-1">What matters most to you?</span>
+      <button type="button" class="preset" data-p="40,35,25">A bit of everything</button>
+      <button type="button" class="preset" data-p="60,15,25">Buying cheap</button>
+      <button type="button" class="preset" data-p="20,60,20">Riding the trend</button>
+      <button type="button" class="preset" data-p="30,20,50">Sleeping well</button>
+    </div>
+    <details class="mt-4">
+      <summary class="text-[13.5px] font-semibold text-ink-3 cursor-pointer">Set your own weights</summary>
+      <div class="grid md:grid-cols-3 gap-5 mt-4">
+        <label for="wv" class="text-[13.5px]"><span class="flex justify-between"><span>Valuation: is it cheap?</span><b id="wv-o" class="tab-num"></b></span><input id="wv" type="range" min="0" max="100" step="5" /></label>
+        <label for="wm" class="text-[13.5px]"><span class="flex justify-between"><span>Momentum: is it rising?</span><b id="wm-o" class="tab-num"></b></span><input id="wm" type="range" min="0" max="100" step="5" /></label>
+        <label for="wr" class="text-[13.5px]"><span class="flex justify-between"><span>Risk: is it calm?</span><b id="wr-o" class="tab-num"></b></span><input id="wr" type="range" min="0" max="100" step="5" /></label>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ─── Ranking ──────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 pb-14">
+  <div class="flex flex-wrap items-end justify-between gap-3">
+    <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)]">Today's ranking</h2>
+    <p class="text-[13px] text-meta max-w-[60ch]">Score out of 100. <b class="text-gainink">60 and above: tilt towards.</b> <b class="text-goldink">40 to 60: stay neutral.</b> <b style="color:#C41A17">Under 40: tilt away.</b> Tap a category to see why.</p>
+  </div>
+  <div id="rank" class="grid gap-3 mt-5"></div>
+  <p class="mt-4 text-[13.5px] text-ink-3 max-w-[70ch]">
+    Tilting means a little more or a little less than your usual share. It never means putting everything in the top
+    category or selling everything in the bottom one.
+  </p>
+</section>
+
+<!-- ─── Detail ───────────────────────────────────────────────────────── -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="flex flex-wrap items-start justify-between gap-3">
+    <div>
+      <div class="kicker" id="d-index"></div>
+      <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-2" id="d-name"></h2>
+    </div>
+    <span id="d-sig" class="sig text-[13px]"></span>
+  </div>
+  <div id="d-facts" class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-6"></div>
+  <div class="grid md:grid-cols-5 gap-6 mt-6">
+    <ul id="d-why" class="md:col-span-2 grid gap-3 text-[15px] leading-[1.55] list-disc pl-5"></ul>
+    <div class="md:col-span-3 card p-5 min-w-0">
+      <h3 class="font-display font-extrabold text-[18px]">Price to book, every other week since <span id="d-from"></span></h3>
+      <p class="text-[13px] text-meta mt-1">How many rupees the market pays for every rupee of net worth in these companies. The dashed line is the usual level (median).</p>
+      <svg id="d-chart" class="chart mt-3" viewBox="0 0 640 240" role="img" aria-label="Price to book history"></svg>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ─── Backtest ─────────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">The receipts</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">Did this score work before?</h2>
+  <p class="mt-3 text-[16px] text-ink-3 max-w-[64ch]">We replayed the model every week since 2018, using only the data that existed that week. So it never got to peek at the future.</p>
+
+  <div class="grid lg:grid-cols-2 gap-5 mt-7">
+    <div class="card p-5 md:p-6 min-w-0">
+      <h3 class="font-display font-extrabold text-[19px]">What happened after each signal</h3>
+      <div class="overflow-x-auto mt-4">
+        <table class="cmp w-full text-[14px] min-w-[460px]" id="bt-buckets"></table>
+      </div>
+      <p class="text-[12.5px] text-meta mt-3">Median price return of the category's index after the signal, all seven categories together, default weights. "Year was positive" is the share of cases where the next 12 months ended above zero.</p>
+    </div>
+    <div class="card p-5 md:p-6 min-w-0">
+      <h3 class="font-display font-extrabold text-[19px]">Switching between large, mid and small</h3>
+      <p class="text-[13px] text-meta mt-1">What ₹1 became. Each week, hold whichever of the three scored highest the week before.</p>
+      <svg id="bt-chart" class="chart mt-3" viewBox="0 0 560 240" role="img" aria-label="Growth of one rupee"></svg>
+      <div id="bt-key" class="key flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-ink-3 mt-2"></div>
+      <div class="overflow-x-auto mt-4">
+        <table class="cmp w-full text-[14px] min-w-[380px]" id="bt-rot"></table>
+      </div>
+    </div>
+  </div>
+  <div id="bt-verdict" class="mt-7 grid gap-4 max-w-[70ch] text-[16px] leading-[1.6] border-l-4 border-marigold pl-5"></div>
+</section>
+
+<!-- ─── Method ───────────────────────────────────────────────────────── -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="kicker">Open book</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3">How the score is built</h2>
+  <div class="grid md:grid-cols-3 gap-5 mt-7">
+    <div class="card p-6">
+      <div class="tab-num text-[12px] text-thisblue font-semibold" id="mw-v"></div>
+      <h3 class="font-display font-extrabold text-[20px] mt-1">Valuation: is it cheap?</h3>
+      <p class="text-[15px] leading-[1.6] text-ink-3 mt-3">Compares today's price to book and price to earnings with every week since 2016. Lower than usual scores higher.
+      It also checks how much more mid and small caps cost than large caps. When that gap is wider than usual, the smaller
+      categories lose points and large caps gain them.</p>
+    </div>
+    <div class="card p-6">
+      <div class="tab-num text-[12px] text-thisblue font-semibold" id="mw-m"></div>
+      <h3 class="font-display font-extrabold text-[20px] mt-1">Momentum: is it rising?</h3>
+      <p class="text-[15px] leading-[1.6] text-ink-3 mt-3">Half the points come from one question: is the index above its average price of the last 40 weeks, roughly
+      200 trading days? The other half come from how its 6 and 12 month returns compare with the whole market, the Nifty 500.</p>
+    </div>
+    <div class="card p-6">
+      <div class="tab-num text-[12px] text-thisblue font-semibold" id="mw-r"></div>
+      <h3 class="font-display font-extrabold text-[20px] mt-1">Risk: is it calm?</h3>
+      <p class="text-[15px] leading-[1.6] text-ink-3 mt-3">How much the index has swung up and down over the last 6 months, against its own past. Plus India VIX,
+      the market's fear gauge, which is at <b class="tab-num text-ink" id="vix"></b> today. Calmer than usual scores higher.</p>
+    </div>
+  </div>
+
+  <div class="card mt-5 overflow-x-auto">
+    <table class="cmp w-full text-[14.5px] min-w-[620px]" id="map"></table>
+  </div>
+  <p class="text-[13px] text-meta mt-3 max-w-[75ch]">We score indices, not funds. An index has clean daily price, P/E and P/B data going back years. A fund's NAV mixes in one
+  manager's skill and costs. Your fund can do better or worse than its category's index.</p>
+</div>
+</section>
+
+<!-- ─── Use it well ──────────────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Before you act</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">How to use this without hurting yourself</h2>
+  <div class="grid md:grid-cols-3 gap-5 mt-7">
+    <div>
+      <h3 class="text-[17px] font-extrabold">Start from your mix, not from this page</h3>
+      <p class="text-[15px] text-ink-3 leading-relaxed mt-2">Your split between large, mid and small caps should come from your goals and how long you can wait.
+      This page only nudges that split a little.</p>
+    </div>
+    <div>
+      <h3 class="text-[17px] font-extrabold">Steer new money first</h3>
+      <p class="text-[15px] text-ink-3 leading-relaxed mt-2">The cheapest way to tilt is to point fresh SIPs or lump sums towards the favoured category.
+      Selling to switch costs you tax and sometimes an exit load, which eats most of the small edge shown above.</p>
+    </div>
+    <div>
+      <h3 class="text-[17px] font-extrabold">Check it every few months</h3>
+      <p class="text-[15px] text-ink-3 leading-relaxed mt-2">The ranking moves slowly. Looking at it every week will tempt you to act on noise.
+      Once a quarter is plenty.</p>
+    </div>
+  </div>
+  <div class="border-t border-warmpaper-3 mt-9 pt-6 flex flex-wrap gap-3 items-center">
+    <a href="asset-allocator.html" class="lnk text-[14px]">Work out your own mix &rarr;</a>
+    <span class="text-warmpaper-3">|</span>
+    <a href="understanding-mutual-funds.html" class="lnk text-[14px]">What each category actually is &rarr;</a>
+    <span class="text-warmpaper-3">|</span>
+    <a href="multicap-vs-flexicap.html" class="lnk text-[14px]">Multi cap or flexi cap? &rarr;</a>
+    <span class="text-warmpaper-3">|</span>
+    <a href="money-person.html" class="lnk text-[14px]">Ask someone registered &rarr;</a>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[70ch]">
+      Category Compass is an educational model. It is not investment advice, not a recommendation to buy, sell or switch any
+      scheme or category, and not a forecast. It scores market indices, not mutual funds, and the returns shown are index price
+      returns before dividends, fund expenses, taxes and exit loads. Ten years of data covers only a few market cycles, and past
+      patterns may not repeat. Mutual fund investments are subject to market risk; read all scheme related documents carefully.
+      Before you act on any of it, speak to a SEBI registered investment adviser or an AMFI registered mutual fund distributor.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat. Index prices, P/E, P/B and India VIX from NSE's daily index archive. Index P/E before April 2021 is left out because NSE changed how it calculates index earnings that month.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+
+var D=null, W={valuation:40,momentum:35,risk:25}, selected=null;
+try { var s=JSON.parse(localStorage.getItem('cc-weights')); if(s && s.valuation!=null) W=s; } catch(e){}
+
+var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function dt(s){ var p=s.split('-'); return (+p[2])+' '+MONTHS[+p[1]-1]+' '+p[0]; }
+function pc(x,d){ if(x==null) return '–'; d=d==null?1:d; return (x*100).toFixed(d)+'%'; }
+function spc(x,d){ if(x==null) return '–'; return (x>0?'+':x<0?'−':'')+pc(Math.abs(x),d); }
+function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); }
+function sig(s){ return s>=60?['Tilt towards','towards']:s<40?['Tilt away','away']:['Stay neutral','neutral']; }
+function scoreOf(c){ var t=W.valuation+W.momentum+W.risk; return t? (W.valuation*c.valuation+W.momentum*c.momentum+W.risk*c.risk)/t : 0; }
+function ranked(){ return D.categories.map(function(c){ var o=Object.assign({},c); o.live=scoreOf(c); return o; }).sort(function(a,b){ return b.live-a.live; }); }
+
+function renderWeights(){
+  $('wv').value=W.valuation; $('wm').value=W.momentum; $('wr').value=W.risk;
+  var t=W.valuation+W.momentum+W.risk||1;
+  [['wv','valuation','mw-v'],['wm','momentum','mw-m'],['wr','risk','mw-r']].forEach(function(a){
+    var p=Math.round(100*W[a[1]]/t)+'%'; $(a[0]+'-o').textContent=p; $(a[2]).textContent='Counts for '+p+' of the score';
+  });
+  document.querySelectorAll('.preset').forEach(function(b){
+    var v=b.dataset.p.split(',').map(Number);
+    b.setAttribute('aria-pressed', String(v[0]===W.valuation && v[1]===W.momentum && v[2]===W.risk));
+  });
+  try { localStorage.setItem('cc-weights', JSON.stringify(W)); } catch(e){}
+}
+
+function mini(label,v){ return '<span class="mini"><span>'+label+'</span><span class="bar"><i style="width:'+v+'%"></i></span><span class="tab-num text-right">'+Math.round(v)+'</span></span>'; }
+
+function renderRank(){
+  var list=ranked();
+  if(!selected) selected=list[0].key;
+  $('rank').innerHTML=list.map(function(c,i){
+    var g=sig(c.live);
+    return '<button type="button" class="row card" data-k="'+c.key+'" aria-current="'+(c.key===selected)+'">'+
+      '<span class="tab-num text-[13px] text-meta">'+(i+1)+'</span>'+
+      '<span class="min-w-0"><span class="block font-display font-extrabold text-[19px] leading-tight">'+esc(c.name)+'</span>'+
+      '<span class="block text-[13px] text-meta mt-0.5">'+esc(c.what)+'</span></span>'+
+      '<span class="grid gap-2"><span class="flex items-center gap-3"><span class="tab-num text-[24px] font-semibold">'+Math.round(c.live)+'</span><span class="sig '+g[1]+'">'+g[0]+'</span></span>'+
+      '<span class="bar"><i style="width:'+c.live+'%"></i></span></span>'+
+      '<span class="minis grid gap-1.5">'+mini('Valuation',c.valuation)+mini('Momentum',c.momentum)+mini('Risk',c.risk)+'</span>'+
+    '</button>';
+  }).join('');
+  $('rank').querySelectorAll('.row').forEach(function(b){ b.addEventListener('click',function(){ selected=b.dataset.k; renderRank(); renderDetail(); }); });
+
+  var top=list[0], low=list[list.length-1];
+  $('verdict').innerHTML='Today the numbers lean towards <span class="text-thisblue">'+esc(top.name)+'</span> (score '+Math.round(top.live)+
+    ') and away from <span class="text-thisblue">'+esc(low.name)+'</span> ('+Math.round(low.live)+'). '+esc(why(top));
+}
+
+function why(c){
+  var cheap=c.valuation>=70, dear=c.valuation<35, up=c.momentum>=60, down=c.momentum<35;
+  var n=c.name.toLowerCase();
+  if(cheap && down) return 'The catch: '+n+' is cheap partly because it has been falling, and it has not turned yet.';
+  if(cheap && up) return n.charAt(0).toUpperCase()+n.slice(1)+' is both cheaper than usual and rising, which is the rare good combination.';
+  if(dear && up) return n.charAt(0).toUpperCase()+n.slice(1)+' is rising but already expensive, so the lean is a trend call, not a bargain.';
+  if(cheap) return n.charAt(0).toUpperCase()+n.slice(1)+' is cheaper than usual against its own past.';
+  if(up) return n.charAt(0).toUpperCase()+n.slice(1)+' is rising faster than the market.';
+  return '';
+}
+
+function reasons(c){
+  var out=[], yr=c.history_from.slice(0,4);
+  out.push('Price to book is <b class="tab-num">'+c.pb+'</b>, against a usual '+c.pb_median+' since '+yr+'. It has been lower in only <b class="tab-num">'+c.pb_pct+'%</b> of weeks.');
+  if(c.pe_pct!=null) out.push('P/E is <b class="tab-num">'+c.pe+'</b>. Since April 2021 it has been lower in '+c.pe_pct+'% of weeks.');
+  if(c.key==='large') out.push('Mid and small caps cost more than usual compared with large caps right now. That gap counts in large caps\' favour.');
+  else if(c.rel_pct!=null) out.push('Compared with large caps, it costs more than it did in <b class="tab-num">'+c.rel_pct+'%</b> of past weeks.');
+  out.push('Price is <b>'+(c.above_ma?'above':'below')+'</b> its 40 week average. It has moved <b class="tab-num">'+spc(c.ret_6m)+'</b> in 6 months and <b class="tab-num">'+spc(c.ret_12m)+'</b> in 12 months.');
+  out.push('It sits <b class="tab-num">'+pc(-c.drawdown)+'</b> below its 52 week high, and has been swinging about '+pc(c.vol,0)+' a year.');
+  return out;
+}
+
+function renderDetail(){
+  var c=D.categories.filter(function(x){ return x.key===selected; })[0], s=scoreOf(c), g=sig(s);
+  $('d-index').textContent='Tracked through the '+c.index;
+  $('d-name').textContent=c.name;
+  $('d-sig').className='sig '+g[1]+' text-[13px]'; $('d-sig').textContent=g[0]+' · '+Math.round(s);
+  $('d-facts').innerHTML=[['Valuation',Math.round(c.valuation)+'/100'],['Momentum',Math.round(c.momentum)+'/100'],['Risk',Math.round(c.risk)+'/100'],['Price to book',c.pb],['Last 12 months',spc(c.ret_12m)]]
+    .map(function(f){ return '<div class="fact"><div class="tab-num text-[19px] font-semibold">'+f[1]+'</div><div class="text-[12px] text-meta mt-0.5">'+f[0]+'</div></div>'; }).join('');
+  $('d-why').innerHTML=reasons(c).map(function(r){ return '<li>'+r+'</li>'; }).join('');
+  $('d-from').textContent=MONTHS[+c.history_from.slice(5,7)-1]+' '+c.history_from.slice(0,4);
+  chart($('d-chart'),[{pts:c.series.map(function(p){ return [p.d,p.pb]; }),color:'#0249B1',w:2.25}],{w:640,h:240,ref:c.pb_median,fmt:function(v){ return v.toFixed(1); },end:true});
+}
+
+function ticks(lo,hi,n){
+  var raw=(hi-lo)/n, mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  var step=[1,2,2.5,5,10].map(function(m){ return m*mag; }).filter(function(s){ return s>=raw; })[0], out=[];
+  for(var v=Math.ceil(lo/step)*step; v<=hi+1e-9; v+=step) out.push(+v.toFixed(6));
+  return out;
+}
+function chart(svg,series,o){
+  var pad={l:44,r:o.end?44:12,t:12,b:26}, all=[];
+  series.forEach(function(s){ all=all.concat(s.pts); });
+  var t0=+new Date(all[0][0]), t1=Math.max.apply(null,all.map(function(p){ return +new Date(p[0]); }));
+  var lo=Math.min.apply(null,all.map(function(p){ return p[1]; })), hi=Math.max.apply(null,all.map(function(p){ return p[1]; }));
+  if(o.ref!=null){ lo=Math.min(lo,o.ref); hi=Math.max(hi,o.ref); }
+  var sp=(hi-lo)||1; lo-=sp*.06; hi+=sp*.06;
+  function X(t){ return pad.l+(+new Date(t)-t0)/(t1-t0)*(o.w-pad.l-pad.r); }
+  function Y(v){ return o.h-pad.b-(v-lo)/(hi-lo)*(o.h-pad.t-pad.b); }
+  var g='';
+  ticks(lo,hi,4).forEach(function(v){ g+='<line x1="'+pad.l+'" x2="'+(o.w-pad.r)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#E1DDD1"/><text x="'+(pad.l-6)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+o.fmt(v)+'</text>'; });
+  var y0=new Date(t0).getFullYear(), y1=new Date(t1).getFullYear(), st=(y1-y0)>6?2:1;
+  for(var y=y0+1;y<=y1;y+=st){ g+='<text x="'+X(y+'-01-01')+'" y="'+(o.h-8)+'" text-anchor="middle">'+y+'</text>'; }
+  if(o.ref!=null) g+='<line x1="'+pad.l+'" x2="'+(o.w-pad.r)+'" y1="'+Y(o.ref)+'" y2="'+Y(o.ref)+'" stroke="#7A7368" stroke-dasharray="4 4"/>';
+  series.forEach(function(s){
+    var d=s.pts.map(function(p,i){ return (i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1); }).join('');
+    g+='<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="'+(s.w||2)+'" stroke-linejoin="round"/>';
+    var l=s.pts[s.pts.length-1];
+    g+='<circle cx="'+X(l[0])+'" cy="'+Y(l[1])+'" r="4" fill="'+s.color+'"/>';
+    if(o.end) g+='<text x="'+(X(l[0])+8)+'" y="'+(Y(l[1])+4)+'" style="fill:'+s.color+';font-weight:600">'+o.fmt(l[1])+'</text>';
+  });
+  svg.innerHTML=g;
+}
+
+function renderBacktest(){
+  var bt=D.backtest, r=bt.rotation;
+  var LBL={towards:['Tilt towards','60 and above','#1B7A50'],neutral:['Stay neutral','40 to 60','#8F6600'],away:['Tilt away','under 40','#C41A17']};
+  var order=['towards','neutral','away'];
+  var B={}; bt.buckets.forEach(function(b){ B[b.bucket]=b; });
+  $('bt-buckets').innerHTML='<thead><tr class="bg-warmpaper-2"><th class="text-left">Signal</th><th class="n">Weeks</th><th class="n">Next 1 year</th><th class="n">Year was positive</th><th class="n">Next 3 years, a year</th></tr></thead><tbody>'+
+    order.map(function(k){ var b=B[k], l=LBL[k]; return '<tr><td><b style="color:'+l[2]+'">'+l[0]+'</b><div class="text-[12px] text-meta">'+l[1]+'</div></td><td class="n">'+b.weeks.toLocaleString('en-IN')+'</td><td class="n">'+spc(b.fwd_1y_median)+'</td><td class="n">'+pc(b.fwd_1y_hit,0)+'</td><td class="n">'+spc(b.fwd_3y_median)+'</td></tr>'; }).join('')+'</tbody>';
+
+  var S=[['rotation','Follow the top score','#0249B1',2.5],['equal','One third in each','#57534A',2],['mid','Only mid cap','#D99B00',1.5],['small','Only small cap','#FF302D',1.5]];
+  chart($('bt-chart'),S.map(function(s){ return {pts:r.growth.map(function(p){ return [p.d,p[s[0]]]; }),color:s[2],w:s[3]}; }),{w:560,h:240,fmt:function(v){ return '₹'+v.toFixed(1); }});
+  $('bt-key').innerHTML=S.map(function(s){ return '<span><i style="background:'+s[2]+'"></i>'+s[1]+'</span>'; }).join('');
+  var rows=[['Follow the top score',r.cagr_rotation,r.mdd_rotation],['One third in each',r.cagr_equal,r.mdd_equal],['Only large cap',r.cagr_large,r.mdd_large],['Only mid cap',r.cagr_mid,r.mdd_mid],['Only small cap',r.cagr_small,r.mdd_small]];
+  $('bt-rot').innerHTML='<thead><tr class="bg-warmpaper-2"><th class="text-left">'+dt(r.from)+' to '+dt(r.to)+'</th><th class="n">A year</th><th class="n">Worst fall</th></tr></thead><tbody>'+
+    rows.map(function(x,i){ return '<tr'+(i===0?' class="font-bold"':'')+'><td>'+x[0]+'</td><td class="n">'+pc(x[1])+'</td><td class="n">'+spc(x[2])+'</td></tr>'; }).join('')+'</tbody>';
+
+  var yrs=((+new Date(r.to))-(+new Date(r.from)))/3.156e10;
+  $('bt-verdict').innerHTML=
+    '<p><b>Over the next year, the signal helped.</b> When a category scored 60 or more, its index went on to a median '+spc(B.towards.fwd_1y_median)+
+    ' over the next 12 months. Under 40, the median was '+spc(B.away.fwd_1y_median)+'. Most of that edge came from momentum: things that were rising tended to keep rising for a while.</p>'+
+    '<p><b>Over three years, it did not.</b> All three groups ended up close together, between '+spc(Math.min(B.towards.fwd_3y_median,B.away.fwd_3y_median,B.neutral.fwd_3y_median))+' and '+
+    spc(Math.max(B.towards.fwd_3y_median,B.away.fwd_3y_median,B.neutral.fwd_3y_median))+' a year. Ten years of data is too short to prove that buying cheap pays off over the long run, so we will not claim it does.</p>'+
+    '<p><b>Switching added a little, not a lot.</b> Following the top score earned '+pc(r.cagr_rotation)+' a year against '+pc(r.cagr_equal)+' for a fixed one third in each, with a smaller worst fall. It switched '+
+    r.switches+' times in '+yrs.toFixed(1)+' years, and those numbers leave out tax and exit loads. That is why this page is for tilting, not for jumping in and out.</p>';
+}
+
+function renderMap(){
+  $('map').innerHTML='<thead><tr class="bg-warmpaper-2"><th class="text-left">Fund category</th><th class="text-left">Index we use</th><th class="text-left">What it holds</th><th class="n">Data from</th></tr></thead><tbody>'+
+    D.categories.map(function(c){ return '<tr><td class="font-bold">'+esc(c.name)+'</td><td>'+esc(c.index)+'</td><td class="text-ink-3">'+esc(c.what)+'</td><td class="n">'+MONTHS[+c.history_from.slice(5,7)-1]+' '+c.history_from.slice(0,4)+'</td></tr>'; }).join('')+'</tbody>';
+}
+
+function update(){ renderWeights(); renderRank(); renderDetail(); }
+
+document.querySelectorAll('.preset').forEach(function(b){ b.addEventListener('click',function(){
+  var v=b.dataset.p.split(',').map(Number); W={valuation:v[0],momentum:v[1],risk:v[2]}; update();
+}); });
+[['wv','valuation'],['wm','momentum'],['wr','risk']].forEach(function(a){ $(a[0]).addEventListener('input',function(e){ W[a[1]]=+e.target.value; update(); }); });
+
+fetch('category-compass.json',{cache:'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
+  D=d;
+  $('asof').textContent=dt(d.asof);
+  $('vix').textContent=d.vix;
+  update(); renderBacktest(); renderMap();
+}).catch(function(){
+  $('verdict').textContent='The latest numbers did not load. Refresh the page, and if it still fails, the data will be back after the next site update.';
+});
+})();
+</script>
+</body>
+</html>
