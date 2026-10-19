@@ -34,27 +34,47 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Note what we had before
+        run: cp episodes.js /tmp/episodes.before.js
+
       - name: Run the YouTube sync
         id: sync
         run: |
           set -o pipefail
           python3 sync.py 2>&1 | tee /tmp/sync.log
-          echo "episodes=$(python3 -c "
+
+      # sync.py stamps a fresh "Last synced" time on every run, so the file
+      # always differs even when nothing was published. Comparing bytes would
+      # commit noise daily. Compare the episode list itself.
+      - name: Did the episodes actually change?
+        id: diff
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json
-          s=open('episodes.js').read(); i=s.index('window.EPISODES = [')+len('window.EPISODES = ')
-          print(len(json.JSONDecoder().raw_decode(s[i:])[0]))
-          ")" >> "$GITHUB_OUTPUT"
+          def eps(path):
+              s = open(path).read()
+              i = s.index('window.EPISODES = [') + len('window.EPISODES = ')
+              return json.JSONDecoder().raw_decode(s[i:])[0]
+          before, after = eps('/tmp/episodes.before.js'), eps('episodes.js')
+          key = lambda e: (e.get('id'), e.get('n'), e.get('title'), e.get('guest'), e.get('cat'))
+          changed = [key(e) for e in before] != [key(e) for e in after]
+          print(f'changed={"yes" if changed else "no"}')
+          print(f'count={len(after)}')
+          new_ids = {e['id'] for e in after} - {e['id'] for e in before}
+          print(f'new={len(new_ids)}')
+          PY
+          cat "$GITHUB_OUTPUT"
 
       - name: Commit only if something actually changed
         run: |
-          if git diff --quiet -- episodes.js; then
-            echo "No new episodes. Nothing to commit."
+          if [ "${{ steps.diff.outputs.changed }}" != "yes" ]; then
+            echo "Episode list is identical. Only the timestamp moved, so nothing to commit."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add episodes.js content/episodes content/guests.json 2>/dev/null || git add episodes.js
-          git commit -m "Sync episodes from YouTube (${{ steps.sync.outputs.episodes }} total)
+          git commit -m "Sync episodes from YouTube (${{ steps.diff.outputs.count }} total, ${{ steps.diff.outputs.new }} new)
 
           Automated. Pushing this triggers the Vercel deploy that serves it.
 
