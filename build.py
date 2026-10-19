@@ -228,7 +228,16 @@ def sync_youtube():
         result = subprocess.run([sys.executable, str(sync_path)], capture_output=True, text=True)
         print(result.stdout)
         if result.returncode != 0:
-            print(f'  sync.py failed (continuing): {result.stderr[:200]}', file=sys.stderr)
+            # Loud on purpose. This failing quietly is how the site served
+            # three week old episodes while every deploy reported success.
+            print('  ' + '!' * 68, file=sys.stderr)
+            print('  YOUTUBE SYNC FAILED. episodes.js is whatever was last committed.', file=sys.stderr)
+            print('  The deploy will still succeed. The episode list will be stale.', file=sys.stderr)
+            print('  Expected on Vercel: YouTube blocks the scrape from datacenter IPs.', file=sys.stderr)
+            print('  The fix is the sync-episodes GitHub Action, which commits the', file=sys.stderr)
+            print('  refreshed file from a different network.', file=sys.stderr)
+            print(f'  {result.stderr[:300]}', file=sys.stderr)
+            print('  ' + '!' * 68, file=sys.stderr)
     else:
         print('  sync.py not found, skipping YouTube sync')
 

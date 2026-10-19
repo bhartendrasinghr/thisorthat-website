@@ -1,0 +1,63 @@
+name: Sync episodes from YouTube
+
+# Why this exists: sync.py scrapes the YouTube channel page for an
+# INNERTUBE_API_KEY. That works from a laptop and fails on Vercel, because
+# YouTube serves datacenter IPs a different page. build.py catches the error
+# and carries on, so the deploy goes green while episodes.js quietly stays at
+# whatever was last committed. The site sat three weeks stale that way, and
+# nothing anywhere said so.
+#
+# GitHub runners are a different network, so the scrape may succeed here. If it
+# does, this commits the refreshed file and that push triggers the normal Vercel
+# deploy. If it does not, the job FAILS loudly and you get an email, which is the
+# whole point: a stale site should never look healthy.
+
+on:
+  schedule:
+    - cron: '30 2 * * *'      # 08:00 IST, after the usual upload hour
+  workflow_dispatch:           # and runnable by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-episodes
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run the YouTube sync
+        id: sync
+        run: |
+          set -o pipefail
+          python3 sync.py 2>&1 | tee /tmp/sync.log
+          echo "episodes=$(python3 -c "
+          import json
+          s=open('episodes.js').read(); i=s.index('window.EPISODES = [')+len('window.EPISODES = ')
+          print(len(json.JSONDecoder().raw_decode(s[i:])[0]))
+          ")" >> "$GITHUB_OUTPUT"
+
+      - name: Commit only if something actually changed
+        run: |
+          if git diff --quiet -- episodes.js; then
+            echo "No new episodes. Nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add episodes.js content/episodes content/guests.json 2>/dev/null || git add episodes.js
+          git commit -m "Sync episodes from YouTube (${{ steps.sync.outputs.episodes }} total)
+
+          Automated. Pushing this triggers the Vercel deploy that serves it.
+
+          Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
+          git push
+          echo "Pushed. Vercel will redeploy."
