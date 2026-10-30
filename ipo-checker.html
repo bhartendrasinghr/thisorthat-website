@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How is your IPO doing? ThisOrThat with Bhartendra</title>
+<meta name="description" content="Pick the IPO you put money into and see what it is worth now, next to what the same money would be worth in a Nifty index fund. All 541 NSE mainboard IPOs since 2016." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="How is your IPO doing?" />
+<meta property="og:description" content="Pick your IPO. See what it is worth now, against the same money in a Nifty index fund." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/ipo-checker.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How is your IPO doing?" />
+<meta name="twitter:description" content="Pick your IPO. See what it is worth now, against a Nifty index fund." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/ipo-checker.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+  .fld { width:100%; border:2px solid #E1DDD1; border-radius:12px; padding:14px 16px;
+         font-size:17px; font-family:inherit; background:#fff; color:#1A1813; }
+  .fld:focus { outline:none; border-color:#0249B1; }
+  #sugg { position:absolute; z-index:40; left:0; right:0; top:calc(100% + 6px);
+          background:#fff; border:1px solid #E1DDD1; border-radius:14px; overflow:hidden;
+          box-shadow:0 14px 40px rgba(26,24,19,.14); max-height:330px; overflow-y:auto; }
+  #sugg button { display:block; width:100%; text-align:left; padding:11px 16px; border:0;
+                 background:transparent; cursor:pointer; border-bottom:1px solid #F0EDE4; }
+  #sugg button:last-child { border-bottom:0; }
+  #sugg button:hover, #sugg button[data-on="1"] { background:#F6F4EE; }
+  .chipbtn { border:1.5px solid #E1DDD1; background:#fff; font-weight:600; font-size:13.5px;
+             padding:7px 14px; border-radius:999px; cursor:pointer; white-space:nowrap; }
+  .chipbtn:hover { border-color:#1A1813; }
+  .chipbtn[aria-pressed="true"] { background:#1A1813; border-color:#1A1813; color:#FCFBF8; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="market-pulse.html" class="">Pulse</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="market-pulse.html" class="">Pulse</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<section class="max-w-3xl mx-auto px-6 pt-12 pb-8">
+  <div class="kicker">From the episode</div>
+  <h1 class="font-display font-extrabold mt-4 leading-[0.98] tracking-[-0.035em] text-[clamp(34px,6vw,54px)]">
+    How is your IPO actually doing?
+  </h1>
+  <p class="mt-5 text-[18px] leading-[1.55] text-ink-3">
+    Pick the one you put money into. You will see what it is worth today, and what the
+    same money would be worth if you had simply bought a Nifty index fund on the day it listed.
+  </p>
+
+  <div class="mt-8 relative">
+    <label for="q" class="block text-[13.5px] font-bold mb-2">Which IPO?</label>
+    <input id="q" class="fld" type="text" autocomplete="off" spellcheck="false"
+           placeholder="Start typing, e.g. Paytm, LIC, Swiggy, Zomato" aria-expanded="false" />
+    <div id="sugg" class="hidden"></div>
+  </div>
+
+  <div class="mt-5">
+    <div class="text-[13.5px] font-bold mb-2">How much did you put in?</div>
+    <div class="flex flex-wrap gap-2 items-center">
+      <button class="chipbtn" data-amt="10000" aria-pressed="true">&#8377;10,000</button>
+      <button class="chipbtn" data-amt="25000" aria-pressed="false">&#8377;25,000</button>
+      <button class="chipbtn" data-amt="50000" aria-pressed="false">&#8377;50,000</button>
+      <button class="chipbtn" data-amt="100000" aria-pressed="false">&#8377;1 lakh</button>
+      <input id="amt" type="number" min="1" step="1000" placeholder="or type an amount"
+             class="fld" style="width:auto;flex:1;min-width:170px;padding:7px 13px;font-size:14px;border-width:1.5px" />
+    </div>
+  </div>
+
+  <p class="mt-4 text-[13px] text-meta">
+    Or try one from the episode:
+    <button class="lnk-try underline font-semibold" data-try="PAYTM">Paytm</button>,
+    <button class="lnk-try underline font-semibold" data-try="LICI">LIC</button>,
+    <button class="lnk-try underline font-semibold" data-try="MAZDOCK">Mazagon Dock</button>,
+    <button class="lnk-try underline font-semibold" data-try="SWIGGY">Swiggy</button>
+  </p>
+</section>
+
+<section id="result" class="max-w-3xl mx-auto px-6 pb-10 hidden"></section>
+
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="kicker">All 541 of them</div>
+    <h2 class="font-display font-extrabold text-[clamp(26px,3.6vw,34px)] mt-3">What the whole picture looks like</h2>
+    <p class="mt-4 text-[16px] leading-[1.6] text-ink-3">
+      Every mainboard IPO listed on the NSE between February 2016 and October 2026. Not a sample,
+      not the famous ones. All of them.
+    </p>
+    <div id="big" class="mt-7 grid sm:grid-cols-2 gap-4"></div>
+    <p class="mt-6 text-[16px] leading-[1.6]" id="bigline">&nbsp;</p>
+  </div>
+</section>
+
+<section class="max-w-3xl mx-auto px-6 py-14">
+  <div class="kicker">Reading your own number</div>
+  <h2 class="font-display font-extrabold text-[clamp(24px,3.2vw,30px)] mt-3">Three things worth knowing</h2>
+  <div class="mt-7 space-y-5 text-[15.5px] leading-[1.6] text-ink-3">
+    <div>
+      <div class="font-bold text-ink text-[16px]">Getting an allotment and buying on listing day are different investments</div>
+      <p class="mt-1">The issue price is what you paid if you were allotted shares. The listing-day close is the
+      first price everybody else could get. On a hot IPO the gap between those two is most of the gain,
+      and it goes to whoever got the allotment. That is why this page shows both.</p>
+    </div>
+    <div>
+      <div class="font-bold text-ink text-[16px]">The Nifty line is the honest comparison</div>
+      <p class="mt-1">A number on its own tells you nothing. Up 40% sounds good until the index did 60%
+      over the same months. Every figure here is matched to the Nifty over the identical window.</p>
+    </div>
+    <div>
+      <div class="font-bold text-ink text-[16px]">Prices are adjusted for bonuses and splits</div>
+      <p class="mt-1">When a company issues bonus shares the price per share drops and your holding
+      multiplies, so you have lost nothing. Raw prices make that look like a crash. These are corrected,
+      and where a correction was applied the page says so.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-ink text-cream py-14">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="font-display font-extrabold text-[clamp(24px,3.2vw,30px)] max-w-[24ch]">This is history, not advice</h2>
+    <p class="mt-4 text-[16px] leading-[1.6] text-cream/75">
+      It describes what has already happened to companies that have already listed. It says nothing
+      about any IPO that has not opened yet, and it is not a view on whether you should apply to one.
+      Picking an investment for you needs a registration we do not hold.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="ipo-tracker.html" class="inline-flex bg-thisblue text-white text-[15px] font-bold px-6 py-3 rounded-full hover:brightness-110 transition">See every IPO since 2021</a>
+      <a href="money-person.html" class="inline-flex border border-cream/30 text-cream text-[15px] font-bold px-6 py-3 rounded-full hover:bg-cream/10 transition">Ask someone registered</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[72ch]" id="src">&nbsp;</p>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-3 max-w-[72ch]">
+      For education only. Not investment advice, not a recommendation, and not a ranking. Past returns
+      tell you what happened, not what will. Investments in securities are subject to market risk.
+      Before acting on any of it, speak to a SEBI registered investment adviser.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat. Data from the NSE.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+
+var DATA=null, PICK=null, AMT=10000, hi=-1, matches=[];
+
+function rupee(n){
+  n=Math.round(n);
+  if(n>=10000000) return '₹'+(n/10000000).toFixed(2)+' cr';
+  if(n>=100000)   return '₹'+(n/100000).toFixed(2)+' lakh';
+  return '₹'+n.toLocaleString('en-IN');
+}
+function pct(v){ return (v>0?'+':'') + v.toFixed(1) + '%'; }
+function col(v){ return v>=0 ? '#1B7A50' : '#E0211E'; }
+function when(iso){
+  var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var p=iso.split('-'); return M[+p[1]-1]+' '+p[0];
+}
+
+/* ---- search ------------------------------------------------------------
+   People will type a brand, not a legal name or a ticker. Match on both, and
+   put a name that STARTS with what they typed above one that merely contains
+   it, so "LIC" finds LIC before Policybazaar. */
+function search(q){
+  q=q.trim().toLowerCase();
+  if(q.length<2) return [];
+  var starts=[], has=[];
+  DATA.ipos.forEach(function(x){
+    var n=x.n.toLowerCase(), s=x.s.toLowerCase();
+    if(n.indexOf(q)===0 || s.indexOf(q)===0) starts.push(x);
+    else if(n.indexOf(q)>=0 || s.indexOf(q)>=0) has.push(x);
+  });
+  return starts.concat(has).slice(0,8);
+}
+
+function drawSugg(){
+  var box=$('sugg');
+  if(!matches.length){ box.classList.add('hidden'); $('q').setAttribute('aria-expanded','false'); return; }
+  box.innerHTML=matches.map(function(x,i){
+    return '<button type="button" data-i="'+i+'"'+(i===hi?' data-on="1"':'')+'>'+
+      '<div class="font-bold text-[15px]">'+esc(x.n)+'</div>'+
+      '<div class="text-[12px] text-meta tab-num">'+esc(x.s)+' &middot; listed '+esc(when(x.d))+'</div>'+
+    '</button>';
+  }).join('');
+  box.classList.remove('hidden'); $('q').setAttribute('aria-expanded','true');
+}
+
+function choose(x){
+  PICK=x; matches=[]; hi=-1; drawSugg();
+  $('q').value=x.n;
+  render();
+}
+
+function render(){
+  if(!PICK){ $('result').classList.add('hidden'); return; }
+  var x=PICK, a=AMT;
+  var allot = a * (1 + x.ar/100);
+  var mkt   = a * (1 + x.mr/100);
+  var nifty = x.nf==null ? null : a * (1 + x.nf/100);
+  var beatA = x.nf!=null && x.ar > x.nf;
+
+  function panel(label, sub, val, retPct, strong){
+    return '<div class="rounded-[14px] p-5 '+(strong?'':'')+'" style="background:'+(strong?'#fff':'#FCFBF8')+';border:1px solid #E1DDD1">'+
+      '<div class="text-[13px] font-bold">'+label+'</div>'+
+      '<div class="text-[12px] text-meta mt-0.5 leading-snug">'+sub+'</div>'+
+      '<div class="tab-num font-extrabold text-[clamp(26px,5vw,34px)] mt-2.5" style="color:'+col(retPct)+'">'+rupee(val)+'</div>'+
+      '<div class="tab-num text-[13px] font-semibold mt-0.5" style="color:'+col(retPct)+'">'+pct(retPct)+'</div>'+
+    '</div>';
+  }
+
+  var verdict;
+  if(x.nf==null){
+    verdict='<p class="mt-5 text-[16px] leading-[1.6]">No matching Nifty figure for this one, so there is nothing to compare it against.</p>';
+  } else if(beatA){
+    verdict='<p class="mt-5 text-[16.5px] leading-[1.6]"><strong>'+esc(x.n)+' beat the index.</strong> '+
+      'An allottee ended with '+rupee(allot)+' against '+rupee(nifty)+' from the same money in a Nifty fund. '+
+      'That puts it in the <strong class="tab-num">'+DATA.summary.beat_nifty+'</strong> of '+DATA.summary.n+' that did.</p>';
+  } else {
+    verdict='<p class="mt-5 text-[16.5px] leading-[1.6]"><strong>The index did better.</strong> '+
+      'An allottee ended with '+rupee(allot)+'. The same money in a Nifty fund would be '+rupee(nifty)+'. '+
+      'It is one of the <strong class="tab-num">'+(DATA.summary.n-DATA.summary.beat_nifty)+'</strong> of '+DATA.summary.n+' that did not keep up.</p>';
+  }
+
+  var gap = x.ld==null ? '' :
+    '<p class="mt-4 text-[15px] leading-[1.6] text-ink-3">On its first day it '+
+    (x.ld>=0 ? 'closed <strong class="text-ink tab-num">'+pct(x.ld)+'</strong> above' : 'closed <strong class="text-ink tab-num">'+pct(Math.abs(x.ld))+'</strong> below')+
+    ' the issue price. '+
+    (x.ld>=5 ? 'That jump went to whoever was allotted shares. Anyone buying later started from the higher price, which is the second column.'
+             : 'There was no listing pop to speak of, so both routes started from a similar place.')+'</p>';
+
+  $('result').innerHTML=
+    '<div class="card p-6 md:p-8">'+
+      '<div class="flex flex-wrap items-baseline justify-between gap-3">'+
+        '<div>'+
+          '<h2 class="font-display font-extrabold text-[clamp(24px,4vw,32px)] leading-tight">'+esc(x.n)+'</h2>'+
+          '<div class="text-[13px] text-meta tab-num mt-1">'+esc(x.s)+' &middot; listed '+esc(when(x.d))+
+            ' &middot; issue ₹'+x.i.toLocaleString('en-IN')+' &middot; now ₹'+x.p.toLocaleString('en-IN')+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="mt-6 grid sm:grid-cols-3 gap-3">'+
+        panel('You were allotted','You paid the issue price', allot, x.ar, true)+
+        panel('You bought on listing day','The first price open to all', mkt, x.mr, false)+
+        (x.nf==null?'' : panel('Nifty index fund','Same money, same day', nifty, x.nf, false))+
+      '</div>'+
+      verdict + gap +
+      (x.adj ? '<p class="mt-4 text-[13px] text-meta">Adjusted for a corporate action: '+esc(x.adj)+'. Without that correction the return would look wrong.</p>' : '')+
+      '<p class="mt-5 pt-5 border-t border-warmpaper-3 text-[13px] text-meta">'+
+        'Based on '+rupee(a)+' at listing, held to 29 Oct 2026. It ignores dividends and any tax.</p>'+
+    '</div>';
+  $('result').classList.remove('hidden');
+}
+
+fetch('ipo-checker.json?v='+Date.now()).then(function(r){
+  if(!r.ok) throw new Error('no data'); return r.json();
+}).then(function(d){
+  DATA=d;
+  var s=d.summary;
+  $('src').textContent='Source: NSE past issues and historical prices. '+s.n+
+    ' mainboard IPOs listed Feb 2016 to Oct 2026, prices as of 29 October 2026, adjusted for bonus and split. '+
+    'SME listings are not included.';
+
+  var tiles=[
+    ['Closed above the issue price on day one', s.listed_up+' of '+s.n, '#1B7A50',
+     'About seven in ten. The listing pop is real, and it mostly goes to allottees.'],
+    ['Trade below their issue price today', s.below_issue+' of '+s.n, '#E0211E',
+     'About four in ten are worth less than what allottees paid.'],
+    ['Beat a Nifty index fund', s.beat_nifty+' of '+s.n, '#1A1813',
+     'Fifty two percent. Over the long run, close to a coin toss.'],
+    ['Lost half their value or more', String(s.halved), '#E0211E',
+     'Against '+s.tenbagger+' that rose more than tenfold. The spread is enormous.']
+  ];
+  $('big').innerHTML=tiles.map(function(t){
+    return '<div class="card p-5">'+
+      '<div class="tab-num font-extrabold text-[28px]" style="color:'+t[2]+'">'+t[1]+'</div>'+
+      '<div class="font-bold text-[14.5px] mt-1.5 leading-snug">'+t[0]+'</div>'+
+      '<p class="text-[13.5px] text-ink-3 mt-1.5 leading-[1.45]">'+t[3]+'</p></div>';
+  }).join('');
+
+  $('bigline').innerHTML='The typical IPO rose <strong class="tab-num">'+pct(s.median_listing_pop)+
+    '</strong> on listing day and is <strong class="tab-num">'+pct(s.median_since_issue)+
+    '</strong> since issue. Both of those are medians, so half did better and half did worse. '+
+    'The averages are dragged upward by a handful of enormous winners, which is exactly why '+
+    'the typical experience is the number worth looking at.';
+}).catch(function(){
+  $('q').placeholder='Could not load the data just now.';
+});
+
+/* ---- events ----------------------------------------------------------- */
+var t;
+$('q').addEventListener('input', function(e){
+  PICK=null; $('result').classList.add('hidden');
+  clearTimeout(t); var v=e.target.value;
+  t=setTimeout(function(){ if(!DATA) return; matches=search(v); hi=matches.length?0:-1; drawSugg(); }, 90);
+});
+$('q').addEventListener('keydown', function(e){
+  if(!matches.length) return;
+  if(e.key==='ArrowDown'){ e.preventDefault(); hi=(hi+1)%matches.length; drawSugg(); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); hi=(hi-1+matches.length)%matches.length; drawSugg(); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(hi>=0) choose(matches[hi]); }
+  else if(e.key==='Escape'){ matches=[]; drawSugg(); }
+});
+$('sugg').addEventListener('click', function(e){
+  var b=e.target.closest('[data-i]'); if(b) choose(matches[+b.getAttribute('data-i')]);
+});
+document.addEventListener('click', function(e){
+  if(!e.target.closest('#sugg') && e.target!==$('q')){ matches=[]; drawSugg(); }
+});
+document.querySelectorAll('[data-amt]').forEach(function(b){
+  b.addEventListener('click', function(){
+    AMT=+b.getAttribute('data-amt'); $('amt').value='';
+    document.querySelectorAll('[data-amt]').forEach(function(x){
+      x.setAttribute('aria-pressed', x===b); });
+    render();
+  });
+});
+$('amt').addEventListener('input', function(e){
+  var v=parseFloat(e.target.value);
+  if(v>0){ AMT=v; document.querySelectorAll('[data-amt]').forEach(function(x){ x.setAttribute('aria-pressed','false'); }); render(); }
+});
+document.querySelectorAll('[data-try]').forEach(function(b){
+  b.addEventListener('click', function(){
+    if(!DATA) return;
+    var sym=b.getAttribute('data-try');
+    var x=DATA.ipos.filter(function(y){ return y.s===sym; })[0];
+    if(x){ choose(x); $('result').scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+})();
+</script>
+</body>
+</html>

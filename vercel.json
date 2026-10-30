@@ -49,6 +49,15 @@
       ]
     },
     {
+      "source": "/ipo-checker.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/logo.png",
       "headers": [
         {
@@ -265,6 +274,16 @@
     {
       "source": "/ipo-tracker",
       "destination": "/ipo-tracker.html",
+      "permanent": false
+    },
+    {
+      "source": "/my-ipo",
+      "destination": "/ipo-checker.html",
+      "permanent": false
+    },
+    {
+      "source": "/ipo-checker",
+      "destination": "/ipo-checker.html",
       "permanent": false
     },
     {

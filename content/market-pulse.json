@@ -7,11 +7,11 @@
   "scoreboard": [
     {
       "k": "Nifty 50",
-      "v": "−13.2%",
-      "sub": "Nifty 50, 1 Jan to 28 Oct",
+      "v": "−11.8%",
+      "sub": "Nifty 50, 1 Jan to 30 Oct",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-28",
+      "asof": "2026-10-30",
       "plain": "India's 50 biggest companies",
       "means": "If you hold an index fund or most equity mutual funds, this is roughly what your year looks like."
     },
@@ -37,11 +37,11 @@
     },
     {
       "k": "Rupee per dollar",
-      "v": "−4.8%",
-      "sub": "₹95.20 per dollar, from ₹90.63 on 1 Jan",
+      "v": "−4.9%",
+      "sub": "₹95.29 per dollar, from ₹90.63 on 1 Jan",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-28",
+      "asof": "2026-10-30",
       "plain": "What your rupee is worth abroad",
       "means": "Your money buys this much less outside India than in January. Imported goods, foreign travel and overseas education all cost more."
     },
@@ -68,30 +68,30 @@
     {
       "k": "Stocks up YTD",
       "v": "32%",
-      "sub": "of 1,920 NSE companies, split adjusted",
+      "sub": "of 1,910 NSE companies, split adjusted",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-28",
+      "asof": "2026-10-30",
       "plain": "How many shares are actually up",
       "means": "Out of every 100 listed companies, this many are higher than in January. When this is low, most portfolios are doing worse than the headline index suggests."
     },
     {
       "k": "Indices up on the day",
-      "v": "53%",
-      "sub": "of 149 NSE indices, on 28 Oct",
+      "v": "35%",
+      "sub": "of 128 NSE indices, on 30 Oct",
       "tone": "down",
       "auto": true,
-      "asof": "2026-10-28",
+      "asof": "2026-10-30",
       "plain": "How broad the last day was",
       "means": "On the most recent trading day, this share of market sectors rose. A low number means the fall was everywhere, not in one corner."
     },
     {
       "k": "Nifty 50 P/E",
-      "v": "19.0",
-      "sub": "P/B 2.79 · yield 1.43%",
+      "v": "19.3",
+      "sub": "P/B 2.83 · yield 1.42%",
       "tone": "flat",
       "auto": true,
-      "asof": "2026-10-28",
+      "asof": "2026-10-30",
       "plain": "What you pay for ₹1 of profit",
       "means": "Buy the index today and you pay this many rupees for each rupee of annual profit those companies make. Higher means you are paying more for the same earnings."
     }
@@ -452,7 +452,7 @@
     }
   ],
   "sources": "First Global Monthly Action Report (Sep 2026), DSP Netra (Sep 2026), NSE, BSE, AMFI and the RBI. Rupee conversions are our calculation. Figures marked ≈ are approximate. Breadth is computed from NSE daily data. For education only, not investment advice.",
-  "auto_refreshed": "2026-10-28",
+  "auto_refreshed": "2026-10-30",
   "fx_year_open": 90.63,
   "short": {
     "heading": "The short version",
