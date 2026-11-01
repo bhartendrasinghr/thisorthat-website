@@ -700,7 +700,7 @@ function sidePanels(equity){
     (picks.length?'<div class="bg-white border border-line rounded-[18px] p-7">'+
       '<div class="kicker">Two episodes on this</div>'+
       '<div class="mt-4 grid gap-4">'+picks.map(function(e){
-        return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group block">'+
+        return '<a href=\"'+epHref(e.id)+'\" class="group block">'+
           '<div class="text-[15px] font-bold leading-snug group-hover:text-gold">'+esc(e.title)+'</div>'+
           '<div class="text-[12.5px] text-meta mt-1">'+esc(e.guest)+' · '+esc(e.published)+'</div></a>';
       }).join('')+'</div></div>':'')+
@@ -781,16 +781,16 @@ function drawEpisodes(pinId){
   var h=pinned||ALL[0];
   var E=[h].concat(ALL.filter(function(x){return x.id!==h.id;}));
   $('ephero').innerHTML=
-    '<a href="episode-detail.html?v='+esc(h.id)+'" class="block relative aspect-[16/9] md:aspect-auto md:min-h-[300px] overflow-hidden">'+
+    '<a href=\"'+epHref(h.id)+'\" class="block relative aspect-[16/9] md:aspect-auto md:min-h-[300px] overflow-hidden">'+
       '<img src="'+esc(h.thumb)+'" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />'+
     '</a>'+
     '<div class="p-9 md:p-11 flex flex-col justify-center">'+
       '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Latest · Episode '+esc(h.n)+'</div>'+
-      '<a href="episode-detail.html?v='+esc(h.id)+'" class="font-display font-extrabold text-[clamp(22px,2.9vw,30px)] leading-[1.14] tracking-[-0.02em] text-paper mt-4 hover:text-marigold transition">'+esc(h.title)+'</a>'+
+      '<a href=\"'+epHref(h.id)+'\" class="font-display font-extrabold text-[clamp(22px,2.9vw,30px)] leading-[1.14] tracking-[-0.02em] text-paper mt-4 hover:text-marigold transition">'+esc(h.title)+'</a>'+
       '<div class="text-[13px] text-paper/55 mt-5">'+esc(h.guest)+' · '+esc(h.published)+'</div>'+
     '</div>';
   $('epgrid').innerHTML=E.slice(1,4).map(function(e){
-    return '<a href="episode-detail.html?v='+esc(e.id)+'" class="group bg-white border border-line rounded-[18px] overflow-hidden hover:border-ink transition">'+
+    return '<a href=\"'+epHref(e.id)+'\" class="group bg-white border border-line rounded-[18px] overflow-hidden hover:border-ink transition">'+
       '<div class="aspect-[16/9] overflow-hidden bg-surf"><img src="'+esc(e.thumb)+'" alt="" loading="lazy" class="w-full h-full object-cover" /></div>'+
       '<div class="p-6"><div class="text-[16px] font-bold leading-snug tracking-[-0.01em] group-hover:text-gold">'+esc(e.title)+'</div>'+
       '<div class="text-[12.5px] text-meta mt-2.5">'+esc(e.guest)+' · '+esc(e.published)+'</div></div></a>';
@@ -838,5 +838,6 @@ $('arts').innerHTML=ARTS.map(function(a){
 }).join('');
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

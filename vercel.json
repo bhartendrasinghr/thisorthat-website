@@ -13,6 +13,33 @@
   ],
   "headers": [
     {
+      "source": "/brand.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/:name(.*)-mock.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/koshli/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/fund-index.json",
       "headers": [
         {
@@ -104,6 +131,11 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/ep-:slug",
+      "destination": "/ep-:slug.html",
+      "permanent": false
+    },
     {
       "source": "/about",
       "destination": "/about.html",

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://thisorthatshow.in/about.html</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/article-detail.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/articles.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/asset-allocator.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/asset-classes.html</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/brand.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/calc-buckets.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/calc-crore-ladder.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/calc-crorepati.html</loc><lastmod>2026-11-01</lastmod></url>
@@ -23,11 +21,82 @@
   <url><loc>https://thisorthatshow.in/calc-swp.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/calculators.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/category-compass.html</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-001-essentials-of-financial-planning-with-mrin-agarwal.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-002-mutual-fund-investing-insights-i-raghav-iyengar.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-003-master-your-emotions-and-build-wealth-expert-wisdom.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-004-should-you-buy-house-i.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-005-many-paths-to-financial-heaven-i-aashish-sommaiya.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-006-wealth-and-freedom-you-can-have-both-i-kirtan-shah.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-007-how-to-choose-the-right-insurance-mahavir-chopra.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-008-dont-buy-health-insurance-before-watching-thisi.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-009-women-money-and-mindset-lisa-pallavi-barbora-on.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-010-retirement-planning-in-india-what-you-need-to-know.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-011-everything-you-need-to-know-about-mutual-fund.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-012-the-truth-about-making-money-with-mutual-funds.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-013-ways-to-win-in-investing-behavioral-edge-explained.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-014-why-investors-earn-just-7-from-funds-that-deliver.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-015-how-to-build-a-wealth-ready-portfolio-vijai-mantri.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-016-how-to-become-rich-in-india-using-mutual-funds-i.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-017-how-he-built-10-crore-with-just-mutual-funds-sip.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-018-ajit-menon-investment-strategy-7-ways-to-build.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-019-step-up-sip-to-10-crore-pooja-bhinde-on-money.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-020-why-smart-investors-dont-bet-only-on-india-devina.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-021-the-rupee-keeps-falling-should-you-invest-abroad-too.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-022-1-crore-2-crore-or-5-crore-find-your-number-today.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-023-why-retirement-scares-us-and-how-to-fix-it.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-024-how-to-create-wealth-with-limited-income-smart.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-025-where-to-really-invest-in-2025-equity-debt-gold-or.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-026-stocks-vs-mutual-funds-the-truth-about-sip-and.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-027-hidden-home-buying-costs-and-smart-buying-guide.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-028-bad-returns-are-the-best-returns-vijai-mantri-on.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-029-why-mutual-funds-are-enough-for-most-investors.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-030-why-my-family-has-stayed-100-in-equity-ca-anuj-jain.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-031-whats-the-point-of-wealth-if-youre-unhealthy.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-032-how-your-pf-actually-gets-stuck-and-what-to-do.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-033-the-mindset-that-built-financial-freedom-at-40-how.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-034-how-ordinary-investors-build-extraordinary-wealth.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-035-why-investing-feels-hard-even-when-its-simple.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-036-how-fund-managers-really-think-stock-picking-sector.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-037-how-to-become-a-good-investor-why-the-best-fund.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-038-how-this-couple-built-a-10-crore-portfolio-without.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-039-should-you-buy-a-house-or-keep-renting-3-expert.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-040-why-silver-is-suddenly-expensive-war-chips-and.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-041-money-infinite-hai-time-finite-how-much-is-enough.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-042-the-biggest-retirement-risk-is-having-only-one.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-043-is-your-portfolio-ready-for-2026-metal-global.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-044-markets-are-flat-dont-panic-the-real-wealth-game-is.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-045-budget-2026-tax-changes-and-investing-playbook-old.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-046-why-and-how-of-global-investing-neil-borate.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-047-global-investing-hype-hai-ya-opportunity.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-048-5-money-lessons-from-40-financial-experts.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-049-buy-good-buy-cheap-stay-long-kalpen-parekh-dsp.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-050-nasdaq-vs-nifty-should-indians-invest-globally.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-051-gold.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-052-your-sip-isnt-the-problem-you-are.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-053-indian-markets-are-stuck-heres-what-nobody-is.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-054-the-truth-about-this-market-no-one-is-telling-you.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-055-is-the-india-story-over-groww-mfs-equity-head.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-056-sip-works-i-have-seen-it-30-years-of-mutual-fund.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-057-brazil-taiwan-korea-the-international-investing.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-058-10-000-sip-for-30-years-can-mutual-funds-create-22.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-059-dont-exit-equity-too-early-retirement-sip-and.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-060-indias-6th-market-crisis-in-27-years-aashish.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-061-nominee-vs-legal-heir-vs-will-the-truth-every.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-062-crypto-simplified-bitcoin-ethereum-stablecoins-and.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-063-can-india-really-ban-crypto-regulation-stablecoins.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-064-why-most-investors-stop-sips-at-the-worst-time.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-065-the-future-of-investing-ai-advisors-and-the-new.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-066-finding-the-best-fund-a-guide-for-indian-investors.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-067-how-to-pursue-equity-growth-without-taking.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-068-chinas-economic-shift-impact-on-global-markets-and.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-069-how-do-fund-managers-generate-alpha-quant-investing.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-070-unlisted-shares-and-pre-ipo-what-investors-get-wrong.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-071-is-70-equity-too-risky-now-debashish-bose-on.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-072-mutual-fund-returns-disappointing-heres-how-wealth.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://thisorthatshow.in/ep-073-do-ipos-actually-make-money-i-checked-all-541-2016.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/episodes.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/feed.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/funds.html</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/guest-detail.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/guests.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/ipo-checker.html</loc><lastmod>2026-11-01</lastmod></url>
@@ -41,77 +110,4 @@
   <url><loc>https://thisorthatshow.in/understanding-mutual-funds.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/ways-to-invest-in-equity.html</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://thisorthatshow.in/wealth-levers.html</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=_kvwKOD5cjg</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=vB5XU4yRYSs</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=lUDOMLKgSF0</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=Ovln0QK254I</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=pY0lhj6OCNw</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=YApFoPv4ZuM</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=LH_p3Qfvejk</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=4sG6i2dmFCg</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=ykY1EPd_egk</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=oaiRSZnKaM0</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=XVdqTLff-YY</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=IelwvNJNG3c</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=L0lmOWVPGTE</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=tbQBKyeGydU</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=Npd0E9rGmmg</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=GFtYcvEftNQ</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=sjjwPzGaF0I</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=Bnv2OOb5irs</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=qR1CZ2dWr5Q</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=C8lNnLi2Ppk</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=vIL33wnD5lk</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=IbD02i7Xvys</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=6t5iaVbTb6U</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=3-nQQHiUBdo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=ax-QZl75dbA</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=63j2xg2IGUU</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=ldoFnNk6Z2g</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=8jqbn8N1zeY</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=p-fDdN8Tm6w</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=an4dvf0llMM</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=nJkul5ypLTo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=dkQ9JW-Py9A</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=bah0QU9rHH8</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=rO_wCmULjyM</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=0YwE4R-qPqA</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=9SvVl5FALK4</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=zw_R7UEBvIQ</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=LULE5jPzlo0</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=nT_TwhuIEPo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=QApks7nfIYI</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=seqzo4v-mlE</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=0zxhAUjt-38</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=eQIdaQ9ml58</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=pGdux5kFP3U</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=YOwd-k4VGPM</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=djx43Km1TSo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=7RURrUgKXig</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=6H6GsUjCWfE</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=ejC8nevgQb0</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=7YdiFShGRRQ</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=C966CXKS_tU</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=jCRb7WpH6h4</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=o1_3k5EkzZg</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=baM9f9oeNEc</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=HX4Ln_yjQBc</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=ukI6xDsrjyI</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=ch96iqz4wj8</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=Fy5Wzb40QhQ</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=oJ0kHSqJaqc</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=Q7UlCPypYlo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=OlrHz1Og_kY</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=_pO65w9FnTo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=3KvDSkQu-IY</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=07c7HDPBUBE</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=jg9yRvRDqW0</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=LJBgwAlx_MM</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=WhrfDxA1d7A</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=y467zmb9coo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=qCMA_zCb-38</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=Ms_2WqYOIsY</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=U9ZrWEL-Jqo</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=2IFKptd2Qyw</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://thisorthatshow.in/episode-detail.html?v=YH2ZegF1ewk</loc><lastmod>2026-11-01</lastmod></url>
 </urlset>

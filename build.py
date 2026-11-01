@@ -274,16 +274,14 @@ def build_sitemap():
     """Generate sitemap.xml (core pages + every episode URL) and robots.txt."""
     import re as _re, json as _json, datetime as _dt
     site = 'https://thisorthatshow.in'
-    skip = {'404.html', 'admin'}
+    # episode-detail.html is the shell behind the real episode pages and
+    # redirects to them, so it is not a URL to offer. brand.html is the
+    # internal brand guide; it is served noindex and does not belong here.
+    skip = {'404.html', 'admin', 'brand.html', 'episode-detail.html',
+            'article-detail.html', 'guest-detail.html'}
     core = sorted(p.name for p in ROOT.glob('*.html')
                   if p.name not in skip and not p.name.endswith('-mock.html'))
     urls = [f'{site}/' if p == 'index.html' else f'{site}/{p}' for p in core]
-    eps_path = ROOT / 'episodes.js'
-    if eps_path.exists():
-        m = _re.search(r'window\.EPISODES\s*=\s*(\[.*?\]);', eps_path.read_text(encoding='utf-8'), _re.S)
-        if m:
-            for e in _json.loads(m.group(1)):
-                urls.append(f'{site}/episode-detail.html?v={e["id"]}')
     today = _dt.date.today().isoformat()
     entries = '\n'.join(
         f'  <url><loc>{u.replace("&", "&amp;")}</loc><lastmod>{today}</lastmod></url>' for u in urls)
@@ -306,7 +304,9 @@ def check_redirects():
     cfg = _json.loads(cfg_path.read_text(encoding='utf-8'))
     have = {r['source'].lstrip('/') for r in cfg.get('redirects', [])}
     # mocks are noindex drafts and are deliberately not given a pretty URL
-    skip = {'404'} | {p.stem for p in ROOT.glob('*-mock.html')}
+    # Episode pages are covered by the single /ep-:slug wildcard rule.
+    skip = ({'404'} | {p.stem for p in ROOT.glob('*-mock.html')}
+            | {p.stem for p in ROOT.glob('ep-[0-9][0-9][0-9]-*.html')})
     missing = sorted(p.stem for p in ROOT.glob('*.html') if p.stem not in skip and p.stem not in have)
     if missing:
         print('  ⚠ No extensionless redirect for: ' + ', '.join(missing))
@@ -314,6 +314,47 @@ def check_redirects():
     else:
         print(f'  All {len(have)} page redirects present')
 
+
+
+# ─── Head tags every page needs ──────────────────────────────────────────
+# Two things were being added by hand and so were missing from most pages:
+# a canonical URL (34 of 46 had none) and the analytics tag (no page had one,
+# which meant nothing about this site was measured at all). Both are
+# mechanical, so neither should be anybody's job to remember.
+ANALYTICS_TAG = '<script defer src="/_vercel/insights/script.js"></script>'
+
+def sync_head_tags():
+    import re as _re
+    site = 'https://thisorthatshow.in'
+    # Shells and drafts: a canonical pointing at a page that renders nothing
+    # useful is worse than none. episode-detail.html sets its own in JS, to
+    # the real episode page it redirects to.
+    no_canonical = {'404.html', 'episode-detail.html', 'article-detail.html',
+                    'guest-detail.html', 'brand.html'}
+    added_c = added_a = 0
+    # brand.html is the internal brand guide, served noindex: it is not part
+    # of the public site and is 3 MB, so it stays out of this entirely.
+    for f in sorted(ROOT.glob('*.html')):
+        if f.name.endswith('-mock.html') or f.name == 'brand.html':
+            continue
+        h = f.read_text(encoding='utf-8')
+        before = h
+
+        if 'rel="canonical"' not in h and f.name not in no_canonical:
+            url = f'{site}/' if f.name == 'index.html' else f'{site}/{f.name}'
+            m = _re.search(r'</title>', h)
+            if m:
+                h = (h[:m.end()] + f'\n<link rel="canonical" href="{url}" />'
+                     + h[m.end():])
+                added_c += 1
+
+        if '_vercel/insights' not in h and '</body>' in h:
+            h = h.replace('</body>', f'{ANALYTICS_TAG}\n</body>', 1)
+            added_a += 1
+
+        if h != before:
+            f.write_text(h, encoding='utf-8')
+    print(f'  {added_c} canonical tag(s) added, {added_a} analytics tag(s) added')
 
 
 # ─── Make the Episode Overrides screen readable ──────────────────────────
@@ -492,6 +533,21 @@ def main():
 
     print('\n→ Syncing the menu across pages...')
     sync_nav()
+
+    print('\n→ Checking canonical + analytics tags...')
+    sync_head_tags()
+
+    # One real HTML file per episode, with its title, description and schema
+    # in the markup. Everything that shares a link reads the HTML and nothing
+    # else, so this is what makes an episode shareable at all.
+    print('\n→ Pre-rendering the episode pages...')
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location('eppages', ROOT / 'build' / 'episode_pages.py')
+        _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.main()
+    except Exception as _e:
+        print(f'  Episode page step FAILED: {_e}')
+        print('  The committed ep-*.html pages stand; new episodes have no page yet.')
 
     print('→ Generating sitemap + robots...')
     build_sitemap()

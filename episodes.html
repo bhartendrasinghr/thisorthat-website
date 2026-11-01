@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>All Episodes, ThisOrThat with Bhartendra</title>
+<link rel="canonical" href="https://thisorthatshow.in/episodes.html" />
 <meta name="description" content="Every episode of This or That with Bhartendra: fund managers, CXOs and financial experts on the money decisions India actually faces." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ThisOrThat with Bhartendra" />
@@ -245,7 +246,7 @@ const render = () => {
     grid.innerHTML = list.map((ep, i) => {
       const guestLabel = (ep.guest || '').toLowerCase().includes('solo') ? 'Solo episode' : ep.guest;
       return `
-      <a href="episode-detail.html?v=${ep.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+      <a href="${epHref(ep.id)}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
         <div class="aspect-video relative overflow-hidden bg-navy-ink">
           <img src="${ep.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
           <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(ep.n).padStart(3,'0')}</div>
@@ -324,5 +325,6 @@ render();
   });
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

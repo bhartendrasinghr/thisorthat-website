@@ -309,7 +309,7 @@ Promise.all([
     `;
   } else {
     epsGrid.innerHTML = guestEps.map(e => `
-      <a href="episode-detail.html?v=${e.id}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
+      <a href="${epHref(e.id)}" class="lift block bg-white rounded-2xl overflow-hidden border border-navy/10">
         <div class="aspect-video relative overflow-hidden bg-navy-ink">
           <img src="${e.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
           <div class="absolute top-3 left-3 bg-navy-ink/85 text-cream text-[11px] uppercase tracking-widest px-2 py-1 rounded">Ep ${String(e.n).padStart(3,'0')}</div>
@@ -378,5 +378,6 @@ Promise.all([
   });
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

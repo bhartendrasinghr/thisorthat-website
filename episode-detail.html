@@ -246,8 +246,22 @@
 
 <script src="episodes.js"></script>
 <script>
+// Which episode. A pre-rendered page says so in window.EPISODE_ID; the old
+// shell reads it off ?v=. Nothing says it, so this is the bare shell: show the
+// latest, which is what it has always done.
 const params = new URLSearchParams(window.location.search);
-const videoId = params.get('v');
+const videoId = params.get('v') || window.EPISODE_ID || null;
+
+// An episode now has one real page of its own, with its title and description
+// in the HTML. Send ?v= links there so a shared link and a crawler both land
+// on the page that can actually describe itself.
+if (!window.EPISODE_ID && params.get('v') && typeof window.epHref === 'function') {
+  const target = window.epHref(params.get('v'));
+  if (target.slice(0, 18) !== 'episode-detail.htm') {
+    window.location.replace(target + window.location.hash);
+  }
+}
+
 const ep = videoId ? window.EPISODES.find(e => e.id === videoId) : window.EPISODES[0];
 if (!ep) { document.body.innerHTML = '<div style="padding:40px;font-family:sans-serif">Episode not found</div>'; throw new Error(); }
 
@@ -318,7 +332,7 @@ const sameCat = window.EPISODES.filter(e => e.cat === ep.cat && e.id !== ep.id);
 const others = window.EPISODES.filter(e => e.cat !== ep.cat && e.id !== ep.id);
 const related = sameCat.concat(others).slice(0, 10);
 document.getElementById('related').innerHTML = related.map(e => `
-  <a href="episode-detail.html?v=${e.id}" class="ep lift w-72 group block">
+  <a href="${epHref(e.id)}" class="ep lift w-72 group block">
     <div class="relative rounded-2xl h-40 overflow-hidden bg-paper">
       <img src="${e.thumb}" alt="${e.title.replace(/"/g,'&quot;')}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       <div class="absolute inset-0 flex items-center justify-center tile-play"><span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-navy-ink">&#9654;</span></div>
@@ -400,7 +414,9 @@ function richBody(c) {
 }
 
 const setAttr = (id, attr, val) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, val); };
-const PAGE_URL = `https://thisorthatshow.in/episode-detail.html?v=${ep.id}`;
+// The episode's own page is the canonical one, so that is what the canonical
+// tag, og:url and the schema all point at, whichever URL is being viewed.
+const PAGE_URL = `https://thisorthatshow.in/${typeof window.epHref === 'function' ? window.epHref(ep.id) : `episode-detail.html?v=${ep.id}`}`;
 const OG_IMG = `https://i.ytimg.com/vi/${ep.id}/maxresdefault.jpg`;
 
 function applySeo(c) {
@@ -503,5 +519,6 @@ document.getElementById('share-btn').addEventListener('click', async () => {
   });
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
