@@ -2,7 +2,7 @@
   "edition": "September 2026",
   "updated": "2026-11-01",
   "title": "Where India's money is going",
-  "intro": "Every month the fund industry publishes what the country actually did with its money: what it bought, what it sold, which fund houses grew. Most of this page reads itself off those filings. The sentences are ours.",
+  "intro": "Every month the fund industry publishes what the country actually did with its money: what it bought, what it sold, which fund houses grew. Here it is, without the jargon.",
   "take": {
     "asof": "2026-11-01",
     "heading": "What to make of it",
@@ -690,21 +690,17 @@
   ],
   "sources": [
     {
-      "k": "AMFI monthly report (the spreadsheet every figure here is read from)",
+      "k": "AMFI monthly report",
       "url": "https://www.amfiindia.com/research-information/amfi-monthly"
     },
     {
-      "k": "AMFI monthly note, September 2026",
-      "url": "https://www.amfiindia.com/uploads/AMFI_Monthly_Note_September2026_554f6604b6.pdf"
-    },
-    {
-      "k": "AMFI quarterly average AUM, for the fund house table",
+      "k": "AMFI quarterly average AUM",
       "url": "https://www.amfiindia.com/research-information/amfi-data"
     },
     {
-      "k": "NSE indices archive, for the Nifty 50",
+      "k": "NSE",
       "url": "https://www.nseindia.com/"
     }
   ],
-  "next_update": "October's figures land around 10 November, and this page picks them up on its own within a day."
+  "next_update": "October's figures land around 10 November."
 }
