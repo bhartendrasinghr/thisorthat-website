@@ -162,9 +162,11 @@
     btn.addEventListener('click', function () { share(btn, 'Share'); });
 
     var labelOut = bar.querySelector('.tool-bar-label');
+    var syncers = [];
     function sync() {
       valueEl.textContent = (head.textContent || '').trim();
       if (labelEl) labelOut.textContent = labelEl.textContent.trim();
+      for (var i = 0; i < syncers.length; i++) syncers[i]();
     }
     sync();
     var opts = { childList: true, characterData: true, subtree: true };
@@ -173,15 +175,29 @@
 
     // Show it only while the real answer is off screen. A bar repeating a
     // number the reader is already looking at is just clutter.
-    if ('IntersectionObserver' in window) {
-      // The viewport minus the bar itself: the moment any of the real answer
-      // clears the bar, the bar is redundant and goes away.
-      new IntersectionObserver(function (entries) {
-        bar.setAttribute('data-show', entries[0].isIntersecting ? '0' : '1');
-      }, { rootMargin: '0px 0px -72px 0px' }).observe(head);
-    } else {
-      bar.setAttribute('data-show', '1');
+    //
+    // This was an IntersectionObserver first, which was a mistake: the bar's
+    // whole visibility hung on a callback, so anywhere the callback is
+    // throttled or never delivered the bar silently never appears. Measuring
+    // on scroll is a handful of reads a second against one element, costs
+    // nothing next to being wrong, and has a correct answer from the first
+    // frame rather than from whenever the observer gets round to it.
+    function update() {
+      var r = head.getBoundingClientRect();
+      // Clear of the bar itself at the bottom, and not scrolled off the top.
+      var showing = r.top < (window.innerHeight - 72) && r.bottom > 0;
+      bar.setAttribute('data-show', showing ? '0' : '1');
     }
+    var queued = false;
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { update(); queued = false; });
+    }
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    syncers.push(update);   // the answer changing can change its height too
   }
 
   // ── wire up ─────────────────────────────────────────────────────────────
