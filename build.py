@@ -321,7 +321,21 @@ def check_redirects():
 # a canonical URL (34 of 46 had none) and the analytics tag (no page had one,
 # which meant nothing about this site was measured at all). Both are
 # mechanical, so neither should be anybody's job to remember.
-ANALYTICS_TAG = '<script defer src="/_vercel/insights/script.js"></script>'
+ANALYTICS_TAG = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDF1DKH66W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QDF1DKH66W');
+</script>"""
+
+# What was here before. Vercel Web Analytics was never switched on in the
+# project, so this tag only ever 404'd, on every page load. Left in place it
+# would be a dead request next to a live one.
+OLD_ANALYTICS_TAG = '<script defer src="/_vercel/insights/script.js"></script>'
+
 
 def sync_head_tags():
     import re as _re
@@ -348,9 +362,20 @@ def sync_head_tags():
                      + h[m.end():])
                 added_c += 1
 
-        if '_vercel/insights' not in h and '</body>' in h:
-            h = h.replace('</body>', f'{ANALYTICS_TAG}\n</body>', 1)
-            added_a += 1
+        # Migrate: the Vercel tag never had anything behind it.
+        if OLD_ANALYTICS_TAG in h:
+            h = h.replace(OLD_ANALYTICS_TAG + '\n', '').replace(OLD_ANALYTICS_TAG, '')
+        # Google asks for the tag as high in <head> as it will go, and exactly
+        # once. Charset has to stay inside the first 1024 bytes and viewport
+        # belongs beside it, so the tag goes immediately after those two and
+        # ahead of everything else: title, fonts, Tailwind, the lot.
+        if 'G-QDF1DKH66W' not in h:
+            anchor = _re.search(
+                r'<head[^>]*>\s*(?:<meta[^>]*charset[^>]*>\s*)?'
+                r'(?:<meta[^>]*name="viewport"[^>]*>\s*)?', h, _re.I)
+            if anchor:
+                h = h[:anchor.end()] + ANALYTICS_TAG + '\n' + h[anchor.end():]
+                added_a += 1
 
         if h != before:
             f.write_text(h, encoding='utf-8')
@@ -464,9 +489,7 @@ def sync_newsletter():
         if OLD_CTA in h:
             h = h.replace(OLD_CTA, SUBSCRIBE_FORM)
         if 'nl-form' in h and 'nl-submit' in h and SUBSCRIBE_JS not in h:
-            if ANALYTICS_TAG in h:
-                h = h.replace(ANALYTICS_TAG, SUBSCRIBE_JS + '\n' + ANALYTICS_TAG, 1)
-            elif '</body>' in h:
+            if '</body>' in h:
                 h = h.replace('</body>', SUBSCRIBE_JS + '\n</body>', 1)
         if h != before:
             f.write_text(h, encoding='utf-8')
