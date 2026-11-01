@@ -609,6 +609,120 @@ def sync_fonts():
     print(f'  {changed} page(s) now share one fonts URL')
 
 
+# ─── Structured data, on more than two pages ─────────────────────────────
+# Two of forty-six pages carried any. A podcast with 74 episodes and
+# seventeen free tools was telling search engines nothing about what it is,
+# which is the difference between a blue link and a result with the tool's
+# name, rating-free "Free" badge and breadcrumb trail attached.
+#
+# Episode pages build their own richer graph in build/episode_pages.py and
+# are left alone here. Everything else gets: the publisher, a breadcrumb,
+# and, for a calculator, a WebApplication describing what it does.
+SCHEMA_MARK = 'id="site-schema"'
+
+PUBLISHER = {
+    '@type': 'Organization',
+    '@id': 'https://thisorthatshow.in/#org',
+    'name': 'This or That with Bhartendra',
+    'url': 'https://thisorthatshow.in',
+    'logo': {'@type': 'ImageObject', 'url': 'https://thisorthatshow.in/logo.png'},
+    'sameAs': ['https://www.youtube.com/@ThisOrThatPodcastIndia',
+               'https://instagram.com/officialthisorthat'],
+}
+
+# section label -> the hub it sits under, for the breadcrumb middle step
+SECTION = {
+    'calc-': ('Plan', 'calculators.html'),
+    'asset-allocator': ('Plan', 'calculators.html'),
+    'money-person': ('Plan', 'calculators.html'),
+    'calculators': (None, None),
+    'episodes': (None, None),
+    'guests': (None, None),
+    'articles': (None, None),
+    'market-pulse': (None, None),
+    'mf-pulse': ('Pulse', 'market-pulse.html'),
+}
+
+# Pages that are tools rather than reading: these get WebApplication.
+TOOL_PREFIXES = ('calc-',)
+TOOL_EXTRA = {'asset-allocator.html', 'money-person.html', 'ipo-checker.html',
+              'funds.html', 'category-compass.html'}
+
+
+def sync_schema():
+    import re as _re, json as _json
+    site = 'https://thisorthatshow.in'
+    skip = {'brand.html', '404.html', 'episode-detail.html'}
+    n = 0
+    for f in sorted(ROOT.glob('*.html')):
+        if (f.name in skip or f.name.endswith('-mock.html')
+                or _re.match(r'^ep-\d{3}-', f.name)):
+            continue
+        h = f.read_text(encoding='utf-8')
+        if SCHEMA_MARK in h:
+            continue
+
+        tm = _re.search(r'<title>(.*?)</title>', h, _re.S)
+        dm = _re.search(r'<meta name="description"[^>]*content="([^"]*)"', h)
+        title = (tm.group(1).strip() if tm else f.stem).replace('&amp;', '&')
+        desc = (dm.group(1).strip() if dm else '')
+        url = f'{site}/' if f.name == 'index.html' else f'{site}/{f.name}'
+
+        graph = [PUBLISHER]
+
+        if f.name == 'index.html':
+            graph.append({
+                '@type': 'WebSite', '@id': f'{site}/#website', 'url': site,
+                'name': 'This or That with Bhartendra',
+                'description': desc,
+                'inLanguage': 'en-IN',
+                'publisher': {'@id': f'{site}/#org'},
+            })
+        else:
+            crumbs = [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': site}]
+            label, hub = (None, None)
+            for pre, v in SECTION.items():
+                if f.name.startswith(pre):
+                    label, hub = v
+                    break
+            if label and hub and hub != f.name:
+                crumbs.append({'@type': 'ListItem', 'position': 2,
+                               'name': label, 'item': f'{site}/{hub}'})
+            # The page's own name, without the brand tail the <title> carries.
+            own = _re.split(r'\s*[,|·]\s*ThisOrThat', title)[0].strip() or title
+            crumbs.append({'@type': 'ListItem', 'position': len(crumbs) + 1,
+                           'name': own, 'item': url})
+            graph.append({'@type': 'BreadcrumbList', 'itemListElement': crumbs})
+
+            is_tool = f.name.startswith(TOOL_PREFIXES) or f.name in TOOL_EXTRA
+            if is_tool:
+                graph.append({
+                    '@type': 'WebApplication',
+                    'name': own,
+                    'url': url,
+                    'description': desc,
+                    'applicationCategory': 'FinanceApplication',
+                    'operatingSystem': 'Any',
+                    'browserRequirements': 'Requires JavaScript',
+                    'inLanguage': 'en-IN',
+                    'isAccessibleForFree': True,
+                    # Free and no account, which is the whole pitch of these.
+                    'offers': {'@type': 'Offer', 'price': '0',
+                               'priceCurrency': 'INR'},
+                    'publisher': {'@id': f'{site}/#org'},
+                })
+
+        blob = _json.dumps({'@context': 'https://schema.org', '@graph': graph},
+                           ensure_ascii=False, separators=(',', ':'))
+        blob = blob.replace('</', '<\\/')          # never close the tag early
+        tag = f'<script type="application/ld+json" {SCHEMA_MARK}>{blob}</script>'
+        if '</head>' not in h:
+            continue
+        f.write_text(h.replace('</head>', tag + '\n</head>', 1), encoding='utf-8')
+        n += 1
+    print(f'  {n} page(s) given structured data')
+
+
 # ─── Make the Episode Overrides screen readable ──────────────────────────
 # It listed rows as bare 11-character video IDs, which nobody can recognise.
 # Every episode now gets a row, labelled and ordered newest first, so the
@@ -788,6 +902,9 @@ def main():
 
     print('\n→ Checking canonical + analytics tags...')
     sync_head_tags()
+
+    print('\n→ Adding structured data...')
+    sync_schema()
 
     print('\n→ Moving pages off the Tailwind CDN...')
     sync_tailwind()

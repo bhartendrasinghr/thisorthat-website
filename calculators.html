@@ -36,6 +36,7 @@
   .lift:hover { transform: translateY(-2px); }
 </style>
 <link rel="stylesheet" href="/tw.css" />
+<script type="application/ld+json" id="site-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thisorthatshow.in/#org","name":"This or That with Bhartendra","url":"https://thisorthatshow.in","logo":{"@type":"ImageObject","url":"https://thisorthatshow.in/logo.png"},"sameAs":["https://www.youtube.com/@ThisOrThatPodcastIndia","https://instagram.com/officialthisorthat"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://thisorthatshow.in"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://thisorthatshow.in/calculators.html"}]}]}</script>
 </head>
 <body class="antialiased">
 
@@ -78,6 +79,106 @@
     <p class="mt-6 text-cream/70 text-lg max-w-2xl">A lot of online calculators tell you what you want to hear. Ours give you the real number, then walk you through what to do with it. No signup, no email, no upsell. Just honest maths, on your side.</p>
   </div>
 </section>
+
+<!-- CHOOSER -->
+<!-- Seventeen tools presented as one long scroll of equally weighted cards
+     is a list, not a way in: the reader has to know the name of the thing
+     before the page helps. Six questions in the reader's own words, each
+     answering with the two or three tools that actually fit. -->
+<section class="pt-12 pb-2 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-serif text-2xl md:text-3xl font-bold text-navy-ink">What are you trying to work out?</h2>
+    <p class="mt-2 text-navy-ink/65 text-[15px]">Pick the one that sounds like you. Or scroll, everything is below.</p>
+
+    <div id="intent-chips" class="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="What are you trying to work out"></div>
+
+    <div id="intent-answer" class="mt-5 hidden" role="region" aria-live="polite"></div>
+  </div>
+</section>
+
+<script>
+// Each question answers with the tools that genuinely fit it, in the order
+// someone should try them. Names match what the cards below call them, so
+// the chooser and the list never disagree.
+(function () {
+  var INTENTS = [
+    { q: 'Am I on track?', tools: [
+      ['calc-plan.html', 'Your full financial plan', 'Every goal in one honest picture'],
+      ['calc-retirement.html', 'Real Retirement', 'The corpus you actually need'],
+      ['calc-goal.html', 'Goal Planner', 'Start with the dream, work back'] ] },
+    { q: "I'm starting a SIP", tools: [
+      ['calc-sip.html', 'Honest SIP', 'And what starting 5 years sooner was worth'],
+      ['calc-sip-reality.html', 'The SIP Reality Check', 'What the number really buys'],
+      ['calc-crorepati.html', 'Become a Crorepati', 'When the first crore arrives'] ] },
+    { q: 'Should I buy a house?', tools: [
+      ['calc-rentbuy.html', 'Rent vs Buy', 'Stamp duty, society fees, opportunity cost'],
+      ['calc-dreamhome.html', 'Dream Home Plan', 'What you can actually carry'],
+      ['calc-prepay.html', 'Home Loan Prepayment', 'What prepaying really saves'] ] },
+    { q: "I'm near retirement", tools: [
+      ['calc-buckets.html', 'Three Buckets Planner', 'Split the corpus by when you spend it'],
+      ['calc-swp.html', 'Systematic Withdrawal', 'How much you can pull out, safely'],
+      ['calc-retirement.html', 'Real Retirement', 'Inflation-adjusted, lifestyle-honest'] ] },
+    { q: 'Which fund do I pick?', tools: [
+      ['category-compass.html', 'Category Compass', 'Which category, right now'],
+      ['funds.html', 'Look up a fund', 'Every fund, checked against AMFI'],
+      ['calc-mf-portfolio.html', 'Equity MF Portfolio Builder', 'What your mix really holds'] ] },
+    { q: 'I just want to understand something', tools: [
+      ['understanding-mutual-funds.html', 'Understanding your mutual funds', 'All 42 SEBI categories, in plain language'],
+      ['ways-to-invest-in-equity.html', 'Ways to invest in equity', 'All 26 routes, and the catch on each'],
+      ['wealth-levers.html', 'The three levers of wealth', 'Only one of them is a superpower'] ] }
+  ];
+
+  var chips = document.getElementById('intent-chips');
+  var answer = document.getElementById('intent-answer');
+  if (!chips || !answer) return;
+
+  var esc = function (s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  };
+
+  INTENTS.forEach(function (it, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', 'false');
+    b.setAttribute('aria-controls', 'intent-answer');
+    b.className = 'intent-chip min-h-[44px] px-4 py-2.5 rounded-full border-[1.5px] ' +
+      'border-navy-ink/20 bg-white text-navy-ink text-[14px] font-semibold ' +
+      'hover:border-navy-ink transition';
+    b.textContent = it.q;
+    b.addEventListener('click', function () { pick(i); });
+    chips.appendChild(b);
+  });
+
+  function pick(i) {
+    var all = chips.querySelectorAll('.intent-chip');
+    for (var k = 0; k < all.length; k++) {
+      var on = k === i;
+      all[k].setAttribute('aria-selected', on ? 'true' : 'false');
+      all[k].className = all[k].className.replace(/ bg-\S+| text-\S+| border-navy-ink\/20| border-navy-ink(?!\/)/g, '');
+      all[k].className += on
+        ? ' bg-navy-ink text-cream border-navy-ink'
+        : ' bg-white text-navy-ink border-navy-ink/20';
+    }
+    var t = INTENTS[i].tools;
+    answer.innerHTML =
+      '<div class="grid grid-cols-1 md:grid-cols-3 gap-4">' +
+      t.map(function (x, n) {
+        return '<a href="' + esc(x[0]) + '" class="lift block bg-white rounded-2xl ' +
+          'border-[1.5px] ' + (n === 0 ? 'border-navy-ink' : 'border-navy-ink/15') +
+          ' p-5 hover:border-navy-ink transition">' +
+          (n === 0 ? '<div class="text-[10.5px] uppercase tracking-[0.2em] text-thisblue font-bold mb-1.5">Start here</div>' : '') +
+          '<div class="font-serif text-lg font-extrabold text-navy-ink leading-snug">' + esc(x[1]) + '</div>' +
+          '<div class="mt-1.5 text-[13.5px] text-navy-ink/65 leading-relaxed">' + esc(x[2]) + '</div>' +
+          '</a>';
+      }).join('') +
+      '</div>';
+    answer.classList.remove('hidden');
+  }
+})();
+</script>
 
 <!-- FEATURED: FULL PLAN -->
 <section class="py-12 bg-cream">
