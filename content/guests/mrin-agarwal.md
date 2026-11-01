@@ -3,7 +3,7 @@ name: Mrin Agarwal
 slug: mrin-agarwal
 category: "Financial Educator"
 role: Founder, Finsafe
-photo: /media/chatgpt-image-jun-25-2026-01_01_10-pm.png
+photo: /media/chatgpt-image-jun-25-2026-01_01_10-pm.jpg
 linkedin: https://www.linkedin.com/in/mrin-agarwal-9445425/
 twitter: ""
 website: ""

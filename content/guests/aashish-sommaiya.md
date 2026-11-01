@@ -4,7 +4,7 @@ slug: aashish-sommaiya
 category: "AMC CEO"
 role: Equity Partner, WhiteOak Capital Group; ED & CEO, WhiteOak Capital Asset
   Management Ltd
-photo: /media/chatgpt-image-jul-18-2026-11_21_00-pm.png
+photo: /media/chatgpt-image-jul-18-2026-11_21_00-pm.jpg
 linkedin: https://www.linkedin.com/in/aashishpsomaiyaa/
 twitter: ""
 website: ""

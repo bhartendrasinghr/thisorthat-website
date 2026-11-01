@@ -3,7 +3,7 @@ name: Devina Mehra
 slug: devina-mehra
 category: "Fund Manager"
 role: Founder, First Global
-photo: /media/chatgpt-image-jun-23-2026-08_45_11-pm.png
+photo: /media/chatgpt-image-jun-23-2026-08_45_11-pm.jpg
 linkedin: ""
 twitter: ""
 website: ""

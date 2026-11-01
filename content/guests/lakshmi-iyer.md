@@ -3,7 +3,7 @@ name: Lakshmi Iyer
 slug: lakshmi-iyer
 category: "Fund Manager"
 role: "Group President - Investments & CEO- Bajaj Alternates  "
-photo: /media/chatgpt-image-aug-17-2026-07_32_17-am.png
+photo: /media/chatgpt-image-aug-17-2026-07_32_17-am.jpg
 linkedin: https://www.linkedin.com/in/lakshmi-iyer-296b93/
 twitter: ""
 website: ""

@@ -551,6 +551,64 @@ def sync_tailwind():
     print(f'  {swapped} page(s) moved from the Tailwind CDN to the built tw.css')
 
 
+# ─── One fonts URL, so the cache actually works ──────────────────────────
+# There were six different Google Fonts URLs across the site, each asking
+# for a slightly different set of weights. A different URL is a different
+# cache entry, so going from the homepage to a calculator refetched the
+# stylesheet and the faces it names, roughly 140 KB that the browser already
+# had. One URL for every page means one entry, fetched once.
+#
+# It is the union of all six, verified against Google: 61 faces covering
+# Bricolage Grotesque 400/700/800, Caveat 400/600/700, Hanken Grotesk
+# 400-800 and IBM Plex Mono 400-700. Naming a family costs nothing on a page
+# that never uses it, because the browser only downloads a face when some
+# text is actually set in it.
+FONTS_URL = ('https://fonts.googleapis.com/css2'
+             '?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800'
+             '&family=Caveat:wght@400;600;700'
+             '&family=Hanken+Grotesk:wght@400;500;600;700;800'
+             '&family=IBM+Plex+Mono:wght@400;500;600;700'
+             '&display=swap')
+
+
+def sync_fonts():
+    import re as _re
+    link = f'<link href="{FONTS_URL}" rel="stylesheet" />'
+    pre = ('<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
+           '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />')
+    changed = 0
+    for f in sorted(ROOT.glob('*.html')):
+        if f.name == 'brand.html':
+            continue
+        h = f.read_text(encoding='utf-8')
+        before = h
+        # Collapse however many font <link>s a page has into exactly one.
+        links = _re.findall(
+            r'[ \t]*<link[^>]*href="https://fonts\.googleapis\.com/css2[^"]*"[^>]*>\n?', h)
+        if links:
+            h = h.replace(links[0], link + '\n', 1)
+            for extra in links[1:]:
+                h = h.replace(extra, '', 1)
+        # Both preconnects, so the handshake to gstatic starts before the CSS
+        # has even been parsed.
+        if 'fonts.gstatic.com' not in h and link in h:
+            h = h.replace(link, pre + '\n' + link, 1)
+        if h != before:
+            f.write_text(h, encoding='utf-8')
+            changed += 1
+    stragglers = set()
+    for f in ROOT.glob('*.html'):
+        if f.name == 'brand.html':
+            continue
+        for u in _re.findall(r'https://fonts\.googleapis\.com/css2\?[^"]+',
+                             f.read_text(encoding='utf-8')):
+            if u != FONTS_URL:
+                stragglers.add(u[:60])
+    if stragglers:
+        print('  WARNING: other font URLs remain: ' + '; '.join(sorted(stragglers)))
+    print(f'  {changed} page(s) now share one fonts URL')
+
+
 # ─── Make the Episode Overrides screen readable ──────────────────────────
 # It listed rows as bare 11-character video IDs, which nobody can recognise.
 # Every episode now gets a row, labelled and ordered newest first, so the
@@ -733,6 +791,9 @@ def main():
 
     print('\n→ Moving pages off the Tailwind CDN...')
     sync_tailwind()
+
+    print('\n→ Collapsing the fonts URLs into one...')
+    sync_fonts()
 
     print('\n→ Wiring the shared tool layer...')
     sync_tool_assets()
