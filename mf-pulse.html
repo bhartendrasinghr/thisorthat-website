@@ -170,6 +170,7 @@
       <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)] mt-3">Inside passive</h2>
       <p class="mt-3 text-[14px] text-meta">Net inflow for the month, in rupees crore</p>
       <div id="passive" class="mt-6"></div>
+      <div id="passiveyoy" class="mt-6"></div>
       <p class="mt-4 text-[13.5px] leading-[1.55] text-ink-3" id="passivenote">&nbsp;</p>
     </div>
   </div>
@@ -487,6 +488,19 @@ Promise.all([
 
   bars(d.passive_rows.map(function(r){ return {k:r.k, v:r.flow, label:inr(r.flow)}; }), $('passive'),
        {pos:'#0249B1', neg:'#E0211E'});
+  /* Only the rows AMFI reported separately a year ago can carry a year-on-year.
+     Saying so is better than quietly leaving the column out. */
+  var yoy = d.passive_rows.filter(function(r){ return r.aum_yoy != null; });
+  $('passiveyoy').innerHTML = yoy.length
+    ? yoy.map(function(r){
+        return '<div class="flex items-baseline justify-between gap-3 py-2 border-t border-warmpaper-3">'+
+          '<div class="text-[13.5px] font-semibold">'+esc(r.k)+' assets, on the year</div>'+
+          '<div class="tab-num text-[14px] font-bold" style="color:'+col(r.aum_yoy)+'">'+pct(r.aum_yoy)+'</div></div>';
+      }).join('') +
+      '<p class="mt-3 text-[12px] text-meta leading-[1.5]">Gold is the only one that can be compared '+
+      'with a year ago. Until August 2026 AMFI reported silver, equity and every other ETF as a '+
+      'single line, so a year-on-year for the rest would be comparing a part with a whole.</p>'
+    : '';
   $('passivenote').textContent = c.passive_note || '';
 
   /* ── equity categories ── */

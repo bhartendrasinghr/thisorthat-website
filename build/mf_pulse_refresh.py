@@ -410,10 +410,18 @@ EQUITY_CATS = [
     (r'dividend yield fund', 'Dividend yield'), (r'contra fund', 'Contra'),
     (r'elss', 'ELSS tax saver'),
 ]
+# Each passive row: where to find it now, what to call it, and where to find
+# the same thing a year ago. Only gold has an honest year-ago match. Until
+# August 2026 AMFI reported silver, equity and every other ETF as a single
+# 'Other ETFs' line, and lumped equity and debt index funds together, so a
+# year-on-year for those would be comparing a part with a whole.
 PASSIVE_ROWS = [
-    ('etf', r'equity etf', 'Equity ETF'), ('etf', r'gold etf', 'Gold ETF'),
-    ('index', r'equity funds', 'Equity index fund'), ('etf', r'silver etf', 'Silver ETF'),
-    ('etf', r'debt etf', 'Debt ETF'), ('index', r'debt funds', 'Debt index fund'),
+    ('etf', r'equity etf', 'Equity ETF', None),
+    ('etf', r'gold etf', 'Gold ETF', ('other', r'gold etf')),
+    ('index', r'equity funds', 'Equity index fund', None),
+    ('etf', r'silver etf', 'Silver ETF', None),
+    ('etf', r'debt etf', 'Debt ETF', None),
+    ('index', r'debt funds', 'Debt index fund', None),
 ]
 
 
@@ -516,14 +524,20 @@ def main():
 
     # ── passive detail ──
     rows = []
-    for which, pattern, label in PASSIVE_ROWS:
+    for which, pattern, label, old_at in PASSIVE_ROWS:
         now = _category(cur, SEG_PATTERNS[which], pattern)
         was = _category(prev, SEG_PATTERNS[which], pattern)
         if not now:
             print(f'  passive row not in the sheet: {label}')
             continue
+        yr = _category(yago, SEG_PATTERNS[which], pattern)
+        if not yr and old_at:
+            yr = _category(yago, SEG_PATTERNS[old_at[0]], old_at[1])
         rows.append({'k': label, 'flow': now.get('flow'), 'aum': now.get('aum'),
-                     'aum_prev': was.get('aum'), 'folios': now.get('folios')})
+                     'aum_prev': was.get('aum'), 'folios': now.get('folios'),
+                     'aum_yoy': pct(now.get('aum'), yr.get('aum')) if yr else None})
+        if rows[-1]['aum_yoy'] is not None:
+            print(f"  {label} assets {rows[-1]['aum_yoy']:+.1f}% on the year")
     doc['passive_rows'] = sorted(rows, key=lambda r: -(r['flow'] or 0))
 
     # ── seven months of flows ──

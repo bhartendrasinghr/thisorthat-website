@@ -192,42 +192,48 @@
    "flow": 9959.95796482001,
    "aum": 781161.50910397,
    "aum_prev": 817870.38133714,
-   "folios": 19712501.0
+   "folios": 19712501.0,
+   "aum_yoy": null
   },
   {
    "k": "Gold ETF",
    "flow": 4450.61065376,
    "aum": 186310.43770096,
    "aum_prev": 191166.07561201,
-   "folios": 12677259.0
+   "folios": 12677259.0,
+   "aum_yoy": 106.7
   },
   {
    "k": "Equity index fund",
    "flow": 2649.34300438,
    "aum": 239806.84250883,
    "aum_prev": 251237.54426641,
-   "folios": 15735616.0
+   "folios": 15735616.0,
+   "aum_yoy": null
   },
   {
    "k": "Silver ETF",
    "flow": 1974.31575071,
    "aum": 81636.34333623,
    "aum_prev": 85488.33788371,
-   "folios": 5310609.0
+   "folios": 5310609.0,
+   "aum_yoy": null
   },
   {
    "k": "Debt ETF",
    "flow": -883.941823449997,
    "aum": 93798.38249424,
    "aum_prev": 95324.09798445,
-   "folios": 1698995.0
+   "folios": 1698995.0,
+   "aum_yoy": null
   },
   {
    "k": "Debt index fund",
    "flow": -6257.82167422,
    "aum": 80576.73864291,
    "aum_prev": 93560.19954384,
-   "folios": 193169.0
+   "folios": 193169.0,
+   "aum_yoy": null
   }
  ],
  "months": [
