@@ -203,7 +203,16 @@
   <div class="max-w-3xl mx-auto px-6 text-center">
     <div class="text-xs uppercase tracking-[0.3em] font-semibold opacity-70">Slow Thought, weekly</div>
     <h2 class="font-serif text-3xl md:text-4xl font-bold mt-3">One honest idea. Every week.</h2>
-    <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="mt-6 inline-flex bg-navy text-cream px-7 py-3 rounded-full font-semibold hover:bg-navy-ink transition">Subscribe on YouTube &rarr;</a>
+    <form class="nl-form mt-6 flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto" novalidate>
+      <label class="sr-only" for="nl-email">Your email address</label>
+      <input id="nl-email" name="email" type="email" required autocomplete="email"
+             placeholder="you@example.com"
+             class="flex-1 min-h-[48px] px-5 py-3 rounded-full border-2 border-ink/20 bg-warmpaper text-ink placeholder-ink/40 focus:border-ink focus:outline-none" />
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+      <button type="submit" class="nl-submit min-h-[48px] bg-navy text-cream px-7 py-3 rounded-full font-semibold hover:bg-navy-ink transition shrink-0">Send it to me</button>
+    </form>
+    <p class="nl-note mt-3 text-[13px] text-ink/70" role="status" aria-live="polite">One email a week. No spam, and you can leave whenever you like.</p>
+    <p class="mt-4 text-[13px]"><a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="underline underline-offset-4 font-semibold">Or subscribe on YouTube &rarr;</a></p>
   </div>
 </section>
 
@@ -518,6 +527,47 @@ document.getElementById('share-btn').addEventListener('click', async () => {
     }
   });
 })();
+</script>
+<script>
+// Newsletter signup. Posts with fetch and answers in place, rather than
+// navigating the reader away from whatever they were in the middle of.
+document.querySelectorAll('.nl-form').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.querySelector('input[name=email]');
+    var btn = form.querySelector('.nl-submit');
+    var note = form.parentNode.querySelector('.nl-note');
+    var say = function (m) { if (note) note.textContent = m; };
+    var value = (email.value || '').trim();
+    if (value.indexOf('@') < 1 || value.indexOf('.') < 0) {
+      say('That address looks incomplete, have another look.'); email.focus(); return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending...';
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        page: location.pathname.replace(/^\//, '').replace(/\.html$/, '') || 'home',
+        website: form.querySelector('input[name=website]').value
+      })
+    }).then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+      .then(function (d) {
+        if (d && d.ok) {
+          form.innerHTML = '<p class="font-semibold text-ink py-3">You are on the list. Look out for the first one.</p>';
+          say('');
+        } else {
+          btn.disabled = false; btn.textContent = 'Send it to me';
+          say(d && d.error === 'email'
+            ? 'That address looks incomplete, have another look.'
+            : 'That did not go through. Try again in a moment.');
+        }
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = 'Send it to me';
+        say('That did not go through. Try again in a moment.');
+      });
+  });
+});
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

@@ -56,6 +56,7 @@
   .lift:hover { transform: translateY(-2px); }
   .gauge-fill { transition: width 400ms ease, background 300ms ease; }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -205,8 +206,8 @@
           <div class="text-[11px] text-ink/60 mt-1" id="out-loan-pct">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
-          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/55 font-bold">Your actual EMI</div>
-          <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num">&#8377;<span id="out-emi">-</span></div>
+          <div class="text-[11px] uppercase tracking-[0.3em] text-ink/55 font-bold" data-tool-headline-label>Your actual EMI</div>
+          <div class="mt-2 font-display text-2xl font-extrabold text-ink tab-num" data-tool-headline>&#8377;<span id="out-emi">-</span></div>
           <div class="text-[11px] text-ink/60 mt-1" id="out-emi-note">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-5">
@@ -427,6 +428,7 @@ calc();
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

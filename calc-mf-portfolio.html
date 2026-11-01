@@ -56,6 +56,7 @@
   .lift:hover { transform: translateY(-2px); }
   .chip { transition: all 140ms ease; }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -218,9 +219,9 @@
 
       <!-- Projected corpus -->
       <div class="bg-ink text-warmpaper rounded-2xl p-7">
-        <div class="text-xs uppercase tracking-[0.3em] font-bold text-marigold">In <span id="out-hz">10</span> years, this could grow to</div>
+        <div class="text-xs uppercase tracking-[0.3em] font-bold text-marigold" data-tool-headline-label>In <span id="out-hz">10</span> years, this could grow to</div>
         <div class="flex items-end gap-3 mt-3 flex-wrap">
-          <div class="font-display text-4xl md:text-5xl font-extrabold tab-num leading-none">&#8377;<span id="out-corpus">-</span></div>
+          <div class="font-display text-4xl md:text-5xl font-extrabold tab-num leading-none" data-tool-headline>&#8377;<span id="out-corpus">-</span></div>
         </div>
         <div class="mt-4 grid grid-cols-2 gap-4">
           <div>
@@ -605,6 +606,7 @@ calc();
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

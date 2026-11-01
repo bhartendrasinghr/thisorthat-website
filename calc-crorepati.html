@@ -56,6 +56,7 @@
   .lift:hover { transform: translateY(-2px); }
   .chip { transition: all 140ms ease; }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -200,8 +201,8 @@
       <!-- ARRIVAL CARDS -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="bg-thisblue text-warmpaper rounded-2xl p-6">
-          <div class="text-[11px] uppercase tracking-[0.3em] font-bold text-marigold">Investing road</div>
-          <div class="mt-2 font-display text-3xl font-extrabold tab-num" id="out-invest-when">-</div>
+          <div class="text-[11px] uppercase tracking-[0.3em] font-bold text-marigold" data-tool-headline-label>Investing road</div>
+          <div class="mt-2 font-display text-3xl font-extrabold tab-num" id="out-invest-when" data-tool-headline>-</div>
           <div class="mt-1 text-xs text-warmpaper/75" id="out-invest-note">-</div>
         </div>
         <div class="bg-white rounded-2xl border border-navy/10 p-6">
@@ -406,6 +407,7 @@ calc();
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

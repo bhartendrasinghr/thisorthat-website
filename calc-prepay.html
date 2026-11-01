@@ -56,6 +56,7 @@
   .lift:hover { transform: translateY(-2px); }
   .chip { transition: all 140ms ease; }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -246,9 +247,9 @@
 
       <!-- Headline -->
       <div id="payoff-card" class="bg-thisblue text-warmpaper rounded-2xl p-7">
-        <div class="text-xs uppercase tracking-[0.3em] font-bold text-marigold">With your prepayment, you're debt-free in</div>
+        <div class="text-xs uppercase tracking-[0.3em] font-bold text-marigold" data-tool-headline-label>With your prepayment, you're debt-free in</div>
         <div class="flex items-end gap-4 mt-3 flex-wrap">
-          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none" id="out-payoff-time">-</div>
+          <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none" id="out-payoff-time" data-tool-headline>-</div>
         </div>
         <div class="mt-3 text-sm opacity-90" id="out-payoff-date">-</div>
       </div>
@@ -797,6 +798,7 @@ setMode('amount');
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

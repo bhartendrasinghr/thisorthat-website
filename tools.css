@@ -1,0 +1,140 @@
+/* Shared behaviour for the calculators and the allocator.
+   Loaded last in <head> so it wins ties against each page's inline <style>.
+
+   This file exists because the same CSS was being written into 39 pages by
+   hand, and had already drifted into eleven versions of itself. Anything that
+   should be true of every tool belongs here, once. */
+
+/* ── Sliders you can actually grab ────────────────────────────────────────
+   The track is 8px tall, the thumb is 32px, and the element box was 8px. On
+   a range input the element box IS the touch target, so every slider on
+   every calculator had a 8px grab zone, about 1.3mm on a phone, against the
+   24px WCAG 2.2 asks for. These are the primary input of the primary tool.
+
+   The input is now as tall as its thumb, and the visible 8px track moves
+   into ::-webkit-slider-runnable-track / ::-moz-range-track, so nothing
+   changes visually. The negative margins give the extra height back to the
+   layout, so no page reflows. */
+input[type="range"] {
+  height: 32px;
+  background: transparent;
+  border-radius: 0;
+  margin-bottom: -12px;
+  margin-top: -12px;
+}
+/* The box grows 12px above the old track position, so each slider's own
+   top margin has to give 12px back or the track rides up into its label.
+   Tailwind set that margin per page, so it is undone per class: these three
+   are every spacing used on a range input across the tools (mt-1 on 14,
+   mt-2 on 62, mt-3 on 1). A new one would show up as a slider sitting high,
+   so the list is worth checking when a tool is added. */
+input[type="range"].mt-1 { margin-top: -8px; }   /* 4px  - 12px */
+input[type="range"].mt-2 { margin-top: -4px; }   /* 8px  - 12px */
+input[type="range"].mt-3 { margin-top: 0; }      /* 12px - 12px */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #E1DDD1;
+  border-radius: 999px;
+}
+/* Centre a 32px thumb on an 8px track: (8 - 32) / 2. */
+input[type="range"]::-webkit-slider-thumb { margin-top: -12px; }
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  background: #E1DDD1;
+  border-radius: 999px;
+}
+
+/* Keyboard users need to see where they are. Only 9 of 41 pages had any
+   focus style at all, and a slider is a control people do tab to. */
+input[type="range"]:focus-visible {
+  outline: 3px solid #0249B1;
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+/* ── The answer, while you are changing the question ──────────────────────
+   On a phone the result sits a few hundred pixels below the first slider, so
+   you drag one thing and watch another thing you cannot see. This bar shows
+   the headline number whenever the real one is off screen, and gets out of
+   the way the moment it is back. Desktop never needs it. */
+#tool-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: #1A1813;
+  color: #FCFBF8;
+  border-top: 2px solid #FFC21F;
+  transform: translateY(110%);
+  transition: transform 180ms ease;
+}
+#tool-bar[data-show="1"] { transform: translateY(0); }
+#tool-bar .tool-bar-label {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(252, 251, 248, 0.55);
+  font-weight: 600;
+  line-height: 1.2;
+}
+#tool-bar .tool-bar-value {
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+  color: #FFC21F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#tool-bar .tool-bar-share {
+  margin-left: auto;
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: #FFC21F;
+  color: #1A1813;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#tool-bar .tool-bar-share:focus-visible {
+  outline: 3px solid #FCFBF8;
+  outline-offset: 2px;
+}
+@media (min-width: 768px) { #tool-bar { display: none; } }
+
+/* A page with the bar showing needs room to scroll past its own footer. */
+body.has-tool-bar { padding-bottom: 68px; }
+@media (min-width: 768px) { body.has-tool-bar { padding-bottom: 0; } }
+
+/* ── Share this result ────────────────────────────────────────────────────
+   Rendered into [data-tool-share] where a page offers a spot for it. */
+.tool-share-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 20px;
+  border: 1.5px solid rgba(26, 24, 19, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: #1A1813;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 160ms ease;
+}
+.tool-share-inline:hover { border-color: #1A1813; }
+.tool-share-inline:focus-visible { outline: 3px solid #0249B1; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #tool-bar { transition: none; }
+}

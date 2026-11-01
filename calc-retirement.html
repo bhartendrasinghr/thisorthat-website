@@ -77,6 +77,7 @@
   .editable-num:hover { border-bottom-color: rgba(2, 73, 177, 0.5); background: rgba(255, 194, 31, 0.08); }
   .editable-num:focus { outline: none; border-bottom: 1.5px solid #FFC21F; background: rgba(255, 194, 31, 0.12); }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -226,8 +227,8 @@
 
       <!-- Big number: corpus required -->
       <div class="bg-navy-ink text-cream rounded-2xl p-7">
-        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold">Corpus you need at retirement</div>
-        <div class="font-serif text-5xl md:text-6xl font-bold text-mustard mt-3 tab-num leading-none">₹<span id="out-corpus">-</span></div>
+        <div class="text-xs uppercase tracking-[0.3em] text-mustard font-semibold" data-tool-headline-label>Corpus you need at retirement</div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-mustard mt-3 tab-num leading-none" data-tool-headline>₹<span id="out-corpus">-</span></div>
         <div class="mt-3 text-sm text-cream/70" id="out-corpus-words">in <span id="out-yrs">30</span> years from today</div>
       </div>
 
@@ -626,6 +627,7 @@ calc();
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

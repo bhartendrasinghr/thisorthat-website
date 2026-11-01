@@ -357,6 +357,123 @@ def sync_head_tags():
     print(f'  {added_c} canonical tag(s) added, {added_a} analytics tag(s) added')
 
 
+# ─── The shared tool layer ───────────────────────────────────────────────
+# tools.css and tools.js carry what should be true of every calculator:
+# grabbable sliders, state in the URL, state remembered, a share button and
+# the sticky answer bar. Wiring is done here rather than by hand so a new
+# calculator cannot quietly ship without them.
+TOOL_PAGES_GLOB = ('calc-*.html', 'asset-allocator.html', 'money-person.html')
+
+def sync_tool_assets():
+    pages = []
+    for g in TOOL_PAGES_GLOB:
+        pages.extend(sorted(ROOT.glob(g)))
+    css_added = js_added = 0
+    for f in pages:
+        h = f.read_text(encoding='utf-8')
+        before = h
+        # Last in <head>, so it wins ties with the page's own inline <style>.
+        if 'tools.css' not in h and '</head>' in h:
+            h = h.replace('</head>', '<link rel="stylesheet" href="tools.css" />\n</head>', 1)
+            css_added += 1
+        # After the page's own script, which has already run its first calc().
+        if 'tools.js' not in h and ANALYTICS_TAG in h:
+            h = h.replace(ANALYTICS_TAG, '<script src="tools.js"></script>\n' + ANALYTICS_TAG, 1)
+            js_added += 1
+        elif 'tools.js' not in h and '</body>' in h:
+            h = h.replace('</body>', '<script src="tools.js"></script>\n</body>', 1)
+            js_added += 1
+        if h != before:
+            f.write_text(h, encoding='utf-8')
+    print(f'  {len(pages)} tool pages: {css_added} got tools.css, {js_added} got tools.js')
+
+
+# ─── Somewhere to put an email address ───────────────────────────────────
+# The newsletter block promised "Slow Thought, weekly. One honest idea.
+# Every week." on 78 pages and then offered a Subscribe on YouTube button
+# underneath it. The promise and the payload did not match, and there was no
+# way at all to subscribe to the thing being described: every path off this
+# site led to a platform Bhartendra does not own. This swaps the button for
+# a real form posting to /api/subscribe, and keeps YouTube as the second
+# option rather than the only one.
+OLD_CTA = ('<a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" '
+           'target="_blank" class="mt-6 inline-flex bg-navy text-cream px-7 py-3 '
+           'rounded-full font-semibold hover:bg-navy-ink transition">Subscribe on YouTube &rarr;</a>')
+
+SUBSCRIBE_FORM = """<form class="nl-form mt-6 flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto" novalidate>
+      <label class="sr-only" for="nl-email">Your email address</label>
+      <input id="nl-email" name="email" type="email" required autocomplete="email"
+             placeholder="you@example.com"
+             class="flex-1 min-h-[48px] px-5 py-3 rounded-full border-2 border-ink/20 bg-warmpaper text-ink placeholder-ink/40 focus:border-ink focus:outline-none" />
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+      <button type="submit" class="nl-submit min-h-[48px] bg-navy text-cream px-7 py-3 rounded-full font-semibold hover:bg-navy-ink transition shrink-0">Send it to me</button>
+    </form>
+    <p class="nl-note mt-3 text-[13px] text-ink/70" role="status" aria-live="polite">One email a week. No spam, and you can leave whenever you like.</p>
+    <p class="mt-4 text-[13px]"><a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="underline underline-offset-4 font-semibold">Or subscribe on YouTube &rarr;</a></p>"""
+
+SUBSCRIBE_JS = """<script>
+// Newsletter signup. Posts with fetch and answers in place, rather than
+// navigating the reader away from whatever they were in the middle of.
+document.querySelectorAll('.nl-form').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.querySelector('input[name=email]');
+    var btn = form.querySelector('.nl-submit');
+    var note = form.parentNode.querySelector('.nl-note');
+    var say = function (m) { if (note) note.textContent = m; };
+    var value = (email.value || '').trim();
+    if (value.indexOf('@') < 1 || value.indexOf('.') < 0) {
+      say('That address looks incomplete, have another look.'); email.focus(); return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending...';
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        page: location.pathname.replace(/^\\//, '').replace(/\\.html$/, '') || 'home',
+        website: form.querySelector('input[name=website]').value
+      })
+    }).then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+      .then(function (d) {
+        if (d && d.ok) {
+          form.innerHTML = '<p class="font-semibold text-ink py-3">You are on the list. Look out for the first one.</p>';
+          say('');
+        } else {
+          btn.disabled = false; btn.textContent = 'Send it to me';
+          say(d && d.error === 'email'
+            ? 'That address looks incomplete, have another look.'
+            : 'That did not go through. Try again in a moment.');
+        }
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = 'Send it to me';
+        say('That did not go through. Try again in a moment.');
+      });
+  });
+});
+</script>"""
+
+
+def sync_newsletter():
+    changed = 0
+    for f in sorted(ROOT.glob('*.html')):
+        if f.name.endswith('-mock.html'):
+            continue
+        h = f.read_text(encoding='utf-8')
+        before = h
+        if OLD_CTA in h:
+            h = h.replace(OLD_CTA, SUBSCRIBE_FORM)
+        if 'nl-form' in h and 'nl-submit' in h and SUBSCRIBE_JS not in h:
+            if ANALYTICS_TAG in h:
+                h = h.replace(ANALYTICS_TAG, SUBSCRIBE_JS + '\n' + ANALYTICS_TAG, 1)
+            elif '</body>' in h:
+                h = h.replace('</body>', SUBSCRIBE_JS + '\n</body>', 1)
+        if h != before:
+            f.write_text(h, encoding='utf-8')
+            changed += 1
+    print(f'  {changed} page(s) now offer a real signup, not only a YouTube button')
+
+
 # ─── Make the Episode Overrides screen readable ──────────────────────────
 # It listed rows as bare 11-character video IDs, which nobody can recognise.
 # Every episode now gets a row, labelled and ordered newest first, so the
@@ -536,6 +653,12 @@ def main():
 
     print('\n→ Checking canonical + analytics tags...')
     sync_head_tags()
+
+    print('\n→ Wiring the shared tool layer...')
+    sync_tool_assets()
+
+    print('\n→ Checking the newsletter signup...')
+    sync_newsletter()
 
     # One real HTML file per episode, with its title, description and schema
     # in the markup. Everything that shares a link reads the HTML and nothing

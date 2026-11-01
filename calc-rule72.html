@@ -66,6 +66,7 @@
   .double-rate-card.tone-blue  { border-color:#0249B1; background:#f0f5fc; }
   .double-rate-card.tone-toogood { border-color:#FF302D; background:#fff5f5; }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -142,9 +143,9 @@
 
     <!-- BIG OUTPUT -->
     <div id="result-card" class="mt-6 bg-ink text-warmpaper rounded-2xl p-7 md:p-9">
-      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">At <span id="out-rate">8.0</span>%, your money doubles in</div>
+      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold" data-tool-headline-label>At <span id="out-rate">8.0</span>%, your money doubles in</div>
       <div class="flex items-end gap-4 mt-3 flex-wrap">
-        <div class="font-display text-6xl md:text-8xl font-extrabold tab-num leading-none"><span id="out-years">9.0</span></div>
+        <div class="font-display text-6xl md:text-8xl font-extrabold tab-num leading-none" data-tool-headline><span id="out-years">9.0</span></div>
         <div class="text-xl opacity-70 pb-2">years</div>
       </div>
       <div class="mt-4 text-sm opacity-85" id="out-tagline">-</div>
@@ -433,6 +434,7 @@ recalc();
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

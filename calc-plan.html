@@ -74,6 +74,7 @@
     .rounded-2xl { border-radius: 8px; box-shadow: none !important; }
   }
 </style>
+<link rel="stylesheet" href="tools.css" />
 </head>
 <body class="antialiased">
 
@@ -271,9 +272,9 @@
 
     <!-- VERDICT -->
     <div id="verdict-card" class="bg-ink text-warmpaper rounded-2xl p-7">
-      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold">Step 3 · Does it fit?</div>
+      <div id="out-kicker" class="text-xs uppercase tracking-[0.3em] font-bold" data-tool-headline-label>Step 3 · Does it fit?</div>
       <div class="flex items-end gap-4 mt-3 flex-wrap">
-        <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none">₹<span id="out-total">-</span></div>
+        <div class="font-display text-5xl md:text-6xl font-extrabold tab-num leading-none" data-tool-headline>₹<span id="out-total">-</span></div>
         <div class="text-base opacity-70 pb-1">/ month, for all your goals together</div>
       </div>
       <div class="mt-3 text-sm opacity-85" id="out-status">-</div>
@@ -1303,6 +1304,7 @@ recalc();
   });
 })();
 </script>
+<script src="tools.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
