@@ -29,26 +29,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: { colors: {
-        goldink: '#8F6600', gainink: '#1B7A50',
-    marigold: { DEFAULT:'#FFC21F', 50:'#FFF7DE', 600:'#D99B00' },
-    thisblue: { DEFAULT:'#0249B1', 700:'#013580' },
-    thatred:  '#FF302D',
-    ink:      { DEFAULT:'#1A1813', 3:'#57534A' },
-    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE' },
-    navy:'#0249B1', mustard:{ DEFAULT:'#FFC21F', deep:'#D99B00' }, alert:'#FF302D', cream:'#FCFBF8', paper:'#F6F4EE',
-    'navy-ink':'#1A1813'
-  }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
-    fontFamily:{
-    sans:['Hanken Grotesk','system-ui','sans-serif'],
-    serif:['Bricolage Grotesque','Georgia','serif'],
-    display:['Bricolage Grotesque','Georgia','serif'],
-    mono:['IBM Plex Mono','ui-monospace','monospace'],
-    script:['Caveat','cursive']
-  } } } };
-</script>
 <style>
   body { font-family:'Hanken Grotesk',sans-serif; background:#FCFBF8; color:#1A1813; }
   .lift { transition: transform 200ms ease, box-shadow 200ms ease; }
@@ -60,6 +40,7 @@
   .chip-idle { background:white; color:#1A1813; border:1px solid rgba(2,73,177,0.15); }
   .chip-idle:hover { background: rgba(255,194,31,0.15); }
 </style>
+<link rel="stylesheet" href="/tw.css" />
 </head>
 <body class="antialiased">
 

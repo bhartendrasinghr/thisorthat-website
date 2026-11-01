@@ -3,5 +3,11 @@
   "private": true,
   "dependencies": {
     "@vercel/blob": "^2.6.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i src/tailwind.css -o tw.css --minify"
   }
 }

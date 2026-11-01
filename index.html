@@ -29,19 +29,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: { colors: {
-    ink:'#1A1813', body:'#57534A', meta:'#7A7368',
-    marigold:'#FFC21F',
-    paper:'#FCFBF8', surf:'#F6F4EE', line:'#E1DDD1', edge:'#8E8574',
-    dark:'#16150F', gold:'#8F6600'
-  }, fontFamily:{
-    sans:['Hanken Grotesk','system-ui','sans-serif'],
-    display:['Bricolage Grotesque','Georgia','serif'],
-    mono:['IBM Plex Mono','ui-monospace','monospace']
-  } } } };
-</script>
 <style>
   body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
   h1,h2,.display { font-family:'Bricolage Grotesque',Georgia,serif; }
@@ -68,11 +55,12 @@
   .lnk:hover { border-bottom-color:#1A1813; }
   @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
+<link rel="stylesheet" href="/tw.css" />
 </head>
-<body class="antialiased">
+<body class="antialiased tw-base-type">
 
 <!-- ============================ NAV: four items, one ask ============================ -->
-<header class="sticky top-0 z-50 backdrop-blur bg-paper/90 border-b border-line">
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/90 border-b border-line">
   <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between gap-6">
     <a href="index.html" class="flex items-center gap-2.5 shrink-0">
       <img src="logo.png" alt="" width="34" height="34" class="rounded-full" />
@@ -92,7 +80,7 @@
       </button>
     </div>
   </div>
-  <div id="mm" class="xl:hidden hidden border-t border-line bg-paper">
+  <div id="mm" class="xl:hidden hidden border-t border-line bg-cream">
     <nav class="flex flex-col px-6 py-1 text-[16px] font-semibold"><a href="episodes.html" class="py-3.5 border-b border-line">Episodes</a><a href="guests.html" class="py-3.5 border-b border-line">Guests</a><a href="market-pulse.html" class="py-3.5 border-b border-line">Pulse</a><a href="calculators.html" class="py-3.5 border-b border-line">Plan</a><a href="funds.html" class="py-3.5 border-b border-line">Funds</a><a href="articles.html" class="py-3.5 border-b border-line">Writing</a><a href="about.html" class="py-3.5 border-b border-line">About</a></nav>
   </div>
 </header>
@@ -117,7 +105,7 @@
         <li class="flex gap-3 items-start"><span class="text-marigold text-[17px] leading-none mt-[3px]" aria-hidden="true">&#9670;</span>
           <span class="text-[15.5px] font-semibold">Free, and there is no product at the end of it</span></li>
       </ul>
-      <a href="#tool" class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-7 py-3.5 rounded-full mt-9 hover:bg-black transition">
+      <a href="#tool" class="inline-flex items-center gap-2 bg-ink text-cream font-bold text-[15px] px-7 py-3.5 rounded-full mt-9 hover:bg-black transition">
         <span data-cms="hero_cta">Start with question one</span> &darr;
       </a>
     </div>
@@ -134,17 +122,17 @@
         <div class="text-[14px] font-bold leading-snug mt-2">A bad year hits. What do you actually do?</div>
         <div class="flex flex-wrap gap-1.5 mt-3.5">
           <span class="text-[11.5px] font-semibold border border-line rounded-full px-2.5 py-1">Sell</span>
-          <span class="text-[11.5px] font-semibold bg-ink text-paper rounded-full px-2.5 py-1">Sit tight</span>
+          <span class="text-[11.5px] font-semibold bg-ink text-cream rounded-full px-2.5 py-1">Sit tight</span>
           <span class="text-[11.5px] font-semibold border border-line rounded-full px-2.5 py-1">Buy more</span>
         </div>
       </div>
 
       <!-- the answer in front -->
-      <div class="absolute right-0 sm:right-4 bottom-0 w-[290px] sm:w-[330px] bg-dark text-paper rounded-[18px] p-7 shadow-[0_24px_60px_rgba(26,24,19,0.28)]"
+      <div class="absolute right-0 sm:right-4 bottom-0 w-[290px] sm:w-[330px] bg-dark text-cream rounded-[18px] p-7 shadow-[0_24px_60px_rgba(26,24,19,0.28)]"
            style="transform:rotate(3deg)">
         <div class="text-[10.5px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>
         <div class="font-display font-extrabold text-[30px] leading-none tracking-[-0.03em] mt-3">85% equity<br />15% debt</div>
-        <div class="bg-paper text-ink rounded-[12px] p-4 mt-5">
+        <div class="bg-cream text-ink rounded-[12px] p-4 mt-5">
           <div class="mb-3">
             <div class="flex justify-between text-[12.5px] font-bold mb-1"><span>Equity funds</span><span class="tab-num">&#8377;21,250</span></div>
             <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:85%;background:#FFC21F;border-radius:99px"></div></div>
@@ -154,7 +142,7 @@
             <div style="height:8px;background:#EDE9DF;border-radius:99px"><div style="height:100%;width:15%;background:#1A1813;border-radius:99px"></div></div>
           </div>
         </div>
-        <div class="text-[11px] text-paper/50 mt-4">An example. Yours depends on your four answers.</div>
+        <div class="text-[11px] text-cream/50 mt-4">An example. Yours depends on your four answers.</div>
       </div>
     </div>
 
@@ -214,15 +202,15 @@
      the reason to put it on the homepage: it is the one page worth coming back to
      in a week. Numbers are fetched so this never goes stale behind the live page. -->
 <section class="max-w-6xl mx-auto px-6 pt-4 pb-20">
-  <a href="market-pulse.html" class="block rounded-[18px] overflow-hidden bg-dark text-paper hover:brightness-110 transition group">
+  <a href="market-pulse.html" class="block rounded-[18px] overflow-hidden bg-dark text-cream hover:brightness-110 transition group">
     <div class="grid md:grid-cols-5 gap-0 items-stretch">
       <div class="md:col-span-3 p-8 md:p-10">
         <div class="text-[11px] uppercase tracking-[0.22em] font-extrabold" style="color:#FFC21F">Market Pulse &middot; <span id="mp-ed">monthly</span></div>
         <h2 class="font-display font-extrabold text-[clamp(26px,3.6vw,38px)] tracking-[-0.03em] leading-[1.05] mt-3">What moved your money this month</h2>
-        <p class="text-paper/70 mt-3 text-[15px] leading-[1.55] max-w-[46ch]">Oil, the rupee, rates, and the chain that runs from a ship of crude all the way to your statement. In rupees, for an Indian investor.</p>
+        <p class="text-cream/70 mt-3 text-[15px] leading-[1.55] max-w-[46ch]">Oil, the rupee, rates, and the chain that runs from a ship of crude all the way to your statement. In rupees, for an Indian investor.</p>
         <div class="mt-6 inline-flex items-center gap-2 bg-marigold text-ink px-5 py-2.5 rounded-full font-bold text-sm">Read this month &rarr;</div>
       </div>
-      <div class="md:col-span-2 p-8 md:p-10 md:border-l border-paper/10 flex items-center">
+      <div class="md:col-span-2 p-8 md:p-10 md:border-l border-cream/10 flex items-center">
         <div id="mp-tiles" class="grid grid-cols-2 gap-3 w-full"></div>
       </div>
     </div>
@@ -240,7 +228,7 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){ return r.ok?r
     if(!t) return '';
     var neg=/^[\u2212-]/.test(String(t.v));
     return '<div class="rounded-[12px] p-3" style="background:rgba(252,251,248,.08)">'+
-      '<div class="text-[10px] uppercase tracking-wider text-paper/45 font-bold">'+k.replace('Nifty 50 P/E','Nifty P/E').replace('Rupee per dollar','Rupee')+'</div>'+
+      '<div class="text-[10px] uppercase tracking-wider text-cream/45 font-bold">'+k.replace('Nifty 50 P/E','Nifty P/E').replace('Rupee per dollar','Rupee')+'</div>'+
       '<div class="font-mono tab-num font-extrabold text-[20px] mt-0.5" style="color:'+(neg?'#FF6B66':'#7FD4A8')+'">'+t.v+'</div></div>';
   }).join('');
   var el=document.getElementById('mp-tiles'); if(el) el.innerHTML=tiles;
@@ -282,7 +270,7 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){ return r.ok?r
     <div class="lg:col-span-8">
       <div class="bg-dark rounded-[18px] p-9 md:p-11">
         <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Slow thought</div>
-        <blockquote class="font-display font-extrabold text-[clamp(24px,3.4vw,33px)] leading-[1.18] tracking-[-0.02em] text-paper mt-5">
+        <blockquote class="font-display font-extrabold text-[clamp(24px,3.4vw,33px)] leading-[1.18] tracking-[-0.02em] text-cream mt-5">
           The market doesn't reward intelligence. It rewards patience that looks like stupidity.
         </blockquote>
       </div>
@@ -302,46 +290,46 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){ return r.ok?r
       <span data-cms="band_body">No hot takes, no tips, and nobody selling you a product at the end. Sixty conversations so far, and the archive is free.</span>
     </p>
     <a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" rel="noopener"
-       class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[15px] px-8 py-4 rounded-full mt-9 hover:bg-black transition">
+       class="inline-flex items-center gap-2 bg-ink text-cream font-bold text-[15px] px-8 py-4 rounded-full mt-9 hover:bg-black transition">
       <span data-cms="band_cta">Subscribe on YouTube</span> &rarr;
     </a>
   </div>
 </section>
 
 <!-- ============================ FOOTER ============================ -->
-<footer class="bg-dark text-paper">
+<footer class="bg-dark text-cream">
   <div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10">
     <div>
       <div class="flex items-center gap-2.5">
         <img src="logo.png" alt="" width="30" height="30" class="rounded-full" />
         <span class="font-display font-extrabold text-[16px]">ThisOrThat</span>
       </div>
-      <p class="text-[13.5px] leading-relaxed text-paper/60 mt-4 max-w-[34ch]">
+      <p class="text-[13.5px] leading-relaxed text-cream/60 mt-4 max-w-[34ch]">
         Personal finance, on your side. A media brand built on conversations India isn't having loudly enough.
       </p>
     </div>
     <div>
-      <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-paper/45">Explore</div>
+      <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-cream/45">Explore</div>
       <div class="mt-4 grid gap-2.5 text-[14px]">
-        <a href="episodes.html" class="text-paper/85 hover:text-marigold">Episodes</a>
-        <a href="calculators.html" class="text-paper/85 hover:text-marigold">Calculators</a>
-        <a href="articles.html" class="text-paper/85 hover:text-marigold">Writing</a>
-        <a href="feed.html" class="text-paper/85 hover:text-marigold">The feed</a>
-        <a href="guests.html" class="text-paper/85 hover:text-marigold">Guests</a>
-        <a href="about.html" class="text-paper/85 hover:text-marigold">About</a>
+        <a href="episodes.html" class="text-cream/85 hover:text-marigold">Episodes</a>
+        <a href="calculators.html" class="text-cream/85 hover:text-marigold">Calculators</a>
+        <a href="articles.html" class="text-cream/85 hover:text-marigold">Writing</a>
+        <a href="feed.html" class="text-cream/85 hover:text-marigold">The feed</a>
+        <a href="guests.html" class="text-cream/85 hover:text-marigold">Guests</a>
+        <a href="about.html" class="text-cream/85 hover:text-marigold">About</a>
       </div>
     </div>
     <div>
-      <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-paper/45">Learn</div>
+      <div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-cream/45">Learn</div>
       <div class="mt-4 grid gap-2.5 text-[14px]">
-        <a href="understanding-mutual-funds.html" class="text-paper/85 hover:text-marigold">Understanding your mutual funds</a>
-        <a href="ways-to-invest-in-equity.html" class="text-paper/85 hover:text-marigold">Ways to invest in equity</a>
-        <a href="asset-classes.html" class="text-paper/85 hover:text-marigold">Asset classes</a>
+        <a href="understanding-mutual-funds.html" class="text-cream/85 hover:text-marigold">Understanding your mutual funds</a>
+        <a href="ways-to-invest-in-equity.html" class="text-cream/85 hover:text-marigold">Ways to invest in equity</a>
+        <a href="asset-classes.html" class="text-cream/85 hover:text-marigold">Asset classes</a>
       </div>
     </div>
   </div>
-  <div class="border-t border-paper/10">
-    <div class="max-w-6xl mx-auto px-6 py-6 text-[12.5px] text-paper/50">
+  <div class="border-t border-cream/10">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-[12.5px] text-cream/50">
       &copy; 2026 ThisOrThat. Educational only. Nothing here is investment advice.
     </div>
   </div>
@@ -654,7 +642,7 @@ function deepMix(band, behaviour, m, monthly){
 }
 function deepPanel(band, behaviour, m, monthly){
   var d=deepMix(band, behaviour, m, monthly);
-  var html='<div class="bg-paper text-ink rounded-[12px] p-6 mt-5">'+
+  var html='<div class="bg-cream text-ink rounded-[12px] p-6 mt-5">'+
     '<div class="kicker">What kind, and how much</div>';
   [['Equity','The equity side'],['Debt','The debt side']].forEach(function(g){
     var rows=d.rows.filter(function(r){ return r[0]===g[0]; });
@@ -674,7 +662,7 @@ function deepPanel(band, behaviour, m, monthly){
   html+='<p class="text-[11.5px] text-meta leading-relaxed mt-4">These are categories, not funds. Which scheme '+
         'inside a category suits you depends on your tax position, what you already hold and how much you are '+
         'paying in fees, and that is a decision to make with someone who can see all of it.</p>';
-  html+='<a href="money-person.html" class="inline-flex items-center gap-2 bg-ink text-paper font-bold text-[14px] '+
+  html+='<a href="money-person.html" class="inline-flex items-center gap-2 bg-ink text-cream font-bold text-[14px] '+
         'px-6 py-3 rounded-full mt-4 hover:bg-black transition">Talk to a human about which funds &rarr;</a>';
   html+='</div>';
   return html;
@@ -729,19 +717,19 @@ $('go').addEventListener('click',function(){
     var years=Number(ans.years), g=goalPlan(years,Number(ans.cost),ans.behaviour,'mf',0);
     var WHAT={education:"your child's education",home:'a home',retirement:'retirement',other:'this'}[ans.what]||'this';
     html='<div class="grid lg:grid-cols-12 gap-6">'+
-      '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
+      '<div class="lg:col-span-7 bg-dark text-cream rounded-[18px] p-9 md:p-11">'+
         '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">What it takes</div>'+
         '<div class="font-display font-extrabold text-[clamp(32px,5vw,46px)] leading-none tracking-[-0.03em] mt-4 tab-num">'+
-          '₹'+inr(g.monthly)+'<span class="text-[22px] font-sans font-bold text-paper/60"> a month</span></div>'+
-        '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+
+          '₹'+inr(g.monthly)+'<span class="text-[22px] font-sans font-bold text-cream/60"> a month</span></div>'+
+        '<p class="text-[14.5px] leading-relaxed text-cream/75 mt-4 max-w-[52ch]">'+
           fmtAmt(Number(ans.cost))+' for '+esc(WHAT)+' today becomes <strong>'+fmtAmt(g.future)+'</strong> in '+years+
           ' years at 6% inflation. That is the number to aim at, not the one on the price tag now.</p>'+
-        '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(g.mix,false)+
+        '<div class="bg-cream text-ink rounded-[12px] p-6 mt-7">'+bars(g.mix,false)+
           '<p class="text-[12px] text-meta mt-1">'+(/^[8]/.test(String(g.mix.equity))?'An ':'A ')+g.mix.equity+'/'+g.mix.debt+' mix is assumed to return about '+
           g.ret.toFixed(2)+'% a year. That assumption is doing a lot of work here.</p>'+
         '</div>'+
         deepPanel(g.band, ans.behaviour, g.mix, Math.round(g.monthly))+
-        (g.mix.equity===0?'<p class="text-[13px] text-paper/70 mt-5">Because you need this within three years it sits '+
+        (g.mix.equity===0?'<p class="text-[13px] text-cream/70 mt-5">Because you need this within three years it sits '+
           'in debt, which returns less, which is why the monthly figure is large. Short deadlines are expensive.</p>':'')+
       '</div>'+ sidePanels(g.mix.equity) +'</div>';
   } else {
@@ -762,12 +750,12 @@ $('go').addEventListener('click',function(){
           'get the full amount. Sitting tight is the whole reason this number can be this high.';
     }
     html='<div class="grid lg:grid-cols-12 gap-6">'+
-      '<div class="lg:col-span-7 bg-dark text-paper rounded-[18px] p-9 md:p-11">'+
+      '<div class="lg:col-span-7 bg-dark text-cream rounded-[18px] p-9 md:p-11">'+
         '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Your mix</div>'+
         '<div class="font-display font-extrabold text-[clamp(30px,4.6vw,42px)] leading-none tracking-[-0.03em] mt-4">'+
           m.equity+'% equity, '+m.debt+'% debt</div>'+
-        '<p class="text-[14.5px] leading-relaxed text-paper/75 mt-4 max-w-[52ch]">'+why+'</p>'+
-        '<div class="bg-paper text-ink rounded-[12px] p-6 mt-7">'+bars(m,true)+
+        '<p class="text-[14.5px] leading-relaxed text-cream/75 mt-4 max-w-[52ch]">'+why+'</p>'+
+        '<div class="bg-cream text-ink rounded-[12px] p-6 mt-7">'+bars(m,true)+
           '<p class="text-[12px] text-meta mt-1">Of the ₹'+inr(ans.monthly)+' you said you can invest each month.</p>'+
         '</div>'+
         deepPanel(ans.horizon, ans.behaviour, m, Number(ans.monthly))+
@@ -795,8 +783,8 @@ function drawEpisodes(pinId){
     '</a>'+
     '<div class="p-9 md:p-11 flex flex-col justify-center">'+
       '<div class="text-[11px] font-extrabold tracking-[0.2em] uppercase text-marigold">Latest · Episode '+esc(h.n)+'</div>'+
-      '<a href=\"'+epHref(h.id)+'\" class="font-display font-extrabold text-[clamp(22px,2.9vw,30px)] leading-[1.14] tracking-[-0.02em] text-paper mt-4 hover:text-marigold transition">'+esc(h.title)+'</a>'+
-      '<div class="text-[13px] text-paper/55 mt-5">'+esc(h.guest)+' · '+esc(h.published)+'</div>'+
+      '<a href=\"'+epHref(h.id)+'\" class="font-display font-extrabold text-[clamp(22px,2.9vw,30px)] leading-[1.14] tracking-[-0.02em] text-cream mt-4 hover:text-marigold transition">'+esc(h.title)+'</a>'+
+      '<div class="text-[13px] text-cream/55 mt-5">'+esc(h.guest)+' · '+esc(h.published)+'</div>'+
     '</div>';
   $('epgrid').innerHTML=E.slice(1,4).map(function(e){
     return '<a href=\"'+epHref(e.id)+'\" class="group bg-white border border-line rounded-[18px] overflow-hidden hover:border-ink transition">'+

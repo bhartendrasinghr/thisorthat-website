@@ -20,3 +20,7 @@ node_modules/
 # - episodes.js
 .vercel
 .claude/
+
+# Tailwind's toolchain. tw.css itself IS committed, so a failed build serves
+# the last good stylesheet instead of an unstyled site.
+node_modules/

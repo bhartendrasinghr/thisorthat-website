@@ -29,32 +29,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: { colors: {
-        goldink: '#8F6600', gainink: '#1B7A50',
-        // Brand colors (per Brand Guidelines v1.0)
-        marigold:  { DEFAULT: '#FFC21F', 50: '#FFF7DE', 200: '#FFE9AE', 400: '#FFD15C', 600: '#D99B00' },
-        thisblue:  { DEFAULT: '#0249B1', 700: '#013580' },
-        thatred:   { DEFAULT: '#FF302D' },
-        ink:       { DEFAULT: '#1A1813', 2: '#2C2A23', 3: '#57534A' },
-        warmpaper: { DEFAULT: '#FCFBF8', 2: '#F6F4EE', 3: '#E1DDD1', 4: '#8A8275' },
-        gain: '#1F8A5B', loss: '#E0211E', warn: '#D99B00',
-        // Legacy aliases, keep old class names working, mapped to new values
-        navy:    { DEFAULT: '#0249B1', deep: '#013580', ink: '#1A1813' },
-        mustard: { DEFAULT: '#FFC21F', soft: '#FFD15C', deep: '#D99B00' },
-        alert:   '#FF302D',
-        cream:   '#FCFBF8',
-        paper:   '#F6F4EE'
-      }, fontSize:{ xs:['13px','1.45'], sm:['15px','1.5'] },
-    fontFamily: {
-        sans:    ['Hanken Grotesk','system-ui','sans-serif'],
-        serif:   ['Bricolage Grotesque','Georgia','serif'],
-        display: ['Bricolage Grotesque','Georgia','serif'],
-        mono:    ['IBM Plex Mono','ui-monospace','SFMono-Regular','monospace'],
-        script:  ['Caveat','cursive']
-      } } } };
-</script>
 <style>
   body { font-family: 'Hanken Grotesk', sans-serif; background: #FCFBF8; color: #1A1813; }
   .font-serif { font-family: 'Bricolage Grotesque', serif; }
@@ -71,6 +45,7 @@
   .chip { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all 150ms ease; }
   .avatar { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
 </style>
+<link rel="stylesheet" href="/tw.css" />
 </head>
 <body class="antialiased">
 

@@ -29,24 +29,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: { colors: {
-    goldink:'#8F6600', gainink:'#1B7A50',
-    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
-    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
-    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
-    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
-    loss:'#E0211E', meta:'#7A7368',
-    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
-    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
-  }, fontFamily:{
-    sans:['Hanken Grotesk','system-ui','sans-serif'],
-    serif:['Bricolage Grotesque','Georgia','serif'],
-    display:['Bricolage Grotesque','Georgia','serif'],
-    mono:['IBM Plex Mono','ui-monospace','monospace']
-  } } } };
-</script>
 <style>
   body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
   h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
@@ -86,8 +68,9 @@
   .pill { font-size:10.5px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;
           padding:3px 9px; border-radius:999px; white-space:nowrap; }
 </style>
+<link rel="stylesheet" href="/tw.css" />
 </head>
-<body class="antialiased">
+<body class="antialiased tw-base-type">
 
 <header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">

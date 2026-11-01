@@ -21,19 +21,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: { colors: {
-    ink:'#1A1813', body:'#57534A', meta:'#7A7368',
-    marigold:'#FFC21F',
-    paper:'#FCFBF8', surf:'#F6F4EE', line:'#E1DDD1', edge:'#8E8574',
-    dark:'#16150F', gold:'#8F6600'
-  }, fontFamily:{
-    sans:['Hanken Grotesk','system-ui','sans-serif'],
-    display:['Bricolage Grotesque','Georgia','serif'],
-    mono:['IBM Plex Mono','ui-monospace','monospace']
-  } } } };
-</script>
 <style>
   body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
   h1,h2,.display { font-family:'Bricolage Grotesque',Georgia,serif; }
@@ -64,6 +51,7 @@
   .lnk:hover { border-bottom-color:#1A1813; }
   @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
+<link rel="stylesheet" href="/tw.css" />
 </head>
 <body class="antialiased">
 <div style="background:#8F6600;color:#FCFBF8;font-size:12.5px"><div class="max-w-6xl mx-auto px-6 py-2.5"><strong>Layout mock.</strong> The writing section below assumes 40 articles. Those headlines are placeholders.</div></div>

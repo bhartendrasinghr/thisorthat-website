@@ -31,6 +31,19 @@ else
   echo "mf-pulse-data.json will be served, carrying its own as-of date."
 fi
 
+# Tailwind, built once here instead of in every reader's browser. tw.css is
+# also committed, so a failure here serves the last good stylesheet rather
+# than an unstyled site: that is the one failure mode worth being paranoid
+# about, since no CSS means every page is a wall of unstyled text.
+if [ -f tailwind.config.js ]; then
+  if npx --no-install tailwindcss -i src/tailwind.css -o tw.css --minify 2>/dev/null \
+     || npx tailwindcss -i src/tailwind.css -o tw.css --minify; then
+    echo "Tailwind built: $(wc -c < tw.css) bytes"
+  else
+    echo "TAILWIND BUILD FAILED: serving the committed tw.css"
+  fi
+fi
+
 # Never fail the deploy over a data refresh. A page that is a day stale and
 # says so beats a site that will not build.
 python3 build.py || true

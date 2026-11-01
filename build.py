@@ -497,6 +497,60 @@ def sync_newsletter():
     print(f'  {changed} page(s) now offer a real signup, not only a YouTube button')
 
 
+# ─── Stop shipping the Tailwind compiler to every reader ─────────────────
+# Every page loaded cdn.tailwindcss.com, which is the Play CDN: a development
+# build that downloads ~120 KB of gzipped JavaScript and then generates the
+# stylesheet in the browser, on every visit. Tailwind's own docs say not to
+# use it in production. It also means the page paints unstyled first, which
+# on an Indian 4G connection is a visible flash on every navigation.
+#
+# tw.css is the same utilities, built once at deploy time from
+# tailwind.config.js: 53 KB raw, about 10 KB gzipped, and no runtime work.
+#
+# Placement matters. The CDN appended its <style> at the end of <head>, so
+# its utilities beat each page's inline <style>. The link goes after that
+# inline <style> for the same reason, and before tools.css, which is meant
+# to have the last word.
+CDN_SCRIPT = '<script src="https://cdn.tailwindcss.com"></script>'
+TW_LINK = '<link rel="stylesheet" href="/tw.css" />'
+TOOLS_LINK = '<link rel="stylesheet" href="tools.css" />'
+
+
+def sync_tailwind():
+    import re as _re
+    # The inline `tailwind.config = {...}` block each page carried for the
+    # CDN to read. tailwind.config.js replaces all twelve of them, and left
+    # behind this would throw a ReferenceError on every page, since nothing
+    # defines `tailwind` any more.
+    cfg_block = _re.compile(
+        r'[ \t]*<script>\s*\n?\s*tailwind\.config\s*=\s*\{.*?\};?\s*\n?\s*</script>\n?',
+        _re.S)
+
+    swapped = 0
+    for f in sorted(ROOT.glob('*.html')):
+        if f.name == 'brand.html':
+            continue
+        h = f.read_text(encoding='utf-8')
+        before = h
+        h = h.replace(CDN_SCRIPT + '\n', '').replace(CDN_SCRIPT, '')
+        h = cfg_block.sub('', h)
+        if TW_LINK not in h:
+            if TOOLS_LINK in h:
+                h = h.replace(TOOLS_LINK, TW_LINK + '\n' + TOOLS_LINK, 1)
+            elif '</head>' in h:
+                h = h.replace('</head>', TW_LINK + '\n</head>', 1)
+        if h != before:
+            f.write_text(h, encoding='utf-8')
+            swapped += 1
+
+    leftover = [f.name for f in ROOT.glob('*.html')
+                if 'cdn.tailwindcss.com' in f.read_text(encoding='utf-8')
+                and f.name != 'brand.html']
+    if leftover:
+        print('  WARNING: still on the CDN: ' + ', '.join(leftover[:6]))
+    print(f'  {swapped} page(s) moved from the Tailwind CDN to the built tw.css')
+
+
 # ─── Make the Episode Overrides screen readable ──────────────────────────
 # It listed rows as bare 11-character video IDs, which nobody can recognise.
 # Every episode now gets a row, labelled and ordered newest first, so the
@@ -676,6 +730,9 @@ def main():
 
     print('\n→ Checking canonical + analytics tags...')
     sync_head_tags()
+
+    print('\n→ Moving pages off the Tailwind CDN...')
+    sync_tailwind()
 
     print('\n→ Wiring the shared tool layer...')
     sync_tool_assets()

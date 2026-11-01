@@ -1,0 +1,19 @@
+/* Input for the Tailwind build. The Play CDN included preflight, so this
+   does too: dropping it would change every heading, list and form control
+   on the site. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Two type scales, preserved exactly ──────────────────────────────────
+   The twelve inline configs did not agree on what `text-sm` means. 107
+   pages overrode it to 15px (and text-xs to 13px); seven newer, data-heavy
+   pages never did and render Tailwind's default 14px and 12px. One built
+   stylesheet cannot hold both, so the majority wins in the config above and
+   those seven opt back out with `tw-base-type` on <body>.
+
+   This is a fork worth closing, but closing it means deciding that seven
+   pages should change size, which is an editorial call and not something to
+   slip inside a performance change. Until then, nothing moves. */
+.tw-base-type .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.tw-base-type .text-xs { font-size: 0.75rem;  line-height: 1rem; }
