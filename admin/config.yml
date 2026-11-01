@@ -495,7 +495,7 @@ collections:
             fields:
               - { name: "k", label: "Label", widget: "string" }
               - { name: "url", label: "Link", widget: "string" }
-          - { name: "next_update", label: "When the next one lands", widget: "text" }
+          - { name: "next_update", label: "When the next one lands (override)", widget: "text", required: false, hint: "Leave blank. The page works this out from AMFI's own publishing dates and says it in the hero too. Fill it in only to say something different." }
 
   - name: "money_people"
     label: "Money People"

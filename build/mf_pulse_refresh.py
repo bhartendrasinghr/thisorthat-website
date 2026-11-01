@@ -463,6 +463,12 @@ def main():
         'prev_month_short': f'{back(latest, 1):%b %Y}',
         'year_ago_short': f'{back(latest, 12):%b %Y}',
         'source_file': month_file(latest),
+        # AMFI publishes a month's figures around the 10th of the month after
+        # it. So the month shown here is normally one behind the calendar, and
+        # a reader landing on 1 November should be told that rather than left
+        # to wonder whether the page is broken.
+        'next_month': f'{back(latest, -1):%B %Y}',
+        'next_due': date(back(latest, -2).year, back(latest, -2).month, 10).isoformat(),
     }
 
     def seg3(which):

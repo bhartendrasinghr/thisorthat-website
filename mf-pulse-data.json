@@ -6,6 +6,8 @@
  "prev_month_short": "Aug 2026",
  "year_ago_short": "Sep 2025",
  "source_file": "amsep2026repo.xls",
+ "next_month": "October 2026",
+ "next_due": "2026-11-10",
  "industry": {
   "aum": 8264116.632060861,
   "aum_prev": 8707887.74195046,
