@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "(uv pip install --system --quiet xlrd pypdf || pip3 install --quiet --break-system-packages xlrd pypdf) || true; python3 build.py || true",
+  "buildCommand": "python3 -m pip install --quiet --break-system-packages xlrd pypdf || python3 -m pip install --quiet xlrd pypdf || true; python3 -c \"import xlrd, pypdf; print('AMFI parsers ready')\" || echo \"AMFI PARSERS MISSING: the MF Pulse step will skip and the committed data will be served\"; python3 build.py || true",
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": false,
