@@ -117,11 +117,20 @@
     <p class="mt-5 text-[17px] leading-[1.55] text-cream/75 max-w-[64ch]" id="intro">&nbsp;</p>
     <p class="mt-3 text-[13.5px] leading-[1.5] text-cream/50 max-w-[62ch]" id="lag">&nbsp;</p>
 
-    <div id="oneline" class="mt-9"></div>
+    <div id="lead" class="mt-10 grid sm:grid-cols-3 gap-4"></div>
 
-    <div class="kicker mt-12" style="color:#FFC21F">The month in numbers</div>
+    <div id="oneline" class="mt-8"></div>
+
+    <div class="mt-14 pt-10" style="border-top:1px solid rgba(252,251,248,.14)">
+      <div class="kicker" style="color:#FFC21F">Every month since April 2020</div>
+      <h2 class="font-display font-extrabold text-[clamp(22px,3vw,30px)] mt-2.5 max-w-[24ch]" id="streak-title">&nbsp;</h2>
+      <p class="mt-3 text-[14.5px] leading-[1.55] text-cream/65 max-w-[62ch]" id="streak-note">&nbsp;</p>
+      <div id="streak" class="mt-7"></div>
+    </div>
+
+    <div class="kicker mt-14" style="color:#FFC21F">The rest of the month</div>
     <p class="text-[12.5px] text-cream/50 mt-1" id="tilenote">&nbsp;</p>
-    <div id="tiles" class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+    <div id="tiles" class="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"></div>
   </div>
 </section>
 
@@ -134,17 +143,37 @@
   </div>
 </section>
 
+<!-- the SIP book -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14" id="sipband">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="kicker">The standing instruction</div>
+    <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[26ch]" id="sip-title">&nbsp;</h2>
+    <p class="mt-4 text-[16px] leading-[1.6] text-ink-3 max-w-[64ch]" id="sip-blurb">&nbsp;</p>
+    <div class="mt-8 grid lg:grid-cols-[1.6fr_1fr] gap-10 items-start">
+      <div>
+        <div id="sipchart"></div>
+        <p class="mt-3 text-[12px] text-meta" id="sip-cap">&nbsp;</p>
+      </div>
+      <div id="sipfacts" class="grid sm:grid-cols-2 lg:grid-cols-1 gap-3"></div>
+    </div>
+  </div>
+</section>
+
 <!-- where the money went -->
 <section class="max-w-7xl mx-auto px-6 py-14">
   <div class="kicker">Where the money went</div>
-  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">Seven months of flows, by what people bought</h2>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]" id="flow-title">&nbsp;</h2>
   <p class="mt-4 text-[16px] leading-[1.6] text-ink-3 max-w-[64ch]" id="howread">&nbsp;</p>
 
   <div id="flowtabs" class="mt-8 flex flex-wrap gap-2"></div>
   <div id="flowchart" class="mt-6 max-w-[760px]"></div>
   <p class="mt-3 text-[12px] text-meta" id="flownote">&nbsp;</p>
 
-  <div class="mt-12 scroller wide">
+  <div class="mt-12">
+    <div class="kicker">The last seven months in full</div>
+    <p class="text-[13px] text-meta mt-1.5">Every column, in rupees crore, including the SIP book.</p>
+  </div>
+  <div class="mt-5 scroller wide">
     <table class="grid" id="flowtable"></table>
   </div>
   <p class="swipe">Swipe the table sideways for the rest of the columns.</p>
@@ -277,6 +306,20 @@ function cr(n){ if(n==null) return '';
 function lcr(n){ return n==null?'':RS+(Math.abs(n)/1e5).toFixed(2)+' L cr'; }
 function crore(n){ return n==null?'':(n/1e7).toFixed(2)+' cr'; }
 function lakh(n){ return n==null?'':(n/1e5).toFixed(2); }
+/* Rupees at human scale. A per-folio figure is lakhs, not crores. */
+/* Past a lakh crore, print lakh crore. '-Rs 1,33,376 cr' is both harder to
+   read and too wide for a tile, where it wrapped onto two lines. */
+function crAuto(n){
+  if(n == null) return '';
+  if(Math.abs(n) >= 1e5) return (n < 0 ? MINUS : '') + RS + (Math.abs(n)/1e5).toFixed(2) + ' L cr';
+  return cr(n);
+}
+function rupeeShort(v){
+  if(v == null) return '';
+  if(v >= 1e7) return RS + (v/1e7).toFixed(2) + ' crore';
+  if(v >= 1e5) return RS + (v/1e5).toFixed(2) + ' lakh';
+  return RS + inr(v);
+}
 function pct(v,dp){ if(v==null||isNaN(v)) return ''; dp=dp==null?1:dp;
   return (v>0?'+':v<0?MINUS:'')+Math.abs(v).toFixed(dp)+'%'; }
 function col(v){ return v>=0 ? '#1B7A50' : '#E0211E'; }
@@ -302,6 +345,106 @@ function handStamp(iso, dark){
   return '<div class="text-[10.5px] font-semibold tab-num" style="color:'+c+'">written '+esc(shortDate(iso))+'</div>';
 }
 
+/* ── charts ───────────────────────────────────────────────────────────────
+   Inline SVG, no library. Two shapes cover everything on this page: a run of
+   monthly bars and a run of monthly points. Both take the full history and
+   show the last n, because sixty bars on a phone is a smudge.
+
+   The y scale puts zero where the data puts it: if the biggest inflow is
+   three times the biggest outflow, the zero line sits three quarters of the
+   way down. A fixed midline would make a small outflow look like a crash. */
+function seriesScale(vals, h){
+  var pos = Math.max(0, Math.max.apply(null, vals));
+  var neg = Math.max(0, -Math.min.apply(null, vals));
+  var span = pos + neg || 1;
+  return { zero: h * (pos / span), k: h / span };
+}
+
+function monthLabel(m){
+  var p = String(m).split('-');
+  return MONTH3[+p[1] - 1] + ' ' + p[0].slice(2);
+}
+var MONTH3 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/* rows: [{m:'2026-09', v:38307}]. opt.read is an element that shows the month
+   under the cursor, so the chart can be read precisely without a tooltip
+   library and without hover being the only way to get at the numbers. */
+function barSeries(rows, el, opt){
+  opt = opt || {};
+  var W = 1000, H = opt.h || 170, GAP = rows.length > 40 ? 0.18 : 0.3;
+  var vals = rows.map(function(r){ return r.v; });
+  var s = seriesScale(vals, H);
+  var bw = W / rows.length;
+
+  var bars = rows.map(function(r, i){
+    var hgt = Math.max(1, Math.abs(r.v) * s.k);
+    var y = r.v >= 0 ? s.zero - hgt : s.zero;
+    var fill = opt.color ? opt.color(r, i) : (r.v >= 0 ? '#0249B1' : '#E0211E');
+    return '<rect x="' + (i * bw + bw * GAP / 2).toFixed(2) + '" y="' + y.toFixed(2) +
+           '" width="' + (bw * (1 - GAP)).toFixed(2) + '" height="' + hgt.toFixed(2) +
+           '" fill="' + fill + '" data-i="' + i + '"><title>' +
+           monthLabel(r.m) + ': ' + inr(r.v) + '</title></rect>';
+  }).join('');
+
+  // A tick on each January, so the eye can place a bar in time.
+  var ticks = rows.map(function(r, i){
+    if (!/-01$/.test(r.m)) return '';
+    return '<line x1="' + (i * bw).toFixed(2) + '" y1="0" x2="' + (i * bw).toFixed(2) +
+           '" y2="' + H + '" stroke="' + (opt.dark ? 'rgba(252,251,248,.14)' : '#E1DDD1') +
+           '" stroke-width="1"/>';
+  }).join('');
+
+  el.innerHTML =
+    '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" ' +
+      'style="width:100%;height:' + (opt.px || 170) + 'px;display:block" role="img" ' +
+      'aria-label="' + esc(opt.label || 'monthly series') + '">' +
+      ticks +
+      '<line x1="0" y1="' + s.zero.toFixed(2) + '" x2="' + W + '" y2="' + s.zero.toFixed(2) +
+        '" stroke="' + (opt.dark ? 'rgba(252,251,248,.3)' : '#C9C3B4') + '" stroke-width="1"/>' +
+      bars +
+    '</svg>' +
+    '<div class="flex justify-between mt-1.5 text-[10.5px] tab-num" style="color:' +
+      (opt.dark ? 'rgba(252,251,248,.4)' : '#7A7368') + '">' +
+      '<span>' + monthLabel(rows[0].m) + '</span>' +
+      '<span>' + monthLabel(rows[rows.length - 1].m) + '</span></div>';
+}
+
+/* A line with the area under it filled. Used for the SIP book, which only
+   ever goes one way and should look like it. */
+function lineSeries(rows, el, opt){
+  opt = opt || {};
+  var W = 1000, H = opt.h || 170;
+  var vals = rows.map(function(r){ return r.v; });
+  var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+  // Start the band below the lowest point rather than at zero: the shape of
+  // the climb is the story, and a zero baseline flattens it into a slab.
+  var base = lo - (hi - lo) * 0.25, span = (hi - base) || 1;
+  var x = function(i){ return (i / (rows.length - 1)) * W; };
+  var y = function(v){ return H - ((v - base) / span) * H; };
+
+  var pts = rows.map(function(r, i){ return x(i).toFixed(2) + ',' + y(r.v).toFixed(2); });
+  var area = 'M0,' + H + ' L' + pts.join(' L') + ' L' + W + ',' + H + ' Z';
+
+  var last = rows[rows.length - 1];
+  el.innerHTML =
+    '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" ' +
+      'style="width:100%;height:' + (opt.px || 170) + 'px;display:block" role="img" ' +
+      'aria-label="' + esc(opt.label || 'monthly series') + '">' +
+      '<defs><linearGradient id="' + (opt.id || 'g1') + '" x1="0" y1="0" x2="0" y2="1">' +
+        '<stop offset="0%" stop-color="' + (opt.fill || '#FFC21F') + '" stop-opacity="0.45"/>' +
+        '<stop offset="100%" stop-color="' + (opt.fill || '#FFC21F') + '" stop-opacity="0.02"/>' +
+      '</linearGradient></defs>' +
+      '<path d="' + area + '" fill="url(#' + (opt.id || 'g1') + ')"/>' +
+      '<polyline points="' + pts.join(' ') + '" fill="none" stroke="' +
+        (opt.stroke || '#FFC21F') + '" stroke-width="2.5" vector-effect="non-scaling-stroke" ' +
+        'stroke-linejoin="round"/>' +
+    '</svg>' +
+    '<div class="flex justify-between mt-1.5 text-[10.5px] tab-num" style="color:' +
+      (opt.dark ? 'rgba(252,251,248,.4)' : '#7A7368') + '">' +
+      '<span>' + monthLabel(rows[0].m) + '</span>' +
+      '<span>' + monthLabel(last.m) + '</span></div>';
+}
+
 /* One scale per chart, negatives running left from a shared zero, so bar
    lengths mean the same thing everywhere on the page. */
 function bars(rows, el, opt){
@@ -323,12 +466,24 @@ function bars(rows, el, opt){
   }).join('');
 }
 
+function grab(url, optional){
+  return fetch(url+'?v='+Date.now()).then(function(r){
+    if(!r.ok) throw new Error(url);
+    return r.json();
+  }).catch(function(e){ if(optional) return null; throw e; });
+}
+
 Promise.all([
-  fetch('mf-pulse-data.json?v='+Date.now()).then(function(r){ if(!r.ok) throw 0; return r.json(); }),
-  fetch('content/mf-pulse.json?v='+Date.now()).then(function(r){ if(!r.ok) throw 0; return r.json(); })
+  grab('mf-pulse-data.json'),
+  grab('content/mf-pulse.json'),
+  /* The long run of months. The page is still correct without it, just
+     shorter, so a missing history must not take the numbers down with it. */
+  grab('mf-pulse-history.json', true)
 ]).then(function(res){
-  var d = res[0], c = res[1];
+  var d = res[0], c = res[1], H = res[2] || {months:[], sip:{}};
   var sip = d.sip || {};
+  var hist = (H.months || []).slice();
+  var hsip = H.sip || {};
 
   /* ── hero ── */
   $('edition').innerHTML = esc(d.month) + '  &middot;  <span style="color:#9FD9BC">read from AMFI ' +
@@ -378,39 +533,85 @@ Promise.all([
 
   var share = d.passive.share, fol = d.industry;
   var added = (fol.folios!=null && fol.folios_prev!=null) ? fol.folios - fol.folios_prev : null;
-  var TILES = [
-    { k:'Industry assets', v:lcr(d.industry.aum), sub:'from '+lcr(d.industry.aum_prev)+' in '+d.prev_month_short,
-      chg:d.industry.aum_mom, means:'Everything India holds in mutual funds, at month-end prices.' },
-    { k:'Equity net inflow', v:cr(d.equity.flow), sub:'against '+cr(d.equity.flow_prev)+' in '+d.prev_month_short,
-      chg:d.equity.flow_mom, means:'What went into equity funds after taking out what came back.' },
+
+  /* ── the three that carry the page ──
+     A lakh crore is not a quantity anybody has a feel for, so each of these
+     carries a second line that converts it into something a person can hold:
+     a per day figure, a per folio figure. Both are worked out from numbers
+     already on this page, so there is nothing here to go stale or to source. */
+  var daysIn = new Date(d.asof.slice(0,4), d.asof.slice(5,7), 0).getDate();
+  var perFolio = (d.industry.aum && d.industry.folios)
+    ? d.industry.aum * 1e7 / d.industry.folios : null;
+
+  var LEAD = [
+    { k:'Industry assets', v:lcr(d.industry.aum), chg:d.industry.aum_mom,
+      scale: perFolio ? 'About ' + rupeeShort(perFolio) + ' per folio' : '',
+      sub:'from ' + lcr(d.industry.aum_prev) + ' in ' + d.prev_month_short },
+    { k:'Equity net inflow', v:cr(d.equity.flow), chg:d.equity.flow_mom,
+      scale: sip.equity_streak ? sip.equity_streak + 'th straight month of money coming in' : '',
+      sub:'against ' + cr(d.equity.flow_prev) + ' in ' + d.prev_month_short },
     sip.contribution ? { k:'Monthly SIP', v:cr(sip.contribution[0]),
-      sub:'from '+sip.accounts[0].toFixed(2)+' crore live accounts',
       chg: sip.contribution[1] ? (sip.contribution[0]/sip.contribution[1]-1)*100 : null,
-      means:'Collected on standing instruction, whatever the market did that month.' } : null,
+      scale: RS + inr(sip.contribution[0]/daysIn) + ' crore every single day',
+      sub: sip.accounts && sip.accounts[0] ? 'from ' + sip.accounts[0].toFixed(2) +
+           ' crore live accounts' : '' } : null
+  ].filter(Boolean);
+
+  $('lead').innerHTML = LEAD.map(function(t){
+    return '<div class="rounded-[16px] p-5" style="background:rgba(252,251,248,.07);border:1px solid rgba(252,251,248,.14)">'+
+      '<div class="text-[11px] font-extrabold uppercase tracking-[0.14em] text-cream/55">'+esc(t.k)+'</div>'+
+      '<div class="tab-num font-extrabold text-[clamp(30px,4.6vw,44px)] leading-none mt-2.5">'+esc(t.v)+'</div>'+
+      (t.chg!=null && !isNaN(t.chg)
+        ? '<div class="tab-num text-[13px] font-bold mt-1.5" style="color:'+colDark(t.chg)+'">'+pct(t.chg)+' on the month</div>' : '')+
+      (t.scale?'<div class="text-[14px] font-semibold mt-3 leading-snug" style="color:#FFC21F">'+esc(t.scale)+'</div>':'')+
+      (t.sub?'<div class="text-[11.5px] text-cream/45 mt-1.5 leading-snug">'+esc(t.sub)+'</div>':'')+
+    '</div>';
+  }).join('');
+
+  /* ── the streak, as a picture ──
+     A sentence saying 67 straight months is a claim. Sixty-seven bars after
+     eight red ones is the same fact in a form nobody has to take on trust. */
+  if(hist.length > 12){
+    var run = 0;
+    for(var i = hist.length - 1; i >= 0 && hist[i].equity > 0; i--) run++;
+    var firstPos = hist[hist.length - run];
+    $('streak-title').textContent = run + ' months in a row of money going into equity funds';
+    $('streak-note').textContent =
+      'Each bar is one month of net inflow into equity mutual funds. The red ones are ' +
+      'the last time India sold: eight months through 2020 and early 2021. The run since ' +
+      monthLabel(firstPos.m) + ' has not broken once, through every fall in between.';
+    barSeries(hist.map(function(r){ return {m:r.m, v:r.equity}; }), $('streak'), {
+      dark:true, px:200,
+      color:function(r){ return r.v >= 0 ? '#FFC21F' : '#FF302D'; },
+      label:'Net inflow into equity mutual funds, every month from ' +
+            monthLabel(hist[0].m) + ' to ' + monthLabel(hist[hist.length-1].m)
+    });
+  } else {
+    var band = $('streak'); if(band && band.parentNode) band.parentNode.style.display = 'none';
+  }
+
+  $('tilenote').textContent = 'also reported for ' + d.month;
+  var TILES = [
     sip.assets ? { k:'SIP assets', v:RS+sip.assets[0].toFixed(2)+' L cr',
       sub:(sip.share?sip.share[0]+'% of all industry assets':''),
-      chg: sip.assets[1] ? (sip.assets[0]/sip.assets[1]-1)*100 : null,
-      means:'What the SIP habit has built up so far.' } : null,
+      chg: sip.assets[1] ? (sip.assets[0]/sip.assets[1]-1)*100 : null } : null,
     { k:'Investor folios', v:crore(d.industry.folios),
       sub:(added!=null ? lakh(added)+' lakh accounts added' : ''),
-      chg:(fol.folios_prev?(fol.folios/fol.folios_prev-1)*100:null),
-      means:'Accounts, not people. One investor can hold many.' },
-    { k:'All funds, net flow', v:cr(d.industry.flow), sub:'against '+cr(d.industry.flow_prev)+' in '+d.prev_month_short,
-      chg:null, means:'Swings with company treasuries moving cash, not with households.' },
-    { k:'Passive net inflow', v:cr(d.passive.flow), sub:(share?share+'% of industry assets are passive now':''),
-      chg:d.passive.flow_mom, means:'Index funds and ETFs, including gold and silver.' },
-    d.sif ? { k:'Specialised funds', v:cr(d.sif.aum), sub:'took in '+cr(d.sif.flow)+' this month',
-      chg:d.sif.mom, means:'SEBI’s new category above mutual funds. ₹10 lakh minimum.' } : null
+      chg:(fol.folios_prev?(fol.folios/fol.folios_prev-1)*100:null) },
+    { k:'All funds, net flow', v:crAuto(d.industry.flow),
+      sub:'company treasuries, not households', chg:null },
+    { k:'Passive net inflow', v:cr(d.passive.flow),
+      sub:(share?share+'% of all assets are passive now':''), chg:d.passive.flow_mom },
+    d.sif ? { k:'Specialised funds', v:cr(d.sif.aum),
+      sub:'took in '+cr(d.sif.flow)+' this month', chg:d.sif.mom } : null
   ].filter(Boolean);
 
   $('tiles').innerHTML = TILES.map(function(t){
-    return '<div class="rounded-[14px] p-4 flex flex-col" style="background:rgba(252,251,248,.07);border:1px solid rgba(252,251,248,.12)">'+
-      '<div class="text-[12.5px] font-bold leading-tight text-cream/90">'+esc(t.k)+'</div>'+
-      '<div class="tab-num font-extrabold text-[clamp(20px,2.7vw,27px)] mt-2">'+esc(t.v)+'</div>'+
-      (t.chg!=null && !isNaN(t.chg) ? '<div class="tab-num text-[12.5px] font-bold mt-0.5" style="color:'+colDark(t.chg)+'">'+pct(t.chg)+' on the month</div>' : '')+
-      (t.sub?'<div class="text-[11.5px] text-cream/45 mt-1 leading-snug">'+esc(t.sub)+'</div>':'')+
-      (t.means?'<p class="text-[12px] text-cream/65 mt-2 leading-[1.45] flex-1">'+esc(t.means)+'</p>':'')+
-      liveStamp(d.asof, true)+
+    return '<div class="rounded-[14px] p-4" style="background:rgba(252,251,248,.06);border:1px solid rgba(252,251,248,.12)">'+
+      '<div class="text-[11.5px] font-bold leading-tight text-cream/70">'+esc(t.k)+'</div>'+
+      '<div class="tab-num font-extrabold text-[clamp(19px,2.3vw,24px)] mt-1.5" style="white-space:nowrap">'+esc(t.v)+'</div>'+
+      (t.chg!=null && !isNaN(t.chg) ? '<div class="tab-num text-[12px] font-bold mt-0.5" style="color:'+colDark(t.chg)+'">'+pct(t.chg)+'</div>' : '')+
+      (t.sub?'<div class="text-[11px] text-cream/45 mt-1.5 leading-snug">'+esc(t.sub)+'</div>':'')+
     '</div>';
   }).join('');
 
@@ -421,6 +622,45 @@ Promise.all([
     $('take-stamp').innerHTML = handStamp(c.take.asof);
   }
 
+  /* ── the SIP book ── */
+  var sipKeys = Object.keys(hsip).sort();
+  if(sipKeys.length > 6){
+    var sipRows = sipKeys.map(function(k){ return {m:k, v:hsip[k].contribution}; })
+                         .filter(function(r){ return r.v != null; });
+    var firstS = sipRows[0], lastS = sipRows[sipRows.length-1];
+    var growth = (lastS.v / firstS.v - 1) * 100;
+
+    $('sip-title').textContent = 'The money that arrives whatever the market does';
+    $('sip-blurb').textContent =
+      'A systematic investment plan is a standing instruction: a fixed amount leaves the ' +
+      'bank on a fixed date, and nobody decides anything that month. That is what makes ' +
+      'this the steadiest line in Indian finance. It kept climbing through ' +
+      'the fall this year, which is the whole point of setting one up.';
+    lineSeries(sipRows, $('sipchart'), {px:210, id:'sipgrad',
+      label:'Monthly SIP contribution from ' + monthLabel(firstS.m) + ' to ' + monthLabel(lastS.m)});
+    $('sip-cap').textContent = 'Monthly SIP contribution, in rupees crore. ' +
+      monthLabel(firstS.m) + ' to ' + monthLabel(lastS.m) + '.';
+
+    var accNow = sip.accounts && sip.accounts[0];
+    var FACTS = [
+      {k:'This month', v:cr(lastS.v), s:RS + inr(lastS.v/daysIn) + ' crore a day'},
+      {k:'Up on ' + monthLabel(firstS.m), v:pct(growth,0),
+       s:'from ' + cr(firstS.v) + ' then'},
+      accNow ? {k:'Live SIP accounts', v:accNow.toFixed(2) + ' crore',
+       s:'each one a standing instruction'} : null,
+      sip.assets ? {k:'Built up so far', v:RS + sip.assets[0].toFixed(2) + ' L cr',
+       s:(sip.share ? sip.share[0] + '% of everything the industry holds' : '')} : null
+    ].filter(Boolean);
+    $('sipfacts').innerHTML = FACTS.map(function(f){
+      return '<div class="card p-4">'+
+        '<div class="text-[11.5px] font-bold uppercase tracking-wider text-meta">'+esc(f.k)+'</div>'+
+        '<div class="tab-num font-extrabold text-[26px] mt-1">'+esc(f.v)+'</div>'+
+        '<div class="text-[12.5px] text-ink-3 mt-1 leading-snug">'+esc(f.s)+'</div></div>';
+    }).join('');
+  } else {
+    $('sipband').style.display = 'none';
+  }
+
   /* ── seven months of flows ── */
   $('howread').textContent = c.how_to_read || '';
   var COLS = [
@@ -429,12 +669,25 @@ Promise.all([
     {key:'total', name:'Everything'}
   ];
   var fi = 0;
+  /* Twenty-four months reads as a trend. Seven reads as noise with a shape
+     you can talk yourself into. */
+  var flowRows = hist.length > 24 ? hist.slice(-24) : hist;
+  $('flow-title').textContent = flowRows.length >= 24
+    ? 'Two years of flows, by what people bought'
+    : flowRows.length + ' months of flows, by what people bought';
   function drawFlow(){
     var k = COLS[fi].key;
-    bars(d.months.map(function(m){ return {k:m.m, v:m[k], label:inr(m[k])}; }), $('flowchart'),
-         {pos:'#0249B1', neg:'#E0211E'});
-    $('flownote').textContent = 'Net inflow into ' + COLS[fi].name.toLowerCase() +
-      ' funds, in rupees crore, month by month.';
+    if(flowRows.length > 7){
+      barSeries(flowRows.map(function(m){ return {m:m.m, v:m[k]}; }), $('flowchart'), {px:190});
+      $('flownote').textContent = 'Net inflow into ' + COLS[fi].name.toLowerCase() +
+        ' funds, in rupees crore. ' + monthLabel(flowRows[0].m) + ' to ' +
+        monthLabel(flowRows[flowRows.length-1].m) + '.';
+    } else {
+      bars(d.months.map(function(m){ return {k:m.m, v:m[k], label:inr(m[k])}; }), $('flowchart'),
+           {pos:'#0249B1', neg:'#E0211E'});
+      $('flownote').textContent = 'Net inflow into ' + COLS[fi].name.toLowerCase() +
+        ' funds, in rupees crore, month by month.';
+    }
   }
   $('flowtabs').innerHTML = COLS.map(function(x,i){
     return '<button data-f="'+i+'" class="pill" style="border:1.5px solid '+(i===0?'#0249B1':'#E1DDD1')+
@@ -510,8 +763,22 @@ Promise.all([
 
   /* ── equity categories ── */
   $('eqnote').textContent = c.equity_note || '';
-  bars(d.equity_cats.map(function(r){ return {k:r.k, v:r.flow, label:inr(r.flow)}; }), $('eqbars'),
-       {pos:'#0249B1', neg:'#E0211E'});
+  /* Which categories climbed the table and which slipped. The flow numbers
+     alone do not show it: a category can take more money than last month and
+     still fall three places. */
+  var lastRank = {};
+  d.equity_cats.slice()
+    .sort(function(a,b){ return (b.flow_prev||0) - (a.flow_prev||0); })
+    .forEach(function(r,i){ lastRank[r.k] = i + 1; });
+  d.equity_cats.forEach(function(r,i){
+    r.rank = i + 1;
+    r.move = lastRank[r.k] != null ? lastRank[r.k] - (i + 1) : null;
+  });
+
+  bars(d.equity_cats.map(function(r){
+    var arrow = r.move > 0 ? ' \u25b2' + r.move : r.move < 0 ? ' \u25bc' + (-r.move) : '';
+    return {k: r.rank + '. ' + r.k + arrow, v:r.flow, label:inr(r.flow)};
+  }), $('eqbars'), {pos:'#0249B1', neg:'#E0211E'});
   $('eqtable').innerHTML =
     '<thead><tr><th>Category</th><th>Net inflow</th><th>'+esc(d.prev_month_short)+
     '</th><th>Assets</th><th>Assets, on the month</th><th>Schemes</th></tr></thead><tbody>'+

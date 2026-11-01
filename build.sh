@@ -4,8 +4,9 @@
 # than that to be done safely and to report itself.
 #
 # Two refresh steps in build.py need libraries that are not in the standard
-# library: xlrd reads AMFI's .xls monthly report, pypdf reads the SIP table
-# out of the monthly note. Both are pure Python and install in a second.
+# library: xlrd and openpyxl read AMFI's monthly report, which is named .xls
+# throughout but is really xlsx for every month up to mid 2025, and pypdf
+# reads the SIP table out of the monthly note. All three are pure Python.
 #
 # The install has to go into the SAME interpreter that runs build.py below.
 # An earlier version used whichever pip or uv happened to be on PATH; it
@@ -17,13 +18,13 @@
 # supported way in; the second line is the fallback for an image without
 # that restriction.
 
-python3 -m pip install --quiet --break-system-packages xlrd pypdf 2>/dev/null \
-  || python3 -m pip install --quiet xlrd pypdf 2>/dev/null \
+python3 -m pip install --quiet --break-system-packages xlrd openpyxl pypdf 2>/dev/null \
+  || python3 -m pip install --quiet xlrd openpyxl pypdf 2>/dev/null \
   || true
 
 # Say which it was, every build. A silent install that quietly did nothing is
 # how this site served a three-week-stale page behind a green deploy once.
-if python3 -c "import xlrd, pypdf" 2>/dev/null; then
+if python3 -c "import xlrd, openpyxl, pypdf" 2>/dev/null; then
   echo "AMFI parsers ready: the MF Pulse figures will refresh from source"
 else
   echo "AMFI PARSERS MISSING: the MF Pulse step will skip and the committed"

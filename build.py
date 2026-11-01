@@ -475,6 +475,18 @@ def main():
     except Exception as _e:
         print(f'  MF Pulse step skipped: {_e}')
 
+    # The long run of months behind the charts. Append only, and capped at a
+    # couple of months per build: the bootstrap was done by hand, and after
+    # that there is one new row a month. If AMFI is unreachable the committed
+    # history simply stands, which is the right failure.
+    print('\n→ Topping up the MF history...')
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location('mfh', ROOT / 'build' / 'mf_pulse_history.py')
+        _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.main(['--max', '2'])
+    except Exception as _e:
+        print(f'  MF history step skipped: {_e}')
+
     print('\n→ Labelling episode overrides for the CMS...')
     label_episode_overrides()
 

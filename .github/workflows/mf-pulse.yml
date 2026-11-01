@@ -34,8 +34,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install the two parsers
-        run: pip install --quiet xlrd pypdf
+      - name: Install the parsers
+        run: pip install --quiet xlrd openpyxl pypdf
 
       - name: Note which month we had
         id: before

@@ -21,8 +21,9 @@ Sources, all free and official:
   nsearchives.nseindia.com/content/indices/ind_close_all_DDMMYYYY.csv
       Nifty 50, for the market row.
 
-Needs xlrd (reads .xls) and pypdf. Both are pure Python:
-    pip install xlrd pypdf
+Needs xlrd and openpyxl (AMFI's "xls" files are sometimes really xlsx) and
+pypdf. All three are pure Python:
+    pip install xlrd openpyxl pypdf
 The GitHub Action installs them. On Vercel the step is skipped, which is
 harmless: the committed JSON is already current.
 
@@ -70,10 +71,45 @@ def _clean(s):
     return re.sub(r'\s+', ' ', re.sub(r'[*#]+', '', str(s))).strip()
 
 
+class _Sheet:
+    """One worksheet, with the same three calls whichever reader produced it."""
+    def __init__(self, nrows, ncols, get):
+        self.nrows, self.ncols, self._get = nrows, ncols, get
+
+    def cell_value(self, r, c):
+        return self._get(r, c)
+
+
 def _sheets(blob):
+    """Every sheet in the workbook, whatever the file actually is.
+
+    AMFI names these files .xls throughout, but the ones up to mid 2025 are
+    really .xlsx: a zip, which xlrd 2 refuses outright. Sniff the first bytes
+    rather than trusting the extension. PK is a zip, D0 CF 11 E0 is the old
+    OLE container.
+    """
+    if blob[:2] == b'PK':
+        from openpyxl import load_workbook
+        book = load_workbook(io.BytesIO(blob), read_only=True, data_only=True)
+        out = []
+        for ws in book.worksheets:
+            grid = [list(row) for row in ws.iter_rows(values_only=True)]
+            ncols = max((len(r) for r in grid), default=0)
+
+            def get(r, c, grid=grid, ncols=ncols):
+                if r >= len(grid) or c >= ncols:
+                    raise IndexError
+                row = grid[r]
+                v = row[c] if c < len(row) else None
+                return '' if v is None else v
+
+            out.append(_Sheet(len(grid), ncols, get))
+        return out
+
     import xlrd
     book = xlrd.open_workbook(file_contents=blob)
-    return [book.sheet_by_index(i) for i in range(book.nsheets)]
+    return [_Sheet(sh.nrows, sh.ncols, sh.cell_value)
+            for sh in (book.sheet_by_index(i) for i in range(book.nsheets))]
 
 
 def _col(sh, r, c):
@@ -298,35 +334,67 @@ def note_url(d):
     return None
 
 
-def parse_sip(pdf_bytes):
-    """The 'SIP trend' table gives seven months at once, newest first."""
+def parse_sip(pdf_bytes, note_month=None):
+    """The 'SIP trend' table, which gives six or seven months in one go.
+
+    AMFI rewrites this table's wording most years, so match on patterns, not
+    on the exact line. Seen so far:
+
+      No. of contributing SIP accounts (crore)   /  Number of contributing...
+      SIP monthly contribution (crore)           /  SIP monthly contributions (in crore)
+      SIP assets (Rs lakh crore)                 /  SIP assets (Rs in lakh crore)
+      headers Sep-26, and also Sep-2026
+      notes before 2025 with no accounts row at all
+
+    The one thing every version has is a row of numbers after a label that
+    says SIP and something, so that is what this looks for.
+    """
     from pypdf import PdfReader
     text = ''
     for page in PdfReader(io.BytesIO(pdf_bytes)).pages:
         t = page.extract_text() or ''
-        if 'SIP trend' in t or 'contributing SIP accounts' in t:
+        if re.search(r'SIP\s+trends?', t) or 'contributing SIP accounts' in t \
+                or re.search(r'SIP monthly contributions?', t):
             text += '\n' + t
     if not text:
         return None
 
-    def series(label, cast=float):
-        m = re.search(re.escape(label) + r'[^\n]*?((?:\s*[\d,]+\.?\d*){3,})', text)
+    def series(pattern):
+        m = re.search(pattern + r'[^\n]*?((?:[ \t]+[\d,]+\.?\d*){3,})', text, re.I)
         if not m:
             return None
-        nums = re.findall(r'[\d,]+\.?\d*', m.group(1))
-        return [cast(n.replace(',', '')) for n in nums]
+        return [float(n.replace(',', '')) for n in re.findall(r'[\d,]+\.?\d*', m.group(1))]
 
-    accounts = series('Number of contributing SIP accounts')
-    contrib = series('SIP monthly contribution')
-    assets = series('SIP assets (Rs lakh crore)') or series('SIP assets')
-    share = series('SIP assets as a percentage')
-    months = re.findall(r'([A-Z][a-z]{2})-(\d{2})', text)
-    if not (accounts and contrib):
+    contrib = series(r'SIP monthly contributions?')
+    if contrib:
+        contrib = [v for v in contrib if 1000 <= v <= 200000]
+    if not contrib or len(contrib) < 3:
         return None
+    accounts = series(r'(?:No\.|Number) of contributing SIP accounts')
+    assets = series(r'SIP assets \(Rs')
+    share = series(r'SIP assets as a')
 
-    out = {'months': [f'{a}-{b}' for a, b in months[:len(contrib)]],
-           'accounts': accounts, 'contribution': contrib,
-           'assets': assets, 'share': share}
+    # Do NOT read the months off the page. Underneath this table is a chart
+    # whose x axis is also a run of Mon-YY labels, and in several notes pypdf
+    # emits those first: the January 2025 note parsed as 'Jan-20'. Every
+    # figure would then have been filed under the wrong month, silently.
+    #
+    # The note's own month is known from the file we asked for, and the table
+    # always runs newest first. Checked against every note from June 2024 to
+    # September 2026: the first column is always the note's own month.
+    months = []
+    if note_month:
+        for i in range(len(contrib)):
+            d = back(note_month, i)
+            months.append(f'{d:%b}-{d:%y}')
+    else:
+        for mon, yr in re.findall(r'\b([A-Z][a-z]{2})-(\d{4}|\d{2})\b', text):
+            months.append(f'{mon}-{yr[-2:]}')
+            if len(months) >= len(contrib):
+                break
+
+    out = {'months': months, 'contribution': contrib,
+           'accounts': accounts, 'assets': assets, 'share': share}
     m = re.search(r'(\d+)\s*(?:st|nd|rd|th)\s+consecutive month', text)
     if m:
         out['equity_streak'] = int(m.group(1))
@@ -587,7 +655,7 @@ def main():
         if not url:
             raise LookupError(f'no note listed for {latest:%B %Y}')
         pdf = cached(f'note-{latest:%Y-%m}.pdf', url, timeout=120)
-        sip = parse_sip(pdf)
+        sip = parse_sip(pdf, latest)
         if sip and sip.get('contribution'):
             doc['sip'] = sip
             doc['note_pdf'] = url
