@@ -132,7 +132,7 @@
   ],
   "redirects": [
     {
-      "source": "/ep-:slug",
+      "source": "/ep-:slug([^.]+)",
       "destination": "/ep-:slug.html",
       "permanent": false
     },
