@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pip3 install --quiet --disable-pip-version-check xlrd pypdf || true; python3 build.py || true",
+  "buildCommand": "(uv pip install --system --quiet xlrd pypdf || pip3 install --quiet --break-system-packages xlrd pypdf) || true; python3 build.py || true",
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": false,
