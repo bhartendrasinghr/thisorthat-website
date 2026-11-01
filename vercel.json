@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "python3 build.py || true",
+  "buildCommand": "pip3 install --quiet --disable-pip-version-check xlrd pypdf || true; python3 build.py || true",
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": false,
@@ -50,6 +50,15 @@
     },
     {
       "source": "/ipo-checker.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/mf-pulse-data.json",
       "headers": [
         {
           "key": "Cache-Control",
@@ -240,6 +249,11 @@
       "source": "/mf-categories.html",
       "destination": "/understanding-mutual-funds.html",
       "permanent": true
+    },
+    {
+      "source": "/mf-pulse",
+      "destination": "/mf-pulse.html",
+      "permanent": false
     },
     {
       "source": "/money-person",

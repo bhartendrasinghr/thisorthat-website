@@ -54,6 +54,12 @@
   .tabb[aria-pressed="true"] { background:#FCFBF8; color:#1A1813; border-color:#FCFBF8; }
   .barrow { display:grid; grid-template-columns:132px 1fr 62px; gap:10px; align-items:center;
             padding:7px 0; font-size:13.5px; }
+  /* the two views of Pulse, as one control */
+  .seg { display:inline-flex; padding:3px; border-radius:999px; background:rgba(252,251,248,.1);
+         border:1px solid rgba(252,251,248,.18); }
+  .seg a { font-size:13px; font-weight:700; padding:7px 16px; border-radius:999px;
+           color:rgba(252,251,248,.72); white-space:nowrap; }
+  .seg a[aria-current] { background:#FCFBF8; color:#1A1813; }
   @media (max-width:640px){ .barrow { grid-template-columns:96px 1fr 54px; font-size:12.5px; } }
 </style>
 </head>
@@ -83,10 +89,16 @@
 <section class="bg-navy-ink text-cream">
   <div class="max-w-7xl mx-auto px-6 py-12 md:py-14">
     <div class="flex flex-wrap items-center justify-between gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em]">
-      <span class="text-marigold">ThisOrThat &middot; Market Pulse</span>
+      <span class="text-marigold">ThisOrThat &middot; Pulse</span>
       <span class="text-cream/55" id="edition">&nbsp;</span>
     </div>
-    <h1 class="font-display font-extrabold mt-5 leading-[0.98] tracking-[-0.03em] text-[clamp(34px,5.4vw,56px)] max-w-[18ch]" id="title">&nbsp;</h1>
+
+    <div class="seg mt-5">
+      <a href="market-pulse.html" aria-current="page">Market Pulse</a>
+      <a href="mf-pulse.html">MF Industry Pulse</a>
+    </div>
+
+    <h1 class="font-display font-extrabold mt-6 leading-[0.98] tracking-[-0.03em] text-[clamp(34px,5.4vw,56px)] max-w-[18ch]" id="title">&nbsp;</h1>
     <p class="mt-5 text-[17px] leading-[1.55] text-cream/75 max-w-[64ch]" id="intro">&nbsp;</p>
     <div id="short" class="mt-9"></div>
     <div class="kicker mt-12" style="color:#FFC21F">The rupee scoreboard &middot; year to date</div>
@@ -176,6 +188,10 @@
       Nothing here is investment advice, a recommendation, or a forecast. It describes what has already
       happened. Past returns tell you what happened, not what will. Before acting on any of it, speak to
       a SEBI registered investment adviser.
+    </p>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-3 max-w-[76ch]">
+      Want the industry's own numbers instead, what the whole country bought and sold this month?
+      <a href="mf-pulse.html" class="underline font-semibold text-cream/85">MF Industry Pulse</a> is the other half of this page.
     </p>
     <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat.</p>
   </div>

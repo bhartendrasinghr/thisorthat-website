@@ -368,6 +368,11 @@ NAV_ITEMS = [
     ('about.html',        'About'),
 ]
 
+# Pages that sit under a menu item without being it. Pulse is two views of the
+# same section, Market Pulse and MF Industry Pulse, switched inside the page,
+# so the menu should still look lit on the second one.
+NAV_ALIASES = {'mf-pulse.html': 'market-pulse.html'}
+
 def sync_nav():
     import re
     skip = {'404.html'}   # brand.html and 404 have no nav; detail pages do and need it too
@@ -390,7 +395,8 @@ def sync_nav():
         active_cls = link_cls
         parts = []
         for h, t in NAV_ITEMS:
-            here = ' aria-current="page"' if h == path.name else ''
+            mine = NAV_ALIASES.get(path.name, path.name)
+            here = ' aria-current="page"' if h == mine else ''
             parts.append('<a href="%s" class="%s"%s>%s</a>' % (h, link_cls, here, t))
         links = ''.join(parts)
         new_block = block.replace(nav.group(0), nav.group(1) + links + nav.group(3))
@@ -455,6 +461,19 @@ def main():
         _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.main()
     except Exception as _e:
         print(f'  Category Compass step skipped: {_e}')
+
+    # MF Industry Pulse: the AMFI half. Needs xlrd and pypdf, which Vercel does
+    # not have, so this step is expected to skip there. The GitHub Action runs
+    # it properly and commits the result, which is what the page actually reads.
+    print('\n→ Reading the month out of AMFI for MF Industry Pulse...')
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location('mfp', ROOT / 'build' / 'mf_pulse_refresh.py')
+        _m = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_m); _m.main()
+    except SystemExit as _e:
+        print(f'  MF Pulse step stopped: {_e}')
+    except Exception as _e:
+        print(f'  MF Pulse step skipped: {_e}')
 
     print('\n→ Labelling episode overrides for the CMS...')
     label_episode_overrides()

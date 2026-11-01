@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MF Industry Pulse, ThisOrThat with Bhartendra</title>
+<meta name="description" content="Where India's mutual fund money is going. Monthly AUM, SIP, equity and passive flows, category by category, and the fund house table, read straight off AMFI's own filings." />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="ThisOrThat with Bhartendra" />
+<meta property="og:title" content="MF Industry Pulse" />
+<meta property="og:description" content="Where India's mutual fund money is going, read straight off AMFI's own monthly filings." />
+<meta property="og:image" content="https://thisorthatshow.in/og-image.png" />
+<meta property="og:url" content="https://thisorthatshow.in/mf-pulse.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MF Industry Pulse" />
+<meta name="twitter:description" content="Where India's mutual fund money is going, every month." />
+<meta name="twitter:image" content="https://thisorthatshow.in/og-image.png" />
+<link rel="canonical" href="https://thisorthatshow.in/mf-pulse.html" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    goldink:'#8F6600', gainink:'#1B7A50',
+    marigold:{ DEFAULT:'#FFC21F', 600:'#D99B00' },
+    thisblue:{ DEFAULT:'#0249B1', 700:'#013580' },
+    ink:{ DEFAULT:'#1A1813', 3:'#57534A' },
+    warmpaper:{ DEFAULT:'#FCFBF8', 2:'#F6F4EE', 3:'#E1DDD1' },
+    loss:'#E0211E', meta:'#7A7368',
+    navy:{ DEFAULT:'#0249B1', deep:'#013580', ink:'#1A1813' },
+    mustard:'#FFC21F', cream:'#FCFBF8', paper:'#F6F4EE'
+  }, fontFamily:{
+    sans:['Hanken Grotesk','system-ui','sans-serif'],
+    serif:['Bricolage Grotesque','Georgia','serif'],
+    display:['Bricolage Grotesque','Georgia','serif'],
+    mono:['IBM Plex Mono','ui-monospace','monospace']
+  } } } };
+</script>
+<style>
+  body { font-family:'Hanken Grotesk',system-ui,sans-serif; background:#FCFBF8; color:#1A1813; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',Georgia,serif; text-wrap:balance; }
+  p { text-wrap:pretty; }
+  .tab-num { font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+  .kicker { font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#8F6600; }
+  .card { background:#fff; border:1px solid #E1DDD1; border-radius:18px; }
+  a:focus-visible, button:focus-visible { outline:3px solid #8F6600; outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+
+  /* the two views of Pulse, as one control */
+  .seg { display:inline-flex; padding:3px; border-radius:999px; background:rgba(252,251,248,.1);
+         border:1px solid rgba(252,251,248,.18); }
+  .seg a { font-size:13px; font-weight:700; padding:7px 16px; border-radius:999px; color:rgba(252,251,248,.72);
+           white-space:nowrap; }
+  .seg a[aria-current] { background:#FCFBF8; color:#1A1813; }
+
+  table.grid { width:100%; border-collapse:collapse; }
+  table.grid th { font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase;
+                  color:#7A7368; text-align:right; padding:0 0 9px 18px; white-space:nowrap; }
+  table.grid th:first-child { text-align:left; padding-left:0; }
+  table.grid td { font-size:14px; padding:9px 0 9px 18px; border-top:1px solid #E1DDD1;
+                  text-align:right; white-space:nowrap; }
+  table.grid td:first-child { text-align:left; padding-left:0; font-weight:600; white-space:normal; }
+  table.grid tr.sum td { border-top:2px solid #1A1813; font-weight:800; }
+  /* On a phone these tables are wider than the screen. Scrolling one sideways
+     beats shrinking eight columns of numbers into something nobody can read. */
+  .scroller { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .scroller table { min-width:620px; }
+  .scroller.wide table { min-width:780px; }
+  .swipe { display:none; font-size:11.5px; color:#7A7368; margin-top:6px; }
+  @media (max-width:780px){ .swipe { display:block; } }
+
+  .flowrow { display:grid; grid-template-columns:118px 1fr 90px; gap:12px; align-items:center; padding:6px 0; }
+  @media (max-width:640px){ .flowrow { grid-template-columns:92px 1fr 78px; gap:8px; } }
+  .track { position:relative; height:18px; background:#F6F4EE; border-radius:4px; }
+  .pill { font-size:10.5px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;
+          padding:3px 9px; border-radius:999px; white-space:nowrap; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="ThisOrThat" class="w-10 h-10 rounded-full object-cover" />
+      <div class="leading-tight">
+        <div class="font-bold text-navy-ink text-[15px]">ThisOrThat</div>
+        <div class="text-[11px] text-navy/60 uppercase tracking-widest">beyond the noise</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-sm font-medium text-navy-ink/80"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="market-pulse.html" class="" aria-current="page">Pulse</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+    <a href="money-person.html" class="hidden md:inline-flex bg-marigold text-ink text-sm font-bold px-4 py-2 rounded-full hover:brightness-95 transition">Talk to a human</a>
+    <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden text-navy-ink p-2 -mr-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class="md:hidden hidden border-b border-navy/10 bg-cream">
+  <nav class="flex flex-col px-6 py-4 gap-1 text-base font-medium text-navy-ink"><a href="episodes.html" class="">Episodes</a><a href="guests.html" class="">Guests</a><a href="market-pulse.html" class="">Pulse</a><a href="calculators.html" class="">Plan</a><a href="funds.html" class="">Funds</a><a href="articles.html" class="">Writing</a><a href="about.html" class="">About</a></nav>
+</div>
+
+<!-- hero -->
+<section class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12 md:py-14">
+    <div class="flex flex-wrap items-center justify-between gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em]">
+      <span class="text-marigold">ThisOrThat &middot; Pulse</span>
+      <span class="text-cream/55" id="edition">&nbsp;</span>
+    </div>
+
+    <div class="seg mt-5">
+      <a href="market-pulse.html">Market Pulse</a>
+      <a href="mf-pulse.html" aria-current="page">MF Industry Pulse</a>
+    </div>
+
+    <h1 class="font-display font-extrabold mt-6 leading-[0.98] tracking-[-0.03em] text-[clamp(34px,5.4vw,56px)] max-w-[18ch]" id="title">&nbsp;</h1>
+    <p class="mt-5 text-[17px] leading-[1.55] text-cream/75 max-w-[64ch]" id="intro">&nbsp;</p>
+
+    <div id="oneline" class="mt-9"></div>
+
+    <div class="kicker mt-12" style="color:#FFC21F">The month in numbers</div>
+    <p class="text-[12.5px] text-cream/50 mt-1" id="tilenote">&nbsp;</p>
+    <div id="tiles" class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+    <p class="mt-4 text-[12px] text-cream/45 max-w-[72ch]">
+      A green dot means the figure was read off the industry's own filing by a script, not typed
+      by anybody. Everything else is written by hand and carries the date it was written, so you
+      can always tell which is which.
+    </p>
+  </div>
+</section>
+
+<!-- what to make of it -->
+<section class="max-w-7xl mx-auto px-6 pt-14">
+  <div class="card p-6 md:p-8 max-w-[76ch]">
+    <div class="kicker" id="take-head">&nbsp;</div>
+    <p class="mt-3 text-[16.5px] leading-[1.62] text-ink" id="take-body">&nbsp;</p>
+    <div id="take-stamp" class="mt-4"></div>
+  </div>
+</section>
+
+<!-- where the money went -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Where the money went</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[24ch]">Seven months of flows, by what people bought</h2>
+  <p class="mt-4 text-[16px] leading-[1.6] text-ink-3 max-w-[64ch]" id="howread">&nbsp;</p>
+
+  <div id="flowtabs" class="mt-8 flex flex-wrap gap-2"></div>
+  <div id="flowchart" class="mt-6 max-w-[760px]"></div>
+  <p class="mt-3 text-[12px] text-meta" id="flownote">&nbsp;</p>
+
+  <div class="mt-12 scroller wide">
+    <table class="grid" id="flowtable"></table>
+  </div>
+  <p class="swipe">Swipe the table sideways for the rest of the columns.</p>
+</section>
+
+<!-- segments -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
+    <div>
+      <div class="kicker">What the industry holds</div>
+      <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)] mt-3">Assets by kind of fund</h2>
+      <p class="mt-3 text-[14px] text-meta" id="segunit">&nbsp;</p>
+      <div class="mt-6 scroller"><table class="grid" id="segtable"></table></div>
+      <p class="swipe">Swipe the table sideways for the rest of the columns.</p>
+      <p class="mt-4 text-[13.5px] leading-[1.55] text-ink-3" id="segnote">&nbsp;</p>
+    </div>
+    <div>
+      <div class="kicker">Index funds and ETFs</div>
+      <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)] mt-3">Inside passive</h2>
+      <p class="mt-3 text-[14px] text-meta">Net inflow for the month, in rupees crore</p>
+      <div id="passive" class="mt-6"></div>
+      <p class="mt-4 text-[13.5px] leading-[1.55] text-ink-3" id="passivenote">&nbsp;</p>
+    </div>
+  </div>
+</section>
+
+<!-- equity categories -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Equity, category by category</div>
+  <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3 max-w-[26ch]">Which kinds of equity fund money chose</h2>
+  <p class="mt-4 text-[16px] leading-[1.6] text-ink-3 max-w-[64ch]" id="eqnote">&nbsp;</p>
+  <div id="eqbars" class="mt-8 max-w-[760px]"></div>
+  <div class="mt-10 scroller wide"><table class="grid" id="eqtable"></table></div>
+  <p class="swipe">Swipe the table sideways for the rest of the columns.</p>
+  <p class="mt-4 text-[12px] text-meta" id="eqfoot">&nbsp;</p>
+</section>
+
+<!-- the fund houses -->
+<section class="bg-navy-ink text-cream py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="kicker" style="color:#FFC21F">The fund houses</div>
+    <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,36px)] mt-3" id="lb-title">&nbsp;</h2>
+    <p class="mt-4 text-[15.5px] leading-[1.6] text-cream/70 max-w-[66ch]" id="lb-note">&nbsp;</p>
+    <div id="lb" class="mt-8"></div>
+    <button id="lb-more" class="mt-6 text-[13.5px] font-bold px-5 py-2.5 rounded-full border border-cream/30 hover:bg-cream/10 transition"></button>
+    <p class="mt-6 text-[13.5px] leading-[1.6] text-cream/60 max-w-[70ch]" id="lb-growers">&nbsp;</p>
+    <div id="lb-stamp" class="mt-4"></div>
+  </div>
+</section>
+
+<!-- the market row + new products -->
+<section class="max-w-7xl mx-auto px-6 py-14 grid lg:grid-cols-2 gap-12">
+  <div>
+    <div class="kicker">Who was buying</div>
+    <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)] mt-3">Foreign money out, Indian money in</h2>
+    <div id="market" class="mt-6 grid sm:grid-cols-2 gap-3"></div>
+    <p class="mt-4 text-[13.5px] leading-[1.55] text-ink-3" id="marketnote">&nbsp;</p>
+    <div id="market-stamp" class="mt-3"></div>
+  </div>
+  <div>
+    <div class="kicker">New this month</div>
+    <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)] mt-3">What launched, and what it gathered</h2>
+    <div id="nfo" class="mt-6"></div>
+  </div>
+</section>
+
+<!-- the fortnight -->
+<section class="bg-warmpaper-2 border-y border-warmpaper-3 py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="kicker">This fortnight in the industry</div>
+    <h2 class="font-display font-extrabold text-[clamp(26px,3.4vw,34px)] mt-3" id="news-title">&nbsp;</h2>
+    <p class="mt-3 text-[14px] text-meta max-w-[62ch]" id="news-note">&nbsp;</p>
+    <div id="newsfilter" class="mt-6 flex flex-wrap gap-2"></div>
+    <div id="news" class="mt-6"></div>
+    <div id="news-stamp" class="mt-5"></div>
+  </div>
+</section>
+
+<!-- definitions -->
+<section class="max-w-7xl mx-auto px-6 py-14">
+  <div class="kicker">Plain meanings</div>
+  <h2 class="font-display font-extrabold text-[clamp(24px,3vw,32px)] mt-3">The words, without the jargon</h2>
+  <div id="defs" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+  <div class="mt-14 card p-6 md:p-7 max-w-[76ch]">
+    <div class="kicker">How this page is built</div>
+    <p class="mt-3 text-[15px] leading-[1.6] text-ink-3">
+      Every number in the flows, assets, category, passive and new-scheme tables is read by a
+      script straight out of the spreadsheet the industry publishes each month, so no figure here
+      was retyped by a person. The fund house table is quarterly and entered by hand. The
+      sentences are ours and carry the date they were written. Where our arithmetic differs from a
+      summary you may have read elsewhere, the <span id="src-file" class="tab-num font-semibold">source file</span>
+      is linked below and you are welcome to check us.
+    </p>
+    <div id="sources" class="mt-5 flex flex-col gap-2"></div>
+  </div>
+</section>
+
+<footer class="bg-navy-ink text-cream">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="font-display font-extrabold text-[16px]">ThisOrThat</div>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-4 max-w-[76ch]" id="nextup">&nbsp;</p>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-3 max-w-[76ch]">
+      Nothing here is investment advice, a recommendation, or a forecast. It describes what has
+      already happened. A category taking in money is not a category you should buy, and a
+      category losing money is not one you should sell. Before acting on any of it, speak to a
+      SEBI registered investment adviser.
+    </p>
+    <p class="text-[12.5px] leading-relaxed text-cream/60 mt-3 max-w-[76ch]">
+      Looking for what the market did to your own portfolio instead?
+      <a href="market-pulse.html" class="underline font-semibold text-cream/85">Market Pulse</a> is the other half of this page.
+    </p>
+    <p class="text-[12px] text-cream/40 mt-5">&copy; 2026 ThisOrThat.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};
+var mt=$('mobile-menu-toggle');
+if(mt) mt.addEventListener('click',function(){ $('mobile-menu').classList.toggle('hidden'); });
+
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+
+var MINUS='−', RS='₹';
+
+/* Indian grouping: 1,20,000 and not 120,000. The last three digits, then pairs. */
+function inr(n){
+  if(n==null||isNaN(n)) return '';
+  var neg=n<0; n=Math.abs(Math.round(n));
+  var s=String(n), out=s.length>3 ? s.slice(-3) : s, rest=s.slice(0,-3);
+  while(rest.length>2){ out=rest.slice(-2)+','+out; rest=rest.slice(0,-2); }
+  if(rest) out=rest+','+out;
+  return (neg?MINUS:'')+out;
+}
+function cr(n){ if(n==null) return '';
+  /* The sign goes in front of the symbol. '-Rs 1,33,376' reads as a debt,
+     'Rs -1,33,376' reads as a typo. */
+  var t=inr(n); return (t.charAt(0)===MINUS ? MINUS+RS+t.slice(1) : RS+t)+' cr'; }
+function lcr(n){ return n==null?'':RS+(Math.abs(n)/1e5).toFixed(2)+' L cr'; }
+function crore(n){ return n==null?'':(n/1e7).toFixed(2)+' cr'; }
+function lakh(n){ return n==null?'':(n/1e5).toFixed(2); }
+function pct(v,dp){ if(v==null||isNaN(v)) return ''; dp=dp==null?1:dp;
+  return (v>0?'+':v<0?MINUS:'')+Math.abs(v).toFixed(dp)+'%'; }
+function col(v){ return v>=0 ? '#1B7A50' : '#E0211E'; }
+function colDark(v){ return v>=0 ? '#9FD9BC' : '#F0A5A3'; }
+function shortDate(iso){
+  if(!iso) return '';
+  var d=new Date(iso+'T00:00:00');
+  return isNaN(d) ? '' : d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+}
+
+/* Half this page reads itself and half is written by a person. One date at the
+   top would be a lie about one half, so each half carries its own stamp. */
+function liveStamp(iso, dark, who){
+  if(!iso) return '';
+  var c = dark ? '#9FD9BC' : '#1B7A50';
+  return '<div class="mt-2 text-[10.5px] font-semibold tab-num flex items-center gap-1.5" style="color:'+c+'">'+
+    '<span style="width:6px;height:6px;border-radius:50%;background:#1B7A50;display:inline-block"></span>'+
+    'from '+esc(who||'AMFI')+' &middot; '+esc(shortDate(iso))+'</div>';
+}
+function handStamp(iso, dark){
+  if(!iso) return '';
+  var c = dark ? 'rgba(252,251,248,.45)' : '#7A7368';
+  return '<div class="text-[10.5px] font-semibold tab-num" style="color:'+c+'">written '+esc(shortDate(iso))+'</div>';
+}
+
+/* One scale per chart, negatives running left from a shared zero, so bar
+   lengths mean the same thing everywhere on the page. */
+function bars(rows, el, opt){
+  opt = opt || {};
+  var max = Math.max.apply(null, rows.map(function(r){ return Math.abs(r.v||0); })) || 1;
+  var anyNeg = rows.some(function(r){ return (r.v||0) < 0; });
+  var zero = anyNeg ? 46 : 0, span = anyNeg ? 52 : 98;
+  el.innerHTML = rows.map(function(r){
+    var w = Math.abs(r.v||0)/max*span, left = (r.v||0)>=0 ? zero : zero-w;
+    var c = (r.v||0) >= 0 ? (opt.pos||'#0249B1') : (opt.neg||'#E0211E');
+    return '<div class="flowrow">'+
+      '<div class="font-semibold text-[13.5px] leading-tight">'+esc(r.k)+'</div>'+
+      '<div class="track">'+
+        (anyNeg?'<span style="position:absolute;left:'+zero+'%;top:-2px;bottom:-2px;width:1px;background:#C9C3B4"></span>':'')+
+        '<div style="position:absolute;top:2px;bottom:2px;left:'+left+'%;width:'+w+'%;background:'+c+';border-radius:3px"></div>'+
+      '</div>'+
+      '<div class="tab-num text-right text-[13px] font-semibold" style="color:'+col(r.v)+'">'+esc(r.label||inr(r.v))+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+Promise.all([
+  fetch('mf-pulse-data.json?v='+Date.now()).then(function(r){ if(!r.ok) throw 0; return r.json(); }),
+  fetch('content/mf-pulse.json?v='+Date.now()).then(function(r){ if(!r.ok) throw 0; return r.json(); })
+]).then(function(res){
+  var d = res[0], c = res[1];
+  var sip = d.sip || {};
+
+  /* ── hero ── */
+  $('edition').innerHTML = esc(d.month) + '  &middot;  <span style="color:#9FD9BC">read from AMFI ' +
+    esc(shortDate(d.generated)) + '</span>';
+  $('title').textContent = c.title || "Where India's money is going";
+  $('intro').textContent = c.intro || '';
+  $('tilenote').textContent = 'as reported for ' + d.month + ', in rupees';
+
+  /* The one-line summary is composed from the data, not written, so it can
+     never contradict the tables underneath it. */
+  var streak = sip.equity_streak;
+  var parts = [
+    'Industry assets ' + (d.industry.aum_mom < 0 ? 'fell ' : 'rose ') +
+      pct(Math.abs(d.industry.aum_mom)).replace('+','') + ' to ' + lcr(d.industry.aum) + '.',
+    'Equity funds took in ' + cr(d.equity.flow) +
+      (streak ? ', the ' + streak + 'th month in a row of money coming in' : '') + '.',
+    sip.contribution ? 'The SIP book stood at ' + cr(sip.contribution[0]) + ' from ' +
+      sip.accounts[0].toFixed(2) + ' crore accounts.' : ''
+  ].filter(Boolean);
+  $('oneline').innerHTML =
+    '<div class="rounded-[18px] p-6 md:p-7" style="background:rgba(255,194,31,.1);border:1px solid rgba(255,194,31,.3)">'+
+      '<div class="text-[11px] font-extrabold uppercase tracking-[0.18em]" style="color:#FFC21F">The month in one line</div>'+
+      '<p class="mt-3 text-[17.5px] leading-[1.5] font-semibold">'+parts.map(esc).join(' ')+'</p>'+
+      liveStamp(d.asof, true)+
+    '</div>';
+
+  var share = d.passive.share, fol = d.industry;
+  var added = (fol.folios!=null && fol.folios_prev!=null) ? fol.folios - fol.folios_prev : null;
+  var TILES = [
+    { k:'Industry assets', v:lcr(d.industry.aum), sub:'from '+lcr(d.industry.aum_prev)+' in '+d.prev_month_short,
+      chg:d.industry.aum_mom, means:'Everything India holds in mutual funds, at month-end prices.' },
+    { k:'Equity net inflow', v:cr(d.equity.flow), sub:'against '+cr(d.equity.flow_prev)+' in '+d.prev_month_short,
+      chg:d.equity.flow_mom, means:'What went into equity funds after taking out what came back.' },
+    sip.contribution ? { k:'Monthly SIP', v:cr(sip.contribution[0]),
+      sub:'from '+sip.accounts[0].toFixed(2)+' crore live accounts',
+      chg: sip.contribution[1] ? (sip.contribution[0]/sip.contribution[1]-1)*100 : null,
+      means:'Collected on standing instruction, whatever the market did that month.' } : null,
+    sip.assets ? { k:'SIP assets', v:RS+sip.assets[0].toFixed(2)+' L cr',
+      sub:(sip.share?sip.share[0]+'% of all industry assets':''),
+      chg: sip.assets[1] ? (sip.assets[0]/sip.assets[1]-1)*100 : null,
+      means:'What the SIP habit has built up so far.' } : null,
+    { k:'Investor folios', v:crore(d.industry.folios),
+      sub:(added!=null ? lakh(added)+' lakh accounts added' : ''),
+      chg:(fol.folios_prev?(fol.folios/fol.folios_prev-1)*100:null),
+      means:'Accounts, not people. One investor can hold many.' },
+    { k:'All funds, net flow', v:cr(d.industry.flow), sub:'against '+cr(d.industry.flow_prev)+' in '+d.prev_month_short,
+      chg:null, means:'Swings with company treasuries moving cash, not with households.' },
+    { k:'Passive net inflow', v:cr(d.passive.flow), sub:(share?share+'% of industry assets are passive now':''),
+      chg:d.passive.flow_mom, means:'Index funds and ETFs, including gold and silver.' },
+    d.sif ? { k:'Specialised funds', v:cr(d.sif.aum), sub:'took in '+cr(d.sif.flow)+' this month',
+      chg:d.sif.mom, means:'SEBI’s new category above mutual funds. ₹10 lakh minimum.' } : null
+  ].filter(Boolean);
+
+  $('tiles').innerHTML = TILES.map(function(t){
+    return '<div class="rounded-[14px] p-4 flex flex-col" style="background:rgba(252,251,248,.07);border:1px solid rgba(252,251,248,.12)">'+
+      '<div class="text-[12.5px] font-bold leading-tight text-cream/90">'+esc(t.k)+'</div>'+
+      '<div class="tab-num font-extrabold text-[clamp(20px,2.7vw,27px)] mt-2">'+esc(t.v)+'</div>'+
+      (t.chg!=null && !isNaN(t.chg) ? '<div class="tab-num text-[12.5px] font-bold mt-0.5" style="color:'+colDark(t.chg)+'">'+pct(t.chg)+' on the month</div>' : '')+
+      (t.sub?'<div class="text-[11.5px] text-cream/45 mt-1 leading-snug">'+esc(t.sub)+'</div>':'')+
+      (t.means?'<p class="text-[12px] text-cream/65 mt-2 leading-[1.45] flex-1">'+esc(t.means)+'</p>':'')+
+      liveStamp(d.asof, true)+
+    '</div>';
+  }).join('');
+
+  /* ── the editorial take ── */
+  if(c.take){
+    $('take-head').textContent = c.take.heading || 'What to make of it';
+    $('take-body').textContent = c.take.body || '';
+    $('take-stamp').innerHTML = handStamp(c.take.asof);
+  }
+
+  /* ── seven months of flows ── */
+  $('howread').textContent = c.how_to_read || '';
+  var COLS = [
+    {key:'equity', name:'Equity'}, {key:'debt', name:'Debt'},
+    {key:'hybrid', name:'Hybrid'}, {key:'passive', name:'Passive'},
+    {key:'total', name:'Everything'}
+  ];
+  var fi = 0;
+  function drawFlow(){
+    var k = COLS[fi].key;
+    bars(d.months.map(function(m){ return {k:m.m, v:m[k], label:inr(m[k])}; }), $('flowchart'),
+         {pos:'#0249B1', neg:'#E0211E'});
+    $('flownote').textContent = 'Net inflow into ' + COLS[fi].name.toLowerCase() +
+      ' funds, in rupees crore, month by month. Read from AMFI’s monthly report.';
+  }
+  $('flowtabs').innerHTML = COLS.map(function(x,i){
+    return '<button data-f="'+i+'" class="pill" style="border:1.5px solid '+(i===0?'#0249B1':'#E1DDD1')+
+      ';background:'+(i===0?'#0249B1':'transparent')+';color:'+(i===0?'#fff':'#57534A')+
+      ';cursor:pointer;padding:6px 14px;font-size:12.5px">'+esc(x.name)+'</button>';
+  }).join('');
+  $('flowtabs').addEventListener('click', function(e){
+    var b=e.target.closest('[data-f]'); if(!b) return;
+    fi = +b.getAttribute('data-f');
+    [].forEach.call($('flowtabs').children, function(x,i){
+      x.style.borderColor = i===fi ? '#0249B1' : '#E1DDD1';
+      x.style.background  = i===fi ? '#0249B1' : 'transparent';
+      x.style.color       = i===fi ? '#fff' : '#57534A';
+    });
+    drawFlow();
+  });
+  drawFlow();
+
+  var sipBy = {};
+  if(sip.months) sip.months.forEach(function(m,i){
+    var p = m.split('-');
+    sipBy[p[0]+' 20'+p[1]] = { c: sip.contribution[i], a: sip.accounts[i] };
+  });
+  $('flowtable').innerHTML =
+    '<thead><tr><th>Month</th><th>Equity</th><th>Debt</th><th>Hybrid</th><th>Passive</th>'+
+    '<th>Everything</th><th>SIP</th><th>SIP accounts</th></tr></thead><tbody>'+
+    d.months.map(function(m){
+      var s = sipBy[m.m] || {};
+      return '<tr>'+
+        '<td>'+esc(m.m)+'</td>'+
+        ['equity','debt','hybrid','passive','total'].map(function(k){
+          return '<td class="tab-num" style="color:'+col(m[k])+'">'+inr(m[k])+'</td>';
+        }).join('')+
+        '<td class="tab-num">'+(s.c!=null?inr(s.c):'')+'</td>'+
+        '<td class="tab-num text-meta">'+(s.a!=null?s.a.toFixed(2)+' cr':'')+'</td>'+
+      '</tr>';
+    }).join('')+'</tbody>';
+
+  /* ── segments ── */
+  $('segunit').textContent = 'Assets at the end of ' + d.month + ', in lakh crore';
+  $('segtable').innerHTML =
+    '<thead><tr><th>Kind of fund</th><th>'+esc(d.month_short)+'</th><th>'+esc(d.prev_month_short)+
+    '</th><th>On the month</th><th>On the year</th></tr></thead><tbody>'+
+    d.segments.map(function(s){
+      return '<tr'+(s.total?' class="sum"':'')+'>'+
+        '<td>'+esc(s.k)+'</td>'+
+        '<td class="tab-num">'+(Math.abs(s.aum)/1e5).toFixed(2)+'</td>'+
+        '<td class="tab-num text-meta">'+(s.aum_prev!=null?(Math.abs(s.aum_prev)/1e5).toFixed(2):'')+'</td>'+
+        '<td class="tab-num" style="color:'+col(s.mom)+'">'+pct(s.mom)+'</td>'+
+        '<td class="tab-num" style="color:'+col(s.yoy)+'">'+pct(s.yoy)+'</td>'+
+      '</tr>';
+    }).join('')+'</tbody>';
+  $('segnote').textContent = 'Index funds and ETFs are now ' + (d.passive.share||'') +
+    '% of everything the industry holds, up from almost nothing a decade ago. ' +
+    'Year-on-year compares with ' + d.year_ago_short + '.';
+
+  bars(d.passive_rows.map(function(r){ return {k:r.k, v:r.flow, label:inr(r.flow)}; }), $('passive'),
+       {pos:'#0249B1', neg:'#E0211E'});
+  $('passivenote').textContent = c.passive_note || '';
+
+  /* ── equity categories ── */
+  $('eqnote').textContent = c.equity_note || '';
+  bars(d.equity_cats.map(function(r){ return {k:r.k, v:r.flow, label:inr(r.flow)}; }), $('eqbars'),
+       {pos:'#0249B1', neg:'#E0211E'});
+  $('eqtable').innerHTML =
+    '<thead><tr><th>Category</th><th>Net inflow</th><th>'+esc(d.prev_month_short)+
+    '</th><th>Assets</th><th>Assets, on the month</th><th>Schemes</th></tr></thead><tbody>'+
+    d.equity_cats.map(function(r){
+      return '<tr>'+
+        '<td>'+esc(r.k)+'</td>'+
+        '<td class="tab-num font-semibold" style="color:'+col(r.flow)+'">'+inr(r.flow)+'</td>'+
+        '<td class="tab-num text-meta">'+inr(r.flow_prev)+'</td>'+
+        '<td class="tab-num">'+inr(r.aum)+'</td>'+
+        '<td class="tab-num" style="color:'+col(r.aum_mom)+'">'+pct(r.aum_mom)+'</td>'+
+        '<td class="tab-num text-meta">'+(r.schemes!=null?r.schemes:'')+'</td>'+
+      '</tr>';
+    }).join('')+'</tbody>';
+  $('eqfoot').textContent = 'Net inflow and assets in rupees crore. The thirteen categories add up to '+
+    'the industry equity total in the same filing, which is the check this page runs before it publishes.';
+
+  /* ── fund houses ── */
+  var lb = c.leaderboard || {rows:[]};
+  var rows = (lb.rows||[]).slice();
+  $('lb-title').textContent = 'Who manages India’s money';
+  $('lb-note').textContent = lb.note || '';
+  var shown = 10;
+  var maxA = rows.length ? rows[0].aaum : 1;
+  function drawLb(){
+    $('lb').innerHTML = rows.slice(0, shown).map(function(r){
+      var w = Math.max(0.6, r.aaum/maxA*100);
+      return '<div class="py-2.5" style="border-top:1px solid rgba(252,251,248,.13)">'+
+        '<div class="flex items-baseline gap-3">'+
+          '<div class="tab-num text-[12px] text-cream/40 w-6 shrink-0">'+r.rank+'</div>'+
+          '<div class="font-semibold text-[14.5px] flex-1">'+esc(r.k.replace(/ Mutual Fund$/,''))+'</div>'+
+          '<div class="tab-num text-[13.5px] font-bold">'+inr(r.aaum)+'</div>'+
+          '<div class="tab-num text-[12px] w-14 text-right text-cream/50">'+r.share.toFixed(2)+'%</div>'+
+          '<div class="tab-num text-[12.5px] w-16 text-right font-semibold" style="color:'+
+            (r.qoq==null?'rgba(252,251,248,.4)':colDark(r.qoq))+'">'+
+            (r.qoq==null?'new':pct(r.qoq))+'</div>'+
+        '</div>'+
+        '<div class="mt-1.5 ml-9" style="height:5px;background:rgba(252,251,248,.09);border-radius:3px">'+
+          '<div style="height:5px;width:'+w+'%;background:#FFC21F;border-radius:3px"></div></div>'+
+      '</div>';
+    }).join('');
+    $('lb-more').textContent = shown >= rows.length
+      ? 'Show the top ten only'
+      : 'Show all ' + rows.length + ' fund houses';
+  }
+  $('lb-more').addEventListener('click', function(){
+    shown = shown >= rows.length ? 10 : rows.length;
+    drawLb();
+    if(shown === 10) $('lb').scrollIntoView({block:'start', behavior:'smooth'});
+  });
+  drawLb();
+  $('lb-growers').textContent = lb.growers_note || '';
+  $('lb-stamp').innerHTML = handStamp(lb.asof, true) +
+    (lb.quarter ? '<div class="text-[10.5px] text-cream/40 tab-num">average assets, '+esc(lb.quarter)+
+      ', in rupees crore</div>' : '');
+
+  /* ── the market row ── */
+  var m = c.market || {rows:[]};
+  var mrows = (m.rows||[]).slice();
+  if(d.market){
+    mrows.unshift({ k:'Nifty 50', v:inr(Math.round(d.market.nifty)),
+      sub:'close on '+shortDate(d.market.asof)+', '+pct(d.market.week)+' on the week and '+
+          pct(d.market.year)+' over 52 weeks',
+      tone: d.market.week>=0?'up':'down', live:true });
+  }
+  $('market').innerHTML = mrows.map(function(r){
+    return '<div class="card p-4">'+
+      '<div class="text-[12.5px] font-bold text-ink-3">'+esc(r.k)+'</div>'+
+      '<div class="tab-num font-extrabold text-[22px] mt-1" style="color:'+
+        (r.tone==='up'?'#1B7A50':r.tone==='down'?'#E0211E':'#1A1813')+'">'+esc(r.v)+'</div>'+
+      '<div class="text-[11.5px] text-meta mt-1 leading-snug">'+esc(r.sub||'')+'</div>'+
+      (r.live ? liveStamp(d.market.asof, false, 'NSE') : '')+
+    '</div>';
+  }).join('');
+  $('marketnote').textContent = m.note || '';
+  $('market-stamp').innerHTML = handStamp(m.asof);
+
+  /* ── new schemes ── */
+  var n = d.nfo;
+  if(n){
+    $('nfo').innerHTML =
+      '<div class="card p-5 md:p-6">'+
+        '<div class="flex flex-wrap gap-6">'+
+          '<div><div class="text-[12px] font-bold text-meta uppercase tracking-wider">New schemes</div>'+
+          '<div class="tab-num font-extrabold text-[30px]">'+n.grand.count+'</div></div>'+
+          '<div><div class="text-[12px] font-bold text-meta uppercase tracking-wider">They gathered</div>'+
+          '<div class="tab-num font-extrabold text-[30px]">'+cr(n.grand.raised)+'</div></div>'+
+        '</div>'+
+        '<div class="mt-5">'+ n.groups.map(function(g){
+            return '<div class="flex items-baseline justify-between gap-3 py-2" style="border-top:1px solid #E1DDD1">'+
+              '<div class="text-[13.5px] font-semibold">'+esc(g.k.replace(/ Schemes?$/,'').replace('Exchange Traded Funds (ETFs)','ETFs'))+'</div>'+
+              '<div class="tab-num text-[13px] text-meta">'+g.count+(g.count===1?' fund':' funds')+'</div>'+
+              '<div class="tab-num text-[13.5px] font-semibold">'+cr(g.raised)+'</div></div>';
+          }).join('')+'</div>'+
+        (n.fof ? '<p class="mt-4 text-[12.5px] text-meta leading-[1.5]">Of that, '+n.fof.count+
+          ' were domestic fund of funds raising '+cr(n.fof.raised)+
+          '. AMFI counts those separately because the money they hold is already counted inside the funds they buy.</p>' : '')+
+        liveStamp(d.asof)+
+      '</div>' +
+      (d.sif ? '<div class="card p-5 mt-4">'+
+        '<div class="text-[12px] font-bold text-meta uppercase tracking-wider">Specialised investment funds</div>'+
+        '<div class="tab-num font-extrabold text-[26px] mt-1">'+cr(d.sif.aum)+'</div>'+
+        '<div class="text-[12.5px] text-meta mt-1">'+d.sif.schemes+' schemes, '+inr(d.sif.folios)+
+          ' folios, '+pct(d.sif.mom)+' on the month</div>'+
+        '<p class="text-[13px] text-ink-3 mt-2 leading-[1.5]">A year old as a category, and still a '+
+        'product for large accounts: the minimum is '+RS+'10 lakh.</p>'+ liveStamp(d.asof)+'</div>' : '');
+  }
+
+  /* ── the fortnight ── */
+  var nw = c.news || {rows:[]};
+  $('news-title').textContent = nw.window || '';
+  $('news-note').textContent = nw.note || '';
+  var themes = ['All'].concat((nw.rows||[]).map(function(r){return r.t;})
+    .filter(function(v,i,s){return s.indexOf(v)===i;}));
+  var ti = 0;
+  function drawNews(){
+    var want = themes[ti];
+    var list = (nw.rows||[]).filter(function(r){ return want==='All' || r.t===want; });
+    $('news').innerHTML = list.map(function(r){
+      return '<div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-3 border-t border-warmpaper-3">'+
+        '<div class="tab-num text-[12.5px] font-bold text-meta w-16 shrink-0">'+esc(r.d)+'</div>'+
+        '<div class="shrink-0 w-28"><span class="pill" style="background:#F6F4EE;color:#57534A">'+esc(r.t)+'</span></div>'+
+        '<div class="text-[14.5px] leading-[1.5]">'+esc(r.v)+'</div></div>';
+    }).join('');
+  }
+  $('newsfilter').innerHTML = themes.map(function(t,i){
+    return '<button data-n="'+i+'" class="pill" style="cursor:pointer;padding:6px 13px;font-size:12px;border:1.5px solid '+
+      (i===0?'#0249B1':'#E1DDD1')+';background:'+(i===0?'#0249B1':'transparent')+';color:'+(i===0?'#fff':'#57534A')+'">'+
+      esc(t)+'</button>';
+  }).join('');
+  $('newsfilter').addEventListener('click', function(e){
+    var b=e.target.closest('[data-n]'); if(!b) return;
+    ti=+b.getAttribute('data-n');
+    [].forEach.call($('newsfilter').children, function(x,i){
+      x.style.borderColor = i===ti ? '#0249B1' : '#E1DDD1';
+      x.style.background  = i===ti ? '#0249B1' : 'transparent';
+      x.style.color       = i===ti ? '#fff' : '#57534A';
+    });
+    drawNews();
+  });
+  drawNews();
+  $('news-stamp').innerHTML = handStamp(nw.asof);
+
+  /* ── definitions and sources ── */
+  $('defs').innerHTML = (c.definitions||[]).map(function(x){
+    return '<div class="card p-4"><div class="font-extrabold text-[14.5px]">'+esc(x.k)+'</div>'+
+      '<p class="text-[13.5px] text-ink-3 mt-1.5 leading-[1.5]">'+esc(x.v)+'</p></div>';
+  }).join('');
+  $('src-file').textContent = d.source_file || 'source file';
+  var srcs = (c.sources||[]).slice();
+  if(d.note_pdf) srcs.push({k:'The exact note these figures came from', url:d.note_pdf});
+  $('sources').innerHTML = srcs.map(function(s){
+    return '<a class="text-[13px] font-semibold text-thisblue underline" href="'+esc(s.url)+
+      '" target="_blank" rel="noopener">'+esc(s.k)+'</a>';
+  }).join('');
+  $('nextup').textContent = c.next_update || '';
+}).catch(function(e){
+  $('title').textContent = 'MF Industry Pulse';
+  $('intro').textContent = 'The numbers could not be loaded just now. Try again in a moment.';
+});
+})();
+</script>
+</body>
+</html>

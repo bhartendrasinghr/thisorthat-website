@@ -1,0 +1,80 @@
+name: Refresh MF Industry Pulse from AMFI
+
+# AMFI publishes the month's figures around the 8th to the 12th. The Vercel
+# build already refreshes mf-pulse-data.json on every nightly deploy, so the
+# live page keeps up on its own. This job exists for the case where it does
+# not: if AMFI ever blocks Vercel's network the deploy stays green while the
+# page quietly serves whatever was last committed, which is exactly how the
+# episode list sat three weeks stale and said nothing.
+#
+# So this runs on a different network, and commits a new baseline whenever
+# AMFI has published a new month. Only the month matters here: the Nifty
+# figure in the same file moves every trading day, and committing that daily
+# would bury the one change worth seeing in noise.
+
+on:
+  schedule:
+    - cron: '0 5 8-15 * *'     # 10:30 IST, the 8th to the 15th
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mf-pulse
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install the two parsers
+        run: pip install --quiet xlrd pypdf
+
+      - name: Note which month we had
+        id: before
+        run: |
+          python3 -c "import json;print('month='+json.load(open('mf-pulse-data.json'))['month'])" >> "$GITHUB_OUTPUT"
+
+      - name: Read the latest month out of AMFI
+        run: |
+          set -o pipefail
+          python3 build/mf_pulse_refresh.py 2>&1 | tee /tmp/mf.log
+
+      - name: Is there a new month?
+        id: after
+        run: |
+          python3 -c "import json;print('month='+json.load(open('mf-pulse-data.json'))['month'])" >> "$GITHUB_OUTPUT"
+
+      - name: Commit only when the month moved
+        run: |
+          BEFORE="${{ steps.before.outputs.month }}"
+          AFTER="${{ steps.after.outputs.month }}"
+          if [ "$BEFORE" = "$AFTER" ]; then
+            echo "Still on $AFTER. AMFI has not published the next month yet, so nothing to commit."
+            git checkout -- mf-pulse-data.json
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mf-pulse-data.json
+          git commit -m "MF Industry Pulse: $AFTER, read from AMFI
+
+          Was $BEFORE. Every figure comes out of AMFI's own monthly
+          spreadsheet and note. The written half of the page, and the
+          quarterly fund house table, are untouched and may now be a month
+          behind the numbers above them.
+
+          Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
+          git push
+          echo "Pushed $AFTER. Vercel will redeploy."
+
+      - name: Say what happened, pass or fail
+        if: always()
+        run: tail -30 /tmp/mf.log || echo "the refresh produced no log, which means it did not run"

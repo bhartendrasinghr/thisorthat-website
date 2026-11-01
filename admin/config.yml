@@ -398,6 +398,105 @@ collections:
               - { name: "f", label: "How often", widget: "string" }
           - { name: "sources", label: "Sources line", widget: "text" }
 
+  # ───────── MF INDUSTRY PULSE (/mf-pulse) ─────────
+  # Only the half a person writes lives here. Every figure in the flows,
+  # assets, category, passive and new-scheme tables is read off AMFI's own
+  # monthly spreadsheet into mf-pulse-data.json by build/mf_pulse_refresh.py,
+  # and nothing in this screen can change those. If you want to correct a
+  # number, correct it at AMFI or tell Claude the parse is wrong.
+  - name: "mf_pulse"
+    label: "MF Industry Pulse"
+    files:
+      - name: "mfpulse"
+        label: "The written half"
+        file: "content/mf-pulse.json"
+        description: "The sentences, the fund house table and the fortnight's news for /mf-pulse. The monthly numbers refresh themselves from AMFI, so they are not here."
+        fields:
+          - { name: "edition", label: "Edition", widget: "string", hint: "e.g. September 2026. Cosmetic: the page takes the real month from AMFI's file." }
+          - { name: "updated", label: "Updated on", widget: "date", format: "YYYY-MM-DD" }
+          - { name: "title", label: "Headline", widget: "string" }
+          - { name: "intro", label: "Opening paragraph", widget: "text" }
+          - name: "take"
+            label: "What to make of it"
+            widget: "object"
+            hint: "The one piece of real writing on the page. Rewrite it each month. It carries its own date, so a stale take is visibly stale."
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "body", label: "Paragraph", widget: "text" }
+              - { name: "asof", label: "Written on", widget: "date", format: "YYYY-MM-DD" }
+          - { name: "how_to_read", label: "How to read the flows table", widget: "text" }
+          - { name: "equity_note", label: "Note under the equity categories", widget: "text" }
+          - { name: "passive_note", label: "Note under passive", widget: "text" }
+          - name: "leaderboard"
+            label: "Fund house table (quarterly)"
+            widget: "object"
+            hint: "Changes four times a year, not twelve. Average assets for the quarter, in rupees crore."
+            fields:
+              - { name: "quarter", label: "Quarter", widget: "string", hint: "e.g. July to September 2026" }
+              - { name: "asof", label: "Entered on", widget: "date", format: "YYYY-MM-DD" }
+              - { name: "industry_aaum", label: "Industry average AUM for the quarter (cr)", widget: "number", value_type: "float" }
+              - { name: "industry_qoq", label: "Industry change on the quarter (%)", widget: "number", value_type: "float", required: false }
+              - { name: "note", label: "Note above the table", widget: "text" }
+              - { name: "growers_note", label: "Note about the fastest growers", widget: "text" }
+              - name: "rows"
+                label: "Fund houses (drag to reorder)"
+                widget: "list"
+                summary: "{{fields.rank}}. {{fields.k}} — {{fields.aaum}}"
+                fields:
+                  - { name: "rank", label: "Rank", widget: "number", value_type: "int" }
+                  - { name: "k", label: "Fund house", widget: "string" }
+                  - { name: "aaum", label: "Average AUM this quarter (cr)", widget: "number", value_type: "float" }
+                  - { name: "prev", label: "Average AUM last quarter (cr)", widget: "number", value_type: "float", required: false, hint: "Leave blank for a brand new fund house." }
+                  - { name: "share", label: "Share of industry (%)", widget: "number", value_type: "float" }
+                  - { name: "qoq", label: "Change on the quarter (%)", widget: "number", value_type: "float", required: false }
+                  - { name: "new", label: "New this quarter", widget: "boolean", default: false }
+          - name: "market"
+            label: "Who was buying"
+            widget: "object"
+            hint: "The four figures this page cannot fetch: FII, DII, the TRI and the G-sec yield. The Nifty 50 card next to them refreshes itself."
+            fields:
+              - { name: "asof", label: "Entered on", widget: "date", format: "YYYY-MM-DD" }
+              - { name: "note", label: "Note under the cards", widget: "text" }
+              - name: "rows"
+                label: "Cards"
+                widget: "list"
+                summary: "{{fields.k}} — {{fields.v}}"
+                fields:
+                  - { name: "k", label: "Label", widget: "string" }
+                  - { name: "v", label: "Value", widget: "string" }
+                  - { name: "sub", label: "Small print", widget: "string", required: false }
+                  - { name: "tone", label: "Colour", widget: "select", options: ["up", "down", "flat"] }
+          - name: "news"
+            label: "This fortnight in the industry"
+            widget: "object"
+            fields:
+              - { name: "window", label: "Dates covered", widget: "string", hint: "e.g. 17 to 31 October 2026" }
+              - { name: "asof", label: "Compiled on", widget: "date", format: "YYYY-MM-DD" }
+              - { name: "note", label: "Note above the list", widget: "text" }
+              - name: "rows"
+                label: "Items, newest first"
+                widget: "list"
+                summary: "{{fields.d}} · {{fields.t}} — {{fields.v}}"
+                fields:
+                  - { name: "d", label: "Date", widget: "string", hint: "e.g. 29 Oct" }
+                  - { name: "t", label: "Theme", widget: "select", options: ["Regulation", "AMC", "NFO", "Product", "Distribution", "Data", "Outlook", "People"] }
+                  - { name: "v", label: "What happened", widget: "text" }
+          - name: "definitions"
+            label: "Plain meanings"
+            widget: "list"
+            summary: "{{fields.k}}"
+            fields:
+              - { name: "k", label: "Term", widget: "string" }
+              - { name: "v", label: "In plain words", widget: "text" }
+          - name: "sources"
+            label: "Sources"
+            widget: "list"
+            summary: "{{fields.k}}"
+            fields:
+              - { name: "k", label: "Label", widget: "string" }
+              - { name: "url", label: "Link", widget: "string" }
+          - { name: "next_update", label: "When the next one lands", widget: "text" }
+
   - name: "money_people"
     label: "Money People"
     delete: false

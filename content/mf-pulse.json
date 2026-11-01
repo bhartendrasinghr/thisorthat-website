@@ -1,0 +1,710 @@
+{
+  "edition": "September 2026",
+  "updated": "2026-11-01",
+  "title": "Where India's money is going",
+  "intro": "Every month the fund industry publishes what the country actually did with its money: what it bought, what it sold, which fund houses grew. Most of this page reads itself off those filings. The sentences are ours.",
+  "take": {
+    "asof": "2026-11-01",
+    "heading": "What to make of it",
+    "body": "The market fell and the money stayed. That is the whole month in a line, and it is a change worth noticing: for most of the last two decades Indian investors sold into a fall. The big debt swings are corporate treasuries moving cash around a quarter end, not households changing their minds. Watch the equity and SIP rows for what people like you are doing, and leave the debt row to the finance departments it belongs to."
+  },
+  "how_to_read": "Debt swings are quarter-end money moving in and out of liquid and money market funds. That is company treasuries parking cash, not families investing. The equity and SIP columns are the household story.",
+  "equity_note": "Small and mid caps keep leading, which is the opposite of what a falling market usually produces. ELSS has been in net outflow for months, and that is the tax regime rather than the funds: if you no longer claim 80C, the lock-in buys you nothing.",
+  "passive_note": "Gold and silver are doing the heavy lifting in passive right now. Worth knowing before you read the headline number as proof that India has discovered index funds.",
+  "leaderboard": {
+    "quarter": "July to September 2026",
+    "asof": "2026-11-01",
+    "industry_aaum": 8721848,
+    "industry_qoq": 4.9,
+    "note": "Fund houses are ranked on average assets for the quarter, which is the number AMFI itself ranks them on. It moves slowly, so this table changes four times a year, not twelve.",
+    "growers_note": "Fastest growing from a base worth counting: Abakkus, Trust, The Wealth Company, Old Bridge, Helios, Groww, Jio BlackRock and WhiteOak. Among the big houses, Invesco and Motilal Oswal grew fastest. A small house doubling is a smaller fact than it looks.",
+    "rows": [
+      {
+        "rank": 1,
+        "k": "SBI Mutual Fund",
+        "aaum": 1309607,
+        "prev": 1257352,
+        "share": 15.02,
+        "qoq": 4.2,
+        "new": false
+      },
+      {
+        "rank": 2,
+        "k": "ICICI Prudential Mutual Fund",
+        "aaum": 1155871,
+        "prev": 1114544,
+        "share": 13.25,
+        "qoq": 3.7,
+        "new": false
+      },
+      {
+        "rank": 3,
+        "k": "HDFC Mutual Fund",
+        "aaum": 969076,
+        "prev": 935100,
+        "share": 11.11,
+        "qoq": 3.6,
+        "new": false
+      },
+      {
+        "rank": 4,
+        "k": "Nippon India Mutual Fund",
+        "aaum": 787053,
+        "prev": 751519,
+        "share": 9.02,
+        "qoq": 4.7,
+        "new": false
+      },
+      {
+        "rank": 5,
+        "k": "Kotak Mahindra Mutual Fund",
+        "aaum": 614116,
+        "prev": 590460,
+        "share": 7.04,
+        "qoq": 4.0,
+        "new": false
+      },
+      {
+        "rank": 6,
+        "k": "Aditya Birla Sun Life Mutual Fund",
+        "aaum": 441787,
+        "prev": 427675,
+        "share": 5.07,
+        "qoq": 3.3,
+        "new": false
+      },
+      {
+        "rank": 7,
+        "k": "UTI Mutual Fund",
+        "aaum": 402337,
+        "prev": 392691,
+        "share": 4.61,
+        "qoq": 2.5,
+        "new": false
+      },
+      {
+        "rank": 8,
+        "k": "Axis Mutual Fund",
+        "aaum": 382966,
+        "prev": 369030,
+        "share": 4.39,
+        "qoq": 3.8,
+        "new": false
+      },
+      {
+        "rank": 9,
+        "k": "DSP Mutual Fund",
+        "aaum": 244022,
+        "prev": 229802,
+        "share": 2.8,
+        "qoq": 6.2,
+        "new": false
+      },
+      {
+        "rank": 10,
+        "k": "Mirae Asset Mutual Fund",
+        "aaum": 237421,
+        "prev": 224952,
+        "share": 2.72,
+        "qoq": 5.5,
+        "new": false
+      },
+      {
+        "rank": 11,
+        "k": "Tata Mutual Fund",
+        "aaum": 236199,
+        "prev": 228538,
+        "share": 2.71,
+        "qoq": 3.4,
+        "new": false
+      },
+      {
+        "rank": 12,
+        "k": "Bandhan Mutual Fund",
+        "aaum": 217749,
+        "prev": 204046,
+        "share": 2.5,
+        "qoq": 6.7,
+        "new": false
+      },
+      {
+        "rank": 13,
+        "k": "Edelweiss Mutual Fund",
+        "aaum": 177099,
+        "prev": 170951,
+        "share": 2.03,
+        "qoq": 3.6,
+        "new": false
+      },
+      {
+        "rank": 14,
+        "k": "PPFAS Mutual Fund",
+        "aaum": 169069,
+        "prev": 160807,
+        "share": 1.94,
+        "qoq": 5.1,
+        "new": false
+      },
+      {
+        "rank": 15,
+        "k": "Invesco Mutual Fund",
+        "aaum": 164687,
+        "prev": 146009,
+        "share": 1.89,
+        "qoq": 12.8,
+        "new": false
+      },
+      {
+        "rank": 16,
+        "k": "Motilal Oswal Mutual Fund",
+        "aaum": 158858,
+        "prev": 142530,
+        "share": 1.82,
+        "qoq": 11.5,
+        "new": false
+      },
+      {
+        "rank": 17,
+        "k": "HSBC Mutual Fund",
+        "aaum": 156995,
+        "prev": 143007,
+        "share": 1.8,
+        "qoq": 9.8,
+        "new": false
+      },
+      {
+        "rank": 18,
+        "k": "Franklin Templeton Mutual Fund",
+        "aaum": 132776,
+        "prev": 126017,
+        "share": 1.52,
+        "qoq": 5.4,
+        "new": false
+      },
+      {
+        "rank": 19,
+        "k": "Canara Robeco Mutual Fund",
+        "aaum": 124404,
+        "prev": 118728,
+        "share": 1.43,
+        "qoq": 4.8,
+        "new": false
+      },
+      {
+        "rank": 20,
+        "k": "quant Mutual Fund",
+        "aaum": 104274,
+        "prev": 95314,
+        "share": 1.2,
+        "qoq": 9.4,
+        "new": false
+      },
+      {
+        "rank": 21,
+        "k": "Sundaram Mutual Fund",
+        "aaum": 82522,
+        "prev": 76929,
+        "share": 0.95,
+        "qoq": 7.3,
+        "new": false
+      },
+      {
+        "rank": 22,
+        "k": "Baroda BNP Paribas Mutual Fund",
+        "aaum": 54646,
+        "prev": 53149,
+        "share": 0.63,
+        "qoq": 2.8,
+        "new": false
+      },
+      {
+        "rank": 23,
+        "k": "LIC Mutual Fund",
+        "aaum": 50035,
+        "prev": 49535,
+        "share": 0.57,
+        "qoq": 1.0,
+        "new": false
+      },
+      {
+        "rank": 24,
+        "k": "WhiteOak Capital Mutual Fund",
+        "aaum": 44845,
+        "prev": 37392,
+        "share": 0.51,
+        "qoq": 19.9,
+        "new": false
+      },
+      {
+        "rank": 25,
+        "k": "Mahindra Manulife Mutual Fund",
+        "aaum": 38140,
+        "prev": 34786,
+        "share": 0.44,
+        "qoq": 9.6,
+        "new": false
+      },
+      {
+        "rank": 26,
+        "k": "Bajaj Finserv Mutual Fund",
+        "aaum": 37842,
+        "prev": 33027,
+        "share": 0.43,
+        "qoq": 14.6,
+        "new": false
+      },
+      {
+        "rank": 27,
+        "k": "Union Mutual Fund",
+        "aaum": 28552,
+        "prev": 28098,
+        "share": 0.33,
+        "qoq": 1.6,
+        "new": false
+      },
+      {
+        "rank": 28,
+        "k": "PGIM India Mutual Fund",
+        "aaum": 27859,
+        "prev": 26640,
+        "share": 0.32,
+        "qoq": 4.6,
+        "new": false
+      },
+      {
+        "rank": 29,
+        "k": "Jio BlackRock Mutual Fund",
+        "aaum": 22467,
+        "prev": 17979,
+        "share": 0.26,
+        "qoq": 25.0,
+        "new": false
+      },
+      {
+        "rank": 30,
+        "k": "Bank of India Mutual Fund",
+        "aaum": 17978,
+        "prev": 15446,
+        "share": 0.21,
+        "qoq": 16.4,
+        "new": false
+      },
+      {
+        "rank": 31,
+        "k": "Zerodha Mutual Fund",
+        "aaum": 16821,
+        "prev": 15373,
+        "share": 0.19,
+        "qoq": 9.4,
+        "new": false
+      },
+      {
+        "rank": 32,
+        "k": "Helios Mutual Fund",
+        "aaum": 14466,
+        "prev": 11103,
+        "share": 0.17,
+        "qoq": 30.3,
+        "new": false
+      },
+      {
+        "rank": 33,
+        "k": "JM Financial Mutual Fund",
+        "aaum": 13500,
+        "prev": 13205,
+        "share": 0.15,
+        "qoq": 2.2,
+        "new": false
+      },
+      {
+        "rank": 34,
+        "k": "360 ONE Mutual Fund",
+        "aaum": 12825,
+        "prev": 13053,
+        "share": 0.15,
+        "qoq": -1.7,
+        "new": false
+      },
+      {
+        "rank": 35,
+        "k": "ITI Mutual Fund",
+        "aaum": 12469,
+        "prev": 11302,
+        "share": 0.14,
+        "qoq": 10.3,
+        "new": false
+      },
+      {
+        "rank": 36,
+        "k": "Abakkus Mutual Fund",
+        "aaum": 10101,
+        "prev": 5580,
+        "share": 0.12,
+        "qoq": 81.0,
+        "new": false
+      },
+      {
+        "rank": 37,
+        "k": "Navi Mutual Fund",
+        "aaum": 9944,
+        "prev": 9453,
+        "share": 0.11,
+        "qoq": 5.2,
+        "new": false
+      },
+      {
+        "rank": 38,
+        "k": "Trust Mutual Fund",
+        "aaum": 7445,
+        "prev": 5075,
+        "share": 0.09,
+        "qoq": 46.7,
+        "new": false
+      },
+      {
+        "rank": 39,
+        "k": "NJ Mutual Fund",
+        "aaum": 7375,
+        "prev": 6922,
+        "share": 0.08,
+        "qoq": 6.5,
+        "new": false
+      },
+      {
+        "rank": 40,
+        "k": "Groww Mutual Fund",
+        "aaum": 6571,
+        "prev": 5106,
+        "share": 0.08,
+        "qoq": 28.7,
+        "new": false
+      },
+      {
+        "rank": 41,
+        "k": "Old Bridge Mutual Fund",
+        "aaum": 4736,
+        "prev": 3419,
+        "share": 0.05,
+        "qoq": 38.5,
+        "new": false
+      },
+      {
+        "rank": 42,
+        "k": "Quantum Mutual Fund",
+        "aaum": 3322,
+        "prev": 3185,
+        "share": 0.04,
+        "qoq": 4.3,
+        "new": false
+      },
+      {
+        "rank": 43,
+        "k": "Samco Mutual Fund",
+        "aaum": 2546,
+        "prev": 2522,
+        "share": 0.03,
+        "qoq": 1.0,
+        "new": false
+      },
+      {
+        "rank": 44,
+        "k": "The Wealth Company Mutual Fund",
+        "aaum": 1849,
+        "prev": 1298,
+        "share": 0.02,
+        "qoq": 42.4,
+        "new": false
+      },
+      {
+        "rank": 45,
+        "k": "Unifi Mutual Fund",
+        "aaum": 1676,
+        "prev": 1497,
+        "share": 0.02,
+        "qoq": 12.0,
+        "new": false
+      },
+      {
+        "rank": 46,
+        "k": "Shriram Mutual Fund",
+        "aaum": 1171,
+        "prev": 1161,
+        "share": 0.01,
+        "qoq": 0.9,
+        "new": false
+      },
+      {
+        "rank": 47,
+        "k": "Taurus Mutual Fund",
+        "aaum": 1097,
+        "prev": 1009,
+        "share": 0.01,
+        "qoq": 8.7,
+        "new": false
+      },
+      {
+        "rank": 48,
+        "k": "IL&FS Mutual Fund (IDF)",
+        "aaum": 950,
+        "prev": 932,
+        "share": 0.01,
+        "qoq": 1.9,
+        "new": false
+      },
+      {
+        "rank": 49,
+        "k": "Capitalmind Mutual Fund",
+        "aaum": 630,
+        "prev": 569,
+        "share": 0.01,
+        "qoq": 10.7,
+        "new": false
+      },
+      {
+        "rank": 50,
+        "k": "Angel One Mutual Fund",
+        "aaum": 621,
+        "prev": 565,
+        "share": 0.01,
+        "qoq": 9.9,
+        "new": false
+      },
+      {
+        "rank": 51,
+        "k": "Choice Mutual Fund",
+        "aaum": 261,
+        "prev": 83,
+        "share": 0.0,
+        "qoq": 214.5,
+        "new": false
+      },
+      {
+        "rank": 52,
+        "k": "Ask Mutual Fund",
+        "aaum": 104,
+        "prev": null,
+        "share": 0.0,
+        "qoq": null,
+        "new": true
+      },
+      {
+        "rank": 53,
+        "k": "AlphaGrep Mutual Fund",
+        "aaum": 90,
+        "prev": null,
+        "share": 0.0,
+        "qoq": null,
+        "new": true
+      },
+      {
+        "rank": 54,
+        "k": "Monarch Mutual Fund",
+        "aaum": 26,
+        "prev": null,
+        "share": 0.0,
+        "qoq": null,
+        "new": true
+      },
+      {
+        "rank": 55,
+        "k": "Lakshya Mutual Fund",
+        "aaum": 2,
+        "prev": null,
+        "share": 0.0,
+        "qoq": null,
+        "new": true
+      }
+    ]
+  },
+  "market": {
+    "asof": "2026-10-31",
+    "note": "Foreign investors sold and domestic institutions, largely mutual funds carrying SIP money, bought about twice as much. That one row is the structural story of the last few years.",
+    "rows": [
+      {
+        "k": "FII equity net, September",
+        "v": "−₹35,861 cr",
+        "sub": "foreign institutional investors, cash market",
+        "tone": "down"
+      },
+      {
+        "k": "DII equity net, September",
+        "v": "+₹76,030 cr",
+        "sub": "domestic institutions, mostly mutual funds",
+        "tone": "up"
+      },
+      {
+        "k": "Nifty 50 TRI, September",
+        "v": "−6.0%",
+        "sub": "total return, so dividends included",
+        "tone": "down"
+      },
+      {
+        "k": "10-year G-sec yield",
+        "v": "7.18%",
+        "sub": "30 September, against 6.95% on 31 August",
+        "tone": "flat"
+      }
+    ]
+  },
+  "news": {
+    "window": "17 to 31 October 2026",
+    "asof": "2026-11-01",
+    "note": "What moved in the industry itself: rules, launches, people. Compiled by hand each fortnight.",
+    "rows": [
+      {
+        "d": "31 Oct",
+        "t": "Outlook",
+        "v": "Oil prices, global yields and the RBI's rate stance keep debt markets cautious for November"
+      },
+      {
+        "d": "31 Oct",
+        "t": "Outlook",
+        "v": "Equity view for November rests on earnings, with crude weighing on sentiment"
+      },
+      {
+        "d": "29 Oct",
+        "t": "Regulation",
+        "v": "SEBI makes direct plans the default on AMC digital platforms from 1 November"
+      },
+      {
+        "d": "29 Oct",
+        "t": "Distribution",
+        "v": "Distributors aged 50 and above can sell PMS without clearing the NISM exam"
+      },
+      {
+        "d": "29 Oct",
+        "t": "AMC",
+        "v": "HDFC MF lists an FTSE India Equity ETF on the NSE"
+      },
+      {
+        "d": "29 Oct",
+        "t": "AMC",
+        "v": "JioBlackRock steps up distributor education and simplifies GIFT City onboarding"
+      },
+      {
+        "d": "28 Oct",
+        "t": "NFO",
+        "v": "Invesco launches a silver ETF and silver fund of funds; ICICI Pru launches a BSE Power ETF"
+      },
+      {
+        "d": "28 Oct",
+        "t": "Product",
+        "v": "One year into specialised investment funds, the debt versions still have no takers"
+      },
+      {
+        "d": "28 Oct",
+        "t": "AMC",
+        "v": "Anand Shah exits ICICI Prudential AMC"
+      },
+      {
+        "d": "28 Oct",
+        "t": "Distribution",
+        "v": "Unifi MF's average ticket size reaches ₹23 lakh, with Old Bridge and HSBC behind it"
+      },
+      {
+        "d": "27 Oct",
+        "t": "Regulation",
+        "v": "Government moves to simplify KYC and onboarding for NRI investors"
+      },
+      {
+        "d": "27 Oct",
+        "t": "NFO",
+        "v": "UTI launches a consumption index fund; JioBlackRock launches a GIFT City global equity fund"
+      },
+      {
+        "d": "26 Oct",
+        "t": "Data",
+        "v": "Kerala, Chhattisgarh and Telangana are growing their fund assets faster than the industry"
+      },
+      {
+        "d": "23 Oct",
+        "t": "NFO",
+        "v": "Motilal Oswal launches a multi-asset fund of funds"
+      },
+      {
+        "d": "23 Oct",
+        "t": "Data",
+        "v": "The industry added more than 4.5 lakh new investors in September"
+      },
+      {
+        "d": "23 Oct",
+        "t": "AMC",
+        "v": "Aditya Birla Sun Life AMC first-half profit up 2% to ₹530.5 cr, equity assets up 9%"
+      },
+      {
+        "d": "23 Oct",
+        "t": "AMC",
+        "v": "UBS acquires a 4.8% stake in 360 ONE WAM"
+      },
+      {
+        "d": "21 Oct",
+        "t": "Product",
+        "v": "A simplified SIF exam doubles new registrations in a month; Sundaram enters with a long-short equity fund"
+      },
+      {
+        "d": "20 Oct",
+        "t": "Data",
+        "v": "Twenty states recorded a fall in fund assets, with Delhi and Maharashtra the sharpest"
+      },
+      {
+        "d": "17 Oct",
+        "t": "Regulation",
+        "v": "On SEBI's instruction, fund houses halt fresh inflows into gold ETF fund of funds"
+      },
+      {
+        "d": "17 Oct",
+        "t": "Data",
+        "v": "SIF folios more than doubled over the September quarter"
+      }
+    ]
+  },
+  "definitions": [
+    {
+      "k": "AUM",
+      "v": "Assets under management at the end of the month: everything the industry holds, valued at that day's prices."
+    },
+    {
+      "k": "AAUM",
+      "v": "The quarterly average, which is what fund houses are ranked on. Averaging stops one good day deciding the table."
+    },
+    {
+      "k": "Net inflow",
+      "v": "What came in minus what went out. A negative number means more people sold than bought."
+    },
+    {
+      "k": "SIP contribution",
+      "v": "The money collected through systematic investment plans in the month. The closest thing India has to a national savings heartbeat."
+    },
+    {
+      "k": "Passive",
+      "v": "Index funds and exchange traded funds, across equity, debt, gold and silver. A fund that copies an index instead of picking."
+    },
+    {
+      "k": "SIF",
+      "v": "Specialised investment funds, SEBI's new category between mutual funds and PMS. Minimum investment ₹10 lakh, so not a retail product."
+    },
+    {
+      "k": "Folio",
+      "v": "One account with one fund house. You can hold several, so folios count accounts and not people."
+    }
+  ],
+  "sources": [
+    {
+      "k": "AMFI monthly report (the spreadsheet every figure here is read from)",
+      "url": "https://www.amfiindia.com/research-information/amfi-monthly"
+    },
+    {
+      "k": "AMFI monthly note, September 2026",
+      "url": "https://www.amfiindia.com/uploads/AMFI_Monthly_Note_September2026_554f6604b6.pdf"
+    },
+    {
+      "k": "AMFI quarterly average AUM, for the fund house table",
+      "url": "https://www.amfiindia.com/research-information/amfi-data"
+    },
+    {
+      "k": "NSE indices archive, for the Nifty 50",
+      "url": "https://www.nseindia.com/"
+    }
+  ],
+  "next_update": "October's figures land around 10 November, and this page picks them up on its own within a day."
+}
