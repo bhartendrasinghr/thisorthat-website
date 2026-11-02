@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01",
+ "generated": "2026-11-02",
  "month": "September 2026",
  "month_short": "Sep 2026",
  "asof": "2026-09-30",
@@ -406,13 +406,13 @@
   "mom": 22.8
  },
  "market": {
-  "nifty": 23053.1,
-  "asof": "2026-10-30",
-  "week": 2.0,
-  "year": -10.4,
-  "week_from": "2026-10-23",
-  "year_from": "2025-10-31",
-  "nifty_week_ago": 22600.0,
-  "nifty_year_ago": 25722.1
+  "nifty": 23440.8,
+  "asof": "2026-11-02",
+  "week": 3.0,
+  "year": -9.0,
+  "week_from": "2026-10-26",
+  "year_from": "2025-11-03",
+  "nifty_week_ago": 22753.2,
+  "nifty_year_ago": 25763.35
  }
 }

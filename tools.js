@@ -115,9 +115,22 @@
     return location.origin + location.pathname + (q ? '?' + q : '');
   }
 
+  function ga(name, params) {
+    if (typeof window.totTrack === 'function') window.totTrack(name, params || {});
+  }
+
   function share(btn, restingLabel) {
     var url = shareUrl();
     var title = document.title;
+    // How the link left: the native sheet, the clipboard, or the prompt of
+    // last resort. Not the link itself, which carries the reader's numbers.
+    ga('tool_share', {
+      tool: location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''),
+      method: navigator.share ? 'web_share'
+            : (navigator.clipboard && navigator.clipboard.writeText) ? 'clipboard'
+            : 'prompt',
+      placement: btn.className.indexOf('tool-bar-share') > -1 ? 'sticky_bar' : 'inline'
+    });
     function copied() {
       var was = btn.textContent;
       btn.textContent = 'Link copied';
@@ -204,7 +217,14 @@
   function init() {
     if (!fields().length) return;
 
-    restore();
+    // Where the numbers on screen came from. A tool opened from a shared
+    // link is a different event from one picked up where it was left, and
+    // both are different from a blank start.
+    var from = restore();
+    ga('tool_open', {
+      tool: location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''),
+      state: from || 'blank'
+    });
 
     document.addEventListener('input', persist, true);
     document.addEventListener('change', persist, true);

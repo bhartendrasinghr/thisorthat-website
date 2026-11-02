@@ -8,10 +8,34 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.TOT_PAGE_TYPE = (function (p) { return (
+    !p || p == 'index' ? 'home' :
+    /^ep-\d/.test(p) ? 'episode' :
+    /^calc-|^(asset-allocator|funds|category-compass|ipo-checker)$/.test(p) ? 'tool' :
+    p == 'calculators' ? 'tool_index' :
+    /^(episodes|episode-detail)$/.test(p) ? 'episode_index' :
+    p == 'guests' ? 'guest_index' :
+    p == 'guest-detail' ? 'guest' :
+    p == 'articles' ? 'article_index' :
+    p == 'article-detail' ? 'article' :
+    /-pulse$/.test(p) ? 'pulse' :
+    /^(asset-classes|understanding-mutual-funds|ways-to-invest-in-equity|wealth-levers|multicap-vs-flexicap)$/.test(p) ? 'guide' :
+    p == 'money-person' ? 'lead' :
+    p == 'ipo-tracker' ? 'data' :
+    /^(privacy|terms)$/.test(p) ? 'legal' :
+    p == '404' ? 'not_found' :
+    /-mock$|^brand$/.test(p) ? 'internal' : 'page'); })(
+    location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''));
   gtag('js', new Date());
-
-  gtag('config', 'G-QDF1DKH66W');
+  gtag('config', 'G-QDF1DKH66W', {
+    page_type: window.TOT_PAGE_TYPE,
+    /* privacy.html says this is used to understand pages, not people.
+       These two keep that true: no Google Signals, no ad personalisation. */
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
 </script>
+<script src="/analytics.js" defer></script>
 <title>Privacy, ThisOrThat with Bhartendra</title>
 <link rel="canonical" href="https://thisorthatshow.in/privacy.html" />
 <meta property="og:type" content="website" />
@@ -53,13 +77,16 @@
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-xs uppercase tracking-[0.3em] text-goldink font-bold">Privacy</div>
     <h1 class="font-display text-4xl md:text-5xl font-extrabold text-ink mt-3 leading-[1.05]">What we know about you. It is not much, on purpose.</h1>
-    <p class="mt-4 text-ink/70">Last updated 1 November 2026.</p>
+    <p class="mt-4 text-ink/70">Last updated 2 November 2026.</p>
 
     <div class="mt-10 space-y-8 text-[15px] leading-relaxed text-ink/85">
       <div>
         <h2 class="font-display text-xl font-extrabold text-ink">What this site measures</h2>
         <p class="mt-2">thisorthatshow.in is a static website. It has no accounts and no login, and nothing you type into a calculator is ever sent anywhere: those numbers are worked out in your browser and stay on your device, which is why a calculator keeps working if you go offline.</p>
-        <p class="mt-2">We do use <strong>Google Analytics</strong> to count visits, so we can tell which pages are worth the work. It sets cookies and records the usual things an analytics tool records: which pages you opened, roughly where in the world you are, and what sort of device you used. We use it to understand pages, not people, and we never try to work out who you are from it. You can switch it off for every site with Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" class="underline underline-offset-4 font-semibold">opt-out add-on</a>, or by using your browser's tracking protection, and the site works exactly the same either way.</p>
+        <p class="mt-2">We do use <strong>Google Analytics</strong> to work out which pages are worth the work. It sets cookies and records the usual things an analytics tool records: which pages you opened, roughly where in the world you are, and what sort of device you used.</p>
+        <p class="mt-2">We also record what happened on the page, because "forty people opened the retirement calculator" tells us nothing useful on its own. So we count how far down a page people scrolled, which links they clicked, whether they pressed play on an episode and how much of it they watched, what they typed into the search boxes on the episodes, guests and funds pages, and, on a calculator, how many of the controls were moved and for how long.</p>
+        <p class="mt-2">What we never record is the numbers. Not one figure you type into a calculator is sent to Google or to us, and neither is the answer it works out. We can see that someone moved six sliders on the retirement calculator and stayed four minutes. We cannot see their salary, their age, their corpus or their shortfall, and we have not built the ability to. The same goes for the "Find your money person" form: we count that it was sent, and the details themselves go only where this page says they go.</p>
+        <p class="mt-2">We have switched off Google Signals and ad personalisation for this property, which means your visit here is not added to an advertising profile and is not used to target you anywhere. We use this to understand pages, not people, and we never try to work out who you are from it. You can switch it off for every site with Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" class="underline underline-offset-4 font-semibold">opt-out add-on</a>, or by using your browser's tracking protection, and the site works exactly the same either way.</p>
       </div>
       <div>
         <h2 class="font-display text-xl font-extrabold text-ink">What you choose to send us</h2>

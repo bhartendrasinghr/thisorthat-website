@@ -8,10 +8,34 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.TOT_PAGE_TYPE = (function (p) { return (
+    !p || p == 'index' ? 'home' :
+    /^ep-\d/.test(p) ? 'episode' :
+    /^calc-|^(asset-allocator|funds|category-compass|ipo-checker)$/.test(p) ? 'tool' :
+    p == 'calculators' ? 'tool_index' :
+    /^(episodes|episode-detail)$/.test(p) ? 'episode_index' :
+    p == 'guests' ? 'guest_index' :
+    p == 'guest-detail' ? 'guest' :
+    p == 'articles' ? 'article_index' :
+    p == 'article-detail' ? 'article' :
+    /-pulse$/.test(p) ? 'pulse' :
+    /^(asset-classes|understanding-mutual-funds|ways-to-invest-in-equity|wealth-levers|multicap-vs-flexicap)$/.test(p) ? 'guide' :
+    p == 'money-person' ? 'lead' :
+    p == 'ipo-tracker' ? 'data' :
+    /^(privacy|terms)$/.test(p) ? 'legal' :
+    p == '404' ? 'not_found' :
+    /-mock$|^brand$/.test(p) ? 'internal' : 'page'); })(
+    location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''));
   gtag('js', new Date());
-
-  gtag('config', 'G-QDF1DKH66W');
+  gtag('config', 'G-QDF1DKH66W', {
+    page_type: window.TOT_PAGE_TYPE,
+    /* privacy.html says this is used to understand pages, not people.
+       These two keep that true: no Google Signals, no ad personalisation. */
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
 </script>
+<script src="/analytics.js" defer></script>
 <title>Article, ThisOrThat with Bhartendra</title>
 <meta name="description" content="Plain-English writing on money, markets and behaviour from ThisOrThat with Bhartendra." />
 <meta property="og:type" content="website" />
@@ -307,10 +331,19 @@ fetch('content/articles.json', { cache: 'no-cache' })
   });
 })();
 </script>
+<!-- NL-JS -->
 <script>
 // Newsletter signup. Posts with fetch and answers in place, rather than
 // navigating the reader away from whatever they were in the middle of.
+//
+// The analytics calls are guarded rather than assumed: this form has to keep
+// working on a page where analytics.js was blocked, which is most of the
+// reason the outcome is reported from here at all. Only the outcome and the
+// page are recorded. The address is not.
 document.querySelectorAll('.nl-form').forEach(function (form) {
+  var ga = function (name, params) {
+    if (typeof window.totTrack === 'function') window.totTrack(name, params || {});
+  };
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = form.querySelector('input[name=email]');
@@ -319,8 +352,11 @@ document.querySelectorAll('.nl-form').forEach(function (form) {
     var say = function (m) { if (note) note.textContent = m; };
     var value = (email.value || '').trim();
     if (value.indexOf('@') < 1 || value.indexOf('.') < 0) {
-      say('That address looks incomplete, have another look.'); email.focus(); return;
+      say('That address looks incomplete, have another look.');
+      ga('newsletter_error', { reason: 'malformed' });
+      email.focus(); return;
     }
+    ga('newsletter_submit');
     btn.disabled = true; btn.textContent = 'Sending...';
     fetch('/api/subscribe', {
       method: 'POST',
@@ -335,18 +371,22 @@ document.querySelectorAll('.nl-form').forEach(function (form) {
         if (d && d.ok) {
           form.innerHTML = '<p class="font-semibold text-ink py-3">You are on the list. Look out for the first one.</p>';
           say('');
+          ga('newsletter_signup');
         } else {
           btn.disabled = false; btn.textContent = 'Send it to me';
           say(d && d.error === 'email'
             ? 'That address looks incomplete, have another look.'
             : 'That did not go through. Try again in a moment.');
+          ga('newsletter_error', { reason: (d && d.error) || 'rejected' });
         }
       }).catch(function () {
         btn.disabled = false; btn.textContent = 'Send it to me';
         say('That did not go through. Try again in a moment.');
+        ga('newsletter_error', { reason: 'network' });
       });
   });
 });
 </script>
+<!-- /NL-JS -->
 </body>
 </html>

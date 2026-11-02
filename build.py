@@ -12,6 +12,7 @@ Run locally with:   python3 build.py
 """
 import json, os, re, sys
 from pathlib import Path
+import re as _re_module
 
 ROOT = Path(__file__).parent
 ARTICLES_DIR = ROOT / 'content' / 'articles'
@@ -321,15 +322,62 @@ def check_redirects():
 # a canonical URL (34 of 46 had none) and the analytics tag (no page had one,
 # which meant nothing about this site was measured at all). Both are
 # mechanical, so neither should be anybody's job to remember.
+# The tag itself, inline, because Google wants it as high in <head> as it
+# will go and because the automatic page_view fires from this block, before
+# any external file has loaded. Two things ride along with it:
+#
+#   page_type   so every hit can be read by section rather than by URL. It
+#               has to be worked out here, for the reason above: a page_type
+#               set later would miss the page_view it is meant to label.
+#   analytics.js  deferred, carrying every custom event. A blocked or slow
+#               analytics.js costs us the detail and never the page.
+#
+# This string is the single source of truth and is replaced wholesale on
+# every build (see GA_BLOCK_RE), so editing it here updates all 115 pages.
 ANALYTICS_TAG = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDF1DKH66W"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.TOT_PAGE_TYPE = (function (p) { return (
+    !p || p == 'index' ? 'home' :
+    /^ep-\d/.test(p) ? 'episode' :
+    /^calc-|^(asset-allocator|funds|category-compass|ipo-checker)$/.test(p) ? 'tool' :
+    p == 'calculators' ? 'tool_index' :
+    /^(episodes|episode-detail)$/.test(p) ? 'episode_index' :
+    p == 'guests' ? 'guest_index' :
+    p == 'guest-detail' ? 'guest' :
+    p == 'articles' ? 'article_index' :
+    p == 'article-detail' ? 'article' :
+    /-pulse$/.test(p) ? 'pulse' :
+    /^(asset-classes|understanding-mutual-funds|ways-to-invest-in-equity|wealth-levers|multicap-vs-flexicap)$/.test(p) ? 'guide' :
+    p == 'money-person' ? 'lead' :
+    p == 'ipo-tracker' ? 'data' :
+    /^(privacy|terms)$/.test(p) ? 'legal' :
+    p == '404' ? 'not_found' :
+    /-mock$|^brand$/.test(p) ? 'internal' : 'page'); })(
+    location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''));
   gtag('js', new Date());
+  gtag('config', 'G-QDF1DKH66W', {
+    page_type: window.TOT_PAGE_TYPE,
+    /* privacy.html says this is used to understand pages, not people.
+       These two keep that true: no Google Signals, no ad personalisation. */
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+<script src="/analytics.js" defer></script>"""
 
-  gtag('config', 'G-QDF1DKH66W');
-</script>"""
+# Everything from the comment marker through the config block, and the
+# analytics.js line if it is already there. Matching the whole block rather
+# than a fixed string is what makes the step idempotent: the tag can be
+# edited above and the next build rewrites every page to match.
+GA_BLOCK_RE = _re_module.compile(
+    r'<!-- Google tag \(gtag\.js\) -->\s*'
+    r'<script async src="https://www\.googletagmanager\.com/gtag/js\?id=G-QDF1DKH66W"></script>\s*'
+    r'<script>.*?</script>'
+    r'(?:\s*<script src="/analytics\.js" defer></script>)?',
+    _re_module.S)
 
 # What was here before. Vercel Web Analytics was never switched on in the
 # project, so this tag only ever 404'd, on every page load. Left in place it
@@ -345,7 +393,7 @@ def sync_head_tags():
     # the real episode page it redirects to.
     no_canonical = {'404.html', 'episode-detail.html', 'article-detail.html',
                     'guest-detail.html', 'brand.html'}
-    added_c = added_a = 0
+    added_c = added_a = moved_a = 0
     # brand.html is the internal brand guide, served noindex: it is not part
     # of the public site and is 3 MB, so it stays out of this entirely.
     for f in sorted(ROOT.glob('*.html')):
@@ -369,17 +417,68 @@ def sync_head_tags():
         # once. Charset has to stay inside the first 1024 bytes and viewport
         # belongs beside it, so the tag goes immediately after those two and
         # ahead of everything else: title, fonts, Tailwind, the lot.
-        if 'G-QDF1DKH66W' not in h:
+        #
+        # A page that already carries a tag has the whole block rewritten
+        # rather than left alone, so ANALYTICS_TAG above stays the one place
+        # the tag is defined. Without this, editing the tag would silently
+        # apply to new pages only and the site would drift apart.
+        if GA_BLOCK_RE.search(h):
+            rewritten = GA_BLOCK_RE.sub(lambda m: ANALYTICS_TAG, h, count=1)
+            if rewritten != h:
+                h = rewritten
+                moved_a += 1
+        else:
             anchor = _re.search(
                 r'<head[^>]*>\s*(?:<meta[^>]*charset[^>]*>\s*)?'
                 r'(?:<meta[^>]*name="viewport"[^>]*>\s*)?', h, _re.I)
             if anchor:
                 h = h[:anchor.end()] + ANALYTICS_TAG + '\n' + h[anchor.end():]
                 added_a += 1
+        # A second tag on one page double-counts every view, which is the one
+        # analytics bug that is invisible until someone compares totals.
+        if h.count('gtag/js?id=G-QDF1DKH66W') > 1:
+            raise SystemExit(f'{f.name} carries the Google tag twice')
 
         if h != before:
             f.write_text(h, encoding='utf-8')
-    print(f'  {added_c} canonical tag(s) added, {added_a} analytics tag(s) added')
+    print(f'  {added_c} canonical tag(s) added, {added_a} analytics tag(s) added, '
+          f'{moved_a} refreshed to the current tag')
+
+
+# ─── Is the measurement actually on every page ───────────────────────────
+# The failure mode for analytics is silence: a page that quietly stopped
+# reporting looks exactly like a page nobody visited, and you find out weeks
+# later when you go looking for a number that was never collected. So the
+# build asserts it rather than hoping.
+def check_analytics():
+    missing_tag, missing_js, drifted, twice = [], [], [], []
+    for f in sorted(ROOT.glob('*.html')):
+        if f.name.endswith('-mock.html') or f.name == 'brand.html':
+            continue
+        h = f.read_text(encoding='utf-8')
+        loaders = h.count('gtag/js?id=G-QDF1DKH66W')
+        if loaders == 0:
+            missing_tag.append(f.name)
+            continue
+        if loaders > 1:
+            twice.append(f.name)
+        if '<script src="/analytics.js" defer></script>' not in h:
+            missing_js.append(f.name)
+        if ANALYTICS_TAG not in h:
+            drifted.append(f.name)
+
+    js = ROOT / 'analytics.js'
+    if not js.exists() or js.stat().st_size < 2000:
+        raise SystemExit('analytics.js is missing or truncated')
+
+    for label, pages in (('no Google tag', missing_tag),
+                         ('two Google tags', twice),
+                         ('no analytics.js', missing_js),
+                         ('an out-of-date tag', drifted)):
+        if pages:
+            raise SystemExit(f'  {len(pages)} page(s) with {label}: '
+                             + ', '.join(pages[:6]))
+    print('  every public page: one tag, current, with the event layer')
 
 
 # ─── The shared tool layer ───────────────────────────────────────────────
@@ -436,10 +535,29 @@ SUBSCRIBE_FORM = """<form class="nl-form mt-6 flex flex-col sm:flex-row gap-3 ju
     <p class="nl-note mt-3 text-[13px] text-ink/70" role="status" aria-live="polite">One email a week. No spam, and you can leave whenever you like.</p>
     <p class="mt-4 text-[13px]"><a href="https://www.youtube.com/@ThisOrThatPodcastIndia?sub_confirmation=1" target="_blank" class="underline underline-offset-4 font-semibold">Or subscribe on YouTube &rarr;</a></p>"""
 
-SUBSCRIBE_JS = """<script>
+# A regex rather than a fixed string, so that editing SUBSCRIBE_JS below
+# rewrites the block on all 80 pages that carry it instead of only reaching
+# pages that have never had it. The markers make the boundary explicit; the
+# unmarked opening is kept so the first build after this change still finds
+# the version already on the pages.
+NL_JS_RE = _re_module.compile(
+    r'(?:<!-- NL-JS -->\s*)?<script>\s*//\s*Newsletter signup\..*?</script>'
+    r'(?:\s*<!-- /NL-JS -->)?',
+    _re_module.S)
+
+SUBSCRIBE_JS = """<!-- NL-JS -->
+<script>
 // Newsletter signup. Posts with fetch and answers in place, rather than
 // navigating the reader away from whatever they were in the middle of.
+//
+// The analytics calls are guarded rather than assumed: this form has to keep
+// working on a page where analytics.js was blocked, which is most of the
+// reason the outcome is reported from here at all. Only the outcome and the
+// page are recorded. The address is not.
 document.querySelectorAll('.nl-form').forEach(function (form) {
+  var ga = function (name, params) {
+    if (typeof window.totTrack === 'function') window.totTrack(name, params || {});
+  };
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = form.querySelector('input[name=email]');
@@ -448,8 +566,11 @@ document.querySelectorAll('.nl-form').forEach(function (form) {
     var say = function (m) { if (note) note.textContent = m; };
     var value = (email.value || '').trim();
     if (value.indexOf('@') < 1 || value.indexOf('.') < 0) {
-      say('That address looks incomplete, have another look.'); email.focus(); return;
+      say('That address looks incomplete, have another look.');
+      ga('newsletter_error', { reason: 'malformed' });
+      email.focus(); return;
     }
+    ga('newsletter_submit');
     btn.disabled = true; btn.textContent = 'Sending...';
     fetch('/api/subscribe', {
       method: 'POST',
@@ -464,19 +585,23 @@ document.querySelectorAll('.nl-form').forEach(function (form) {
         if (d && d.ok) {
           form.innerHTML = '<p class="font-semibold text-ink py-3">You are on the list. Look out for the first one.</p>';
           say('');
+          ga('newsletter_signup');
         } else {
           btn.disabled = false; btn.textContent = 'Send it to me';
           say(d && d.error === 'email'
             ? 'That address looks incomplete, have another look.'
             : 'That did not go through. Try again in a moment.');
+          ga('newsletter_error', { reason: (d && d.error) || 'rejected' });
         }
       }).catch(function () {
         btn.disabled = false; btn.textContent = 'Send it to me';
         say('That did not go through. Try again in a moment.');
+        ga('newsletter_error', { reason: 'network' });
       });
   });
 });
-</script>"""
+</script>
+<!-- /NL-JS -->"""
 
 
 def sync_newsletter():
@@ -488,8 +613,10 @@ def sync_newsletter():
         before = h
         if OLD_CTA in h:
             h = h.replace(OLD_CTA, SUBSCRIBE_FORM)
-        if 'nl-form' in h and 'nl-submit' in h and SUBSCRIBE_JS not in h:
-            if '</body>' in h:
+        if 'nl-form' in h and 'nl-submit' in h:
+            if NL_JS_RE.search(h):
+                h = NL_JS_RE.sub(lambda m: SUBSCRIBE_JS, h, count=1)
+            elif '</body>' in h:
                 h = h.replace('</body>', SUBSCRIBE_JS + '\n</body>', 1)
         if h != before:
             f.write_text(h, encoding='utf-8')
@@ -902,6 +1029,9 @@ def main():
 
     print('\n→ Checking canonical + analytics tags...')
     sync_head_tags()
+
+    print('\n→ Verifying the measurement is on every page...')
+    check_analytics()
 
     print('\n→ Adding structured data...')
     sync_schema()

@@ -8,10 +8,34 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.TOT_PAGE_TYPE = (function (p) { return (
+    !p || p == 'index' ? 'home' :
+    /^ep-\d/.test(p) ? 'episode' :
+    /^calc-|^(asset-allocator|funds|category-compass|ipo-checker)$/.test(p) ? 'tool' :
+    p == 'calculators' ? 'tool_index' :
+    /^(episodes|episode-detail)$/.test(p) ? 'episode_index' :
+    p == 'guests' ? 'guest_index' :
+    p == 'guest-detail' ? 'guest' :
+    p == 'articles' ? 'article_index' :
+    p == 'article-detail' ? 'article' :
+    /-pulse$/.test(p) ? 'pulse' :
+    /^(asset-classes|understanding-mutual-funds|ways-to-invest-in-equity|wealth-levers|multicap-vs-flexicap)$/.test(p) ? 'guide' :
+    p == 'money-person' ? 'lead' :
+    p == 'ipo-tracker' ? 'data' :
+    /^(privacy|terms)$/.test(p) ? 'legal' :
+    p == '404' ? 'not_found' :
+    /-mock$|^brand$/.test(p) ? 'internal' : 'page'); })(
+    location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''));
   gtag('js', new Date());
-
-  gtag('config', 'G-QDF1DKH66W');
+  gtag('config', 'G-QDF1DKH66W', {
+    page_type: window.TOT_PAGE_TYPE,
+    /* privacy.html says this is used to understand pages, not people.
+       These two keep that true: no Google Signals, no ad personalisation. */
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
 </script>
+<script src="/analytics.js" defer></script>
 <title>Understanding your mutual funds · ThisOrThat</title>
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ThisOrThat with Bhartendra" />

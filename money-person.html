@@ -8,10 +8,34 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.TOT_PAGE_TYPE = (function (p) { return (
+    !p || p == 'index' ? 'home' :
+    /^ep-\d/.test(p) ? 'episode' :
+    /^calc-|^(asset-allocator|funds|category-compass|ipo-checker)$/.test(p) ? 'tool' :
+    p == 'calculators' ? 'tool_index' :
+    /^(episodes|episode-detail)$/.test(p) ? 'episode_index' :
+    p == 'guests' ? 'guest_index' :
+    p == 'guest-detail' ? 'guest' :
+    p == 'articles' ? 'article_index' :
+    p == 'article-detail' ? 'article' :
+    /-pulse$/.test(p) ? 'pulse' :
+    /^(asset-classes|understanding-mutual-funds|ways-to-invest-in-equity|wealth-levers|multicap-vs-flexicap)$/.test(p) ? 'guide' :
+    p == 'money-person' ? 'lead' :
+    p == 'ipo-tracker' ? 'data' :
+    /^(privacy|terms)$/.test(p) ? 'legal' :
+    p == '404' ? 'not_found' :
+    /-mock$|^brand$/.test(p) ? 'internal' : 'page'); })(
+    location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''));
   gtag('js', new Date());
-
-  gtag('config', 'G-QDF1DKH66W');
+  gtag('config', 'G-QDF1DKH66W', {
+    page_type: window.TOT_PAGE_TYPE,
+    /* privacy.html says this is used to understand pages, not people.
+       These two keep that true: no Google Signals, no ad personalisation. */
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
 </script>
+<script src="/analytics.js" defer></script>
 <title>Find Your Money Person, ThisOrThat with Bhartendra</title>
 <link rel="canonical" href="https://thisorthatshow.in/money-person.html" />
 <meta property="og:type" content="website" />
@@ -141,7 +165,10 @@
         </div>
       </div>
 
-      <label class="flex items-start gap-3 cursor-pointer bg-warmpaper-2 rounded-xl p-4">
+      <!-- data-tool-ignore: tools.js remembers every control on the page and
+           re-applies it next visit, which is right for a slider and wrong
+           for this. A consent box has to be ticked on purpose, every time. -->
+      <label data-tool-ignore class="flex items-start gap-3 cursor-pointer bg-warmpaper-2 rounded-xl p-4">
         <input id="f-consent" type="checkbox" class="mt-1 w-4 h-4 accent-thisblue" />
         <span class="text-[13px] text-ink/75 leading-relaxed">I'm happy to be contacted about this, and only this. My details go towards making the introduction, nothing else: no spam, no lists, no selling my data.</span>
       </label>
@@ -288,10 +315,17 @@ function validate() {
   return d;
 }
 
+const ga = (name, params) => {
+  if (typeof window.totTrack === 'function') window.totTrack(name, params || {});
+};
+
 $('lead-form').addEventListener('submit', async e => {
   e.preventDefault();
   const d = validate();
-  if (!d) return;
+  // Only ever the step reached, never a field value. Every name, age and
+  // goal typed into this form goes to Bhartendra and nowhere else.
+  if (!d) { ga('lead_invalid'); return; }
+  ga('lead_submit');
   const btn = $('submit-btn');
   btn.disabled = true;
   btn.textContent = 'Sending...';
@@ -305,12 +339,16 @@ $('lead-form').addEventListener('submit', async e => {
     $('lead-form').classList.add('hidden');
     $('sent-note').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    // generate_lead is GA4's own name for this, so it lands in the standard
+    // reports instead of a custom one nobody opens.
+    ga('generate_lead');
   } catch (err2) {
     const err = $('form-error');
     err.textContent = 'Could not send just now. Give it a minute and try again, your details are still filled in.';
     err.classList.remove('hidden');
     btn.disabled = false;
     btn.innerHTML = 'Send my details &rarr;';
+    ga('lead_error', { reason: 'network' });
   }
 });
 

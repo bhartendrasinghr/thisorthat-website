@@ -8,10 +8,34 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.TOT_PAGE_TYPE = (function (p) { return (
+    !p || p == 'index' ? 'home' :
+    /^ep-\d/.test(p) ? 'episode' :
+    /^calc-|^(asset-allocator|funds|category-compass|ipo-checker)$/.test(p) ? 'tool' :
+    p == 'calculators' ? 'tool_index' :
+    /^(episodes|episode-detail)$/.test(p) ? 'episode_index' :
+    p == 'guests' ? 'guest_index' :
+    p == 'guest-detail' ? 'guest' :
+    p == 'articles' ? 'article_index' :
+    p == 'article-detail' ? 'article' :
+    /-pulse$/.test(p) ? 'pulse' :
+    /^(asset-classes|understanding-mutual-funds|ways-to-invest-in-equity|wealth-levers|multicap-vs-flexicap)$/.test(p) ? 'guide' :
+    p == 'money-person' ? 'lead' :
+    p == 'ipo-tracker' ? 'data' :
+    /^(privacy|terms)$/.test(p) ? 'legal' :
+    p == '404' ? 'not_found' :
+    /-mock$|^brand$/.test(p) ? 'internal' : 'page'); })(
+    location.pathname.replace(/^\/+/, '').replace(/\.html$/, ''));
   gtag('js', new Date());
-
-  gtag('config', 'G-QDF1DKH66W');
+  gtag('config', 'G-QDF1DKH66W', {
+    page_type: window.TOT_PAGE_TYPE,
+    /* privacy.html says this is used to understand pages, not people.
+       These two keep that true: no Google Signals, no ad personalisation. */
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
 </script>
+<script src="/analytics.js" defer></script>
 <title>Why Investors Earn Just 7% from Funds That Deliver 19% |Vijai Mantri | ThisOrThat</title>
 <link rel="icon" type="image/png" href="logo.png" />
 <!-- SEO + social, filled per-episode by JS below -->
@@ -273,7 +297,11 @@ document.getElementById('m-published').textContent = ep.published || '';
 if (ep.views) { document.getElementById('m-views').textContent = `${ep.views} views`; }
 else { document.getElementById('m-views').textContent = ''; document.getElementById('m-views-sep').classList.add('hidden'); }
 document.getElementById('m-title').textContent = ep.title;
-document.getElementById('yt-iframe').src = `https://www.youtube.com/embed/${ep.id}?rel=0&modestbranding=1`;
+// enablejsapi lets analytics.js attach to the player and record plays and
+// progress. Without it the most important number on a podcast's site, how
+// many people actually press play, is unknowable. origin is what YouTube
+// asks for alongside it.
+document.getElementById('yt-iframe').src = `https://www.youtube.com/embed/${ep.id}?rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
 document.getElementById('yt-link').href = `https://www.youtube.com/watch?v=${ep.id}`;
 
 // Guest card, render fast with auto data, then upgrade with rich CMS data
@@ -393,7 +421,7 @@ function richBody(c) {
     <div>
       <h2 class="font-serif text-2xl font-bold text-navy-ink">Chapters</h2>
       <p class="text-sm text-navy/60 mt-1">Tap any chapter to jump straight to that moment.</p>
-      <div class="mt-4 rounded-2xl border border-navy/10 overflow-hidden divide-y divide-navy/5">${c.chapters.map(ch=>`<a href="${ytUrl}&t=${ch.t}s" target="_blank" class="flex items-center gap-4 px-4 py-3 hover:bg-paper transition group"><span class="font-mono text-xs text-thisblue tabular-nums w-14 shrink-0">${fmtTime(ch.t)}</span><span class="text-sm text-navy-ink/85 group-hover:text-navy-ink">${escHtml(ch.label)}</span><span class="ml-auto text-navy/25 group-hover:text-navy text-xs">&#9654;</span></a>`).join('')}</div>
+      <div class="mt-4 rounded-2xl border border-navy/10 overflow-hidden divide-y divide-navy/5">${c.chapters.map(ch=>`<a href="${ytUrl}&t=${ch.t}s" target="_blank" data-ga-chapter="${ch.t}" class="flex items-center gap-4 px-4 py-3 hover:bg-paper transition group"><span class="font-mono text-xs text-thisblue tabular-nums w-14 shrink-0">${fmtTime(ch.t)}</span><span class="text-sm text-navy-ink/85 group-hover:text-navy-ink">${escHtml(ch.label)}</span><span class="ml-auto text-navy/25 group-hover:text-navy text-xs">&#9654;</span></a>`).join('')}</div>
     </div>` : '';
   const notes = `
     <div class="bg-navy-ink text-cream rounded-2xl p-8 space-y-5">
@@ -513,10 +541,19 @@ document.getElementById('share-btn').addEventListener('click', async () => {
   });
 })();
 </script>
+<!-- NL-JS -->
 <script>
 // Newsletter signup. Posts with fetch and answers in place, rather than
 // navigating the reader away from whatever they were in the middle of.
+//
+// The analytics calls are guarded rather than assumed: this form has to keep
+// working on a page where analytics.js was blocked, which is most of the
+// reason the outcome is reported from here at all. Only the outcome and the
+// page are recorded. The address is not.
 document.querySelectorAll('.nl-form').forEach(function (form) {
+  var ga = function (name, params) {
+    if (typeof window.totTrack === 'function') window.totTrack(name, params || {});
+  };
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = form.querySelector('input[name=email]');
@@ -525,8 +562,11 @@ document.querySelectorAll('.nl-form').forEach(function (form) {
     var say = function (m) { if (note) note.textContent = m; };
     var value = (email.value || '').trim();
     if (value.indexOf('@') < 1 || value.indexOf('.') < 0) {
-      say('That address looks incomplete, have another look.'); email.focus(); return;
+      say('That address looks incomplete, have another look.');
+      ga('newsletter_error', { reason: 'malformed' });
+      email.focus(); return;
     }
+    ga('newsletter_submit');
     btn.disabled = true; btn.textContent = 'Sending...';
     fetch('/api/subscribe', {
       method: 'POST',
@@ -541,18 +581,22 @@ document.querySelectorAll('.nl-form').forEach(function (form) {
         if (d && d.ok) {
           form.innerHTML = '<p class="font-semibold text-ink py-3">You are on the list. Look out for the first one.</p>';
           say('');
+          ga('newsletter_signup');
         } else {
           btn.disabled = false; btn.textContent = 'Send it to me';
           say(d && d.error === 'email'
             ? 'That address looks incomplete, have another look.'
             : 'That did not go through. Try again in a moment.');
+          ga('newsletter_error', { reason: (d && d.error) || 'rejected' });
         }
       }).catch(function () {
         btn.disabled = false; btn.textContent = 'Send it to me';
         say('That did not go through. Try again in a moment.');
+        ga('newsletter_error', { reason: 'network' });
       });
   });
 });
 </script>
+<!-- /NL-JS -->
 </body>
 </html>
