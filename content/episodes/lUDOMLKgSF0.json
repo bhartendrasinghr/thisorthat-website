@@ -1,0 +1,149 @@
+{
+  "id": "lUDOMLKgSF0",
+  "duration": "73 min",
+  "durationISO": "PT1H13M26S",
+  "uploadDate": "2026-10-16",
+  "summary": "Where should money go over the next ten years, when markets, inflation and the global economy have all stopped being predictable? Debashish Bose of Infinite Circles Asset Managers makes the case that protecting wealth may now matter as much as growing it. The conversation runs across stocks, bonds, gold and cash, why very high equity exposure can be riskier than it looks, whether SIPs deserve a review rather than autopilot, and how interest rates, government debt and taxation quietly change what you keep.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlights: Investing in an Uncertain World"
+    },
+    {
+      "t": 69,
+      "label": "Introduction: Debashish Bose"
+    },
+    {
+      "t": 153,
+      "label": "How to Invest for the Next 10 Years"
+    },
+    {
+      "t": 219,
+      "label": "Asset Allocation: Stocks, Bonds, Gold & Cash"
+    },
+    {
+      "t": 305,
+      "label": "Why Protecting Wealth Comes First"
+    },
+    {
+      "t": 460,
+      "label": "Is 70–80% Equity Exposure Too Risky?"
+    },
+    {
+      "t": 600,
+      "label": "Why Fund Managers Hold Cash"
+    },
+    {
+      "t": 840,
+      "label": "Should You Continue SIPs Blindly?"
+    },
+    {
+      "t": 1152,
+      "label": "Understanding Stocks, Bonds & Interest Rates"
+    },
+    {
+      "t": 1419,
+      "label": "How Bond Prices and Yields Work"
+    },
+    {
+      "t": 1680,
+      "label": "Stocks vs Bonds: Which Offers Better Value?"
+    },
+    {
+      "t": 1813,
+      "label": "How Taxation Changes Investment Returns"
+    },
+    {
+      "t": 2100,
+      "label": "Why India Needs a Stronger Bond Market"
+    },
+    {
+      "t": 2402,
+      "label": "US Debt and the Global Economic Outlook"
+    },
+    {
+      "t": 2613,
+      "label": "Inflation, Growth & Financial Repression"
+    },
+    {
+      "t": 3008,
+      "label": "Yield Curve Control and Capital Restrictions"
+    },
+    {
+      "t": 3270,
+      "label": "India's Infrastructure and Manufacturing Strategy"
+    },
+    {
+      "t": 3840,
+      "label": "Understanding India's GDP and Growth Debate"
+    },
+    {
+      "t": 4236,
+      "label": "Why Food and Energy Inflation Matter"
+    },
+    {
+      "t": 4340,
+      "label": "Final Thoughts"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "The episode's central question is how much equity is too much. Put your own numbers in and see what the split looks like written down."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Is 70% Equity Too Risky Now? Debashish Bose on Protecting Your Wealth",
+    "description": "Debashish Bose on asset allocation for the next decade: is 70 per cent equity too risky, why fund managers hold cash, and what tax really costs."
+  },
+  "takeaways": [
+    {
+      "text": "Protecting wealth and growing it are two different jobs, and the second one has had all the attention for a decade."
+    },
+    {
+      "text": "An equity allocation of 70 to 80 per cent is not automatically right just because it has worked recently."
+    },
+    {
+      "text": "Fund managers hold cash for a reason, and the reason is optionality rather than timidity."
+    },
+    {
+      "text": "Bond prices and yields move against each other, and most Indian investors have never had to think about what that does to a portfolio."
+    },
+    {
+      "text": "Taxation changes the return you actually keep, which means the pre-tax comparison between assets is the wrong comparison."
+    }
+  ],
+  "fork": {
+    "decision": "Is 70 to 80 per cent in equity still the right place to be?",
+    "this": {
+      "label": "Stay heavily in equity",
+      "points": [
+        {
+          "text": "Over long horizons equity has been the asset that beats inflation, and nothing in the episode disputes that."
+        },
+        {
+          "text": "Cutting equity because the outlook feels uncertain is market timing wearing a sensible coat."
+        },
+        {
+          "text": "Bonds, gold and cash each have their own risks, and interest rates can hurt a bond portfolio just as a crash hurts equity."
+        }
+      ]
+    },
+    "that": {
+      "label": "Cut back and protect",
+      "points": [
+        {
+          "text": "Protecting what you have becomes the priority once you have enough, and the maths of a large drawdown is unforgiving."
+        },
+        {
+          "text": "Government debt, inflation and the global picture are genuinely harder to read than they were, and uncertainty deserves a wider spread."
+        },
+        {
+          "text": "Continuing an SIP without ever reviewing it is not discipline, it is autopilot."
+        }
+      ]
+    },
+    "pick": "Review the mix rather than react to the headlines. The question is not whether 70 per cent equity is right in the abstract, it is whether it is right for how close your goals are and how much of a fall you could live through without selling."
+  },
+  "guestDisclosure": "Guest: Debashish Bose Designation: Founder and Managing Partner, Infinite Circles Asset Managers"
+}

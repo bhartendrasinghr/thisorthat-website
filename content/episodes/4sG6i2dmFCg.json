@@ -1,0 +1,96 @@
+{
+  "id": "4sG6i2dmFCg",
+  "duration": "8 min",
+  "durationISO": "PT8M27S",
+  "uploadDate": "2026-08-28",
+  "summary": "What is the best mutual fund is one of the most searched investing questions in India, and one of the most misleading. Nothing can be called best without knowing who is investing, why, how much risk they can carry and when they need the money. The right fund for a 25-year-old building wealth can be completely wrong for someone supporting a family. This short one lays out the three things that actually build wealth, the two risks to cover before chasing any return, and the questions to ask instead.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Why “best mutual fund” is the wrong question"
+    },
+    {
+      "t": 90,
+      "label": "Three things that create wealth"
+    },
+    {
+      "t": 197,
+      "label": "Protect your capital before chasing returns"
+    },
+    {
+      "t": 263,
+      "label": "Understanding investment and product risk"
+    },
+    {
+      "t": 322,
+      "label": "Time horizon, market cycles and risk"
+    },
+    {
+      "t": 356,
+      "label": "Asset allocation and diversification"
+    },
+    {
+      "t": 469,
+      "label": "The right questions to ask before investing"
+    }
+  ],
+  "tool": {
+    "slug": "calc-plan.html",
+    "label": "Full financial plan",
+    "reason": "The episode's point is that suitability beats the leaderboard. Start from your goals and horizon, and the fund question gets much smaller."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Finding the Best Fund: A Guide for Indian Investors",
+    "description": "There is no best mutual fund, only a suitable one. The three things that build wealth, the two risks to cover first, and better questions to ask."
+  },
+  "takeaways": [
+    {
+      "text": "Three things create wealth: how much you can consistently invest, the return that is reasonable to expect, and how long you stay invested. Fund selection is not on that list."
+    },
+    {
+      "text": "Protect the capital before chasing the return. That means an emergency fund, health insurance and term insurance, in that order."
+    },
+    {
+      "text": "There are two separate risks: something going wrong in your life, and the risk built into the product itself. They need different answers."
+    },
+    {
+      "text": "Asset allocation and diversification matter more than finding one supposedly perfect fund."
+    },
+    {
+      "text": "Better questions than which is the best fund: how long can this money stay invested, what goal is it for, how much fall can I actually tolerate, am I covered for an emergency, and how should this be spread."
+    }
+  ],
+  "fork": {
+    "decision": "Should you go looking for the best mutual fund?",
+    "this": {
+      "label": "Find the best fund",
+      "points": [
+        {
+          "text": "It is the most searched investing question in India, so the instinct is close to universal."
+        },
+        {
+          "text": "Returns are the one number that is easy to compare across funds."
+        },
+        {
+          "text": "If you are going to hold something for a decade, it is reasonable to want it to be a good one."
+        }
+      ]
+    },
+    "that": {
+      "label": "Find the suitable fund",
+      "points": [
+        {
+          "text": "No fund can be called best without knowing the investor, the goal, the risk appetite and the horizon."
+        },
+        {
+          "text": "What suits a 25-year-old building wealth can be entirely wrong for someone supporting a family or saving for next year."
+        },
+        {
+          "text": "Allocation and diversification move your outcome more than the gap between the best fund and a good one."
+        }
+      ]
+    },
+    "pick": "Stop searching for the best and define suitable instead: the horizon, the goal, the fall you can tolerate, and whether an emergency would force you to sell. Answer those four and the shortlist writes itself."
+  }
+}

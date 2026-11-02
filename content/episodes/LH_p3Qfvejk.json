@@ -1,0 +1,117 @@
+{
+  "id": "LH_p3Qfvejk",
+  "duration": "71 min",
+  "durationISO": "PT1H10M48S",
+  "uploadDate": "2026-09-04",
+  "summary": "Most investors look for the highest return. CA Govind Jhawar of Finideas argues the question should be risk-adjusted: how much return, and how much risk was taken to get it. His approach pairs index investing with put options, where the put works like insurance, you pay a premium and get protection if the market falls hard, and if it does not fall the premium is simply the cost of being covered. Which raises the obvious objection: SEBI data shows more than 90 per cent of individual traders lose money in derivatives, so how can the same instrument protect a portfolio?",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Introduction"
+    },
+    {
+      "t": 71,
+      "label": "What is good investing?"
+    },
+    {
+      "t": 146,
+      "label": "How Growth with Protection works"
+    },
+    {
+      "t": 568,
+      "label": "How the strategy originated"
+    },
+    {
+      "t": 938,
+      "label": "Why investors struggle during market crashes"
+    },
+    {
+      "t": 1213,
+      "label": "Building a ₹1 crore protected portfolio"
+    },
+    {
+      "t": 1794,
+      "label": "F&O: speculation versus protection"
+    },
+    {
+      "t": 2094,
+      "label": "Investing, emotions and Vipassana"
+    },
+    {
+      "t": 2556,
+      "label": "Lessons from 25 years of market cycles"
+    },
+    {
+      "t": 2854,
+      "label": "Diversification, goals and retirement planning"
+    },
+    {
+      "t": 3517,
+      "label": "Mutual Funds versus AIFs"
+    },
+    {
+      "t": 3810,
+      "label": "How should a new investor begin?"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "Before paying for downside protection, see how much downside you are actually carrying. The mix usually answers the question."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "How to Pursue Equity Growth Without Taking Unlimited Risk",
+    "description": "CA Govind Jhawar on growth with protection: index investing paired with put options, what the protection costs, and hedging versus speculation."
+  },
+  "takeaways": [
+    {
+      "text": "Good investing is a risk-adjusted question, not a returns question: how much you made, and how much risk you took to make it."
+    },
+    {
+      "text": "A put option used as portfolio insurance costs a premium. If the market does not fall, that premium is the price of the protection, not a loss on a bet."
+    },
+    {
+      "text": "More than 90 per cent of individual traders lose money in equity derivatives, per SEBI. The same instrument used for speculation and leverage behaves nothing like it does used for hedging."
+    },
+    {
+      "text": "The episode walks through a hypothetical one crore protected portfolio built from index ETFs, puts, futures and debt, including what the protection costs and how that cost might be reduced."
+    },
+    {
+      "text": "The behavioural argument may be the strongest one: everybody says they will buy the crash, and almost nobody does. Knowing your worst case in advance is what makes staying calm possible."
+    }
+  ],
+  "fork": {
+    "decision": "Chase the highest return, or pay to cap the downside?",
+    "this": {
+      "label": "Go for the return",
+      "points": [
+        {
+          "text": "Protection is not free: the premium is a real, repeated cost that comes straight out of your compounding."
+        },
+        {
+          "text": "Over long enough periods equity has recovered from every fall, so paying to avoid one can be paying for nothing."
+        },
+        {
+          "text": "Derivatives are complex and leveraged, and SEBI's own data on retail outcomes with them is brutal."
+        }
+      ]
+    },
+    "that": {
+      "label": "Cap the downside",
+      "points": [
+        {
+          "text": "The honest scorecard is risk-adjusted: a return earned by taking enormous risk is not the same achievement."
+        },
+        {
+          "text": "Knowing your worst case in advance is what lets you stay invested through a crash instead of selling into it."
+        },
+        {
+          "text": "Used for hedging rather than speculation, the same instrument has a completely different risk profile, because the intent and structure differ."
+        }
+      ]
+    },
+    "pick": "The question the episode leaves you with is the right one: what matters more to you, maximising the return or knowing how much you could lose? If a 40 per cent fall would make you sell, protection that costs you some upside is cheaper than the mistake. If you have sat through a crash before without flinching, you are paying for insurance you do not claim. Nothing here is risk-free or guaranteed."
+  },
+  "guestDisclosure": "Guest: CA Govind Jhawar Designation: Founder, Finideas, with over 24 years in financial markets"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "YApFoPv4ZuM",
+  "duration": "5 min",
+  "durationISO": "PT5M25S",
+  "uploadDate": "2026-09-07",
+  "summary": "A short cut from a longer conversation. China's enormous real estate sector is in a downturn, and that, together with the country's own economic strategy, has moved capital around the world. This one looks at where that money went and what it means for global markets and for India.",
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "Global flows move the markets your funds hold. See how much of your money is riding on one story."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "China's Economic Shift: Impact on Global Markets & India",
+    "description": "China's real estate downturn, its economic strategy, and how the resulting shift in global capital flows reaches India."
+  },
+  "takeaways": [
+    {
+      "text": "China's real estate downturn is large enough to change where global capital goes, not just what happens inside China."
+    },
+    {
+      "text": "Capital leaving one large emerging market has to arrive somewhere, which is part of the story behind flows into other markets including India."
+    },
+    {
+      "text": "This is a clip from a longer conversation, and the full version carries the argument properly."
+    }
+  ]
+}

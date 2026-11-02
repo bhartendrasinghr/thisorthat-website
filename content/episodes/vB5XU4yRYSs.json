@@ -1,0 +1,169 @@
+{
+  "id": "vB5XU4yRYSs",
+  "duration": "57 min",
+  "durationISO": "PT57M0S",
+  "uploadDate": "2026-10-23",
+  "summary": "You may be earning returns on your mutual funds. Whether you are building wealth is a different question. Suranjana Borthakur of Mirae Asset works through why investors chase gold after it has already run, get restless when equity goes sideways, and abandon a perfectly good plan at the worst possible moment. She also shares a lesson from the Covid crash, when being fully invested in equity meant she could not take advantage of the fall she had been waiting for.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlights: Returns, compounding and missed opportunities"
+    },
+    {
+      "t": 89,
+      "label": "Introduction: Investing through uncertain markets"
+    },
+    {
+      "t": 182,
+      "label": "₹1 crore from ₹2 crore? The market returns debate"
+    },
+    {
+      "t": 333,
+      "label": "Why new investors struggle with market corrections"
+    },
+    {
+      "t": 368,
+      "label": "Why SIP investors should understand falling markets"
+    },
+    {
+      "t": 492,
+      "label": "Are investors really panicking?"
+    },
+    {
+      "t": 695,
+      "label": "How to plan your next 10 years of investing"
+    },
+    {
+      "t": 734,
+      "label": "Why your financial goals matter more than fund selection"
+    },
+    {
+      "t": 884,
+      "label": "Returns vs wealth creation: The compounding problem"
+    },
+    {
+      "t": 948,
+      "label": "Asset allocation and the danger of chasing winners"
+    },
+    {
+      "t": 1048,
+      "label": "Suranjana's personal COVID investing lesson"
+    },
+    {
+      "t": 1163,
+      "label": "Rebalancing and the rear-view mirror mistake"
+    },
+    {
+      "t": 1267,
+      "label": "Cash in equity funds vs diversification for investors"
+    },
+    {
+      "t": 1433,
+      "label": "Multi-asset funds and solutions for beginners"
+    },
+    {
+      "t": 1525,
+      "label": "Lifecycle funds: Investing for future goals"
+    },
+    {
+      "t": 1881,
+      "label": "What happens if you enter a lifecycle fund later?"
+    },
+    {
+      "t": 2095,
+      "label": "Specialised Investment Funds (SIFs) explained"
+    },
+    {
+      "t": 2219,
+      "label": "F&O, leverage and SIF risk management"
+    },
+    {
+      "t": 2338,
+      "label": "How to evaluate SIF strategies"
+    },
+    {
+      "t": 2621,
+      "label": "Important SIF liquidity and redemption considerations"
+    },
+    {
+      "t": 2752,
+      "label": "The role of distributors during difficult markets"
+    },
+    {
+      "t": 2980,
+      "label": "Active vs passive investing beyond Nifty 50"
+    },
+    {
+      "t": 3096,
+      "label": "What DIY investors should research"
+    },
+    {
+      "t": 3199,
+      "label": "Global investing and avoiding performance chasing"
+    },
+    {
+      "t": 3316,
+      "label": "The final lesson: Know your WHY"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "The episode's lesson is that the mix does the work. See yours written down, and what rebalancing it would actually mean."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Mutual Fund Returns Disappointing? Here’s How Wealth Is Really Built | Suranjana Borthakur",
+    "description": "Suranjana Borthakur on returns versus wealth: chasing last year's winner, rebalancing, multi-asset and lifecycle funds, and SIFs explained."
+  },
+  "takeaways": [
+    {
+      "text": "Good returns and real wealth are not the same thing, and the gap between them is mostly made of interruptions."
+    },
+    {
+      "text": "Chasing whatever did best last year, gold included, is the rear-view mirror mistake, and it is the most common one."
+    },
+    {
+      "text": "Being fully invested in equity sounds like conviction until a crash arrives and you have nothing left to buy it with."
+    },
+    {
+      "text": "Rebalancing is the mechanism that makes you sell high and buy low without having to feel brave about it."
+    },
+    {
+      "text": "Your goals and your horizon decide the portfolio. Fund selection is the last decision, not the first."
+    }
+  ],
+  "fork": {
+    "decision": "One asset has run hard and another is flat. Follow the winner, or rebalance?",
+    "this": {
+      "label": "Follow the winner",
+      "points": [
+        {
+          "text": "Momentum is real, and the asset that is working is working for reasons that do not vanish overnight."
+        },
+        {
+          "text": "Sitting in something that has gone nowhere for two years tests anybody's patience."
+        },
+        {
+          "text": "Selling what is working to buy what is not feels like the opposite of investing."
+        }
+      ]
+    },
+    "that": {
+      "label": "Rebalance",
+      "points": [
+        {
+          "text": "Buying gold after the rally is buying the news, and the return you are chasing has already happened."
+        },
+        {
+          "text": "A portfolio with nothing in reserve cannot act when a crash hands it an opportunity, which is the Covid lesson in the episode."
+        },
+        {
+          "text": "Rebalancing forces the sell-high, buy-low behaviour that almost nobody manages on instinct."
+        }
+      ]
+    },
+    "pick": "Rebalance, because the discipline is doing something your instincts will not. The portfolio that can take advantage of a fall is the one that was not fully committed before it."
+  },
+  "guestDisclosure": "Guest: Suranjana Borthakur Designation: Head of Distribution, Mirae Asset Management"
+}

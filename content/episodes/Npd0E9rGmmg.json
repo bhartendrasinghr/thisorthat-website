@@ -1,0 +1,129 @@
+{
+  "id": "Npd0E9rGmmg",
+  "duration": "41 min",
+  "durationISO": "PT41M3S",
+  "uploadDate": "2026-07-03",
+  "summary": "The average Indian holds a mutual fund for about three and a half years. Compounding does not really show up until year nine or ten. Almost all the wealth that quietly goes missing sits in that gap. In part two, Roopa Venkatkrishnan goes through why your fixed deposit carries an interest-rate risk nobody mentions when they sell it to you, why you would never dump gold on a bad week but will dump equity without blinking, why retirement has to be funded first because it is the one goal no bank will lend for, and why chasing the top-ranked fund costs you your beta long before it gets you any alpha.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlight"
+    },
+    {
+      "t": 63,
+      "label": "The one piece every portfolio is missing"
+    },
+    {
+      "t": 89,
+      "label": "You've already done asset allocation (except equity)"
+    },
+    {
+      "t": 190,
+      "label": "The simple 20% rule"
+    },
+    {
+      "t": 247,
+      "label": "How many funds do you actually need?"
+    },
+    {
+      "t": 337,
+      "label": "Why she avoids thematic funds"
+    },
+    {
+      "t": 383,
+      "label": "Value, growth, momentum: why styles cycle"
+    },
+    {
+      "t": 495,
+      "label": "What return should you really expect?"
+    },
+    {
+      "t": 584,
+      "label": "What a mutual fund distributor actually does"
+    },
+    {
+      "t": 649,
+      "label": "Why mutual funds are the great equalizer"
+    },
+    {
+      "t": 820,
+      "label": "Direct vs Regular, explained honestly"
+    },
+    {
+      "t": 961,
+      "label": "The real value: making you hold for 15–20 years"
+    },
+    {
+      "t": 1179,
+      "label": "Is your FD actually safe?"
+    },
+    {
+      "t": 1310,
+      "label": "Treat equity like gold and real estate"
+    },
+    {
+      "t": 1389,
+      "label": "Retirement: the goal no bank will fund"
+    },
+    {
+      "t": 1532,
+      "label": "When should you start saving for it?"
+    },
+    {
+      "t": 1635,
+      "label": "Buy vs rent a house"
+    },
+    {
+      "t": 1719,
+      "label": "The boring first decade of an SIP"
+    },
+    {
+      "t": 1812,
+      "label": "When should you exit a fund?"
+    },
+    {
+      "t": 1879,
+      "label": "Chasing returns costs you your beta"
+    },
+    {
+      "t": 1989,
+      "label": "Today's top fund won't be #1 in six months"
+    },
+    {
+      "t": 2175,
+      "label": "You never know which period you're in"
+    },
+    {
+      "t": 2348,
+      "label": "Closing Remarks"
+    }
+  ],
+  "tool": {
+    "slug": "calc-retirement.html",
+    "label": "Real Retirement",
+    "reason": "Retirement is the goal no bank will lend for. Find the corpus you actually need, and whether what you are putting away now gets you there."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Don’t Exit Equity Too Early: Retirement, SIP & Mutual Fund Lessons",
+    "description": "Why the average Indian's 3.5-year holding period costs them compounding, the hidden risk in your FD, and why retirement gets funded first."
+  },
+  "takeaways": [
+    {
+      "text": "The average Indian holds a mutual fund for about three and a half years, and compounding does not show up until year nine or ten. The gap between those two numbers is where most of the wealth goes."
+    },
+    {
+      "text": "A fixed deposit is not the risk-free thing it is sold as. It carries an interest-rate risk that rarely comes up at the counter."
+    },
+    {
+      "text": "You would not sell gold or property because of one bad week, but equity gets sold on a dip. The asset did not change, the holding period did."
+    },
+    {
+      "text": "Retirement is the only goal no bank will fund. Every other goal has a loan behind it, which is why this one gets saved for first."
+    },
+    {
+      "text": "Chasing the top-ranked fund costs you your beta before it ever gets you alpha, and today's number one will not be number one in six months."
+    }
+  ],
+  "guestDisclosure": "Guest: Roopa Venkatkrishnan Designation: Director, Sapient Wealth Advisors and Brokers Pvt Ltd | AMFI Registered Mutual Fund Distributor | SEBI Registered Investment Advisor | ARN-75320"
+}

@@ -1,0 +1,161 @@
+{
+  "id": "IelwvNJNG3c",
+  "duration": "56 min",
+  "durationISO": "PT56M9S",
+  "uploadDate": "2026-08-07",
+  "summary": "Crypto is easy to buy. Working out what you actually own, and who controls it, is the hard part. Manhar Garegrat of Liminal Custody takes the whole thing from first principles: why Bitcoin was built at all, how digital money can exist without a bank behind it, what blockchain, cryptography, mining and consensus actually do, and the question most buyers never ask, which is who holds the private keys when you buy through an exchange.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlight & Introduction"
+    },
+    {
+      "t": 113,
+      "label": "What is cryptocurrency in simple terms?"
+    },
+    {
+      "t": 328,
+      "label": "Blockchain, cryptography and consensus explained"
+    },
+    {
+      "t": 441,
+      "label": "How blockchain records transactions"
+    },
+    {
+      "t": 653,
+      "label": "What makes Bitcoin decentralised?"
+    },
+    {
+      "t": 823,
+      "label": "How a Bitcoin transaction actually works"
+    },
+    {
+      "t": 878,
+      "label": "Bitcoin mining and transaction validation"
+    },
+    {
+      "t": 1089,
+      "label": "Who controls Bitcoin and its supply?"
+    },
+    {
+      "t": 1164,
+      "label": "Why Bitcoin miners are rewarded"
+    },
+    {
+      "t": 1278,
+      "label": "The 21-million Bitcoin limit and halving"
+    },
+    {
+      "t": 1349,
+      "label": "Who is Satoshi Nakamoto?"
+    },
+    {
+      "t": 1573,
+      "label": "Who regulates Bitcoin?"
+    },
+    {
+      "t": 1645,
+      "label": "Code, smart contracts and irreversible transactions"
+    },
+    {
+      "t": 1778,
+      "label": "Is open-source Bitcoin software risky?"
+    },
+    {
+      "t": 1881,
+      "label": "Bank deposits versus ownership of Bitcoin"
+    },
+    {
+      "t": 1972,
+      "label": "Why Bitcoin was designed to be censorship-resistant"
+    },
+    {
+      "t": 1999,
+      "label": "The biggest cybersecurity risks in crypto"
+    },
+    {
+      "t": 2099,
+      "label": "What is a crypto wallet?"
+    },
+    {
+      "t": 2117,
+      "label": "Public keys and private keys explained"
+    },
+    {
+      "t": 2281,
+      "label": "Why exchanges and custodians are needed"
+    },
+    {
+      "t": 2517,
+      "label": "How an Indian investor can buy Bitcoin"
+    },
+    {
+      "t": 2533,
+      "label": "FIU registration and crypto compliance"
+    },
+    {
+      "t": 2647,
+      "label": "Exchange versus custodian"
+    },
+    {
+      "t": 2780,
+      "label": "Why segregation of duties matters"
+    },
+    {
+      "t": 2904,
+      "label": "Investing ₹1 lakh in crypto: step-by-step"
+    },
+    {
+      "t": 3006,
+      "label": "Who controls your crypto on an exchange?"
+    },
+    {
+      "t": 3062,
+      "label": "Buying, selling and withdrawing cryptocurrency"
+    },
+    {
+      "t": 3156,
+      "label": "Crypto taxation, TDS and gains"
+    },
+    {
+      "t": 3226,
+      "label": "Why crypto losses cannot be offset"
+    },
+    {
+      "t": 3279,
+      "label": "How investors can choose crypto assets"
+    },
+    {
+      "t": 3305,
+      "label": "Crypto indices and diversified investing"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "If crypto is going to sit in your portfolio at all, see it next to everything else you own rather than on its own screen."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Crypto Simplified: Bitcoin, Ethereum, Stablecoins & the Risks You Must Know",
+    "description": "Bitcoin, Ethereum and stablecoins from first principles: blockchain, mining, private keys, custody, Indian tax and the risks that matter."
+  },
+  "takeaways": [
+    {
+      "text": "Buying crypto and owning crypto are not the same thing. If an exchange holds the private keys, the exchange holds the asset."
+    },
+    {
+      "text": "Bitcoin's 21 million limit, its halving schedule and its anonymous creator are not trivia. They are the design decisions that make the supply credible."
+    },
+    {
+      "text": "Mining, nodes and consensus are how a network with no central authority agrees on who owns what, and understanding that is the difference between investing and guessing."
+    },
+    {
+      "text": "An exchange, a broker and a custodian are three different roles. Knowing which one is holding your assets tells you what happens if it fails."
+    },
+    {
+      "text": "Indian crypto gains carry TDS and their own tax treatment, and losses cannot be set off the way they can elsewhere. Price is not the only thing to model."
+    }
+  ],
+  "guestDisclosure": "Guest: Manhar Garegrat Designation: Country Head, India and Global Partnership, Liminal Custody"
+}

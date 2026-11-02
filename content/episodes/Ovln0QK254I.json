@@ -1,0 +1,156 @@
+{
+  "id": "Ovln0QK254I",
+  "duration": "63 min",
+  "durationISO": "PT1H2M37S",
+  "uploadDate": "2026-10-09",
+  "summary": "Private equity is getting easier for Indian investors to reach. Whether that means better opportunities or just different and harder-to-see risks is the actual question. This one goes through how professional private-equity managers pick companies, judge founders, do due diligence, set valuations and, most importantly, plan the exit before they invest. Because in private markets, finding a good company is only part of the job. Someone has to buy it from you.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Introduction"
+    },
+    {
+      "t": 74,
+      "label": "How Big Are Alternative Investments in India?"
+    },
+    {
+      "t": 104,
+      "label": "Category I, II & III AIFs Explained"
+    },
+    {
+      "t": 253,
+      "label": "How Can Investors Access Private Equity?"
+    },
+    {
+      "t": 291,
+      "label": "What Exactly Is the Pre-IPO Market?"
+    },
+    {
+      "t": 364,
+      "label": "The Risks Investors Ignore in Unlisted Shares"
+    },
+    {
+      "t": 508,
+      "label": "How Private Equity Fund Managers Select Companies"
+    },
+    {
+      "t": 695,
+      "label": "What Makes a Good Private Equity Investment?"
+    },
+    {
+      "t": 720,
+      "label": "Where Is Private Equity Investing Today?"
+    },
+    {
+      "t": 1062,
+      "label": "How Do You Research an Unlisted Company?"
+    },
+    {
+      "t": 1290,
+      "label": "Due Diligence: Do Fund Managers Speak to Customers?"
+    },
+    {
+      "t": 1500,
+      "label": "How Are Private Companies Valued?"
+    },
+    {
+      "t": 1516,
+      "label": "The Two Biggest Risks in Private Equity"
+    },
+    {
+      "t": 2100,
+      "label": "What Happens When Pre-IPO Investors Get Stuck?"
+    },
+    {
+      "t": 2388,
+      "label": "Continuation Funds & the Challenge of Exits"
+    },
+    {
+      "t": 2812,
+      "label": "Questions You Must Ask Before Investing in an AIF"
+    },
+    {
+      "t": 2892,
+      "label": "How Do You Actually Invest in a Private Equity Fund?"
+    },
+    {
+      "t": 2999,
+      "label": "Understanding Private Credit"
+    },
+    {
+      "t": 3300,
+      "label": "Why Exit Is the Biggest Private Equity Challenge"
+    },
+    {
+      "t": 3453,
+      "label": "Can You Build an Unlisted Portfolio Yourself?"
+    },
+    {
+      "t": 3626,
+      "label": "Direct Unlisted Shares vs Professional Fund Manager"
+    },
+    {
+      "t": 3685,
+      "label": "Closing Thoughts"
+    }
+  ],
+  "tool": {
+    "slug": "ipo-tracker.html",
+    "label": "IPO Tracker",
+    "reason": "Pre-IPO only pays off if the listing does. See what actually happened to every mainboard IPO, and how often the exit was worth the wait."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Unlisted Shares & Pre-IPO: What Investors Get Wrong",
+    "description": "Unlisted shares, pre-IPO and AIFs: how private equity managers pick, value and exit, and the liquidity and valuation risks investors miss."
+  },
+  "takeaways": [
+    {
+      "text": "In private markets the exit is the hard part. A great company you cannot sell is not a great investment."
+    },
+    {
+      "text": "Pre-IPO attracts people with the promise of extraordinary returns, and the three risks they tend to skip are liquidity, valuation and information asymmetry."
+    },
+    {
+      "text": "The valuation you enter at decides most of your outcome, and in unlisted markets the information behind that valuation is far thinner than in listed ones."
+    },
+    {
+      "text": "Category I, II and III AIFs are different things. Knowing which one you are being sold, and where private equity and private credit sit inside them, is the starting point."
+    },
+    {
+      "text": "If an IPO is delayed or never arrives, pre-IPO investors can be stuck for years, which is why continuation funds exist at all."
+    }
+  ],
+  "fork": {
+    "decision": "You want exposure to unlisted companies. Buy the shares yourself, or go through a fund?",
+    "this": {
+      "label": "Buy unlisted shares directly",
+      "points": [
+        {
+          "text": "You keep the whole return instead of sharing it with a manager and a fee structure."
+        },
+        {
+          "text": "The access that used to be institutional is genuinely opening up to individual investors."
+        },
+        {
+          "text": "You choose the specific company rather than inheriting someone else's portfolio."
+        }
+      ]
+    },
+    "that": {
+      "label": "Go through a fund manager",
+      "points": [
+        {
+          "text": "Professional managers do due diligence that includes speaking to the company's actual customers, which you cannot replicate."
+        },
+        {
+          "text": "They plan the exit before they invest, and exit is where private equity mostly goes wrong."
+        },
+        {
+          "text": "A fund diversifies across companies, so one delayed IPO does not take your whole allocation with it."
+        }
+      ]
+    },
+    "pick": "If you cannot answer who will buy this from you and at what valuation you are entering, you are not investing in a company, you are hoping for a listing. That research is a full-time job, which is the argument for paying someone whose full-time job it is."
+  }
+}

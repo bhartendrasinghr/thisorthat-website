@@ -1,0 +1,205 @@
+{
+  "id": "XVdqTLff-YY",
+  "duration": "39 min",
+  "durationISO": "PT38M33S",
+  "uploadDate": "2026-08-07",
+  "summary": "Part one explained what crypto is. This one asks whether you should own any, and how much is too much. Manhar Garegrat works through what actually sets Bitcoin's price, why stablecoins are becoming the useful part of the story, how you would compare Bitcoin with Ethereum or Solana, whether a government can simply ban the thing, and where a 1 to 5 per cent allocation might sit in an otherwise ordinary portfolio. His own framing is to start small rather than treat it as an all-or-nothing bet.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Can governments really stop crypto?"
+    },
+    {
+      "t": 70,
+      "label": "Why are so many people investing in crypto?"
+    },
+    {
+      "t": 111,
+      "label": "What actually drives crypto returns?"
+    },
+    {
+      "t": 151,
+      "label": "AI, agentic payments & the future of digital money"
+    },
+    {
+      "t": 260,
+      "label": "CBDCs and sovereign digital currencies"
+    },
+    {
+      "t": 326,
+      "label": "Stablecoins explained simply"
+    },
+    {
+      "t": 422,
+      "label": "Why would anyone use a stablecoin?"
+    },
+    {
+      "t": 517,
+      "label": "Bitcoin, Ethereum & thousands of digital assets"
+    },
+    {
+      "t": 558,
+      "label": "Can stablecoins be used for payments in India?"
+    },
+    {
+      "t": 607,
+      "label": "How do you choose which crypto to invest in?"
+    },
+    {
+      "t": 670,
+      "label": "Public vs private blockchains"
+    },
+    {
+      "t": 725,
+      "label": "Why Bitcoin is different from other cryptocurrencies"
+    },
+    {
+      "t": 782,
+      "label": "The Blockchain Trilemma explained"
+    },
+    {
+      "t": 808,
+      "label": "Bitcoin: security vs speed"
+    },
+    {
+      "t": 885,
+      "label": "Ethereum and CBDCs compared with Bitcoin"
+    },
+    {
+      "t": 936,
+      "label": "How to evaluate Solana, Polygon & other blockchains"
+    },
+    {
+      "t": 1062,
+      "label": "Decentralised oracles & Chainlink"
+    },
+    {
+      "t": 1147,
+      "label": "Can a blockchain actually fail?"
+    },
+    {
+      "t": 1204,
+      "label": "Why does Bitcoin's price rise and fall?"
+    },
+    {
+      "t": 1250,
+      "label": "How global events impact crypto"
+    },
+    {
+      "t": 1295,
+      "label": "Can India ban cryptocurrency?"
+    },
+    {
+      "t": 1358,
+      "label": "The Canada trucker protest & Bitcoin"
+    },
+    {
+      "t": 1483,
+      "label": "What really moves Bitcoin prices?"
+    },
+    {
+      "t": 1574,
+      "label": "Regulation, Bitcoin ETFs & institutional money"
+    },
+    {
+      "t": 1633,
+      "label": "How much crypto should you own? The 1–5% approach"
+    },
+    {
+      "t": 1688,
+      "label": "Banks, Visa, Mastercard & stablecoins"
+    },
+    {
+      "t": 1756,
+      "label": "Crypto lending, borrowing & DeFi"
+    },
+    {
+      "t": 1868,
+      "label": "India's crypto adoption story"
+    },
+    {
+      "t": 1944,
+      "label": "What will crypto regulation in India look like?"
+    },
+    {
+      "t": 1982,
+      "label": "Taxation, FIU, AML & regulatory interventions"
+    },
+    {
+      "t": 2045,
+      "label": "Self-regulation and Bharat Web3 Association"
+    },
+    {
+      "t": 2127,
+      "label": "Why crypto custody matters"
+    },
+    {
+      "t": 2178,
+      "label": "Where India's regulatory framework could go next"
+    },
+    {
+      "t": 2285,
+      "label": "Closing thoughts"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "A 1 to 5 per cent sliver only means something next to the other 95. See the whole allocation before you decide what crypto is worth to you."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Can India Really Ban Crypto? Regulation, Stablecoins & What Investors Should Know | Part 2",
+    "description": "Can India ban crypto? What drives Bitcoin's price, why stablecoins matter, and the 1 to 5 per cent allocation question, with Manhar Garegrat."
+  },
+  "takeaways": [
+    {
+      "text": "The allocation discussed is 1 to 5 per cent, and the reasoning is to start small rather than make it an all-or-nothing bet. That is a view from the conversation, not a recommendation for your portfolio."
+    },
+    {
+      "text": "Banning crypto outright is harder than it sounds, and India's position today is better described as a set of separate interventions than as one framework."
+    },
+    {
+      "text": "Stablecoins are where the practical use is showing up first, alongside CBDCs, and they behave very differently from Bitcoin."
+    },
+    {
+      "text": "Comparing blockchains means understanding the trilemma: security, speed and decentralisation, and which one each network chose to give up."
+    },
+    {
+      "text": "Custody is the part retail investors skip. Who holds the keys decides what you own when something goes wrong."
+    }
+  ],
+  "fork": {
+    "decision": "Should crypto get a place in an ordinary portfolio?",
+    "this": {
+      "label": "Own a small slice",
+      "points": [
+        {
+          "text": "The case made is for 1 to 5 per cent, small enough that being wrong does not change your life."
+        },
+        {
+          "text": "Institutional money, Bitcoin ETFs and real custody infrastructure have arrived since the last cycle."
+        },
+        {
+          "text": "Stablecoins and tokenised payments are a genuine use, not only a trade."
+        }
+      ]
+    },
+    "that": {
+      "label": "Own none of it",
+      "points": [
+        {
+          "text": "The technological, regulatory and market risks discussed are real and not yet priced by anyone with confidence."
+        },
+        {
+          "text": "India has interventions rather than a framework, so the rules you buy under may not be the rules you sell under."
+        },
+        {
+          "text": "Tax treatment is unforgiving: gains carry TDS and losses cannot be offset."
+        }
+      ]
+    },
+    "pick": "If you want exposure, take it in a size that cannot hurt you, which is what the 1 to 5 per cent framing is really saying, and sort out custody before you sort out which coin. If that sounds like too much work for a sliver of your portfolio, owning none is an entirely respectable answer."
+  },
+  "guestDisclosure": "Guest: Manhar Garegrat Designation: Country Head, India and Global Partnership, Liminal Custody"
+}

@@ -1,0 +1,141 @@
+{
+  "id": "oaiRSZnKaM0",
+  "duration": "44 min",
+  "durationISO": "PT44M5S",
+  "uploadDate": "2026-08-14",
+  "summary": "Gajendra Kothari started with a ten thousand rupee SIP and now runs SIPs worth around fifty lakh a month. What he has learned in between is mostly about behaviour, not returns. This one is about why investors stop their SIPs at exactly the wrong moment, the obsession with finding the best mutual fund, when money should genuinely come out of equity for a goal, and why a good adviser's biggest job may simply be stopping you from making an expensive mistake.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Why stopping your SIP could be your biggest mistake"
+    },
+    {
+      "t": 73,
+      "label": "Meet Gajendra Kothari"
+    },
+    {
+      "t": 131,
+      "label": "His ₹10,000 SIP journey towards ₹1 crore"
+    },
+    {
+      "t": 272,
+      "label": "What happens when your SIP becomes ₹50 lakh a month?"
+    },
+    {
+      "t": 421,
+      "label": "Business vs Mutual Funds vs Direct Stocks"
+    },
+    {
+      "t": 601,
+      "label": "Equity, Bonds & FDs: Understanding the payoff"
+    },
+    {
+      "t": 736,
+      "label": "The two things investors can actually control"
+    },
+    {
+      "t": 846,
+      "label": "Why are so many SIPs being stopped?"
+    },
+    {
+      "t": 1131,
+      "label": "Does the SIP date really matter?"
+    },
+    {
+      "t": 1237,
+      "label": "When should you move money out of equity?"
+    },
+    {
+      "t": 1459,
+      "label": "Is there really a “best mutual fund”?"
+    },
+    {
+      "t": 1711,
+      "label": "When do you actually need a financial advisor?"
+    },
+    {
+      "t": 1874,
+      "label": "What a good advisor really does"
+    },
+    {
+      "t": 2148,
+      "label": "Why having two advisors can backfire"
+    },
+    {
+      "t": 2246,
+      "label": "Can AI replace a financial advisor?"
+    },
+    {
+      "t": 2341,
+      "label": "The worst time to stop your SIP"
+    },
+    {
+      "t": 2418,
+      "label": "Stop looking for the best fund"
+    },
+    {
+      "t": 2563,
+      "label": "A simple investing rule for DIY investors"
+    }
+  ],
+  "tool": {
+    "slug": "calc-sip.html",
+    "label": "Honest SIP calculator",
+    "reason": "See what stopping for a year actually costs, and what starting five years earlier would have been worth."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Why Most Investors Stop SIPs at the Worst Time | Gajendra Kothari",
+    "description": "Gajendra Kothari on why SIPs get stopped at the worst moment, the myth of the best mutual fund, and what a good adviser is really for."
+  },
+  "takeaways": [
+    {
+      "text": "SIPs get stopped at the worst possible time, which is when markets are down and the instalments are doing the most work."
+    },
+    {
+      "text": "There are only two things an investor actually controls: how much goes in and how long it stays. Everything else is weather."
+    },
+    {
+      "text": "The SIP date matters far less than people think. The habit is the thing."
+    },
+    {
+      "text": "Moving money out of equity should be driven by the goal getting close, not by how the market feels that month."
+    },
+    {
+      "text": "It is not about finding the best fund, it is about becoming a better investor, and a good adviser earns their fee by keeping you in the plan through the noise."
+    }
+  ],
+  "fork": {
+    "decision": "Markets are falling and your SIP feels pointless. Stop it, or keep going?",
+    "this": {
+      "label": "Keep the SIP running",
+      "points": [
+        {
+          "text": "A falling market is the only time your instalment buys more units for the same money."
+        },
+        {
+          "text": "How much goes in and how long it stays are the two things you control, and stopping gives up both."
+        },
+        {
+          "text": "Investors who stop tend to restart after the recovery, which is paying the fear and missing the payoff."
+        }
+      ]
+    },
+    "that": {
+      "label": "Take the money out",
+      "points": [
+        {
+          "text": "If the goal this money is for is close, moving it out of equity is the right call and has nothing to do with fear."
+        },
+        {
+          "text": "An SIP you cannot afford this month is not a discipline problem, it is a cash-flow problem, and pausing beats defaulting."
+        },
+        {
+          "text": "Sideways markets are genuinely hard to sit through, and pretending otherwise is how plans get abandoned all at once instead of adjusted."
+        }
+      ]
+    },
+    "pick": "Stop an SIP because the goal has arrived or the money is not there this month. Never because the market is down, which is the one moment the instalment is doing its job. If you are not sure which of the two it is, that is the question worth taking to an adviser."
+  },
+  "guestDisclosure": "Guest: Gajendra Kothari Designation: Founder and CEO, Etica Wealth"
+}

@@ -1,0 +1,113 @@
+{
+  "id": "pY0lhj6OCNw",
+  "duration": "91 min",
+  "durationISO": "PT1H30M51S",
+  "uploadDate": "2026-09-26",
+  "summary": "A fund can post strong returns while the people in it earn less. Bhautik Ambani of AlphaGrep Mutual Fund takes apart why that happens, and the related puzzle: when everyone has the same market information, where does a fund manager's alpha come from? The conversation covers investor behaviour and market cycles, quant versus human-led investing, how data actually gets turned into a portfolio, what can go wrong with a quant model, what an SIF can do that a mutual fund cannot, and where mutual funds, SIFs, PMS and AIFs each fit.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlights"
+    },
+    {
+      "t": 77,
+      "label": "Introduction"
+    },
+    {
+      "t": 148,
+      "label": "How do investors and fund managers generate returns?"
+    },
+    {
+      "t": 361,
+      "label": "The economy, market cycles and long-term investing"
+    },
+    {
+      "t": 559,
+      "label": "Why investor behaviour affects returns"
+    },
+    {
+      "t": 688,
+      "label": "Setting realistic expectations and understanding risk"
+    },
+    {
+      "t": 782,
+      "label": "Why AlphaGrep entered the mutual fund industry"
+    },
+    {
+      "t": 1273,
+      "label": "Quant investing explained"
+    },
+    {
+      "t": 2106,
+      "label": "Building portfolios for different return needs"
+    },
+    {
+      "t": 2218,
+      "label": "Why asset allocation matters"
+    },
+    {
+      "t": 2640,
+      "label": "Is the Nifty still the right benchmark?"
+    },
+    {
+      "t": 2992,
+      "label": "What can go wrong with quant models?"
+    },
+    {
+      "t": 3240,
+      "label": "Why chasing the best-performing fund can backfire"
+    },
+    {
+      "t": 3872,
+      "label": "What is an SIF?"
+    },
+    {
+      "t": 4217,
+      "label": "Long–short investing explained simply"
+    },
+    {
+      "t": 4800,
+      "label": "Who might consider an SIF?"
+    },
+    {
+      "t": 5006,
+      "label": "Rapid-fire investment questions"
+    },
+    {
+      "t": 5124,
+      "label": "SIP versus lump sum"
+    },
+    {
+      "t": 5293,
+      "label": "Mutual funds, SIFs, PMS and AIFs"
+    }
+  ],
+  "tool": {
+    "slug": "category-compass.html",
+    "label": "Category Compass",
+    "reason": "Before the manager question, settle the category question. See which equity category the numbers favour right now, and why."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "How Do Fund Managers Generate Alpha? Quant Investing Explained",
+    "description": "Why fund returns beat investor returns, where alpha comes from, and quant investing explained, with Bhautik Ambani of AlphaGrep."
+  },
+  "takeaways": [
+    {
+      "text": "The gap between a fund's return and its investors' return is behavioural. The fund stayed invested, the investors did not."
+    },
+    {
+      "text": "Picking a fund on recent performance is the most common way to buy high, and chasing the best performer can backfire for exactly that reason."
+    },
+    {
+      "text": "Quant investing is a process for turning data into portfolio decisions, and like any process it has failure modes worth understanding before you buy it."
+    },
+    {
+      "text": "Asset allocation does more for your outcome than the choice between a quant and a human running the money."
+    },
+    {
+      "text": "SIFs, PMS and AIFs are not upgrades on a mutual fund. They are different structures with different suitability, and long-short strategies behave differently again."
+    }
+  ],
+  "guestDisclosure": "Guest: Bhautik Ambani Designation: CEO and Director, AlphaGrep Mutual Fund"
+}

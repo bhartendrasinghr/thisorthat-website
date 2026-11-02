@@ -1,0 +1,149 @@
+{
+  "id": "TVhqihCnt6U",
+  "duration": "82 min",
+  "durationISO": "PT1H21M55S",
+  "uploadDate": "2026-10-31",
+  "summary": "In 25 years, Debashish Bose says, he has not seen this much negativity towards India. Global investors are looking at South Korea and Taiwan while India waits. Part two works through why country allocations shift, what the Nifty 50 and MSCI India actually tell a foreign investor, whether India is losing the AI race or quietly holding the infrastructure that wins it, and then goes somewhere less expected: tokenisation, stablecoins and what programmable money does to the dollar and the rupee.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlights: India, AI and the future of money"
+    },
+    {
+      "t": 94,
+      "label": "How fund managers evaluate countries and markets"
+    },
+    {
+      "t": 174,
+      "label": "Nifty, Midcaps and Smallcaps: Performance cycles"
+    },
+    {
+      "t": 310,
+      "label": "Nifty vs MSCI India: What global investors track"
+    },
+    {
+      "t": 465,
+      "label": "Why global investors are turning negative on India"
+    },
+    {
+      "t": 742,
+      "label": "Is India really an AI loser?"
+    },
+    {
+      "t": 868,
+      "label": "Can 5 AI-powered developers replace 500?"
+    },
+    {
+      "t": 1012,
+      "label": "Are Indian IT stocks becoming value traps?"
+    },
+    {
+      "t": 1151,
+      "label": "Should Indian investors invest overseas?"
+    },
+    {
+      "t": 1241,
+      "label": "How AI drove South Korea and Taiwan's stock markets"
+    },
+    {
+      "t": 1508,
+      "label": "Argentina, critical minerals and global capital flows"
+    },
+    {
+      "t": 1904,
+      "label": "India's AI opportunity: Data centres and applications"
+    },
+    {
+      "t": 2266,
+      "label": "Why India Stack could benefit from AI"
+    },
+    {
+      "t": 2378,
+      "label": "How AI could transform India's informal workforce"
+    },
+    {
+      "t": 2699,
+      "label": "Tokenisation: The future of raising capital"
+    },
+    {
+      "t": 3001,
+      "label": "Can AI and digital finance transform lending?"
+    },
+    {
+      "t": 3244,
+      "label": "Stablecoins and the future of US dollar dominance"
+    },
+    {
+      "t": 3965,
+      "label": "Digital dollars and the future of the Indian rupee"
+    },
+    {
+      "t": 4412,
+      "label": "AIF vs PMS vs Mutual Funds explained"
+    },
+    {
+      "t": 4652,
+      "label": "AIF taxation, leverage and investment suitability"
+    }
+  ],
+  "tool": {
+    "slug": "asset-allocator.html",
+    "label": "Asset Allocator",
+    "reason": "If the question is how much of your money should ride on one country's story, the answer starts with seeing the split you already have."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "25 Years in Markets. Never Seen This Much Negativity on India | Debashish Bose",
+    "description": "Debashish Bose on why global investors turned negative on India, the AI question for Indian IT, and tokenisation, stablecoins and the rupee."
+  },
+  "takeaways": [
+    {
+      "text": "Global investors have turned negative on India in a way this fund manager has not seen in 25 years, and country allocations move in cycles rather than on merit alone."
+    },
+    {
+      "text": "The Nifty 50 and MSCI India are not the same index, and the one foreign investors track is not the one most Indians quote."
+    },
+    {
+      "text": "The AI question for India cuts both ways: it threatens IT services while India Stack, data centres and applications could be the bigger opportunity."
+    },
+    {
+      "text": "South Korea and Taiwan's market runs were driven by AI, which is a useful reminder that country returns can come down to what a country makes."
+    },
+    {
+      "text": "AIFs, PMS and mutual funds differ in structure, taxation and who they suit, and leverage inside an AIF is a question worth asking before you sign."
+    }
+  ],
+  "fork": {
+    "decision": "Global money is leaving India. Stay home, or diversify overseas?",
+    "this": {
+      "label": "Stay invested in India",
+      "points": [
+        {
+          "text": "Negativity this extreme is itself a cycle, and country allocations have swung back before."
+        },
+        {
+          "text": "India Stack, data centres and the application layer are a real AI opportunity, not a consolation prize."
+        },
+        {
+          "text": "Infrastructure, manufacturing and a large informal workforce coming into the formal economy are long-run drivers that do not move on sentiment."
+        }
+      ]
+    },
+    "that": {
+      "label": "Add exposure overseas",
+      "points": [
+        {
+          "text": "South Korea and Taiwan show what happens when a market owns the thing the world wants, and India did not own it."
+        },
+        {
+          "text": "Indian IT stocks risk becoming value traps if AI compresses the services model faster than the sector adapts."
+        },
+        {
+          "text": "Capital is genuinely moving, and holding a single country's equity is a concentrated bet whether or not it feels like one."
+        }
+      ]
+    },
+    "pick": "Owning only one country is a bet, even when that country is your own. Add some exposure outside India for the diversification rather than because Taiwan had a good year, and do not sell India into the exact pessimism this episode says is unusual."
+  },
+  "guestDisclosure": "Guest: Debashish Bose Designation: Founder and Managing Partner, Infinite Circles Asset Managers"
+}

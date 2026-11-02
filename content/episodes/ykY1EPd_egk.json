@@ -1,0 +1,165 @@
+{
+  "id": "ykY1EPd_egk",
+  "duration": "53 min",
+  "durationISO": "PT52M46S",
+  "uploadDate": "2026-08-22",
+  "summary": "Vineet Malhotra has invested across the US, China, the Middle East and India, and his answer on AI is not the one either camp wants. The future of advice is not AI against the adviser, it is AI and human judgement doing different halves of the job. Along the way: why Indian investors keep searching for the best mutual fund, why workplace investing built America's investing culture, when DIY stops being enough, and the closing rule you may not agree with but will remember, which is that if you cannot click it and move it, do not buy it.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Highlight & Introduction"
+    },
+    {
+      "t": 126,
+      "label": "Why he returned to India after a global career"
+    },
+    {
+      "t": 235,
+      "label": "What Indian investors can learn from the US"
+    },
+    {
+      "t": 315,
+      "label": "How workplace investing created America's investing culture"
+    },
+    {
+      "t": 458,
+      "label": "Investing behaviour in China and the Middle East"
+    },
+    {
+      "t": 821,
+      "label": "Why Indians keep searching for the \"best mutual fund\""
+    },
+    {
+      "t": 1076,
+      "label": "How a financial advisor changed Vineet's own journey"
+    },
+    {
+      "t": 1203,
+      "label": "Bhartendra's biggest SIP mistake"
+    },
+    {
+      "t": 1270,
+      "label": "How should you choose a financial advisor?"
+    },
+    {
+      "t": 1411,
+      "label": "Why should your advisor be allowed to make money?"
+    },
+    {
+      "t": 1463,
+      "label": "The real cost and value of financial advice"
+    },
+    {
+      "t": 1672,
+      "label": "What is BlackRock's Aladdin platform?"
+    },
+    {
+      "t": 1829,
+      "label": "How technology can help Indian financial advisors"
+    },
+    {
+      "t": 1879,
+      "label": "Will AI replace financial advisors?"
+    },
+    {
+      "t": 1999,
+      "label": "How AI can help investors research mutual funds"
+    },
+    {
+      "t": 2266,
+      "label": "Is AI genuinely useful or just hype?"
+    },
+    {
+      "t": 2389,
+      "label": "The human skills AI cannot replace"
+    },
+    {
+      "t": 2429,
+      "label": "Why a financial advisor still has an advantage over AI"
+    },
+    {
+      "t": 2654,
+      "label": "How Gen Z will create and manage wealth"
+    },
+    {
+      "t": 2700,
+      "label": "Saving, protecting and growing wealth"
+    },
+    {
+      "t": 2776,
+      "label": "What the next generation will expect from advisors"
+    },
+    {
+      "t": 2904,
+      "label": "Vineet's most important investing lessons"
+    },
+    {
+      "t": 3058,
+      "label": "\"If you can't click it and move it, don't buy it\""
+    },
+    {
+      "t": 3092,
+      "label": "When should you outsource your financial complexity?"
+    }
+  ],
+  "tool": {
+    "slug": "money-person.html",
+    "label": "Money Person finder",
+    "reason": "The episode's own test is when your financial life gets too complex to run alone. If that is where you are, start here."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "The Future of Investing: AI, Advisors and the New Wealth Playbook",
+    "description": "Vineet Malhotra on AI and financial advisers, why Indians chase the best mutual fund, and when DIY investing stops being enough."
+  },
+  "takeaways": [
+    {
+      "text": "The question is not AI or an adviser. It is AI doing the research and a human doing the judgement, which are not the same skill."
+    },
+    {
+      "text": "America's investing culture came largely from workplace investing, which is a structural advantage India has never had."
+    },
+    {
+      "text": "Searching for the best mutual fund is the wrong search. Start from the goal and the fund question mostly answers itself."
+    },
+    {
+      "text": "An adviser should be allowed to make money. Advice that appears free is priced somewhere you cannot see it."
+    },
+    {
+      "text": "His rule: if you cannot click it and move it, do not buy that asset. Liquidity is a feature you only value when you need it."
+    }
+  ],
+  "fork": {
+    "decision": "For the next decade of your money, AI or a human adviser?",
+    "this": {
+      "label": "Lean on AI",
+      "points": [
+        {
+          "text": "AI is genuinely good at the research layer, including sifting mutual funds faster than any human can."
+        },
+        {
+          "text": "It is available at any hour, at nearly no cost, and it does not get bored of your basic questions."
+        },
+        {
+          "text": "Technology of this kind is already what large institutions run on, and it is arriving for ordinary investors now."
+        }
+      ]
+    },
+    "that": {
+      "label": "Keep a human",
+      "points": [
+        {
+          "text": "The skills that matter at the worst moments, judgement and holding your nerve, are the ones AI does not have."
+        },
+        {
+          "text": "An adviser changed Vineet's own investing journey, which is a different kind of evidence from a backtest."
+        },
+        {
+          "text": "When your financial life gets complicated enough, the job stops being information and starts being decisions."
+        }
+      ]
+    },
+    "pick": "Use AI for the research and a human for the judgement, which is the whole argument of the episode. The moment to pay for a person is when your financial life is too complex to hold in your head, not when you want someone to pick a fund."
+  },
+  "guestDisclosure": "Guest: Vineet Malhotra Designation: Co-Founder and CEO, compoundexpress (a DSP Group company), former Managing Director, BlackRock"
+}

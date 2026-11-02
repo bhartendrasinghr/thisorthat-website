@@ -1,0 +1,96 @@
+{
+  "id": "_kvwKOD5cjg",
+  "duration": "6 min",
+  "durationISO": "PT5M52S",
+  "uploadDate": "2026-10-30",
+  "summary": "Every time an IPO opens, everyone asks whether to apply. Almost nobody asks what happened to the ones before it. So I pulled every mainboard IPO listed on the NSE from February 2016 to October 2026, all 541 of them, and tracked each from issue price to listing day to today, against the Nifty 50 over the same period. The listing-day story and the long-run story are not the same story.",
+  "chapters": [
+    {
+      "t": 0,
+      "label": "Why I checked every IPO"
+    },
+    {
+      "t": 41,
+      "label": "Listing day: the party"
+    },
+    {
+      "t": 75,
+      "label": "The long run"
+    },
+    {
+      "t": 128,
+      "label": "Big names: safer bets?"
+    },
+    {
+      "t": 170,
+      "label": "Where the gains came from"
+    },
+    {
+      "t": 240,
+      "label": "What the listing pop tells you"
+    },
+    {
+      "t": 284,
+      "label": "The verdict and one question"
+    }
+  ],
+  "tool": {
+    "slug": "ipo-checker.html",
+    "label": "IPO Checker",
+    "reason": "Look up any IPO you applied for or are thinking about, and see what it actually did against the Nifty from listing day to now."
+  },
+  "disclaimer": "For education only. Nothing here is financial, investment, or legal advice. Past performance is not indicative of future results. Please consult a SEBI-registered investment adviser before making any decision.",
+  "seo": {
+    "title": "Do IPOs Actually Make Money? I Checked All 541 (2016–2026)",
+    "description": "All 541 mainboard IPOs from 2016 to 2026, checked against the Nifty 50. 7 in 10 pop on listing. 4 in 10 are below issue price today."
+  },
+  "takeaways": [
+    {
+      "text": "On listing day, 7 in 10 IPOs closed above their issue price, with a median gain of 12 per cent. That part of the reputation is earned."
+    },
+    {
+      "text": "Today, 217 of the 541 are below their issue price. Roughly 4 in 10 are under water against the price they were sold at."
+    },
+    {
+      "text": "Against the Nifty 50, only 281 of 541 came out ahead. That is 52 per cent, which is a coin toss."
+    },
+    {
+      "text": "For IPOs listed three or more years ago the typical one returned 7 per cent a year against the Nifty's 9 per cent. Over five or more years it was 9 against 11."
+    },
+    {
+      "text": "Investing ₹10,000 in every IPO would have turned ₹54 lakh into ₹1.11 crore against ₹73 lakh in the Nifty, but 76 per cent of those gains came from the top 10 per cent of IPOs. Miss those and the average is not the thing you got."
+    }
+  ],
+  "fork": {
+    "decision": "The next IPO opens on Monday. Apply, or leave it?",
+    "this": {
+      "label": "Apply",
+      "points": [
+        {
+          "text": "7 in 10 IPOs closed listing day above the issue price, median gain 12 per cent, so the short-term odds are genuinely in your favour."
+        },
+        {
+          "text": "₹10,000 into every single IPO would have grown ₹54 lakh into ₹1.11 crore, ahead of the ₹73 lakh the Nifty gave."
+        },
+        {
+          "text": "The allotment is a free option in the sense that you can take the listing gain and leave."
+        }
+      ]
+    },
+    "that": {
+      "label": "Leave it",
+      "points": [
+        {
+          "text": "4 in 10 of all 541 are below their issue price today, so the listing pop and the investment are two different things."
+        },
+        {
+          "text": "Against the Nifty only 52 per cent came out ahead, which is a coin toss for a lot more effort."
+        },
+        {
+          "text": "76 per cent of the total gains came from the top 10 per cent of IPOs, so the headline average belongs to a handful you were unlikely to pick."
+        }
+      ]
+    },
+    "pick": "Ask one question before you apply: would I buy this company at this price if it were already listed? If yes, the IPO is just a way in. If no, you are playing for the listing pop, which the data says works more often than not and is a trade, not an investment. Be honest about which one you are doing."
+  }
+}
