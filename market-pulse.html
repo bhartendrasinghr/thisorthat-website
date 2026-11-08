@@ -274,7 +274,7 @@ fetch('content/market-pulse.json?v='+Date.now()).then(function(r){
   var nAuto = (d.scoreboard||[]).filter(function(x){return x.auto;}).length;
   $('edition').innerHTML = esc(d.edition) + '  &middot;  written ' + esc(shortDate(d.updated)) +
     (d.auto_refreshed ? '  &middot;  <span style="color:#9FD9BC">' + nAuto +
-      ' figures refreshed ' + esc(shortDate(d.auto_refreshed)) + '</span>' : '');
+      ' figures last checked ' + esc(shortDate(d.auto_refreshed)) + '</span>' : '');
   $('title').textContent = d.title;
   $('intro').textContent = d.intro;
   $('sbnote').textContent = d.scoreboard_note;

@@ -292,8 +292,26 @@ collections:
         fields:
           - { name: "edition", label: "Edition", widget: "string", hint: "e.g. September 2026" }
           - { name: "updated", label: "Updated on", widget: "date", format: "YYYY-MM-DD" }
+          - { name: "auto_refreshed", label: "Robot last ran", widget: "string", required: false, hint: "Written by the nightly refresh. If this date is old, the job is failing. Do not edit." }
+          - { name: "fx_year_open", label: "USD/INR on 1 January", widget: "number", value_type: "float", required: false, hint: "The FBIL reference rate for the first business day of the year. Every rupee figure on the page is measured against it, so check it each January." }
+          - { name: "fx_year_open_year", label: "...which year that rate is for", widget: "number", value_type: "int", required: false, hint: "Set this to the current year once you have updated the rate above. While it lags, the build keeps nagging." }
+          - { name: "gold_year_open", label: "Gold in $/oz at last year's close", widget: "number", value_type: "float", required: false, hint: "The live gold price is fetched, but no free source gives us the history to measure it against, so this one is yours." }
+          - { name: "gold_year_open_year", label: "...which year that price is for", widget: "number", value_type: "int", required: false, hint: "Same idea as the rupee one above." }
           - { name: "title", label: "Headline", widget: "string" }
           - { name: "intro", label: "Opening paragraph", widget: "text" }
+          - { name: "detail_note", label: "Note above the detail sections", widget: "text", required: false }
+          - name: "short"
+            label: "The short version"
+            widget: "object"
+            required: false
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - name: "points"
+                label: "The three points"
+                widget: "list"
+                fields:
+                  - { name: "t", label: "Point", widget: "string" }
+                  - { name: "b", label: "Explanation", widget: "text" }
           - { name: "scoreboard_note", label: "Scoreboard caption", widget: "string" }
           - name: "scoreboard"
             label: "The rupee scoreboard"
@@ -303,6 +321,10 @@ collections:
               - { name: "v", label: "Big number", widget: "string" }
               - { name: "sub", label: "Small print", widget: "string" }
               - { name: "tone", label: "Colour", widget: "select", options: ["up", "down", "flat"] }
+              - { name: "plain", label: "Plain-English label", widget: "string", required: false }
+              - { name: "means", label: "What it means", widget: "text", required: false }
+              - { name: "auto", label: "Refreshes itself", widget: "boolean", required: false, default: false, hint: "Ticked means the nightly job owns this number. Leave the tick alone, and do not type over the value: the next run will overwrite you." }
+              - { name: "asof", label: "As of (YYYY-MM-DD)", widget: "string", required: false, hint: "For a self-refreshing tile the job sets this. For a hand-typed one, put the date the figure is true of." }
           - { name: "chain_intro", label: "Chain, opening line", widget: "text" }
           - name: "chain"
             label: "The chain"
@@ -341,6 +363,10 @@ collections:
                   - { name: "why", label: "Why it matters", widget: "text" }
                   - { name: "freq", label: "How often it changes", widget: "string" }
                   - { name: "src", label: "Source", widget: "string" }
+                  - { name: "plain", label: "Plain-English label", widget: "string", required: false }
+                  - { name: "means", label: "What it means", widget: "text", required: false }
+                  - { name: "auto", label: "Refreshes itself", widget: "boolean", required: false, default: false, hint: "Ticked means the nightly job owns this number. Leave the tick alone." }
+                  - { name: "asof", label: "As of (YYYY-MM-DD)", widget: "string", required: false }
           - name: "assets"
             label: "Asset classes chart"
             widget: "object"
