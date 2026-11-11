@@ -67,7 +67,8 @@ jobs:
           # Nothing open. If he shut one recently, that was a decision, so
           # honour it unless the list itself has moved on.
           LAST=$(gh issue list --label "$LABEL" --state closed --limit 1 \
-                   --json number,closedAt -q '.[0] | "\(.number) \(.closedAt)"')
+                   --json number,closedAt \
+                   -q '.[0] | select(.) | "\(.number) \(.closedAt)"')
           if [ -z "$LAST" ]; then
             echo "snoozed=false" >> "$GITHUB_OUTPUT"
             echo "Never opened one before."
