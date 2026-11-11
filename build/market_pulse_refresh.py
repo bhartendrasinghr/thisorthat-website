@@ -271,6 +271,83 @@ def card(doc, key):
 
 
 # ─── main ─────────────────────────────────────────────────────────────────
+
+def needs_a_person(doc, today):
+    """The list of figures and sentences no feed can supply.
+
+    Kept apart from main() on purpose: the nightly build calls it after a
+    refresh, and build/market_pulse_nudge.py calls it on its own to decide
+    whether to open a GitHub issue. Both have to reach the same verdict from
+    the same document, so there is exactly one copy of the rules.
+    """
+    yr = today.year
+    repo_c, cpi_c = card(doc, 'RBI repo rate'), card(doc, 'CPI inflation')
+    review = []
+
+    def due(what, asof, after, note):
+        age = None
+        if asof:
+            age = (today - datetime.strptime(asof, '%Y-%m-%d').date()).days
+            if age <= after:
+                return
+        review.append({'what': what, 'asof': asof, 'age_days': age, 'note': note})
+
+    ind_c = card(doc, 'India 10-year G-sec')
+    due("India's 10-year G-sec", (ind_c or {}).get('asof'), 20,
+        'Still a hand job. FBIL is the official source but sits behind a login and bars '
+        'commercial use; worldgovernmentbonds.com renders its table in JavaScript, so a '
+        'build box sees no numbers. Read the level and the change since 1 January off '
+        'either, and update the scoreboard tile with it too.')
+    due('RBI repo rate and stance', (repo_c or {}).get('asof'), 45,
+        'Moves only at an MPC meeting, so check the date of the last one. The stance '
+        'wording matters as much as the rate: it is the sentence that tells a reader '
+        'which way the next move leans.')
+    due('CPI inflation', (cpi_c or {}).get('asof'), 35,
+        'MoSPI publishes around the 12th of each month. Note that there is no official '
+        'core series, so if the card shows a core figure it has to name whose estimate '
+        'it is.')
+    due('The behaviour gap', doc.get('updated'), 100,
+        'DSP Netra. Licensed, with no open source, and it does not appear in every '
+        'edition. Worth redoing once a quarter, and leave it alone if Netra has not '
+        'moved.')
+    due('Asset classes, and India against the world', doc.get('updated'), 40,
+        'First Global Monthly Action Report. Licensed, no open source.')
+    due('The writing: headline, opening, the chain, what we are watching',
+        doc.get('updated'), 40,
+        'The numbers above say what happened. These say what it meant, which is the '
+        'part worth a person’s time.')
+
+    # The two once-a-year constants. Everything else on the page is either
+    # fetched or written; these are the only numbers that go quietly wrong by
+    # sitting still, which is why they get their own nag every January.
+    # Prose that contradicts the numbers printed above it is worse than prose
+    # that is merely old, so this one names the live figure in the nag.
+    nifty = next((t for t in doc.get('scoreboard', []) if t.get('k') == 'Nifty 50'), {})
+    said = re.findall(r'(\d{1,2})\s*%', json.dumps(doc.get('short') or {}, ensure_ascii=False))
+    if nifty.get('v') and said:
+        review.append({'what': 'The short version, and the opening paragraph',
+                       'asof': doc.get('updated'), 'age_days': None,
+                       'note': f"These mention {', '.join(sorted(set(said)))}% while the "
+                               f"scoreboard above them now reads {nifty['v']} for the Nifty. "
+                               f"A reader sees both at once, so this is the first thing to "
+                               f"change, ahead of any figure."})
+
+    if doc.get('fx_year_open_year') != yr:
+        review.append({'what': 'fx_year_open', 'asof': None, 'age_days': None,
+                       'note': f'Set it to the FBIL USD/INR reference rate for 1 January '
+                               f'{yr}, then set fx_year_open_year to {yr}. Every rupee '
+                               f'figure on this page hangs off it, including both '
+                               f'conversion tiles, so a wrong value here is wrong in '
+                               f'three places at once.'})
+    if doc.get('gold_year_open_year') != yr:
+        review.append({'what': 'gold_year_open', 'asof': None, 'age_days': None,
+                       'note': f'Set it to gold in dollars an ounce at the last close of '
+                               f'{yr - 1}, then set gold_year_open_year to {yr}. The live '
+                               f'price is fetched, but no free source gives us the history '
+                               f'to measure it against.'})
+
+    return review
+
 def main():
     doc = json.load(open(TARGET, encoding='utf-8'))
     today = date.today()
@@ -465,69 +542,7 @@ def main():
     oldest = min(written) if written else stamp
 
     # ─── what still needs a person ────────────────────────────────────────
-    review = []
-
-    def due(what, asof, after, note):
-        age = None
-        if asof:
-            age = (today - datetime.strptime(asof, '%Y-%m-%d').date()).days
-            if age <= after:
-                return
-        review.append({'what': what, 'asof': asof, 'age_days': age, 'note': note})
-
-    ind_c = card(doc, 'India 10-year G-sec')
-    due("India's 10-year G-sec", (ind_c or {}).get('asof'), 20,
-        'Still a hand job. FBIL is the official source but sits behind a login and bars '
-        'commercial use; worldgovernmentbonds.com renders its table in JavaScript, so a '
-        'build box sees no numbers. Read the level and the change since 1 January off '
-        'either, and update the scoreboard tile with it too.')
-    due('RBI repo rate and stance', (repo_c or {}).get('asof'), 45,
-        'Moves only at an MPC meeting, so check the date of the last one. The stance '
-        'wording matters as much as the rate: it is the sentence that tells a reader '
-        'which way the next move leans.')
-    due('CPI inflation', (cpi_c or {}).get('asof'), 35,
-        'MoSPI publishes around the 12th of each month. Note that there is no official '
-        'core series, so if the card shows a core figure it has to name whose estimate '
-        'it is.')
-    due('The behaviour gap', doc.get('updated'), 100,
-        'DSP Netra. Licensed, with no open source, and it does not appear in every '
-        'edition. Worth redoing once a quarter, and leave it alone if Netra has not '
-        'moved.')
-    due('Asset classes, and India against the world', doc.get('updated'), 40,
-        'First Global Monthly Action Report. Licensed, no open source.')
-    due('The writing: headline, opening, the chain, what we are watching',
-        doc.get('updated'), 40,
-        'The numbers above say what happened. These say what it meant, which is the '
-        'part worth a person’s time.')
-
-    # The two once-a-year constants. Everything else on the page is either
-    # fetched or written; these are the only numbers that go quietly wrong by
-    # sitting still, which is why they get their own nag every January.
-    # Prose that contradicts the numbers printed above it is worse than prose
-    # that is merely old, so this one names the live figure in the nag.
-    nifty = next((t for t in doc.get('scoreboard', []) if t.get('k') == 'Nifty 50'), {})
-    said = re.findall(r'(\d{1,2})\s*%', json.dumps(doc.get('short') or {}, ensure_ascii=False))
-    if nifty.get('v') and said:
-        review.append({'what': 'The short version, and the opening paragraph',
-                       'asof': doc.get('updated'), 'age_days': None,
-                       'note': f"These mention {', '.join(sorted(set(said)))}% while the "
-                               f"scoreboard above them now reads {nifty['v']} for the Nifty. "
-                               f"A reader sees both at once, so this is the first thing to "
-                               f"change, ahead of any figure."})
-
-    if doc.get('fx_year_open_year') != yr:
-        review.append({'what': 'fx_year_open', 'asof': None, 'age_days': None,
-                       'note': f'Set it to the FBIL USD/INR reference rate for 1 January '
-                               f'{yr}, then set fx_year_open_year to {yr}. Every rupee '
-                               f'figure on this page hangs off it, including both '
-                               f'conversion tiles, so a wrong value here is wrong in '
-                               f'three places at once.'})
-    if doc.get('gold_year_open_year') != yr:
-        review.append({'what': 'gold_year_open', 'asof': None, 'age_days': None,
-                       'note': f'Set it to gold in dollars an ounce at the last close of '
-                               f'{yr - 1}, then set gold_year_open_year to {yr}. The live '
-                               f'price is fetched, but no free source gives us the history '
-                               f'to measure it against.'})
+    review = needs_a_person(doc, today)
 
     json.dump({'generated': today.isoformat(), 'edition': doc.get('edition'),
                'written': doc.get('updated'), 'items': review},
@@ -545,6 +560,12 @@ def main():
         print(f'  the same list is in content/market-pulse-review.json')
     else:
         print('\n  nothing is waiting on a person')
+
+    # build.py ignores this; build/market_pulse_nudge.py needs it, because the
+    # difference between "no source answered" and "every figure was already
+    # current" is invisible from the document alone.
+    return {'touched': touched, 'review': review, 'oldest': oldest,
+            'edition': doc.get('edition'), 'written': doc.get('updated')}
 
 
 if __name__ == '__main__':

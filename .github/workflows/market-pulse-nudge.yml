@@ -1,0 +1,154 @@
+name: Market Pulse nudge
+
+# The page refreshes thirteen figures by itself every night. Four things on it
+# cannot be fetched by anything: India's 10-year G-sec, the repo rate and its
+# stance, CPI, and the sentences that say what the numbers meant. The build
+# already works out which of those have gone stale. It then writes the list to
+# a build log and a JSON file, which is a polite way of telling nobody.
+#
+# So this runs the same rules on GitHub's network and keeps exactly one issue
+# open with the list in it. One email when something first goes stale. Nothing
+# while it merely gets older. A comment, which does email, only when something
+# genuinely new lands: CPI on the 12th, a rate decision, the two January
+# constants. The issue closes itself when the list empties.
+#
+# Close it unfixed and it stays shut for a week, unless the list changes in the
+# meantime. A nag you cannot dismiss is a nag you turn off.
+
+on:
+  schedule:
+    - cron: '30 4 * * *'      # 10:00 IST, half an hour after the nightly deploy
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: market-pulse-nudge
+  cancel-in-progress: false
+
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      LABEL: market-pulse
+      ASSIGNEE: bhartendrasinghr
+      SNOOZE_DAYS: '7'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Make sure the label exists
+        run: |
+          gh label create "$LABEL" --color FFC21F \
+            --description "Figures on /market-pulse that no feed can supply" \
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null \
+            || echo "label already there"
+
+      - name: Is one of these already open, or recently closed?
+        id: state
+        run: |
+          OPEN=$(gh issue list --label "$LABEL" --state open --limit 1 \
+                   --json number -q '.[0].number // empty')
+          echo "open=$OPEN" >> "$GITHUB_OUTPUT"
+
+          if [ -n "$OPEN" ]; then
+            gh issue view "$OPEN" --json body -q .body > /tmp/previous.md
+            echo "Found #$OPEN open. Will keep it accurate rather than open another."
+            echo "snoozed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Nothing open. If he shut one recently, that was a decision, so
+          # honour it unless the list itself has moved on.
+          LAST=$(gh issue list --label "$LABEL" --state closed --limit 1 \
+                   --json number,closedAt -q '.[0] | "\(.number) \(.closedAt)"')
+          if [ -z "$LAST" ]; then
+            echo "snoozed=false" >> "$GITHUB_OUTPUT"
+            echo "Never opened one before."
+            exit 0
+          fi
+          NUM=${LAST%% *}; WHEN=${LAST##* }
+          AGE=$(( ( $(date -u +%s) - $(date -u -d "$WHEN" +%s) ) / 86400 ))
+          gh issue view "$NUM" --json body -q .body > /tmp/previous.md
+          echo "#$NUM was closed $AGE day(s) ago."
+          if [ "$AGE" -lt "$SNOOZE_DAYS" ]; then
+            echo "snoozed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "snoozed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Work out what still needs a person
+        id: nudge
+        run: |
+          set -o pipefail
+          python3 build/market_pulse_nudge.py --previous /tmp/previous.md \
+            2>&1 | tee /tmp/nudge.log
+
+      - name: Say it where he will see it
+        env:
+          # Through the environment rather than straight into the script, so a
+          # value can never be read as shell. None of these come from outside
+          # the repo today, but the title is a sentence and sentences change.
+          COUNT: ${{ steps.nudge.outputs.count }}
+          ADDED: ${{ steps.nudge.outputs.added }}
+          CHANGED: ${{ steps.nudge.outputs.changed }}
+          TITLE: ${{ steps.nudge.outputs.title }}
+          OPEN: ${{ steps.state.outputs.open }}
+          SNOOZED: ${{ steps.state.outputs.snoozed }}
+        run: |
+          if [ -z "$COUNT" ]; then
+            echo "The nudge step produced no count, so there is nothing trustworthy"
+            echo "to post. Failing rather than guessing."
+            exit 1
+          fi
+
+          if [ "$COUNT" -eq 0 ]; then
+            if [ -n "$OPEN" ]; then
+              gh issue comment "$OPEN" --body \
+                "Every figure and every sentence on the page is current. Closing this. It will come back on its own when something goes stale."
+              gh issue close "$OPEN" --reason completed
+              echo "Closed #$OPEN."
+            else
+              echo "Nothing waiting on a person. Nothing to open."
+            fi
+            exit 0
+          fi
+
+          if [ -n "$OPEN" ]; then
+            gh issue edit "$OPEN" --title "$TITLE" \
+              --body-file /tmp/market-pulse-nudge.md
+            echo "Rewrote #$OPEN so the ages and figures in it are today's."
+            if [ "$ADDED" -gt 0 ]; then
+              {
+                echo "Something new since this was written:"
+                echo
+                cat /tmp/market-pulse-added.md
+              } > /tmp/comment.md
+              gh issue comment "$OPEN" --body-file /tmp/comment.md
+              echo "Commented on #$OPEN about $ADDED new item(s), which emails him."
+            else
+              echo "Nothing new, so no comment and no email. It just got older."
+            fi
+            exit 0
+          fi
+
+          if [ "$SNOOZED" = "true" ] && [ "$CHANGED" != "true" ]; then
+            echo "He closed the last one inside $SNOOZE_DAYS days and the list is"
+            echo "unchanged, so this is him saying not now. Staying quiet."
+            exit 0
+          fi
+
+          URL=$(gh issue create --title "$TITLE" \
+                  --body-file /tmp/market-pulse-nudge.md \
+                  --label "$LABEL" --assignee "$ASSIGNEE")
+          echo "Opened $URL"
+
+      - name: What the refresh saw, pass or fail
+        if: always()
+        run: tail -40 /tmp/nudge.log || echo "the nudge produced no log, so it did not run"
