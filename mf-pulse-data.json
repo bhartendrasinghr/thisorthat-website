@@ -1,253 +1,244 @@
 {
- "generated": "2026-11-02",
- "month": "September 2026",
- "month_short": "Sep 2026",
- "asof": "2026-09-30",
- "prev_month_short": "Aug 2026",
- "year_ago_short": "Sep 2025",
- "source_file": "amsep2026repo.xls",
- "next_month": "October 2026",
- "next_due": "2026-11-10",
+ "generated": "2026-11-11",
+ "month": "October 2026",
+ "month_short": "Oct 2026",
+ "asof": "2026-10-31",
+ "prev_month_short": "Sep 2026",
+ "year_ago_short": "Oct 2025",
+ "source_file": "amoct2026repo.xls",
+ "next_month": "November 2026",
+ "next_due": "2026-12-10",
  "industry": {
-  "aum": 8264116.632060861,
-  "aum_prev": 8707887.74195046,
-  "aum_mom": -5.1,
-  "aum_yoy": 9.3,
-  "flow": -133375.56520788925,
-  "flow_prev": 41353.59727107881,
-  "folios": 286231680.0,
-  "folios_prev": 283519085.0,
-  "schemes": 1995.0
+  "aum": 8338858.05550134,
+  "aum_prev": 8264116.632060861,
+  "aum_mom": 0.9,
+  "aum_yoy": 4.4,
+  "flow": 173828.98463170003,
+  "flow_prev": -133375.56520788925,
+  "folios": 287811511.0,
+  "folios_prev": 286231680.0,
+  "schemes": 2015.0
  },
  "equity": {
-  "flow": 38306.55204863,
-  "flow_prev": 29328.617931019995,
-  "flow_mom": 30.6
+  "flow": 32993.63726012001,
+  "flow_prev": 38306.55204863,
+  "flow_mom": -13.9
  },
  "passive": {
-  "flow": 11887.370422300013,
-  "flow_prev": 10948.363732569997,
-  "flow_mom": 8.6,
-  "aum": 1470443.04553041,
-  "share": 17.8
+  "flow": 23383.564798800006,
+  "flow_prev": 11887.370422300013,
+  "flow_mom": 96.7,
+  "aum": 1479681.27048549,
+  "share": 17.7
  },
  "segments": [
   {
    "k": "Equity",
-   "aum": 3754274.5706320098,
-   "aum_prev": 3921147.3608963196,
-   "mom": -4.3,
-   "yoy": 11.5
+   "aum": 3714550.4497845196,
+   "aum_prev": 3754274.5706320098,
+   "mom": -1.1,
+   "yoy": 5.6
   },
   {
    "k": "Debt",
-   "aum": 1764044.2923500899,
-   "aum_prev": 1933475.5583065301,
-   "mom": -8.8,
-   "yoy": -0.9
+   "aum": 1881341.3732183904,
+   "aum_prev": 1764044.2923500899,
+   "mom": 6.6,
+   "yoy": -3.6
   },
   {
    "k": "Passive (index + ETF)",
-   "aum": 1470443.04553041,
-   "aum_prev": 1541731.65599162,
-   "mom": -4.6,
-   "yoy": 16.3
+   "aum": 1479681.27048549,
+   "aum_prev": 1470443.04553041,
+   "mom": 0.6,
+   "yoy": 11.2
   },
   {
    "k": "Hybrid",
-   "aum": 1152157.70906092,
-   "aum_prev": 1185966.17056235,
-   "mom": -2.9,
-   "yoy": 11.5
+   "aum": 1148634.3016120503,
+   "aum_prev": 1152157.70906092,
+   "mom": -0.3,
+   "yoy": 7.4
   },
   {
    "k": "Industry",
-   "aum": 8264116.632060861,
-   "aum_prev": 8707887.74195046,
-   "mom": -5.1,
-   "yoy": 9.3,
+   "aum": 8338858.05550134,
+   "aum_prev": 8264116.632060861,
+   "mom": 0.9,
+   "yoy": 4.4,
    "total": true
   }
  ],
  "equity_cats": [
   {
-   "k": "Small cap",
-   "flow": 9038.56965613001,
-   "flow_prev": 7973.33115773,
-   "aum": 461751.58653799,
-   "aum_mom": -0.9,
-   "folios": 30381196.0,
+   "k": "Large and mid cap",
+   "flow": 8484.23422689,
+   "flow_prev": 4271.21798657,
+   "aum": 355311.15463169,
+   "aum_mom": 0.3,
+   "folios": 14602910.0,
    "schemes": 36.0
   },
   {
-   "k": "Mid cap",
-   "flow": 7834.84356365,
-   "flow_prev": 6989.39504697,
-   "aum": 514213.11925985,
-   "aum_mom": -5.3,
-   "folios": 26768077.0,
-   "schemes": 34.0
+   "k": "Small cap",
+   "flow": 6407.49692256,
+   "flow_prev": 9038.56965613001,
+   "aum": 440874.57142328,
+   "aum_mom": -4.5,
+   "folios": 30704519.0,
+   "schemes": 36.0
   },
   {
    "k": "Flexi cap",
-   "flow": 6701.80370286,
-   "flow_prev": 5059.42290463,
-   "aum": 588389.52161228,
-   "aum_mom": -3.8,
-   "folios": 25035055.0,
+   "flow": 4979.95390695,
+   "flow_prev": 6701.80370286,
+   "aum": 591363.71520664,
+   "aum_mom": 0.5,
+   "folios": 25180630.0,
    "schemes": 47.0
   },
   {
-   "k": "Large and mid cap",
-   "flow": 4271.21798657,
-   "flow_prev": 3872.78830038,
-   "aum": 354112.83780242,
-   "aum_mom": -5.0,
-   "folios": 14531964.0,
-   "schemes": 36.0
+   "k": "Mid cap",
+   "flow": 4892.62392218,
+   "flow_prev": 7834.84356365,
+   "aum": 503433.67294577,
+   "aum_mom": -2.1,
+   "folios": 26983457.0,
+   "schemes": 34.0
   },
   {
    "k": "Multi cap",
-   "flow": 3859.55339903,
-   "flow_prev": 3732.77064052,
-   "aum": 248188.15584668,
-   "aum_mom": -3.3,
-   "folios": 12074365.0,
+   "flow": 2977.86465839,
+   "flow_prev": 3859.55339903,
+   "aum": 243406.36791839,
+   "aum_mom": -1.9,
+   "folios": 12155011.0,
    "schemes": 33.0
   },
   {
-   "k": "Sectoral",
-   "flow": 1840.01517395,
-   "flow_prev": -53.1898779700005,
-   "aum": 147304.50233122,
-   "aum_mom": -4.4,
-   "folios": 9583586.0,
-   "schemes": 60.0
+   "k": "Contra",
+   "flow": 1694.12547186,
+   "flow_prev": -97.880085679999,
+   "aum": 72471.7033307,
+   "aum_mom": 1.2,
+   "folios": 4186323.0,
+   "schemes": 6.0
   },
   {
    "k": "Thematic",
-   "flow": 1800.06624541999,
-   "flow_prev": 1766.1888329,
-   "aum": 399551.77653136,
-   "aum_mom": -4.4,
-   "folios": 23604970.0,
+   "flow": 1162.47967968001,
+   "flow_prev": 1800.06624541999,
+   "aum": 390452.70970565,
+   "aum_mom": -2.3,
+   "folios": 23667997.0,
    "schemes": 194.0
   },
   {
+   "k": "Large cap",
+   "flow": 1032.3917404,
+   "flow_prev": 859.466937649999,
+   "aum": 393541.42768425,
+   "aum_mom": 0.8,
+   "folios": 16929204.0,
+   "schemes": 35.0
+  },
+  {
    "k": "Focused",
-   "flow": 1390.83819212,
-   "flow_prev": 994.73860383,
-   "aum": 179900.44920556,
-   "aum_mom": -4.7,
-   "folios": 5645306.0,
+   "flow": 925.350098240002,
+   "flow_prev": 1390.83819212,
+   "aum": 180369.09434557,
+   "aum_mom": 0.3,
+   "folios": 5672287.0,
    "schemes": 28.0
   },
   {
    "k": "Value",
-   "flow": 1290.89298448,
-   "flow_prev": 24.4000120800001,
-   "aum": 137554.50810916,
-   "aum_mom": -4.3,
-   "folios": 4970006.0,
+   "flow": 556.223512760001,
+   "flow_prev": 1290.89298448,
+   "aum": 136702.45684321,
+   "aum_mom": -0.6,
+   "folios": 4974517.0,
    "schemes": 24.0
   },
   {
-   "k": "Large cap",
-   "flow": 859.466937649999,
-   "flow_prev": -1147.3572733,
-   "aum": 390384.40077963,
-   "aum_mom": -5.6,
-   "folios": 16960523.0,
-   "schemes": 35.0
+   "k": "Sectoral",
+   "flow": 551.592410040001,
+   "flow_prev": 1840.01517395,
+   "aum": 147816.35825613,
+   "aum_mom": 0.3,
+   "folios": 9640641.0,
+   "schemes": 60.0
   },
   {
    "k": "Dividend yield",
-   "flow": 179.30573513,
-   "flow_prev": -133.56738724,
-   "aum": 30635.8439069,
-   "aum_mom": -4.5,
-   "folios": 1182650.0,
+   "flow": -92.8227940600004,
+   "flow_prev": 179.30573513,
+   "aum": 30095.48452541,
+   "aum_mom": -1.8,
+   "folios": 1179983.0,
    "schemes": 12.0
   },
   {
-   "k": "Contra",
-   "flow": -97.880085679999,
-   "flow_prev": 1328.0140271,
-   "aum": 71625.51042701,
-   "aum_mom": -5.5,
-   "folios": 4146438.0,
-   "schemes": 5.0
-  },
-  {
    "k": "ELSS tax saver",
-   "flow": -662.14144268,
-   "flow_prev": -1078.31705661,
-   "aum": 230662.35828195,
-   "aum_mom": -5.9,
-   "folios": 16106808.0,
+   "flow": -577.87649577,
+   "flow_prev": -662.14144268,
+   "aum": 228711.73296783,
+   "aum_mom": -0.8,
+   "folios": 16059746.0,
    "schemes": 39.0
   }
  ],
  "passive_rows": [
   {
    "k": "Equity ETF",
-   "flow": 9959.95796482001,
-   "aum": 781161.50910397,
-   "aum_prev": 817870.38133714,
-   "folios": 19712501.0,
+   "flow": 12973.7784257,
+   "aum": 806596.25620159,
+   "aum_prev": 781161.50910397,
+   "folios": 19783263.0,
    "aum_yoy": null
   },
   {
    "k": "Gold ETF",
-   "flow": 4450.61065376,
-   "aum": 186310.43770096,
-   "aum_prev": 191166.07561201,
-   "folios": 12677259.0,
-   "aum_yoy": 106.7
-  },
-  {
-   "k": "Equity index fund",
-   "flow": 2649.34300438,
-   "aum": 239806.84250883,
-   "aum_prev": 251237.54426641,
-   "folios": 15735616.0,
-   "aum_yoy": null
+   "flow": 3474.02593288,
+   "aum": 179894.44297227,
+   "aum_prev": 186310.43770096,
+   "folios": 12741422.0,
+   "aum_yoy": 76.2
   },
   {
    "k": "Silver ETF",
-   "flow": 1974.31575071,
-   "aum": 81636.34333623,
-   "aum_prev": 85488.33788371,
-   "folios": 5310609.0,
+   "flow": 3092.21988204,
+   "aum": 70220.71973337,
+   "aum_prev": 81636.34333623,
+   "folios": 5353882.0,
    "aum_yoy": null
   },
   {
-   "k": "Debt ETF",
-   "flow": -883.941823449997,
-   "aum": 93798.38249424,
-   "aum_prev": 95324.09798445,
-   "folios": 1698995.0,
+   "k": "Equity index fund",
+   "flow": 1947.81398697,
+   "aum": 240654.56160088,
+   "aum_prev": 239806.84250883,
+   "folios": 15825081.0,
    "aum_yoy": null
   },
   {
    "k": "Debt index fund",
-   "flow": -6257.82167422,
-   "aum": 80576.73864291,
-   "aum_prev": 93560.19954384,
-   "folios": 193169.0,
+   "flow": 1134.42247487,
+   "aum": 81652.61875331,
+   "aum_prev": 80576.73864291,
+   "folios": 189176.0,
+   "aum_yoy": null
+  },
+  {
+   "k": "Debt ETF",
+   "flow": 751.110720050005,
+   "aum": 94110.97898896,
+   "aum_prev": 93798.38249424,
+   "folios": 1728038.0,
    "aum_yoy": null
   }
  ],
  "months": [
-  {
-   "m": "Mar 2026",
-   "m_iso": "2026-03-31",
-   "equity": 40450.25718656998,
-   "debt": -294987.1758677808,
-   "hybrid": -16538.47319287001,
-   "passive": 30236.853078219992,
-   "total": -239909.99822646088
-  },
   {
    "m": "Apr 2026",
    "m_iso": "2026-04-30",
@@ -301,118 +292,78 @@
    "hybrid": -456.67728310000007,
    "passive": 11887.370422300013,
    "total": -133375.56520788925
+  },
+  {
+   "m": "Oct 2026",
+   "m_iso": "2026-10-31",
+   "equity": 32993.63726012001,
+   "debt": 113437.89096667,
+   "hybrid": 3514.0584052299882,
+   "passive": 23383.564798800006,
+   "total": 173828.98463170003
   }
  ],
  "nfo": {
   "groups": [
    {
-    "k": "Income/Debt Oriented Schemes",
-    "count": 3,
-    "raised": 266.0
+    "k": "Open Ended Schemes",
+    "count": 2,
+    "raised": 693.0
    },
    {
     "k": "Equity Schemes",
-    "count": 5,
-    "raised": 998.0
+    "count": 1,
+    "raised": 1488.0
    },
    {
     "k": "Hybrid Schemes",
-    "count": 2,
-    "raised": 288.0
+    "count": 1,
+    "raised": 27.0
    },
    {
     "k": "Life Cycle Funds",
-    "count": 4,
-    "raised": 135.0
+    "count": 1,
+    "raised": 86.0
    },
    {
     "k": "Index Funds",
-    "count": 6,
-    "raised": 669.0
+    "count": 11,
+    "raised": 261.0
    },
    {
     "k": "Exchange Traded Funds (ETFs)",
+    "count": 7,
+    "raised": 65.0
+   },
+   {
+    "k": "Close Ended Schemes",
     "count": 2,
-    "raised": 16.0
+    "raised": 1064.0
+   },
+   {
+    "k": "Funds of Funds Schemes",
+    "count": 3,
+    "raised": 145.0
    }
   ],
   "mf": {
-   "count": 22,
-   "raised": 2372.0
+   "count": 23,
+   "raised": 2620.0
   },
-  "fof": {
-   "count": 6,
-   "raised": 336.0
-  },
+  "fof": null,
   "grand": {
    "count": 28,
-   "raised": 2708.0
+   "raised": 3829.0
   }
  },
- "sip": {
-  "months": [
-   "Sep-26",
-   "Aug-26",
-   "Jul-26",
-   "Jun-26",
-   "May-26",
-   "Apr-26",
-   "Mar-26"
-  ],
-  "contribution": [
-   32490.0,
-   32297.0,
-   31961.0,
-   31781.0,
-   30954.0,
-   31115.0,
-   32087.0
-  ],
-  "accounts": [
-   10.06,
-   10.02,
-   9.9,
-   9.78,
-   9.64,
-   9.65,
-   9.72
-  ],
-  "assets": [
-   17.86,
-   18.62,
-   18.2,
-   17.7,
-   17.12,
-   16.85,
-   15.11
-  ],
-  "share": [
-   21.6,
-   21.4,
-   21.2,
-   21.5,
-   21.0,
-   20.6,
-   20.5
-  ],
-  "equity_streak": 67
- },
- "note_pdf": "https://www.amfiindia.com/uploads/AMFI_Monthly_Note_September2026_554f6604b6.pdf",
- "sif": {
-  "aum": 38286.94,
-  "flow": 7578.18,
-  "schemes": 34,
-  "folios": 156483,
-  "mom": 22.8
- },
  "market": {
-  "nifty": 23440.8,
-  "asof": "2026-11-02",
-  "week": 3.0,
-  "year": -9.0,
-  "week_from": "2026-10-26",
-  "year_from": "2025-11-03",
-  "nifty_week_ago": 22753.2,
-  "nifty_year_ago": 25763.35
+  "nifty": 25255.05,
+  "asof": "2026-11-11",
+  "week": 5.4,
+  "year": -2.4,
+  "week_from": "2026-11-04",
+  "year_from": "2025-11-12",
+  "nifty_week_ago": 23960.6,
+  "nifty_year_ago": 25875.8
  }
 }
